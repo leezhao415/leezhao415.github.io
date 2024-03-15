@@ -1,0 +1,366 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;机器学习&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-04-20T12:05:55.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/04/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AF%BC%E8%AF%BB/</id>
+        <title>机器学习导读</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/04/20/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AF%BC%E8%AF%BB/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AF%BC%E8%AF%BB&#34;&gt;机器学习导读&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E7%9A%84%E4%BD%9C%E7%94%A8&#34;&gt;1 虚拟环境的作用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%BF%85%E5%A4%87%E4%B8%89%E8%A6%81%E7%B4%A0&#34;&gt;2 人工智能必备三要素&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-ai-ml-dl&#34;&gt;3 AI、ML、DL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-it%E8%A1%8C%E4%B8%9A%E9%9C%80%E8%A6%81%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0&#34;&gt;4 IT 行业需要机器学习？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%88%86%E6%94%AF&#34;&gt;5 人工智能分支&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-%E8%BF%9B%E7%A8%8B-%E7%BA%BF%E7%A8%8B-%E5%8D%8F%E7%A8%8B&#34;&gt;6 进程、线程、协程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B&#34;&gt;7 机器学习工作流程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%88%86%E7%B1%BB&#34;&gt;8 机器学习算法分类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0deep-learning&#34;&gt;9 深度学习 (Deep Learning)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;span id=&#34;机器学习导读&#34;&gt; 机器学习导读&lt;/span&gt;&lt;/h2&gt;
+&lt;h4&gt;&lt;span id=&#34;1-虚拟环境的作用&#34;&gt; 1 虚拟环境的作用&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;创建新的环境：mkvirtualenv [env-name] &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;查看环境列表：lsvirtualenv&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;复制环境：cpvirtualenv [env-name] &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;删除环境：rmvirtualenv [env-name] &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;切换虚拟环境：workon [env-name] &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;退出虚拟环境：deactivate &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;2-人工智能必备三要素&#34;&gt; 2 人工智能必备三要素&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;数据&lt;/strong&gt;：  学习资料&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;算法&lt;/strong&gt;：  学习方法&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;计算力&lt;/strong&gt;：智能体的计算能力
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;CPU&lt;/code&gt; ：核心处理器
+&lt;ul&gt;
+&lt;li&gt;职责：管理资源、任务调度、图形计算     处理 IO 密集型任务，&lt;/li&gt;
+&lt;li&gt;应用：文件 IO、网络 IO、标准 IO     IO 操作：CPU 需要等待&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GPU&lt;/code&gt; ：协处理球
+&lt;ul&gt;
+&lt;li&gt;职责：分担 CPU 工作&lt;/li&gt;
+&lt;li&gt;应用：适合计算密集任务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TPU&lt;/code&gt; ：Tensor 张量处理器
+&lt;ul&gt;
+&lt;li&gt;职责：专门机器学习的处理器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;3-ai-ml-dl&#34;&gt; 3 AI、ML、DL&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;机器学习是人工智能的一个实现途径&lt;/li&gt;
+&lt;li&gt;深度学习是机器学习的一个方法发展来的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;4-it-行业需要机器学习&#34;&gt; 4 IT 行业需要机器学习？&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;解决问题靠的是 &lt;code&gt;编码&lt;/code&gt; ，传统行业靠的是硬编码、固定编码。需要掌握更多的专业知识，编码的代码量也非常复杂。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;机器学习可以 &lt;code&gt;动态解决问题&lt;/code&gt; ，具有自我生命力、自我成长。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;5-人工智能分支&#34;&gt; 5 人工智能分支&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;计算机视觉（CV）&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;指机器感知环境的能力。这一技术类别中的经典任务有图像形成、图像处理、图像提取和图像的三维推理。物体检测和人脸识别是其比较成功的研究领域。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;自然语言处理（NLP）&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;语音识别&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;识别语音 (说出的语言) 并将其转换成对应文本的技术。相反的任务 (文本转语音 / TTS) 也是这一领域内一个类似的研究主题。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;文本挖掘/分类&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;主要是指文本分类，该技术可用于理解、组织和分类结构化或非结构化文本文档。其涵盖的主要任务有句法分析、情绪分析和垃圾信息检测。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;机器翻译&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;利用机器的力量自动将一种自然语言 (源语言) 的文本翻译成另一种语言 (目标语言)。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;机器人&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;机器人学 (Robotics) 研究的是机器人的设计、制造、运作和应用，以及控制它们的计算机系统、传感反馈和信息处理。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;鸡尾酒会效应&lt;/strong&gt;（cocktail party effect）是指人的一种听力选择能力，在这种情况下，注意力集中在某一个人的谈话之中而忽略背景中其他的对话或噪音。该效应揭示了人类听觉系统中令人惊奇的能力，即我们可以在噪声中谈话。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;&lt;span id=&#34;6-进程-线程-协程&#34;&gt; 6 进程、线程、协程&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;进程&lt;/strong&gt;： &lt;code&gt;资源分配的最小单位&lt;/code&gt; ：保存在硬盘上的程序运行以后，会在内存空间里形成一个独立的内存体，这个内存体有自己独立的地址空间，有自己的堆，上级挂靠单位是操作系统。操作系统会以进程为单位，分配系统资源（CPU 时间片、内存等资源）。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210417153522886.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;线程&lt;/strong&gt;：又称为轻量级进程 (Lightweight Process，LWP），是 &lt;code&gt;操作系统调度（CPU调度）执行的最小单位&lt;/code&gt; 。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210417155008992.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;协程&lt;/strong&gt;：一种比线程更加轻量级的存在，协程不是被操作系统内核所管理，而完全是由程序所控制（也就是在用户态执行）。这样带来的好处就是性能得到了很大的提升，不会像线程切换那样消耗资源。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;7-机器学习工作流程&#34;&gt; 7 机器学习工作流程&lt;/span&gt;&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;从原始的数据空间，找到一个 f (x)，将其映射到高层语义空间。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;1 获取数据&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一行数据称为一个样本，多行数据称为 &lt;code&gt;样本集&lt;/code&gt; （数据集）&lt;/li&gt;
+&lt;li&gt;一列数据称为一个特征，也称为 &lt;code&gt;属性&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;数据集分为训练数据和测试数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2 数据预处理&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对数据进行缺失值、去除异常值等处理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;3 特征工程&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;p&gt;使用专业背景知识和技巧处理数据，使得特征能在机器学习算法上发挥更好作用的过程&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;研究内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;特征提取&lt;/code&gt; （feature extraction）&lt;/p&gt;
+&lt;p&gt;将任意数据（如文本或者图像）转换为可用于机器学习的数字特征&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在进行模型训练的时候，训练数据是行列形式的&lt;/li&gt;
+&lt;li&gt;对于文本、图片这种非行列形式的数据，要进行转换&lt;/li&gt;
+&lt;li&gt;特点：从无到有&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;特征预处理&lt;/code&gt; （feature preprocessing）&lt;/p&gt;
+&lt;p&gt;通过一些转换函数将特征数据转换成更加适合算法模型的特征的过程&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;特征降维&lt;/code&gt;  (feature decomposition)&lt;/p&gt;
+&lt;p&gt;在某些限定条件下，降低随机变量个数，得到一组 “不相关” 主变量的过程&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;特征选择&lt;/code&gt; （feature selection）&lt;/p&gt;
+&lt;p&gt;从特征中选择出一些重要特征，但不会改变原来的数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;特征组合&lt;/code&gt; （feature crosses）&lt;/p&gt;
+&lt;p&gt;把具有相关性的特征通过加法、乘法等合并成一个特征&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;4 机器学习&lt;/strong&gt;（模型训练）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;选择合适的算法对模型进行训练&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;5 模型评估&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定义：对训练好的模型进行评估&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;分类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;分类模型评估&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;评价指标：精确率、召回率、F1-score、AUC 指标等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;回归模型评估&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;评价指标：相对平方误差（Relative Squared Error，RSE）、平均绝对误差（Mean Absolute Error，MAE)、相对绝对误差（Relative Absolute Error，RAE)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;聚类模型评估&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;拟合&lt;/code&gt; ：模型评估用于评价训练好的的模型的表现效果&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;欠拟合&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定义：模型学习的太过粗糙，连训练集中的样本数据特征关系都没有学出来。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解决方案：对数据集加特征&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;过拟合&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定义：所建的机器学习模型或者是深度学习模型在训练样本中表现得过于优越，导致在测试数据集中表现不佳。（泛化能力差或普适性差）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解决方案：&lt;/p&gt;
+&lt;p&gt;（1）在数据基本处理阶段进行数据清洗&lt;/p&gt;
+&lt;p&gt;（2）增加训练样本&lt;/p&gt;
+&lt;p&gt;（3）通过惩罚机制限制学习力度，正则化。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;8-机器学习算法分类&#34;&gt; 8 机器学习算法分类&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;监督学习&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;解决问题：分类问题、回归问题。&lt;/li&gt;
+&lt;li&gt;分类问题预测出是一个离散值。&lt;/li&gt;
+&lt;li&gt;回归问题预测出的是连续值。&lt;/li&gt;
+&lt;li&gt;输入样本：都是有目标值（标签）的数据。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;非监督学习&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;解决问题：聚类问题。&lt;/li&gt;
+&lt;li&gt;输入样本：没有目标值（标签）的数据。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;半监督学习&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;一部分数据有标签、一部分数据没有标签。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;强化学习&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;强化学习是一种特殊的机器学习方法。&lt;/li&gt;
+&lt;li&gt;传统的机器学习方法输入样本，输出的是：动作。&lt;/li&gt;
+&lt;li&gt;强化学习输入的也是样本（环境信息）&lt;/li&gt;
+&lt;li&gt;强化学习是一种与环境交互式的学习方法。&lt;/li&gt;
+&lt;li&gt;智能体、环境、动作、奖励。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;9-深度学习-deep-learning&#34;&gt; 9 深度学习 (Deep Learning)&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;也称为深度结构学习 (Deep Structured Learning)、层次学习 (Hierarchical Learning) 或者是深度机器学习 (Deep Machine Learning）是一类算法集合，是机器学习的一个分支。&lt;/li&gt;
+&lt;li&gt;“深度学习” 这个词语很古老，它在 1986 年由 Dechter 在机器学习领域提出，然后在 2000 年有 Aizenberg 等人引入到人工神经网络中。而现在，由于 Alex Krizhevsky 在 2012 年使用卷积网络结构赢得了 ImageNet 比赛之后受到大家的瞩目。&lt;/li&gt;
+&lt;li&gt;卷积网络之父： &lt;code&gt;Yann LeCun&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;神经网络各层负责内容：
+&lt;ul&gt;
+&lt;li&gt;1 层：负责识别颜色及简单纹理&lt;/li&gt;
+&lt;li&gt;2 层：一些神经元可以识别更加细化的纹理，布纹，刻纹，叶纹等&lt;/li&gt;
+&lt;li&gt;3 层：一些神经元负责感受黑夜里的黄色烛光，高光，萤火，鸡蛋黄色等。&lt;/li&gt;
+&lt;li&gt;4 层：一些神经元识别萌狗的脸，宠物形貌，圆柱体事物，七星瓢虫等的存在。&lt;/li&gt;
+&lt;li&gt;5 层：一些神经元负责识别花，黑眼圈动物，鸟，键盘，原型屋顶等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="人工智能" />
+        <category term="机器学习" />
+        <updated>2021-04-20T12:05:55.000Z</updated>
+    </entry>
+</feed>

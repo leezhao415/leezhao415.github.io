@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;激活函数&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-07-15T10:52:08.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</id>
+        <title>【详解】激活函数</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%83%8C%E6%99%AF&#34;&gt;&lt;strong&gt;背景&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#sigmoid%E5%87%BD%E6%95%B0&#34;&gt;&lt;strong&gt;Sigmoid 函数&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#tanh%E5%87%BD%E6%95%B0&#34;&gt;&lt;strong&gt;tanh 函数&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#relu%E5%87%BD%E6%95%B0&#34;&gt;&lt;strong&gt;ReLU 函数&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#leaky-relu%E5%87%BD%E6%95%B0&#34;&gt;&lt;strong&gt;Leaky ReLU 函数&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#elu-exponential-linear-units-%E5%87%BD%E6%95%B0&#34;&gt;&lt;strong&gt;ELU (Exponential Linear Units) 函数&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%B0%8F%E7%BB%93&#34;&gt;&lt;strong&gt;小结&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/v2-61fe81589ab491d1d3ba612b3bdf5b51_1440w.jpg?source=172ae18b&#34; alt=&#34;聊一聊深度学习的activation function&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;font face=&#34;黑体&#34; size=&#34;6&#34;&gt;深度学习的activation function&lt;/font&gt;&lt;/center&gt;
+&lt;h1&gt;&lt;span id&gt; &lt;/span&gt;&lt;/h1&gt;
+&lt;h3&gt;&lt;span id=&#34;背景&#34;&gt; &lt;strong&gt;背景&lt;/strong&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;深度学习的基本原理是基于人工神经网络，信号从一个神经元进入，经过&lt;strong&gt;非线性的&lt;/strong&gt; activation function，传入到下一层神经元；再经过该层神经元的 activate，继续往下传递，如此循环往复，直到输出层。正是由于这些非线性函数的反复叠加，才使得神经网络有足够的 capacity 来抓取复杂的 pattern，在各个领域取得 state-of-the-art 的结果。显而易见，activation function 在深度学习中举足轻重，也是很活跃的研究领域之一。目前来讲，选择怎样的 activation function 不在于它能否模拟真正的神经元，而在于能否便于优化整个深度神经网络。下面我们简单聊一下各类函数的特点以及为什么现在优先推荐 ReLU 函数。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;sigmoid-函数&#34;&gt; &lt;strong&gt;Sigmoid 函数&lt;/strong&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.zhihu.com/equation?tex=%5Csigma%28x%29+%3D+%5Cfrac%7B1%7D%7B1+%2B+e%5E%7B-x%7D%7D&#34; alt=&#34;[公式]&#34;&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-83469109cd362f5fcf1decf109007fbd_1440w.png&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;Sigmoid 函数是深度学习领域开始时使用频率最高的 activation function。它是便于求导的平滑函数，其导数为&lt;img src=&#34;https://www.zhihu.com/equation?tex=%5Csigma%28x%29%281+-+%5Csigma%28x%29%29&#34; alt=&#34;[公式]&#34;&gt;，这是优点。然而，Sigmoid 有三大缺点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;容易出现 gradient vanishing&lt;/li&gt;
+&lt;li&gt;函数输出并不是 zero-centered&lt;/li&gt;
+&lt;li&gt;幂运算相对来讲比较耗时&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Gradient Vanishing&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;优化神经网络的方法是 Back Propagation，即导数的后向传递：先计算输出层对应的 loss，然后将 loss 以导数的形式不断向上一层网络传递，修正相应的参数，达到降低 loss 的目的。 Sigmoid 函数在深度网络中常常会导致导数逐渐变为 0，使得参数无法被更新，神经网络无法被优化。原因在于两点：(1) 在上图中容易看出，当&lt;img src=&#34;https://www.zhihu.com/equation?tex=%5Csigma%28x%29&#34; alt=&#34;[公式]&#34;&gt; 中&lt;em&gt; x&lt;/em&gt; 较大或较小时，导数接近 0，而后向传递的数学依据是微积分求导的链式法则，当前层的导数需要之前各层导数的乘积，几个小数的相乘，结果会很接近 0 (2) Sigmoid 导数的最大值是 0.25，这意味着导数在每一层至少会被压缩为原来的 1/4，通过两层后被变为 1/16，…，通过 10 层后为 1/1048576。请注意这里是 “至少”，导数达到最大值这种情况还是很少见的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输出不是 zero-centered&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Sigmoid 函数的输出值恒大于 0，这会导致模型训练的收敛速度变慢。举例来讲，对&lt;img src=&#34;https://www.zhihu.com/equation?tex=%5Csigma%28%5Csum_i+w_i+x_i+%2B+b%29&#34; alt=&#34;[公式]&#34;&gt;，如果所有 * X&lt;sub&gt;i&lt;/sub&gt;&lt;em&gt; 均为正数或负数，那么其对&lt;/em&gt; W&lt;sub&gt;i&lt;/sub&gt; * 的导数总是正数或负数，这会导致如下图红色箭头所示的阶梯式更新，这显然并非一个好的优化路径。深度学习往往需要大量时间来处理大量数据，模型的收敛速度是尤为重要的。所以，总体上来讲，训练深度学习网络尽量使用 zero-centered 数据 (可以经过数据预处理实现) 和 zero-centered 输出。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-d290a1c0a8a9378de6a66ec229b907ab_1440w.png&#34; alt=&#34;img&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;幂运算相对耗时&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;相对于前两项，这其实并不是一个大问题，我们目前是具备相应计算能力的，但面对深度学习中庞大的计算量，最好是能省则省。之后我们会看到，在 ReLU 函数中，需要做的仅仅是一个 thresholding，相对于幂运算来讲会快很多。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;tanh-函数&#34;&gt; &lt;strong&gt;tanh 函数&lt;/strong&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.zhihu.com/equation?tex=%5Ctext%7Btanh%7D%5C+x+%3D+%5Cfrac%7Be%5Ex+-+e%5E%7B-x%7D%7D%7Be%5Ex+%2B+e%5E%7B-x%7D%7D&#34; alt=&#34;[公式]&#34;&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-a39596b282f6333bced6e7bfbfe04dcd_1440w.png&#34; alt=&#34;img&#34; style=&#34;zoom: 50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;tanh 读作 Hyperbolic Tangent，如上图所示，它解决了 zero-centered 的输出问题，然而，gradient vanishing 的问题和幂运算的问题仍然存在。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;relu-函数&#34;&gt; &lt;strong&gt;ReLU 函数&lt;/strong&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.zhihu.com/equation?tex=%5Ctext%7BReLU%7D+%3D+%5Cmax%280%2C+x%29&#34; alt=&#34;[公式]&#34;&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-5c97f377cdb5d1f0bc3faf23423c4952_1440w.png&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;ReLU 函数其实就是一个取最大值函数，注意这并不是全区间可导的，但是我们可以取 sub-gradient，如上图所示。ReLU 虽然简单，但却是近几年的重要成果，有以下几大优点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;解决了 gradient vanishing 问题 (在正区间)&lt;/li&gt;
+&lt;li&gt;计算速度非常快，只需要判断输入是否大于 0&lt;/li&gt;
+&lt;li&gt;收敛速度远快于 sigmoid 和 tanh&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ReLU 也有几个需要特别注意的问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;ReLU 的输出不是 zero-centered&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Dead ReLU Problem，指的是某些神经元可能永远不会被激活，导致相应的参数永远不能被更新。有两个主要原因可能导致这种情况产生:&lt;/p&gt;
+&lt;p&gt;(1) 非常不幸的参数初始化，这种情况比较少见&lt;/p&gt;
+&lt;p&gt;(2) learning rate 太高导致在训练过程中参数更新太大，不幸使网络进入这种状态。解决方法是可以采用 Xavier 初始化方法，以及避免将 learning rate 设置太大或使用 adagrad 等自动调节 learning rate 的算法。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;尽管存在这两个问题，ReLU 目前仍是最常用的 activation function，在搭建人工神经网络的时候推荐优先尝试！&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;leaky-relu-函数&#34;&gt; &lt;strong&gt;Leaky ReLU 函数&lt;/strong&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.zhihu.com/equation?tex=f%28x%29+%3D+%5Cmax%280.01x%2C+x%29&#34; alt=&#34;[公式]&#34;&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-8fa15614231fd01a659d4763beec9b24_1440w.png&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;人们为了解决 Dead ReLU Problem，提出了将 ReLU 的前半段设为 0.01&lt;em&gt;x&lt;/em&gt; 而非 0。另外一种直观的想法是基于参数的方法，即 Parametric ReLU:&lt;img src=&#34;https://www.zhihu.com/equation?tex=f%28x%29+%3D+%5Cmax%28%5Calpha+x%2C+x%29&#34; alt=&#34;[公式]&#34;&gt;，其中 α 可由 back propagation 学出来。理论上来讲，Leaky ReLU 有 ReLU 的所有优点，外加不会有 Dead ReLU 问题，但是在实际操作当中，并没有完全证明 Leaky ReLU 总是好于 ReLU。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;elu-exponential-linear-units-函数&#34;&gt; &lt;strong&gt;ELU (Exponential Linear Units) 函数&lt;/strong&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.zhihu.com/equation?tex=f%28x%29%3D+%0A%5Cbegin%7Bcases%7D%0A+++x%2C%26+%5Ctext%7Bif+%7D+x+%3E+0%5C%5C++++++++%0A+++%5Calpha%28e%5Ex+-+1%29%2C+++++++++%26+%5Ctext%7Botherwise%7D%0A%5Cend%7Bcases%7D&#34; alt=&#34;[公式]&#34;&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-604be114fa0478f3a1059923fd1022d1_1440w.png&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;ELU 也是为解决 ReLU 存在的问题而提出，显然，ELU 有 ReLU 的基本所有优点，以及：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不会有 Dead ReLU 问题&lt;/li&gt;
+&lt;li&gt;输出的均值接近 0，zero-centered&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;它的一个小问题在于计算量稍大。类似于 Leaky ReLU，理论上虽然好于 ReLU，但在实际使用中目前并没有好的证据 ELU 总是优于 ReLU。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;小结&#34;&gt; &lt;strong&gt;小结&lt;/strong&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;建议使用 ReLU 函数，但是要注意初始化和 learning rate 的设置；可以尝试使用 Leaky ReLU 或 ELU 函数；不建议使用 tanh，尤其是 sigmoid 函数。&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="激活函数" />
+        <updated>2021-07-15T10:52:08.000Z</updated>
+    </entry>
+</feed>

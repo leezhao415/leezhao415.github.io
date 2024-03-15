@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;nlp-bert&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-07-09T11:32:40.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/07/09/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91BERT%E7%9A%843%E4%B8%AAEmbedding%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</id>
+        <title>【详解】BERT的3个Embedding的实现原理</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/07/09/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91BERT%E7%9A%843%E4%B8%AAEmbedding%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%A6%82%E8%A7%88&#34;&gt;概览&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#1-token-embeddings&#34;&gt;1 Token Embeddings&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BD%9C%E7%94%A8&#34;&gt;作用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%AE%9E%E7%8E%B0&#34;&gt;实现&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-segment-embeddings&#34;&gt;2 Segment Embeddings&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BD%9C%E7%94%A8-1&#34;&gt;作用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%AE%9E%E7%8E%B0-1&#34;&gt;实现&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-position-embeddings&#34;&gt;3 Position Embeddings&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BD%9C%E7%94%A8-2&#34;&gt;作用&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%AE%9E%E7%8E%B0-2&#34;&gt;实现&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-%E5%90%88%E6%88%90%E8%A1%A8%E7%A4%BA&#34;&gt;4 合成表示&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;p&gt;本文将阐述 BERT 中嵌入层的实现细节，包括 token embeddings、segment embeddings, 和 position embeddings.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;概览&#34;&gt; 概览&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;下面这幅来自原论文的图清晰地展示了 BERT 中每一个嵌入层的作用：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210709191935205.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;和大多数 NLP 深度学习模型一样，BERT 将输入文本中的每一个词（token) 送入 token embedding 层从而将每一个词转换成向量形式。但不同于其他模型的是，BERT 又多了两个嵌入层，即 segment embeddings 和 position embeddings。在阅读完本文之后，你就会明白为何要多加这两个嵌入层了。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;1-token-embeddings&#34;&gt; 1 Token Embeddings&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;作用&#34;&gt; 作用&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;正如前面提到的，token embedding 层是要将各个词转换成固定维度的向量。在 BERT 中，每个词会被转换成 768 维的向量表示。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;实现&#34;&gt; 实现&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;假设输入文本是 “I like strawberries”。下面这个图展示了 Token Embeddings 层的实现过程:&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210709191953310.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 60%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;输入文本在送入 token embeddings 层之前要先进行 tokenization 处理。此外，两个特殊的 token 会被插入到 tokenization 的结果的开头 ([CLS]) 和结尾 ([SEP]) 。它们视为后面的分类任务和划分句子对服务的。&lt;/p&gt;
+&lt;p&gt;tokenization 使用的方法是 WordPiece tokenization. 这是一个数据驱动式的 tokenization 方法，旨在权衡词典大小和 oov 词的个数。这种方法把例子中的 “strawberries” 切分成了 “straw” 和 “berries”。这种方法的详细内容不在本文的范围内。有兴趣的读者可以参阅 &lt;a href=&#34;https://arxiv.org/pdf/1609.08144.pdf&#34;&gt;Wu et al. (2016)&lt;/a&gt; 和 &lt;a href=&#34;https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/37842.pdf&#34;&gt;Schuster &amp;amp; Nakajima (2012)&lt;/a&gt;。使用 WordPiece tokenization 让 BERT 在处理英文文本的时候仅需要存储 30,522 个词，而且很少遇到 oov 的词。&lt;/p&gt;
+&lt;p&gt;Token Embeddings 层会将每一个 wordpiece token 转换成 768 维的向量。这样，例子中的 6 个 token 就被转换成了一个 (6, 768) 的矩阵或者是 (1, 6, 768) 的张量（如果考虑 batch_size 的话）。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;2-segment-embeddings&#34;&gt; 2 Segment Embeddings&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;作用&#34;&gt; 作用&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;BERT 能够处理对输入句子对的分类任务。这类任务就像判断两个文本是否是语义相似的。句子对中的两个句子被简单的拼接在一起后送入到模型中。那 BERT 如何去区分一个句子对中的两个句子呢？答案就是 segment embeddings.&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;实现&#34;&gt; 实现&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;假设有这样一对句子 (“I like cats”, “I like dogs”)。下面的图成仙了 segment embeddings 如何帮助 BERT 区分两个句子:&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210709192014484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom:60%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;Segment Embeddings 层只有两种向量表示。前一个向量是把 0 赋给第一个句子中的各个 token, 后一个向量是把 1 赋给第二个句子中的各个 token。如果输入仅仅只有一个句子，那么它的 segment embedding 就是全 0。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;3-position-embeddings&#34;&gt; 3 Position Embeddings&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;作用&#34;&gt; 作用&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;BERT 包含这一串 Transformers (&lt;a href=&#34;https://arxiv.org/pdf/1706.03762.pdf&#34;&gt;Vaswani et al&lt;/a&gt;. 2017)，而且一般认为，Transformers 无法编码输入的序列的顺序性。 &lt;a href=&#34;https://medium.com/@_init_/how-self-attention-with-relative-position-representations-works-28173b8c245a&#34;&gt;博客&lt;/a&gt;更加详细的解释了这一问题。总的来说，加入 position embeddings 会让 BERT 理解下面下面这种情况：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I think, therefore I am&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;第一个 “I” 和第二个 “I” 应该有着不同的向量表示。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;实现&#34;&gt; 实现&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;BERT 能够处理最长 512 个 token 的输入序列。论文作者通过让 BERT 在各个位置上学习一个向量表示来讲序列顺序的信息编码进来。这意味着 Position Embeddings layer 实际上就是一个大小为 (512, 768) 的 lookup 表，表的第一行是代表第一个序列的第一个位置，第二行代表序列的第二个位置，以此类推。因此，如果有这样两个句子 “Hello world” 和 “Hi there”, “Hello” 和 “Hi” 会由完全相同的 position embeddings，因为他们都是句子的第一个词。同理，“world” 和 “there” 也会有相同的 position embedding。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;4-合成表示&#34;&gt; 4 合成表示&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;我们已经介绍了长度为 n 的输入序列将获得的三种不同的向量表示，分别是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Token Embeddings， (1, n, 768) ，词的向量表示&lt;/li&gt;
+&lt;li&gt;Segment Embeddings， (1, n, 768)，辅助 BERT 区别句子对中的两个句子的向量表示&lt;/li&gt;
+&lt;li&gt;Position Embeddings ，(1, n, 768) ，让 BERT 学习到输入的顺序属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些表示会被按元素相加，得到一个大小为 (1, n, 768) 的合成表示。这一表示就是 BERT 编码层的输入了。&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="NLP-BERT" />
+        <updated>2021-07-09T11:32:40.000Z</updated>
+    </entry>
+</feed>

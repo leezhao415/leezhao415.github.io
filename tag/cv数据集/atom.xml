@@ -1,0 +1,368 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;cv数据集&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-12-12T10:21:47.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/12/12/%E3%80%90AI%E6%95%B0%E6%8D%AE%E9%9B%86%E3%80%91%E6%89%8B%E9%83%A8%E6%89%8B%E5%8A%BF%E3%80%81%E5%9B%BE%E5%83%8F%E8%A7%86%E9%A2%91%E5%BD%A2%E7%8A%B6%E3%80%81%E5%AF%B9%E8%B1%A1%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%81%E4%BA%BA%E4%B8%8E%E4%BA%BA%E4%BD%93%E5%A7%BF%E5%8A%BF/</id>
+        <title>【AI数据集】手部手势、图像视频形状、对象数据库、人与人体姿势</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/12/12/%E3%80%90AI%E6%95%B0%E6%8D%AE%E9%9B%86%E3%80%91%E6%89%8B%E9%83%A8%E6%89%8B%E5%8A%BF%E3%80%81%E5%9B%BE%E5%83%8F%E8%A7%86%E9%A2%91%E5%BD%A2%E7%8A%B6%E3%80%81%E5%AF%B9%E8%B1%A1%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%81%E4%BA%BA%E4%B8%8E%E4%BA%BA%E4%BD%93%E5%A7%BF%E5%8A%BF/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1%E6%89%8B%E6%89%8B%E6%8A%93%E6%89%8B%E5%8A%A8%E4%BD%9C%E5%92%8C%E6%89%8B%E5%8A%BF%E6%95%B0%E6%8D%AE%E5%BA%93&#34;&gt;（1）手，手抓，手动作和手势数据库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2%E5%9B%BE%E5%83%8F%E8%A7%86%E9%A2%91%E5%92%8C%E5%BD%A2%E7%8A%B6%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A3%80%E7%B4%A2&#34;&gt;（2）图像，视频和形状数据库检索&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3%E5%AF%B9%E8%B1%A1%E6%95%B0%E6%8D%AE%E5%BA%93&#34;&gt;（3）对象数据库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4%E4%BA%BA%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81%E4%BA%BA%E4%BD%93%E5%A7%BF%E5%8A%BF&#34;&gt;（4）人（静态和动态），人体姿势&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;1手手抓手动作和手势数据库&#34;&gt; （1）手，手抓，手动作和手势数据库&lt;/span&gt;&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//sites.google.com/view/11khands&#34;&gt;11k 手&lt;/a&gt; - 190 个对象的 11,076 手图像（1600 x 1200 像素），年龄在 18-75 之间，具有元数据（标识，性别，年龄，肤色，手性，手，配件等）。（Mahmoud Afifi）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.twentybn.com/datasets/jester&#34;&gt;200 亿个小丑&lt;/a&gt; - 标记密集的视频片段，显示人类在笔记本电脑摄像头或网络摄像头前进行预定义手势的动作（二十亿美元的神经元有限公司）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.iis.ee.ic.ac.uk/~dtang/hand.html&#34;&gt;具有单个深度图像的 3D 关节姿势估计&lt;/a&gt;（Tang，Chang，Tejani，Kim，Yu）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//hpes.bii.a-star.edu.sg/&#34;&gt;A-STAR 标注的手掌深度图像数据集及其性能评估&lt;/a&gt; - 深度数据和数据手套数据，30 位志愿者的 29 张图像，中文数字计数和美国手语（许和郑）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//bosphorus.ee.boun.edu.tr/hand/&#34;&gt;博斯普鲁斯海峡的手形数据库和手静脉数据库&lt;/a&gt;（波加奇齐大学）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//contactpose.cc.gatech.edu/&#34;&gt;ContactPose-&lt;/a&gt; 具有手 - 物体接触，手和物体姿势以及 2.9 M RGB-D 抓取图像（Brahmbhatt，Tang，Twigg，Kemp，Hays）的大规模功能抓取数据集 [30/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//robocoffee.org/datasets/&#34;&gt;人为操作动作的数据集&lt;/a&gt; - 25 个对象和 6 个动作的 RGB-D（Alessandro Pieropan）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.demcare.eu/results/datasets&#34;&gt;DemCare 数据集&lt;/a&gt; - DemCare 数据集由来自不同传感器的一组不同数据集组成，可用于可穿戴 / 深度和静态 IP 摄像机的人类活动识别，用于 Alzheimmer 疾病检测的语音识别以及用于步态分析和异常检测的生理数据。（K. Avgerinakis，A.Karakostas，S.Vrochidis 和 I. Kompatsiaris）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//research.ibm.com/dvsgesture/&#34;&gt;DVS128 手势数据集&lt;/a&gt; - 基于事件的数据集，包含 11 个手势的序列，由 29 位受试者在多个光照条件下执行，并使用 DVS128 传感器捕获。每个序列都带有每个手势的开始和结束时间。（埃米尔，塔巴，伯格，梅拉诺，麦金斯特里，迪・诺弗，纳亚克，安德鲁普洛斯，加洛，门多萨，库斯尼兹，黛博勒，埃塞尔，德尔布鲁克，弗利克纳和莫达）[7/1/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//visal.cs.cityu.edu.hk/downloads/ego-daily/&#34;&gt;EgoDaily - 以&lt;/a&gt;人为中心的手部检测数据集，其人，活动和地点具有可变性，以模拟日常生活情况（克鲁兹，陈）[30/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.nlpr.ia.ac.cn/iva/yfzhang/datasets/egogesture.html&#34;&gt;EgoGesture 数据集&lt;/a&gt; - 第一人称视角手势，具有 83 类，50 个主题，6 个场景，24161 个 RGB-D 视频样本（张，曹，成，路）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//vision.soic.indiana.edu/projects/egohands/&#34;&gt;EgoHands-&lt;/a&gt; 一个大型数据集，其中有超过 15,000 个像素级细分的手，这些手是从以人为中心的人与人互动的相机中记录下来的。（Sven Bambach）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/AlextheEngineer/Ego3DHands&#34;&gt;Ego3DHands-&lt;/a&gt; 用于 3D 全局姿势估计的 RGB-D 合成的大规模以自我为中心的双手数据集（Lin，Wilhelm）[28/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/aurooj/Hand-Segmentation-in-the-Wild&#34;&gt;EgoYouTubeHands 数据集&lt;/a&gt; - 以自我为中心的手部分割数据集由来自 YouTube 视频的 1290 个带批注的帧组成，这些帧是在不受限制的实际设置中记录的。这些视频在环境，参与者人数和动作方面各不相同。该数据集对于研究无约束条件下的手部分割问题很有用。（Aisha Urji，Aisha Urooj）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cvrlcode.ics.forth.gr/handtracking/&#34;&gt;FORTH 手跟踪库&lt;/a&gt;（FORTH）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//wildhog.ics.uci.edu%3A9090/full.html&#34;&gt;一般 HANDS：一般的手部检测和姿势挑战&lt;/a&gt; - 22 个序列，具有不同的手势，活动和视点（UC Irvine）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//daniilidis-group.github.io/grasp_multicam/&#34;&gt;GRASP MultiCam 数据集&lt;/a&gt; - 将同步的立体声单色摄像机和 IMU 的视频与飞行时间深度传感器的深度图像结合在一起，从而实现精确的视觉惯性里程表（VIO）并从深度传感器点云中恢复 3D 结构（ Pfrommer，Owens，Shariati，Skandan，Taylor，Daniilidis）[2020 年 12 月 27 日]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.gregrogez.net/research/egovision4health/gun-71/&#34;&gt;掌握理解（GUN-71）数据集&lt;/a&gt; - 使用 71 个细粒度抓点的分类法注释的 12,000 个对象操纵场景的第一人称 RGB-D 图像。（罗杰兹，苏潘西奇和拉马南）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www-vpu.eps.uam.es/DS/HGds/&#34;&gt;手势检测数据集&lt;/a&gt;（Javier Molina 等）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.intelligence.tuc.gr/~petrakis/downloads/spatial-datasets-evaluation.zip&#34;&gt;手势和海洋轮廓&lt;/a&gt;（Euripides GM Petrakis）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cs.technion.ac.il/~twerd/HandNet/&#34;&gt;HandNet：带关节的手的&lt;/a&gt;带注释的深度图像 214971 由手姿势的 RealSense RGBD 传感器捕获的带&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cs.technion.ac.il/~twerd/HandNet/&#34;&gt;手的&lt;/a&gt;带注释的深度图像。注释：每个像素类，6D 指尖姿势，热图。火车：202198，测试：10000，验证：2773。在 Technion 的 GIP 实验室记录。[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/aurooj/Hand-Segmentation-in-the-Wild&#34;&gt;HandOverFace 数据集&lt;/a&gt; - 一个手部分割数据集由来自网络的 300 个带注释的帧组成，用于研究手遮挡脸问题。（Aisha Urji，Aisha Urooj）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.idiap.ch/resource/gestures/&#34;&gt;IDIAP 手势 / 手势数据集&lt;/a&gt;（Sebastien Marcel）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//lttm.dei.unipd.it/downloads/gesture/&#34;&gt;Kinect 和 Leap 运动手势识别数据集&lt;/a&gt; - 该数据集包含通过 Leap Motion 和 Kinect 设备（Giulio Marin，Fabio Dominio，Pietro Zanuttigh）获得的 1400 种不同手势 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//lttm.dei.unipd.it/downloads/gesture/&#34;&gt;Kinect 和 Leap 运动手势识别数据集&lt;/a&gt; - 该数据集包含使用 Creative Senz3D 相机获取的几种不同的静态手势。（A. Memo，L。Minto 和 P. Zanuttigh）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cvrr.ucsd.edu/LISA/hand.html&#34;&gt;LISA CVRR-HANDS 3D-&lt;/a&gt; 由 8 个对象作为汽车驾驶员和乘客（Ohn-Bar 和 Trivedi）进行的 19 个手势 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//handtracker.mpi-inf.mpg.de/projects/handtracker_iccv2013/dexter1.htm&#34;&gt;用于评估 3D 关节手运动跟踪的 MPI Dexter 1 数据集&lt;/a&gt; - Dexter 1：7 个具有挑战性，缓慢和快速的手运动序列，RGB + 深度（Sridhar，Oulasvirta，Theobalt）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//research.microsoft.com/en-us/um/people/yichenw/handtracking/&#34;&gt;深度 MSR 实时和鲁棒的手部跟踪&lt;/a&gt; -（钱，孙，魏，唐，孙）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.mutah.edu.jo/biometrix/hand-images-databases.html&#34;&gt;移动和网络摄像头手持图像数据库&lt;/a&gt; - MOHI 和 WEHI-200 人，每人 30 张图像（Ahmad Hassanat）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//drive.google.com/file/d/1f8tUHid1KmnwbgskGMXmobOxMfbxIgHM/view%3Fusp%3Dsharing&#34;&gt;NTU-Microsoft Kinect 手势数据集&lt;/a&gt; - 这是一个 RGB-D 手势数据集，包含 10 个对象 x 10 个手势 x 10 个变化形式。（周仁，袁俊松，孟晶晶和张正有）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.c3imaging.org/%3Fpage_id%3D3D772&#34;&gt;NUIG_Palm1-&lt;/a&gt; 使用消费类设备在无限制条件下获取的掌纹图像数据库，用于掌纹识别实验。（Adrian-Stefan Ungureanu）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cims.nyu.edu/~tompson/NYU_Hand_Pose_Dataset.htm&#34;&gt;NYU 手姿势数据集&lt;/a&gt; - 带有地面真实姿势的捕获的 RGBD 数据的 8252 测试集和 72757 训练集帧，有 3 个视图（Tompson，Stein，Lecun 和 Perlin）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//team.inria.fr/stars/praxis-dataset/&#34;&gt;PRAXIS 手势数据集&lt;/a&gt; - 来自 29 个手势的 RGB-D 上身数据，64 位志愿者，多次重复，许多志愿者都有一些认知障碍（Farhood Negin，INRIA）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//lmb.informatik.uni-freiburg.de/resources/datasets/RenderedHandposeDataset.en.html&#34;&gt;渲染的手部数据集&lt;/a&gt; - 用于 2D / 3D 手部估计的合成数据集，每手具有 RGB，深度，分割蒙版和 21 个关键点（克里斯蒂安・齐默尔曼和托马斯・布罗克斯）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//docs.google.com/document/d/e/2PACX-1vTNWYgwyhrutBu5GpUSLXC4xSHzBbcZreoj0ljE837m9Uk5FjYymdviBJ5rz-f2R96RHrGfiroHZRoH/pub&#34;&gt;ROSHAMBO17-RoShamBo 岩石剪刀纸游戏 DVS 数据集&lt;/a&gt; -“记录了大约 20 个人的数据集，分别显示了大约 2m 的岩石，剪刀和纸符号，每个手势，距离，姿势，左 / 右手。”（Lungu，乌拉圭和苏黎世联邦理工学院神经信息研究所，德拉布鲁克，科拉迪（Corradi）[27/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www-i6.informatik.rwth-aachen.de/aslr/database-rwth-boston-50.php&#34;&gt;RWTH-Boston-50&lt;/a&gt; 和&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www-i6.informatik.rwth-aachen.de/aslr/database-rwth-boston-104.php&#34;&gt; RWTH-Boston-104-&lt;/a&gt; 美国手语手势视频数据集，包含由 4 个摄像机（2 个黑白立体声，1 个彩色，一侧侧视图黑白）以 30 fps 和 312 捕获的 201 条带注释的句子 * 242 像素 50 个数据集具有 483 个 50 个单词的语音。（Dreuw，Keysers，Forster，Deselaers，Rybach，Zahedi，Ney）[14/3/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//hadikhanloo.wixsite.com/sahandsignlanguage&#34;&gt;Sahand LMC 手语数据库&lt;/a&gt; - 该数据库由网络摄像头和 Leap Motion 控制器（LMC）收集，该模块包括 32 个类，其中包括 24 个美国字母（由于它们是动态手势，因此不包括 J 和 Z）以及 0 到 9 的数字（代表 6 和 w，9 和 F 的手势也相同）。每个数据库类包含 2000 个样本。（Ebrahimnezhad 的 Mahdikhanlou）[2020 年 12 月 27 日]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//ee.sut.ac.ir/showcvmain.aspx%3Fid%3D5&#34;&gt;Sahand 动态手势数据库&lt;/a&gt; - 此数据库包含 11 个动态手势，旨在将鼠标和触摸屏的功能传达给计算机。（Behnam Maleki，Hossein Ebrahimnezhad）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//lshao.staff.shef.ac.uk/data/SheffieldKinectGesture.htm&#34;&gt;谢菲尔德手势数据库&lt;/a&gt; - 2160 个 RGBD 手势序列，6 个对象，10 个手势，3 个姿势，3 个背景，2 个照明（凌绍）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www2.imse-cnm.csic.es/neuromorphs/index.php/SL-ANIMALS-DVS-Database&#34;&gt;SL-ANIMALS-DVS 数据库&lt;/a&gt; - SL-ANIMALS-DVS 数据库由 DVS 记录组成，这些记录是人类以极低的延迟连续不断的尖峰流动来执行各种动物的手语手势（Serrano-Gotarredona，Linares-Barranco）[27/12 / 2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.hci.iis.u-tokyo.ac.jp/~cai-mj/utgrasp_dataset.html&#34;&gt;UT&lt;/a&gt; 抓取&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.hci.iis.u-tokyo.ac.jp/~cai-mj/utgrasp_dataset.html&#34;&gt;数据集&lt;/a&gt; - 4 个主题以各种方式抓住各种对象（蔡，北谷，佐藤）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//dxli94.github.io/WLASL/&#34;&gt;WLASL-&lt;/a&gt; 单词级美国手语语言数据集，包含 2,000 个常用词和 21k RGB 视频，由一百多个本地签名者（李，罗德里格斯，于，李）进行表演 [27/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.eng.yale.edu/grablab/humangrasping/&#34;&gt;耶鲁人的掌握数据集&lt;/a&gt; - 27 小时的视频，带有来自两名管家和两名机械师（伯洛克，费克斯，美元）的带标签的掌握，对象和任务数据 [19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;&lt;span id=&#34;2图像视频和形状数据库检索&#34;&gt; （2）图像，视频和形状数据库检索&lt;/span&gt;&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//vision.in.tum.de/~laehner/Elastic2D3D/&#34;&gt;2D 到 3D 变形草图&lt;/a&gt; - 与相同类别的可变形 3D 网格点向对应的可变形 2D 轮廓的集合；提供了大约 10 种对象类别，包括人类和动物。（罗纳，罗多拉）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.dais.unive.it/~cosmo/deformableclutter/&#34;&gt;杂波中的 3D 变形对象 - 3D 杂波中的&lt;/a&gt;可变形对象的数据集，在数百个场景中跨越多个类别（人类，动物）具有逐点地面真实性对应。（Cosmo，Rodola，Masci，Torsello 和 Bronstein）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//lear.inrialpes.fr/~jegou/data.php&#34;&gt;ANN_SIFT1M-&lt;/a&gt; 由 128D SIFT 描述符（Jegou 等人）编码的 1M Flickr 图像 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//vision.lems.brown.edu/content/available-software-and-databases&#34;&gt;Brown Univ 25/99/216 形状数据库&lt;/a&gt;（Ben Kimia）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cs.toronto.edu/~kriz/cifar.html&#34;&gt;CIFAR-10-10&lt;/a&gt; 类 60K 32x32 图像，带有 512D GIST 描述符（Alex Krizhevsky）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.ir-facility.org/clef-ip&#34;&gt;CLEF-IP 2011 对专利图片的评估&lt;/a&gt; [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cs.cmu.edu/~mengtial/proj/sketch/&#34;&gt;等高线图数据&lt;/a&gt;集 - 5,000 个配对图像和等高线图的数据集，用于研究视觉理解和草图生成（Li，Lin，Měch，Yumer 和 Ramanan）[9/1/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html&#34;&gt;DeepFashion-&lt;/a&gt; 大型时装数据库（&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html&#34;&gt;刘子玮&lt;/a&gt;，罗平，邱秋，王小刚，唐小鸥）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//diameter.itn.liu.se/emodb/&#34;&gt;EMODB&lt;/a&gt; -picsearch 图像搜索引擎中图像的缩略图以及 picsearch 情感关键字（Reiner Lenz 等）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.mfdemirci.etu.edu.tr/Etu10Silhouette.rar&#34;&gt;ETU10 轮廓数据集&lt;/a&gt; - 该数据集由 720 个轮廓（包含 10 个对象）组成，每个对象有 72 个视图。（M. Akimaliev 和 MF Demirci）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/cvjena/eu-flood-dataset&#34;&gt;2013&lt;/a&gt; 年&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/cvjena/eu-flood-dataset&#34;&gt;欧洲洪水&lt;/a&gt; -&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/cvjena/eu-flood-dataset&#34;&gt; 中欧&lt;/a&gt;发生洪水事件的 3,710 张图像，并带有与 3 个图像检索任务（多标签）和重要图像区域有关的注释。（耶拿，弗里德里希・席勒大学，德意志联邦理工大学波茨坦分校）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/zalandoresearch/fashion-mnist&#34;&gt;Fashion-MNIST - 类似于&lt;/a&gt; MNIST 的时装产品数据库。（Han Xiao，Zalando Research）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cise.ufl.edu/~anand/GatorBait_100.tgz&#34;&gt;鱼形数据库&lt;/a&gt; - 它是具有 100 个 2D 点设置形状的鱼形数据库。（Adrian M. Peter）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//shannon.cs.illinois.edu/DenotationGraph/&#34;&gt;Flickr&lt;/a&gt; 30K - 图像，动作和标题（Peter Young 等）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//personal.ee.surrey.ac.uk/Personal/R.Hu/SBIR.html&#34;&gt;Flickr15k - 基于草图的图像检索（SBIR）基准&lt;/a&gt; - 330 个草图和 15,024 张照片的数据集，包括 33 个对象类别，通常用于评估基于草图的图像检索（SBIR）算法的基准数据集。（Hu 和 Collomosse，CVIU 2013）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//files.is.tue.mpg.de/dtzionas/Hand-Object-Capture&#34;&gt;动手（HIC）IJCV 数据集&lt;/a&gt; - 用于跟踪 1 手或 2 手有 / 没有 1 个对象的数据（图像，模型，运动）。包括&lt;em&gt;单视图 RGB-D 序列（1 个主题，带 18 个注释序列，4 个对象，完整 RGB 图像）和&lt;/em&gt;多视图 RGB 序列（1 个主题，HD，8 个视图，8 个序列 - 1 个带注释，2 个对象）。（Dimitrios Tzionas，Luca Ballan，Abhilash Srikantha，Pablo Aponte，Marc Pollefeys 和 Juergen Gall）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www-i6.informatik.rwth-aachen.de/imageclef/08/photo/&#34;&gt;IAPR TC-12 图片基准测试&lt;/a&gt;（Michael Grubinger）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//imageclef.org/SIAPRdata&#34;&gt;IAPR-TC12 分段和带注释的图像基准（SAIAPR TC-12）：（&lt;/a&gt; Hugo Jair Escalante）[19 年&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//imageclef.org/SIAPRdata&#34;&gt; 12 月 28 日&lt;/a&gt;之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.imageclef.org/2010/PhotoAnnotation&#34;&gt;ImageCLEF 2010 概念检测和注释任务&lt;/a&gt;（Stefanie Nowak）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.imageclef.org/2011/photo&#34;&gt;ImageCLEF 2011 概念检测和注释任务&lt;/a&gt; - Flickr 照片中的多标签分类挑战 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//lear.inrialpes.fr/~jegou/data.php%23copydays&#34;&gt;INRIA Copydays 数据集&lt;/a&gt; - 用于评估副本检测：JPEG，裁剪和 “强” 副本攻击。（INRIA）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//lear.inrialpes.fr/~jegou/data.php%23holidays&#34;&gt;INRIA Holidays 数据集&lt;/a&gt; - 用于图像搜索评估：500 个查询和 991 个相应的相关图像（Jegou，Douze 和 Schmid）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.researchgate.net/publication/333579741_MA14KD_ORIGINAL_Dataset_Description_Visual_Attraction_of_Movie_Trailers&#34;&gt;MA14KD（电影吸引力 14K 数据集）数据集 - 14K&lt;/a&gt; 电影 / 电视预告片，每个具有 10 个功能，链接到评级数据集（Elahi，Moghaddam，Hosseini，Trattner，Tkalčič）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//kovan.ceng.metu.edu.tr/LogoDataset/&#34;&gt;METU 商标数据集&lt;/a&gt; METU 数据集由超过 90 万个真实徽标组成，这些徽标属于全球公司。（Usta Bilgi Sistemleri AS 和 Grup Ofis Marka Patent AS）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cim.mcgill.ca/~shape/benchMark/&#34;&gt;麦吉尔 3D 形状基准测试&lt;/a&gt;（Siddiqi，Zhang，Macrini，Shokoufandeh，Bouix，Dickinson）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.dabi.temple.edu/~shape/MPEG7/dataset.html&#34;&gt;MPEG-7 核心实验 CE-Shape-1 - 将&lt;/a&gt; 1400 个 2D 二维形状分为 70 个类别，每个类别中有 20 个形状（Latecki，Lakamper，Eckhardt）[29/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//mano.is.tue.mpg.de/&#34;&gt;MPI MANO 和 SMPL + H 数据集&lt;/a&gt; - 统计模型 MANO（手动）和 SMPL + H（身体 + 手）的模型，4D 扫描和配准。对于 MANO，对 31 个对象进行了约 2k 静态 3D 扫描，最多执行 51 个姿势。对于 SMPL + H，我们包括 11 个对象的 39 个 4D 序列。（Javier Romero，Dimitrios Tzionas 和 Michael J Black）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//grail.cs.washington.edu/projects/mview/&#34;&gt;多视图立体评估&lt;/a&gt; - 每个数据集都注册有通过激光扫描过程获得的 “真实” 3D 模型（Steve Seitz 等）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.itl.nist.gov/iad/vug/sharp/contest/2014/SBR/data.html&#34;&gt;NIST SHREC-2014 NIST 检索竞赛数据库和链接&lt;/a&gt;（美国国家标准技术研究院）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.itl.nist.gov/iad/vug/sharp/contest/2013/SBR/data.html&#34;&gt;NIST SHREC-2013 NIST 检索竞赛数据库和链接&lt;/a&gt;（美国国家标准技术研究院）[ &lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.itl.nist.gov/iad/vug/sharp/contest/2013/SBR/data.html&#34;&gt;19 年 12 月 28 日&lt;/a&gt;之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.itl.nist.gov/iad/vug/sharp/contest/2010/NonRigidShapes/&#34;&gt;NIST SHREC 2010 - 非刚性 3D 模型的形状检索竞赛&lt;/a&gt;（美国国家标准技术研究院）[ &lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.itl.nist.gov/iad/vug/sharp/contest/2010/NonRigidShapes/&#34;&gt;19 年 12 月 28 日&lt;/a&gt;之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www-nlpir.nist.gov/projects/trecvid/&#34;&gt;NIST TREC 视频检索评估数据库&lt;/a&gt;（美国国家标准技术研究院）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//lms.comp.nus.edu.sg/research/NUS-WIDE.htm&#34;&gt;NUS-&lt;/a&gt; WIDE - 带有 81 个概念标签的 269K Flickr 图像标注为 500D BoVW 描述符（Chau 等人）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//shape.cs.princeton.edu/benchmark/index.cgi&#34;&gt;普林斯顿形状基准测试&lt;/a&gt;（普林斯顿形状检索和分析组）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//files.is.tue.mpg.de/dtzionas/GCPR_2013&#34;&gt;PairedFrames-3D 姿态跟踪错误的评估&lt;/a&gt; - 合成数据和实数数据集，用于以接近 / 远离极小值的姿态初始化测试 3D 姿态跟踪 / 优化。建立难度增加的测试帧对，以单独测量姿态估计误差，而无需使用完整的跟踪管线。（Dimitrios Tzionas，Juergen Gall）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//itee.uq.edu.au/~shenht/UQ_IMH/index.htm&#34;&gt;昆士兰跨媒体数据集&lt;/a&gt; - 数百万个用于 “跨媒体” 检索的图像和文本文档（易阳）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//files.is.tue.mpg.de/dtzionas/Skeleton-Reconstruction&#34;&gt;从 RGB-D 视频重建铰接的索具模型（RecArt-D）&lt;/a&gt; - 操作过程中对象变形的数据集。包括 4 个 RGB-D 序列（完整的 RGB 图像），每个对象的可变形跟踪结果，以及每个对象的 3D 网格和 Ground-Truth 3D 骨架。（Dimitrios Tzionas，Juergen Gall）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//files.is.tue.mpg.de/dtzionas/In-Hand-Scanning&#34;&gt;通过手与对象的交互（R-HOI）进行重构&lt;/a&gt; - 一只手与未知对象进行交互的数据集。包括 4 个 RGB-D 序列，总共 4 个对象，RGB 图像完成。包括跟踪的 3D 运动和对象的地面真实网格。（Dimitrios Tzionas，Juergen Gall）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cmp.felk.cvut.cz/revisitop/&#34;&gt;重访牛津和巴黎（RevisitOP）&lt;/a&gt; - 带有 1M 干扰图像的著名地标 / 建筑物检索数据集的改进版本和更具挑战性的版本（已修复的错误，新的注释和评估协议，新的查询图像）。（F. Radenovic，A。Iscen，G。Tolias，Y。Avrithis，O。Chum）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cs.virginia.edu/~vicente/sbucaptions/&#34;&gt;SBU 字幕数据集&lt;/a&gt; - 从 Flickr（Ordonez，Kulkarni 和 Berg）收集的 100 万张图像的图像字幕 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.dais.unive.it/~shrec2016/index.php&#34;&gt;SHREC’16 可变形部分形状匹配&lt;/a&gt; - 大约 400 种 3D 可变形形状的集合，这些形状正在经历强烈的局部性转换，其中包括点对点地面真相对应。（Cosmo，Rodola，Bronstein 和 Torsello）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cs.txstate.edu/~yl12/SBR2016/data.html&#34;&gt;SHREC 2016 - 基于 3D 草图的 3D 形状检索&lt;/a&gt; - 使用通用 3D 模型数据集上的手绘 3D 草图查询数据集来评估基于 3D 草图的 3D 模型检索算法的性能的数据（李波）[28/12 之前 / 19]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//sites.google.com/view/shrec17/&#34;&gt;SHREC’17 可变形部分形状检索&lt;/a&gt; - 大约 4000 种可变形 3D 形状的集合，这些形状正在经历严重的部分转换，形式为不规则的缺失零件和范围数据；提供了地面实况课程信息。（罗纳，罗多拉）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//watertight.ge.imati.cnr.it/&#34;&gt;SHREC Watertight Models Track（SHREC 2007 年）&lt;/a&gt; -400 个水密 3D 模型（Daniela Giorgi）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//partial.ge.imati.cnr.it/&#34;&gt;SHREC 部分模型跟踪（SHREC 2007 年发布）&lt;/a&gt; -400 个水密 3D DB 模型和 30 个简化的水密查询模型（Daniela Giorgi）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.eecs.qmul.ac.uk/~qian/Project_cvpr16.html&#34;&gt;Sketch Me That Shoe-&lt;/a&gt; 在细粒度设置中基于草图的对象检索。将草图与特定的鞋子和椅子相匹配。（钱宇，QMUL，爱丁堡大学医学院，T。Hospedales Edinburgh / QMUL）。[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//ai4ce.github.io/SPARE3D/&#34;&gt;SPARE3D-&lt;/a&gt; 包含各种针对深度网络而设计的基于线描的空间 IQ 测试（形状一致性，相机姿态和形状生成），其中，最先进的网络几乎像随机猜测一样运行（NYU AI4CE 实验室）[27 / 12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//tosca.cs.technion.ac.il/book/resources_data.html&#34;&gt;TOSCA 3D 形状数据库&lt;/a&gt;（Bronstein，Bronstein，Kimmel）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//sites.google.com/view/totally-looks-like-dataset&#34;&gt;完全看起来像&lt;/a&gt; - 用于评估预测基于人的图像相似性的基准（Amir Rosenfeld，Markus D. Solbach，John Tsotsos）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//crcv.ucf.edu/data/Cross-View/&#34;&gt;UCF-CrossView 数据集：用于城市环境中地理定位的跨视图图像匹配&lt;/a&gt; - 用于跨视图图像地理定位的街景和鸟瞰图像的新数据集。（中央佛罗里达大学计算机视觉研究中心）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//research.google.com/youtube8m/&#34;&gt;YouTube-8M 数据集&lt;/a&gt; - 用于视频理解研究的大而多样化的视频数据集。（Google Inc。）[19/12/28 之前]&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;&lt;span id=&#34;3对象数据库&#34;&gt; （3）对象数据库&lt;/span&gt;&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.csse.uwa.edu.au/~ajmal/databases.html&#34;&gt;各种对象和场景的 2.5D / 3D 数据集&lt;/a&gt;（Ajmal Mian）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www-cvr.ai.uiuc.edu/ponce_grp/data/%23texture&#34;&gt;3D 对象识别立体声数据集&lt;/a&gt;该数据集包含 9 个对象和 80 个测试图像。（Akash Kushal 和 Jean Ponce）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www-cvr.ai.uiuc.edu/ponce_grp/data/%23texture&#34;&gt;3D 摄影数据集&lt;/a&gt;是在我们的实验室中捕获的十个多&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www-cvr.ai.uiuc.edu/ponce_grp/data/%23texture&#34;&gt;视图数据集&lt;/a&gt;的集合（古隆安孝和让・庞塞）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//campar.in.tum.de/personal/slavcheva/3d-printed-dataset/index.html&#34;&gt;3D 打印的 RGB-D 对象数据集&lt;/a&gt; - 5 个具有地面真实 CAD 模型和相机轨迹的对象，并使用各种质量的 RGB-D 传感器（西门子和 TUM）记录下来 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cas.kth.se/data/strands/data.html&#34;&gt;3DNet 数据集&lt;/a&gt; - 3DNet 数据集是一个免费资源，可用于从点云数据进行对象类识别和 6DOF 姿态估计。（John Folkesson 等人）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//deep-geometry.github.io/abc-dataset/&#34;&gt;ABC 数据集&lt;/a&gt; - 一百万个 CAD 模型，包括地面分析描述（样条曲线），密集网格，点云，法线。（科赫，马特维耶夫，姜，威廉姆斯，阿特莫夫，本那夫，亚历山德拉，佐林，帕诺佐）[2/1/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/Yang7879/3D-RecGAN-extended&#34;&gt;对齐后的各种对象的 2.5D / 3D 数据集&lt;/a&gt; - 用于从单个深度视图重建&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/Yang7879/3D-RecGAN-extended&#34;&gt;对象的&lt;/a&gt;合成数据集和真实世界数据集。（杨波，史蒂芬诺・罗莎，安德鲁・马克汉姆，妮基・特里戈尼，洪凯文）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//aloi.science.uva.nl/&#34;&gt;阿姆斯特丹对象图像图书馆（ALOI）：1 万个对象的 100K 视图&lt;/a&gt;（阿姆斯特丹大学 / 智能感官信息系统）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//cvwc2019.github.io/challenge.html&#34;&gt;ATRW - 在野外重新识别&lt;/a&gt;东北虎 - 92 个人（MakerCollider 和 WWF）的 8,000 东北虎视频剪辑 [26/1/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//cvml.ist.ac.at/AwA2/&#34;&gt;具有属性的动物&lt;/a&gt; 2-37322（免费许可）包含 50 种动物类的图像，每类具有 85 个二元属性。（Christoph H. Lampert，IST 奥地利）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//hemanthdv.org/OfficeHome-Dataset/&#34;&gt;ASU Office-Home 数据集&lt;/a&gt; - 用于领域适应（Venkateswara，Eusebio，Chakraborty，Panchanathan）的日常对象的对象识别数据集 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.westernsydney.edu.au/icns/reproducible_research/publication_support_materials/atis_planes&#34;&gt;ATIS Planes 数据集&lt;/a&gt; - ATIS Planes 数据集是基于事件的自由落体飞机模型。（Afshar，Tapson，van Schaik，Cohen）[2020 年 12 月 27 日]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//kinectdata.com/&#34;&gt;B3DO：伯克利 3-D 对象数据集&lt;/a&gt; - 家庭对象检测（Janoch 等）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cs.bris.ac.uk/~damen/BEOID/&#34;&gt;Bristol&lt;/a&gt; 以自我为中心的对象交互&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cs.bris.ac.uk/~damen/BEOID/&#34;&gt;数据集&lt;/a&gt; - 具有同步注视的以自我为中心的对象交互（Dima Damen）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/jcpeterson/cifar-10h&#34;&gt;CIFAR-10H-&lt;/a&gt; 新的软标签数据集，反映了 10,000 张图像的 CIFAR-10 测试集（Peterson，Battleday，Griffiths，Russakovsky）的人的感知不确定性 [14/1/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//vision.cs.uiuc.edu/CORE/&#34;&gt;CORE 图像数据集&lt;/a&gt; - 帮助学习更详细的模型并探索对象识别中的跨类别归纳。（Ali Farhadi，Ian Endres，Derek Hoiem 和 David A. Forsyth）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//clopema.felk.cvut.cz/color_and_depth_dataset.html&#34;&gt;CTU 色差服装的颜色和深度图像数据集&lt;/a&gt; - 带有带批注角的&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//clopema.felk.cvut.cz/color_and_depth_dataset.html&#34;&gt;色差服装的&lt;/a&gt;图像。（Wagner，L.，Krejov D. 和 Smutn V.（布拉格的捷克技术大学））[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.vision.caltech.edu/Image_Datasets/Caltech101/Caltech101.html&#34;&gt;加州理工学院 101（现在为 256）类别对象识别数据库&lt;/a&gt;（李飞飞，马可・安德雷托，马克・奥雷利奥・兰佐托）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//perceive.dieei.unict.it/index-dataset.php%3Fname%3DFish_Species&#34;&gt;卡塔尼亚鱼类物种识别&lt;/a&gt; - 15 种鱼类，带有大约 20,000 个样本训练图像和其他测试图像（Concetto Spampinato）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//cocodataset.org/&#34;&gt;COCO-COntext 中的常见对象&lt;/a&gt; - 大型对象检测，分割和字幕数据集：330K 图像，200K 标记，1.5m 对象实例，80 个对象类别，91 个类别，250K 人（Lin，Patterson，Ronchi，Cui， Maire，Belongie，Bourdev，Girshick，Hays，Perona，Ramanan，Zitnick，美元）[12/08/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/nightrome/cocostuff&#34;&gt;COCO-Stuff 数据集&lt;/a&gt; - 带有 “事物” 和 “事物” 标记的 164K 图像（凯撒，乌伊林斯，法拉利）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//coco-tasks.github.io/&#34;&gt;COCO - 任务&lt;/a&gt; - 来自可可数据集的 40k 图像带有最适合解决 14 个任务的对象的注释（波恩大学）[27/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www1.cs.columbia.edu/CAVE/software/softlib/coil-100.php&#34;&gt;Columbia COIL-100 3D 对象多重视图&lt;/a&gt;（哥伦比亚大学）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//mmlab.ie.cuhk.edu.hk/datasets/comp_cars/index.html&#34;&gt;CompCars-&lt;/a&gt; 汽车和零件的图像。163 辆汽车的网络上有 136,726 幅来自 1,716 辆汽车的图像。50,000 张正视图监控图像。（杨，罗，来，唐）[1/6/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.robots.ox.ac.uk/data/tvg/sjetley/&#34;&gt;野生国家 / 地区的国旗&lt;/a&gt; - 手动裁剪了 224 个不同国家&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.robots.ox.ac.uk/data/tvg/sjetley/&#34;&gt; / 地区的国旗的&lt;/a&gt; 12854 张火车图像和 6,110 张测试图像，以轻松地适应上面的旗帜。（Jetley）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//gdo152.llnl.gov/cowc/&#34;&gt;COWC-&lt;/a&gt; 带有上下文的汽车架空。32,716 辆独特的带注释的汽车。58,247 个独特的负面例子。在六个不同的位置，每像素分辨率 15 厘米。（劳伦斯・利弗莫尔国家实验室）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//ieee-dataport.org/documents/dawn-vehicle-detection-adverse-weather-nature&#34;&gt;DAWN：恶劣天气下的车辆检测&lt;/a&gt; - 真实交通环境中的 1000 张图像集合，分为四组天气条件：雾，雪，雨和沙尘暴（肯克，哈萨巴拉）[28/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//domaingeneralization.github.io/&#34;&gt;更深入，更广泛和更专业的领域概括&lt;/a&gt; - 领域概括任务数据集。（QMUL 达里）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.inf.fh-dortmund.de/personen/professoren/peters/pages/research/ImageDatabase/ImageDatabase.html&#34;&gt;密集采样的对象视图：2 个对象的 2500 个视图，例如用于基于视图的识别和建模&lt;/a&gt;（Gabriele Peters，多特蒙德大学）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//homepages.inf.ed.ac.uk/rbf/UTENSILS/&#34;&gt;爱丁堡厨房用具数据库&lt;/a&gt; - 20 种厨房用具的 897 张原始图像和二进制图像，这是一种用于培训未来家庭助理机器人的资源（D. Fullerton，A。Goel 和 RB Fisher）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.ub.edu/cvub/edub-obj/&#34;&gt;EDUB-&lt;/a&gt; Obj - 用于对象定位和分割的以自我为中心的数据集。（MarcBolaños 和 Petia Radeva。）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//docs.google.com/file/d/0B10RxHxW3I92ZUtDU0RkMGlnNkU/edit%3Fpref%3D2%26pli%3D1&#34;&gt;椭圆查找数据集&lt;/a&gt;（Dilip K. Prasad 等）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.robots.ox.ac.uk/~vgg/data/fgvc-aircraft/&#34;&gt;FGVC 飞机基准测试 - 10,200&lt;/a&gt; 架飞机的图像，其中 102 种不同飞机模型变体（Maji，Kannala，Rahtu，Blaschko，Vedaldi）每幅图像 100 张 [19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//etsin.avointiede.fi/dataset/urn-nbn-fi-csc-kata20170615175247247938&#34;&gt;FIN-Benthic-&lt;/a&gt; 这是用于对底栖大型无脊椎动物进行自动细粒度分类的数据集。有来自 64 个类别的 15074 张图像。每个类别的图像数量从 577 到 7。（Jenni Raitoharju，Ekaterina Riabchenko，Iftikhar Ahmad，Alexandros Iosifidis，Moncef Gabbouj，Serkan Kiranyaz，Ville Tirronen 和 Johanna Arje）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//rubi.ucsd.edu/GERMS/&#34;&gt;GERMS-&lt;/a&gt; 我们用于 GERMS 数据收集的对象集由 136 种不同微生物的填充玩具组成。玩具分为 7 个较小的类别，由玩具微生物的语义划分形成。将对象划分为较小类别的动机是提供具有不同难度的基准。（Malmir M，Sikka K，Forster D，Movellan JR，Cottrell G。）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//dmery.ing.puc.cl/index.php/material/gdxray/&#34;&gt;GDXray：用于 X 射线测试和计算机视觉的 X 射线图像&lt;/a&gt; - GDXray 包括五组图像：铸件，焊缝 *，行李，自然和设置。（智利天主教大学 Domingo Mery）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cs.gmu.edu/~robot/gmu-kitchens.html&#34;&gt;GMU 厨房数据集&lt;/a&gt; - 来自 9 个不同厨房（乔治・梅森大学）的 BigBird 数据集中 11 种常见家用产品的实例级别注释 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;抓狂 - 自然生活对象的&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.labri.fr/projet/AIV/dossierSiteRoBioVis/GraspingInTheWildV2.htm&#34;&gt;以&lt;/a&gt;自我为中心的视频数据集。7 个厨房中有 16 个对象。（贝努瓦 - 皮诺，拉鲁斯，德・鲁吉）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.emt.tugraz.at/~pinz/data/GRAZ_02/&#34;&gt;GRAZ-02 数据库（自行车，汽车，人）&lt;/a&gt;（A。平茨）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//downloads.greyc.fr/Greyc3DColoredMeshDatabase/&#34;&gt;GREYC 3D&lt;/a&gt; -GREYC 3D 彩色网格数据库是一组 15 个真实对象的集合，这些对象具有不同的颜色，几何形状和纹理，这些对象是使用 3D 彩色激光扫描仪获取的。（Anass Nouri，Christophe Charrier，Olivier Lezoray）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//benchmark.ini.rub.de/%3Fsection%3Dgtsdb%26subsection%3Ddataset&#34;&gt;GTSDB：德国交通标志检测基准&lt;/a&gt;和&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//benchmark.ini.rub.de/%3Fsection%3Dgtsrb%26subsection%3Dnews&#34;&gt; GTSRB：德国交通标志识别基准&lt;/a&gt;（波鸿鲁尔大学）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//robotology.github.io/iCubWorld/&#34;&gt;ICubWorld&lt;/a&gt; -iCubWorld 数据集是通过在观察日常物体的同时从 iCub 人形机器人的摄像机记录下来而获得的图像集合。（Giulia Pasquale，Carlo Ciliberto，Giorgio Metta，Lorenzo Natale，Francesca Odone 和 Lorenzo Rosasco。）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.mvtec.com/company/research/datasets/mvtec-itodd/&#34;&gt;工业 3D 对象检测数据集（MVTec ITODD）-3500 个&lt;/a&gt;标记场景中 28 个对象的深度和灰度值数据，用于 3D 对象检测和姿势估计，重点关注工业设置和应用（MVTec Software GmbH，慕尼黑）[28/12 之前 / 19]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//homepages.inf.ed.ac.uk/thospeda/downloads.html&#34;&gt;Instagram Food 数据集&lt;/a&gt; - 在 6 周内发布到 Instagram 的 800,000 张食物图像和相关元数据的数据库。支持食物类型识别和社交网络分析。（T. Hospedales。爱丁堡 / QMUL）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//3dinterpreter.csail.mit.edu/&#34;&gt;Keypoint-5 数据集&lt;/a&gt; - 带有 2D 关键点标签的五种家具的数据集（Jiajun Wu，Xianfan Xue，Joseph Lim，Tiandong Tian，Josh Tenenbaum，Antonio Torralba，Bill Freeman）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cas.kth.se/data/strands/data.html&#34;&gt;KTH-3D-TOTAL-&lt;/a&gt; 带有注释的桌面上对象的 RGB-D 数据。20 张桌子，每天 19 次，每天 3 次。（John Folkesson 等人）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//vision.gel.ulaval.ca/~jflalonde/projects/6dofObjectTracking/index.html&#34;&gt;Laval 6 DOF 对象跟踪数据&lt;/a&gt;集 - 297 个 RGB-D 序列的数据集，其中有 11 个对象用于 6 DOF 对象跟踪。（Mathieu Garon，Denis Laurendeau，Jean-Francois Lalonde）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cvrr.ucsd.edu/vivachallenge/index.php/traffic-light/traffic-light-detection/&#34;&gt;LISA 交通灯数据集&lt;/a&gt; - 在各种照明条件下（詹森，菲利普森，莫吉莫斯，莫斯隆德和特里维第）的 6 种照明等级 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cvrr.ucsd.edu/LISA/lisa-traffic-sign-dataset.html&#34;&gt;LISA 交通标志数据集&lt;/a&gt; - 在 6610 帧（Mogelmose，Trivedi 和 Moeslund）上的 47 种美国标志类型的视频，带有 7855 个注释（19 年 12 月 28 日之前）&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cvl.isy.liu.se/research/objrec/posedb/&#34;&gt;Linkoping 3D 对象姿势估计数据库&lt;/a&gt;（Fredrik Viksten 和 Per-Erik Forssen）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cvl.isy.liu.se/research/datasets/traffic-signs-dataset/&#34;&gt;Linkoping 交通标志数据集&lt;/a&gt; - 以 20K 图像显示 3488 个交通标志（Larsson 和 Felsberg）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cas.kth.se/data/strands/data.html&#34;&gt;长期标记&lt;/a&gt; - 此数据集包含来自长期数据集（上面的长期数据集）的观测值的子集。（John Folkesson 等人）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/arubior/main-product-dataset&#34;&gt;主要产品检测数据集&lt;/a&gt; - 包含时尚产品及其图像的文本元数据，以及主要产品的边框（由文本指代的框）。（A. Rubio，L。Yu，E。Simo-Serra 和 F. Moreno-Noguer）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/bircatmcri/MCIndoor20000&#34;&gt;MCIndoor20000-&lt;/a&gt; 来自三种不同室内对象类别的 20,000 张数字图像：门，楼梯和医院标志。（Bashiri，LaRose，Peissig 和 Tafti）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.labri.fr/projet/AIV/MexCulture142.php&#34;&gt;Mexculture142-&lt;/a&gt; 墨西哥文化遗产物体和眼动仪注视装置（Montoya Obeso，Benois-Pineau，Garcia-Vazquez，Ramirez Acosta）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//conservancy.umn.edu/handle/11299/206575&#34;&gt;MinneApple：Apple 检测和分割的基准数据集&lt;/a&gt; - 在果园中获取的高分辨率图像，其中 1000 个图像中有超过 40000 个带注释的对象实例。可用于检测，簇蛋白，产量估算（Haeni，Roy，Isler）[30/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//podoce.dinf.usherbrooke.ca/challenge/dataset/&#34;&gt;MIO-TCD&lt;/a&gt; -786,702 张车辆图像以及 648,959 个分类图像和 137,743 个本地化图像。在一天中的不同时间和一年中的不同时期被成千上万的交通摄像机所采集。（罗，查伦，勒梅尔，康拉德，李，米斯拉，阿赫卡尔，埃歇尔，乔杜因）[1/6/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cbcl.mit.edu/software-datasets/CarData.html&#34;&gt;MIT CBCL 汽车数据&lt;/a&gt;（生物和计算学习中心）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cbcl.mit.edu/software-datasets/streetscenes/&#34;&gt;MIT CBCL StreetScenes 挑战框架：&lt;/a&gt;（Stan Bileschi）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//mscoco.org/&#34;&gt;Microsoft&lt;/a&gt; COCO - 上下文中的公共对象（林宗怡等）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//research.microsoft.com/en-us/projects/objectclassrecognition/default.aspx&#34;&gt;Microsoft 对象类识别图像数据库&lt;/a&gt;（Antonio Criminisi，Pushmeet Kohli，Tom Minka，Carsten Rother，Toby Sharp，Jamie Shotton，John Winn）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//research.microsoft.com/en-us/um/people/jiansun/SalientObject/salient_object.htm&#34;&gt;Microsoft 显着对象数据库（由边界框标记）&lt;/a&gt;（刘，孙政，唐，沉）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www2.imse-cnm.csic.es/caviar/MNISTDVS.html&#34;&gt;MNIST-DVS 和 FLASH-MNIST-DVS 数据库&lt;/a&gt; - 该数据集基于原始的基于帧的 MNIST 数据集，并包含 DVS（动态视觉传感器）记录。（Yousefzadeh，Serrano-Gotarredona，Linares-Barranco）[27/12 / 2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cas.kth.se/data/strands/data.html&#34;&gt;移动标签&lt;/a&gt; - 此数据集将长期数据集扩展到 KTH 在同一办公室环境中的更多位置。（John Folkesson 等人）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.garrickorchard.com/datasets/n-caltech101&#34;&gt;N-Caltech101（Neuromorphic-Caltech101）&lt;/a&gt; - 该数据集是原始基于帧的 Caltech101 数据集的尖峰版本。（Orchard，Cohen，Jayawant，Thakor）[27/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.prophesee.ai/2018/03/13/dataset-n-cars/&#34;&gt;N-&lt;/a&gt; Cars-“数据集由 12336 个汽车样本和 11,693 个非汽车样本（背景）组成，用于通过 ATIS 摄像机记录。”（Sironi，Brambilla，Bourdis，Lagorce，Benosman）[27/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.garrickorchard.com/datasets/n-mnist&#34;&gt;N-MNIST（Neuromorphic-MNIST）&lt;/a&gt; - 数据集是原始帧的手写数字 MNIST 数据集的尖峰版本。（Orchard，Cohen，Jayawant，Thakor）[27/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//tinyurl.com/s84nlm4&#34;&gt;N-SOD 数据集&lt;/a&gt; -“神经形态单对象数据集（N-SOD），包含三个对象，这些对象具有基于事件的传感器记录的时间长度不同的样本。”（Ramesh，Ussa，Vedovs，Yang，Orchard）[27/12 / 2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//dl.allaboutbirds.org/nabirds&#34;&gt;NABirds 数据集&lt;/a&gt; - 北美常见的 400 种鸟类的 70,000 张带批注的照片（格兰特・范・霍恩）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//ml.nec-labs.com/download/data/videoembed/&#34;&gt;NEC 玩具动物物体识别或分类数据库&lt;/a&gt;（Hossein Mobahi）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cs.nyu.edu/~ylclab/data/norb-v1.0-small/&#34;&gt;NORB 50 玩具图片数据库&lt;/a&gt;（NYU）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//sites.google.com/site/jingjingmengsite/research/ntu-voi&#34;&gt;NTU-VOI：NTU 视频对象实例数据集&lt;/a&gt; - 具有&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//sites.google.com/site/jingjingmengsite/research/ntu-voi&#34;&gt;对象实例的&lt;/a&gt;帧级边界框注释的视频剪辑，用于评估大规模视频中的对象实例搜索和本地化。（孟晶晶等）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cvl.isy.liu.se/en/research/objrec/posedb/&#34;&gt;对象姿态估计数据库&lt;/a&gt; - 此数据库包含 16 个对象，每个对象沿两个旋转轴（F. Viksten 等）以 5 度角增量采样 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www-cvr.ai.uiuc.edu/ponce_grp/data/%23texture&#34;&gt;物体识别数据库&lt;/a&gt;该数据库具有八个物体的建模镜头和包含多个物体的 51 个混乱的测试镜头。（Fred Rothganger，Svetlana Lazebnik，Cordelia Schmid 和 Jean Ponce。）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/brendenlake/omniglot/&#34;&gt;Omniglot&lt;/a&gt; -16 个来自 50 个不同字母（Lake，Salakhutdinov，Tenenbaum）的手写字符 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//storage.googleapis.com/openimages/web/index.html&#34;&gt;打开&lt;/a&gt; 600 个类别中的&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//storage.googleapis.com/openimages/web/index.html&#34;&gt;打开图像数据集 V6&lt;/a&gt; 15,851,536 个框，在 19,794 个类别中打开 59,919,574 个图像级标签。在 350 个类别上进行了 2,785,498 个实例细分。在 1,466 个关系上的 3,284,282 个关系注释。507,444 个本地化叙述。478,000 个众包图像，包含 6,000 多个类别。（法拉利，Duerig，Gomes）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//users.cecs.anu.edu.au/~koniusz/openmic-dataset/index.php&#34;&gt;开放式博物馆识别挑战赛（开放式 MIC）&lt;/a&gt;开放式 MIC 包含在多个博物馆的 10 个不同展览空间（绘画，雕塑，珠宝等）中捕获的展品照片，以及适用于领域调整和少量学习问题的协议。（P. Koniusz，Y。Tas，H。Zhang，M。Harandi，F。Porikli 和 R. Zhang）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//ikw.uos.de/~cv/projects/3Dcubes&#34;&gt;奥斯纳布吕克综合可扩展多维数据集数据集&lt;/a&gt; - 从 12 种不同的视角捕获了 830000 个&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//ikw.uos.de/~cv/projects/3Dcubes&#34;&gt;多维数据集&lt;/a&gt;，用于 ANN 训练（Schöning，Behrens，Faion，Kheiri，Heidemann 和 Krumnack）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//modelnet.cs.princeton.edu/&#34;&gt;Princeton ModelNet&lt;/a&gt; -127,915 个 CAD 模型，662 个对象类别，带有标注方向的 10 个类别（吴，宋，科斯拉，于，张，唐，肖）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.pacman-project.eu/datasets/&#34;&gt;PacMan 数据集&lt;/a&gt; - 用于可抓握的炊具和陶器的 RGB 和 3D 合成和真实数据（Jeremy Wyatt）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.eecs.qmul.ac.uk/~dl307/project_iccv2017&#34;&gt;PACS（摄影艺术卡通素描）&lt;/a&gt; - 用于测试领域概括的对象类别识别数据集数据集：在一个领域中的对象图像上训练的分类器如何很好地识别另一个领域中的对象？（大理 QMUL，T。Hospedales。爱丁堡 / QMUL）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//host.robots.ox.ac.uk/pascal/VOC/&#34;&gt;PASCAL 2007 Challange 图像数据库（摩托车，汽车，奶牛）&lt;/a&gt;（PASCAL 联盟）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//host.robots.ox.ac.uk/pascal/VOC/&#34;&gt;PASCAL 2008 Challange 图像数据库&lt;/a&gt;（PASCAL 联盟）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//host.robots.ox.ac.uk/pascal/VOC/&#34;&gt;PASCAL 2009 Challange 图像数据库&lt;/a&gt;（PASCAL 联盟）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//host.robots.ox.ac.uk/pascal/VOC/&#34;&gt;PASCAL 2010 Challange 图像数据库&lt;/a&gt;（PASCAL 联盟）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//host.robots.ox.ac.uk/pascal/VOC/&#34;&gt;PASCAL 2011 Challange 图像数据库&lt;/a&gt;（PASCAL 联盟）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//host.robots.ox.ac.uk/pascal/VOC/&#34;&gt;PASCAL 2012 Challange 图像数据库&lt;/a&gt;类别分类，检测和分割以及静止图像操作分类（PASCAL 联合会）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//host.robots.ox.ac.uk/pascal/VOC/&#34;&gt;PASCAL 图像数据库（摩托车，汽车，奶牛）&lt;/a&gt;（PASCAL 联合会）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.stat.ucla.edu/~xianjie.chen/pascal_part_dataset/pascal_part.html&#34;&gt;PASCAL 零件数据集&lt;/a&gt; - 具有对象语义部分的分段注释的 PASCAL VOC（Alan Yuille）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cs.stanford.edu/~roozbeh/pascal-context/&#34;&gt;PASCAL-Context 数据集&lt;/a&gt; - 400 多个附加类别的注释（Alan Yuille）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cvgl.stanford.edu/projects/pascal3d.html&#34;&gt;PASCAL 3D / 超越 PASCAL：野外 3D 对象检测的基准&lt;/a&gt; - 12 类，每张带有 3000 个图像的 3D 注释（于翔，Roozbeh Mottaghi，Silvio Savarese）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www2.imse-cnm.csic.es/caviar/POKERDVS.html&#34;&gt;POKER-DVS 数据库&lt;/a&gt; -“POKER-DVS 数据库包含从三个独立的 DVS 记录中跟踪和提取的 131 个扑克点符号集，同时可以非常快速地浏览扑克牌。”（Serrano-Gotarredona，Linares-Barranco）[27/12 / 2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//phys101.csail.mit.edu/&#34;&gt;物理 101 数据集&lt;/a&gt; - 在五个不同场景中的 101 个对象的视频数据集（Jiajun Wu，Joseph Lim，张宏毅，Josh Tenenbaum，Bill Freeman）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//vision.eng.au.dk/plant-seedlings-dataset/&#34;&gt;植物幼苗数据集&lt;/a&gt; - 12 种杂草种类的高分辨率图像。（奥胡斯大学）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//collections.durham.ac.uk/catalog%3Futf8%3D%E2%9C%93%26q%3Dbreckon&#34;&gt;雨滴检测&lt;/a&gt; - 结合使用形状和显着度描述符以及场景上下文隔离来改进雨滴检测 - 评估数据集（Breckon，Toby P.，Webster 和 Dereck D.）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cs.virginia.edu/~vicente/referit/&#34;&gt;ReferIt 数据集（IAPRTC-12 和 MS-COCO）&lt;/a&gt; - 引用 IAPRTC-12 和 MS-COCO 数据集（Kazemzadeh，Maten，Ordonez 和 Berg）中图像中对象的表达式 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//public.roboflow.ai/object-detection/chess-full&#34;&gt;roboflow 国际象棋棋盘对象检测数据集&lt;/a&gt; - 国际象棋棋盘照片和各种棋子的数据集。所有照片都是从固定角度（板子左侧的三脚架）拍摄的。所有片段的边界框都用边界框注释。292 个图像中有 2894 个标签（）[29/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//sailvos.web.illinois.edu/&#34;&gt;SAIL-&lt;/a&gt; VOS - 语义非模态实例级视频对象分割（SAIL-VOS）数据集提供了准确的地面真相注释，以开发用于推理对象被遮挡部分的方法，同时能够考虑时间信息（Hu，Chen，Hui，Huang， Schwing）[29/12/19]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.lmars.whu.edu.cn/prof_web/shaozhenfeng/datasets/SeaShips(7000).zip&#34;&gt;SeaShips-&lt;/a&gt; 从监视视频（邵，吴，王，杜，李）中提取的 7455 类陆地船只的 31455 侧面影像 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.shapenet.org/&#34;&gt;ShapeNet&lt;/a&gt; -55 个常见对象类别的 3D 模型，具有约 51K 独特的 3D 模型。还有 270 个类别的 12K 型号。（Princeton，Stanford 和 TTIC）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.bicv.org/datasets/short-100/&#34;&gt;SHORT-100 数据集&lt;/a&gt; - 在典型的购物清单中找到 100 种产品类别。它旨在对用于从使用手持式或可穿戴式摄像机获取的快照或视频中识别手持对象的算法的性能进行基准测试。（Jose Rivera-Rubio，Saad Idrees，Anil A. Bharath）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//sites.google.com/view/dlgc-workshop-cvpr2020/challenge&#34;&gt;SkelNetOn&lt;/a&gt; -SkelNetOn 挑战赛围绕四个领域的形状理解而构建：形状轮廓，RGB 图像，点云和参数表示。我们提供形状数据集，一些补充资源（例如，前 / 后处理，采样和数据增强脚本），以及用于四类骨骼提取的测试平台。（&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//ieeexplore.ieee.org/document/9025664&#34;&gt;学分&lt;/a&gt;）[29/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www2.imse-cnm.csic.es/caviar/SLOWPOKERDVS.html&#34;&gt;SLOW-POKER-DVS 数据库&lt;/a&gt; -“SLOW-POKER-DVS 数据库由 4 个独立的 DVS 记录组成，同时在摄像机前缓慢移动一个扑克符号约 3 分钟。”（Serrano-Gotarredona，Linares-Barranco）[27 / 12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//sor3d.vcl.iti.gr/&#34;&gt;SOR3D&lt;/a&gt; -SOR3D 数据集由超过 2 万个人对对象交互实例，14 种对象类型和 13 种对象提供能力组成。（吡啶瓶保温瓶）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//kelvins.esa.int/satellite-pose-estimation-challenge/data/&#34;&gt;空间物体姿态估计挑战数据集&lt;/a&gt; - 用于训练的 12000 个合成图像，2998 个相似的合成测试图像和 305 个真实图像（太空交会实验室（SLAB））[26/1/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//vision.stanford.edu/aditya86/ImageNetDogs/main.html&#34;&gt;Stanford Dogs 数据集&lt;/a&gt; - Stanford Dogs 数据集包含来自世界各地的 120 个犬种的图像。此数据集是使用 ImageNet 的图像和注释构建的，用于完成细粒度的图像分类任务。（Aditya Khosla，Nityananda Jayadevaprakash，Bangpeng 姚，李飞飞，斯坦福大学）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//tyler-hayes.github.io/stream51&#34;&gt;Stream-51-&lt;/a&gt; 用于流媒体持续学习（分类）的数据集，包括来自 51 种不同对象类别的时间相关图像和训练分布之外的其他评估类，以测试新颖性（开放集）识别（Roady，Hayes，Vaidya，Kanan） [26/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//ufldl.stanford.edu/housenumbers/&#34;&gt;SVHN：街景门牌号码数据集&lt;/a&gt; - 类似于 MNIST，但标注的数据量大了一个数量级（超过 60 万个数字图像），并且来自一个更加困难，尚未解决的现实世界问题（识别自然场景图像中的数字和数字）。（Netzer，Wang，Coates，Bissacco，Wu，Ng）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cvl.isy.liu.se/en/research/datasets/swedish-leaf/&#34;&gt;瑞典树叶数据集&lt;/a&gt; - 这些图像包含 15 种树类的树叶（Oskar JO S？derkvist）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cmp.felk.cvut.cz/t-less&#34;&gt;T-LESS-&lt;/a&gt; 用于无纹理物体的 6D 姿态估计的 RGB-D 数据集。（Tomas Hodan，Pavel Haluza，Stepan Obdrzalek，Jiri Matas，Manolis Lourakis，Xenophon Zabulis）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.sysu-hcp.net/taobao-commodity-dataset/&#34;&gt;淘宝商品数据集&lt;/a&gt; - TCD 包含 800 个商品图像（衣服，牛仔裤，T 恤，鞋子和帽子），用于在淘宝网站上的商店中检测图像显着物体。（王克则，施克扬，林良，李成龙）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/Tencent/tencent-ml-images&#34;&gt;TenCent 开源多标签图像数据库&lt;/a&gt; - 17,609,752 培训和 88,739 验证图像 URL，这些图像 URL 最多带有 11,166 个类别（Wu，Chen，Fan，Zhang，Hou，Liu，Zhang）[16/4/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/yaoyao-liu/tiered-imagenet-tools&#34;&gt;tieredImageNet 数据&lt;/a&gt;集 - ILSVRC-12 的较大子集，具有 608 个类别（779,165 张图像），分为 ImageNet 人类管理层次结构中的 34 个更高级别的节点。（Ren，Triantafillou，Ravi，Snell，Swersky，Tenenbaum，Larochelle 和 Zemel）[17/1/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/pauloabelha/ToolArtec&#34;&gt;ToolArtec 点云&lt;/a&gt; - 从 Artec EVA 扫描仪进行 50 次厨房工具 3D 扫描（层）。另请参见&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/pauloabelha/ToolKinect&#34;&gt; ToolKinect-&lt;/a&gt; 使用 Kinect 2 和&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/pauloabelha/ToolWeb&#34;&gt; ToolWeb&lt;/a&gt; 进行的 13 次扫描&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/pauloabelha/ToolWeb&#34;&gt; - 116 个&lt;/a&gt;合成家用工具的点云，具有质量和负担能力，可完成 5 个任务。（Paulo Abelha）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//repo.acin.tuwien.ac.at/tmp/permanent/dataset_index.php&#34;&gt;TUW 对象实例识别数据集&lt;/a&gt; - 从各种角度观察到的室内场景混乱的对象实例及其 6DoF 姿态的注释，并表示为 Kinect RGB-D 点云（Thomas，A。Aldoma，M。Zillich，M。Vincze）[在 28 / 12/19]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cas.kth.se/data/strands/data.html&#34;&gt;TUW 数据集 - TUW 的&lt;/a&gt;一些 RGB-D 地面真相和带注释的数据集。（John Folkesson 等人）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//agamenon.tsc.uah.es/Investigacion/gram/traffic_signs.html&#34;&gt;UAH 交通标志数据集&lt;/a&gt;（Arroyo 等）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//cogcomp.cs.illinois.edu/Data/Car/&#34;&gt;UIUC 汽车图像数据库&lt;/a&gt;（UIUC）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.eecs.umich.edu/vision/data/3Ddataset.zip&#34;&gt;3D 对象类别&lt;/a&gt;（S. Savarese 和 L. Fei-Fei）的&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.eecs.umich.edu/vision/data/3Ddataset.zip&#34;&gt; UIUC 数据集&lt;/a&gt; [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.kaggle.com/bistaumanga/usps-dataset&#34;&gt;USPS 手写数字数据集&lt;/a&gt; - 7291 火车和 2007 测试图像。图像为 16 * 16 灰度像素（外壳）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//vcipl-okstate.org/pbvs/bench/Data/12/VAIS.zip&#34;&gt;VAIS&lt;/a&gt; -VAIS 包含从码头获取的船舶的同时获取的未注册热图像和可见图像，并且创建该图像是为了促进自主船舶的开发。（张伯宝，蔡恩，迈克尔・沃尔夫，科斯塔斯・达尼利迪斯，克里斯托弗・卡南）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.dsi.unive.it/~rodola/data.html&#34;&gt;威尼斯 3D 杂波物体识别和分割&lt;/a&gt;（Emanuele Rodola）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//homepages.inf.ed.ac.uk/s1151656/resources.html&#34;&gt;视觉属性&lt;/a&gt;超过 500 个对象类别（无生命和无生命）的&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//homepages.inf.ed.ac.uk/s1151656/resources.html&#34;&gt;数据集&lt;/a&gt;视觉属性批注均在 ImageNet 中表示。每个对象类别均基于 636 个属性的分类法（例如，具有皮毛，金属制成，是圆形的）以视觉属性进行注释。[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www-cvr.ai.uiuc.edu/ponce_grp/data/%23texture&#34;&gt;视觉船体数据集视觉船体数据集&lt;/a&gt;的集合（Svetlana Lazebnik，Yasutaka Furukawa 和 Jean Ponce）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//researchdata.sfu.ca/islandora/object/sfu%3A2724&#34;&gt;VOC-360-&lt;/a&gt; 鱼眼图像（Fu，Bajic 和 Vaughan）中用于对象检测和分割的数据集 [29/12/19]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.ycbbenchmarks.com/&#34;&gt;YCB 基准测试–对象和模型集&lt;/a&gt; - 5 个类别（食品，厨房，工具，形状，任务）中的 77 个对象，每个都有 600 RGBD 和高分辨率 RGB 图像，校准数据，分割蒙版，网格模型（Calli，Dollar，Singh， Walsman，Srinivasa，Abbeel）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//research.google.com/youtube-bb/&#34;&gt;YouTube-BoundingBoxes-&lt;/a&gt; 从 24 万个 YouTube 视频中跨帧跟踪的 23 个对象类别中的 560 万个准确的带人类注释的 BB，重点关注人物类（130 万个盒子）（真实，Shlens，Pan，Mazzocchi，Vanhoucke，Khan， Kakarla 等人，[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;&lt;span id=&#34;4人静态和动态人体姿势&#34;&gt; （4）人（静态和动态），人体姿势&lt;/span&gt;&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//drive.google.com/open%3Fid%3D14h8dGmx3-CTCpTIiF6yzyfVTMI3u71GB&#34;&gt;3D 铰接式车身&lt;/a&gt; - 通过旋转和平移对铰接式车身进行 3D 重建。单摄像头，可变焦。每个场景都可能有关节运动。包括四种数据集。包含的样本重建结果仅使用场景的四个图像。（Jihun 公园教授）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//buff.is.tue.mpg.de/&#34;&gt;BUFF 数据集&lt;/a&gt; - 约有 1 万次扫描衣服中的人以及下面的人的估计身体形状。扫描包含纹理，因此易于生成合成视频 / 图像。（Zhang，Pujades，Black 和 Pons-Moll）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//cape.is.tue.mpg.de/&#34;&gt;CAPE 数据集&lt;/a&gt; - 对服装中的人进行 4D 扫描的 140K SMPL 网格配准，包括 15 个对象，约 600 个运动序列，以及对服装下的地面真实身体形状的配准扫描（Ma，Yang，Ranjan，Pujades，Pons-Moll 和 Tang ，黑色）[28/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/VRU-intention/casr/blob/master/readme.txt&#34;&gt;CASR：&lt;/a&gt;骑车人手臂手势&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/VRU-intention/casr/blob/master/readme.txt&#34;&gt;识别&lt;/a&gt; - 约 10 秒的小片段，显示骑车人正在执行手臂手势。这些视频是通过消费者分级的相机获取的。共有 219 条手臂手势动作被注释。（方志杰，安东尼奥・洛佩兹）[13/1/20]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//dyna.is.tue.mpg.de/&#34;&gt;动态动态&lt;/a&gt; - 超过 40K 4D 60fps 的高分辨率扫描和人物模型非常准确地注册。扫描包含纹理，因此易于生成合成视频 / 图像。（Pons-Moll，Romero，Mahmood 和 Black）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//dfaust.is.tue.mpg.de/&#34;&gt;动态浮士&lt;/a&gt; - 对人进行的 40K 4D 60fps 高分辨率扫描非常准确。扫描包含纹理，因此易于生成合成视频 / 图像。（波哥，罗梅罗，庞斯・莫尔和布莱克）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//smpl-x.is.tue.mpg.de/&#34;&gt;EHF 数据集&lt;/a&gt; - 穿着最少的衣服，对一个对象的 100 个策划帧（+ 代码）执行涉及身体，手和脸的各种表达姿势。每帧都包含全身 RGB 图像，检测到的 2D OpenPose 特征（身体，手，脸），对象的 3D 扫描以及作为伪地面真相的 3D SMPL-X 网格（Pavlakos，Choutas，Ghorbani，Bolkart，奥斯曼（Tzionas），布莱克（Black）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//files.is.tuebingen.mpg.de/classner/gp/&#34;&gt;扩展的 Chictopia 数据集 - 14K&lt;/a&gt; 图像 Chictopia 数据集，带有附加的已处理注释（面部）和 SMPL 人体模型适合这些图像。（Lassner，Pons-Moll 和 Gehler）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//bensapp.github.io/flic-dataset.html&#34;&gt;电影院&lt;/a&gt;中标有标签的帧&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//bensapp.github.io/flic-dataset.html&#34;&gt;（FLIC）&lt;/a&gt; - 标有人体姿势（Sapp，Taskar）的 20928 个帧 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//wangzheallen.github.io/GPA&#34;&gt;GPA：几何姿态可承受度数据集&lt;/a&gt; - 与真实 3D 场景进行交互的真实 3D 人的&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//wangzheallen.github.io/GPA&#34;&gt;数据&lt;/a&gt;集。8 个场景中的 13 个对象的 300k 静态 RGB 帧具有真实的场景网格，运动捕获脚本着重于对象和场景几何体之间的交互作用，人体动力学以及围绕场景几何体的人类动作的模仿。（王，陈，拉索尔，申，福克斯）[29/12/19]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//vision.in.tum.de/data/datasets/kids&#34;&gt;KIDS 数据集&lt;/a&gt; - 包含 30 种高分辨率 3D 形状的集合，这些形状经历了近等轴测和非等轴测变形，具有点对点地面真实性以及左右左右两侧对称性的地面真实性。（Rodola，Rota Bulo，Windheuser，Vestner，Cremers）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.sysu-hcp.net/kinect2-human-pose-dataset-k2hpd/&#34;&gt;Kinect2 人体姿势数据集（K2HPD）&lt;/a&gt; -Kinect2 人体姿势数据集（K2HPD）包含约 100K 深度图像，具有挑战性场景下的各种人体姿势。（王克则，林良，翟胜富，董登科）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.comp.leeds.ac.uk/mat4saj/lsp.html&#34;&gt;利兹运动姿势数据集&lt;/a&gt; - 2000 构成了大多数运动人物（约翰逊，埃弗林汉姆）的带注释的图像 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//hcp.sysu.edu.cn/lip/&#34;&gt;研究人员数据集&lt;/a&gt; - 50,000 张带有精细像素像素注释的图像，带有 19 个语义人体部位标签，以及带有 16 个关键点的 2D 姿态。（龚亮，张，沉，林）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.manga109.org/en/index.html&#34;&gt;Manga109：漫画（漫画）数据集&lt;/a&gt; - 109 卷，超过 21,000 页，109 卷，超过 21,000 页（相泽清治）[29/12/19]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.coe.neu.edu/Research/AClab/pose/colorManneNumbered.zip&#34;&gt;通过 RGB 网络摄像头的人体床内姿势数据集&lt;/a&gt; - 通过常规网络摄像头在东北大学模拟的病房中收集该床内姿势数据集。（ACLab 的 Liu Shuangjun 和 Sarah Ostadabbas）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.coe.neu.edu/Research/AClab/pose/IRS_MANNE_rawN.zip&#34;&gt;人体模型 IRS 床内数据集&lt;/a&gt; - 该床内姿势数据集是通过我们的红外选择性（IRS）系统在东北大学的模拟病房中收集的。（ACLab 的 Liu Shuangjun 和 Sarah Ostadabbas）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//gvv.mpi-inf.mpg.de/projects/SingleShotMultiPerson/&#34;&gt;MoPoTS-3D-&lt;/a&gt; 用于基于单眼 RGB 的方法的多人 3D 身体姿势基准，在室内和室外设置有 20 个序列（信息学 MPI）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.biomotionlab.ca/movi/&#34;&gt;MoVi：大型多功能人体运动和视频数据集&lt;/a&gt; - MoVi 是第一个包含大量人（Ghorbani，Mahdaviani，Thaler，Kording，Cook，Blohm，Troje）的同步姿势，身体网格物体和视频记录的人体运动数据集 [27/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//gvv.mpi-inf.mpg.de/3dhp-dataset/&#34;&gt;MPI-INF-3DHP-&lt;/a&gt; 单人 3D 身体姿势数据集和评估基准，涵盖广泛的姿势，涵盖广泛的活动范围，并具有广泛的外观增强功能。多视图 RGB 帧可用于训练集，而单眼视图帧可用于测试集。（信息学 MPI）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//mano.is.tue.mpg.de/&#34;&gt;MPI MANO 和 SMPL + H 数据集&lt;/a&gt; - 统计模型 MANO（手动）和 SMPL + H（身体 + 手）的模型，4D 扫描和配准。对于 MANO，对 31 个对象进行了约 2k 静态 3D 扫描，最多执行 51 个姿势。对于 SMPL + H，我们包括 11 个对象的 39 个 4D 序列。（Javier Romero，Dimitrios Tzionas 和 Michael J Black）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//human-pose.mpi-inf.mpg.de/&#34;&gt;MPII 人类姿势数据集 - 25K&lt;/a&gt; 图像，包含超过 40K 具有注释的人体关节的人，410 次人类活动（Andriluka，Pishchulin，Gehler，Schiele）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//human-pose.mpi-inf.mpg.de/&#34;&gt;MPII 人体姿态数据集&lt;/a&gt; - MPII 人体姿态数据集是用于评估关节式人体姿态估计的事实上的标准基准。（Mykhaylo Andriluka，Leonid Pishchulin，Peter Gehler，Bernt Schiele）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//gvv.mpi-inf.mpg.de/projects/SingleShotMultiPerson/&#34;&gt;MuCo-3DHP-&lt;/a&gt; 从 MPI-INF-3DHP 数据集（信息学 MPI）生成的具有 3D 姿态注释的合成多人 RGB 图像的大规模数据集 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//camma.u-strasbg.fr/datasets&#34;&gt;MVOR：用于 2D 和 3D 人体姿势估计的多视图多人 RGB-D 手术室数据集&lt;/a&gt; - 在实际临床干预期间（帕多尼）由 3 台 RGB-D 摄像机捕获的多视图图像 [19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//people.eecs.berkeley.edu/~nzhang/piper.html&#34;&gt;相册中的人&lt;/a&gt; - 社交媒体照片数据集，其中包含来自 Flickr 的图像，以及在人头及其身份上的手动注释。（张宁和 Manohar Paluri 和 Yaniv Taigman 和 Rob Fergus 和 Lubomir Bourdev）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//graphics.tu-bs.de/people-snapshot&#34;&gt;人员快照数据集&lt;/a&gt; - 在固定摄像机前旋转的 24 个对象的单目视频。提供了分段和 2D 关节位置形式的注释。（Alldieck，Magnor，Xu，Theobalt，Pons-Moll）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//goo.gl/DKuhlY&#34;&gt;个人照片集中的人识别&lt;/a&gt; - 我们引入了三个更难的划分，用于评估和长期属性注释以及每张照片的时间戳元数据。（哦，Seong Joon 和 Benenson，Rodrigo 和 Fritz，Mario 和 Schiele，Bernt）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www-prima.inrialpes.fr/Pointing04/data-face.html&#34;&gt;指向’04 ICPR 讲习班的头姿势图像数据库&lt;/a&gt; [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cidis.espol.edu.ec/es/content/dataset-pose-estimation&#34;&gt;姿势估算&lt;/a&gt; - 该数据集共有 155,530 张图像。这些图像是通过在 4 个会话中记录 CIDIS 成员而获得的。总共获得了 10 个视频，每个视频的时长为 4 分钟。要求参与者带来不同的衣服，以使图像更具多样性。此后，以每秒 5 帧的速率分离视频的帧。所有这些图像都是从顶视图角度捕获的。原始图像的分辨率为 1280x720 像素。（CIDIS）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//prox.is.tue.mpg.de/&#34;&gt;PROX 数据集&lt;/a&gt; - 真实 3D 人与真实 3D 场景进行交互的&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//prox.is.tue.mpg.de/&#34;&gt;数据&lt;/a&gt;集（+ 代码）。“定量 PROX”：1 个场景中 1 个对象的 180 个静态 RGB-D 静态帧，带有真实的 SMPL-X 网格。“定性代理”：使用伪地面真 SMPL-X 网格在 12 个场景中的 20 个对象的 100K 动态 RGB-D 序列。（哈桑（Hassan），乔塔斯（Choutas），齐奥纳斯（Tzionas），布莱克（Black））[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//vision.in.tum.de/~laehner/shrec2016/&#34;&gt;SHREC’16 拓扑孩子&lt;/a&gt; - 40 种高分辨率和低分辨率 3D 形状的集合，除了强大的拓扑伪像，自接触和网格粘合以及点对点地面真相外，它们还经历了近等轴测变形。（罗纳，罗多拉）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//virtualhumans.mpi-inf.mpg.de/sizer/&#34;&gt;SIZER&lt;/a&gt; -A 姿势（Tiwari，Pons-Moll）中 100 种不同服装样式和尺寸的对象（约 2000 次扫描）的 3D 扫描，服装细分，标签和 SMPL + G 注册数据集 [27/12/2020]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//vision.in.tum.de/~laehner/shrec2016/&#34;&gt;SURREAL&lt;/a&gt; -60,000 个合成视频，包含形状，纹理，视点和姿势各不相同的人的视频。（瓦罗尔，罗梅罗，马丁，马哈茂德，布莱克，拉普捷夫，施密德）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.tnt.uni-hannover.de/project/TNT15/&#34;&gt;TNT 15 数据集&lt;/a&gt; - 四肢佩戴的 10 个惯性传感器（IMU）同步的几段视频。（von Marcard，Pons-Moll 和 Rosenhahn）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//mrl.isr.uc.pt/experimentaldata/public/uc-3d/&#34;&gt;UC-3D 运动数据库&lt;/a&gt; - 可用的数据类型包括高分辨率运动捕获，该运动捕获是通过 MVN Suit 从 Xsens 和 Microsoft Kinect RGB 以及深度图像获取的。（系统和机器人研究所，葡萄牙科英布拉）[19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//up.is.tuebingen.mpg.de/&#34;&gt;联合人（UP）数据集&lt;/a&gt; - 约 8,000 张具有关键点和前景分段注释以及 3D 人体模型拟合的图像。（Lassner，Romero，Kiefel，Bogo，Black，Gehler）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//www.robots.ox.ac.uk/~vgg/data/pose/&#34;&gt;VGG 人体姿势估计数据集，&lt;/a&gt;包括 BBC 姿势（20 个带重叠手语翻译的视频），扩展 BBC 姿势（72 个附加培训视频），BBC 短姿势（5 个一小时的手语签名视频）和 ChaLearn 姿势（23 小时） 27 个人执行 20 个义大利手势的 Kinect 数据集）。（Charles，Everingham，Pfister，Magee，Hogg，Simonyan，Zisserman）[19 年 12 月 28 日之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//fsukno.atspace.eu/Data.htm%23VLRF&#34;&gt;VRLF：视觉唇读的可行性&lt;/a&gt; - 用西班牙语（Fernandez-Lopez，Martinez 和 Sukno）录制的 24 位演讲者的视听语料库 [19/12/28 之前]&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/facebookresearch/xR-EgoPose&#34;&gt;xR-EgoPose-&lt;/a&gt; 从以自我为中心的角度进行 3D 人体姿势估计（Denis Tome）[27/12/2020]&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <category term="人工智能" />
+        <category term="CV数据集" />
+        <updated>2021-12-12T10:21:47.000Z</updated>
+    </entry>
+</feed>

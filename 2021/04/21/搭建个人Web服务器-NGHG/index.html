@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>搭建个人Web服务器_NGHG | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="项目名称：搭建个人 Web 服务器_NGHG  文章目录   1 搭建模式： 2 搭建步骤 3 创建博客 4 常见问题     1 搭建模式：  NGHG，即 Node.js + Git + Hexo + Github   2 搭建步骤   【第一步】安装 Node.js 下载网址：https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;  结果验证：  1234# 查看node版本node -v# 查看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建个人Web服务器_NGHG">
+<meta property="og:url" content="https://leezhao415.github.io/2021/04/21/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAWeb%E6%9C%8D%E5%8A%A1%E5%99%A8-NGHG/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="项目名称：搭建个人 Web 服务器_NGHG  文章目录   1 搭建模式： 2 搭建步骤 3 创建博客 4 常见问题     1 搭建模式：  NGHG，即 Node.js + Git + Hexo + Github   2 搭建步骤   【第一步】安装 Node.js 下载网址：https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;  结果验证：  1234# 查看node版本node -v# 查看">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021042118051151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421180540477.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421180632756.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421180709220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021042118082850.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421181001836.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421181003601.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021042118100569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421181125890.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421181150565.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421181242398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421181739287.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421181858108.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421181931931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182132795.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182220325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182306486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182324541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182353243.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182432363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182455977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182512877.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182716662.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182838693.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182751713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =600x">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182859223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210421182916393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-04-21T10:44:05.000Z">
+<meta property="article:modified_time" content="2021-07-14T13:06:48.192Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="编程工具">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2021042118051151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-搭建个人Web服务器-NGHG" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      搭建个人Web服务器_NGHG
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-04-21
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<h3><span id="项目名称搭建个人-web-服务器_nghg"> 项目名称：搭建个人 Web 服务器_NGHG</span></h3>
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#1-%E6%90%AD%E5%BB%BA%E6%A8%A1%E5%BC%8F">1 搭建模式：</a></li>
+<li><a href="#2-%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4">2 搭建步骤</a></li>
+<li><a href="#3-%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2">3 创建博客</a></li>
+<li><a href="#4-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">4 常见问题</a></li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h4><span id="1-搭建模式"> 1 搭建模式：</span></h4>
+<ul>
+<li><strong>NGHG</strong>，即<strong> Node.js</strong> + <strong>Git</strong> + <strong>Hexo</strong> + <strong>Github</strong></li>
+</ul>
+<h4><span id="2-搭建步骤"> 2 搭建步骤</span></h4>
+<ul>
+<li>
+<p><strong>【第一步】安装 Node.js</strong></p>
+<p>下载网址：<a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a></p>
+<center><img src="https://img-blog.csdnimg.cn/2021042118051151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 25%;"></center>
+<p>结果验证：</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看node版本</span></span><br><span class="line">node -v</span><br><span class="line"><span class="comment"># 查看npm版本</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>【第二步】安装 Git</strong></p>
+<p>下载网址：<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210421180540477.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 33%;"></center>
+<p>结果验证：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210421180632756.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<ul>
+<li>
+<p><strong>【第三步】安装 Hexo</strong></p>
+<ul>
+<li>
+<p>新建文件夹 MyBlog  （名字可自行设置，本文件夹主要存放系统文件及后续要上传的资源）</p>
+</li>
+<li>
+<p>打开文件夹，右键 Git Bash Here</p>
+</li>
+</ul>
+</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210421180709220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 50%;"></center>
+<ul>
+<li>
+<p>依次执行下面指令</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.安装所需附加组件</span></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.初始化hexo框架</span></span><br><span class="line">hexo init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.编译生成静态页面</span></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.启动本地服务</span></span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">此时就可以通过http://localhost:<span class="number">4000</span> 访问web页面了</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>界面</p>
+</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/2021042118082850.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 67%;"></center>
+<center><img src="https://img-blog.csdnimg.cn/20210421181001836.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 50%;"></center>
+<center><img src="https://img-blog.csdnimg.cn/20210421181003601.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<center><img src="https://img-blog.csdnimg.cn/2021042118100569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<center><img src="https://img-blog.csdnimg.cn/20210421181125890.png#pic_center" alt="在这里插入图片描述" style="zoom: 67%;"></center>
+<center><img src="https://img-blog.csdnimg.cn/20210421181150565.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 33%;"></center>
+<ul>
+<li><strong>【第四步】关联 GitHub</strong></li>
+<li><strong>1.1 GitHub 创建仓库</strong></li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210421181242398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 50%;"></center>
+<ul>
+<li>
+<p>打开 Git bash，输入如下指令，连接 GitHub。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用户名连接 修改为你自己的GitHub用户名</span></span><br><span class="line">git config --global user.name <span class="string">&quot;yourname&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 邮箱连接 修改为你自己的GitHub绑定邮箱</span></span><br><span class="line">git config --global user.email <span class="string">&quot;youremail&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210421181739287.png#pic_center" alt="在这里插入图片描述" style="zoom: 67%;"></center>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">list</span>      <span class="comment"># 查看绑定详情</span></span><br></pre></td></tr></table></figure>
+<center><img src="https://img-blog.csdnimg.cn/20210421181858108.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:67%;"></center>
+<ul>
+<li>
+<p>配置 SSHkey 添加到 GitHub</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;你的邮箱&quot;</span></span><br><span class="line"><span class="comment"># 回车即可</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210421181931931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:67%;"></center>
+<ul>
+<li>
+<p>回到 GitHub 中，点击 settings—&gt;SSH and GPG keys—&gt;New SSH key。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210421182132795.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 33%;"></center>
+</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210421182220325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 33%;"></center>
+<ul>
+<li>
+<p>回到 git bash 输入如下命令，得到我们的 key。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<center><img src="https://img-blog.csdnimg.cn/20210421182306486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 67%;"></center>
+</li>
+<li>
+<p>将我们复制的 key 放入中间部分，标题随意，完成后点击 Add SSH key。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210421182324541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+</li>
+<li>
+<p>结果验证</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<center><img src="https://img-blog.csdnimg.cn/20210421182353243.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 67%;"></center>
+</li>
+<li>
+<p>上传到 Github 所建仓库，修改文件属性。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span>: git</span><br><span class="line">repository: git@github.com:LeeZhao415/LeeZhao415.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+<center><img src="https://img-blog.csdnimg.cn/20210421182432363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 33%;"></center>
+</li>
+<li>
+<p>安装 hexo-deployer-git，便于展示内容。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210421182455977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 67%;"></center>
+<ul>
+<li>
+<p>执行下列指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo clean  <span class="comment"># 清理数据库</span></span><br><span class="line"></span><br><span class="line">hexo g  <span class="comment"># 生成内容</span></span><br><span class="line"></span><br><span class="line">hexo s  <span class="comment"># 打开服务器</span></span><br><span class="line"></span><br><span class="line">hexo d  <span class="comment"># 展示内容</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>结果验证</p>
+<center><img src="https://img-blog.csdnimg.cn/20210421182512877.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 33%;"></center>
+</li>
+</ul>
+</li>
+<li>
+<p>测试访问</p>
+<p>在浏览器中输入 <a href="http://leezhao415.github.io">http://leezhao415.github.io</a> 访问</p>
+</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210421182716662.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 33%;"></center>
+<h4><span id="3-创建博客"> 3 创建博客</span></h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n <span class="string">&quot;博客的文件名&quot;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20210421182838693.png#pic_center" alt="在这里插入图片描述"></p>
+<img src="https://img-blog.csdnimg.cn/20210421182751713.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =600x" alt="在这里插入图片描述" style="zoom: 50%;">
+<p>执行下列代码后，打开 <a target="_blank" rel="noopener" href="http://leezhao415.github.xn--io-h95cks">http://leezhao415.github.io 即可</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo clean  <span class="comment"># 清理数据库</span></span><br><span class="line"></span><br><span class="line">hexo g  <span class="comment"># 生成内容</span></span><br><span class="line"></span><br><span class="line">hexo s  <span class="comment"># 打开服务器</span></span><br><span class="line"></span><br><span class="line">hexo d  <span class="comment"># 展示内容</span></span><br></pre></td></tr></table></figure>
+<center><img src="https://img-blog.csdnimg.cn/20210421182859223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<h4><span id="4-常见问题"> 4 常见问题</span></h4>
+<p>打开链接是提示如下：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210421182916393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 50%;"></center>
+<p><strong>原因</strong>：<br>
+Hexo 无法解析模板文件</p>
+<p><strong>解决方案</strong>：<br>
+使用以下的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-ejs --save</span><br><span class="line">npm install hexo-renderer-stylus --save</span><br><span class="line">npm install hexo-renderer-marked --save</span><br></pre></td></tr></table></figure>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年07月14日 21:06</p>
+        <p>原始链接： <a class="post-url" href="/2021/04/21/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAWeb%E6%9C%8D%E5%8A%A1%E5%99%A8-NGHG/" title="搭建个人Web服务器_NGHG">https://leezhao415.github.io/2021/04/21/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAWeb%E6%9C%8D%E5%8A%A1%E5%99%A8-NGHG/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/04/21/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAWeb%E6%9C%8D%E5%8A%A1%E5%99%A8-NGHG/&title=《搭建个人Web服务器_NGHG》 — 且听风吟，御剑于心！&pic=images/Web服务器1.jpeg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/04/21/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAWeb%E6%9C%8D%E5%8A%A1%E5%99%A8-NGHG/&title=《搭建个人Web服务器_NGHG》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/04/21/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAWeb%E6%9C%8D%E5%8A%A1%E5%99%A8-NGHG/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《搭建个人Web服务器_NGHG》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/04/21/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAWeb%E6%9C%8D%E5%8A%A1%E5%99%A8-NGHG/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/04/21/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAWeb%E6%9C%8D%E5%8A%A1%E5%99%A8-NGHG/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/04/21/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAWeb%E6%9C%8D%E5%8A%A1%E5%99%A8-NGHG/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/编程工具/" class="color5">编程工具</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 项目名称：搭建个人 Web 服务器_NGHG</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 1 搭建模式：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 2 搭建步骤</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 3 创建博客</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 4 常见问题</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/04/23/Linux%E9%9D%A2%E8%AF%95%E8%AF%A6%E8%A7%A3-%E6%9C%80%E6%96%B0%E7%89%88/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Linux面试详解[最新版]
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/20/Jupyter-notebook%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Jupyter notebook操作说明</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="搭建个人Web服务器-NGHG" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

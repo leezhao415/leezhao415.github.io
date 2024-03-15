@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;深度学习&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Thu, 10 Mar 2022 21:36:09 +0800</pubDate>
+        <lastBuildDate>Thu, 10 Mar 2022 21:36:09 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7/</guid>
+            <title>【精华】深度学习中从基础综述、论文笔记到工程经验、训练技巧</title>
+            <link>https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7/</link>
+            <category>人工智能</category>
+            <category>深度学习</category>
+            <pubDate>Thu, 10 Mar 2022 21:36:09 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%BB%8F%E9%AA%8C-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C-%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7&#34;&gt;经验 | 深度学习中从基础综述、论文笔记到工程经验、训练技巧&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%89%8D%E8%A8%80&#34;&gt;前言&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%80-%E5%9F%BA%E7%A1%80&#34;&gt;一、基础&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%8C-%E7%BB%BC%E8%BF%B0&#34;&gt;二、综述&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%89-anchor-free&#34;&gt;三、Anchor Free&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%9B%9B-%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2-nas&#34;&gt;四、神经架构搜索 NAS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%94-%E4%BB%8E%E5%A4%B4%E8%AE%AD%E7%BB%83&#34;&gt;五、从头训练&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%85%AD-%E5%B1%95%E6%9C%9B%E6%9C%AA%E6%9D%A5&#34;&gt;六、展望未来&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%83-%E7%A0%94%E7%A9%B6%E5%BF%83%E5%BE%97&#34;&gt;七、研究心得&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%85%AB-%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C&#34;&gt;八、工程经验&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B9%9D-%E6%AF%94%E8%B5%9B%E6%8A%80%E5%B7%A7&#34;&gt;九、比赛技巧&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8D%81-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0&#34;&gt;十、论文笔记&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;经验-深度学习中从基础综述-论文笔记到工程经验-训练技巧&#34;&gt; 经验 | 深度学习中从基础综述、论文笔记到工程经验、训练技巧&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;前言&#34;&gt; 前言&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;依稀记得两年前刚开始接触深度学习和目标检测的时候，惊喜地发现知乎上有很多优质的目标检测相关文章，其中不少甚至是论文作者自己写的，极具食用价值。通过阅读这些文章，不仅加深了我对现有目标检测领域的理解，还让我深深体会到了同行们对科研的热爱，一句话概括：受益匪浅。因此我打算将自认为不错的知乎文章分享出来，希望能让对目标检测感兴趣的同学们更快地了解目标检测，认识在这个领域辛勤耕耘的大神们。开放的社区也一定会更加促进目标检测领域的研究！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;需要说明的是本文并没有包揽所有目标检测文章，只有那些我读过并且觉得受益匪浅的文章&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;（以下排名不分先后，单纯按照我的收藏夹顺序…）&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;一-基础&#34;&gt; 一、基础&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;【1】作为目标检测领域最经典的模型，Faster RCNN 的大名无人不知无人不晓。而全网把 Faster RCNN 讲的最透彻的，非此文莫属。仅凭一篇文章就让无数同学记住了白裳这个名字。强烈安利，新人必看。&lt;/p&gt;
+&lt;p&gt;白裳：一文读懂 Faster RCNN&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/31426458&#34;&gt;https://zhuanlan.zhihu.com/p/31426458&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【2】作者为旷视科技南京研究院研究员，本文针对 mmAP 这一经典的目标检测评价指标详细解析其定义初衷和具体计算方式；下半篇深入分析 mmAP 的特点，并介绍针对这些特点现有方法如何 “hack” mmAP，最后将提出几个 mmAP 未考虑到的评测要素。&lt;/p&gt;
+&lt;p&gt;zzzz1：浅析经典目标检测评价指标–mmAP（一）&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/55575423&#34;&gt;https://zhuanlan.zhihu.com/p/55575423&lt;/a&gt;&lt;br&gt;
+zzzz1：浅析经典目标检测评价指标–mmAP（二）&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/56899189&#34;&gt;https://zhuanlan.zhihu.com/p/56899189&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【3】作者为清华 CS 博士，本文从 Normalization 的背景讲起，用一个公式概括 Normalization 的基本思想与通用框架，将各大主流方法一一对号入座进行深入的对比分析，并从参数和数据的伸缩不变性的角度探讨 Normalization 有效的深层原因。&lt;/p&gt;
+&lt;p&gt;Juliuszh：详解深度学习中的 Normalization，BN/LN/WN&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/33173246&#34;&gt;https://zhuanlan.zhihu.com/p/33173246&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【4】作者为百度 CV 工程师，本文详细阐述了目前分类损失函数为何多用交叉熵，而不是 KL 散度。&lt;/p&gt;
+&lt;p&gt;KevinCK：交叉熵、相对熵（KL 散度）、JS 散度和 Wasserstein 距离（推土机距离）&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/74075915&#34;&gt;https://zhuanlan.zhihu.com/p/74075915&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【5】本文节选自王峰博士的毕业论文。Softmax 交叉熵损失函数应该是目前最常用的分类损失函数了，本文从最优化的角度来推导出 Softmax 交叉熵损失函数，极具启发性。&lt;/p&gt;
+&lt;p&gt;王峰：从最优化的角度看待 Softmax 损失函数&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/45014864&#34;&gt; https://zhuanlan.zhihu.com/p/45014864&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【6】本文指出了学术论文与工业界需求偏差，分析了为什么有些模型 FLOPs 很低，但其推理速度却很慢。&lt;/p&gt;
+&lt;p&gt;Phoenix Li：FLOPs 与模型推理速度&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/122943688&#34;&gt; https://zhuanlan.zhihu.com/p/122943688&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【7】空洞卷积 (Dilated/Atrous Convolution)，广泛应用于语义分割与目标检测等任务中。本文介绍了空洞卷积的作用，感受野的计算，以及其 gridding 问题。&lt;/p&gt;
+&lt;p&gt;点点点：总结 - 空洞卷积 (Dilated/Atrous Convolution)&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/50369448&#34;&gt;https://zhuanlan.zhihu.com/p/50369448&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【8】本文介绍了两大类处理目标多尺度的方法：图像金字塔和特征金字塔。&lt;/p&gt;
+&lt;p&gt;点点点：&lt;a href=&#34;http://xn---CNNzhuanlan-894s872jojal55bf5jc8gyr5b8e4cw6kwgc590f.zhihu.com&#34;&gt;总结 - CNN 中的目标多尺度处理 zhuanlan.zhihu.com&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/70523190&#34;&gt;https://zhuanlan.zhihu.com/p/70523190&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【9】本文指出对于 CNN 而言，深度之外，感受野以及该感受野上的通道数，真正决定了网络的性能。CNN 是一种利用卷积实现二维泛函空间到二维泛函空间映射的神经网络。&lt;/p&gt;
+&lt;p&gt;akkaze - 郑安坤：CNN 真的需要下采样（上采样）吗？(原创)&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/94477174&#34;&gt;https://zhuanlan.zhihu.com/p/94477174&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【10】教你如何计算神经网络的复杂度&lt;/p&gt;
+&lt;p&gt;Michael Yuan：卷积神经网络的复杂度分析&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/31575074&#34;&gt; https://zhuanlan.zhihu.com/p/31575074&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【11】本文提炼了一个核心观点：目标检测中存在多种多样的不平衡，这些不平衡会影响最终的检测精度，而现有的许多研究可以归结为解决这些不平衡方法。将不平衡分为四类：类别不平衡，尺度不平衡；空间不平衡，多任务损失优化之间的不平衡。&lt;/p&gt;
+&lt;p&gt;ChenJoya：Imbalance Problems in Object Detection: A Review&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/82371629&#34;&gt;https://zhuanlan.zhihu.com/p/82371629&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【12】能否对卷积神经网络工作原理做一个直观的解释？&lt;br&gt;
+&lt;a href=&#34;https://www.zhihu.com/question/39022858/answer/224446917&#34;&gt;https://www.zhihu.com/question/39022858/answer/224446917&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【13】stone：令人拍案称奇的 Mask RCNN&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/37998710&#34;&gt;https://zhuanlan.zhihu.com/p/37998710&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【14】视频中的目标检测与图像中的目标检测具体有什么区别？&lt;br&gt;
+&lt;a href=&#34;https://www.zhihu.com/question/52185576/answer/155679253&#34;&gt;https://www.zhihu.com/question/52185576/answer/155679253&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【15】中国移不动：5 分钟理解 Focal Loss 与 GHM—— 解决样本不平衡利器&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/80594704&#34;&gt; https://zhuanlan.zhihu.com/p/80594704&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【16】燕小花：目标检测小 tricks–样本不均衡处理&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/60612064&#34;&gt; https://zhuanlan.zhihu.com/p/60612064&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【17】YaqiLYU：目标检测中的 Anchor&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/55824651&#34;&gt;https://zhuanlan.zhihu.com/p/55824651&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【18】小小将：目标检测 | SSD 原理与实现&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/33544892&#34;&gt; https://zhuanlan.zhihu.com/p/33544892&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【19】小小将：目标检测 | YOLO 原理与实现&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/32525231&#34;&gt; https://zhuanlan.zhihu.com/p/32525231&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;二-综述&#34;&gt; 二、综述&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;【1】当时带领我入坑的目标检测综述，记录了 2017.12.31 之前的所有目标检测算法。让当时的我了解到原来目前目标检测领域的深度学习方法主要分为两类：two stage 和 one stage。&lt;/p&gt;
+&lt;p&gt;Ronald：综述：&lt;a href=&#34;http://xn--zhuanlan-oq0mi6bv85fifinxywtgk1cz1zk0bfzez65duzb517b.zhihu.com&#34;&gt;深度学习时代的目标检测算法 zhuanlan.zhihu.com&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/33277354&#34;&gt;https://zhuanlan.zhihu.com/p/33277354&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【2】俞刚博士在目标检测领域也是很出名的大佬，之前在旷视科技待了 5 年，任 Detection 组组长，19 年年底跳槽到腾讯 PCG 光影研究室。下面这篇文章是他在旷视的时候做的分享，讲述了什么是目标检测，其技术现状是什么；目前目标检测领域的五个挑战点及旷视分别给出的技术解决方案；最后展望了目标检测的未来，the devil is in the detail。&lt;/p&gt;
+&lt;p&gt;旷视科技：R Talk | 旷视科技目标检测概述：Beyond RetinaNet and Mask R-CNN&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/38154492&#34;&gt;https://zhuanlan.zhihu.com/p/38154492&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【3】一篇关于旋转目标检测论文的综述。在目前已知开源的数据集中，只有遥感和文字类数据集才涉及到旋转框的目标检测。（还有少量未开源的 logo / 商品数据集）&lt;/p&gt;
+&lt;p&gt;qianlinjun：旋转目标 (遥感 / 文字) 检测方法整理（2017-19 年）&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/98703562&#34;&gt;https://zhuanlan.zhihu.com/p/98703562&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【4】文本作者为国科大 CS 博士，目前就职于微软亚研院。知乎专栏致力于计算机视觉迁移学习相关研究。&lt;/p&gt;
+&lt;p&gt;王晋东不在家：《迁移学习简明手册》发布啦！&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/35352154&#34;&gt;https://zhuanlan.zhihu.com/p/35352154&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【5】本文作者为旷视研究员。人脸检测是人脸识别的第一站，旷视的努力主要体现在紧紧围绕人脸检测领域顽固而核心的问题展开，攻坚克难，功夫花在刀刃上，比如人脸尺度的变动及遮挡等，实现速度与精度的双重涨点。&lt;/p&gt;
+&lt;p&gt;王剑锋：人脸检测江湖的那些事儿 —— 从旷视说起&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/56619497&#34;&gt; https://zhuanlan.zhihu.com/p/56619497&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;三-anchor-free&#34;&gt; 三、Anchor Free&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;【1】这篇文章主要讲一下有代表性的 Anchor-Free 模型 (包括 DenseBox、YOLO、CornerNet、ExtremeNet、FSAF、FCOS、FoveaBox)，分成 3 个部分来介绍 (早期探索、基于关键点、密集预测)。最后作者认为设计合适的 gt，是提升目标检测速度和精度的关键。&lt;/p&gt;
+&lt;p&gt;陀飞轮：目标检测：Anchor-Free 时代&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/62103812&#34;&gt; https://zhuanlan.zhihu.com/p/62103812&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【2】陈恺博士是大名鼎鼎的 mmdetection 的作者，他毕业于港中文，目前就职于商汤科技。本文揭示了几篇 anchor free 论文设计的异曲同工之妙。历史的车轮滚滚向前， 目标检测研究似乎也在不断轮回。&lt;/p&gt;
+&lt;p&gt;陈恺：物体检测的轮回: anchor-based 与 anchor-free&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/62372897&#34;&gt;https://zhuanlan.zhihu.com/p/62372897&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【3】本文作者王乃岩博士为图森首席科学家。&lt;/p&gt;
+&lt;p&gt;Naiyan Wang：聊聊 Anchor 的 &amp;quot;前世今生&amp;quot;（上）&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/63273342&#34;&gt;https://zhuanlan.zhihu.com/p/63273342&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Naiyan Wang：聊聊 Anchor 的 &amp;quot;前世今生&amp;quot;（下）&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/68291859&#34;&gt;https://zhuanlan.zhihu.com/p/68291859&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;四-神经架构搜索-nas&#34;&gt; 四、神经架构搜索 NAS&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;CLAY：神经网络架构搜索 (NAS) 中的 milestones&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/94252445&#34;&gt;https://zhuanlan.zhihu.com/p/94252445&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如何评价 Google Brain 团队最新检测论文 SpineNet？&lt;br&gt;
+&lt;a href=&#34;https://www.zhihu.com/question/360562458/answer/959198888&#34;&gt;https://www.zhihu.com/question/360562458/answer/959198888&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;五-从头训练&#34;&gt; 五、从头训练&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;【1】朱睿是 ScratchDet 的作者，目前在港中文读研，他开门见山地指出关于从 0 训练检测器的个人观点：1）需要能够稳定梯度的优化手段（比如 clip_gradient、BN、GN、SN、等等）；2）训练足够多的 epoch 与合适的学习率；3）对于小数据集，在训练时需要一定的数据增广。&lt;/p&gt;
+&lt;p&gt;如何评价何恺明等 arxiv 新作 Rethinking ImageNet Pre-training？&lt;br&gt;
+&lt;a href=&#34;https://www.zhihu.com/question/303234604/answer/537395863&#34;&gt;https://www.zhihu.com/question/303234604/answer/537395863&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【2】沈志强是 DSOD 的作者，他在这篇文章中指出：起初从头训练之所以没有使用预训练模型效果好，更本质的一点是 batch size 太小（通常每张卡上 1 或 2）导致 BN 收敛不好。而最近出现的 GN，SN 缓解了这个问题。&lt;/p&gt;
+&lt;p&gt;沈志强：Object Detection from Scratch - A Brief Review&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/137410354&#34;&gt;https://zhuanlan.zhihu.com/p/137410354&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;六-展望未来&#34;&gt; 六、展望未来&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;【1】作者为北大数院助理教授，本文提出了未来深度学习领域值得 follow 的几个大方向：1）深入反思和理解深度学习的行为；2）新模型的构建；3）新的数据场景或数据结构中的深度学习模型；4）Learning-enhanced algorithms；5）对应用友好的模型和算法；6）和硬件结合的方向。&lt;/p&gt;
+&lt;p&gt;时至今日，深度学习领域有哪些值得追踪的前沿研究？&lt;br&gt;
+&lt;a href=&#34;https://www.zhihu.com/question/385326992/answer/1164005349&#34;&gt;https://www.zhihu.com/question/385326992/answer/1164005349&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;【2】作者为旷视科技实习生，本文认为：2017 年是顶峰，2018 年呈现饱和趋势，2019 年基本宣告了这个时代的落幕。如果真的选择做纯目标检测，必须去啃硬骨头了。&lt;/p&gt;
+&lt;p&gt;想知道目标检测领域中还有哪些方向能做？&lt;br&gt;
+&lt;a href=&#34;https://www.zhihu.com/question/351254577/answer/861582672&#34;&gt;https://www.zhihu.com/question/351254577/answer/861582672&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;七-研究心得&#34;&gt; 七、研究心得&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;zibuyu9：好的研究想法从哪里来&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/93765082&#34;&gt; https://zhuanlan.zhihu.com/p/93765082&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;陈天奇：机器学习科研的十年&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/74249758&#34;&gt; https://zhuanlan.zhihu.com/p/74249758&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Naiyan Wang：闲聊几句科研三观&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/37042197&#34;&gt; https://zhuanlan.zhihu.com/p/37042197&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;田渊栋：一些感悟&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/26178137&#34;&gt; https://zhuanlan.zhihu.com/p/26178137&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;八-工程经验&#34;&gt; 八、工程经验&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;em&gt;ps. 因为我自己主要用 pytorch，主要都是关于 pytorch 的～&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;巽二：简单两步加速 PyTorch 里的 Dataloader&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/68191407&#34;&gt;https://zhuanlan.zhihu.com/p/68191407&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;张皓：PyTorch Cookbook（常用代码段整理合集）&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/59205847&#34;&gt;https://zhuanlan.zhihu.com/p/59205847&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Pytorch 有什么节省显存的小技巧？&lt;br&gt;
+&lt;a href=&#34;https://www.zhihu.com/question/274635237/answer/755102181&#34;&gt;https://www.zhihu.com/question/274635237/answer/755102181&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;lbin：pytorch + apex 生活变得更美好&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/57958993&#34;&gt; https://zhuanlan.zhihu.com/p/57958993&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Jack Stark：[深度学习框架] PyTorch 常用代码段&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/104019160&#34;&gt; https://zhuanlan.zhihu.com/p/104019160&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;商汤科技 SenseTime：模型量化了解一下？&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/132561405&#34;&gt;https://zhuanlan.zhihu.com/p/132561405&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如何评价商汤开源的 mm-detection 检测库？&lt;br&gt;
+&lt;a href=&#34;https://www.zhihu.com/question/294578141/answer/509367634&#34;&gt;https://www.zhihu.com/question/294578141/answer/509367634&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;九-比赛技巧&#34;&gt; 九、比赛技巧&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Caleb Ge：Crowdhuman 人体检测比赛第一名经验总结&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/68677880&#34;&gt; https://zhuanlan.zhihu.com/p/68677880&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;AI 科技大本营：Hinton 等人最新研究：大幅提升模型准确率，标签平滑技术到底怎么用？&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/72685158&#34;&gt;https://zhuanlan.zhihu.com/p/72685158&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;商汤科技 SenseTime：CVPR 2020 丨商汤 TSD 目标检测算法获得 Open Images 冠军&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/131576433&#34;&gt; https://zhuanlan.zhihu.com/p/131576433&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;十-论文笔记&#34;&gt; 十、论文笔记&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;2020&#34;&gt; 2020&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Amusi：大神接棒，YOLOv4 来了！&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/135909702&#34;&gt;https://zhuanlan.zhihu.com/p/135909702&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Amusi：ResNeSt 实现有误？&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/135220104&#34;&gt;https://zhuanlan.zhihu.com/p/135220104&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hassassin：一行代码提升迁移性能 | CVPR2020 Oral&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/121507249&#34;&gt;https://zhuanlan.zhihu.com/p/121507249&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;mileistone：也谈阿里达摩院的频域学习论文&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/115584408&#34;&gt; https://zhuanlan.zhihu.com/p/115584408&lt;/a&gt;)&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2019&#34;&gt; 2019&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;陈恺：Guided Anchoring: 物体检测器也能自己学 Anchor&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/55854246&#34;&gt;https://zhuanlan.zhihu.com/p/55854246&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;pprp：打通多个视觉任务的全能 Backbone:HRNet&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/134253318&#34;&gt;https://zhuanlan.zhihu.com/p/134253318&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;陀飞轮：GCNet：当 Non-local 遇见 SENet&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/64988633&#34;&gt;https://zhuanlan.zhihu.com/p/64988633&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;OLDPAN：扔掉 anchor！真正的 CenterNet——Objects as Points 论文解读&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/66048276&#34;&gt; https://zhuanlan.zhihu.com/p/66048276&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;TeddyZhang：目标检测：FCOS（2019）&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/62869137&#34;&gt;https://zhuanlan.zhihu.com/p/62869137&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如何评价 zhangshifeng 最新的讨论 anchor based/free 的论文？&lt;br&gt;
+&lt;a href=&#34;https://www.zhihu.com/question/359595879/answer/927861326&#34;&gt;https://www.zhihu.com/question/359595879/answer/927861326&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如何看待 CVPR2019 论文 Libra R-CNN（一个全面平衡的目标检测器）？&lt;br&gt;
+&lt;a href=&#34;https://www.zhihu.com/question/319458937/answer/647082241&#34;&gt;https://www.zhihu.com/question/319458937/answer/647082241&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Naiyan Wang：TridentNet：处理目标检测中尺度变化新思路&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/54334986&#34;&gt; https://zhuanlan.zhihu.com/p/54334986&lt;/a&gt;)&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2018&#34;&gt; 2018&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Naiyan Wang：CVPR18 Detection 文章选介（上）&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/35882192&#34;&gt;https://zhuanlan.zhihu.com/p/35882192&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Naiyan Wang：CVPR18 Detection 文章选介（下）&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/36431183&#34;&gt;https://zhuanlan.zhihu.com/p/36431183&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;商汤科技 SenseTime：商汤科技 44 篇论文入选 CVPR 2018&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/36688720&#34;&gt;https://zhuanlan.zhihu.com/p/36688720&lt;/a&gt;)&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

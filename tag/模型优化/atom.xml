@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;模型优化&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2022-03-11T15:37:12.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2022/03/11/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BB%8EYOLOX%E8%AF%A6%E8%A7%A3%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF%E5%8F%8A%E6%B6%A8%E7%82%B9%E6%8A%80%E5%B7%A7/</id>
+        <title>【精华】从YOLOX详解模型优化思路及涨点技巧</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2022/03/11/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BB%8EYOLOX%E8%AF%A6%E8%A7%A3%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF%E5%8F%8A%E6%B6%A8%E7%82%B9%E6%8A%80%E5%B7%A7/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BB%8Eyolox%E8%AF%A6%E8%A7%A3%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF%E5%8F%8A%E6%B6%A8%E7%82%B9%E6%8A%80%E5%B7%A7&#34;&gt;从 YOLOX 详解模型优化思路及涨点技巧&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%80-%E7%AE%80%E4%BB%8B&#34;&gt;一、简介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%8C-yolox&#34;&gt;二、YOLOX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%89-%E4%B8%8Esota%E7%9A%84%E6%AF%94%E8%BE%83&#34;&gt;三、与 SOTA 的比较&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%9B%9B-%E6%B5%81%E5%AA%92%E4%BD%93%E6%84%9F%E7%9F%A5%E6%8C%91%E6%88%98%E8%B5%9B&#34;&gt;四、流媒体感知挑战赛&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%94-%E6%80%BB%E7%BB%93&#34;&gt;五、总结&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;从-yolox-详解模型优化思路及涨点技巧&#34;&gt; 从 YOLOX 详解模型优化思路及涨点技巧&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;源码：&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/Megvii-BaseDetection/YOLOX&#34;&gt;https://github.com/Megvii-BaseDetection/YOLOX&lt;/a&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-4b3c08f9531bd0f6e8fd637937091a03_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;一-简介&#34;&gt; 一、简介&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;在这份报告中，我们对 YOLO 系列进行了一些有经验的改进，形成了一个新的高性能检测器–YOLOX。我们将 YOLO 检测器切换到无锚的方式，并进行其他先进的检测技术，即解耦头和领先的标签分配策略 SimOTA，在大规模的模型范围内获得最先进的结果。对于只有 0.91M 参数和 1.08G FLOPs 的 YOLO Nano，我们在 COCO 上得到 25.3% 的 AP，超过 NanoDet 1.8% 的 AP；对于 YOLOv3，工业界最广泛使用的检测器之一，我们将其提升到 47. 3%，对于 YOLOX-L，其参数量与 YOLOv4-CSP、YOLOv5-L 大致相同，我们在 Tesla V100 上以 68.9 FPS 的速度在 COCO 上实现了 50.0% 的 AP，比 YOLOv5-L 超出 1.8% 的 AP。此外，我们使用单个 YOLOX-L 模型赢得了 stream 感知挑战赛的第一名。我们希望这份报告能够为开发者和研究人员在实际场景中提供经验，我们还提供了支持 ONNX、TensorRT、NCNN 和 Openvino 的部署版本。源代码在 https://github.com/Megvii-BaseDetection/YOLOX。&lt;/p&gt;
+&lt;p&gt;随着目标检测的发展，YOLO 系列 [23, 24, 25, 1, 7] 始终追求实时应用的最佳速度和精度折衷。他们提取了当时最先进的检测技术（例如，YOLOv2 [24] 的锚点 [26]，YOLOv3 [25] 的残差网 [9]），并优化了最佳实践的实施。目前，YOLOv5 [7] 拥有最佳的权衡性能，在 13.7 毫秒的 COCO 上有 48.2% 的 AP。&lt;/p&gt;
+&lt;p&gt;尽管如此，在过去两年中，目标检测学术界的主要进展集中在无锚检测器 [29, 40, 14]、高级标签分配策略 [37, 36, 12, 41, 22, 4] 和端到端（无 NMS）检测器 [2, 32, 39]。这些还没有被整合到 YOLO 系列中，因为 YOLOv4 和 YOLOv5 仍然是基于锚的检测器，使用人工筛选的分配规则进行训练。&lt;/p&gt;
+&lt;p&gt;这就是我们在这里的原因，通过经验丰富的优化为 YOLO 系列提供这些最新的进展。考虑到 YOLOv4 和 YOLOv5 对于基于锚的 pipeline 可能有点过度优化，我们选择 YOLOv3 [25] 作为我们的起点（我们将 YOLOv3-SPP 设置为默认的 YOLOv3）。事实上，由于在各种实际应用中计算资源有限，软件支持不足，YOLOv3 仍然是业界使用最广泛的检测器之一。&lt;/p&gt;
+&lt;p&gt;如图 1 所示，通过上述技术的经验更新，我们将 YOLOv3 在 640×640 分辨率的 COCO 上的 AP 提升到 47.3%（YOLOX-DarkNet53），大大超过了 YOLOv3 目前的最佳实践（44.3% AP，ultralytics version2）。此外，当切换到采用先进的 CSPNet [31] 主干网和额外的 PAN [19] 头的高级 YOLOv5 架构时，YOLOX-L 在 640×640 分辨率的 COCO 上实现了 50.0% 的 AP，比对应的 YOLOv5-L 的 AP 高出 1.8%。我们还在小尺寸的模型上测试了我们的设计策略。YOLOX-Tiny 和 YOLOX-Nano（只有 0.91M 的参数和 1.08G 的 FLOPs）分别比对应的 YOLOv4-Tiny 和 NanoDet3 的性能好 10% AP 和 1.8% AP。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-12c9aa7703635d4782237d01a665a6c1_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;​                                   图 1: YOLOX 和其他最先进的目标检测的精确模型的速度 - 精度权衡（顶部）和移动设备上的精简模型的尺寸 - 精度曲线（底部)。&lt;/p&gt;
+&lt;p&gt;我们已经在&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github&#34;&gt; https://github&lt;/a&gt;. com/Megvii-BaseDetection/YOLOX 发布了我们的代码，并支持 ONNX、TensorRT、NCNN 和 Openvino。还有一件事值得一提，我们用一个 YOLOX-L 模型赢得了 stream 感知挑战赛的第一名。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;二-yolox&#34;&gt; 二、YOLOX&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;21-yolox-darknet53&#34;&gt; 2.1. YOLOX-DarkNet53&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;我们选择 YOLOv3 [25] 与 Darknet53 作为我们的基线。在下面的部分，我们将一步一步地走过 YOLOX 的整个系统设计。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实施细节:&lt;/strong&gt; 我们的训练设置从基线到最终模型基本一致。我们在 COCO train 2017 [17] 上总共训练了 300 个 epochs，并进行了 5 个 epochs 的预热。我们使用随机梯度下降法（SGD）进行训练。我们使用 lr×BatchSize/64 的学习率（线性缩放 [8]），初始 lr=0.01，余弦 lr 计划。权重衰减为 0.0005，SGD 动量为 0.9。批次大小为 128，默认为典型的 8-GPU 设备。其他批次大小包括单 GPU 训练也很好。输入大小从 448 到 832 均匀地抽取，有 32 个步长。本报告中的 FPS 和延迟都是在单个 Tesla V100 上用 FP16 精度和 batch=1 测量的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;YOLOv3 基线&lt;/strong&gt; 我们的基线采用了 DarkNet53 主干网和 SPP 层的架构，在一些论文中被称为 YOLOv3-SPP [1, 7]。与原始实现 [25] 相比，我们稍微改变了一些训练策略，增加了 EMA 权重更新、余弦 lr 计划、IoU 损失和 IoU 感知的分支。我们使用 BCE 损失来训练 cls 和 obj 分支，使用 IoU 损失来训练 reg 分支。这些一般的训练技巧与 YOLOX 的关键改进是不相关的，因此我们把它们放在基线上。此外，我们只进行了 RandomHorizontalFlip、ColorJitter 和 multi-scale 的数据增强，而放弃了 RandomResizedCrop 策略，因为我们发现 RandomResizedCrop 与计划中的马赛克增强有一定的重叠性。通过这些改进，我们的基线在 COCO 值上取得了 38.5% 的 AP，如表 2 所示。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-6a405717b95d40581d730be2baa22570_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;​                                               表 2: YOLOX-Darknet53 在 COCO val 上的 AP（%) 路线图。所有的模型都是在 640×640 分辨率下测试的，&lt;/p&gt;
+&lt;p&gt;​                                                在 Tesla V100 上采用 FP16 - 精度和 batch=1。本表中的延迟和 FPS 是在没有后期处理的情况下测量的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;解耦头&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在目标检测中，分类和回归任务之间的冲突是一个著名的问题 [27, 34]。因此，用于分类和定位的解耦头被广泛用于大多数 one-stage 和 two-stage 检测器中 [16, 29, 35, 34]。然而，由于 YOLO 系列的主干和特征金字塔（如 FPN [13]，PAN [20]。）不断发展，它们的检测头仍然是耦合的，如图 2 所示。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-4124b19597a9d18899658b28127675f6_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;图 2：说明了 YOLOv3 头和提议的解耦头之间的区别。对于每一级 FPN 特征，我们首先采用 1×1 的卷积层，将特征通道减少到 256 个，然后增加两个平行分支，每个分支有两个 3×320 的卷积层，分别用于分类和回归任务。IoU 分支被添加到回归分支上。&lt;/p&gt;
+&lt;p&gt;我们的两个分析实验表明，耦合的检测头可能会损害性能。如图 3 所示，用解耦头取代 YOLO 的头，大大改善了收敛速度。解耦头对 YOLO 的端到端版本至关重要（接下来将介绍）。从 Tab. 1 可以看出，端到端性能在耦合头的情况下减少了 4.2% 的 AP，而在解耦合头的情况下，减少的 AP 为 0.8%。因此，我们用图 2 中的轻型解耦头取代 YOLO 检测头。具体来说，它包含一个 1×1 的卷积层以减少通道尺寸，然后是两个平行的分支，分别有两个 3×3 的卷积层。我们在表 2 中报告了在 V100 上使用 batch=1 的推理时间，以及轻型解耦头的推理时间，轻型解耦头带来了额外的 1.1 毫秒（11.6 毫秒对 10.5 毫秒）。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-282a49cbaa86529c886a40313e022cec_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;​                                                                      表 1: 解耦头对端到端 YOLO 在 AP（%) 方面对 COCO 的影响。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;强大的数据增强&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我们在增强策略中加入了 Mosaic 和 MixUp，以提高 YOLOX 的性能。Mosaic 是由 ultralytics-YOLOv32 提出的一种高效的增强策略。它随后被广泛用于 YOLOv4 [1]、YOLOv5 [7] 和其他检测器 [3] 中。MixUp [10] 最初是为图像分类任务设计的，但后来在 BoF [38] 中被修改为目标检测训练。我们在模型中采用了 MixUp 和 Mosaic 的实现，并在最后 15 个 epoch 中关闭了它，在 Tab.2 中实现了 42.0% 的 AP。2. 在使用强大的数据增强后，我们发现 ImageNet 的预训练没有更多好处，因此我们从头开始训练以下所有模型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;无锚点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;YOLOv4 [1] 和 YOLOv5 [7] 都遵循 YOLOv3 [25] 的原始基于锚点的 pipeline。然而，锚点机制有许多已知的问题。首先，为了达到最佳的检测性能，需要在训练前进行聚类分析，以确定一组最佳锚点。那些聚类的锚是特定领域的，通用性较差。其次，锚点机制增加了检测头的复杂性，以及每张图像的预测数量。在一些边人工智能系统中，在设备之间移动如此大量的预测（例如，从 NPU 到 CPU）可能成为整体延迟的潜在瓶颈。&lt;/p&gt;
+&lt;p&gt;无锚检测器 [29, 40, 14] 在过去两年中发展迅速。这些工作表明，无锚检测器的性能可以与基于锚的检测器相媲美。无锚机制大大减少了需要启发式调整的设计参数的数量和涉及的许多技巧（例如，锚聚类 [24]，网格敏感 [11]。）以获得良好的性能，使检测器，特别是其训练和解码阶段，大大简化 [29]。&lt;/p&gt;
+&lt;p&gt;将 YOLO 切换到无锚的方式是非常简单的。我们将每个位置的预测值从 3 减少到 1，并使其直接预测四个值，即网格左上角的两个偏移量，以及预测的 box 的高度和宽度。我们将每个目标的中心位置指定为正样本，并像 [29] 中那样预先定义一个比例范围，以指定每个目标的 FPN 水平。这样的修改减少了检测器的参数和 GFLOPs，使其更快，但获得了更好的性能 42.9% 的 AP，如表所示。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;多正例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;为了与 YOLOv3 的分配规则保持一致，上述无锚版本只为每个目标选择一个正例样本（中心位置），同时忽略其他高质量的预测。然而，优化这些高质量的预测也可能带来有益的梯度，这可能会缓解训练期间正 / 负采样的极端不平衡。我们简单地将中心的 3×3 区域指定为 正例区域，在 FCOS [29] 中也被称为 “中心采样”。如表 2 所示，检测器的性能提高到 45.0% 的 AP，已经超过了目前超分析的最佳实践 - YOLOv3（44.3% AP2）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;SimOTA&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;高级标签分配是近年来目标检测的另一个重要进展。基于我们自己的研究 OTA [4]，我们总结出高级标签分配的四个关键观点。&lt;/p&gt;
+&lt;p&gt;1). 损失 / 质量意识&lt;/p&gt;
+&lt;p&gt;2). 中心先验&lt;/p&gt;
+&lt;p&gt;3). 每个 ground truth 的动态正锚数（简写为动态 top-k）&lt;/p&gt;
+&lt;p&gt;4). 全局 view。&lt;/p&gt;
+&lt;p&gt;OTA 符合上述所有四个规则，因此我们选择它作为候选标签分配策略。&lt;/p&gt;
+&lt;p&gt;具体来说，OTA [4] 从全局角度分析了标签分配，并将分配程序表述为最优传输（OT）问题，在目前的分配策略中产生了 SOTA 的性能 [12, 41, 36, 22, 37]。然而，在实践中，我们发现通过 Sinkhorn-Knopp 算法解决 OT 问题会带来 25% 的额外训练时间，这对于训练 300 个 epochs 来说是相当昂贵的。因此，我们将其简化为动态 top-k 策略，命名为 SimOTA，以获得一个近似的解决方案。&lt;/p&gt;
+&lt;p&gt;我们在此简单介绍一下 SimOTA。SimOTA 首先计算配对程度，用开销 [4, 5, 12, 2] 或质量 [33] 来表示每个预测 - gt 对。例如，在 SimOTA 中，gt gi 和预测 pj 之间的开销被计算为:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-a9d048c2bb13654068d12e34e532eeba_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;其中 λ 是一个平衡系数。Lcls ij 和 Lreg ij 是 gt gi 和预测 pj 之间的分类损失和回归损失。然后，对于 gt gi，我们选择固定中心区域内开销最小的前 k 个预测作为其正样本。最后，这些正例预测的相应网格被指定为正例，而其余的网格为负例。请注意，不同的 ground truth 下，k 值是不同的。更多细节请参考 OTA [4] 中的动态 k 估计策略。&lt;/p&gt;
+&lt;p&gt;SimOTA 不仅减少了训练时间，而且还避免了 SinkhornKnopp 算法中额外的求解器超参数。如表 2 所示。2，SimOTA 将检测器从 45.0% 的 AP 提高到 47.3% 的 AP，比 SOTA 超分析 - YOLOv3 高 3.0% 的 AP，显示了高级分配策略的力量。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;端到端 YOLO&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我们遵循 [39]，增加了两个额外的卷积层，一对一的标签分配和停止梯度。这些使检测器能够以端到端的方式进行检测，但性能和推理速度略有下降，如表 2 中所列。 因此，我们把它作为一个可选的模块，不参与我们的最终模型。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;22-其他主干&#34;&gt; 2.2. 其他主干&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;除了 DarkNet53，我们还在其他不同规模的主干上测试了 YOLOX，在这些主干上，YOLOX 取得了与所有相应的一致的改进。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;YOLOv5 中的修正 CSPNet&lt;/strong&gt; 为了进行公平的比较，我们采用了 YOLOv5 的主干，包括修正的 CSPNet [31]、SiLU 激活和 PAN [19] 头。我们还遵循它的缩放规则来制作 YOLOXS、YOLOX-M、YOLOX-L 和 YOLOX-X 模型。与表 3 中的 YOLOv5 相比，我们的模型得到了一致的改进。从 3.0% 到 1.0% 的 AP，只有边际的时间增加（来自解耦头）。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-906c1dc9ffc1d3b164035fd7307e94a8_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;​                       表 3: YOLOX 和 YOLOv5 在 COCO 上的 AP（%) 方面的比较。所有的模型都是在 640×640 的分辨率下测试的，在 Tesla V100 上用 FP16 - 精度和 batch=1。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tiny 和 Nano 检测器&lt;/strong&gt; 我们将我们的模型进一步缩小为 YOLOX-Tiny，以便与 YOLOv4-Tiny [30] 进行比较。对于移动设备，我们采用深度卷积来构建 YOLOX-Nano 模型，它只有 0.91M 的参数和 1.08G 的 FLOPs。如表 4 所示。YOLOX 在比同类模型更小的情况下表现良好。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-78ee9ae1f404e25f907b28e2cbdeb24b_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;​                                     表 4: YOLOX-Tiny 和 YOLOX-Nano 与同类产品在 COCO 阀上的 AP（%) 的比较。所有的模型都是在 416×416 的分辨率下测试的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;模型大小和数据增强&lt;/strong&gt; 在我们的实验中，所有的模型都保持着几乎相同的学习进度和优化参数，如 2.1 中所描述的。然而，我们发现，合适的增强策略在不同规模的模型中是不同的。正如 Tab. 5 显示，虽然对 YOLOX-L 应用 MixUp 可以使 AP 提高 0.9%，但对于像 YOLOX-Nano 这样的小模型来说，削弱增强效果更好。具体来说，在训练小模型，即 YOLOX-S、YOLOX-Tiny 和 YOLOX-Nano 时，我们取消了 Mix up 增强，并削弱了马赛克（将比例范围从 [0.1, 2.0] 减少到 [0.5, 1.5]）。这样的修改将 YOLOX-Nano 的 AP 从 24.0% 提高到 25.3%。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-60c19911582f5dab0a4d488de4ce2c74_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;​                                                   表 5: 不同模型尺寸下的数据增量效果。Scale Jit. 代表了马赛克图像的比例抖动范围。&lt;/p&gt;
+&lt;p&gt;​                                                                 采用 Copypaste 时，使用 COCO trainval 的实例 mask 标注。&lt;/p&gt;
+&lt;p&gt;对于大型模型，我们还发现，更强的增强功能更有帮助。事实上，我们的 MixUp 实现比 [38] 中的原始版本要重一部分。受 Copypaste [6] 的启发，我们在混合它们之前用一个随机采样的比例因子抖动了两个图像。为了了解 Mixup 在比例抖动方面的能力，我们在 YOLOX-L 上将其与 Copypaste 进行比较。注意到 Copypaste 需要额外的实例 mask 标注，而 MixUp 不需要。但是，如表 5 所示，这两种方法在性能上具有竞争力。所示，这两种方法取得了有竞争力的性能，表明在没有实例 mask 标注的情况下，规模抖动的 MixUp 是 Copypaste 的合格替代品。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;三-与-sota-的比较&#34;&gt; 三、与 SOTA 的比较&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;有一个传统是显示 SOTA 的比较表，如表 6。然而，请记住，该表中模型的推理速度往往是不可控的，因为速度随软件和硬件而变化。因此，我们在图 1 中对所有的 YOLO 系列使用相同的硬件和代码基础，绘制出有所控制的速度 / 准确度曲线。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-4c7e1e9889cdf1b103b293558d723bdb_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:100%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;​                                   表 6: 在 COCO 2017 test-dev 上比较不同目标检测的速度和准确性。我们选择所有在 300 个 epoch 上训练的模型进行公平比较。&lt;/p&gt;
+&lt;p&gt;我们注意到，有一些高性能的 YOLO 系列具有更大的模型尺寸，如 Scale-YOLOv4 [30] 和 YOLOv5-P6 [7]。而目前基于 transformer 的探测器 [21] 将精度 SOTA 推至∼60AP。由于时间和资源的限制，我们没有在本报告中探讨这些重要的特征。然而，它们已经在我们的范围内了。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;四-流媒体感知挑战赛&#34;&gt; 四、流媒体感知挑战赛&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;WAD 2021 上的流式感知挑战赛是通过最近提出的一个指标：流式准确度 [15] 对准确度和延迟进行联合评估。这个指标背后的关键见解是在每个时间瞬间联合评估整个感知堆栈的输出，迫使堆栈考虑在计算发生时应该忽略的流数据量 [15]。我们发现，在 30FPS 数据流上，该指标的最佳权衡点是推理时间≤33ms 的强大模型。所以我们采用了 YOLOX-L 模型和 TensorRT 来制作我们的最终模型，以赢得挑战赛的第一名。更多细节请参考挑战赛网站 5。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;五-总结&#34;&gt; 五、总结&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;在这份报告中，我们介绍了 YOLO 系列的一些有经验的更新，这形成了一个高性能的无锚检测器，称为 YOLOX。YOLOX 配备了一些最新的先进检测技术，即解耦头、无锚和先进的标签分配策略，在所有模型大小上，YOLOX 在速度和精度之间实现了比其他同行更好的权衡。值得注意的是，我们将 YOLOv3 的架构提升到了 47.3% 的 AP，超过了目前最佳实践的 3.0% AP，而 YOLOv3 由于其广泛的兼容性，仍然是业界最广泛使用的检测器之一。我们希望这份报告能够帮助开发者和研究人员在实际场景中获得更好的体验。&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="模型优化" />
+        <updated>2022-03-11T15:37:12.000Z</updated>
+    </entry>
+</feed>

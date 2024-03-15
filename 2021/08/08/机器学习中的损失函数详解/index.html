@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>机器学习中的损失函数详解 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   什么是损失函数？ 一、Zero-one Loss（0-1 损失） 二、Hinge Loss 三、softmax-loss （多类别） 四、Logistic-loss（二分类的交叉熵损失函数） 五、交叉熵，cross entropy（多分类） 六、softmax cross entropy 七、triplet loss 八、均方误差（mean squared error，MSE）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习中的损失函数详解">
+<meta property="og:url" content="https://leezhao415.github.io/2021/08/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   什么是损失函数？ 一、Zero-one Loss（0-1 损失） 二、Hinge Loss 三、softmax-loss （多类别） 四、Logistic-loss（二分类的交叉熵损失函数） 五、交叉熵，cross entropy（多分类） 六、softmax cross entropy 七、triplet loss 八、均方误差（mean squared error，MSE）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-bfe56c54c57f8f9b6ce1fe9d19da1da2_r.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/v2-19173d16aa9b7d655bbdea7ed43fc6eb_r.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-c3db01467ac0e926f64ba819be71d079_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-9f12e1bf5d3d01a8dd3c7bf8e37f6fd8_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-d88c6c12d49c72bf99b2b5a23f98d012_r.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-9a41671bae385d60b4aec73450712f36_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-424a933cd6be7b04e8883da44156c95a_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-7703ffa91736583843422f4fc529a8e8_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-c479af8a7bf95b721beeaea0e59efa56_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-dca69f3e2f8a6594739aa0920f94700e_720w.png">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-964e4767ace34c2e3661bd387984fcde_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-983bcadd7ab8e5772874a55c6c247fb4_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-ce83422099352b47b671598dc4cb8290_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-c660c2f5cc622a44189937b87f9f8e24_720w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-88f125f81ba05519c6ac92685713bf51_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-ecd3e6dde43482158dedc410d451ee43_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-023e6c6cadab5b75da150710d26e2c74_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-ecd3e6dde43482158dedc410d451ee43_720w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-9c02c49c93ec3bd91ee0d603ecaa3e3c_720w.jpg">
+<meta property="article:published_time" content="2021-08-08T09:41:10.000Z">
+<meta property="article:modified_time" content="2021-08-08T10:26:47.335Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="机器学习&#x2F;损失函数">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic3.zhimg.com/v2-bfe56c54c57f8f9b6ce1fe9d19da1da2_r.jpg">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-机器学习中的损失函数详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      机器学习中的损失函数详解
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-08-08
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0">什么是损失函数？</a></li>
+<li><a href="#%E4%B8%80-zero-one-loss0-1%E6%8D%9F%E5%A4%B1">一、Zero-one Loss（0-1 损失）</a></li>
+<li><a href="#%E4%BA%8C-hinge-loss">二、Hinge Loss</a></li>
+<li><a href="#%E4%B8%89-softmax-loss-%E5%A4%9A%E7%B1%BB%E5%88%AB">三、softmax-loss （多类别）</a></li>
+<li><a href="#%E5%9B%9B-logistic-loss%E4%BA%8C%E5%88%86%E7%B1%BB%E7%9A%84%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0">四、Logistic-loss（二分类的交叉熵损失函数）</a></li>
+<li><a href="#%E4%BA%94-%E4%BA%A4%E5%8F%89%E7%86%B5cross-entropy%E5%A4%9A%E5%88%86%E7%B1%BB">五、交叉熵，cross entropy（多分类）</a></li>
+<li><a href="#%E5%85%AD-softmax-cross-entropy">六、softmax cross entropy</a></li>
+<li><a href="#%E4%B8%83-triplet-loss">七、triplet loss</a></li>
+<li><a href="#%E5%85%AB-%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AEmean-squared-errormse">八、均方误差（mean squared error，MSE）</a></li>
+<li><a href="#%E4%B9%9D-%E5%B9%B3%E5%9D%87%E7%BB%9D%E5%AF%B9%E8%AF%AF%E5%B7%AEmean-absolute-errormae">九、平均绝对误差（Mean Absolute Error，MAE）</a></li>
+<li><a href="#%E5%8D%81-smooth-l1%E6%8D%9F%E5%A4%B1">十、Smooth L1 损失</a></li>
+<li><a href="#%E5%8D%81%E4%B8%80-center-loss">十一、center loss</a></li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h4><span id="什么是损失函数"> 什么是损失函数？</span></h4>
+<p>损失函数 （Loss Function） 也可称为代价函数 （Cost Function）或误差函数（Error Function），用于衡量预测值与实际值的偏离程度。一般来说，我们在进行机器学习任务时，使用的每一个算法都有一个目标函数，算法便是对这个目标函数进行优化，特别是在分类或者回归任务中，便是使用损失函数（Loss Function）作为其目标函数。机器学习的目标就是希望预测值与实际值偏离较小，也就是希望损失函数较小，也就是所谓的最小化损失函数。</p>
+<p>损失函数是用来评价模型的预测值与真实值的不一致程度，它是一个非负实值函数。通常使用来表示，损失函数越小，模型的性能就越好。</p>
+<h4><span id="一-zero-one-loss0-1-损失"> 一、Zero-one Loss（0-1 损失）</span></h4>
+<p>0-1 loss 是最原始的 loss，它是一种较为简单的损失函数，如果预测值与目标值不相等，那么为 1，否则为 0，即：</p>
+<center><img src="https://pic3.zhimg.com/v2-bfe56c54c57f8f9b6ce1fe9d19da1da2_r.jpg" alt="preview" style="zoom:50%;"></center>
+<p>0-1 损失可用于分类问题，但是由于该函数是非凸的，在最优化过程中求解不方便，有阶跃，不连续。0-1 loss 无法对 x 进行求导，在依赖于反向传播的深度学习任务中，无法被使用，所以使用不多。</p>
+<h4><span id="二-hinge-loss"> 二、Hinge Loss</span></h4>
+<p>Hinge loss 主要用于支持向量机（SVM）中，它的称呼来源于损失的形状，定义如下：</p>
+<center><img src="https://pic4.zhimg.com/v2-19173d16aa9b7d655bbdea7ed43fc6eb_r.jpg" alt="preview" style="zoom:80%;"></center>
+<p>其中 y=+1 或−1，f (x)=wx+b，当为 SVM 的线性核时。如果分类正确，loss=0，如果错误则为 1-f (x)，所以它是一个分段不光滑的曲线。Hinge loss 被用来解 SVM 中的间隔最大化问题。</p>
+<h4><span id="三-softmax-loss-多类别"> 三、softmax-loss （多类别）</span></h4>
+<center><img src="https://pic2.zhimg.com/80/v2-c3db01467ac0e926f64ba819be71d079_720w.jpg" alt="img" style="zoom:80%;"></center>
+<p>其中主要是 softmax 函数计算的类别概率。softmax loss 被广泛用于分类问题中，而且发展出了很多的变种，有针对不平衡样本问题的 weighted softmax loss、focal loss，针对蒸馏学习的 soft softmax loss，促进类内更加紧凑的 L-softmax Loss 等一系列改进。</p>
+<p><code>强调一下</code> ：softmax 函数与 softmax-loss 函数是不一样的，千万，千万别记混了。<br>
+softmax 函数最常用作分类器的输出，来表示  个不同类上的概率分布。</p>
+<p>softmax 公式如下：</p>
+<center><img src="https://pic1.zhimg.com/80/v2-9f12e1bf5d3d01a8dd3c7bf8e37f6fd8_720w.jpg" alt="img" style="zoom:80%;"></center>
+<p>使用 softmax 分类的前提：类别之间都是相互独立的。<br>
+softmax 分类的本质：将特征向量做归一化处理（输出总是和为 1），将线性预测值转换为类别概率。</p>
+<h4><span id="四-logistic-loss二分类的交叉熵损失函数"> 四、Logistic-loss（二分类的交叉熵损失函数）</span></h4>
+<center><img src="https://pic3.zhimg.com/v2-d88c6c12d49c72bf99b2b5a23f98d012_r.jpg" alt="preview" style="zoom:80%;"></center>
+<p>Logistic 不使用平方损失的原因：平方损失会导致损失函数是非凸的，不利于求解，因为非凸函数会存在许多的局部最优解。</p>
+<h4><span id="五-交叉熵cross-entropy多分类"> 五、交叉熵，cross entropy（多分类）</span></h4>
+<p>cross entropy loss 用于度量两个概率分布之间的相似性。</p>
+<center><img src="https://pic3.zhimg.com/80/v2-9a41671bae385d60b4aec73450712f36_720w.jpg" alt="img" style="zoom:80%;"></center>
+<p>其中为样本的真实标签，取值只能为 0 或 1；为预测样本属于类别的概率；为类别的数量。</p>
+<h4><span id="六-softmax-cross-entropy"> 六、softmax cross entropy</span></h4>
+<center><img src="https://pic3.zhimg.com/80/v2-424a933cd6be7b04e8883da44156c95a_720w.jpg" alt="img" style="zoom:80%;"></center>
+<p>其中<em> P<sub>k,i</sub><em> 表示样本</em> k</em> 属于类别<em> i</em> 的概率（真实标签，只能为 0 或 1）；<em>q<sub>k,i</sub><em> 表示 softmax 预测的样本</em> k</em> 属于类别<em> i</em> 的概率；<em>c</em> 是类别数；<em>n</em> 是样本总数。如果概率是通过 softmax 计算得到的，那么就是 softmax cross entropy。</p>
+<h4><span id="七-triplet-loss"> 七、triplet loss</span></h4>
+<p>triplet-loss 是深度学习中的一种损失函数，用于训练差异性较小的样本，如人脸等。数据包括锚（Anchor）示例、正（Positive）示例、负（Negative）示例，通过优化锚示例与正示例的距离小于锚示例与负示例的距离，实现样本的相似性计算。也就是说通过学习后，使得同类样本的 positive 更靠近 Anchor，而不同类的样本 Negative 则远离 Anchor。</p>
+<center><img src="https://pic1.zhimg.com/80/v2-7703ffa91736583843422f4fc529a8e8_720w.jpg" alt="img" style="zoom:80%;"></center>
+<p>如上图所示，triplet 是一个三元组，这个三元组是这样构成的：从训练数据集中随机选一个样本，该样本称为 Anchor，然后再随机选取一个与 Anchor (记为 x_a) 属于同一类的样本和不同类的样本，这两个样本对应的称为 Positive (记为 x_p) 和 Negative (记为 x_n)，由此构成一个（Anchor，Positive，Negative）三元组。</p>
+<p>有了上面的 triplet 的概念， triplet loss 就好理解了。针对三元组中的每个元素（样本），训练一个参数共享或者不共享的网络，得到三个元素（样本）的特征表达，分别记为：</p>
+<center><img src="https://pic3.zhimg.com/80/v2-c479af8a7bf95b721beeaea0e59efa56_720w.jpg" alt="img" style="zoom:67%;"></center>
+<p>通过 Triplet Loss 的学习后，使得 Positive 和 Anchor（同类）特征表达之间的距离尽可能小，而 Anchor 和 Negative（不同类）特征表达之间的距离尽可能大，并且要让 x_a 与 x_n 之间的距离和 x_a 与 x_p 之间的距离之间有一个最小的间隔。公式表示就是：</p>
+<center><img src="https://pic3.zhimg.com/80/v2-dca69f3e2f8a6594739aa0920f94700e_720w.png" alt="img" style="zoom: 60%;"></center>
+<p>其中距离用欧式距离度量，α 也称为 margin（间隔）参数。设置一个合理的 margin 值很关键，这是衡量相似度的重要指标。简而言之，margin 值设置的越小，loss 很容易趋近于 0 ，但很难区分相似的图像。margin 值设置的越大，loss 值较难趋近于 0，甚至导致网络不收敛，但可以较有把握的区分较为相似的图像。</p>
+<p>对应的目标函数为：</p>
+<center><img src="https://pic3.zhimg.com/80/v2-964e4767ace34c2e3661bd387984fcde_720w.jpg" alt="img" style="zoom:60%;"></center>
+<p>其中 + 表示 [ ] 内的值大于零的时候，取该值为损失；小于零的时候，损失为零。</p>
+<p>【triplet loss 梯度推导】<br>
+我们将上述目标函数记为 L ，则有：</p>
+<center><img src="https://pic1.zhimg.com/80/v2-983bcadd7ab8e5772874a55c6c247fb4_720w.jpg" alt="img" style="zoom: 67%;"></center>
+<p>在训练 Triplet Loss 模型时，只需要输入样本，不需要输入标签，这样避免标签过多、同标签样本过少的问题，模型只关心样本编码，不关心样本类别。Triplet Loss 在相似性计算和检索中的效果较好，可以学习到样本与变换样本之间的关联，检索出与当前样本最相似的其他样本。Triplet Loss 通常应用于个体级别的细粒度识别，比如分类猫与狗等是大类别的识别，但是有些需求要精确至个体级别，比如识别不同种类不同颜色的猫等，所以 Triplet Loss 最主要的应用也是在细粒度检索领域中。</p>
+<p>Triplet Loss 的优点：<br>
+如果把不同个体作为类别进行分类训练，Softmax 维度可能远大于 Feature 维度，精度无法保证。<br>
+Triplet Loss 一般比分类能学习到更好的特征，在度量样本距离时，效果较好；<br>
+Triplet Loss 支持调整阈值 Margin，控制正负样本的距离，当特征归一化之后，通过调节阈值提升置信度。</p>
+<h4><span id="八-均方误差mean-squared-errormse"> 八、均方误差（mean squared error，MSE）</span></h4>
+<p>也叫平方损失或 L2 损失，常用在最小二乘法中。它的思想是使得各个训练点到最优拟合线的距离最小（平方和最小）。均方误差损失函数也是我们最常见的损失函数了，相信大家都很熟悉了，常用于回归问题中。定义如下：</p>
+<center><img src="https://pic1.zhimg.com/80/v2-ce83422099352b47b671598dc4cb8290_720w.jpg" alt="img" style="zoom:80%;"></center>
+<p>当预测值与目标值相差很大时，梯度容易爆炸，这既是 L2 loss 的最大问题。</p>
+<h4><span id="九-平均绝对误差mean-absolute-errormae"> 九、平均绝对误差（Mean Absolute Error，MAE）</span></h4>
+<p>所有单个观测值与算术平均值的绝对值的平均，也被称为 L1 loss，常用于回归问题中。与平均误差相比，平均绝对误差由于离差被绝对值化，不会出现正负相抵消的情况，因而，平均绝对误差能更好地反映预测值误差的实际情况。</p>
+<center><img src="https://pic1.zhimg.com/80/v2-c660c2f5cc622a44189937b87f9f8e24_720w.jpg" alt="img" style="zoom:80%;"></center>
+<p>由于 L1 loss 具有稀疏性，为了惩罚较大的值，因此常常将其作为正则项添加到其他 loss 中作为约束。L1 loss 的最大问题是梯度在零点不平滑，导致会跳过极小值。</p>
+<h4><span id="十-smooth-l1-损失"> 十、Smooth L1 损失</span></h4>
+<p>原始的 L1 loss 和 L2 loss 都有缺陷，比如 L1 loss 的最大问题是梯度不平滑，而 L2 loss 的最大问题是容易梯度爆炸，所以研究者们对其提出了很多的改进。<br>
+在 faster rcnn 框架中，使用了 smooth L1 loss 来综合 L1 与 L2 loss 的优点，定义如下：</p>
+<center><img src="https://pic2.zhimg.com/80/v2-88f125f81ba05519c6ac92685713bf51_720w.jpg" alt="img" style="zoom: 67%;"></center>
+<p>在比较小时，上式等价于 L2 loss，保持平滑。<br>
+在比较大时，上式等价于 L1 loss，可以限制数值的大小。Smooth L1 损失能够解决梯度爆炸问题。</p>
+<h4><span id="十一-center-loss"> 十一、center loss</span></h4>
+<p>center loss 来自 ECCV2016 的一篇论文：A Discriminative Feature Learning Approach for Deep Face Recognition。</p>
+<p>论文链接：<a target="_blank" rel="noopener" href="http://ydwen.github.io/papers/WenECCV16.pdf">http://ydwen.github.io/papers/WenECCV16.pdf</a></p>
+<p>代码链接：<a target="_blank" rel="noopener" href="https://github.com/pangyupo/mxnet_center_loss">https://github.com/pangyupo/mxnet_center_loss</a></p>
+<p>什么是 center loss？一个 batch 中的每个样本的 feature 离 feature 的中心的距离的平方和要越小越好，也就是类内（intra-class）距离要越小越好。这就是 center loss。</p>
+<center><img src="https://pic4.zhimg.com/80/v2-ecd3e6dde43482158dedc410d451ee43_720w.jpg" alt="img" style="zoom:87%;"></center>
+<p>其中<em> m</em> 表示 mini-batch 的大小，<em>X<sub>i</sub><em> 表示第</em> i</em> 个样本的特征，<em>C<sub>yi</sub><em> 表示第</em> i</em> 个正确样本的特征中心。</p>
+<p>通常在用 CNN 做人脸识别等分类问题时，我们一般采用 softmax loss，在 close-set 测试中模型性能良好，但在遇到 unseen 数据情况下，模型性能会急剧下降。一个直观的感觉是：如果模型学到的特征判别度更高，那么再遇到 unseen 数据时，泛化性能会比较好。为了使得模型学到的特征判别度更高，论文提出了一种新的辅助损失函数，之说以说是辅助损失函数是因为新提出的损失函数需要结合 softmax loss，而非替代后者，在不同数据及上提高了识别准确率。</p>
+<center><img src="https://pic1.zhimg.com/80/v2-023e6c6cadab5b75da150710d26e2c74_720w.jpg" alt="img" style="zoom:75%;"></center>
+<center><img src="https://pic4.zhimg.com/80/v2-ecd3e6dde43482158dedc410d451ee43_720w.jpg" alt="img" style="zoom:79%;"></center>
+<center><img src="https://pic1.zhimg.com/80/v2-9c02c49c93ec3bd91ee0d603ecaa3e3c_720w.jpg" alt="img" style="zoom:85%;"></center>
+<p>在结合使用这两种损失函数时，可以认为 softmax loss 负责增加 inter-class 距离，center-loss 负责减小 intra-class 距离，这样学习到的特征判别度会更高。</p>
+<p><code>缺点</code> ：最麻烦的地方在于如何选择训练样本对。在论文中，作者也提到了，选取合适的样本对对于模型的性能至关重要，论文中采用的方法是每次选择比较难以分类的样本对重新训练，类似于 hard-mining。同时，合适的训练样本还可以加快收敛速度。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年08月08日 18:26</p>
+        <p>原始链接： <a class="post-url" href="/2021/08/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/" title="机器学习中的损失函数详解">https://leezhao415.github.io/2021/08/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/08/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/&title=《机器学习中的损失函数详解》 — 且听风吟，御剑于心！&pic=images/损失函数.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/08/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/&title=《机器学习中的损失函数详解》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/08/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《机器学习中的损失函数详解》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/08/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/08/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/08/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/机器学习/损失函数/" class="color5">机器学习/损失函数</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 什么是损失函数？</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 一、Zero-one Loss（0-1 损失）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 二、Hinge Loss</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 三、softmax-loss （多类别）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 四、Logistic-loss（二分类的交叉熵损失函数）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 五、交叉熵，cross entropy（多分类）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 六、softmax cross entropy</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 七、triplet loss</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 八、均方误差（mean squared error，MSE）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 九、平均绝对误差（Mean Absolute Error，MAE）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 十、Smooth L1 损失</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 十一、center loss</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/08/08/NLP%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7%E2%80%94jionlp/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          NLP数据增强工具—jionlp
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/08/08/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C%E5%90%88%E9%9B%86%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">科研项目成果合集（持续更新中）</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="机器学习中的损失函数详解" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

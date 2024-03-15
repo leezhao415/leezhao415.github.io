@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>NLP之常用数据集详解 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="GLUE 数据集合的介绍:  自然语言处理（NLP）主要自然语言理解（NLU）和自然语言生成（NLG）。GLUE（General Language Understanding Evaluation）由纽约大学，华盛顿大学，Google 联合推出，涵盖不同 NLP 任务类型，截止至 2020 年 1 月其中包括 11 个子任务数据集，成为衡量 NLP 研究发展的衡量标准. GLUE 九项任务涉及到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NLP之常用数据集详解">
+<meta property="og:url" content="https://leezhao415.github.io/2021/06/24/NLP%E4%B9%8B%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="GLUE 数据集合的介绍:  自然语言处理（NLP）主要自然语言理解（NLU）和自然语言生成（NLG）。GLUE（General Language Understanding Evaluation）由纽约大学，华盛顿大学，Google 联合推出，涵盖不同 NLP 任务类型，截止至 2020 年 1 月其中包括 11 个子任务数据集，成为衡量 NLP 研究发展的衡量标准. GLUE 九项任务涉及到">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-24T15:18:54.000Z">
+<meta property="article:modified_time" content="2021-06-26T02:41:28.720Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-NLP之常用数据集详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      NLP之常用数据集详解
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-06-24
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<p>GLUE 数据集合的介绍:</p>
+<ul>
+<li>自然语言处理（NLP）主要自然语言理解（NLU）和自然语言生成（NLG）。GLUE（General Language Understanding Evaluation）由纽约大学，华盛顿大学，Google 联合推出，涵盖不同 NLP 任务类型，截止至 2020 年 1 月其中包括 11 个子任务数据集，成为衡量 NLP 研究发展的衡量标准.</li>
+<li>GLUE 九项任务涉及到自然语言推断、文本蕴含、情感分析、语义相似等多个任务。像 BERT、XLNet、RoBERTa、ERINE、T5 等知名模型都会在此基准上进行测试。</li>
+</ul>
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#glue%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88%E5%8C%85%E5%90%AB%E4%BB%A5%E4%B8%8B%E6%95%B0%E6%8D%AE%E9%9B%86">GLUE 数据集合包含以下数据集</a></li>
+<li><a href="#glue%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88">GLUE 数据集合</a>
+<ul>
+<li><a href="#1-cola%E6%95%B0%E6%8D%AE%E9%9B%86">1 CoLA 数据集</a></li>
+<li><a href="#2-sst-2%E6%95%B0%E6%8D%AE%E9%9B%86">2 SST-2 数据集</a></li>
+<li><a href="#3-mrpc%E6%95%B0%E6%8D%AE%E9%9B%86">3 MRPC 数据集</a></li>
+<li><a href="#4-sts-b%E6%95%B0%E6%8D%AE%E9%9B%86">4 STS-B 数据集</a></li>
+<li><a href="#5-qqp%E6%95%B0%E6%8D%AE%E9%9B%86">5 QQP 数据集</a></li>
+<li><a href="#6-mnlisnli%E6%95%B0%E6%8D%AE%E9%9B%86">6 (MNLI/SNLI) 数据集</a></li>
+<li><a href="#7-qnlirtewnli%E6%95%B0%E6%8D%AE%E9%9B%86">7 (QNLI/RTE/WNLI) 数据集</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h3><span id="glue-数据集合包含以下数据集"> GLUE 数据集合包含以下数据集</span></h3>
+<ul>
+<li>CoLA 数据集</li>
+<li>SST-2 数据集</li>
+<li>MRPC 数据集</li>
+<li>STS-B 数据集</li>
+<li>QQP 数据集</li>
+<li>MNLI 数据集</li>
+<li>SNLI 数据集</li>
+<li>QNLI 数据集</li>
+<li>RTE 数据集</li>
+<li>WNLI 数据集</li>
+<li>diagnostics 数据集 (官方未完善)</li>
+</ul>
+<hr>
+<ul>
+<li>GLUE 数据集合的下载方式:</li>
+</ul>
+<p>下载脚本代码:<a target="_blank" rel="noopener" href="https://gluebenchmark.com/">https://gluebenchmark.com/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27; Script for downloading all GLUE data.&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> tempfile</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"></span><br><span class="line">TASKS = [<span class="string">&quot;CoLA&quot;</span>, <span class="string">&quot;SST&quot;</span>, <span class="string">&quot;MRPC&quot;</span>, <span class="string">&quot;QQP&quot;</span>, <span class="string">&quot;STS&quot;</span>, <span class="string">&quot;MNLI&quot;</span>, <span class="string">&quot;SNLI&quot;</span>, <span class="string">&quot;QNLI&quot;</span>, <span class="string">&quot;RTE&quot;</span>, <span class="string">&quot;WNLI&quot;</span>, <span class="string">&quot;diagnostic&quot;</span>]</span><br><span class="line">TASK2PATH = &#123;<span class="string">&quot;CoLA&quot;</span>:<span class="string">&#x27;https://firebasestorage.googleapis.com/v0/b/mtl-sentence-representations.appspot.com/o/data%2FCoLA.zip?alt=media&amp;token=46d5e637-3411-4188-bc44-5809b5bfb5f4&#x27;</span>,</span><br><span class="line">             <span class="string">&quot;SST&quot;</span>:<span class="string">&#x27;https://firebasestorage.googleapis.com/v0/b/mtl-sentence-representations.appspot.com/o/data%2FSST-2.zip?alt=media&amp;token=aabc5f6b-e466-44a2-b9b4-cf6337f84ac8&#x27;</span>,</span><br><span class="line">             <span class="string">&quot;MRPC&quot;</span>:<span class="string">&#x27;https://firebasestorage.googleapis.com/v0/b/mtl-sentence-representations.appspot.com/o/data%2Fmrpc_dev_ids.tsv?alt=media&amp;token=ec5c0836-31d5-48f4-b431-7480817f1adc&#x27;</span>,</span><br><span class="line">             <span class="string">&quot;QQP&quot;</span>:<span class="string">&#x27;https://firebasestorage.googleapis.com/v0/b/mtl-sentence-representations.appspot.com/o/data%2FQQP.zip?alt=media&amp;token=700c6acf-160d-4d89-81d1-de4191d02cb5&#x27;</span>,</span><br><span class="line">             <span class="string">&quot;STS&quot;</span>:<span class="string">&#x27;https://firebasestorage.googleapis.com/v0/b/mtl-sentence-representations.appspot.com/o/data%2FSTS-B.zip?alt=media&amp;token=bddb94a7-8706-4e0d-a694-1109e12273b5&#x27;</span>,</span><br><span class="line">             <span class="string">&quot;MNLI&quot;</span>:<span class="string">&#x27;https://firebasestorage.googleapis.com/v0/b/mtl-sentence-representations.appspot.com/o/data%2FMNLI.zip?alt=media&amp;token=50329ea1-e339-40e2-809c-10c40afff3ce&#x27;</span>,</span><br><span class="line">             <span class="string">&quot;SNLI&quot;</span>:<span class="string">&#x27;https://firebasestorage.googleapis.com/v0/b/mtl-sentence-representations.appspot.com/o/data%2FSNLI.zip?alt=media&amp;token=4afcfbb2-ff0c-4b2d-a09a-dbf07926f4df&#x27;</span>,</span><br><span class="line">             <span class="string">&quot;QNLI&quot;</span>: <span class="string">&#x27;https://firebasestorage.googleapis.com/v0/b/mtl-sentence-representations.appspot.com/o/data%2FQNLIv2.zip?alt=media&amp;token=6fdcf570-0fc5-4631-8456-9505272d1601&#x27;</span>,</span><br><span class="line">             <span class="string">&quot;RTE&quot;</span>:<span class="string">&#x27;https://firebasestorage.googleapis.com/v0/b/mtl-sentence-representations.appspot.com/o/data%2FRTE.zip?alt=media&amp;token=5efa7e85-a0bb-4f19-8ea2-9e1840f077fb&#x27;</span>,</span><br><span class="line">             <span class="string">&quot;WNLI&quot;</span>:<span class="string">&#x27;https://firebasestorage.googleapis.com/v0/b/mtl-sentence-representations.appspot.com/o/data%2FWNLI.zip?alt=media&amp;token=068ad0a0-ded7-4bd7-99a5-5e00222e0faf&#x27;</span>,</span><br><span class="line">             <span class="string">&quot;diagnostic&quot;</span>:<span class="string">&#x27;https://storage.googleapis.com/mtl-sentence-representations.appspot.com/tsvsWithoutLabels%2FAX.tsv?GoogleAccessId=firebase-adminsdk-0khhl@mtl-sentence-representations.iam.gserviceaccount.com&amp;Expires=2498860800&amp;Signature=DuQ2CSPt2Yfre0C%2BiISrVYrIFaZH1Lc7hBVZDD4ZyR7fZYOMNOUGpi8QxBmTNOrNPjR3z1cggo7WXFfrgECP6FBJSsURv8Ybrue8Ypt%2FTPxbuJ0Xc2FhDi%2BarnecCBFO77RSbfuz%2Bs95hRrYhTnByqu3U%2FYZPaj3tZt5QdfpH2IUROY8LiBXoXS46LE%2FgOQc%2FKN%2BA9SoscRDYsnxHfG0IjXGwHN%2Bf88q6hOmAxeNPx6moDulUF6XMUAaXCSFU%2BnRO2RDL9CapWxj%2BDl7syNyHhB7987hZ80B%2FwFkQ3MEs8auvt5XW1%2Bd4aCU7ytgM69r8JDCwibfhZxpaa4gd50QXQ%3D%3D&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">MRPC_TRAIN = <span class="string">&#x27;https://dl.fbaipublicfiles.com/senteval/senteval_data/msr_paraphrase_train.txt&#x27;</span></span><br><span class="line">MRPC_TEST = <span class="string">&#x27;https://dl.fbaipublicfiles.com/senteval/senteval_data/msr_paraphrase_test.txt&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_and_extract</span>(<span class="params">task, data_dir</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Downloading and extracting %s...&quot;</span> % task)</span><br><span class="line">    data_file = <span class="string">&quot;%s.zip&quot;</span> % task</span><br><span class="line">    urllib.request.urlretrieve(TASK2PATH[task], data_file)</span><br><span class="line">    <span class="keyword">with</span> zipfile.ZipFile(data_file) <span class="keyword">as</span> zip_ref:</span><br><span class="line">        zip_ref.extractall(data_dir)</span><br><span class="line">    os.remove(data_file)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\tCompleted!&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">format_mrpc</span>(<span class="params">data_dir, path_to_data</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Processing MRPC...&quot;</span>)</span><br><span class="line">    mrpc_dir = os.path.join(data_dir, <span class="string">&quot;MRPC&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(mrpc_dir):</span><br><span class="line">        os.mkdir(mrpc_dir)</span><br><span class="line">    <span class="keyword">if</span> path_to_data:</span><br><span class="line">        mrpc_train_file = os.path.join(path_to_data, <span class="string">&quot;msr_paraphrase_train.txt&quot;</span>)</span><br><span class="line">        mrpc_test_file = os.path.join(path_to_data, <span class="string">&quot;msr_paraphrase_test.txt&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Local MRPC data not specified, downloading data from %s&quot;</span> % MRPC_TRAIN)</span><br><span class="line">        mrpc_train_file = os.path.join(mrpc_dir, <span class="string">&quot;msr_paraphrase_train.txt&quot;</span>)</span><br><span class="line">        mrpc_test_file = os.path.join(mrpc_dir, <span class="string">&quot;msr_paraphrase_test.txt&quot;</span>)</span><br><span class="line">        urllib.request.urlretrieve(MRPC_TRAIN, mrpc_train_file)</span><br><span class="line">        urllib.request.urlretrieve(MRPC_TEST, mrpc_test_file)</span><br><span class="line">    <span class="keyword">assert</span> os.path.isfile(mrpc_train_file), <span class="string">&quot;Train data not found at %s&quot;</span> % mrpc_train_file</span><br><span class="line">    <span class="keyword">assert</span> os.path.isfile(mrpc_test_file), <span class="string">&quot;Test data not found at %s&quot;</span> % mrpc_test_file</span><br><span class="line">    urllib.request.urlretrieve(TASK2PATH[<span class="string">&quot;MRPC&quot;</span>], os.path.join(mrpc_dir, <span class="string">&quot;dev_ids.tsv&quot;</span>))</span><br><span class="line"></span><br><span class="line">    dev_ids = []</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(os.path.join(mrpc_dir, <span class="string">&quot;dev_ids.tsv&quot;</span>), encoding=<span class="string">&quot;utf8&quot;</span>) <span class="keyword">as</span> ids_fh:</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> ids_fh:</span><br><span class="line">            dev_ids.append(row.strip().split(<span class="string">&#x27;\t&#x27;</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(mrpc_train_file, encoding=<span class="string">&quot;utf8&quot;</span>) <span class="keyword">as</span> data_fh, \</span><br><span class="line">         <span class="built_in">open</span>(os.path.join(mrpc_dir, <span class="string">&quot;train.tsv&quot;</span>), <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&quot;utf8&quot;</span>) <span class="keyword">as</span> train_fh, \</span><br><span class="line">         <span class="built_in">open</span>(os.path.join(mrpc_dir, <span class="string">&quot;dev.tsv&quot;</span>), <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&quot;utf8&quot;</span>) <span class="keyword">as</span> dev_fh:</span><br><span class="line">        header = data_fh.readline()</span><br><span class="line">        train_fh.write(header)</span><br><span class="line">        dev_fh.write(header)</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> data_fh:</span><br><span class="line">            label, id1, id2, s1, s2 = row.strip().split(<span class="string">&#x27;\t&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> [id1, id2] <span class="keyword">in</span> dev_ids:</span><br><span class="line">                dev_fh.write(<span class="string">&quot;%s\t%s\t%s\t%s\t%s\n&quot;</span> % (label, id1, id2, s1, s2))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                train_fh.write(<span class="string">&quot;%s\t%s\t%s\t%s\t%s\n&quot;</span> % (label, id1, id2, s1, s2))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(mrpc_test_file, encoding=<span class="string">&quot;utf8&quot;</span>) <span class="keyword">as</span> data_fh, \</span><br><span class="line">            <span class="built_in">open</span>(os.path.join(mrpc_dir, <span class="string">&quot;test.tsv&quot;</span>), <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&quot;utf8&quot;</span>) <span class="keyword">as</span> test_fh:</span><br><span class="line">        header = data_fh.readline()</span><br><span class="line">        test_fh.write(<span class="string">&quot;index\t#1 ID\t#2 ID\t#1 String\t#2 String\n&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> idx, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(data_fh):</span><br><span class="line">            label, id1, id2, s1, s2 = row.strip().split(<span class="string">&#x27;\t&#x27;</span>)</span><br><span class="line">            test_fh.write(<span class="string">&quot;%d\t%s\t%s\t%s\t%s\n&quot;</span> % (idx, id1, id2, s1, s2))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\tCompleted!&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_diagnostic</span>(<span class="params">data_dir</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Downloading and extracting diagnostic...&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(os.path.join(data_dir, <span class="string">&quot;diagnostic&quot;</span>)):</span><br><span class="line">        os.mkdir(os.path.join(data_dir, <span class="string">&quot;diagnostic&quot;</span>))</span><br><span class="line">    data_file = os.path.join(data_dir, <span class="string">&quot;diagnostic&quot;</span>, <span class="string">&quot;diagnostic.tsv&quot;</span>)</span><br><span class="line">    urllib.request.urlretrieve(TASK2PATH[<span class="string">&quot;diagnostic&quot;</span>], data_file)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\tCompleted!&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_tasks</span>(<span class="params">task_names</span>):</span></span><br><span class="line">    task_names = task_names.split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;all&quot;</span> <span class="keyword">in</span> task_names:</span><br><span class="line">        tasks = TASKS</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        tasks = []</span><br><span class="line">        <span class="keyword">for</span> task_name <span class="keyword">in</span> task_names:</span><br><span class="line">            <span class="keyword">assert</span> task_name <span class="keyword">in</span> TASKS, <span class="string">&quot;Task %s not found!&quot;</span> % task_name</span><br><span class="line">            tasks.append(task_name)</span><br><span class="line">    <span class="keyword">return</span> tasks</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>(<span class="params">arguments</span>):</span></span><br><span class="line">    parser = argparse.ArgumentParser()</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--data_dir&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;directory to save data to&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&#x27;glue_data&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--tasks&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;tasks to download data for as a comma separated string&#x27;</span>,</span><br><span class="line">                        <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&#x27;all&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--path_to_mrpc&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;path to directory containing extracted MRPC data, msr_paraphrase_train.txt and msr_paraphrase_text.txt&#x27;</span>,</span><br><span class="line">                        <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    args = parser.parse_args(arguments)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(args.data_dir):</span><br><span class="line">        os.mkdir(args.data_dir)</span><br><span class="line">    tasks = get_tasks(args.tasks)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> task <span class="keyword">in</span> tasks:</span><br><span class="line">        <span class="keyword">if</span> task == <span class="string">&#x27;MRPC&#x27;</span>:</span><br><span class="line">            format_mrpc(args.data_dir, args.path_to_mrpc)</span><br><span class="line">        <span class="keyword">elif</span> task == <span class="string">&#x27;diagnostic&#x27;</span>:</span><br><span class="line">            download_diagnostic(args.data_dir)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            download_and_extract(task, args.data_dir)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    sys.exit(main(sys.argv[<span class="number">1</span>:]))</span><br></pre></td></tr></table></figure>
+<hr>
+<p>运行脚本下载所有数据集:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假设你已经将以上代码copy到download_glue_data.py文件中</span></span><br><span class="line"><span class="comment"># 运行这个python脚本, 你将同目录下得到一个glue文件夹</span></span><br><span class="line">python download_glue_data.py</span><br></pre></td></tr></table></figure>
+<hr>
+<p>输出效果:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Downloading <span class="keyword">and</span> extracting CoLA...</span><br><span class="line">    Completed!</span><br><span class="line">Downloading <span class="keyword">and</span> extracting SST...</span><br><span class="line">    Completed!</span><br><span class="line">Processing MRPC...</span><br><span class="line">Local MRPC data <span class="keyword">not</span> specified, downloading data <span class="keyword">from</span> https://dl.fbaipublicfiles.com/senteval/senteval_data/msr_paraphrase_train.txt</span><br><span class="line">    Completed!</span><br><span class="line">Downloading <span class="keyword">and</span> extracting QQP...</span><br><span class="line">    Completed!</span><br><span class="line">Downloading <span class="keyword">and</span> extracting STS...</span><br><span class="line">    Completed!</span><br><span class="line">Downloading <span class="keyword">and</span> extracting MNLI...</span><br><span class="line">    Completed!</span><br><span class="line">Downloading <span class="keyword">and</span> extracting SNLI...</span><br><span class="line">    Completed!</span><br><span class="line">Downloading <span class="keyword">and</span> extracting QNLI...</span><br><span class="line">    Completed!</span><br><span class="line">Downloading <span class="keyword">and</span> extracting RTE...</span><br><span class="line">    Completed!</span><br><span class="line">Downloading <span class="keyword">and</span> extracting WNLI...</span><br><span class="line">    Completed!</span><br><span class="line">Downloading <span class="keyword">and</span> extracting diagnostic...</span><br><span class="line">    Completed!</span><br></pre></td></tr></table></figure>
+<hr>
+<h3><span id="glue-数据集合"> GLUE 数据集合</span></h3>
+<h4><span id="1-cola-数据集"> 1 CoLA 数据集</span></h4>
+<p>CoLA (The Corpus of Linguistic Acceptability，语言可接受性语料库)，单句子分类任务，语料来自语言理论的书籍和期刊，每个句子被标注为是否合乎语法的单词序列。本任务是一个二分类任务，标签共两个，分别是 0 和 1，其中 0 表示不合乎语法，1 表示合乎语法。</p>
+<p>样本个数：训练集 8, 551 个，开发集 1, 043 个，测试集 1, 063 个。</p>
+<p>任务：可接受程度，合乎语法与不合乎语法二分类。</p>
+<p><strong>文件样式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- CoLA/</span><br><span class="line">    - dev.tsv  </span><br><span class="line">    - original/</span><br><span class="line">    - test.tsv  </span><br><span class="line">    - train.tsv</span><br></pre></td></tr></table></figure>
+<hr>
+<p>文件样式说明:</p>
+<ul>
+<li>在使用中常用到的文件是 train.tsv, dev.tsv, test.tsv, 分别代表训练集，验证集和测试集。其中 train.tsv 与 dev.tsv 数据样式相同，都是带有标签的数据，其中 test.tsv 是不带有标签的数据.</li>
+</ul>
+<hr>
+<p>train.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">gj04    1       She coughed herself awake as the leaf landed on her nose.</span><br><span class="line">gj04    1       The worm wriggled onto the carpet.</span><br><span class="line">gj04    1       The chocolate melted onto the carpet.</span><br><span class="line">gj04    0   *   The ball wriggled itself loose.</span><br><span class="line">gj04    1       Bill wriggled himself loose.</span><br><span class="line">bc01    1       The sinking of the ship to collect the insurance was very devious.</span><br><span class="line">bc01    1       The ship<span class="string">&#x27;s sinking was very devious.</span></span><br><span class="line"><span class="string">bc01    0   *   The ship&#x27;</span>s sinking to collect the insurance was very devious.</span><br><span class="line">bc01    1       The testing of such drugs on oneself is too risky.</span><br><span class="line">bc01    0   *   This drug<span class="string">&#x27;s testing on oneself is too risky.</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>train.tsv 数据样式说明:</p>
+<ul>
+<li>train.tsv 中的数据内容共分为 4 列，第一列数据，如 gj04, bc01 等代表每条文本数据的来源即出版物代号；第二列数据，0 或 1, 代表每条文本数据的语法是否正确，0 代表不正确，1 代表正确；第三列数据，'<em>’, 是作者最初的正负样本标记，与第二列意义相同，'</em>' 表示不正确；第四列即是被标注的语法使用是否正确的文本句子.</li>
+</ul>
+<hr>
+<p>test.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">index   sentence</span><br><span class="line">0   Bill whistled past the house.</span><br><span class="line">1   The car honked its way down the road.</span><br><span class="line">2   Bill pushed Harry off the sofa.</span><br><span class="line">3   the kittens yawned awake and played.</span><br><span class="line">4   I demand that the more John eats, the more he pay.</span><br><span class="line">5   If John eats more, keep your mouth shut tighter, OK?</span><br><span class="line">6   His expectations are always lower than mine are.</span><br><span class="line">7   The sooner you call, the more carefully I will word the letter.</span><br><span class="line">8   The more timid he feels, the more people he interviews without asking questions of.</span><br><span class="line">9   Once Janet left, Fred became a lot crazier.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<hr>
+<p>test.tsv 数据样式说明:</p>
+<ul>
+<li>test.tsv 中的数据内容共分为 2 列，第一列数据代表每条文本数据的索引；第二列数据代表用于测试的句子.</li>
+</ul>
+<hr>
+<p>CoLA 数据集的任务类型:</p>
+<ul>
+<li>二分类任务</li>
+<li>评估指标为: MCC (马修斯相关系数，在正负样本分布十分不均衡的情况下使用的二分类评估指标)</li>
+</ul>
+<hr>
+<h4><span id="2-sst-2-数据集"> 2 SST-2 数据集</span></h4>
+<p>SST-2 (The Stanford Sentiment Treebank，斯坦福情感树库)，单句子分类任务，包含电影评论中的句子和它们情感的人类注释。这项任务是给定句子的情感，类别分为两类正面情感（positive，样本标签对应为 1）和负面情感（negative，样本标签对应为 0），并且只用句子级别的标签。也就是，本任务也是一个二分类任务，针对句子级别，分为正面和负面情感。</p>
+<p>样本个数：训练集 67, 350 个，开发集 873 个，测试集 1, 821 个。</p>
+<p>任务：情感分类，正面情感和负面情感二分类。</p>
+<p>评价准则：accuracy。</p>
+<p><strong>文件样式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- SST-2/</span><br><span class="line">        - dev.tsv</span><br><span class="line">        - original/</span><br><span class="line">        - test.tsv</span><br><span class="line">        - train.tsv</span><br></pre></td></tr></table></figure>
+<hr>
+<p>文件样式说明:</p>
+<ul>
+<li>在使用中常用到的文件是 train.tsv, dev.tsv, test.tsv, 分别代表训练集，验证集和测试集。其中 train.tsv 与 dev.tsv 数据样式相同，都是带有标签的数据，其中 test.tsv 是不带有标签的数据.</li>
+</ul>
+<hr>
+<p>train.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sentence    label</span><br><span class="line">hide new secretions from the parental units     0</span><br><span class="line">contains no wit , only labored gags     0</span><br><span class="line">that loves its characters and communicates something rather beautiful about human nature    1</span><br><span class="line">remains utterly satisfied to remain the same throughout     0</span><br><span class="line">on the worst revenge-of-the-nerds clichés the filmmakers could dredge up    0</span><br><span class="line">that <span class="string">&#x27;s far too tragic to merit such superficial treatment  0</span></span><br><span class="line"><span class="string">demonstrates that the director of such hollywood blockbusters as patriot games can still turn out a small , personal film with an emotional wallop .    1</span></span><br><span class="line"><span class="string">of saucy    1</span></span><br><span class="line"><span class="string">a depressed fifteen-year-old &#x27;</span>s suicidal poetry     0</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<hr>
+<p>train.tsv 数据样式说明:</p>
+<ul>
+<li>train.tsv 中的数据内容共分为 2 列，第一列数据代表具有感情色彩的评论文本；第二列数据，0 或 1, 代表每条文本数据是积极或者消极的评论，0 代表消极，1 代表积极.</li>
+</ul>
+<hr>
+<p>test.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">index   sentence</span><br><span class="line">0   uneasy mishmash of styles and genres .</span><br><span class="line">1   this film <span class="string">&#x27;s relationship to actual tension is the same as what christmas-tree flocking in a spray can is to actual snow : a poor -- if durable -- imitation .</span></span><br><span class="line"><span class="string">2   by the end of no such thing the audience , like beatrice , has a watchful affection for the monster .</span></span><br><span class="line"><span class="string">3   director rob marshall went out gunning to make a great one .</span></span><br><span class="line"><span class="string">4   lathan and diggs have considerable personal charm , and their screen rapport makes the old story seem new .</span></span><br><span class="line"><span class="string">5   a well-made and often lovely depiction of the mysteries of friendship .</span></span><br><span class="line"><span class="string">6   none of this violates the letter of behan &#x27;</span>s book , but missing is its spirit , its ribald , full-throated humor .</span><br><span class="line">7   although it bangs a very cliched drum at <span class="built_in">times</span> , this crowd-pleaser <span class="string">&#x27;s fresh dialogue , energetic music , and good-natured spunk are often infectious .</span></span><br><span class="line"><span class="string">8   it is not a mass-market entertainment but an uncompromising attempt by one artist to think about another .</span></span><br><span class="line"><span class="string">9   this is junk food cinema at its greasiest .</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>test.tsv 数据样式说明: * test.tsv 中的数据内容共分为 2 列，第一列数据代表每条文本数据的索引；第二列数据代表用于测试的句子.</p>
+<hr>
+<p>SST-2 数据集的任务类型:</p>
+<ul>
+<li>二分类任务</li>
+<li>评估指标为: ACC</li>
+</ul>
+<hr>
+<h4><span id="3-mrpc-数据集"> 3 MRPC 数据集</span></h4>
+<p>MRPC (The Microsoft Research Paraphrase Corpus，微软研究院释义语料库)，相似性和释义任务，是从在线新闻源中自动抽取句子对语料库，并人工注释句子对中的句子是否在语义上等效。类别并不平衡，其中 68% 的正样本，所以遵循常规的做法，报告准确率（accuracy）和 F1 值。</p>
+<p>样本个数：训练集 3, 668 个，开发集 408 个，测试集 1, 725 个。</p>
+<p>任务：是否释义二分类，是释义，不是释义两类。</p>
+<p>评价准则：准确率（accuracy）和 F1 值。</p>
+<p><strong>文件样式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- MRPC/</span><br><span class="line">        - dev.tsv</span><br><span class="line">        - test.tsv</span><br><span class="line">        - train.tsv</span><br><span class="line">    - dev_ids.tsv</span><br><span class="line">    - msr_paraphrase_test.txt</span><br><span class="line">    - msr_paraphrase_train.txt</span><br></pre></td></tr></table></figure>
+<hr>
+<p>文件样式说明:</p>
+<ul>
+<li>在使用中常用到的文件是 train.tsv, dev.tsv, test.tsv, 分别代表训练集，验证集和测试集。其中 train.tsv 与 dev.tsv 数据样式相同，都是带有标签的数据，其中 test.tsv 是不带有标签的数据.</li>
+</ul>
+<hr>
+<p>train.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Quality <span class="comment">#1 ID   #2 ID   #1 String   #2 String</span></span><br><span class="line">1   702876  702977  Amrozi accused his brother , whom he called <span class="string">&quot; the witness &quot;</span> , of deliberately distorting his evidence . Referring to him as only <span class="string">&quot; the witness &quot;</span> , Amrozi accused his brother of deliberately distorting his evidence .</span><br><span class="line">0   2108705 2108831 Yucaipa owned Dominick <span class="string">&#x27;s before selling the chain to Safeway in 1998 for $ 2.5 billion .   Yucaipa bought Dominick &#x27;</span>s <span class="keyword">in</span> 1995 <span class="keyword">for</span> $ 693 million and sold it to Safeway <span class="keyword">for</span> $ 1.8 billion <span class="keyword">in</span> 1998 .</span><br><span class="line">1   1330381 1330521 They had published an advertisement on the Internet on June 10 , offering the cargo <span class="keyword">for</span> sale , he added .   On June 10 , the ship <span class="string">&#x27;s owners had published an advertisement on the Internet , offering the explosives for sale .</span></span><br><span class="line"><span class="string">0   3344667 3344648 Around 0335 GMT , Tab shares were up 19 cents , or 4.4 % , at A $ 4.56 , having earlier set a record high of A $ 4.57 . Tab shares jumped 20 cents , or 4.6 % , to set a record closing high at A $ 4.57 .</span></span><br><span class="line"><span class="string">1   1236820 1236712 The stock rose $ 2.11 , or about 11 percent , to close Friday at $ 21.51 on the New York Stock Exchange .   PG &amp; E Corp. shares jumped $ 1.63 or 8 percent to $ 21.03 on the New York Stock Exchange on Friday .</span></span><br><span class="line"><span class="string">1   738533  737951  Revenue in the first quarter of the year dropped 15 percent from the same period a year earlier .   With the scandal hanging over Stewart &#x27;</span>s company , revenue the first quarter of the year dropped 15 percent from the same period a year earlier .</span><br><span class="line">0   264589  264502  The Nasdaq had a weekly gain of 17.27 , or 1.2 percent , closing at 1,520.15 on Friday .    The tech-laced Nasdaq Composite .IXIC rallied 30.46 points , or 2.04 percent , to 1,520.15 .</span><br><span class="line">1   579975  579810  The DVD-CCA <span class="keyword">then</span> appealed to the state Supreme Court .  The DVD CCA appealed that decision to the U.S. Supreme Court .</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<hr>
+<p>train.tsv 数据样式说明:</p>
+<ul>
+<li>train.tsv 中的数据内容共分为 5 列，第一列数据，0 或 1, 代表每对句子是否具有相同的含义，0 代表含义不相同，1 代表含义相同。第二列和第三列分别代表每对句子的 id, 第四列和第五列分别具有相同 / 不同含义的句子对.</li>
+</ul>
+<hr>
+<p>test.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">index   <span class="comment">#1 ID   #2 ID   #1 String   #2 String</span></span><br><span class="line">0   1089874 1089925 PCCW <span class="string">&#x27;s chief operating officer , Mike Butcher , and Alex Arena , the chief financial officer , will report directly to Mr So . Current Chief Operating Officer Mike Butcher and Group Chief Financial Officer Alex Arena will report to So .</span></span><br><span class="line"><span class="string">1   3019446 3019327 The world &#x27;</span>s two largest automakers said their U.S. sales declined more than predicted last month as a late summer sales frenzy caused more of an industry backlash than expected . Domestic sales at both GM and No. 2 Ford Motor Co. declined more than predicted as a late summer sales frenzy prompted a larger-than-expected industry backlash .</span><br><span class="line">2   1945605 1945824 According to the federal Centers <span class="keyword">for</span> Disease Control and Prevention ( news - web sites ) , there were 19 reported cases of measles <span class="keyword">in</span> the United States <span class="keyword">in</span> 2002 .   The Centers <span class="keyword">for</span> Disease Control and Prevention said there were 19 reported cases of measles <span class="keyword">in</span> the United States <span class="keyword">in</span> 2002 .</span><br><span class="line">3   1430402 1430329 A tropical storm rapidly developed <span class="keyword">in</span> the Gulf of Mexico Sunday and was expected to hit somewhere along the Texas or Louisiana coasts by Monday night . A tropical storm rapidly developed <span class="keyword">in</span> the Gulf of Mexico on Sunday and could have hurricane-force winds when it hits land somewhere along the Louisiana coast Monday night .</span><br><span class="line">4   3354381 3354396 The company didn <span class="string">&#x27;t detail the costs of the replacement and repairs .   But company officials expect the costs of the replacement work to run into the millions of dollars .</span></span><br><span class="line"><span class="string">5   1390995 1391183 The settling companies would also assign their possible claims against the underwriters to the investor plaintiffs , he added . Under the agreement , the settling companies will also assign their potential claims against the underwriters to the investors , he added .</span></span><br><span class="line"><span class="string">6   2201401 2201285 Air Commodore Quaife said the Hornets remained on three-minute alert throughout the operation . Air Commodore John Quaife said the security operation was unprecedented .</span></span><br><span class="line"><span class="string">7   2453843 2453998 A Washington County man may have the countys first human case of West Nile virus , the health department said Friday .  The countys first and only human case of West Nile this year was confirmed by health officials on Sept . 8 .</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>test.tsv 数据样式说明: * test.tsv 中的数据内容共分为 5 列，第一列数据代表每条文本数据的索引；其余列的含义与 train.tsv 中相同.</p>
+<hr>
+<p>MRPC 数据集的任务类型:</p>
+<ul>
+<li>句子对二分类任务</li>
+<li>评估指标为: ACC 和 F1</li>
+</ul>
+<hr>
+<h4><span id="4-sts-b-数据集"> 4 STS-B 数据集</span></h4>
+<p>STSB (The Semantic Textual Similarity Benchmark，语义文本相似性基准测试)，相似性和释义任务，是从新闻标题、视频标题、图像标题以及自然语言推断数据中提取的句子对的集合，每对都是由人类注释的，其相似性评分为 0-5 (大于等于 0 且小于等于 5 的浮点数，原始 paper 里写的是 1-5，可能是作者失误）。任务就是预测这些相似性得分，本质上是一个回归问题，但是依然可以用分类的方法，可以归类为句子对的文本五分类任务。</p>
+<p>样本个数：训练集 5, 749 个，开发集 1, 379 个，测试集 1, 377 个。</p>
+<p>任务：回归任务，预测为 1-5 之间的相似性得分的浮点数。但是依然可以使用分类的方法，作为五分类。</p>
+<p>评价准则：Pearson and Spearman correlation coefficients。</p>
+<p><strong>文件样式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- STS-B/</span><br><span class="line">        - dev.tsv</span><br><span class="line">        - test.tsv</span><br><span class="line">        - train.tsv</span><br><span class="line">    - LICENSE.txt</span><br><span class="line">    - readme.txt</span><br><span class="line">    - original/</span><br></pre></td></tr></table></figure>
+<hr>
+<p>文件样式说明:</p>
+<ul>
+<li>在使用中常用到的文件是 train.tsv, dev.tsv, test.tsv, 分别代表训练集，验证集和测试集。其中 train.tsv 与 dev.tsv 数据样式相同，都是带有标签的数据，其中 test.tsv 是不带有标签的数据.</li>
+</ul>
+<hr>
+<p>train.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">index   genre   filename    year    old_index   source1 source2 sentence1   sentence2   score</span><br><span class="line">0   main-captions   MSRvid  2012test    0001    none    none    A plane is taking off.  An air plane is taking off. 5.000</span><br><span class="line">1   main-captions   MSRvid  2012test    0004    none    none    A man is playing a large flute. A man is playing a flute.   3.800</span><br><span class="line">2   main-captions   MSRvid  2012test    0005    none    none    A man is spreading shreded cheese on a pizza.   A man is spreading shredded cheese on an uncooked pizza.    3.800</span><br><span class="line">3   main-captions   MSRvid  2012test    0006    none    none    Three men are playing chess.Two men are playing chess.  2.600</span><br><span class="line">4   main-captions   MSRvid  2012test    0009    none    none    A man is playing the cello.A man seated is playing the cello.   4.250</span><br><span class="line">5   main-captions   MSRvid  2012test    0011    none    none    Some men are fighting.  Two men are fighting.   4.250</span><br><span class="line">6   main-captions   MSRvid  2012test    0012    none    none    A man is smoking.   A man is skating.   0.500</span><br><span class="line">7   main-captions   MSRvid  2012test    0013    none    none    The man is playing the piano.   The man is playing the guitar.  1.600</span><br><span class="line">8   main-captions   MSRvid  2012test    0014    none    none    A man is playing on a guitar and singing.   A woman is playing an acoustic guitar and singing.  2.200</span><br><span class="line">9   main-captions   MSRvid  2012test    0016    none    none    A person is throwing a cat on to the ceiling.   A person throws a cat on the ceiling.   5.000</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<hr>
+<p>train.tsv 数据样式说明:</p>
+<ul>
+<li>train.tsv 中的数据内容共分为 10 列，第一列数据是数据索引；第二列代表每对句子的来源，如 main-captions 表示来自字幕；第三列代表来源的具体保存文件名，第四列代表出现时间 (年); 第五列代表原始数据的索引；第六列和第七列分别代表句子对原始来源；第八列和第九列代表相似程度不同的句子对；第十列代表句子对的相似程度由低到高，值域范围是 [0, 5].</li>
+</ul>
+<hr>
+<p>test.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">index   genre   filename    year    old_index   source1 source2 sentence1   sentence2</span><br><span class="line">0   main-captions   MSRvid  2012test    0024    none    none    A girl is styling her hair. A girl is brushing her hair.</span><br><span class="line">1   main-captions   MSRvid  2012test    0033    none    none    A group of men play soccer on the beach.    A group of boys are playing soccer on the beach.</span><br><span class="line">2   main-captions   MSRvid  2012test    0045    none    none    One woman is measuring another woman<span class="string">&#x27;s ankle.   A woman measures another woman&#x27;</span>s ankle.</span><br><span class="line">3   main-captions   MSRvid  2012test    0063    none    none    A man is cutting up a cucumber. A man is slicing a cucumber.</span><br><span class="line">4   main-captions   MSRvid  2012test    0066    none    none    A man is playing a harp.    A man is playing a keyboard.</span><br><span class="line">5   main-captions   MSRvid  2012test    0074    none    none    A woman is cutting onions.  A woman is cutting tofu.</span><br><span class="line">6   main-captions   MSRvid  2012test    0076    none    none    A man is riding an electric bicycle.    A man is riding a bicycle.</span><br><span class="line">7   main-captions   MSRvid  2012test    0082    none    none    A man is playing the drums. A man is playing the guitar.</span><br><span class="line">8   main-captions   MSRvid  2012test    0092    none    none    A man is playing guitar.    A lady is playing the guitar.</span><br><span class="line">9   main-captions   MSRvid  2012test    0095    none    none    A man is playing a guitar.  A man is playing a trumpet.</span><br><span class="line">10  main-captions   MSRvid  2012test    0096    none    none    A man is playing a guitar.  A man is playing a trumpet.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<hr>
+<p>test.tsv 数据样式说明:</p>
+<ul>
+<li>test.tsv 中的数据内容共分为 9 列，含义与 train.tsv 前 9 列相同.</li>
+</ul>
+<hr>
+<p>STS-B 数据集的任务类型:</p>
+<ul>
+<li>句子对多分类任务 / 句子对回归任务</li>
+<li>评估指标为: Pearson-Spearman Corr</li>
+</ul>
+<hr>
+<h4><span id="5-qqp-数据集"> 5 QQP 数据集</span></h4>
+<p>QQP (The Quora Question Pairs, Quora 问题对数集)，相似性和释义任务，是社区问答网站 Quora 中问题对的集合。任务是确定一对问题在语义上是否等效。与 MRPC 一样，QQP 也是正负样本不均衡的，不同是的 QQP 负样本占 63%，正样本是 37%，所以我们也是报告准确率和 F1 值。我们使用标准测试集，为此我们从作者那里获得了专用标签。我们观察到测试集与训练集分布不同。</p>
+<p>样本个数：训练集 363, 870 个，开发集 40, 431 个，测试集 390, 965 个。</p>
+<p>任务：判定句子对是否等效，等效、不等效两种情况，二分类任务。</p>
+<p>评价准则：准确率（accuracy）和 F1 值。</p>
+<p><strong>文件样式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- QQP/</span><br><span class="line">        - dev.tsv</span><br><span class="line">        - original/</span><br><span class="line">        - test.tsv</span><br><span class="line">        - train.tsv</span><br></pre></td></tr></table></figure>
+<hr>
+<p>文件样式说明:</p>
+<ul>
+<li>在使用中常用到的文件是 train.tsv, dev.tsv, test.tsv, 分别代表训练集，验证集和测试集。其中 train.tsv 与 dev.tsv 数据样式相同，都是带有标签的数据，其中 test.tsv 是不带有标签的数据.</li>
+</ul>
+<hr>
+<p>train.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">id  qid1    qid2    question1   question2   is_duplicate</span><br><span class="line">133273  213221  213222  How is the life of a math student? Could you describe your own experiences?Which level of prepration is enough <span class="keyword">for</span> the exam jlpt5?  0</span><br><span class="line">402555  536040  536041  How <span class="keyword">do</span> I control my horny emotions? How <span class="keyword">do</span> you control your horniness?  1</span><br><span class="line">360472  364011  490273  What causes stool color to change to yellow?    What can cause stool to come out as little balls?   0</span><br><span class="line">150662  155721  7256    What can one <span class="keyword">do</span> after MBBS? What <span class="keyword">do</span> i <span class="keyword">do</span> after my MBBS ?    1</span><br><span class="line">183004  279958  279959  Where can I find a power outlet <span class="keyword">for</span> my laptop at Melbourne Airport? Would a second airport <span class="keyword">in</span> Sydney, Australia be needed <span class="keyword">if</span> a high-speed rail link was created between Melbourne and Sydney?   0</span><br><span class="line">119056  193387  193388  How not to feel guilty since I am Muslim and I<span class="string">&#x27;m conscious we won&#x27;</span>t have sex together?  I don<span class="string">&#x27;t beleive I am bulimic, but I force throw up atleast once a day after I eat something and feel guilty. Should I tell somebody, and if so who? 0</span></span><br><span class="line"><span class="string">356863  422862  96457   How is air traffic controlled?  How do you become an air traffic controller?0</span></span><br><span class="line"><span class="string">106969  147570  787 What is the best self help book you have read? Why? How did it change your life?    What are the top self help books I should read? 1</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>train.tsv 数据样式说明:</p>
+<ul>
+<li>train.tsv 中的数据内容共分为 6 列，第一列代表文本数据索引；第二列和第三列数据分别代表问题 1 和问题 2 的 id; 第四列和第五列代表需要进行’是否重复’判定的句子对；第六列代表上述问题是 / 不是重复性问题的标签，0 代表不重复，1 代表重复.</li>
+</ul>
+<hr>
+<p>test.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">id  question1   question2</span><br><span class="line">0   Would the idea of Trump and Putin <span class="keyword">in</span> bed together scare you, given the geopolitical implications?   Do you think that <span class="keyword">if</span> Donald Trump were elected President, he would be able to restore relations with Putin and Russia as he said he could, based on the rocky relationship Putin had with Obama and Bush?</span><br><span class="line">1   What are the top ten Consumer-to-Consumer E-commerce online?    What are the top ten Consumer-to-Business E-commerce online?</span><br><span class="line">2   Why don<span class="string">&#x27;t people simply &#x27;</span>Google<span class="string">&#x27; instead of asking questions on Quora?  Why do people ask Quora questions instead of just searching google?</span></span><br><span class="line"><span class="string">3   Is it safe to invest in social trade biz?   Is social trade geniune?</span></span><br><span class="line"><span class="string">4   If the universe is expanding then does matter also expand?  If universe and space is expanding? Does that mean anything that occupies space is also expanding?</span></span><br><span class="line"><span class="string">5   What is the plural of hypothesis?   What is the plural of thesis?</span></span><br><span class="line"><span class="string">6   What is the application form you need for launching a company?  What is the application form you need for launching a company in Austria?</span></span><br><span class="line"><span class="string">7   What is Big Theta? When should I use Big Theta as opposed to big O? Is O(Log n) close to O(n) or O(1)?</span></span><br><span class="line"><span class="string">8   What are the health implications of accidentally eating a small quantity of aluminium foil?What are the implications of not eating vegetables?</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>test.tsv 数据样式说明:</p>
+<ul>
+<li>test.tsv 中的数据内容共分为 3 列，第一列数据代表每条文本数据的索引；第二列和第三列数据代表用于测试的问题句子对.</li>
+</ul>
+<hr>
+<p>QQP 数据集的任务类型:</p>
+<ul>
+<li>句子对二分类任务</li>
+<li>评估指标为: ACC/F1</li>
+</ul>
+<hr>
+<h4><span id="6-mnlisnli-数据集"> 6 (MNLI/SNLI) 数据集</span></h4>
+<p>MNLI (The Multi-Genre Natural Language Inference Corpus, 多类型自然语言推理数据库)，自然语言推断任务，是通过众包方式对句子对进行文本蕴含标注的集合。给定前提（premise）语句和假设（hypothesis）语句，任务是预测前提语句是否包含假设（蕴含，entailment），与假设矛盾（矛盾，contradiction）或者两者都不（中立，neutral）。前提语句是从数十种不同来源收集的，包括转录的语音，小说和政府报告。</p>
+<p>样本个数：训练集 392, 702 个，开发集 dev-matched 9, 815 个，开发集 dev-mismatched9, 832 个，测试集 test-matched 9, 796 个，测试集 test-dismatched9, 847 个。因为 MNLI 是集合了许多不同领域风格的文本，所以又分为了 matched 和 mismatched 两个版本的数据集，matched 指的是训练集和测试集的数据来源一致，mismached 指的是训练集和测试集来源不一致。</p>
+<p>任务：句子对，一个前提，一个是假设。前提和假设的关系有三种情况：蕴含（entailment），矛盾（contradiction），中立（neutral）。句子对三分类问题。</p>
+<p>评价准则：matched accuracy/mismatched accuracy。</p>
+<p><strong>文件样式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (MNLI/SNLI)/</span><br><span class="line">    - dev_matched.tsv</span><br><span class="line">    - dev_mismatched.tsv</span><br><span class="line">    - original/</span><br><span class="line">    - test_matched.tsv</span><br><span class="line">    - test_mismatched.tsv</span><br><span class="line">    - train.tsv</span><br></pre></td></tr></table></figure>
+<hr>
+<p>文件样式说明:</p>
+<ul>
+<li>在使用中常用到的文件是 train.tsv, dev_matched.tsv, dev_mismatched.tsv, test_matched.tsv, test_mismatched.tsv 分别代表训练集，与训练集一同采集的验证集，与训练集不是一同采集验证集，与训练集一同采集的测试集，与训练集不是一同采集测试集。其中 train.tsv 与 dev_matched.tsv 和 dev_mismatched.tsv 数据样式相同，都是带有标签的数据，其中 test_matched.tsv 与 test_mismatched.tsv 数据样式相同，都是不带有标签的数据.</li>
+</ul>
+<hr>
+<p>train.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">index   promptID    pairID  genre   sentence1_binary_parse  sentence2_binary_parse  sentence1_parse sentence2_parse sentence1   sentence2   label1  gold_label</span><br><span class="line">0   31193   31193n  government  ( ( Conceptually ( cream skimming ) ) ( ( has ( ( ( two ( basic dimensions ) ) - ) ( ( product and ) geography ) ) ) . ) )  ( ( ( Product and ) geography ) ( ( are ( what ( make ( cream ( skimming work ) ) ) ) ) . ) )   (ROOT (S (NP (JJ Conceptually) (NN cream) (NN skimming)) (VP (VBZ has) (NP (NP (CD two) (JJ basic) (NNS dimensions)) (: -) (NP (NN product) (CC and) (NN geography)))) (. .)))  (ROOT (S (NP (NN Product) (CC and) (NN geography)) (VP (VBP are) (SBAR (WHNP (WP what)) (S (VP (VBP make) (NP (NP (NN cream)) (VP (VBG skimming) (NP (NN work)))))))) (. .)))   Conceptually cream skimming has two basic dimensions - product and geography.   Product and geography are what make cream skimming work.    neutral neutral</span><br><span class="line">1   101457  101457e telephone   ( you ( ( know ( during ( ( ( the season ) and ) ( i guess ) ) ) ) ( at ( at ( ( your level ) ( uh ( you ( ( ( lose them ) ( to ( the ( next level ) ) ) ) ( <span class="keyword">if</span> ( ( <span class="keyword">if</span> ( they ( decide ( to ( recall ( the ( the ( parent team ) ) ) ) ) ) ) ) ( ( the Braves ) ( decide ( to ( call ( to ( ( recall ( a guy ) ) ( from ( ( triple A ) ( ( ( <span class="keyword">then</span> ( ( a ( double ( A guy ) ) ) ( ( goes up ) ( to ( replace him ) ) ) ) ) and ) ( ( a ( single ( A guy ) ) ) ( ( goes up ) ( to ( replace him ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ( You ( ( ( ( lose ( the things ) ) ( to ( the ( following level ) ) ) ) ( <span class="keyword">if</span> ( ( the people ) recall ) ) ) . ) )   (ROOT (S (NP (PRP you)) (VP (VBP know) (PP (IN during) (NP (NP (DT the) (NN season)) (CC and) (NP (FW i) (FW guess)))) (PP (IN at) (IN at) (NP (NP (PRP$ your) (NN level)) (SBAR (S (INTJ (UH uh)) (NP (PRP you)) (VP (VBP lose) (NP (PRP them)) (PP (TO to) (NP (DT the) (JJ next) (NN level))) (SBAR (IN <span class="keyword">if</span>) (S (SBAR (IN <span class="keyword">if</span>) (S (NP (PRP they)) (VP (VBP decide) (S (VP (TO to) (VP (VB recall) (NP (DT the) (DT the) (NN parent) (NN team)))))))) (NP (DT the) (NNPS Braves)) (VP (VBP decide) (S (VP (TO to) (VP (VB call) (S (VP (TO to) (VP (VB recall) (NP (DT a) (NN guy)) (PP (IN from) (NP (NP (RB triple) (DT A)) (SBAR (S (S (ADVP (RB <span class="keyword">then</span>)) (NP (DT a) (JJ double) (NNP A) (NN guy)) (VP (VBZ goes) (PRT (RP up)) (S (VP (TO to) (VP (VB replace) (NP (PRP him))))))) (CC and) (S (NP (DT a) (JJ single) (NNP A) (NN guy)) (VP (VBZ goes) (PRT (RP up)) (S (VP (TO to) (VP (VB replace) (NP (PRP him)))))))))))))))))))))))))))) (ROOT (S (NP (PRP You)) (VP (VBP lose) (NP (DT the) (NNS things)) (PP (TO to) (NP (DT the) (JJ following) (NN level))) (SBAR (IN <span class="keyword">if</span>) (S (NP (DT the) (NNS people)) (VP (VBP recall))))) (. .))) you know during the season and i guess at at your level uh you lose them to the next level <span class="keyword">if</span> <span class="keyword">if</span> they decide to recall the the parent team the Braves decide to call to recall a guy from triple A <span class="keyword">then</span> a double A guy goes up to replace him and a single A guy goes up to replace him You lose the things to the following level <span class="keyword">if</span> the people recall.    entailment  entailment</span><br><span class="line">2   134793  134793e fiction ( ( One ( of ( our number ) ) ) ( ( will ( ( ( carry out ) ( your instructions ) ) minutely ) ) . ) )   ( ( ( A member ) ( of ( my team ) ) ) ( ( will ( ( execute ( your orders ) ) ( with ( immense precision ) ) ) ) . ) )   (ROOT (S (NP (NP (CD One)) (PP (IN of) (NP (PRP$ our) (NN number)))) (VP (MD will) (VP (VB carry) (PRT (RP out)) (NP (PRP$ your) (NNS instructions)) (ADVP (RB minutely)))) (. .))) (ROOT (S (NP (NP (DT A) (NN member)) (PP (IN of) (NP (PRP$ my) (NN team)))) (VP (MD will) (VP (VB execute) (NP (PRP$ your) (NNS orders)) (PP (IN with) (NP (JJ immense) (NN precision))))) (. .)))  One of our number will carry out your instructions minutely.    A member of my team will execute your orders with immense precision.    entailment  entailment</span><br><span class="line">3   37397   37397e  fiction ( ( How ( ( ( <span class="keyword">do</span> you ) know ) ? ) ) ( ( All this ) ( ( ( is ( their information ) ) again ) . ) ) ) ( ( This information ) ( ( belongs ( to them ) ) . ) )  (ROOT (S (SBARQ (WHADVP (WRB How)) (SQ (VBP <span class="keyword">do</span>) (NP (PRP you)) (VP (VB know))) (. ?)) (NP (PDT All) (DT this)) (VP (VBZ is) (NP (PRP$ their) (NN information)) (ADVP (RB again))) (. .)))   (ROOT (S (NP (DT This) (NN information)) (VP (VBZ belongs) (PP (TO to) (NP (PRP them)))) (. .)))    How <span class="keyword">do</span> you know? All this is their information again.   This information belongs to them.   entailment  entailment</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<hr>
+<p>train.tsv 数据样式说明:</p>
+<ul>
+<li>train.tsv 中的数据内容共分为 12 列，第一列代表文本数据索引；第二列和第三列数据分别代表句子对的不同类型 id; 第四列代表句子对的来源；第五列和第六列代表具有句法结构分析的句子对表示；第七列和第八列代表具有句法结构和词性标注的句子对表示，第九列和第十列代表原始的句子对，第十一和第十二列代表不同标准的标注方法产生的标签，在这里，他们始终相同，一共有三种类型的标签，neutral 代表两个句子既不矛盾也不蕴含，entailment 代表两个句子具有蕴含关系，contradiction 代表两个句子观点矛盾.</li>
+</ul>
+<hr>
+<p>test_matched.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">index   promptID    pairID  genre   sentence1_binary_parse  sentence2_binary_parse  sentence1_parse sentence2_parse sentence1   sentence2</span><br><span class="line">0   31493   31493   travel  ( ( ( ( ( ( ( ( Hierbas , ) ( ans seco ) ) , ) ( ans dulce ) ) , ) and ) frigola ) ( ( ( are just ) ( ( a ( few names ) ) ( worth ( ( keeping ( a look-out ) ) <span class="keyword">for</span> ) ) ) ) . ) )    ( Hierbas ( ( is ( ( a name ) ( worth ( ( looking out ) <span class="keyword">for</span> ) ) ) ) . ) )   (ROOT (S (NP (NP (NNS Hierbas)) (, ,) (NP (NN ans) (NN seco)) (, ,) (NP (NN ans) (NN dulce)) (, ,) (CC and) (NP (NN frigola))) (VP (VBP are) (ADVP (RB just)) (NP (NP (DT a) (JJ few) (NNS names)) (PP (JJ worth) (S (VP (VBG keeping) (NP (DT a) (NN look-out)) (PP (IN <span class="keyword">for</span>))))))) (. .))) (ROOT (S (NP (NNS Hierbas)) (VP (VBZ is) (NP (NP (DT a) (NN name)) (PP (JJ worth) (S (VP (VBG looking) (PRT (RP out)) (PP (IN <span class="keyword">for</span>))))))) (. .)))    Hierbas, ans seco, ans dulce, and frigola are just a few names worth keeping a look-out <span class="keyword">for</span>.    Hierbas is a name worth looking out <span class="keyword">for</span>.</span><br><span class="line">1   92164   92164   government  ( ( ( The extent ) ( of ( the ( behavioral effects ) ) ) ) ( ( would ( ( depend ( <span class="keyword">in</span> ( part ( on ( ( the structure ) ( of ( ( ( the ( individual ( account program ) ) ) and ) ( any limits ) ) ) ) ) ) ) ) ( on ( accessing ( the funds ) ) ) ) ) . ) )    ( ( Many people ) ( ( would ( be ( very ( unhappy ( to ( ( loose control ) ( over ( their ( own money ) ) ) ) ) ) ) ) ) . ) )   (ROOT (S (NP (NP (DT The) (NN extent)) (PP (IN of) (NP (DT the) (JJ behavioral) (NNS effects)))) (VP (MD would) (VP (VB depend) (PP (IN <span class="keyword">in</span>) (NP (NP (NN part)) (PP (IN on) (NP (NP (DT the) (NN structure)) (PP (IN of) (NP (NP (DT the) (JJ individual) (NN account) (NN program)) (CC and) (NP (DT any) (NNS limits)))))))) (PP (IN on) (S (VP (VBG accessing) (NP (DT the) (NNS funds))))))) (. .))) (ROOT (S (NP (JJ Many) (NNS people)) (VP (MD would) (VP (VB be) (ADJP (RB very) (JJ unhappy) (PP (TO to) (NP (NP (JJ loose) (NN control)) (PP (IN over) (NP (PRP$ their) (JJ own) (NN money)))))))) (. .))) The extent of the behavioral effects would depend <span class="keyword">in</span> part on the structure of the individual account program and any limits on accessing the funds. Many people would be very unhappy to loose control over their own money.</span><br><span class="line">2   9662    9662    government  ( ( ( Timely access ) ( to information ) ) ( ( is ( <span class="keyword">in</span> ( ( the ( best interests ) ) ( of ( ( ( both GAO ) and ) ( the agencies ) ) ) ) ) ) . ) )    ( It ( ( ( is ( <span class="keyword">in</span> ( ( everyone <span class="string">&#x27;s ) ( best interest ) ) ) ) ( to ( ( have access ) ( to ( information ( in ( a ( timely manner ) ) ) ) ) ) ) ) . ) )   (ROOT (S (NP (NP (JJ Timely) (NN access)) (PP (TO to) (NP (NN information)))) (VP (VBZ is) (PP (IN in) (NP (NP (DT the) (JJS best) (NNS interests)) (PP (IN of) (NP (NP (DT both) (NNP GAO)) (CC and) (NP (DT the) (NNS agencies))))))) (. .))) (ROOT (S (NP (PRP It)) (VP (VBZ is) (PP (IN in) (NP (NP (NN everyone) (POS &#x27;</span>s)) (JJS best) (NN interest))) (S (VP (TO to) (VP (VB have) (NP (NN access)) (PP (TO to) (NP (NP (NN information)) (PP (IN <span class="keyword">in</span>) (NP (DT a) (JJ timely) (NN manner))))))))) (. .)))   Timely access to information is <span class="keyword">in</span> the best interests of both GAO and the agencies. It is <span class="keyword">in</span> everyone<span class="string">&#x27;s best interest to have access to information in a timely manner.</span></span><br><span class="line"><span class="string">3   5991    5991    travel  ( ( Based ( in ( ( the ( Auvergnat ( spa town ) ) ) ( of Vichy ) ) ) ) ( , ( ( the ( French government ) ) ( often ( ( ( ( proved ( more zealous ) ) ( than ( its masters ) ) ) ( in ( ( ( suppressing ( civil liberties ) ) and ) ( ( drawing up ) ( anti-Jewish legislation ) ) ) ) ) . ) ) ) ) ) ( ( The ( French government ) ) ( ( passed ( ( anti-Jewish laws ) ( aimed ( at ( helping ( the Nazi ) ) ) ) ) ) . ) )   (ROOT (S (PP (VBN Based) (PP (IN in) (NP (NP (DT the) (NNP Auvergnat) (NN spa) (NN town)) (PP (IN of) (NP (NNP Vichy)))))) (, ,) (NP (DT the) (JJ French) (NN government)) (ADVP (RB often)) (VP (VBD proved) (NP (JJR more) (NNS zealous)) (PP (IN than) (NP (PRP$ its) (NNS masters))) (PP (IN in) (S (VP (VP (VBG suppressing) (NP (JJ civil) (NNS liberties))) (CC and) (VP (VBG drawing) (PRT (RP up)) (NP (JJ anti-Jewish) (NN legislation))))))) (. .))) (ROOT (S (NP (DT The) (JJ French) (NN government)) (VP (VBD passed) (NP (NP (JJ anti-Jewish) (NNS laws)) (VP (VBN aimed) (PP (IN at) (S (VP (VBG helping) (NP (DT the) (JJ Nazi)))))))) (. .))) Based in the Auvergnat spa town of Vichy, the French government often proved more zealous than its masters in suppressing civil liberties and drawing up anti-Jewish legislation.   The French government passed anti-Jewish laws aimed at helping the Nazi.</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>test_matched.tsv 数据样式说明:</p>
+<ul>
+<li>test_matched.tsv 中的数据内容共分为 10 列，与 train.tsv 的前 10 列含义相同.</li>
+</ul>
+<hr>
+<p>(MNLI/SNLI) 数据集的任务类型:</p>
+<ul>
+<li>句子对多分类任务</li>
+<li>评估指标为: ACC</li>
+</ul>
+<hr>
+<h4><span id="7-qnlirtewnli-数据集"> 7 (QNLI/RTE/WNLI) 数据集</span></h4>
+<p>QNLI (Qusetion-answering NLI，问答自然语言推断)，自然语言推断任务。QNLI 是从另一个数据集 The Stanford Question Answering Dataset (斯坦福问答数据集，SQuAD 1.0)[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/135283598#ref_3">3]</a> 转换而来的。SQuAD 1.0 是有一个问题 - 段落对组成的问答数据集，其中段落来自维基百科，段落中的一个句子包含问题的答案。这里可以看到有个要素，来自维基百科的段落，问题，段落中的一个句子包含问题的答案。通过将问题和上下文（即维基百科段落）中的每一句话进行组合，并过滤掉词汇重叠比较低的句子对就得到了 QNLI 中的句子对。相比原始 SQuAD 任务，消除了模型选择准确答案的要求；也消除了简化的假设，即答案适中在输入中并且词汇重叠是可靠的提示。</p>
+<p>样本个数：训练集 104, 743 个，开发集 5, 463 个，测试集 5, 461 个。</p>
+<p>任务：判断问题（question）和句子（sentence，维基百科段落中的一句）是否蕴含，蕴含和不蕴含，二分类。</p>
+<p>评价准则：准确率（accuracy）。</p>
+<p>RTE (The Recognizing Textual Entailment datasets，识别文本蕴含数据集)，自然语言推断任务，它是将一系列的年度文本蕴含挑战赛的数据集进行整合合并而来的，包含 RTE1 [<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/135283598#ref_4">4]</a>，RTE2，RTE3[<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/135283598#ref_5">5]</a>，RTE5 等，这些数据样本都从新闻和维基百科构建而来。将这些所有数据转换为二分类，对于三分类的数据，为了保持一致性，将中立（neutral）和矛盾（contradiction）转换为不蕴含（not entailment）。</p>
+<p>样本个数：训练集 2, 491 个，开发集 277 个，测试集 3, 000 个。</p>
+<p>任务：判断句子对是否蕴含，句子 1 和句子 2 是否互为蕴含，二分类任务。</p>
+<p>评价准则：准确率（accuracy）。</p>
+<p>WNLI (Winograd NLI，Winograd 自然语言推断)，自然语言推断任务，数据集来自于竞赛数据的转换。Winograd Schema Challenge [<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/135283598#ref_6">6]</a>，该竞赛是一项阅读理解任务，其中系统必须读一个带有代词的句子，并从列表中找到代词的指代对象。这些样本都是都是手动创建的，以挫败简单的统计方法：每个样本都取决于句子中单个单词或短语提供的上下文信息。为了将问题转换成句子对分类，方法是通过用每个可能的列表中的每个可能的指代去替换原始句子中的代词。任务是预测两个句子对是否有关（蕴含、不蕴含）。训练集两个类别是均衡的，测试集是不均衡的，65% 是不蕴含。</p>
+<p>样本个数：训练集 635 个，开发集 71 个，测试集 146 个。</p>
+<p>任务：判断句子对是否相关，蕴含和不蕴含，二分类任务。</p>
+<p>评价准则：准确率（accuracy）。</p>
+<p><strong>文件样式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* QNLI, RTE, WNLI三个数据集的样式基本相同.</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (QNLI/RTE/WNLI)/</span><br><span class="line">        - dev.tsv</span><br><span class="line">        - test.tsv</span><br><span class="line">        - train.tsv</span><br></pre></td></tr></table></figure>
+<hr>
+<p>文件样式说明:</p>
+<ul>
+<li>在使用中常用到的文件是 train.tsv, dev.tsv, test.tsv, 分别代表训练集，验证集和测试集。其中 train.tsv 与 dev.tsv 数据样式相同，都是带有标签的数据，其中 test.tsv 是不带有标签的数据.</li>
+</ul>
+<hr>
+<p>QNLI 中的 train.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">index   question    sentence    label</span><br><span class="line">0   When did the third Digimon series begin?    Unlike the two seasons before it and most of the seasons that followed, Digimon Tamers takes a darker and more realistic approach to its story featuring Digimon who <span class="keyword">do</span> not reincarnate after their deaths and more complex character development <span class="keyword">in</span> the original Japanese. not_entailment</span><br><span class="line">1   Which missile batteries often have individual launchers several kilometres from one another?    When MANPADS is operated by specialists, batteries may have several dozen teams deploying separately <span class="keyword">in</span> small sections; self-propelled air defence guns may deploy <span class="keyword">in</span> pairs.    not_entailment</span><br><span class="line">2   What two things does Popper argue Tarski<span class="string">&#x27;s theory involves in an evaluation of truth?   He bases this interpretation on the fact that examples such as the one described above refer to two things: assertions and the facts to which they refer.   entailment</span></span><br><span class="line"><span class="string">3   What is the name of the village 9 miles north of Calafat where the Ottoman forces attacked the Russians?    On 31 December 1853, the Ottoman forces at Calafat moved against the Russian force at Chetatea or Cetate, a small village nine miles north of Calafat, and engaged them on 6 January 1854.  entailment</span></span><br><span class="line"><span class="string">4   What famous palace is located in London?    London contains four World Heritage Sites: the Tower of London; Kew Gardens; the site comprising the Palace of Westminster, Westminster Abbey, and St Margaret&#x27;</span>s Church; and the historic settlement of Greenwich (<span class="keyword">in</span> <span class="built_in">which</span> the Royal Observatory, Greenwich marks the Prime Meridian, 0° longitude, and GMT).  not_entailment</span><br><span class="line">5   When is the term <span class="string">&#x27;German dialects&#x27;</span> used <span class="keyword">in</span> regard to the German language?   When talking about the German language, the term German dialects is only used <span class="keyword">for</span> the traditional regional varieties.   entailment</span><br><span class="line">6   What was the name of the island the English traded to the Dutch <span class="keyword">in</span> <span class="built_in">return</span> <span class="keyword">for</span> New Amsterdam?    At the end of the Second Anglo-Dutch War, the English gained New Amsterdam (New York) <span class="keyword">in</span> North America <span class="keyword">in</span> exchange <span class="keyword">for</span> Dutch control of Run, an Indonesian island.  entailment</span><br><span class="line">7   How were the Portuguese expelled from Myanmar?  From the 1720s onward, the kingdom was beset with repeated Meithei raids into Upper Myanmar and a nagging rebellion <span class="keyword">in</span> Lan Na.  not_entailment</span><br><span class="line">8   What does the word <span class="string">&#x27;customer&#x27;</span> properly apply to?    The bill also required rotation of principal maintenance inspectors and stipulated that the word <span class="string">&quot;customer&quot;</span> properly applies to the flying public, not those entities regulated by the FAA. entailment</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<hr>
+<p>RTE 中的 train.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">index   sentence1   sentence2   label</span><br><span class="line">0   No Weapons of Mass Destruction Found <span class="keyword">in</span> Iraq Yet.   Weapons of Mass Destruction Found <span class="keyword">in</span> Iraq.  not_entailment</span><br><span class="line">1   A place of sorrow, after Pope John Paul II died, became a place of celebration, as Roman Catholic faithful gathered <span class="keyword">in</span> downtown Chicago to mark the installation of new Pope Benedict XVI.Pope Benedict XVI is the new leader of the Roman Catholic Church. entailment</span><br><span class="line">2   Herceptin was already approved to treat the sickest breast cancer patients, and the company said, Monday, it will discuss with federal regulators the possibility of prescribing the drug <span class="keyword">for</span> more breast cancer patients.  Herceptin can be used to treat breast cancer.   entailment</span><br><span class="line">3   Judie Vivian, chief executive at ProMedica, a medical service company that helps sustain the 2-year-old Vietnam Heart Institute <span class="keyword">in</span> Ho Chi Minh City (formerly Saigon), said that so far about 1,500 children have received treatment.   The previous name of Ho Chi Minh City was Saigon.entailment</span><br><span class="line">4   A man is due <span class="keyword">in</span> court later charged with the murder 26 years ago of a teenager whose <span class="keyword">case</span> was the first to be featured on BBC One<span class="string">&#x27;s Crimewatch. Colette Aram, 16, was walking to her boyfriend&#x27;</span>s house <span class="keyword">in</span> Keyworth, Nottinghamshire, on 30 October 1983 when she disappeared. Her body was later found <span class="keyword">in</span> a field close to her home. Paul Stewart Hutchinson, 50, has been charged with murder and is due before Nottingham magistrates later.  Paul Stewart Hutchinson is accused of having stabbed a girl.    not_entailment</span><br><span class="line">5   Britain said, Friday, that it has barred cleric, Omar Bakri, from returning to the country from Lebanon, <span class="built_in">where</span> he was released by police after being detained <span class="keyword">for</span> 24 hours. Bakri was briefly detained, but was released.   entailment</span><br><span class="line">6   Nearly 4 million children who have at least one parent who entered the U.S. illegally were born <span class="keyword">in</span> the United States and are U.S. citizens as a result, according to the study conducted by the Pew Hispanic Center. That<span class="string">&#x27;s about three quarters of the estimated 5.5 million children of illegal immigrants inside the United States, according to the study. About 1.8 million children of undocumented immigrants live in poverty, the study found.  Three quarters of U.S. illegal immigrants have children.    not_entailment</span></span><br><span class="line"><span class="string">7   Like the United States, U.N. officials are also dismayed that Aristide killed a conference called by Prime Minister Robert Malval in Port-au-Prince in hopes of bringing all the feuding parties together.  Aristide had Prime Minister Robert Malval  murdered in Port-au-Prince.  not_entailment</span></span><br><span class="line"><span class="string">8   WASHINGTON --  A newly declassified narrative of the Bush administration&#x27;</span>s advice to the CIA on harsh interrogations shows that the small group of Justice Department lawyers who wrote memos authorizing controversial interrogation techniques were operating not on their own but with direction from top administration officials, including then-Vice President Dick Cheney and national security adviser Condoleezza Rice. At the same time, the narrative suggests that then-Defense Secretary Donald H. Rumsfeld and then-Secretary of State Colin Powell were largely left out of the decision-making process. Dick Cheney was the Vice President of Bush. entailment</span><br></pre></td></tr></table></figure>
+<hr>
+<p>WNLI 中的 train.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">index   sentence1   sentence2   label</span><br><span class="line">0   I stuck a pin through a carrot. When I pulled the pin out, it had a hole.   The carrot had a hole.  1</span><br><span class="line">1   John couldn<span class="string">&#x27;t see the stage with Billy in front of him because he is so short.  John is so short.   1</span></span><br><span class="line"><span class="string">2   The police arrested all of the gang members. They were trying to stop the drug trade in the neighborhood.   The police were trying to stop the drug trade in the neighborhood.  1</span></span><br><span class="line"><span class="string">3   Steve follows Fred&#x27;</span>s example <span class="keyword">in</span> everything. He influences him hugely.   Steve influences him hugely.    0</span><br><span class="line">4   When Tatyana reached the cabin, her mother was sleeping. She was careful not to disturb her, undressing and climbing back into her berth.   mother was careful not to disturb her, undressing and climbing back into her berth. 0</span><br><span class="line">5   George got free tickets to the play, but he gave them to Eric, because he was particularly eager to see it. George was particularly eager to see it.    0</span><br><span class="line">6   John was jogging through the park when he saw a man juggling watermelons. He was very impressive.   John was very impressive.   0</span><br><span class="line">7   I couldn<span class="string">&#x27;t put the pot on the shelf because it was too tall.    The pot was too tall.   1</span></span><br><span class="line"><span class="string">8   We had hoped to place copies of our newsletter on all the chairs in the auditorium, but there were simply not enough of them.   There were simply not enough copies of the newsletter.  1</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>(QNLI/RTE/WNLI) 中的 train.tsv 数据样式说明:</p>
+<ul>
+<li>train.tsv 中的数据内容共分为 4 列，第一列代表文本数据索引；第二列和第三列数据代表需要进行’是否蕴含’判定的句子对；第四列数据代表两个句子是否具有蕴含关系，0/not_entailment 代表不是蕴含关系，1/entailment 代表蕴含关系.</li>
+</ul>
+<hr>
+<p>QNLI 中的 test.tsv 数据样式:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">index   question    sentence</span><br><span class="line">0   What organization is devoted to Jihad against Israel?   For some decades prior to the First Palestine Intifada <span class="keyword">in</span> 1987, the Muslim Brotherhood <span class="keyword">in</span> Palestine took a <span class="string">&quot;quiescent&quot;</span> stance towards Israel, focusing on preaching, education and social services, and benefiting from Israel<span class="string">&#x27;s &quot;indulgence&quot; to build up a network of mosques and charitable organizations.</span></span><br><span class="line"><span class="string">1   In what century was the Yarrow-Schlick-Tweedy balancing system used?    In the late 19th century, the Yarrow-Schlick-Tweedy balancing &#x27;</span>system<span class="string">&#x27; was used on some marine triple expansion engines.</span></span><br><span class="line"><span class="string">2   The largest brand of what store in the UK is located in Kingston Park?  Close to Newcastle, the largest indoor shopping centre in Europe, the MetroCentre, is located in Gateshead.</span></span><br><span class="line"><span class="string">3   What does the IPCC rely on for research?    In principle, this means that any significant new evidence or events that change our understanding of climate science between this deadline and publication of an IPCC report cannot be included.</span></span><br><span class="line"><span class="string">4   What is the principle about relating spin and space variables?  Thus in the case of two fermions there is a strictly negative correlation between spatial and spin variables, whereas for two bosons (e.g. quanta of electromagnetic waves, photons) the correlation is strictly positive.</span></span><br><span class="line"><span class="string">5   Which network broadcasted Super Bowl 50 in the U.S.?    CBS broadcast Super Bowl 50 in the U.S., and charged an average of $5 million for a 30-second commercial during the game.</span></span><br><span class="line"><span class="string">6   What did the museum acquire from the Royal College of Science?  To link this to the rest of the museum, a new entrance building was constructed on the site of the former boiler house, the intended site of the Spiral, between 1978 and 1982.</span></span><br><span class="line"><span class="string">7   What is the name of the old north branch of the Rhine?  From Wijk bij Duurstede, the old north branch of the Rhine is called Kromme Rijn (&quot;Bent Rhine&quot;) past Utrecht, first Leidse Rijn (&quot;Rhine of Leiden&quot;) and then, Oude Rijn (&quot;Old Rhine&quot;).</span></span><br><span class="line"><span class="string">8   What was one of Luther&#x27;</span>s most personal writings?    It remains <span class="keyword">in</span> use today, along with Luther<span class="string">&#x27;s hymns and his translation of the Bible.</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>(RTE/WNLI) 中的 test.tsv 数据样式:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">index   sentence1   sentence2</span><br><span class="line">0   Maude and Dora had seen the trains rushing across the prairie, with long, rolling puffs of black smoke streaming back from the engine. Their roars and their wild, clear whistles could be heard from far away. Horses ran away when they came <span class="keyword">in</span> sight.    Horses ran away when Maude and Dora came <span class="keyword">in</span> sight.</span><br><span class="line">1   Maude and Dora had seen the trains rushing across the prairie, with long, rolling puffs of black smoke streaming back from the engine. Their roars and their wild, clear whistles could be heard from far away. Horses ran away when they came <span class="keyword">in</span> sight.    Horses ran away when the trains came <span class="keyword">in</span> sight.</span><br><span class="line">2   Maude and Dora had seen the trains rushing across the prairie, with long, rolling puffs of black smoke streaming back from the engine. Their roars and their wild, clear whistles could be heard from far away. Horses ran away when they came <span class="keyword">in</span> sight.    Horses ran away when the puffs came <span class="keyword">in</span> sight.</span><br><span class="line">3   Maude and Dora had seen the trains rushing across the prairie, with long, rolling puffs of black smoke streaming back from the engine. Their roars and their wild, clear whistles could be heard from far away. Horses ran away when they came <span class="keyword">in</span> sight.    Horses ran away when the roars came <span class="keyword">in</span> sight.</span><br><span class="line">4   Maude and Dora had seen the trains rushing across the prairie, with long, rolling puffs of black smoke streaming back from the engine. Their roars and their wild, clear whistles could be heard from far away. Horses ran away when they came <span class="keyword">in</span> sight.    Horses ran away when the whistles came <span class="keyword">in</span> sight.</span><br><span class="line">5   Maude and Dora had seen the trains rushing across the prairie, with long, rolling puffs of black smoke streaming back from the engine. Their roars and their wild, clear whistles could be heard from far away. Horses ran away when they came <span class="keyword">in</span> sight.    Horses ran away when the horses came <span class="keyword">in</span> sight.</span><br><span class="line">6   Maude and Dora had seen the trains rushing across the prairie, with long, rolling puffs of black smoke streaming back from the engine. Their roars and their wild, clear whistles could be heard from far away. Horses ran away when they saw a train coming.   Maude and Dora saw a train coming.</span><br><span class="line">7   Maude and Dora had seen the trains rushing across the prairie, with long, rolling puffs of black smoke streaming back from the engine. Their roars and their wild, clear whistles could be heard from far away. Horses ran away when they saw a train coming.   The trains saw a train coming.</span><br><span class="line">8   Maude and Dora had seen the trains rushing across the prairie, with long, rolling puffs of black smoke streaming back from the engine. Their roars and their wild, clear whistles could be heard from far away. Horses ran away when they saw a train coming.   The puffs saw a train coming.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>(QNLI/RTE/WNLI) 中的 test.tsv 数据样式说明:</p>
+<ul>
+<li>test.tsv 中的数据内容共分为 3 列，第一列数据代表每条文本数据的索引；第二列和第三列数据代表需要进行’是否蕴含’判定的句子对.</li>
+</ul>
+<hr>
+<p>(QNLI/RTE/WNLI) 数据集的任务类型:</p>
+<ul>
+<li>句子对二分类任务</li>
+<li>评估指标为: ACC</li>
+</ul>
+<hr>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年06月26日 10:41</p>
+        <p>原始链接： <a class="post-url" href="/2021/06/24/NLP%E4%B9%8B%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%A6%E8%A7%A3/" title="NLP之常用数据集详解">https://leezhao415.github.io/2021/06/24/NLP%E4%B9%8B%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%A6%E8%A7%A3/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/06/24/NLP%E4%B9%8B%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%A6%E8%A7%A3/&title=《NLP之常用数据集详解》 — 且听风吟，御剑于心！&pic=images/NLP之GLUE.jpeg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/06/24/NLP%E4%B9%8B%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%A6%E8%A7%A3/&title=《NLP之常用数据集详解》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/06/24/NLP%E4%B9%8B%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%A6%E8%A7%A3/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NLP之常用数据集详解》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/06/24/NLP%E4%B9%8B%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%A6%E8%A7%A3/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/06/24/NLP%E4%B9%8B%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%A6%E8%A7%A3/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/06/24/NLP%E4%B9%8B%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%A6%E8%A7%A3/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/NLP/" class="color4">NLP</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> GLUE 数据集合包含以下数据集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> GLUE 数据集合</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 1 CoLA 数据集</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 2 SST-2 数据集</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 3 MRPC 数据集</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 4 STS-B 数据集</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 5 QQP 数据集</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 6 (MNLI&#x2F;SNLI) 数据集</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 7 (QNLI&#x2F;RTE&#x2F;WNLI) 数据集</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/06/24/NLP%E4%B9%8B%E5%B8%B8%E7%94%A8%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          NLP之常用预训练模型详解
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E7%9B%AE%E6%A0%87%E5%88%86%E5%89%B2/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">计算机视觉之目标分割</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="NLP之常用数据集详解" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

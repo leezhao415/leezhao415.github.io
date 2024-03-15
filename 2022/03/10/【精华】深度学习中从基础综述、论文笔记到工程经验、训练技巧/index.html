@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【精华】深度学习中从基础综述、论文笔记到工程经验、训练技巧 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   经验 | 深度学习中从基础综述、论文笔记到工程经验、训练技巧  前言 一、基础 二、综述 三、Anchor Free 四、神经架构搜索 NAS 五、从头训练 六、展望未来 七、研究心得 八、工程经验 九、比赛技巧 十、论文笔记       经验 | 深度学习中从基础综述、论文笔记到工程经验、训练技巧  前言 依稀记得两年前刚开始接触深度学习和目标检测的时候，惊喜地发现知乎上有很多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【精华】深度学习中从基础综述、论文笔记到工程经验、训练技巧">
+<meta property="og:url" content="https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   经验 | 深度学习中从基础综述、论文笔记到工程经验、训练技巧  前言 一、基础 二、综述 三、Anchor Free 四、神经架构搜索 NAS 五、从头训练 六、展望未来 七、研究心得 八、工程经验 九、比赛技巧 十、论文笔记       经验 | 深度学习中从基础综述、论文笔记到工程经验、训练技巧  前言 依稀记得两年前刚开始接触深度学习和目标检测的时候，惊喜地发现知乎上有很多">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-10T13:36:09.000Z">
+<meta property="article:modified_time" content="2022-03-10T13:39:09.569Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-【精华】深度学习中从基础综述、论文笔记到工程经验、训练技巧" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      【精华】深度学习中从基础综述、论文笔记到工程经验、训练技巧
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-03-10
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E7%BB%8F%E9%AA%8C-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C-%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7">经验 | 深度学习中从基础综述、论文笔记到工程经验、训练技巧</a>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E4%B8%80-%E5%9F%BA%E7%A1%80">一、基础</a></li>
+<li><a href="#%E4%BA%8C-%E7%BB%BC%E8%BF%B0">二、综述</a></li>
+<li><a href="#%E4%B8%89-anchor-free">三、Anchor Free</a></li>
+<li><a href="#%E5%9B%9B-%E7%A5%9E%E7%BB%8F%E6%9E%B6%E6%9E%84%E6%90%9C%E7%B4%A2-nas">四、神经架构搜索 NAS</a></li>
+<li><a href="#%E4%BA%94-%E4%BB%8E%E5%A4%B4%E8%AE%AD%E7%BB%83">五、从头训练</a></li>
+<li><a href="#%E5%85%AD-%E5%B1%95%E6%9C%9B%E6%9C%AA%E6%9D%A5">六、展望未来</a></li>
+<li><a href="#%E4%B8%83-%E7%A0%94%E7%A9%B6%E5%BF%83%E5%BE%97">七、研究心得</a></li>
+<li><a href="#%E5%85%AB-%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C">八、工程经验</a></li>
+<li><a href="#%E4%B9%9D-%E6%AF%94%E8%B5%9B%E6%8A%80%E5%B7%A7">九、比赛技巧</a></li>
+<li><a href="#%E5%8D%81-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0">十、论文笔记</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h4><span id="经验-深度学习中从基础综述-论文笔记到工程经验-训练技巧"> 经验 | 深度学习中从基础综述、论文笔记到工程经验、训练技巧</span></h4>
+<h5><span id="前言"> 前言</span></h5>
+<p>依稀记得两年前刚开始接触深度学习和目标检测的时候，惊喜地发现知乎上有很多优质的目标检测相关文章，其中不少甚至是论文作者自己写的，极具食用价值。通过阅读这些文章，不仅加深了我对现有目标检测领域的理解，还让我深深体会到了同行们对科研的热爱，一句话概括：受益匪浅。因此我打算将自认为不错的知乎文章分享出来，希望能让对目标检测感兴趣的同学们更快地了解目标检测，认识在这个领域辛勤耕耘的大神们。开放的社区也一定会更加促进目标检测领域的研究！</p>
+<p><strong>需要说明的是本文并没有包揽所有目标检测文章，只有那些我读过并且觉得受益匪浅的文章</strong>。</p>
+<p>（以下排名不分先后，单纯按照我的收藏夹顺序…）</p>
+<h5><span id="一-基础"> 一、基础</span></h5>
+<p>【1】作为目标检测领域最经典的模型，Faster RCNN 的大名无人不知无人不晓。而全网把 Faster RCNN 讲的最透彻的，非此文莫属。仅凭一篇文章就让无数同学记住了白裳这个名字。强烈安利，新人必看。</p>
+<p>白裳：一文读懂 Faster RCNN<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31426458">https://zhuanlan.zhihu.com/p/31426458</a></p>
+<p>【2】作者为旷视科技南京研究院研究员，本文针对 mmAP 这一经典的目标检测评价指标详细解析其定义初衷和具体计算方式；下半篇深入分析 mmAP 的特点，并介绍针对这些特点现有方法如何 “hack” mmAP，最后将提出几个 mmAP 未考虑到的评测要素。</p>
+<p>zzzz1：浅析经典目标检测评价指标–mmAP（一）<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/55575423">https://zhuanlan.zhihu.com/p/55575423</a><br>
+zzzz1：浅析经典目标检测评价指标–mmAP（二）<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/56899189">https://zhuanlan.zhihu.com/p/56899189</a></p>
+<p>【3】作者为清华 CS 博士，本文从 Normalization 的背景讲起，用一个公式概括 Normalization 的基本思想与通用框架，将各大主流方法一一对号入座进行深入的对比分析，并从参数和数据的伸缩不变性的角度探讨 Normalization 有效的深层原因。</p>
+<p>Juliuszh：详解深度学习中的 Normalization，BN/LN/WN<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33173246">https://zhuanlan.zhihu.com/p/33173246</a></p>
+<p>【4】作者为百度 CV 工程师，本文详细阐述了目前分类损失函数为何多用交叉熵，而不是 KL 散度。</p>
+<p>KevinCK：交叉熵、相对熵（KL 散度）、JS 散度和 Wasserstein 距离（推土机距离）<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74075915">https://zhuanlan.zhihu.com/p/74075915</a></p>
+<p>【5】本文节选自王峰博士的毕业论文。Softmax 交叉熵损失函数应该是目前最常用的分类损失函数了，本文从最优化的角度来推导出 Softmax 交叉熵损失函数，极具启发性。</p>
+<p>王峰：从最优化的角度看待 Softmax 损失函数<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/45014864"> https://zhuanlan.zhihu.com/p/45014864</a></p>
+<p>【6】本文指出了学术论文与工业界需求偏差，分析了为什么有些模型 FLOPs 很低，但其推理速度却很慢。</p>
+<p>Phoenix Li：FLOPs 与模型推理速度<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/122943688"> https://zhuanlan.zhihu.com/p/122943688</a></p>
+<p>【7】空洞卷积 (Dilated/Atrous Convolution)，广泛应用于语义分割与目标检测等任务中。本文介绍了空洞卷积的作用，感受野的计算，以及其 gridding 问题。</p>
+<p>点点点：总结 - 空洞卷积 (Dilated/Atrous Convolution)<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/50369448">https://zhuanlan.zhihu.com/p/50369448</a></p>
+<p>【8】本文介绍了两大类处理目标多尺度的方法：图像金字塔和特征金字塔。</p>
+<p>点点点：<a target="_blank" rel="noopener" href="http://xn---CNNzhuanlan-894s872jojal55bf5jc8gyr5b8e4cw6kwgc590f.zhihu.com">总结 - CNN 中的目标多尺度处理 zhuanlan.zhihu.com</a><br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/70523190">https://zhuanlan.zhihu.com/p/70523190</a></p>
+<p>【9】本文指出对于 CNN 而言，深度之外，感受野以及该感受野上的通道数，真正决定了网络的性能。CNN 是一种利用卷积实现二维泛函空间到二维泛函空间映射的神经网络。</p>
+<p>akkaze - 郑安坤：CNN 真的需要下采样（上采样）吗？(原创)<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94477174">https://zhuanlan.zhihu.com/p/94477174</a></p>
+<p>【10】教你如何计算神经网络的复杂度</p>
+<p>Michael Yuan：卷积神经网络的复杂度分析<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31575074"> https://zhuanlan.zhihu.com/p/31575074</a></p>
+<p>【11】本文提炼了一个核心观点：目标检测中存在多种多样的不平衡，这些不平衡会影响最终的检测精度，而现有的许多研究可以归结为解决这些不平衡方法。将不平衡分为四类：类别不平衡，尺度不平衡；空间不平衡，多任务损失优化之间的不平衡。</p>
+<p>ChenJoya：Imbalance Problems in Object Detection: A Review<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/82371629">https://zhuanlan.zhihu.com/p/82371629</a></p>
+<p>【12】能否对卷积神经网络工作原理做一个直观的解释？<br>
+<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/39022858/answer/224446917">https://www.zhihu.com/question/39022858/answer/224446917</a></p>
+<p>【13】stone：令人拍案称奇的 Mask RCNN<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37998710">https://zhuanlan.zhihu.com/p/37998710</a></p>
+<p>【14】视频中的目标检测与图像中的目标检测具体有什么区别？<br>
+<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/52185576/answer/155679253">https://www.zhihu.com/question/52185576/answer/155679253</a></p>
+<p>【15】中国移不动：5 分钟理解 Focal Loss 与 GHM—— 解决样本不平衡利器<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/80594704"> https://zhuanlan.zhihu.com/p/80594704</a></p>
+<p>【16】燕小花：目标检测小 tricks–样本不均衡处理<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/60612064"> https://zhuanlan.zhihu.com/p/60612064</a></p>
+<p>【17】YaqiLYU：目标检测中的 Anchor<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/55824651">https://zhuanlan.zhihu.com/p/55824651</a></p>
+<p>【18】小小将：目标检测 | SSD 原理与实现<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33544892"> https://zhuanlan.zhihu.com/p/33544892</a></p>
+<p>【19】小小将：目标检测 | YOLO 原理与实现<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32525231"> https://zhuanlan.zhihu.com/p/32525231</a></p>
+<h5><span id="二-综述"> 二、综述</span></h5>
+<p>【1】当时带领我入坑的目标检测综述，记录了 2017.12.31 之前的所有目标检测算法。让当时的我了解到原来目前目标检测领域的深度学习方法主要分为两类：two stage 和 one stage。</p>
+<p>Ronald：综述：<a target="_blank" rel="noopener" href="http://xn--zhuanlan-oq0mi6bv85fifinxywtgk1cz1zk0bfzez65duzb517b.zhihu.com">深度学习时代的目标检测算法 zhuanlan.zhihu.com</a><br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33277354">https://zhuanlan.zhihu.com/p/33277354</a></p>
+<p>【2】俞刚博士在目标检测领域也是很出名的大佬，之前在旷视科技待了 5 年，任 Detection 组组长，19 年年底跳槽到腾讯 PCG 光影研究室。下面这篇文章是他在旷视的时候做的分享，讲述了什么是目标检测，其技术现状是什么；目前目标检测领域的五个挑战点及旷视分别给出的技术解决方案；最后展望了目标检测的未来，the devil is in the detail。</p>
+<p>旷视科技：R Talk | 旷视科技目标检测概述：Beyond RetinaNet and Mask R-CNN<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/38154492">https://zhuanlan.zhihu.com/p/38154492</a></p>
+<p>【3】一篇关于旋转目标检测论文的综述。在目前已知开源的数据集中，只有遥感和文字类数据集才涉及到旋转框的目标检测。（还有少量未开源的 logo / 商品数据集）</p>
+<p>qianlinjun：旋转目标 (遥感 / 文字) 检测方法整理（2017-19 年）<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/98703562">https://zhuanlan.zhihu.com/p/98703562</a></p>
+<p>【4】文本作者为国科大 CS 博士，目前就职于微软亚研院。知乎专栏致力于计算机视觉迁移学习相关研究。</p>
+<p>王晋东不在家：《迁移学习简明手册》发布啦！<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35352154">https://zhuanlan.zhihu.com/p/35352154</a></p>
+<p>【5】本文作者为旷视研究员。人脸检测是人脸识别的第一站，旷视的努力主要体现在紧紧围绕人脸检测领域顽固而核心的问题展开，攻坚克难，功夫花在刀刃上，比如人脸尺度的变动及遮挡等，实现速度与精度的双重涨点。</p>
+<p>王剑锋：人脸检测江湖的那些事儿 —— 从旷视说起<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/56619497"> https://zhuanlan.zhihu.com/p/56619497</a></p>
+<h5><span id="三-anchor-free"> 三、Anchor Free</span></h5>
+<p>【1】这篇文章主要讲一下有代表性的 Anchor-Free 模型 (包括 DenseBox、YOLO、CornerNet、ExtremeNet、FSAF、FCOS、FoveaBox)，分成 3 个部分来介绍 (早期探索、基于关键点、密集预测)。最后作者认为设计合适的 gt，是提升目标检测速度和精度的关键。</p>
+<p>陀飞轮：目标检测：Anchor-Free 时代<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62103812"> https://zhuanlan.zhihu.com/p/62103812</a></p>
+<p>【2】陈恺博士是大名鼎鼎的 mmdetection 的作者，他毕业于港中文，目前就职于商汤科技。本文揭示了几篇 anchor free 论文设计的异曲同工之妙。历史的车轮滚滚向前， 目标检测研究似乎也在不断轮回。</p>
+<p>陈恺：物体检测的轮回: anchor-based 与 anchor-free<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62372897">https://zhuanlan.zhihu.com/p/62372897</a></p>
+<p>【3】本文作者王乃岩博士为图森首席科学家。</p>
+<p>Naiyan Wang：聊聊 Anchor 的 &quot;前世今生&quot;（上）<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/63273342">https://zhuanlan.zhihu.com/p/63273342</a></p>
+<p>Naiyan Wang：聊聊 Anchor 的 &quot;前世今生&quot;（下）<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/68291859">https://zhuanlan.zhihu.com/p/68291859</a></p>
+<h5><span id="四-神经架构搜索-nas"> 四、神经架构搜索 NAS</span></h5>
+<p>CLAY：神经网络架构搜索 (NAS) 中的 milestones<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94252445">https://zhuanlan.zhihu.com/p/94252445</a></p>
+<p>如何评价 Google Brain 团队最新检测论文 SpineNet？<br>
+<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/360562458/answer/959198888">https://www.zhihu.com/question/360562458/answer/959198888</a></p>
+<h5><span id="五-从头训练"> 五、从头训练</span></h5>
+<p>【1】朱睿是 ScratchDet 的作者，目前在港中文读研，他开门见山地指出关于从 0 训练检测器的个人观点：1）需要能够稳定梯度的优化手段（比如 clip_gradient、BN、GN、SN、等等）；2）训练足够多的 epoch 与合适的学习率；3）对于小数据集，在训练时需要一定的数据增广。</p>
+<p>如何评价何恺明等 arxiv 新作 Rethinking ImageNet Pre-training？<br>
+<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/303234604/answer/537395863">https://www.zhihu.com/question/303234604/answer/537395863</a></p>
+<p>【2】沈志强是 DSOD 的作者，他在这篇文章中指出：起初从头训练之所以没有使用预训练模型效果好，更本质的一点是 batch size 太小（通常每张卡上 1 或 2）导致 BN 收敛不好。而最近出现的 GN，SN 缓解了这个问题。</p>
+<p>沈志强：Object Detection from Scratch - A Brief Review<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137410354">https://zhuanlan.zhihu.com/p/137410354</a></p>
+<h5><span id="六-展望未来"> 六、展望未来</span></h5>
+<p>【1】作者为北大数院助理教授，本文提出了未来深度学习领域值得 follow 的几个大方向：1）深入反思和理解深度学习的行为；2）新模型的构建；3）新的数据场景或数据结构中的深度学习模型；4）Learning-enhanced algorithms；5）对应用友好的模型和算法；6）和硬件结合的方向。</p>
+<p>时至今日，深度学习领域有哪些值得追踪的前沿研究？<br>
+<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/385326992/answer/1164005349">https://www.zhihu.com/question/385326992/answer/1164005349</a></p>
+<p>【2】作者为旷视科技实习生，本文认为：2017 年是顶峰，2018 年呈现饱和趋势，2019 年基本宣告了这个时代的落幕。如果真的选择做纯目标检测，必须去啃硬骨头了。</p>
+<p>想知道目标检测领域中还有哪些方向能做？<br>
+<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/351254577/answer/861582672">https://www.zhihu.com/question/351254577/answer/861582672</a></p>
+<h5><span id="七-研究心得"> 七、研究心得</span></h5>
+<p>zibuyu9：好的研究想法从哪里来<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/93765082"> https://zhuanlan.zhihu.com/p/93765082</a></p>
+<p>陈天奇：机器学习科研的十年<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74249758"> https://zhuanlan.zhihu.com/p/74249758</a></p>
+<p>Naiyan Wang：闲聊几句科研三观<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37042197"> https://zhuanlan.zhihu.com/p/37042197</a></p>
+<p>田渊栋：一些感悟<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26178137"> https://zhuanlan.zhihu.com/p/26178137</a></p>
+<h5><span id="八-工程经验"> 八、工程经验</span></h5>
+<p><em>ps. 因为我自己主要用 pytorch，主要都是关于 pytorch 的～</em></p>
+<p>巽二：简单两步加速 PyTorch 里的 Dataloader<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/68191407">https://zhuanlan.zhihu.com/p/68191407</a></p>
+<p>张皓：PyTorch Cookbook（常用代码段整理合集）<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59205847">https://zhuanlan.zhihu.com/p/59205847</a></p>
+<p>Pytorch 有什么节省显存的小技巧？<br>
+<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/274635237/answer/755102181">https://www.zhihu.com/question/274635237/answer/755102181</a></p>
+<p>lbin：pytorch + apex 生活变得更美好<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/57958993"> https://zhuanlan.zhihu.com/p/57958993</a></p>
+<p>Jack Stark：[深度学习框架] PyTorch 常用代码段<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/104019160"> https://zhuanlan.zhihu.com/p/104019160</a></p>
+<p>商汤科技 SenseTime：模型量化了解一下？<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/132561405">https://zhuanlan.zhihu.com/p/132561405</a></p>
+<p>如何评价商汤开源的 mm-detection 检测库？<br>
+<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/294578141/answer/509367634">https://www.zhihu.com/question/294578141/answer/509367634</a></p>
+<h5><span id="九-比赛技巧"> 九、比赛技巧</span></h5>
+<p>Caleb Ge：Crowdhuman 人体检测比赛第一名经验总结<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/68677880"> https://zhuanlan.zhihu.com/p/68677880</a></p>
+<p>AI 科技大本营：Hinton 等人最新研究：大幅提升模型准确率，标签平滑技术到底怎么用？<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72685158">https://zhuanlan.zhihu.com/p/72685158</a></p>
+<p>商汤科技 SenseTime：CVPR 2020 丨商汤 TSD 目标检测算法获得 Open Images 冠军<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/131576433"> https://zhuanlan.zhihu.com/p/131576433</a></p>
+<h5><span id="十-论文笔记"> 十、论文笔记</span></h5>
+<h6><span id="2020"> 2020</span></h6>
+<p>Amusi：大神接棒，YOLOv4 来了！<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/135909702">https://zhuanlan.zhihu.com/p/135909702</a></p>
+<p>Amusi：ResNeSt 实现有误？<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/135220104">https://zhuanlan.zhihu.com/p/135220104</a></p>
+<p>Hassassin：一行代码提升迁移性能 | CVPR2020 Oral<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/121507249">https://zhuanlan.zhihu.com/p/121507249</a></p>
+<p>mileistone：也谈阿里达摩院的频域学习论文<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115584408"> https://zhuanlan.zhihu.com/p/115584408</a>)</p>
+<h6><span id="2019"> 2019</span></h6>
+<p>陈恺：Guided Anchoring: 物体检测器也能自己学 Anchor<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/55854246">https://zhuanlan.zhihu.com/p/55854246</a>)</p>
+<p>pprp：打通多个视觉任务的全能 Backbone:HRNet<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/134253318">https://zhuanlan.zhihu.com/p/134253318</a></p>
+<p>陀飞轮：GCNet：当 Non-local 遇见 SENet<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/64988633">https://zhuanlan.zhihu.com/p/64988633</a>)</p>
+<p>OLDPAN：扔掉 anchor！真正的 CenterNet——Objects as Points 论文解读<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/66048276"> https://zhuanlan.zhihu.com/p/66048276</a></p>
+<p>TeddyZhang：目标检测：FCOS（2019）<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62869137">https://zhuanlan.zhihu.com/p/62869137</a></p>
+<p>如何评价 zhangshifeng 最新的讨论 anchor based/free 的论文？<br>
+<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/359595879/answer/927861326">https://www.zhihu.com/question/359595879/answer/927861326</a></p>
+<p>如何看待 CVPR2019 论文 Libra R-CNN（一个全面平衡的目标检测器）？<br>
+<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/319458937/answer/647082241">https://www.zhihu.com/question/319458937/answer/647082241</a></p>
+<p>Naiyan Wang：TridentNet：处理目标检测中尺度变化新思路<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/54334986"> https://zhuanlan.zhihu.com/p/54334986</a>)</p>
+<h6><span id="2018"> 2018</span></h6>
+<p>Naiyan Wang：CVPR18 Detection 文章选介（上）<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35882192">https://zhuanlan.zhihu.com/p/35882192</a></p>
+<p>Naiyan Wang：CVPR18 Detection 文章选介（下）<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36431183">https://zhuanlan.zhihu.com/p/36431183</a></p>
+<p>商汤科技 SenseTime：商汤科技 44 篇论文入选 CVPR 2018<br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36688720">https://zhuanlan.zhihu.com/p/36688720</a>)</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2022年03月10日 21:39</p>
+        <p>原始链接： <a class="post-url" href="/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7/" title="【精华】深度学习中从基础综述、论文笔记到工程经验、训练技巧">https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7/&title=《【精华】深度学习中从基础综述、论文笔记到工程经验、训练技巧》 — 且听风吟，御剑于心！&pic=images/训练技巧.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7/&title=《【精华】深度学习中从基础综述、论文笔记到工程经验、训练技巧》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【精华】深度学习中从基础综述、论文笔记到工程经验、训练技巧》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/深度学习/" class="color5">深度学习</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 经验 | 深度学习中从基础综述、论文笔记到工程经验、训练技巧</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 前言</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 一、基础</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 二、综述</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 三、Anchor Free</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 四、神经架构搜索 NAS</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 五、从头训练</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 六、展望未来</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 七、研究心得</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 八、工程经验</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 九、比赛技巧</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 十、论文笔记</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2020</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2019</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2018</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2022/03/10/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85%E7%B3%BB%E7%BB%9F%E6%96%B9%E6%A1%88/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          智能家居系统方案
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91VSLAM%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【精华】VSLAM技术综述</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="【精华】深度学习中从基础综述、论文笔记到工程经验、训练技巧" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

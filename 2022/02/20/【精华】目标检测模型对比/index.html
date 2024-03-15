@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【精华】目标检测模型对比 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   YOLO fastest&#x2F;YOLOX&#x2F;YOLO fastestv2&#x2F;Nanodet&#x2F;Nanodet Plus 模型对比  （1）网络结构 （2）模型结构差异（优化模块） （3）模型性能 （4）关键概念解析       YOLO fastest&#x2F;YOLOX&#x2F;YOLO fastestv2&#x2F;Nanodet&#x2F;Nanodet Plus 模型对比  YOLO fastest  Paper G">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【精华】目标检测模型对比">
+<meta property="og:url" content="https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   YOLO fastest&#x2F;YOLOX&#x2F;YOLO fastestv2&#x2F;Nanodet&#x2F;Nanodet Plus 模型对比  （1）网络结构 （2）模型结构差异（优化模块） （3）模型性能 （4）关键概念解析       YOLO fastest&#x2F;YOLOX&#x2F;YOLO fastestv2&#x2F;Nanodet&#x2F;Nanodet Plus 模型对比  YOLO fastest  Paper G">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ai-studio-static-online.cdn.bcebos.com/7f27fb556eef47c9bd96c2122172eba4c96598de8c39461d8d0e605c6c982374">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210720132240327.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FtdXNpMTk5NA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/559dbac4b6c75714bc82f5feca2c3342.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/9715e24503e3868f971fbfd722b29edf.png">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-b1116f4df5f4e4e79e294b3ccaf294ee_1440w.jpg?source=172ae18b">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/ab1c5febbde9c97fce8d1ca414245c04.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/a1f20aaf1f5618bf51359ec171a9b3ac.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/8108380145fa6e6c367bcf5678a41508.png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Qc2hvOWRtN29ESGRvYmljdXE3QWJRaWMwWjJ1NWlhWkdpYUxpYlJFN2N4Y0FpYXZpYkpDOVQwZ01OTmlhRFhCVWFiSkpDaDNWQmZiZHliTWJUMWhGMzZpYThUcHZpYlEvNjQw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9HVDFDVE9wVHdJSUJsRnNyOVZPN1ZTbFpOdlNEQjMyRFRKWmxrRzYxaWFZYUtCeEh0eUtVaGxyZ2hZTXR0UlBhSTJIMlNOZ05xa21DbXFDM1JYcnExeWcvNjQw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9HVDFDVE9wVHdJSUJsRnNyOVZPN1ZTbFpOdlNEQjMyRFRKWmxrRzYxaWFZYUtCeEh0eUtVaGxyZ2hZTXR0UlBhSTJIMlNOZ05xa21DbXFDM1JYcnExeWcvNjQw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9ON0hTTU96RXJaaWIyckM1TVZIQ2FicWo0aWNzZDhWWHBIRWRGZ2ljTE1lTFljaWNidWliT0NtSjZJeFlmRHBWVzZya1RVQVlKRE9YUjkzRUpiaWIwaWNpY1AwaWFVZy82NDA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9qbHRrYzdCNmo5WW9QY3RYMWdYZHZuRHdsRTlocW5zTmlicFNQb2ljeXV4aWFndnREb0owaWJBYXdLSjkxd05pYkJZd3M2NGdWWElIRE42V0w1V0tWOUxjeU53LzY0MA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9RaWNoRGlhYmRReXNWaWJlaWNYUGlhbzBzNWxyYUNCbFlHT1kyQ3NsR25xMUJSVjFEeDlFTFBheGVpYUx2T3JpY0QzeFIwbFFjcGlibDZPZVB3NEo0RXlaQkpQTFRBLzY0MA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Qc2hvOWRtN29ESGRvYmljdXE3QWJRaWMwWjJ1NWlhWkdpYUwzcU1xVzU5YUlyU2QwZnVFMW5ZdE4zZThnVThZRWdOZHNaeUJkUVBBNHhPQm1pYXRUWmN1ekh3LzY0MA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9MVGJCQjVDcDVzdVdkVWE5OTFuUUwwMGljaWNFaWI0aG5GU1VXcVU4UnRnV3RpY29IN2w5dXE3WmlhaWNBZ1N5dmljU0RWYzFjaWJwZ0IzTzRXRUN6dWs1V3g3VXF3LzY0MA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy8zWldlZ1BDSFpjSXRTVkpNazJ3aWEzalhpY1FoM3RpYWN1ZXFjM2ljZjlpYVpTeWhvc0x4YlVBZEJXenpYNERpYzVhV1Axckh5VmlhUll1cmF6NUxPZWxkd3BHcmcvNjQw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9PUGd3ZUdxaWNDdmdpYk4waWJYVmliZnE2S1ZQdWRieExGcllXRndpYWliaWFpYVZUbloyTUl4MXdHTU5NaWF3c0k2S2dHd2JvSW92NkV6d3psWHV5ZE5pYTRmMkVFV3cvNjQw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9aSnJ3VGNBZXp3QWhPMDg3MWtkOWljOW1pYktzbnJaUUE0d1gxVEFYVUVxNzIyYlFUVU5OTm5EZDFpYm40empxcmJXRjdFc3Z1MG03SkNsRzVuTnFyd2pZUS82NDA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy85dUROQUpEMzd5Q0F4VXpOcHRKMTdCVXVpY0hpYmZ1Q1c0SW5zMnVNbWFiNk9WWk9zdERpYjQzeWliYlFCRThvdGVGRUo1SXR3dzZZbjR0d3V6Z0hTcVI0RkEvNjQw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy80eGNFdktvRGg5aWJpY3RnUjVWdjNvS3NPTE1LUER4azRremJld0RqNTZ2YUNyUHlaMEtzaWJKWW5LdjFJaWF3MzR6UjA0dzlpYkEwM1RiTnk0dGZpY2JpYnMzaWFnLzY0MA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy8xd1duMk5tM0RVMG1wem5jaWEwclpQdUZxbTliU2JBaWJQZTFpYmlhUm92UUt6SXU1WlVvVHJnVGRNYnpuOVRWcE9VUm91V2ppY2sxNmtZRFZlTG5tNG5hS3BnLzY0MA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9hSEtKUFdhNUhvUlo3eHBqbnhHaWIzcjJqclhQV3gwQkJvNDVhcDN5V25OQ2VOdUh0aG1pYzlYOVI5dmx3MUZpYmliWkFEV0cxbHVEV1JndzBET2hycDZaV3cvNjQw?x-oss-process=image/format,png">
+<meta property="article:published_time" content="2022-02-20T15:08:01.000Z">
+<meta property="article:modified_time" content="2022-02-21T13:57:59.929Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="深度模型（目标检测）">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ai-studio-static-online.cdn.bcebos.com/7f27fb556eef47c9bd96c2122172eba4c96598de8c39461d8d0e605c6c982374">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-【精华】目标检测模型对比" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      【精华】目标检测模型对比
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-02-20
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#yolo-fastestyoloxyolo-fastestv2nanodetnanodet-plus%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94">YOLO fastest/YOLOX/YOLO fastestv2/Nanodet/Nanodet Plus 模型对比</a>
+<ul>
+<li><a href="#1%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84">（1）网络结构</a></li>
+<li><a href="#2%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E5%B7%AE%E5%BC%82%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9D%97">（2）模型结构差异（优化模块）</a></li>
+<li><a href="#3%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD">（3）模型性能</a></li>
+<li><a href="#4%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90">（4）关键概念解析</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h4><span id="yolo-fastestyoloxyolo-fastestv2nanodetnanodet-plus-模型对比"> YOLO fastest/YOLOX/YOLO fastestv2/Nanodet/Nanodet Plus 模型对比</span></h4>
+<ul>
+<li><strong>YOLO fastest</strong>
+<ul>
+<li>Paper</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dog-qiuqiu/Yolo-Fastest">Github 库</a></li>
+</ul>
+</li>
+<li><strong>YOLOX-Nano</strong>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2107.08430">Paper</a></li>
+<li>Github 库</li>
+</ul>
+</li>
+<li><strong>YOLO fastestv2</strong>
+<ul>
+<li>Paper</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/dog-qiuqiu/Yolo-FastestV2">Github 库</a></li>
+</ul>
+</li>
+<li><strong>NanoDet</strong>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2006.04388.pdf">Paper</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/RangiLyu/nanodet">Github 库</a></li>
+</ul>
+</li>
+<li><strong>NanoDet Plus</strong>
+<ul>
+<li>Paper</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/RangiLyu/nanodet">Github 库</a></li>
+</ul>
+</li>
+</ul>
+<h5><span id="1网络结构"> （1）网络结构</span></h5>
+<h6><span id="1gt-yolo-fastest"> 1&gt; YOLO fastest</span></h6>
+<center><img src="https://ai-studio-static-online.cdn.bcebos.com/7f27fb556eef47c9bd96c2122172eba4c96598de8c39461d8d0e605c6c982374" alt="img" style="zoom: 33%;"></center>
+<h6><span id="2gt-yolox-nano"> 2&gt; YOLOX-Nano</span></h6>
+<center><img src="https://img-blog.csdnimg.cn/20210720132240327.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FtdXNpMTk5NA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom: 67%;"></center>
+<h6><span id="3gt-yolo-fastestv2"> 3&gt; YOLO fastestv2</span></h6>
+<center><img src="https://img-blog.csdnimg.cn/img_convert/559dbac4b6c75714bc82f5feca2c3342.png" alt="检测头" style="zoom:110%;"></center>
+<h6><span id="4gt-nanodet"> 4&gt; NanoDet</span></h6>
+<center><img src="https://img-blog.csdnimg.cn/img_convert/9715e24503e3868f971fbfd722b29edf.png" alt="img" style="zoom: 120%;"></center>
+<center><img src="https://pic2.zhimg.com/v2-b1116f4df5f4e4e79e294b3ccaf294ee_1440w.jpg?source=172ae18b" alt="大白话 Generalized Focal Loss" style="zoom:70%;"></center>
+<h6><span id="5gt-nanodet-plus"> 5&gt; NanoDet Plus</span></h6>
+<center><img src="https://img-blog.csdnimg.cn/img_convert/ab1c5febbde9c97fce8d1ca414245c04.png" alt="ab1c5febbde9c97fce8d1ca414245c04.png" style="zoom:80%;"></center>
+<h5><span id="2模型结构差异优化模块"> （2）模型结构差异（优化模块）</span></h5>
+<h6><span id="1gt-yolo-fastest"> 1&gt; YOLO fastest</span></h6>
+<ul>
+<li>
+<p><code>Backbone</code></p>
+<p>EfficientNet-lite</p>
+</li>
+<li>
+<p>注重单核的实时推理性能，在满足实时的条件下的低 CPU 占用，不单单能在手机移动端达到实时，还要在 RK3399，树莓派 4 以及多种 Cortex-A53 低成本低功耗设备上满足一定实时性，毕竟这些嵌入式的设备相比与移动端手机要弱很多，但是使用更加广泛，成本更加低廉。</p>
+</li>
+</ul>
+<h6><span id="2gt-yolox-nano"> 2&gt; YOLOX-Nano</span></h6>
+<ul>
+<li><code>Backbone</code> ：YOLOv3（Darknet-53）</li>
+<li><code>Head</code> ：使用解耦合检测头</li>
+<li><code>标签匹配策略</code> ：SimOTA</li>
+</ul>
+<h6><span id="3gt-yolo-fastestv2"> 3&gt; YOLO fastestv2</span></h6>
+<ul>
+<li>
+<p><code>Backbone</code></p>
+<p>Shufflenetv2（相比于 EfficientNet-lite，访存减少了，更加轻量）</p>
+</li>
+<li>
+<p>Anchor 匹配机制：参考 YOLOv5</p>
+</li>
+<li>
+<p><code>Head</code> ：参考 YOLOX，使用解耦合检测头。</p>
+<ul>
+<li>检测框的回归、前景背景的分类、检测类别的分类</li>
+<li>前景背景的分类以及检测类别的分类采用同一网络分支参数共享</li>
+<li>检测类别分类的 loss 由 sigmoid 替换为 softmax</li>
+<li>输出尺度由 3 个变为 2 个：（11x11、22x22、44x44）变为（11x11、22x22）</li>
+</ul>
+</li>
+</ul>
+<h6><span id="4gt-nanodet"> 4&gt; NanoDet</span></h6>
+<ul>
+<li>
+<p><code>项目思路</code></p>
+<ul>
+<li>大模型发展历程：Two stage 到 One stage，Anchor-base 到 Anchor-free，Transformer</li>
+<li>移动端目标检测：YOLO 系列和 SSD 等 Anchor-base 模型</li>
+<li>NanoDet 项目：希望能够开源一个移动端实时的 Anchor-free 的检测模型。能够提供不亚于 YOLO 系列的性能，而且同样方便训练和移植。
+<ul>
+<li>思路一：将 FCOS 轻量化 &lt;原因：FCOS 的 centerness 分支在轻量化模型上很难收敛&gt;（效果不佳，不如 MobileNet+YOLOv3）</li>
+<li>思路二：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/147691786">GFocalLoss</a> 完美去掉了 FCOS 系列的 centerness 分支，省去了这一分支上的大量卷积，减少了检测头的计算开销，非常适合移动端的轻量化部署。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Backbone</code> ：</p>
+<ul>
+<li>
+<p>尝试了 Mbilenet 系列、GhostNet、Shufflenet、EfficientNet</p>
+</li>
+<li>
+<p>使用 <code>Shufflenet v2</code> ：权衡参数量、计算量以及权重大小，该模型在相似精度下体积最小，而且对移动端 CPU 推理比较友好。</p>
+<p>使用 Shufflenetv2 1.0x 作为 Backbone，去掉最后一层卷积，并且抽取 8、16、32 倍下采样的特征输入进 PAN 做多尺度的特征融合。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Neck</code> ：PAFPN</p>
+<ul>
+<li>BiFPN：EfficientDet  （性能强大，但堆叠的特征融合操作势必会带来运行速度的降低）</li>
+<li>PAN：YOLOv4/YOLOv5  （只有自下而上和自上而下的两条通路，非常简洁，是轻量化模型特征融合的不二选择）</li>
+<li>BalancedFPN</li>
+<li>PAFPN
+<ul>
+<li>完全去掉 PAN 中的所有卷积，只保留从骨干网络特征提取后的 1x1 卷积来进行特征通道维度的对齐，上采样和下采样均使用插值来完成。</li>
+<li>与 yolo 使用的 concatenate 操作不同，将多尺度的 Feature Map 直接相加，使得整个特征融合模块的计算量变得非常非常小。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Head</code></p>
+<ul>
+<li>
+<p>使用 2 个深度可分离卷积模块同时预测分类和回归，并将卷积堆叠的数量从 4 个减少到 2 组，通道由 256 压缩到 96 维（大模型中使用 4 组 256channel 的 3x3 卷积预测分类和回归）</p>
+</li>
+<li>
+<p>检测头不共享权重：取消 FCOS 系列模型的共享权重策略，由于移动端模型推理由 CPU 进行计算，共享权重并不会对推理过程进行加速，而且在检测头非常轻量的情况下，共享权重使得其检测能力进一步下降，因此还是选择每一层特征使用一组卷积比较合适。</p>
+</li>
+<li>
+<p>用 BN 代替 GN (Group Normalization)：在推理时能够将其归一化的参数直接融合进卷积中，节省归一化时间。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>标签匹配策略</code></p>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1912.02424">ATSS</a>：根据 IOU 的均值和方差为每一层 feature map 动态选取匹配样本（本质上依然时基于先验信息（中心点和 Anchor）的静态匹配策略）</p>
+<p>在每个 FPN 层选取离 gt 框中心点最近的 k 个 anchor，之后对所有选取的 anchor 与 gt 计算 IOU，同时计算 IOU 均值和方差，最后保留 IOU 大于均值加方差的并且中心点在 gt 之内的 anchor 作为正样本。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>训练策略</code></p>
+<ul>
+<li>SGD+momentum+MutiStepLr</li>
+</ul>
+</li>
+</ul>
+<h6><span id="5gt-nanodet-plus"> 5&gt; NanoDet Plus</span></h6>
+<ul>
+<li>
+<p><code>Backbone</code></p>
+<ul>
+<li>FBNetv5/PicoDet：ESNet（使用 NAS 搜索，在约束了计算量参数量和精度的搜索空间内搜出强的 Backbone）</li>
+<li>NanoDet Plus：沿用 NanoDet 的 Backbone，后期可修改为 ESNet。（算力霸权下妥协）</li>
+</ul>
+</li>
+<li>
+<p><code>Neck</code></p>
+<ul>
+<li>YOLOX/PicoDet/YOLOv5：CSP-PAN</li>
+<li>NanoDet： <code>Ghost-PAN</code> （GhostNet 中的 GhostBlock（1x1 和 3x3 的 depthwise））(<strong>mAP 提升 2%</strong>)</li>
+</ul>
+</li>
+<li>
+<p><code>Head</code></p>
+<ul>
+<li>ThunderNet：轻量级模型中将深度可分离卷积的 depthwise 部分从 3x3 改成 5x5（增加较少参数量的同时提升检测器感受野并提升性能）</li>
+<li>PicoDet：在原本 NanoDet 的 3 层特征基础上增加一层下采样特征</li>
+<li>NanoDet Plus：沿用通用技巧，将检测头的 depthwise 卷积的卷积核大小改成 5x5，并在 NanoDet 的 3 层特征基础上增加一层下采样特征。（<strong>mAP 提升 0.7%</strong>）</li>
+</ul>
+</li>
+<li>
+<p><code>标签匹配策略</code> （使用 AGM（Assign Guidance Module）并配合动态的软标签分配策略 DSLA（ynamic Soft Label Assigner）来解决轻量级模型中的最优标签匹配问题）(<strong>mAP 提升 2.1%</strong>)</p>
+<p>使用 AGM 预测的分类概率和检测框会送入 DSLA 模块计算 Matching Cost。Cost 函数由三部分组成：classification cost，regression cost 以及 distance cost：</p>
+<center><img src="https://img-blog.csdnimg.cn/img_convert/a1f20aaf1f5618bf51359ec171a9b3ac.png" alt="a1f20aaf1f5618bf51359ec171a9b3ac.png" style="zoom: 75%;"></center>
+<p>最终的代价函数就是这样：</p>
+<center><img src="https://img-blog.csdnimg.cn/img_convert/8108380145fa6e6c367bcf5678a41508.png" alt="8108380145fa6e6c367bcf5678a41508.png" style="zoom:80%;"></center>
+</li>
+<li>
+<p><code>训练策略</code></p>
+<ul>
+<li>优化器：SGD+momentum 改成 AdamW（对超参数更不敏感且收敛更快）</li>
+<li>学习率衰减策略：从 MultiStepLr 改成 CosineAnnealingLR，反向传播计算梯度时加了梯度裁剪。</li>
+<li>其他：增加模型平滑策略 EMA</li>
+</ul>
+</li>
+<li>
+<p><code>部署优化</code></p>
+<ul>
+<li>NanoDet：使用多尺度检测头，每层都有分类和回归两个输出，加上有三个尺度的特征图，共有 6 个输出。（对不熟悉模型结构的人不友好）</li>
+<li>NanoDet Plus：将模型输出合为一个，所有的输出 Tensor 都提前 reshape，然后 concatenate 到一起。（略微影响后处理速度，但模型友好）</li>
+</ul>
+</li>
+</ul>
+<h5><span id="3模型性能"> （3）模型性能</span></h5>
+<h6><span id="yolo-fastest-官方库"> YOLO fastest 官方库</span></h6>
+<table>
+<thead>
+<tr>
+<th>Network</th>
+<th>COCO mAP(0.5)</th>
+<th>Resolution</th>
+<th>Run Time(Ncnn 4xCore)</th>
+<th>Run Time(Ncnn 1xCore)</th>
+<th>FLOPS</th>
+<th>Params</th>
+<th>Weight size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/dog-qiuqiu/Yolo-Fastest/tree/master/ModelZoo/yolo-fastest-1.1_coco">Yolo-Fastest-1.1</a></td>
+<td>24.40 %</td>
+<td>320X320</td>
+<td>5.59 ms</td>
+<td>7.52 ms</td>
+<td>0.252BFlops</td>
+<td>0.35M</td>
+<td>1.4M</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/dog-qiuqiu/Yolo-Fastest/tree/master/ModelZoo/yolo-fastest-1.1_coco">Yolo-Fastest-1.1-xl</a></td>
+<td>34.33 %</td>
+<td>320X320</td>
+<td>9.27ms</td>
+<td>15.72ms</td>
+<td>0.725BFlops</td>
+<td>0.925M</td>
+<td>3.7M</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-tiny-prn.cfg">Yolov3-Tiny-Prn</a></td>
+<td>33.1%</td>
+<td>416X416</td>
+<td>%ms</td>
+<td>%ms</td>
+<td>3.5BFlops</td>
+<td>4.7M</td>
+<td>18.8M</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg">Yolov4-Tiny</a></td>
+<td>40.2%</td>
+<td>416X416</td>
+<td>23.67ms</td>
+<td>40.14ms</td>
+<td>6.9 BFlops</td>
+<td>5.77M</td>
+<td>23.1M</td>
+</tr>
+</tbody>
+</table>
+<h6><span id="yolo-fastest-11-multi-platform-benchmark"> Yolo-Fastest-1.1 Multi-platform benchmark</span></h6>
+<table>
+<thead>
+<tr>
+<th>Equipment</th>
+<th>Computing backend</th>
+<th>System</th>
+<th>Framework</th>
+<th>Run time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mi 11</td>
+<td>Snapdragon 888</td>
+<td>Android(arm64)</td>
+<td>ncnn</td>
+<td>5.59ms</td>
+</tr>
+<tr>
+<td>Mate 30</td>
+<td>Kirin 990</td>
+<td>Android(arm64)</td>
+<td>ncnn</td>
+<td>6.12ms</td>
+</tr>
+<tr>
+<td>Meizu 16</td>
+<td>Snapdragon 845</td>
+<td>Android(arm64)</td>
+<td>ncnn</td>
+<td>7.72ms</td>
+</tr>
+<tr>
+<td>Development board</td>
+<td>Snapdragon 835(Monkey version)</td>
+<td>Android(arm64)</td>
+<td>ncnn</td>
+<td>20.52ms</td>
+</tr>
+<tr>
+<td>Development board</td>
+<td>RK3399</td>
+<td>Linux(arm64)</td>
+<td>ncnn</td>
+<td>35.04ms</td>
+</tr>
+<tr>
+<td>Raspberrypi 3B</td>
+<td>4xCortex-A53</td>
+<td>Linux(arm64)</td>
+<td>ncnn</td>
+<td>62.31ms</td>
+</tr>
+<tr>
+<td>Orangepi Zero Lts</td>
+<td>H2+ 4xCortex-A7</td>
+<td>Linux(armv7)</td>
+<td>ncnn</td>
+<td>550ms</td>
+</tr>
+<tr>
+<td>Nvidia</td>
+<td>Gtx 1050ti</td>
+<td>Ubuntu(x64)</td>
+<td>darknet</td>
+<td>4.73ms</td>
+</tr>
+<tr>
+<td>Intel</td>
+<td>i7-8700</td>
+<td>Ubuntu(x64)</td>
+<td>ncnn</td>
+<td>5.78ms</td>
+</tr>
+</tbody>
+</table>
+<p>Pascal VOC performance index comparison</p>
+<table>
+<thead>
+<tr>
+<th>Network</th>
+<th>Model Size</th>
+<th>mAP(VOC 2007)</th>
+<th>FLOPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tiny YOLOv2</td>
+<td>60.5MB</td>
+<td>57.1%</td>
+<td>6.97BFlops</td>
+</tr>
+<tr>
+<td>Tiny YOLOv3</td>
+<td>33.4MB</td>
+<td>58.4%</td>
+<td>5.52BFlops</td>
+</tr>
+<tr>
+<td>YOLO Nano</td>
+<td>4.0MB</td>
+<td>69.1%</td>
+<td>4.51Bflops</td>
+</tr>
+<tr>
+<td>MobileNetv2-SSD-Lite</td>
+<td>13.8MB</td>
+<td>68.6%</td>
+<td>&amp;Bflops</td>
+</tr>
+<tr>
+<td>MobileNetV2-YOLOv3</td>
+<td>11.52MB</td>
+<td>70.20%</td>
+<td>2.02Bflos</td>
+</tr>
+<tr>
+<td>Pelee-SSD</td>
+<td>21.68MB</td>
+<td>70.09%</td>
+<td>2.40Bflos</td>
+</tr>
+<tr>
+<td><em><strong>Yolo Fastest</strong></em></td>
+<td>1.3MB</td>
+<td>61.02%</td>
+<td>0.23Bflops</td>
+</tr>
+<tr>
+<td><em><strong>Yolo Fastest-XL</strong></em></td>
+<td>3.5MB</td>
+<td>69.43%</td>
+<td>0.70Bflops</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/dog-qiuqiu/MobileNet-Yolo#mobilenetv2-yolov3-litenano-darknet"><em><strong>MobileNetv2-YOLOv3-Lite</strong></em></a></td>
+<td>8.0MB</td>
+<td>73.26%</td>
+<td>1.80Bflops</td>
+</tr>
+</tbody>
+</table>
+<h6><span id="yolox-nano-官方库"> YOLOX-Nano 官方库</span></h6>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>size</th>
+<th>mAPval 0.5:0.95</th>
+<th>Params (M)</th>
+<th>FLOPs (G)</th>
+<th>weights</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/Megvii-BaseDetection/YOLOX/blob/main/exps/default/nano.py">YOLOX-Nano</a></td>
+<td>416</td>
+<td>25.8</td>
+<td>0.91</td>
+<td>1.08</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_nano.pth">github</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/Megvii-BaseDetection/YOLOX/blob/main/exps/default/yolox_tiny.py">YOLOX-Tiny</a></td>
+<td>416</td>
+<td>32.8</td>
+<td>5.06</td>
+<td>6.45</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_tiny.pth">github</a></td>
+</tr>
+</tbody>
+</table>
+<h6><span id="nanodet-官方库"> NanoDet 官方库</span></h6>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Resolution</th>
+<th>mAPval 0.5:0.95</th>
+<th>CPU Latency (i7-8700)</th>
+<th>ARM Latency (4xA76)</th>
+<th>FLOPS</th>
+<th>Params</th>
+<th>Model Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NanoDet-m</td>
+<td>320*320</td>
+<td>20.6</td>
+<td><strong>4.98ms</strong></td>
+<td><strong>10.23ms</strong></td>
+<td><strong>0.72G</strong></td>
+<td><strong>0.95M</strong></td>
+<td><strong>1.8MB(FP16)</strong> | <strong>980KB(INT8)</strong></td>
+</tr>
+<tr>
+<td>NanoDet-m</td>
+<td>416*416</td>
+<td>21.7</td>
+<td></td>
+<td><strong>16.44ms</strong></td>
+<td><strong>1.2G</strong></td>
+<td><strong>0.95M</strong></td>
+<td><strong>1.8MB(FP16)</strong> | <strong>980KB(INT8)</strong></td>
+</tr>
+<tr>
+<td><strong>NanoDet-Plus-m</strong></td>
+<td>320*320</td>
+<td><strong>27.0</strong></td>
+<td><strong>5.25ms</strong></td>
+<td><strong>11.97ms</strong></td>
+<td><strong>0.9G</strong></td>
+<td><strong>1.17M</strong></td>
+<td><strong>2.3MB(FP16)</strong> | <strong>1.2MB(INT8)</strong></td>
+</tr>
+<tr>
+<td><strong>NanoDet-Plus-m</strong></td>
+<td>416*416</td>
+<td><strong>30.4</strong></td>
+<td><strong>8.32ms</strong></td>
+<td><strong>19.77ms</strong></td>
+<td><strong>1.52G</strong></td>
+<td><strong>1.17M</strong></td>
+<td><strong>2.3MB(FP16)</strong> | <strong>1.2MB(INT8)</strong></td>
+</tr>
+<tr>
+<td><strong>NanoDet-Plus-m-1.5x</strong></td>
+<td>320*320</td>
+<td><strong>29.9</strong></td>
+<td><strong>7.21ms</strong></td>
+<td><strong>15.90ms</strong></td>
+<td><strong>1.75G</strong></td>
+<td><strong>2.44M</strong></td>
+<td><strong>4.7MB(FP16)</strong> | <strong>2.3MB(INT8)</strong></td>
+</tr>
+<tr>
+<td><strong>NanoDet-Plus-m-1.5x</strong></td>
+<td>416*416</td>
+<td><strong>34.1</strong></td>
+<td><strong>11.50ms</strong></td>
+<td><strong>25.49ms</strong></td>
+<td><strong>2.97G</strong></td>
+<td><strong>2.44M</strong></td>
+<td><strong>4.7MB(FP16)</strong> | <strong>2.3MB(INT8)</strong></td>
+</tr>
+<tr>
+<td>YOLOv3-Tiny</td>
+<td>416*416</td>
+<td>16.6</td>
+<td>-</td>
+<td>37.6ms</td>
+<td>5.62G</td>
+<td>8.86M</td>
+<td>33.7MB</td>
+</tr>
+<tr>
+<td>YOLOv4-Tiny</td>
+<td>416*416</td>
+<td>21.7</td>
+<td>-</td>
+<td>32.81ms</td>
+<td>6.96G</td>
+<td>6.06M</td>
+<td>23.0MB</td>
+</tr>
+<tr>
+<td>YOLOX-Nano</td>
+<td>416*416</td>
+<td>25.8</td>
+<td>-</td>
+<td>23.08ms</td>
+<td>1.08G</td>
+<td>0.91M</td>
+<td>1.8MB(FP16)</td>
+</tr>
+<tr>
+<td>YOLOv5-n</td>
+<td>640*640</td>
+<td>28.4</td>
+<td>-</td>
+<td>44.39ms</td>
+<td>4.5G</td>
+<td>1.9M</td>
+<td>3.8MB(FP16)</td>
+</tr>
+<tr>
+<td>FBNetV5</td>
+<td>320*640</td>
+<td>30.4</td>
+<td>-</td>
+<td>-</td>
+<td>1.8G</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MobileDet</td>
+<td>320*320</td>
+<td>25.6</td>
+<td>-</td>
+<td>-</td>
+<td>0.9G</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h6><span id="yolo-fastestv2-官方库"> YOLO fastestv2 官方库</span></h6>
+<table>
+<thead>
+<tr>
+<th>Network</th>
+<th>COCO mAP(0.5)</th>
+<th>Resolution</th>
+<th>Run Time(4xCore)</th>
+<th>Run Time(1xCore)</th>
+<th>FLOPs(G)</th>
+<th>Params(M)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/dog-qiuqiu/Yolo-FastestV2/tree/main/modelzoo">Yolo-FastestV2</a></td>
+<td>24.10 %</td>
+<td>352X352</td>
+<td>3.29 ms</td>
+<td>5.37 ms</td>
+<td>0.212</td>
+<td>0.25M</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/dog-qiuqiu/Yolo-Fastest/tree/master/ModelZoo/yolo-fastest-1.1_coco">Yolo-FastestV1.1</a></td>
+<td>24.40 %</td>
+<td>320X320</td>
+<td>4.23 ms</td>
+<td>7.54 ms</td>
+<td>0.252</td>
+<td>0.35M</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg">Yolov4-Tiny</a></td>
+<td>40.2%</td>
+<td>416X416</td>
+<td>26.00ms</td>
+<td>55.44ms</td>
+<td>6.9</td>
+<td>5.77M</td>
+</tr>
+</tbody>
+</table>
+<h6><span id="1gt-yolo-fastest"> 1&gt; YOLO fastest</span></h6>
+<p><code>初衷就是打破算力的瓶颈，能在更多的低成本的边缘端设备实时运行目标检测算法。</code></p>
+<ul>
+<li>基于 NCNN 推理框架开启 BF16s，在树莓派 3b，4 核 A53 1.2Ghz，320x320 图像单次推理时间在 60ms。</li>
+<li>在性能更加强劲的树莓派 4b，单次推理 33ms，达到了 30fps 的全实时。</li>
+<li>而相比较下应用最广泛的轻量化目标检测算法 MobileNet-SSD 要在树莓派 3b 跑 200ms 左右，Yolo-Fastest 速度整整要快 3 倍 +，而且模型才只有 1.3MB，而 MobileNet-SSD 模型达到 23.2MB，Yolo-Fastest 整整比它小了 20 倍，当然这也是有代价的，在 Pascal voc 上的 mAP，MobileNet-SSD 是 72.7，Yolo-Fastest 是 61.2，带来了接近 10 个点的精度损失</li>
+</ul>
+<p><strong>总结</strong>：YOLO-Fastest 是个牺牲一定精度 （大约 5% 的 mAP）、大幅提升速度的目标检测模型。</p>
+<h6><span id="2gt-yolox-nano"> 2&gt; YOLOX-Nano</span></h6>
+<ul>
+<li>对于 YOLO-Nano，所提方法仅需 0.91M 参数 + 1.08G FLOPs 取得了 25.3% AP 指标，以 1.8% 超越了 NanoDet；</li>
+<li>对于 YOLOv3，所提方法将指标提升到了 47.3%，以 3% 超越了当前最佳；</li>
+<li>具有与 YOLOv4-CSP、YOLOv5-L 相当的参数量，YOLOX-L 取得了 50.0% AP 指标同事具有 68.9fps 推理速度 (Tesla V100)，指标超过 YOLOv5-L 1.8%;</li>
+<li>值得一提的是，YOLOX-L 凭借单模型取得了 Streaming Perception (Workshop on Autonomous Driving at CVPR 2021) 竞赛冠军。</li>
+</ul>
+<h6><span id="3gt-yolo-fastestv2"> 3&gt; YOLO fastestv2</span></h6>
+<ul>
+<li>用 0.3% 的精度损失换取 30% 推理速度的提升以及 25% 的参数量的减少</li>
+</ul>
+<h6><span id="4gt-nanodet"> 4&gt; NanoDet</span></h6>
+<p>在经过对 one-stage 检测模型三大模块（Head、Neck、Backbone）都进行轻量化之后，得到了目前开源的 NanoDet-m 模型，在 320x320 输入分辨率的情况下，整个模型的 Flops 只有 0.72B，而 yolov4-tiny 则有 6.96B，小了将近十倍！模型的参数量也只有 0.95M，权重文件在使用 ncnn optimize 进行 16 位存储之后，只有 1.8mb，非常适合在移动端部署，能够有效减少 APP 体积，同时也对更低端的嵌入式设备更加友好。</p>
+<p>尽管模型非常的轻量，但是性能却依旧强劲。对于小模型，往往选择使用 AP50 这种比较宽容的评价指标进行对比，这里我选择用更严格一点的 COCO mAP (0.5:0.95) 作为评估指标，同时兼顾检测和定位的精度。在 COCO val 5000 张图片上测试，并没有使用 Testing-Time-Augmentation 的情况下，320 分辨率输入能够达到 20.6 的 mAP，比 tiny-yolov3 高 4 分，只比 yolov4-tiny 低 1 个百分点，而将输入分辨率与 yolo 保持一致，都使用 416 输入的情况下，得分持平。</p>
+<p>最后用 ncnn 部署到手机上之后跑了一下 benchmark，模型前向计算时间只要 10 毫秒左右，对比 yolov3 和 v4 tiny，均在 30 毫秒的量级。在安卓摄像头 demo app 上，算上图片预处理，检测框后处理以及绘制检测框的时间，也能轻松跑到 40+FPS~。</p>
+<h6><span id="5gt-nanodet-plus"> 5&gt; NanoDet Plus</span></h6>
+<ul>
+<li>NanoDet Plus 与上一代<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29462849/article/details/122206615"> NanoDet</a> 相比，在仅增加 1 毫秒多的延时的情况下，精度提升了 30%。</li>
+<li>改进了代码和架构，提出了一种非常简单的训练辅助模块，使模型变得更易训练，同时新版本也更易部署。</li>
+</ul>
+<h5><span id="4关键概念解析"> （4）关键概念解析</span></h5>
+<h6><span id="1gt-基于-matching-cost-的动态匹配"> 1&gt; 基于 Matching Cost 的动态匹配</span></h6>
+<p>简单来说，就是直接使用模型检测头的输出，与每一个 Ground Truth 计算一个匹配的代价，这个代价一般由分类 loss 和回归 loss 组成。Feature Map 上所有的点（N 个）的预测值与所有的 Ground Truth（M 个）计算得到的 NxM 的矩阵，就是所谓的 Cost Matrix，基于这个 Cost Matrix 进行二分图匹配也好还是传输优化也好再或者直接取 TopK 也好，就是一种动态匹配策略。这种策略与之前的基于 Anchor 算 IOU 的匹配最大的不同就是，它不再只依赖先验的静态的信息，而是使用当前的预测结果去动态寻找最优的匹配，只要模型预测的越准确，匹配算法求得的结果也会更优秀。</p>
+<h6><span id="2gt-标签匹配策略"> 2&gt; 标签匹配策略</span></h6>
+<ul>
+<li>基于位置</li>
+<li>基于 Anchor IOU</li>
+<li>基于 Matching Cost（直接使用检测头的输出与每一个 Ground Truth 计算一个匹配的代价（分类 Loss 和回归 Loss））
+<ul>
+<li>基于全局的动态匹配策略
+<ul>
+<li><code>DETR</code> ：使用匈牙利匹配算法进行双边匹配</li>
+<li><code>OTA</code> ：使用 Sinkhorn 迭代求解匹配中的最优传输问题（位置约束：使用 5x5 的中心区域限制匹配自由度）</li>
+<li><code>YOLOX</code> ：使用 OTA 的近似算法 SimOTA（位置约束：使用 5x5 的中心区域限制匹配自由度）</li>
+<li><code>----</code> ：使用<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2108.10520"> LAD（Label Assignment Distillation）</a>用教室网络的结果计算标签匹配来指导学生网络的训练</li>
+<li><code>IQDet</code> ：使用 QDE 模块对每个实例预测 PAA 中提出的高斯混合质量分布的三个参数来指导检测头的训练</li>
+<li><code>NanoDet Plus</code> ：使用 AGM（Assign Guidance Module）并配合动态的软标签分配策略 DSLA（ynamic Soft Label Assigner）来解决轻量级模型中的最优标签匹配问题</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h6><span id="3gt-label-assignment"> 3&gt; </span></h6>
+<ul>
+<li>
+<p>主要是指检测算法在训练阶段，如何给特征图上的每个位置进行合适的学习目标的表示，以及如何进行正负样本的分配的。</p>
+<table>
+<thead>
+<tr>
+<th>算法类型</th>
+<th>先验</th>
+<th>学习目标的表示</th>
+<th>正负样本的分配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>anchor box</td>
+<td>anchor box</td>
+<td>bounding box</td>
+<td>IoU</td>
+</tr>
+<tr>
+<td>anchor point</td>
+<td>center</td>
+<td>高斯等</td>
+<td>高斯热图等</td>
+</tr>
+<tr>
+<td>key point</td>
+<td>point</td>
+<td>representative points</td>
+<td>feature map bin 和 IoU 等</td>
+</tr>
+<tr>
+<td>set prediction</td>
+<td>embedding</td>
+<td>bounding box</td>
+<td>Hungarian 算法</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>（1）ATSS</strong></p>
+<p>论文标题：</p>
+<p>Bridging the Gap Between Anchor-based and Anchor-free Detection via Adaptive Training Sample Selection</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1912.02424">论文链接</a> | <a target="_blank" rel="noopener" href="https://github.com/sfzhang15/ATSS">代码链接</a></p>
+<p>这篇文章从 anchor-free 和 anchor-base 算法的本质区别出发，通过分析对比 anchor-base 经典算法 retinanet 和 anchor-free 经典算法 FCOS 来说明正负样本分配（label assignment）的重要性。</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Qc2hvOWRtN29ESGRvYmljdXE3QWJRaWMwWjJ1NWlhWkdpYUxpYlJFN2N4Y0FpYXZpYkpDOVQwZ01OTmlhRFhCVWFiSkpDaDNWQmZiZHliTWJUMWhGMzZpYThUcHZpYlEvNjQw?x-oss-process=image/format,png" alt="img" style="zoom:80%;"></center>
+<p>如上图所示，RetinaNet 使用 IoU 阈值来区分正负 anchor box，处于中间 anchor box 的全部忽略。FCOS 使用空间（spatial）和尺寸（scale）限制来区分正负 anchor point，正样本首先选择在 GT box 内的 anchor points，其次选择 GT 尺寸对应的层 anchor points，其余均为负样本。</p>
+<p>最后通过交叉实验，发现在相同正负样本定义下情况下，RetinaNet 和 FCOS 性能几乎一样，而且 spatila and scale constraint 的方式比 IOU 的效果好，如下表：</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9HVDFDVE9wVHdJSUJsRnNyOVZPN1ZTbFpOdlNEQjMyRFRKWmxrRzYxaWFZYUtCeEh0eUtVaGxyZ2hZTXR0UlBhSTJIMlNOZ05xa21DbXFDM1JYcnExeWcvNjQw?x-oss-process=image/format,png" alt="img" style="zoom:80%;"></center>
+<p>因此 ATSS 提出了一种新的正负样本选取方式，这种方法几乎不会引入额外的超参数并且更加鲁棒。</p>
+<p>主要就是在每个 FPN 层选取离 gt 框中心点最近的 k 个 anchor，之后对所有选取的 anchor 与 gt 计算 IOU，同时计算 IOU 均值和方差，最后保留 IOU 大于均值加方差的并且中心点在 gt 之内的 anchor 作为正样本。</p>
+<p>根据下表可以发现，即使 anchor box 数量为 1 的 RetinaNet 和 FOCS 在都加上 ATSS 策略之后，效果都有明显的提升，这也证明了 ATSS 策略的有效性。</p>
+</li>
+</ul>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9HVDFDVE9wVHdJSUJsRnNyOVZPN1ZTbFpOdlNEQjMyRFRKWmxrRzYxaWFZYUtCeEh0eUtVaGxyZ2hZTXR0UlBhSTJIMlNOZ05xa21DbXFDM1JYcnExeWcvNjQw?x-oss-process=image/format,png" alt="img" style="zoom:80%;"></center>
+<ul>
+<li>
+<p><strong>（2）SAPD</strong></p>
+<p>论文标题：</p>
+<p>Soft Anchor-Point Object Detection</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1911.12448">论文链接</a> | <a target="_blank" rel="noopener" href="https://github.com/xuannianz/SAPD">代码链接</a></p>
+<p>SAPD 就是对 anchor-free 检测器中的 anchor-point 检测器进行了训练策略的改进。SAPD 分析了两个问题：注意力偏差（attention bias）和特征选择（feature selection）。其中，特征选择的问题对金字塔特征层级做软选择，这里就不深入了。而为了解决注意力偏差（attention bias），SAPD 使用了一个新颖的训练策略：Soft-weighted anchor points。</p>
+<p>3.1 Attention bias 注意力偏差</p>
+<p>在自然图像中，可能会出现遮挡、背景混乱等干扰，SAPD 发现原始的 anchor-point 检测器在处理这些具有挑战性的场景时存在注意力偏差的问题，即具有清晰明亮 views 的目标会生成过高的得分区域，从而抑制了周围的其他目标的得分区域。</p>
+<p>这个问题是由于特征不对齐导致了靠近目标边界的位置会得到不必要的高分 所导致的。</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9ON0hTTU96RXJaaWIyckM1TVZIQ2FicWo0aWNzZDhWWHBIRWRGZ2ljTE1lTFljaWNidWliT0NtSjZJeFlmRHBWVzZya1RVQVlKRE9YUjkzRUpiaWIwaWNpY1AwaWFVZy82NDA?x-oss-process=image/format,png" alt="img" style="zoom:90%;"></center>
+<p>3.2 Soft-weighted anchor points</p>
+<p>将目标实际位置与 anchor point（也就是 center）的距离作为一个 anchor 的惩罚权重，加入到损失函数的计算中（仅针对正样本，负样本不做改动）。公式如下：</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9qbHRrYzdCNmo5WW9QY3RYMWdYZHZuRHdsRTlocW5zTmlicFNQb2ljeXV4aWFndnREb0owaWJBYXdLSjkxd05pYkJZd3M2NGdWWElIRE42V0w1V0tWOUxjeU53LzY0MA?x-oss-process=image/format,png" alt="img" style="zoom:80%;"></center>
+<p>其中，η 控制递减幅度，权重  范围为 0~1，公式保证了目标边界处的 points 权重为 0，目标中心处的 ponit 权重为 1。</p>
+<p>这种通过对 anchor points 做软加权，就是 label assign 的进行优化，减少对靠近边界包含大量背景信息的锚点的关注。</p>
+</li>
+<li>
+<p><strong>（3）AutoAssign</strong></p>
+</li>
+</ul>
+<p>论文标题：</p>
+<p>AutoAssign: Differentiable Label Assignment for Dense Object Detection</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2007.03496">论文链接</a></p>
+<p>AutoAssign 对 label assignment 进行非常全面的讨论。主要解决了在给定一个 bounding box （x, y, w, h） 后，根据框内的物体形状，动态分配正负样本的问题。如下图所示：</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9RaWNoRGlhYmRReXNWaWJlaWNYUGlhbzBzNWxyYUNCbFlHT1kyQ3NsR25xMUJSVjFEeDlFTFBheGVpYUx2T3JpY0QzeFIwbFFjcGlibDZPZVB3NEo0RXlaQkpQTFRBLzY0MA?x-oss-process=image/format,png" alt="img" style="zoom:90%;"></center>
+<p>（1）RetinaNet 是根据 anchor box 和 ground truth 的 IOU 阈值定义正负样本，这样会每个样本都是打上非正即负以及 ignore 的标签，而且 anchor box 的  num，size，aspect ratios 等等都是超参数；</p>
+<p>（2）FCOS 通过 centerness、空间和尺度约束来分配正负样本，也引入了很多超参数；</p>
+<p>（3）AutoAssign 将 label assignment 看做一种连续问题，没有真正意义上的正负样本之分，每个特征图上的位置都有正样本属性和负样本属性，只是权重不同罢了；而且如上图最左变所示，动态分配正负样本更符合目标的形状，可以说有利用分割做检测的思想。</p>
+<p>下面是 AutoAssign 的正负样本分配的示意图：</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Qc2hvOWRtN29ESGRvYmljdXE3QWJRaWMwWjJ1NWlhWkdpYUwzcU1xVzU5YUlyU2QwZnVFMW5ZdE4zZThnVThZRWdOZHNaeUJkUVBBNHhPQm1pYXRUWmN1ekh3LzY0MA?x-oss-process=image/format,png" alt="img" style="zoom:90%;"></center>
+<p>可以看到，比一般的检测算法多了一个 Implict Objectness 分支，用于背景与前景的判断，已解决引入的大量背景位置的问题。</p>
+<p>（1）Center Weighting</p>
+<p>先使用高斯中心先验确定图像中一个目标正负样本的权重：</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9MVGJCQjVDcDVzdVdkVWE5OTFuUUwwMGljaWNFaWI0aG5GU1VXcVU4UnRnV3RpY29IN2w5dXE3WmlhaWNBZ1N5dmljU0RWYzFjaWJwZ0IzTzRXRUN6dWs1V3g3VXF3LzY0MA?x-oss-process=image/format,png" alt="img"></center>
+<p>（2）Confidence Weighting</p>
+<p>通过 ImpObj 分支来避免引入大量背景位置</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy8zWldlZ1BDSFpjSXRTVkpNazJ3aWEzalhpY1FoM3RpYWN1ZXFjM2ljZjlpYVpTeWhvc0x4YlVBZEJXenpYNERpYzVhV1Axckh5VmlhUll1cmF6NUxPZWxkd3BHcmcvNjQw?x-oss-process=image/format,png" alt="img"></center>
+<p>与 FreeAnchor 相似，将分类和定位联合看成极大似然估计问题，学习出样本的置信度 Confidence Weighting，即下面的 C (Pi)：</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9PUGd3ZUdxaWNDdmdpYk4waWJYVmliZnE2S1ZQdWRieExGcllXRndpYWliaWFpYVZUbloyTUl4MXdHTU5NaWF3c0k2S2dHd2JvSW92NkV6d3psWHV5ZE5pYTRmMkVFV3cvNjQw?x-oss-process=image/format,png" alt="img"></center>
+<p>直观的理解 C (Pi) 就是，分类得分高、框预测的准的 location 拥有较大的 C (Pi) 值的概率就会高。</p>
+<p>（3）正负样本的权重（w+/w-）</p>
+<p>positive weights：通过 Center Weighting 和 Confidence Weighting 得到 Positive weights</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9aSnJ3VGNBZXp3QWhPMDg3MWtkOWljOW1pYktzbnJaUUE0d1gxVEFYVUVxNzIyYlFUVU5OTm5EZDFpYm40empxcmJXRjdFc3Z1MG03SkNsRzVuTnFyd2pZUS82NDA?x-oss-process=image/format,png" alt="img"></center>
+<p>negative weights：通过最大 IOU 得到 Negative weights</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy85dUROQUpEMzd5Q0F4VXpOcHRKMTdCVXVpY0hpYmZ1Q1c0SW5zMnVNbWFiNk9WWk9zdERpYjQzeWliYlFCRThvdGVGRUo1SXR3dzZZbjR0d3V6Z0hTcVI0RkEvNjQw?x-oss-process=image/format,png" alt="img"></center>
+<p>对于前景和背景的 weighting function，有一个共同的特点是 “单调递增”；这就保证了一个位置预测 pos /neg 的置信度越高，那么对应的权重就越大。</p>
+<p>（4）loss function</p>
+<p>有了对于正负样本的权重之后，对于一个 gt box，其 loss 如下：</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy80eGNFdktvRGg5aWJpY3RnUjVWdjNvS3NPTE1LUER4azRremJld0RqNTZ2YUNyUHlaMEtzaWJKWW5LdjFJaWF3MzR6UjA0dzlpYkEwM1RiTnk0dGZpY2JpYnMzaWFnLzY0MA?x-oss-process=image/format,png" alt="img" style="zoom:80%;"></center>
+<p>Positive weights 和 Negative weights 在训练过程中动态调整达到平衡，像是在学该目标的形状。</p>
+<ul>
+<li>
+<p><strong>（4）DETR</strong></p>
+<p>论文标题：</p>
+<p>End-to-End Object Detection with Transformers</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.12872">论文链接</a> | <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/detr">代码链接</a></p>
+<p>4.1 Object detection set prediction</p>
+<p>DETR 将目标检测任务视为一个图像到集合（image-to-set）的问题，即给定一张图像，模型的预测结果是一个包含了所有目标的无序集合。</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy8xd1duMk5tM0RVMG1wem5jaWEwclpQdUZxbTliU2JBaWJQZTFpYmlhUm92UUt6SXU1WlVvVHJnVGRNYnpuOVRWcE9VUm91V2ppY2sxNmtZRFZlTG5tNG5hS3BnLzY0MA?x-oss-process=image/format,png" alt="img"></center>
+<p>那么对于一个目标 ground truth，如何找到对应的 prediction 呢？Detr 用的是 Hungarian algorithm 实现预测值与真值实现最大的匹配，并且是一一对应。</p>
+<p>假设有 4 个 prediction（a,b,c,d），有 4 个 ground truth（p,q,r,s），每个 prediction 匹配 ground truth 的好坏都不同，那么便可构造一个代价矩阵（cost matrix，是 cost_bbox、cost_class 和 cost_giou 的加权和），通过求解最优的分配后，得到的每个 prediction 对应 ground truth 最佳分配的结果。</p>
+<p>4.2 object queries</p>
+<p>传统的 Anchor 是人工设计，铺在特征图上。最初人们给 Anchor 加上 scales 和 aspect ration，后来还有加上了 dense，再到后来，也出现了可学习的 Guided Anchoring，把 anchor 拆解为：位置预测和形状预测。</p>
+<p>这种方式的 anchor 有个缺陷是：在推理阶段会产生大量的框，需要 NMS 进行抑制，这说明人工设计的 anchor 是存在冗余的（多个 anchor 匹配到一个 gt 上）。</p>
+<p>而 DETR 的 object queries 就是一个 embedding 形式的 learned anchor，目的是让网络自己根据数据集自己学习 anchor。并且 DETR 的实验结果也证明 embedding 已经足够学习 anchor 了。</p>
+<p>Detr 也在 coco 2017 val 上对把每个 object query 预测的框做了可视化，如下，选取 N=100 中的 20 个 object query，可以看到不同的 query vector 具有不同的分布（有些注重左下角，有些注重中间…），可以想成：有 N 个不同的人用不同的角度进行观测。</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9hSEtKUFdhNUhvUlo3eHBqbnhHaWIzcjJqclhQV3gwQkJvNDVhcDN5V25OQ2VOdUh0aG1pYzlYOVI5dmx3MUZpYmliWkFEV0cxbHVEV1JndzBET2hycDZaV3cvNjQw?x-oss-process=image/format,png" alt="img"></center>
+</li>
+</ul>
+<h6><span id="4gt-generalized-focal-loss"> 4&gt; </span></h6>
+<p>论文地址：<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2006.04388.pdf">https://arxiv.org/pdf/2006.04388.pdf</a></p>
+<p>源码和预训练模型地址：<a href="https://link.zhihu.com/?target=https%3A//github.com/implus/GFocal">https://github.com/implus/GFocal</a></p>
+<p>MMDetection 官方收录地址：<a href="https://link.zhihu.com/?target=https%3A//github.com/open-mmlab/mmdetection/blob/master/configs/gfl/README.md">https://github.com/open-mmlab/mmdetection/blob/master/configs/gfl/README.md</a></p>
+<p><strong>总结</strong>：基于任意 one-stage 检测器上，调整框本身与框质量估计的表示，同时用泛化版本的 GFocal Loss 训练该改进的表示，无 cost 涨点（一般 1 个点出头）AP。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2022年02月21日 21:57</p>
+        <p>原始链接： <a class="post-url" href="/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/" title="【精华】目标检测模型对比">https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/&title=《【精华】目标检测模型对比》 — 且听风吟，御剑于心！&pic=images/目标检测模型对比.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/&title=《【精华】目标检测模型对比》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【精华】目标检测模型对比》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/深度模型（目标检测）/" class="color1">深度模型（目标检测）</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> YOLO fastest&#x2F;YOLOX&#x2F;YOLO fastestv2&#x2F;Nanodet&#x2F;Nanodet Plus 模型对比</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （1）网络结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1&gt; YOLO fastest</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2&gt; YOLOX-Nano</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3&gt; YOLO fastestv2</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4&gt; NanoDet</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 5&gt; NanoDet Plus</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （2）模型结构差异（优化模块）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1&gt; YOLO fastest</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2&gt; YOLOX-Nano</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3&gt; YOLO fastestv2</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4&gt; NanoDet</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 5&gt; NanoDet Plus</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （3）模型性能</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> YOLO fastest 官方库</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> Yolo-Fastest-1.1 Multi-platform benchmark</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> YOLOX-Nano 官方库</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> NanoDet 官方库</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> YOLO fastestv2 官方库</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1&gt; YOLO fastest</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2&gt; YOLOX-Nano</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3&gt; YOLO fastestv2</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4&gt; NanoDet</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 5&gt; NanoDet Plus</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （4）关键概念解析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1&gt; 基于 Matching Cost 的动态匹配</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2&gt; 标签匹配策略</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3&gt; </span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4&gt; </span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2022/02/21/%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E4%B9%8B%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%A6%82%E8%BF%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          部署方案之模型部署概述
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8NCNN%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【精华】使用NCNN在移动端部署深度学习模型</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="【精华】目标检测模型对比" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>部署方案之模型部署概述 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   部署方案之模型部署概述  1 模型部署场景 2 模型部署方式 3 部署的核心优化指标 4 部署流程       部署方案之模型部署概述 模型训练重点关注的是如何通过训练策略来得到一个性能更好的模型，其过程似乎包含着各种 “玄学”，被戏称为 “炼丹”。整个流程包含从训练样本的获取（包括数据采集与标注），模型结构的确定，损失函数和评价指标的确定，到模型参数的训练，这部分更多是业务方去">
+<meta property="og:type" content="article">
+<meta property="og:title" content="部署方案之模型部署概述">
+<meta property="og:url" content="https://leezhao415.github.io/2022/02/21/%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E4%B9%8B%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   部署方案之模型部署概述  1 模型部署场景 2 模型部署方式 3 部署的核心优化指标 4 部署流程       部署方案之模型部署概述 模型训练重点关注的是如何通过训练策略来得到一个性能更好的模型，其过程似乎包含着各种 “玄学”，被戏称为 “炼丹”。整个流程包含从训练样本的获取（包括数据采集与标注），模型结构的确定，损失函数和评价指标的确定，到模型参数的训练，这部分更多是业务方去">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/c7e460b912162c9b9a74d7f0c65d455c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/b549771d283e4eab7d5e8d27fe614011.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/210c28ce9ca2b9017cbbd51ab504db55.png">
+<meta property="article:published_time" content="2022-02-21T14:00:10.000Z">
+<meta property="article:modified_time" content="2022-02-21T15:03:29.124Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="模型部署">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/c7e460b912162c9b9a74d7f0c65d455c.png">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-部署方案之模型部署概述" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      部署方案之模型部署概述
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-02-21
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E4%B9%8B%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%A6%82%E8%BF%B0">部署方案之模型部署概述</a>
+<ul>
+<li><a href="#1-%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E5%9C%BA%E6%99%AF">1 模型部署场景</a></li>
+<li><a href="#2-%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F">2 模型部署方式</a></li>
+<li><a href="#3-%E9%83%A8%E7%BD%B2%E7%9A%84%E6%A0%B8%E5%BF%83%E4%BC%98%E5%8C%96%E6%8C%87%E6%A0%87">3 部署的核心优化指标</a></li>
+<li><a href="#4-%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B">4 部署流程</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h4><span id="部署方案之模型部署概述"> 部署方案之模型部署概述</span></h4>
+<p>模型训练重点关注的是如何通过训练策略来得到一个性能更好的模型，其过程似乎包含着各种 “玄学”，被戏称为 “炼丹”。整个流程包含从训练样本的获取（包括数据采集与标注），模型结构的确定，<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0&amp;spm=1001.2101.3001.7020">损失函数</a>和评价指标的确定，到模型参数的训练，这部分更多是业务方去承接相关工作。一旦 “炼丹” 完成（即训练得到了一个指标不错的模型），如何将这颗 “丹药” 赋能到实际业务中，充分发挥其能力，这就是部署方需要承接的工作。</p>
+<p>因此，一般来说，学术界负责各种 SOTA (State of the Art) 模型的训练和结构探索，而工业界负责将这些 SOTA 模型应用落地，赋能百业。本文将要讲述的是，在 CV 场景中，如何实现模型的快速落地，赋能到产业应用中。模型部署一般无需再考虑如何修改训练方式或者修改网络结构以提高模型精度，更多的是需要明确部署的场景、部署方式（中心服务化还是本地终端部署）、模型的优化指标，以及如何提高吞吐率和减少延迟等，接下来将逐一进行介绍。</p>
+<h5><span id="1-模型部署场景"> 1 模型部署场景</span></h5>
+<p>这个问题主要源于中心服务器云端部署和边缘部署两种方式的差异 云端部署常见的模式是，模型部署在云端服务器，用户通过网页访问或者 API 接口调用等形式向云端服务器发出请求，云端收到请求后处理并返回结果。边缘部署则主要用于嵌入式设备，主要通过将模型打包封装到 SDK，集成到嵌入式设备，数据的处理和模型推理都在终端设备上执行。</p>
+<h5><span id="2-模型部署方式"> 2 模型部署方式</span></h5>
+<p>针对上面提到的两种场景，分别有两种不同的部署方案，Service 部署和 SDK 部署。 Service 部署：主要用于中心服务器云端部署，一般直接以训练的引擎库作为推理服务模式。SDK 部署：主要用于嵌入式端部署场景，以 C++ 等语言实现一套高效的前后处理和推理引擎库（高效推理模式下的 Operation/Layer/Module 的实现），用于提供高性能推理能力。此种方式一般需要考虑模型转换（动态图静态化）、模型联合编译等进行深度优化</p>
+<center><img src="https://img-blog.csdnimg.cn/img_convert/c7e460b912162c9b9a74d7f0c65d455c.png" alt="Image" style="zoom:80%;"></center>
+<center><img src="https://img-blog.csdnimg.cn/img_convert/b549771d283e4eab7d5e8d27fe614011.png" alt="Image" style="zoom: 67%;"></center>
+<h5><span id="3-部署的核心优化指标"> 3 部署的核心优化指标</span></h5>
+<p>部署的核心目标是合理把控成本、功耗、性价比三大要素。</p>
+<p>成本问题是部署硬件的重中之重，AI 模型部署到硬件上的成本将极大限制用户的业务承受能力。成本问题主要聚焦于芯片的选型，比如，对比寒武纪 MLU220 和 MLU270，MLU270 主要用作数据中心级的加速卡，其算力和功耗都相对于边缘端的人工智能加速卡 MLU220 要低。至于 Nvida 推出的 Jetson 和 Tesla T4 也是类似思路，Tesla T4 是主打数据中心的推理加速卡，而 Jetson 则是嵌入式设备的加速卡。对于终端场景，还会根据对算力的需求进一步细分，比如表中给出的高通骁龙芯片，除 GPU 的浮点算力外，还会增加 DSP 以增加定点算力，篇幅有限，不再赘述，主要还是根据成本和业务需求来进行权衡。</p>
+<center><img src="https://img-blog.csdnimg.cn/img_convert/210c28ce9ca2b9017cbbd51ab504db55.png" alt="Image" style="zoom:80%;"></center>
+<p>在数据中心服务场景，对于功耗的约束要求相对较低；在边缘终端设备场景，硬件的功耗会影响边缘设备的电池使用时长。因此，对于功耗要求相对较高，一般来说，利用 NPU 等专用优化的加速器单元来处理神经网络等高密度计算，能节省大量功耗。</p>
+<p>不同的业务场景对于芯片的选择有所不同，以达到更高的性价比。从公司业务来看，云端相对更加关注是多路的吞吐量优化需求，而终端场景则更关注单路的延时需要。在目前主流的 CV 领域，低比特模型相对成熟，且 INT8/INT4 芯片因成本低，且算力比高的原因已被广泛使用；但在 NLP 或者语音等领域，对于精度的要求较高，低比特模型精度可能会存在难以接受的精度损失，因此 FP16 是相对更优的选择。在 CV 领域的芯片性价比选型上，在有 INT8/INT4 计算精度的芯片里，主打低精度算力的产品是追求高性价比的主要选择之一，但这也为平衡精度和性价比提出了巨大的挑战。</p>
+<h5><span id="4-部署流程"> 4 部署流程</span></h5>
+<p>上面简要介绍了部署的主要方式和场景，以及部署芯片的选型考量指标，接下来以 SDK 部署为例，给大家概括介绍一下 SenseParrots 在部署中的整体流程。SenseParrots 部署流程大致分为以下几个步骤：模型转换、模型量化压缩、模型打包封装 SDK。</p>
+<h6><span id="41-模型转换"> 4.1 模型转换</span></h6>
+<p>模型转换主要用于模型在不同框架之间的流转，常用于训练和推理场景的连接。目前主流的框架都以 ONNX 或者 caffe 为模型的交换格式，SenseParrots 也不例外。SenseParrots 的模型转换主要分为计算图生成和计算图转换两大步骤，另外，根据需要，还可以在中间插入计算图优化，对计算机进行推理加速（诸如常见的 CONV/BN 的算子融合）。</p>
+<p>计算图生成是通过一次 inference 并追踪记录的方式，将用户的模型完整地翻译成静态的表达。在模型 inference 的过程中，框架会记录执行算子的类型、输入输出、超参、参数和调用该算子的模型层次，最后把 inference 过程中得到的算子信息和模型信息结合得到最终的静态计算图。</p>
+<p>在计算图生成之后与计算图转换之前，可以进行计算图优化，例如去除冗余 op，计算合并等。SenseParrots 原生实现了一批计算图的精简优化 pass，也开放接口鼓励用户对计算图进行自定义的处理和优化操作。</p>
+<p>计算图转换是指分析静态计算图的算子，对应转换到目标格式。SenseParrots 支持了多后端的转换，能够转换到各个 opset 的 ONNX、原生 caffe 和多种第三方版本的 caffe。框架通过算子转换器继承或重写的方式，让 ONNX 和 caffe 的不同版本的转换开发变得更加简单。同时，框架开放了自定义算子生成和自定义算子转换器的接口，让第三方框架开发者也能够轻松地自主开发实现 SenseParrots 到第三方框架的转换。</p>
+<h6><span id="42-模型量化压缩"> 4.2 模型量化压缩</span></h6>
+<p>终端场景中，一般会有内存和速度的考虑，因此会要求模型尽量小，同时保证较高的吞吐率。除了人工针对嵌入式设备设计合适的模型，如 MobileNet 系列，通过 NAS (Neural Architecture Search) 自动搜索小模型，以及通过蒸馏 / 剪枝的方式压缩模型外，一般还会使用量化来达到减小模型规模和加速的目的。</p>
+<p>量化的过程主要是将原始浮点 FP32 训练出来的模型压缩到定点 INT8 (或者 INT4/INT1) 的模型，由于 INT8 只需要 8 比特来表示，因此相对于 32 比特的浮点，其模型规模理论上可以直接降为原来的 1/4，这种压缩率是非常直观的。另外，大部分终端设备都会有专用的定点计算单元，通过低比特指令实现的低精度算子，速度上会有很大的提升，当然，这部分还依赖协同体系结构和算法来获得更大的加速。</p>
+<p>量化的技术栈主要分为<strong>量化训练（QAT, Quantization Aware Training）<strong>和</strong>离线量化（PTQ, Post Training Quantization）</strong>, 两者的主要区别在于，<strong>量化训练</strong>是通过对模型插入伪量化算子（这些算子用来模拟低精度运算的逻辑），通过梯度下降等优化方式在原始浮点模型上进行微调，从来调整参数得到精度符合预期的模型。<strong>离线量化</strong>主要是通过少量校准数据集（从原始数据集中挑选 100-1000 张图，不需要训练样本的标签）获得网络的 activation 分布，通过统计手段或者优化浮点和定点输出的分布来获得量化参数，从而获取最终部署的模型。两者各有优劣，量化训练基于原始浮点模型的训练逻辑进行训练，理论上更能保证收敛到原始模型的精度，但需要精细调参且生产周期较长；离线量化只需要基于少量校准数据，因此生产周期短且更加灵活，缺点是精度可能略逊于量化训练。实际落地过程中，发现大部分模型通过离线量化就可以获得不错的模型精度（1% 以内的精度损失，当然这部分精度的提升也得益于优化策略的加持），剩下少部分模型可能需要通过量化训练来弥补精度损失，因此实际业务中会结合两者的优劣来应用。</p>
+<p>量化主要有两大难点：一是如何平衡模型的吞吐率和精度，二是如何结合推理引擎充分挖掘芯片的能力。比特数越低其吞吐率可能会越大，但其精度损失可能也会越大，因此，如何通过算法提升精度至关重要，这也是组内的主要工作之一。另外，压缩到低比特，某些情况下吞吐率未必会提升，还需要结合推理引擎优化一起对模型进行图优化，甚至有时候会反馈如何进行网络设计，因此会是一个算法与工程迭代的过程。</p>
+<h6><span id="43-模型打包封装-sdk"> 4.3 模型打包封装 SDK</span></h6>
+<p>实际业务落地过程中，模型可能只是产品流程中的一环，用于实现某些特定功能，其输出可能会用于流程的下一环。因此，模型打包会将模型的前后处理，一个或者多个模型整合到一起，再加入描述性的文件（前后处理的参数、模型相关参数、模型格式和版本等）来实现一个完整的功能。因此，SDK 除了需要一些通用前后处理的高效实现，对齐训练时的前后处理逻辑，还需要具有足够好的扩展性来应对不同的场景，方便业务线同学扩展新的功能。可以看到，模型打包过程更多是模型的进一步组装，将不同模型组装在一起，当需要使用的时候将这些内容解析成整个流程（pipeline）的不同阶段（stage），从而实现整个产品功能。</p>
+<p>另外，考虑到模型很大程度是研究员的研究成果，对外涉及保密问题，因此会对模型进行加密，以保证其安全性。加密算法的选择需要根据实际业务需求来决定，诸如不同加密算法其加解密效率不一样，加解密是否有中心验证服务器，其核心都是为了保护研究成果。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2022年02月21日 23:03</p>
+        <p>原始链接： <a class="post-url" href="/2022/02/21/%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E4%B9%8B%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%A6%82%E8%BF%B0/" title="部署方案之模型部署概述">https://leezhao415.github.io/2022/02/21/%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E4%B9%8B%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%A6%82%E8%BF%B0/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2022/02/21/%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E4%B9%8B%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%A6%82%E8%BF%B0/&title=《部署方案之模型部署概述》 — 且听风吟，御剑于心！&pic=images/模型部署.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2022/02/21/%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E4%B9%8B%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%A6%82%E8%BF%B0/&title=《部署方案之模型部署概述》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2022/02/21/%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E4%B9%8B%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%A6%82%E8%BF%B0/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《部署方案之模型部署概述》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2022/02/21/%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E4%B9%8B%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%A6%82%E8%BF%B0/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2022/02/21/%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E4%B9%8B%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%A6%82%E8%BF%B0/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2022/02/21/%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E4%B9%8B%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2%E6%A6%82%E8%BF%B0/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/模型部署/" class="color5">模型部署</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 部署方案之模型部署概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1 模型部署场景</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2 模型部署方式</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3 部署的核心优化指标</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 4 部署流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4.1 模型转换</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4.2 模型量化压缩</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4.3 模型打包封装 SDK</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2022/03/03/ForgeryNet-%E7%9B%AE%E5%89%8D%E5%85%AC%E5%BC%80%E6%9C%80%E5%A4%A7%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BA%BA%E8%84%B8%E4%BC%AA%E9%80%A0%E6%95%B0%E6%8D%AE%E9%9B%86CVPR2021/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          ForgeryNet_目前公开最大的深度人脸伪造数据集CVPR2021
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【精华】目标检测模型对比</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="部署方案之模型部署概述" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【精华】YOLOv6训练自己的数据集 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   资源下载  (1) YOLOv6 (2) 参考博客   1 前言 2 数据集获取 3 数据集转化 4 工程文件配置  (1) 配置模型文件 (2) 配置数据集文件 (3) 其他文件修改   5 模型训练及推理  (1) 训练环境搭建 (2) 模型训练 (3) 模型验证 (4) 模型推理       资源下载  (1) YOLOv6 ​    Github ​    [美团技术团队">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【精华】YOLOv6训练自己的数据集">
+<meta property="og:url" content="https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91YOLOv6%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   资源下载  (1) YOLOv6 (2) 参考博客   1 前言 2 数据集获取 3 数据集转化 4 工程文件配置  (1) 配置模型文件 (2) 配置数据集文件 (3) 其他文件修改   5 模型训练及推理  (1) 训练环境搭建 (2) 模型训练 (3) 模型验证 (4) 模型推理       资源下载  (1) YOLOv6 ​    Github ​    [美团技术团队">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-26T15:51:05.000Z">
+<meta property="article:modified_time" content="2022-07-26T15:54:44.166Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="计算机视觉">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-【精华】YOLOv6训练自己的数据集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      【精华】YOLOv6训练自己的数据集
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-07-26
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E8%B5%84%E6%BA%90%E4%B8%8B%E8%BD%BD">资源下载</a>
+<ul>
+<li><a href="#1-yolov6">(1) YOLOv6</a></li>
+<li><a href="#2-%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2">(2) 参考博客</a></li>
+</ul>
+</li>
+<li><a href="#1-%E5%89%8D%E8%A8%80">1 前言</a></li>
+<li><a href="#2-%E6%95%B0%E6%8D%AE%E9%9B%86%E8%8E%B7%E5%8F%96">2 数据集获取</a></li>
+<li><a href="#3-%E6%95%B0%E6%8D%AE%E9%9B%86%E8%BD%AC%E5%8C%96">3 数据集转化</a></li>
+<li><a href="#4-%E5%B7%A5%E7%A8%8B%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE">4 工程文件配置</a>
+<ul>
+<li><a href="#1-%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6">(1) 配置模型文件</a></li>
+<li><a href="#2-%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E9%9B%86%E6%96%87%E4%BB%B6">(2) 配置数据集文件</a></li>
+<li><a href="#3-%E5%85%B6%E4%BB%96%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9">(3) 其他文件修改</a></li>
+</ul>
+</li>
+<li><a href="#5-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E5%8F%8A%E6%8E%A8%E7%90%86">5 模型训练及推理</a>
+<ul>
+<li><a href="#1-%E8%AE%AD%E7%BB%83%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA">(1) 训练环境搭建</a></li>
+<li><a href="#2-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83">(2) 模型训练</a></li>
+<li><a href="#3-%E6%A8%A1%E5%9E%8B%E9%AA%8C%E8%AF%81">(3) 模型验证</a></li>
+<li><a href="#4-%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86">(4) 模型推理</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h4><span id="资源下载"> 资源下载</span></h4>
+<h5><span id="1-yolov6"> (1) YOLOv6</span></h5>
+<p>​    <a target="_blank" rel="noopener" href="https://github.com/meituan/YOLOv6">Github</a></p>
+<p>​    <a target="_blank" rel="noopener" href="https://tech.meituan.com/2022/06/23/yolov6-a-fast-and-accurate-target-detection-framework-is-opening-source.html">[美团技术团队] YOLOv6：又快又准的目标检测框架开源啦</a></p>
+<p>​    <a target="_blank" rel="noopener" href="https://tech.meituan.com/">美团 AI 团队博客</a></p>
+<h5><span id="2-参考博客"> (2) 参考博客</span></h5>
+<p>​    <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/534090250">YOLO 系列梳理（九）初尝新鲜出炉的 YOLOv6</a></p>
+<p>​    <a target="_blank" rel="noopener" href="https://arxiv.org/ftp/arxiv/papers/2205/2205.12740.pdf">SIoU Loss: More Powerful Learning for Bounding Box Regression</a></p>
+<p>​    <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2107.08430.pdf">YOLOX: Exceeding YOLO Series in 2021</a></p>
+<p>​    <a href>RepVGG: Making VGG-style ConvNets Great Again</a></p>
+<h4><span id="1-前言"> 1 前言</span></h4>
+<p>​    本文主要记录使用 YOLOv6 训练自己数据集的过程，数据集以 Objects365 数据集为例.</p>
+<h4><span id="2-数据集获取"> 2 数据集获取</span></h4>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1QiWm8hCJus3LstZkz6Mzdw">https://pan.baidu.com/s/1QiWm8hCJus3LstZkz6Mzdw</a><br>
+ 提取码：wmrx</p>
+<h4><span id="3-数据集转化"> 3 数据集转化</span></h4>
+<p>Objects365 数据集为 COCO 格式数据，数据集文件格式如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Objects365</span><br><span class="line">--Images</span><br><span class="line">  --train</span><br><span class="line">    --obj365_train_**.jpg</span><br><span class="line">  --val</span><br><span class="line">    --obj365_val_**.jpg</span><br><span class="line">--Annotations</span><br><span class="line">  --train</span><br><span class="line">    --train.json</span><br><span class="line">  --val</span><br><span class="line">    --val.json</span><br></pre></td></tr></table></figure>
+<p>YOLOv6 默认使用 YOLO 格式数据集，其中使用位置坐标格式为中心点坐标，数据集文件格式如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Objects365_yolov6</span><br><span class="line">--images</span><br><span class="line">  --train2017</span><br><span class="line">    --obj365_train_**.jpg</span><br><span class="line">  --val2017</span><br><span class="line">    --obj365_val_**.jpg</span><br><span class="line">--labels</span><br><span class="line">  --train2017</span><br><span class="line">    --train2017.txt</span><br><span class="line">    --classes.txt</span><br><span class="line">    --obj365_train_**.txt</span><br><span class="line">    --obj365_train_**.txt</span><br><span class="line">  --val2017</span><br><span class="line">    --val2017.txt</span><br><span class="line">    --classes.txt</span><br><span class="line">    --obj365_val_**.txt</span><br><span class="line">    --obj365_val_**.txt</span><br></pre></td></tr></table></figure>
+<p>通过以下脚本实现 COCO 格式的数据集转化为 YOLO 格式的数据集:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#COCO 格式的数据集转化为 YOLO 格式的数据集</span></span><br><span class="line"><span class="comment"># YOLO格式数据集文件结构</span></span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27;</span></span><br><span class="line"><span class="string">--images</span></span><br><span class="line"><span class="string">  --train2017</span></span><br><span class="line"><span class="string">    --1_train.jpg</span></span><br><span class="line"><span class="string">  --val2017</span></span><br><span class="line"><span class="string">    --2_val.jpg</span></span><br><span class="line"><span class="string">--labels</span></span><br><span class="line"><span class="string">  --train2017</span></span><br><span class="line"><span class="string">    --train2017.txt</span></span><br><span class="line"><span class="string">    --classes.txt</span></span><br><span class="line"><span class="string">    --1_train.txt</span></span><br><span class="line"><span class="string">  --val2017</span></span><br><span class="line"><span class="string">    --val2017.txt</span></span><br><span class="line"><span class="string">    --classes.txt</span></span><br><span class="line"><span class="string">    --2_val.txt</span></span><br><span class="line"><span class="string">&#x27;</span><span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import json</span><br><span class="line">from tqdm import tqdm</span><br><span class="line"></span><br><span class="line">def convert(size, box):</span><br><span class="line">    dw = 1. / (size[0])</span><br><span class="line">    dh = 1. / (size[1])</span><br><span class="line">    x = box[0] + box[2] / 2.0</span><br><span class="line">    y = box[1] + box[3] / 2.0</span><br><span class="line">    w = box[2]</span><br><span class="line">    h = box[3]</span><br><span class="line"><span class="comment">#round函数确定(xmin, ymin, xmax, ymax)的小数位数</span></span><br><span class="line">    x = round(x * dw, 6)</span><br><span class="line">    w = round(w * dw, 6)</span><br><span class="line">    y = round(y * dh, 6)</span><br><span class="line">    h = round(h * dh, 6)</span><br><span class="line">    <span class="built_in">return</span> (x, y, w, h)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># --------------------------------------------------------------------------------------------------------- # </span></span><br><span class="line">    json_file = <span class="string">&quot;your/to/path/Objects365/Annotations/train/train.json&quot;</span>    <span class="comment"># Objects365 json_path</span></span><br><span class="line">    ana_txt_save_path = <span class="string">&quot;your/to/path/Objects365_yolov6/labels/train2017&quot;</span>  <span class="comment"># anno_txt_save_path</span></span><br><span class="line">    list_file = open(os.path.join(ana_txt_save_path, <span class="string">&#x27;train2017.txt&#x27;</span>), <span class="string">&#x27;w&#x27;</span>)   </span><br><span class="line">    txt_images_path = <span class="string">&#x27;your/to/path/Objects365_yolov6/images/train2017&#x27;</span></span><br><span class="line">    <span class="comment"># --------------------------------------------------------------------------------------------------------- # </span></span><br><span class="line"></span><br><span class="line">    data = json.load(open(json_file, <span class="string">&#x27;r&#x27;</span>))</span><br><span class="line">    <span class="keyword">if</span> not os.path.exists(ana_txt_save_path):</span><br><span class="line">        os.makedirs(ana_txt_save_path)</span><br><span class="line"></span><br><span class="line">    id_map = &#123;&#125; <span class="comment"># 数据集的id不连续！重新映射一下再输出！</span></span><br><span class="line">    with open(os.path.join(ana_txt_save_path, <span class="string">&#x27;classes.txt&#x27;</span>), <span class="string">&#x27;w&#x27;</span>) as f:</span><br><span class="line">        <span class="comment"># 写入classes.txt</span></span><br><span class="line">        <span class="keyword">for</span> i, category <span class="keyword">in</span> enumerate(data[<span class="string">&#x27;categories&#x27;</span>]):</span><br><span class="line">            f.write(f<span class="string">&quot;&#123;category[&#x27;name&#x27;]&#125;\n&quot;</span>)</span><br><span class="line">            id_map[category[<span class="string">&#x27;id&#x27;</span>]] = i</span><br><span class="line">    <span class="comment"># print(id_map)</span></span><br><span class="line">    <span class="comment">#这里需要根据自己的需要，更改写入图像相对路径的文件位置。</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> img <span class="keyword">in</span> tqdm(data[<span class="string">&#x27;images&#x27;</span>]):</span><br><span class="line">        filename = img[<span class="string">&quot;file_name&quot;</span>]</span><br><span class="line">        img_width = img[<span class="string">&quot;width&quot;</span>]</span><br><span class="line">        img_height = img[<span class="string">&quot;height&quot;</span>]</span><br><span class="line">        img_id = img[<span class="string">&quot;id&quot;</span>]</span><br><span class="line">        head, tail = os.path.splitext(filename)</span><br><span class="line">        ana_txt_name = head + <span class="string">&quot;.txt&quot;</span>  <span class="comment"># 对应的txt名字，与jpg一致</span></span><br><span class="line">        f_txt = open(os.path.join(ana_txt_save_path, ana_txt_name), <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> ann <span class="keyword">in</span> data[<span class="string">&#x27;annotations&#x27;</span>]:</span><br><span class="line">            <span class="keyword">if</span> ann[<span class="string">&#x27;image_id&#x27;</span>] == img_id:</span><br><span class="line">                box = convert((img_width, img_height), ann[<span class="string">&quot;bbox&quot;</span>])</span><br><span class="line">                f_txt.write(<span class="string">&quot;%s %s %s %s %s\n&quot;</span> % (id_map[ann[<span class="string">&quot;category_id&quot;</span>]], box[0], box[1], box[2], box[3]))</span><br><span class="line">        f_txt.close()</span><br><span class="line">        <span class="comment">#将图片的相对路径写入train2017或val2017的路径</span></span><br><span class="line">        list_file.write(txt_images_path + <span class="string">&#x27;/%s.jpg\n&#x27;</span> %(head))</span><br><span class="line">    list_file.close()</span><br></pre></td></tr></table></figure>
+<h4><span id="4-工程文件配置"> 4 工程文件配置</span></h4>
+<h5><span id="1-配置模型文件"> (1) 配置模型文件</span></h5>
+<p>模型文件路径: config/yolov6n_objects365.py    (新建) 以 YOLOv6n 为例:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># YOLOv6n model</span></span><br><span class="line">model = dict(</span><br><span class="line">    <span class="built_in">type</span>=<span class="string">&#x27;YOLOv6n&#x27;</span>,</span><br><span class="line">    pretrained=<span class="string">&#x27;./weights/yolov6n.pt&#x27;</span>,</span><br><span class="line">    depth_multiple=0.33,</span><br><span class="line">    width_multiple=0.25,</span><br><span class="line">    backbone=dict(</span><br><span class="line">        <span class="built_in">type</span>=<span class="string">&#x27;EfficientRep&#x27;</span>,</span><br><span class="line">        num_repeats=[1, 6, 12, 18, 6],</span><br><span class="line">        out_channels=[64, 128, 256, 512, 1024],</span><br><span class="line">        ),</span><br><span class="line">    neck=dict(</span><br><span class="line">        <span class="built_in">type</span>=<span class="string">&#x27;RepPAN&#x27;</span>,</span><br><span class="line">        num_repeats=[12, 12, 12, 12],</span><br><span class="line">        out_channels=[256, 128, 128, 256, 256, 512],</span><br><span class="line">        ),</span><br><span class="line">    head=dict(</span><br><span class="line">        <span class="built_in">type</span>=<span class="string">&#x27;EffiDeHead&#x27;</span>,</span><br><span class="line">        in_channels=[128, 256, 512],</span><br><span class="line">        num_layers=3,</span><br><span class="line">        begin_indices=24,</span><br><span class="line">        anchors=1,</span><br><span class="line">        out_indices=[17, 20, 23],</span><br><span class="line">        strides=[8, 16, 32],</span><br><span class="line">        iou_type=<span class="string">&#x27;ciou&#x27;</span></span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">solver = dict(</span><br><span class="line">    optim=<span class="string">&#x27;SGD&#x27;</span>,</span><br><span class="line">    lr_scheduler=<span class="string">&#x27;Cosine&#x27;</span>,</span><br><span class="line">    lr0=0.00258,</span><br><span class="line">    lrf=0.17,</span><br><span class="line">    momentum=0.779,</span><br><span class="line">    weight_decay=0.00058,</span><br><span class="line">    warmup_epochs=1.33,</span><br><span class="line">    warmup_momentum=0.86,</span><br><span class="line">    warmup_bias_lr=0.0711</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">data_aug = dict(</span><br><span class="line">    hsv_h=0.0188,</span><br><span class="line">    hsv_s=0.704,</span><br><span class="line">    hsv_v=0.36,</span><br><span class="line">    degrees=0.373,</span><br><span class="line">    translate=0.0902,</span><br><span class="line">    scale=0.491,</span><br><span class="line">    shear=0.602,</span><br><span class="line">    flipud=0.00856,</span><br><span class="line">    fliplr=0.5,</span><br><span class="line">    mosaic=1.0,</span><br><span class="line">    mixup=0.243</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h5><span id="2-配置数据集文件"> (2) 配置数据集文件</span></h5>
+<p>数据集配置文件路径: data/objects365.yaml</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">train: your/to/path/Objects365_yolov6/images/train2017</span><br><span class="line">val: your/to/path/Objects365_yolov6/images/val2017</span><br><span class="line"><span class="built_in">test</span>: your/to/path/Objects365_yolov6/images/val2017</span><br><span class="line"><span class="comment">#anno_path: your/to/path/Objects365_yolov6/annotations/instances_val2017.json   # 该标签为程序自动生成，不能指定为原COCO数据集的标签文件，路径只需修改根目录即可</span></span><br><span class="line"><span class="comment"># number of classes</span></span><br><span class="line">nc: 365</span><br><span class="line"></span><br><span class="line"><span class="comment"># class names</span></span><br><span class="line">names: [</span><br><span class="line">    <span class="string">&quot;human&quot;</span>,<span class="string">&quot;sneakers&quot;</span>,<span class="string">&quot;chair&quot;</span>,<span class="string">&quot;hat&quot;</span>,<span class="string">&quot;lamp&quot;</span>,<span class="string">&quot;bottle&quot;</span>,<span class="string">&quot;cabinet/shelf&quot;</span>,<span class="string">&quot;cup&quot;</span>,<span class="string">&quot;car&quot;</span>,<span class="string">&quot;glasses&quot;</span>,<span class="string">&quot;picture/frame&quot;</span>,<span class="string">&quot;desk&quot;</span>,<span class="string">&quot;handbag&quot;</span>,</span><br><span class="line">    <span class="string">&quot;street lights&quot;</span>,<span class="string">&quot;book&quot;</span>,<span class="string">&quot;plate&quot;</span>,<span class="string">&quot;helmet&quot;</span>,<span class="string">&quot;leather shoes&quot;</span>,<span class="string">&quot;pillow&quot;</span>,<span class="string">&quot;glove&quot;</span>,<span class="string">&quot;potted plant&quot;</span>,<span class="string">&quot;bracelet&quot;</span>,<span class="string">&quot;flower&quot;</span>,<span class="string">&quot;monitor&quot;</span>,</span><br><span class="line">    <span class="string">&quot;storage box&quot;</span>,<span class="string">&quot;plants pot/vase&quot;</span>,<span class="string">&quot;bench&quot;</span>,<span class="string">&quot;wine glass&quot;</span>,<span class="string">&quot;boots&quot;</span>,<span class="string">&quot;dining table&quot;</span>,<span class="string">&quot;umbrella&quot;</span>,<span class="string">&quot;boat&quot;</span>,<span class="string">&quot;flag&quot;</span>,<span class="string">&quot;speaker&quot;</span>,</span><br><span class="line">    <span class="string">&quot;trash bin/can&quot;</span>,<span class="string">&quot;stool&quot;</span>,<span class="string">&quot;backpack&quot;</span>,<span class="string">&quot;sofa&quot;</span>,<span class="string">&quot;belt&quot;</span>,<span class="string">&quot;carpet&quot;</span>,<span class="string">&quot;basket&quot;</span>,<span class="string">&quot;towel/napkin&quot;</span>,<span class="string">&quot;slippers&quot;</span>,<span class="string">&quot;bowl&quot;</span>,<span class="string">&quot;barrel/bucket&quot;</span>,</span><br><span class="line">    <span class="string">&quot;coffee table&quot;</span>,<span class="string">&quot;suv&quot;</span>,<span class="string">&quot;toy&quot;</span>,<span class="string">&quot;tie&quot;</span>,<span class="string">&quot;bed&quot;</span>,<span class="string">&quot;traffic light&quot;</span>,<span class="string">&quot;pen/pencil&quot;</span>,<span class="string">&quot;microphone&quot;</span>,<span class="string">&quot;sandals&quot;</span>,<span class="string">&quot;canned&quot;</span>,<span class="string">&quot;necklace&quot;</span>,</span><br><span class="line">    <span class="string">&quot;mirror&quot;</span>,<span class="string">&quot;faucet&quot;</span>,<span class="string">&quot;bicycle&quot;</span>,<span class="string">&quot;bread&quot;</span>,<span class="string">&quot;high heels&quot;</span>,<span class="string">&quot;ring&quot;</span>,<span class="string">&quot;van&quot;</span>,<span class="string">&quot;watch&quot;</span>,<span class="string">&quot;combine with bowl&quot;</span>,<span class="string">&quot;sink&quot;</span>,<span class="string">&quot;horse&quot;</span>,<span class="string">&quot;fish&quot;</span>,</span><br><span class="line">    <span class="string">&quot;apple&quot;</span>,<span class="string">&quot;traffic sign&quot;</span>,<span class="string">&quot;camera&quot;</span>,<span class="string">&quot;candle&quot;</span>,<span class="string">&quot;stuffed animal&quot;</span>,<span class="string">&quot;cake&quot;</span>,<span class="string">&quot;motorbike/motorcycle&quot;</span>,<span class="string">&quot;wild bird&quot;</span>,<span class="string">&quot;laptop&quot;</span>,</span><br><span class="line">    <span class="string">&quot;knife&quot;</span>,<span class="string">&quot;cellphone&quot;</span>,<span class="string">&quot;paddle&quot;</span>,<span class="string">&quot;truck&quot;</span>,<span class="string">&quot;cow&quot;</span>,<span class="string">&quot;power outlet&quot;</span>,<span class="string">&quot;clock&quot;</span>,<span class="string">&quot;drum&quot;</span>,<span class="string">&quot;fork&quot;</span>,<span class="string">&quot;bus&quot;</span>,<span class="string">&quot;hanger&quot;</span>,<span class="string">&quot;nightstand&quot;</span>,</span><br><span class="line">    <span class="string">&quot;pot/pan&quot;</span>,<span class="string">&quot;sheep&quot;</span>,<span class="string">&quot;guitar&quot;</span>,<span class="string">&quot;traffic cone&quot;</span>,<span class="string">&quot;tea pot&quot;</span>,<span class="string">&quot;keyboard&quot;</span>,<span class="string">&quot;tripod&quot;</span>,<span class="string">&quot;hockey stick&quot;</span>,<span class="string">&quot;fan&quot;</span>,<span class="string">&quot;dog&quot;</span>,<span class="string">&quot;spoon&quot;</span>,</span><br><span class="line">    <span class="string">&quot;blackboard/whiteboard&quot;</span>,<span class="string">&quot;balloon&quot;</span>,<span class="string">&quot;air conditioner&quot;</span>,<span class="string">&quot;cymbal&quot;</span>,<span class="string">&quot;mouse&quot;</span>,<span class="string">&quot;telephone&quot;</span>,<span class="string">&quot;pickup truck&quot;</span>,<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;banana&quot;</span>,</span><br><span class="line">    <span class="string">&quot;airplane&quot;</span>,<span class="string">&quot;luggage&quot;</span>,<span class="string">&quot;skis&quot;</span>,<span class="string">&quot;soccer&quot;</span>,<span class="string">&quot;trolley&quot;</span>,<span class="string">&quot;oven&quot;</span>,<span class="string">&quot;remote&quot;</span>,<span class="string">&quot;combine with glove&quot;</span>,<span class="string">&quot;paper towel&quot;</span>,<span class="string">&quot;refrigerator&quot;</span>,</span><br><span class="line">    <span class="string">&quot;train&quot;</span>,<span class="string">&quot;tomato&quot;</span>,<span class="string">&quot;machinery vehicle&quot;</span>,<span class="string">&quot;tent&quot;</span>,<span class="string">&quot;shampoo/shower gel&quot;</span>,<span class="string">&quot;head phone&quot;</span>,<span class="string">&quot;lantern&quot;</span>,<span class="string">&quot;donut&quot;</span>,<span class="string">&quot;cleaning products&quot;</span>,</span><br><span class="line">    <span class="string">&quot;sailboat&quot;</span>,<span class="string">&quot;tangerine&quot;</span>,<span class="string">&quot;pizza&quot;</span>,<span class="string">&quot;kite&quot;</span>,<span class="string">&quot;computer box&quot;</span>,<span class="string">&quot;elephant&quot;</span>,<span class="string">&quot;toiletries&quot;</span>,<span class="string">&quot;gas stove&quot;</span>,<span class="string">&quot;broccoli&quot;</span>,<span class="string">&quot;toilet&quot;</span>,<span class="string">&quot;stroller&quot;</span>,</span><br><span class="line">    <span class="string">&quot;shovel&quot;</span>,<span class="string">&quot;baseball bat&quot;</span>,<span class="string">&quot;microwave&quot;</span>,<span class="string">&quot;skateboard&quot;</span>,<span class="string">&quot;surfboard&quot;</span>,<span class="string">&quot;surveillance camera&quot;</span>,<span class="string">&quot;gun&quot;</span>,<span class="string">&quot;Life saver&quot;</span>,<span class="string">&quot;cat&quot;</span>,<span class="string">&quot;lemon&quot;</span>,</span><br><span class="line">    <span class="string">&quot;liquid soap&quot;</span>,<span class="string">&quot;zebra&quot;</span>,<span class="string">&quot;duck&quot;</span>,<span class="string">&quot;sports car&quot;</span>,<span class="string">&quot;giraffe&quot;</span>,<span class="string">&quot;pumpkin&quot;</span>,<span class="string">&quot;Accordion/keyboard/piano&quot;</span>,<span class="string">&quot;radiator&quot;</span>,<span class="string">&quot;converter&quot;</span>,</span><br><span class="line">    <span class="string">&quot;tissue&quot;</span>,<span class="string">&quot;carrot&quot;</span>,<span class="string">&quot;washing machine&quot;</span>,<span class="string">&quot;vent&quot;</span>,<span class="string">&quot;cookies&quot;</span>,<span class="string">&quot;cutting/chopping board&quot;</span>,<span class="string">&quot;tennis racket&quot;</span>,<span class="string">&quot;candy&quot;</span>,</span><br><span class="line">    <span class="string">&quot;skating and skiing shoes&quot;</span>,<span class="string">&quot;scissors&quot;</span>,<span class="string">&quot;folder&quot;</span>,<span class="string">&quot;baseball&quot;</span>,<span class="string">&quot;strawberry&quot;</span>,<span class="string">&quot;bow tie&quot;</span>,<span class="string">&quot;pigeon&quot;</span>,<span class="string">&quot;pepper&quot;</span>,<span class="string">&quot;coffee machine&quot;</span>,</span><br><span class="line">    <span class="string">&quot;bathtub&quot;</span>,<span class="string">&quot;snowboard&quot;</span>,<span class="string">&quot;suitcase&quot;</span>,<span class="string">&quot;grapes&quot;</span>,<span class="string">&quot;ladder&quot;</span>,<span class="string">&quot;pear&quot;</span>,<span class="string">&quot;american football&quot;</span>,<span class="string">&quot;basketball&quot;</span>,<span class="string">&quot;potato&quot;</span>,<span class="string">&quot;paint brush&quot;</span>,</span><br><span class="line">    <span class="string">&quot;printer&quot;</span>,<span class="string">&quot;billiards&quot;</span>,<span class="string">&quot;fire hydrant&quot;</span>,<span class="string">&quot;goose&quot;</span>,<span class="string">&quot;projector&quot;</span>,<span class="string">&quot;sausage&quot;</span>,<span class="string">&quot;fire extinguisher&quot;</span>,<span class="string">&quot;extension cord&quot;</span>,<span class="string">&quot;facial mask&quot;</span>,</span><br><span class="line">    <span class="string">&quot;tennis ball&quot;</span>,<span class="string">&quot;chopsticks&quot;</span>,<span class="string">&quot;Electronic stove and gas stove&quot;</span>,<span class="string">&quot;pie&quot;</span>,<span class="string">&quot;frisbee&quot;</span>,<span class="string">&quot;kettle&quot;</span>,<span class="string">&quot;hamburger&quot;</span>,<span class="string">&quot;golf club&quot;</span>,<span class="string">&quot;cucumber&quot;</span>,</span><br><span class="line">    <span class="string">&quot;clutch&quot;</span>,<span class="string">&quot;blender&quot;</span>,<span class="string">&quot;tong&quot;</span>,<span class="string">&quot;slide&quot;</span>,<span class="string">&quot;hot dog&quot;</span>,<span class="string">&quot;toothbrush&quot;</span>,<span class="string">&quot;facial cleanser&quot;</span>,<span class="string">&quot;mango&quot;</span>,<span class="string">&quot;deer&quot;</span>,<span class="string">&quot;egg&quot;</span>,<span class="string">&quot;violin&quot;</span>,<span class="string">&quot;marker&quot;</span>,</span><br><span class="line">    <span class="string">&quot;ship&quot;</span>,<span class="string">&quot;chicken&quot;</span>,<span class="string">&quot;onion&quot;</span>,<span class="string">&quot;ice cream&quot;</span>,<span class="string">&quot;tape&quot;</span>,<span class="string">&quot;wheelchair&quot;</span>,<span class="string">&quot;plum&quot;</span>,<span class="string">&quot;bar soap&quot;</span>,<span class="string">&quot;scale&quot;</span>,<span class="string">&quot;watermelon&quot;</span>,<span class="string">&quot;cabbage&quot;</span>,<span class="string">&quot;router/modem&quot;</span>,</span><br><span class="line">    <span class="string">&quot;golf ball&quot;</span>,<span class="string">&quot;pine apple&quot;</span>,<span class="string">&quot;crane&quot;</span>,<span class="string">&quot;fire truck&quot;</span>,<span class="string">&quot;peach&quot;</span>,<span class="string">&quot;cello&quot;</span>,<span class="string">&quot;notepaper&quot;</span>,<span class="string">&quot;tricycle&quot;</span>,<span class="string">&quot;toaster&quot;</span>,<span class="string">&quot;helicopter&quot;</span>,<span class="string">&quot;green beans&quot;</span>,</span><br><span class="line">    <span class="string">&quot;brush&quot;</span>,<span class="string">&quot;carriage&quot;</span>,<span class="string">&quot;cigar&quot;</span>,<span class="string">&quot;earphone&quot;</span>,<span class="string">&quot;penguin&quot;</span>,<span class="string">&quot;hurdle&quot;</span>,<span class="string">&quot;swing&quot;</span>,<span class="string">&quot;radio&quot;</span>,<span class="string">&quot;CD&quot;</span>,<span class="string">&quot;parking meter&quot;</span>,<span class="string">&quot;swan&quot;</span>,<span class="string">&quot;garlic&quot;</span>,<span class="string">&quot;french fries&quot;</span>,</span><br><span class="line">    <span class="string">&quot;horn&quot;</span>,<span class="string">&quot;avocado&quot;</span>,<span class="string">&quot;saxophone&quot;</span>,<span class="string">&quot;trumpet&quot;</span>,<span class="string">&quot;sandwich&quot;</span>,<span class="string">&quot;cue&quot;</span>,<span class="string">&quot;kiwi fruit&quot;</span>,<span class="string">&quot;bear&quot;</span>,<span class="string">&quot;fishing rod&quot;</span>,<span class="string">&quot;cherry&quot;</span>,<span class="string">&quot;tablet&quot;</span>,<span class="string">&quot;green vegetables&quot;</span>,</span><br><span class="line">    <span class="string">&quot;nuts&quot;</span>,<span class="string">&quot;corn&quot;</span>,<span class="string">&quot;key&quot;</span>,<span class="string">&quot;screwdriver&quot;</span>,<span class="string">&quot;globe&quot;</span>,<span class="string">&quot;broom&quot;</span>,<span class="string">&quot;pliers&quot;</span>,<span class="string">&quot;hammer&quot;</span>,<span class="string">&quot;volleyball&quot;</span>,<span class="string">&quot;eggplant&quot;</span>,<span class="string">&quot;trophy&quot;</span>,<span class="string">&quot;board eraser&quot;</span>,<span class="string">&quot;dates&quot;</span>,</span><br><span class="line">    <span class="string">&quot;rice&quot;</span>,<span class="string">&quot;tape measure/ruler&quot;</span>,<span class="string">&quot;dumbbell&quot;</span>,<span class="string">&quot;hamimelon&quot;</span>,<span class="string">&quot;stapler&quot;</span>,<span class="string">&quot;camel&quot;</span>,<span class="string">&quot;lettuce&quot;</span>,<span class="string">&quot;goldfish&quot;</span>,<span class="string">&quot;meat balls&quot;</span>,<span class="string">&quot;medal&quot;</span>,<span class="string">&quot;toothpaste&quot;</span>,</span><br><span class="line">    <span class="string">&quot;antelope&quot;</span>,<span class="string">&quot;shrimp&quot;</span>,<span class="string">&quot;rickshaw&quot;</span>,<span class="string">&quot;trombone&quot;</span>,<span class="string">&quot;pomegranate&quot;</span>,<span class="string">&quot;coconut&quot;</span>,<span class="string">&quot;jellyfish&quot;</span>,<span class="string">&quot;mushroom&quot;</span>,<span class="string">&quot;calculator&quot;</span>,<span class="string">&quot;treadmill&quot;</span>,<span class="string">&quot;butterfly&quot;</span>,</span><br><span class="line">    <span class="string">&quot;egg tart&quot;</span>,<span class="string">&quot;cheese&quot;</span>,<span class="string">&quot;pomelo&quot;</span>,<span class="string">&quot;pig&quot;</span>,<span class="string">&quot;race car&quot;</span>,<span class="string">&quot;rice cooker&quot;</span>,<span class="string">&quot;tuba&quot;</span>,<span class="string">&quot;crosswalk sign&quot;</span>,<span class="string">&quot;papaya&quot;</span>,<span class="string">&quot;hair dryer&quot;</span>,<span class="string">&quot;green onion&quot;</span>,<span class="string">&quot;chips&quot;</span>,</span><br><span class="line">    <span class="string">&quot;dolphin&quot;</span>,<span class="string">&quot;sushi&quot;</span>,<span class="string">&quot;urinal&quot;</span>,<span class="string">&quot;donkey&quot;</span>,<span class="string">&quot;electric drill&quot;</span>,<span class="string">&quot;spring rolls&quot;</span>,<span class="string">&quot;tortoise/turtle&quot;</span>,<span class="string">&quot;parrot&quot;</span>,<span class="string">&quot;flute&quot;</span>,<span class="string">&quot;measuring cup&quot;</span>,<span class="string">&quot;shark&quot;</span>,</span><br><span class="line">    <span class="string">&quot;steak&quot;</span>,<span class="string">&quot;poker card&quot;</span>,<span class="string">&quot;binoculars&quot;</span>,<span class="string">&quot;llama&quot;</span>,<span class="string">&quot;radish&quot;</span>,<span class="string">&quot;noodles&quot;</span>,<span class="string">&quot;mop&quot;</span>,<span class="string">&quot;yak&quot;</span>,<span class="string">&quot;crab&quot;</span>,<span class="string">&quot;microscope&quot;</span>,<span class="string">&quot;barbell&quot;</span>,<span class="string">&quot;Bread/bun&quot;</span>,<span class="string">&quot;baozi&quot;</span>,</span><br><span class="line">    <span class="string">&quot;lion&quot;</span>,<span class="string">&quot;red cabbage&quot;</span>,<span class="string">&quot;polar bear&quot;</span>,<span class="string">&quot;lighter&quot;</span>,<span class="string">&quot;mangosteen&quot;</span>,<span class="string">&quot;seal&quot;</span>,<span class="string">&quot;comb&quot;</span>,<span class="string">&quot;eraser&quot;</span>,<span class="string">&quot;pitaya&quot;</span>,<span class="string">&quot;scallop&quot;</span>,<span class="string">&quot;pencil case&quot;</span>,<span class="string">&quot;saw&quot;</span>,</span><br><span class="line">    <span class="string">&quot;table tennis  paddle&quot;</span>,<span class="string">&quot;okra&quot;</span>,<span class="string">&quot;starfish&quot;</span>,<span class="string">&quot;monkey&quot;</span>,<span class="string">&quot;eagle&quot;</span>,<span class="string">&quot;durian&quot;</span>,<span class="string">&quot;rabbit&quot;</span>,<span class="string">&quot;game board&quot;</span>,<span class="string">&quot;french horn&quot;</span>,<span class="string">&quot;ambulance&quot;</span>,<span class="string">&quot;asparagus&quot;</span>,</span><br><span class="line">    <span class="string">&quot;hoverboard&quot;</span>,<span class="string">&quot;pasta&quot;</span>,<span class="string">&quot;target&quot;</span>,<span class="string">&quot;hotair balloon&quot;</span>,<span class="string">&quot;chainsaw&quot;</span>,<span class="string">&quot;lobster&quot;</span>,<span class="string">&quot;iron&quot;</span>,<span class="string">&quot;flashlight&quot;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h5><span id="3-其他文件修改"> (3) 其他文件修改</span></h5>
+<p>针对 Objects365 此类类别个数超过超过 2 位数的数据集需修改以下文件:</p>
+<p>文件路径: YOLOv6/yolov6/data/datasets.py</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">  @staticmethod</span><br><span class="line">  def check_label_files(args):</span><br><span class="line">      img_path, lb_path = args</span><br><span class="line">      nm, nf, ne, nc, msg = 0, 0, 0, 0, <span class="string">&quot;&quot;</span>  <span class="comment"># number (missing, found, empty, message</span></span><br><span class="line">      try:</span><br><span class="line">          <span class="keyword">if</span> osp.exists(lb_path):</span><br><span class="line">              nf = 1  <span class="comment"># label found</span></span><br><span class="line">              with open(lb_path, <span class="string">&quot;r&quot;</span>) as f:</span><br><span class="line">                  labels = [</span><br><span class="line">                      x.split() <span class="keyword">for</span> x <span class="keyword">in</span> f.read().strip().splitlines() <span class="keyword">if</span> len(x)</span><br><span class="line">                  ]</span><br><span class="line">                  labels = np.array(labels, dtype=np.float32)</span><br><span class="line">              <span class="keyword">if</span> len(labels):</span><br><span class="line">                  assert all(</span><br><span class="line">                      len(l) == 5 <span class="keyword">for</span> l <span class="keyword">in</span> labels</span><br><span class="line">                  ), f<span class="string">&quot;&#123;lb_path&#125;: wrong label format.&quot;</span></span><br><span class="line">                  assert (</span><br><span class="line">                      labels &gt;= 0</span><br><span class="line">                  ).all(), f<span class="string">&quot;&#123;lb_path&#125;: Label values error: all values in label file must &gt; 0&quot;</span></span><br><span class="line"><span class="comment"># --------------------------------------注释掉本断言-------------------------------------------------------------------- # </span></span><br><span class="line">                  <span class="comment"># assert (</span></span><br><span class="line">                  <span class="comment">#     labels[:, 1:] &lt;= 1</span></span><br><span class="line">                  <span class="comment"># ).all(), f&quot;&#123;lb_path&#125;: Label values error: all coordinates must be normalized&quot;</span></span><br><span class="line"><span class="comment"># -------------------------------------------------------------------------------------------------------------------- # </span></span><br><span class="line"></span><br><span class="line">                  _, indices = np.unique(labels, axis=0, return_index=True)</span><br><span class="line">                  <span class="keyword">if</span> len(indices) &lt; len(labels):  <span class="comment"># duplicate row check</span></span><br><span class="line">                      labels = labels[indices]  <span class="comment"># remove duplicates</span></span><br><span class="line">                      msg += f<span class="string">&quot;WARNING: &#123;lb_path&#125;: &#123;len(labels) - len(indices)&#125; duplicate labels removed&quot;</span></span><br><span class="line">                  labels = labels.tolist()</span><br><span class="line">              <span class="keyword">else</span>:</span><br><span class="line">                  ne = 1  <span class="comment"># label empty</span></span><br><span class="line">                  labels = []</span><br><span class="line">          <span class="keyword">else</span>:</span><br><span class="line">              nm = 1  <span class="comment"># label missing</span></span><br><span class="line">              labels = []</span><br><span class="line"></span><br><span class="line">          <span class="built_in">return</span> img_path, labels, nc, nm, nf, ne, msg</span><br><span class="line">      except Exception as e:</span><br><span class="line">          nc = 1</span><br><span class="line">          msg = f<span class="string">&quot;WARNING: &#123;lb_path&#125;: ignoring invalid labels: &#123;e&#125;&quot;</span></span><br><span class="line">          <span class="built_in">return</span> None, None, nc, nm, nf, ne, msg</span><br></pre></td></tr></table></figure>
+<h4><span id="5-模型训练及推理"> 5 模型训练及推理</span></h4>
+<h5><span id="1-训练环境搭建"> (1) 训练环境搭建</span></h5>
+<p>使用 conda 或者 Docker 虚拟环境皆可，此处请自行搭建</p>
+<h5><span id="2-模型训练"> (2) 模型训练</span></h5>
+<ul>
+<li>
+<p>训练参数配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文件位置: tools/train.py</span></span><br><span class="line">def get_args_parser(add_help=True):</span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">&#x27;YOLOv6 PyTorch Training&#x27;</span>, add_help=add_help)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--data-path&#x27;</span>, default=<span class="string">&#x27;./data/coco.yaml&#x27;</span>, <span class="built_in">type</span>=str, <span class="built_in">help</span>=<span class="string">&#x27;path of dataset&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--conf-file&#x27;</span>, default=<span class="string">&#x27;./configs/yolov6s.py&#x27;</span>, <span class="built_in">type</span>=str, <span class="built_in">help</span>=<span class="string">&#x27;experiments description file&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--img-size&#x27;</span>, <span class="built_in">type</span>=int, default=640, <span class="built_in">help</span>=<span class="string">&#x27;train, val image size (pixels)&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--batch-size&#x27;</span>, default=32, <span class="built_in">type</span>=int, <span class="built_in">help</span>=<span class="string">&#x27;total batch size for all GPUs&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--epochs&#x27;</span>, default=400, <span class="built_in">type</span>=int, <span class="built_in">help</span>=<span class="string">&#x27;number of total epochs to run&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--workers&#x27;</span>, default=4, <span class="built_in">type</span>=int, <span class="built_in">help</span>=<span class="string">&#x27;number of data loading workers (default: 8)&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--device&#x27;</span>, default=<span class="string">&#x27;0&#x27;</span>, <span class="built_in">type</span>=str, <span class="built_in">help</span>=<span class="string">&#x27;cuda device, i.e. 0 or 0,1,2,3 or cpu&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--eval-interval&#x27;</span>, <span class="built_in">type</span>=int, default=20, <span class="built_in">help</span>=<span class="string">&#x27;evaluate at every interval epochs&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--eval-final-only&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;only evaluate at the final epoch&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--heavy-eval-range&#x27;</span>, default=50,</span><br><span class="line">                        <span class="built_in">help</span>=<span class="string">&#x27;evaluating every epoch for last such epochs (can be jointly used with --eval-interval)&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--check-images&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;check images when initializing datasets&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--check-labels&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;check label files when initializing datasets&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--output-dir&#x27;</span>, default=<span class="string">&#x27;./runs/train&#x27;</span>, <span class="built_in">type</span>=str, <span class="built_in">help</span>=<span class="string">&#x27;path to save outputs&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--name&#x27;</span>, default=<span class="string">&#x27;exp&#x27;</span>, <span class="built_in">type</span>=str, <span class="built_in">help</span>=<span class="string">&#x27;experiment name, saved to output_dir/name&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--dist_url&#x27;</span>, <span class="built_in">type</span>=str, default=<span class="string">&quot;default url: tcp://127.0.0.1:8888&quot;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--gpu_count&#x27;</span>, <span class="built_in">type</span>=int, default=0)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--local_rank&#x27;</span>, <span class="built_in">type</span>=int, default=-1, <span class="built_in">help</span>=<span class="string">&#x27;DDP parameter&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--resume&#x27;</span>, <span class="built_in">type</span>=str, default=None, <span class="built_in">help</span>=<span class="string">&#x27;resume the corresponding ckpt&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>模型训练</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python tools/train.py --batch-size 32 --conf-file configs/yolov6n_objects365.py --data-path data/objects365.yaml --device 0</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5><span id="3-模型验证"> (3) 模型验证</span></h5>
+<ul>
+<li>
+<p>验证参数配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文件位置: tools/eval.py</span></span><br><span class="line">def get_args_parser(add_help=True):</span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">&#x27;YOLOv6 PyTorch Evalating&#x27;</span>, add_help=add_help)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--data&#x27;</span>, <span class="built_in">type</span>=str, default=<span class="string">&#x27;./data/coco.yaml&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;dataset.yaml path&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--weights&#x27;</span>, <span class="built_in">type</span>=str, default=<span class="string">&#x27;./weights/yolov6s.pt&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;model.pt path(s)&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--batch-size&#x27;</span>, <span class="built_in">type</span>=int, default=32, <span class="built_in">help</span>=<span class="string">&#x27;batch size&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--img-size&#x27;</span>, <span class="built_in">type</span>=int, default=640, <span class="built_in">help</span>=<span class="string">&#x27;inference size (pixels)&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--conf-thres&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=0.001, <span class="built_in">help</span>=<span class="string">&#x27;confidence threshold&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--iou-thres&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=0.65, <span class="built_in">help</span>=<span class="string">&#x27;NMS IoU threshold&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--task&#x27;</span>, default=<span class="string">&#x27;val&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;val, or speed&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--device&#x27;</span>, default=<span class="string">&#x27;0&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;cuda device, i.e. 0 or 0,1,2,3 or cpu&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--half&#x27;</span>, default=False, action=<span class="string">&#x27;store_true&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;whether to use fp16 infer&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--save_dir&#x27;</span>, <span class="built_in">type</span>=str, default=<span class="string">&#x27;runs/val/&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;evaluation save dir&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--name&#x27;</span>, <span class="built_in">type</span>=str, default=<span class="string">&#x27;exp&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;save evaluation results to save_dir/name&#x27;</span>)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line">    LOGGER.info(args)</span><br><span class="line">    <span class="built_in">return</span> args</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>模型验证</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python tools/eval.py --data data/objects365.yaml  --batch-size 32 --weights weights/yolov6n.pt --task val</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5><span id="4-模型推理"> (4) 模型推理</span></h5>
+<ul>
+<li>
+<p>推理参数配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文件位置: tools/infer.py</span></span><br><span class="line">def get_args_parser(add_help=True):</span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">&#x27;YOLOv6 PyTorch Inference.&#x27;</span>, add_help=add_help)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--weights&#x27;</span>, <span class="built_in">type</span>=str, default=<span class="string">&#x27;weights/yolov6s.pt&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;model path(s) for inference.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--source&#x27;</span>, <span class="built_in">type</span>=str, default=<span class="string">&#x27;data/images&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;the source path, e.g. image-file/dir.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--yaml&#x27;</span>, <span class="built_in">type</span>=str, default=<span class="string">&#x27;data/coco.yaml&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;data yaml file.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--img-size&#x27;</span>, <span class="built_in">type</span>=int, default=640, <span class="built_in">help</span>=<span class="string">&#x27;the image-size(h,w) in inference size.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--conf-thres&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=0.25, <span class="built_in">help</span>=<span class="string">&#x27;confidence threshold for inference.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--iou-thres&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">float</span>, default=0.45, <span class="built_in">help</span>=<span class="string">&#x27;NMS IoU threshold for inference.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--max-det&#x27;</span>, <span class="built_in">type</span>=int, default=1000, <span class="built_in">help</span>=<span class="string">&#x27;maximal inferences per image.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--device&#x27;</span>, default=<span class="string">&#x27;0&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;device to run our model i.e. 0 or 0,1,2,3 or cpu.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--save-txt&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;save results to *.txt.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--save-img&#x27;</span>, action=<span class="string">&#x27;store_false&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;save visuallized inference results.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--classes&#x27;</span>, nargs=<span class="string">&#x27;+&#x27;</span>, <span class="built_in">type</span>=int, <span class="built_in">help</span>=<span class="string">&#x27;filter by classes, e.g. --classes 0, or --classes 0 2 3.&#x27;</span>)</span><br><span class="line">    parser.adkd_argument(<span class="string">&#x27;--agnostic-nms&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;class-agnostic NMS.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--project&#x27;</span>, default=<span class="string">&#x27;runs/inference&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;save inference results to project/name.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--name&#x27;</span>, default=<span class="string">&#x27;exp&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;save inference results to project/name.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--hide-labels&#x27;</span>, default=False, action=<span class="string">&#x27;store_true&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;hide labels.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--hide-conf&#x27;</span>, default=False, action=<span class="string">&#x27;store_true&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;hide confidences.&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--half&#x27;</span>, action=<span class="string">&#x27;store_true&#x27;</span>, <span class="built_in">help</span>=<span class="string">&#x27;whether to use FP16 half-precision inference.&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    args = parser.parse_args()</span><br><span class="line">    LOGGER.info(args)</span><br><span class="line">    <span class="built_in">return</span> args</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>模型推理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python tools/infer.py --weights weights/yolov6n.pt --yaml data/objects365.yaml --<span class="built_in">source</span> your/to/images.jpg</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2022年07月26日 23:54</p>
+        <p>原始链接： <a class="post-url" href="/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91YOLOv6%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86/" title="【精华】YOLOv6训练自己的数据集">https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91YOLOv6%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91YOLOv6%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86/&title=《【精华】YOLOv6训练自己的数据集》 — 且听风吟，御剑于心！&pic=images/YOLOv6.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91YOLOv6%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86/&title=《【精华】YOLOv6训练自己的数据集》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91YOLOv6%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【精华】YOLOv6训练自己的数据集》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91YOLOv6%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91YOLOv6%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91YOLOv6%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/计算机视觉/" class="color1">计算机视觉</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 资源下载</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> (1) YOLOv6</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> (2) 参考博客</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 1 前言</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 2 数据集获取</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 3 数据集转化</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 4 工程文件配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> (1) 配置模型文件</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> (2) 配置数据集文件</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> (3) 其他文件修改</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 5 模型训练及推理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> (1) 训练环境搭建</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> (2) 模型训练</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> (3) 模型验证</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> (4) 模型推理</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2022/07/26/ONNX%E6%A8%A1%E5%9E%8B%E6%9E%84%E9%80%A0%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          ONNX模型构造与代码检查
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/03/11/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BB%8EYOLOX%E8%AF%A6%E8%A7%A3%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF%E5%8F%8A%E6%B6%A8%E7%82%B9%E6%8A%80%E5%B7%A7/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【精华】从YOLOX详解模型优化思路及涨点技巧</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="【精华】YOLOv6训练自己的数据集" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

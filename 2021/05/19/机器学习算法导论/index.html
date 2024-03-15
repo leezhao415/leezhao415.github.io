@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>机器学习算法导论 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   机器学习算法  1 机器学习分类依据  1.1 按照任务是否需要和环境进行交互获取经验  1.1.1 监督学习 1.1.2 强化学习   1.2 按照算法功能和形式的类似性  1.2.1 回归算法 1.2.2 基于实例的算法 1.2.3 正则化方法 1.2.4 决策树学习 1.2.5 贝叶斯方法 1.2.6 基于核的算法 1.2.7 聚类算法 1.2.8 关联规则学习 1.2.9">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习算法导论">
+<meta property="og:url" content="https://leezhao415.github.io/2021/05/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   机器学习算法  1 机器学习分类依据  1.1 按照任务是否需要和环境进行交互获取经验  1.1.1 监督学习 1.1.2 强化学习   1.2 按照算法功能和形式的类似性  1.2.1 回归算法 1.2.2 基于实例的算法 1.2.3 正则化方法 1.2.4 决策树学习 1.2.5 贝叶斯方法 1.2.6 基于核的算法 1.2.7 聚类算法 1.2.8 关联规则学习 1.2.9">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519105825413.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519110013519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519110031792.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519110051627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519110110777.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519110128579.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519110145802.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519110216990.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519110236813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021051911025468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519110315572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519110340484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210519110511897.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-05-19T08:35:27.000Z">
+<meta property="article:modified_time" content="2021-07-14T13:00:44.391Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210519105825413.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-机器学习算法导论" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      机器学习算法导论
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-05-19
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95">机器学习算法</a>
+<ul>
+<li><a href="#1-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E4%BE%9D%E6%8D%AE">1 机器学习分类依据</a>
+<ul>
+<li><a href="#11-%E6%8C%89%E7%85%A7%E4%BB%BB%E5%8A%A1%E6%98%AF%E5%90%A6%E9%9C%80%E8%A6%81%E5%92%8C%E7%8E%AF%E5%A2%83%E8%BF%9B%E8%A1%8C%E4%BA%A4%E4%BA%92%E8%8E%B7%E5%8F%96%E7%BB%8F%E9%AA%8C">1.1 按照任务是否需要和环境进行交互获取经验</a>
+<ul>
+<li><a href="#111-%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0">1.1.1 监督学习</a></li>
+<li><a href="#112-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0">1.1.2 强化学习</a></li>
+</ul>
+</li>
+<li><a href="#12-%E6%8C%89%E7%85%A7%E7%AE%97%E6%B3%95%E5%8A%9F%E8%83%BD%E5%92%8C%E5%BD%A2%E5%BC%8F%E7%9A%84%E7%B1%BB%E4%BC%BC%E6%80%A7">1.2 按照算法功能和形式的类似性</a>
+<ul>
+<li><a href="#121-%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95">1.2.1 回归算法</a></li>
+<li><a href="#122-%E5%9F%BA%E4%BA%8E%E5%AE%9E%E4%BE%8B%E7%9A%84%E7%AE%97%E6%B3%95">1.2.2 基于实例的算法</a></li>
+<li><a href="#123-%E6%AD%A3%E5%88%99%E5%8C%96%E6%96%B9%E6%B3%95">1.2.3 正则化方法</a></li>
+<li><a href="#124-%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0">1.2.4 决策树学习</a></li>
+<li><a href="#125-%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%96%B9%E6%B3%95">1.2.5 贝叶斯方法</a></li>
+<li><a href="#126-%E5%9F%BA%E4%BA%8E%E6%A0%B8%E7%9A%84%E7%AE%97%E6%B3%95">1.2.6 基于核的算法</a></li>
+<li><a href="#127-%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95">1.2.7 聚类算法</a></li>
+<li><a href="#128-%E5%85%B3%E8%81%94%E8%A7%84%E5%88%99%E5%AD%A6%E4%B9%A0">1.2.8 关联规则学习</a></li>
+<li><a href="#129-%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">1.2.9 人工神经网络</a></li>
+<li><a href="#1210-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">1.2.10 深度学习</a></li>
+<li><a href="#1211-%E9%99%8D%E4%BD%8E%E7%BB%B4%E5%BA%A6%E7%AE%97%E6%B3%95">1.2.11 降低维度算法</a></li>
+<li><a href="#1212-%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95">1.2.12 集成算法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0">2 监督学习</a>
+<ul>
+<li><a href="#21-%E6%9C%89%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0">2.1 有监督学习</a>
+<ul>
+<li><a href="#211-k-%E8%BF%91%E9%82%BB%E7%AE%97%E6%B3%95">2.1.1 K - 近邻算法</a></li>
+<li><a href="#212-%E5%86%B3%E7%AD%96%E6%A0%91%E5%92%8C%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%E7%AE%97%E6%B3%95">2.1.2 决策树和随机森林算法</a></li>
+<li><a href="#213-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF">2.1.3 朴素贝叶斯</a></li>
+<li><a href="#214-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92">2.1.4 线性回归</a></li>
+<li><a href="#215-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92">2.1.5 逻辑回归</a></li>
+<li><a href="#216-%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA">2.1.6 支持向量机</a></li>
+<li><a href="#217-%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0">2.1.7 集成学习</a></li>
+<li><a href="#218-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">2.1.8 神经网络</a></li>
+</ul>
+</li>
+<li><a href="#22-%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0">2.2 无监督学习</a>
+<ul>
+<li><a href="#221-%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95">2.2.1 聚类算法</a></li>
+<li><a href="#222-%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90pca">2.2.2 主成分分析（PCA）</a></li>
+<li><a href="#223-svd%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3">2.2.3 SVD 矩阵分解</a></li>
+<li><a href="#224-%E7%8B%AC%E7%AB%8B%E6%88%90%E5%88%86%E5%88%86%E6%9E%90ica">2.2.4 独立成分分析 (ICA)</a></li>
+<li><a href="#225-em%E7%AE%97%E6%B3%95">2.2.5 EM 算法</a></li>
+</ul>
+</li>
+<li><a href="#23-%E5%8D%8A%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0">2.3 半监督学习</a></li>
+</ul>
+</li>
+<li><a href="#3-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0">3 强化学习</a>
+<ul>
+<li><a href="#31-%E6%A6%82%E5%BF%B5%E8%A7%A3%E9%87%8A">3.1 概念解释</a></li>
+<li><a href="#32-%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95">3.2 常见算法</a></li>
+<li><a href="#33-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF">3.3 应用场景</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h2><span id="机器学习算法"> 机器学习算法</span></h2>
+<h3><span id="1-机器学习分类依据"> 1 机器学习分类依据</span></h3>
+<h4><span id="11-按照任务是否需要和环境进行交互获取经验"> 1.1 按照任务是否需要和环境进行交互获取经验</span></h4>
+<h5><span id="111-监督学习"> 1.1.1 监督学习</span></h5>
+<ul>
+<li>
+<p>1 按照训练数据是否存在标签</p>
+<ul>
+<li>
+<p><code>监督学习</code></p>
+<p>监督学习是从 <code>标记的训练数据</code> 来推断一个功能的机器学习任务。在监督学习中，每个实例都是由一个输入对象（通常为矢量）和一个期望的输出值（也称为监督信号）组成。监督学习算法是分析该训练数据，并产生一个推断的功能，其可以用于映射出新的实例。一个最佳的方案将允许该算法来正确地决定那些看不见的实例的类标签。</p>
+</li>
+<li>
+<p><code>无监督学习</code></p>
+<p>所有数据 <code>只有特征向量没有标签</code> ，但是可以发现这些数据呈现出聚群的结构，本质是一个相似的类型的会聚集在一起。把这些没有标签的数据分成一个一个组合，就是聚类（Clustering）</p>
+</li>
+<li>
+<p><code>半监督学习</code></p>
+<p>半监督学习在训练阶段结合了大量 <code>未标记的数据</code> 和 <code>少量标签数据</code> 。与使用所有标签数据的模型相比，使用训练集的训练模型在训练时可以更为准确，而且训练成本更低。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>2 按照标签是连续还是离散的</strong></p>
+<ul>
+<li>
+<p><code>分类问题</code></p>
+</li>
+<li>
+<p><code>回归问题</code></p>
+<p>探索自变量与因变量之间的关系的问题，回归算法试图采用对误差的衡量来探索变量之间的关系。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5><span id="112-强化学习"> 1.1.2 强化学习</span></h5>
+<p>智能系统 <code>从环境到行为映射</code> 的学习，以使 <code>奖励信号(强化信号)函数值最大</code> 。如果 Agent 的某个行为策略导致环境正的奖赏 (强化信号)，那么 Agent 以后产生这个行为策略的趋势便会加强</p>
+<center><img src="https://img-blog.csdnimg.cn/20210519105825413.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<ul>
+<li><strong>常见算法</strong>
+<ul>
+<li>Q-Learning</li>
+<li>时间差学习（Temporal difference learning）</li>
+</ul>
+</li>
+<li><strong>应用场景</strong>
+<ul>
+<li>动态系统</li>
+<li>机器人控制</li>
+</ul>
+</li>
+</ul>
+<h4><span id="12-按照算法功能和形式的类似性"> 1.2 按照算法功能和形式的类似性</span></h4>
+<h5><span id="121-回归算法"> 1.2.1 回归算法</span></h5>
+<p>回归算法是试图采用对误差的衡量来探索变量之间的关系的一类算法。回归算法是统计机器学习的利器。在机器学习领域，人们说起回归，有时候是指一类问题，有时候是指一类算法，这一点常常会使初学者有所困惑。</p>
+<p>常见的算法：</p>
+<ul>
+<li>最小二乘法（Ordinary Least Square）</li>
+<li>逻辑回归（Logistic Regression）</li>
+<li>逐步式回归（Stepwise Regression）</li>
+<li>多元自适应回归样条（Multivariate Adaptive Regression Splines）</li>
+<li>本地散点平滑估计（Locally Estimated Scatterplot Smoothing）</li>
+</ul>
+<h5><span id="122-基于实例的算法"> 1.2.2 基于实例的算法</span></h5>
+<p>基于实例的算法常常用来对决策问题建立模型，这样的模型常常先选取一批样本数据，然后根据某些近似性把新数据与样本数据进行比较。通过这种方式来寻找最佳的匹配。因此，基于实例的算法常常也被称为 “赢家通吃” 学习或者 “基于记忆的学习”。</p>
+<p>常见的算法:</p>
+<ul>
+<li>k-Nearest Neighbor(KNN)</li>
+<li>学习矢量量化（Learning Vector Quantization， LVQ）</li>
+<li>以及自组织映射算法（Self-Organizing Map ， SOM）</li>
+</ul>
+<h5><span id="123-正则化方法"> 1.2.3 正则化方法</span></h5>
+<p>正则化方法是其他算法（通常是回归算法）的延伸，根据算法的复杂度对算法进行调整。正则化方法通常对简单模型予以奖励而对复杂算法予以惩罚。</p>
+<p>常见的算法：</p>
+<ul>
+<li>
+<p>岭回归（Ridge Regression）</p>
+</li>
+<li>
+<p>LASSO 回归（Least Absolute Shrinkage and Selection Operator）</p>
+</li>
+<li>
+<p>弹性网络（Elastic Net）</p>
+</li>
+</ul>
+<h5><span id="124-决策树学习"> 1.2.4 决策树学习</span></h5>
+<p>决策树算法根据数据的属性采用树状结构建立决策模型， 决策树模型常常用来解决分类和回归问题。</p>
+<p>常见的算法：</p>
+<ul>
+<li>
+<p>CART 树（Classification And Regression Tree）</p>
+</li>
+<li>
+<p>ID3 (Iterative Dichotomiser 3)</p>
+</li>
+<li>
+<p>C4.5</p>
+</li>
+<li>
+<p>Chi-squared Automatic Interaction Detection(CHAID)</p>
+</li>
+<li>
+<p>Decision Stump</p>
+</li>
+<li>
+<p>随机森林（Random Forest）</p>
+</li>
+<li>
+<p>多元自适应回归样条（MARS）</p>
+</li>
+<li>
+<p>梯度推进机（Gradient Boosting Machine， GBM）</p>
+</li>
+</ul>
+<h5><span id="125-贝叶斯方法"> 1.2.5 贝叶斯方法</span></h5>
+<p>贝叶斯方法算法是基于贝叶斯定理的一类算法，主要用来解决分类和回归问题。</p>
+<p>常见的算法：</p>
+<ul>
+<li>朴素贝叶斯算法</li>
+<li>平均单依赖估计（Averaged One-Dependence Estimators， AODE）</li>
+<li>Bayesian Belief Network（BBN）</li>
+</ul>
+<h5><span id="126-基于核的算法"> 1.2.6 基于核的算法</span></h5>
+<p>基于核的算法中最著名的莫过于支持向量机（SVM）了。 基于核的算法把输入数据映射到一个高阶的向量空间， 在这些高阶向量空间里， 有些分类或者回归问题能够更容易的解决。</p>
+<p>常见的算法：</p>
+<ul>
+<li>
+<p>支持向量机（Support Vector Machine， SVM）</p>
+</li>
+<li>
+<p>径向基函数（Radial Basis Function ，RBF)</p>
+</li>
+<li>
+<p>线性判别分析（Linear Discriminate Analysis ，LDA)</p>
+</li>
+</ul>
+<h5><span id="127-聚类算法"> 1.2.7 聚类算法</span></h5>
+<p>聚类，就像回归一样，有时候人们描述的是一类问题，有时候描述的是一类算法。聚类算法通常按照中心点或者分层的方式对输入数据进行归并。所以的聚类算法都试图找到数据的内在结构，以便按照最大的共同点将数据进行归类。</p>
+<p>常见的算法：</p>
+<ul>
+<li>
+<p>k-Means 算法</p>
+</li>
+<li>
+<p>期望最大化算法（Expectation Maximization， EM）</p>
+</li>
+</ul>
+<h5><span id="128-关联规则学习"> 1.2.8 关联规则学习</span></h5>
+<p>关联规则学习通过寻找最能够解释数据变量之间关系的规则，来找出大量多元数据集中有用的关联规则。</p>
+<p>常见的算法：</p>
+<ul>
+<li>
+<p>Apriori 算法</p>
+</li>
+<li>
+<p>Eclat 算法</p>
+</li>
+</ul>
+<h5><span id="129-人工神经网络"> 1.2.9 人工神经网络</span></h5>
+<p>人工神经网络算法模拟生物神经网络，是一类模式匹配算法。通常用于解决分类和回归问题。人工神经网络是机器学习的一个庞大的分支，有几百种不同的算法。</p>
+<p>常见的算法：</p>
+<ul>
+<li>感知器神经网络（Perceptron Neural Network）</li>
+<li>反向传递（Back Propagation）</li>
+<li>Hopfield 网络</li>
+<li>自组织映射（Self-Organizing Map, SOM）</li>
+<li>学习矢量量化（Learning Vector Quantization， LVQ）</li>
+</ul>
+<h5><span id="1210-深度学习"> 1.2.10 深度学习</span></h5>
+<p>深度学习算法是对人工神经网络的发展。 在近期赢得了很多关注， 特别是百度也开始发力深度学习后， 更是在国内引起了很多关注。   在计算能力变得日益廉价的今天，深度学习试图建立大得多也复杂得多的神经网络。很多深度学习的算法是半监督式学习算法，用来处理存在少量未标识数据的大数据集。</p>
+<p>常见的算法：</p>
+<ul>
+<li>受限波尔兹曼机（Restricted Boltzmann Machine， RBN）</li>
+<li>Deep Belief Networks（DBN）</li>
+<li>卷积网络（Convolutional Network）</li>
+<li>堆栈式自动编码器（Stacked Auto-encoders）</li>
+</ul>
+<h5><span id="1211-降低维度算法"> 1.2.11 降低维度算法</span></h5>
+<p>像聚类算法一样，降低维度算法试图分析数据的内在结构，不过降低维度算法是以非监督学习的方式试图利用较少的信息来归纳或者解释数据。这类算法可以用于高维数据的可视化或者用来简化数据以便监督式学习使用。</p>
+<p>常见的算法：</p>
+<ul>
+<li>主成份分析（Principle Component Analysis， PCA）</li>
+<li>偏最小二乘回归（Partial Least Square Regression，PLS）</li>
+<li>Sammon 映射</li>
+<li>多维尺度（Multi-Dimensional Scaling, MDS）</li>
+<li>投影追踪（Projection Pursuit）</li>
+</ul>
+<h5><span id="1212-集成算法"> 1.2.12 集成算法</span></h5>
+<p>集成算法用一些相对较弱的学习模型独立地就同样的样本进行训练，然后把结果整合起来进行整体预测。集成算法的主要难点在于究竟集成哪些独立的较弱的学习模型以及如何把学习结果整合起来。这是一类非常强大的算法，同时也非常流行。</p>
+<p>常见的算法：</p>
+<ul>
+<li>
+<p>Boosting</p>
+</li>
+<li>
+<p>Bootstrapped Aggregation（Bagging）</p>
+</li>
+<li>
+<p>AdaBoost，堆叠泛化（Stacked Generalization， Blending）</p>
+</li>
+<li>
+<p>梯度推进机（Gradient Boosting Machine, GBM）</p>
+</li>
+<li>
+<p>随机森林（Random Forest）</p>
+</li>
+</ul>
+<h3><span id="2-监督学习"> 2 监督学习</span></h3>
+<h4><span id="21-有监督学习"> 2.1 有监督学习</span></h4>
+<h5><span id="211-k-近邻算法"> 2.1.1 K - 近邻算法</span></h5>
+<p>最近邻 (k-Nearest Neighbors， KNN) 算法是一种分类算法， 1968 年由 Cover 和 Hart 提出， 应用场景有字符识别、 文本分类、 图像识别等领域。<br>
+该算法的思想是： 一个样本与数据集中的 k 个样本最相似， 如果这 k 个样本中的大多数属于某一个类别， 则该样本也属于这个类别。</p>
+<p>KNN 算法流程：</p>
+<ul>
+<li>1）计算已知类别数据集中的点与当前点之间的距离</li>
+<li>2）按距离递增次序排序</li>
+<li>3）选取与当前点距离最小的 k 个点</li>
+<li>4）统计前 k 个点所在的类别出现的频率</li>
+<li>5）返回前 k 个点出现频率最高的类别作为当前点的预测分类</li>
+</ul>
+<h5><span id="212-决策树和随机森林算法"> 2.1.2 决策树和随机森林算法</span></h5>
+<p><code>决策树(Decision Trees)</code>  是一种树形结构，为人们提供决策依据，决策树可以用来回答 yes 和 no 问题，它通过树形结构将各种情况组合都表示出来，每个分支表示一次选择（选择 yes 还是 no），直到所有选择都进行完毕，最终给出正确答案。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210519110013519.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p><code>随机森林(Random Forests)</code></p>
+<ul>
+<li>专为决策树分类器设计的集成算法，是装袋法（Bagging）的一种拓展。</li>
+</ul>
+<p><code>GBDT (梯度提升决策树)</code></p>
+<ul>
+<li>
+<p>在不改变原来模型结构的基础上提升模型的拟合能力</p>
+</li>
+<li>
+<p>利用梯度下降，同损失函数的 <code>负梯度值</code> 作为 <code>残差值</code> 来拟合回归决策树。</p>
+</li>
+<li>
+<p>较为出色的是 XGBoost 树提升系统</p>
+</li>
+</ul>
+<h5><span id="213-朴素贝叶斯"> 2.1.3 朴素贝叶斯</span></h5>
+<center><img src="https://img-blog.csdnimg.cn/20210519110031792.png#pic_center" alt="在这里插入图片描述" style="zoom:67%;"></center>
+<p>P (A|B) 是后验概率， P (B|A) 是似然，P (A) 为先验概率，P (B) 为我们要预测的值。</p>
+<p>具体应用有：垃圾邮件检测、文章分类、情感分类、人脸识别等。</p>
+<h5><span id="214-线性回归"> 2.1.4 线性回归</span></h5>
+<p>线性回归 (Linear Regression) 的基本思想：找到一条线使得平面内的所有点到这条线的欧式距离和最小。这条线就是我们要求取得线。线性指的是用一条线对数据进行拟合，距离代表的是数据误差，最小二乘法可以看做是误差最小化。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210519110051627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<h5><span id="215-逻辑回归"> 2.1.5 逻辑回归</span></h5>
+<p>逻辑回归 (Logistic Regression) 模型是一个二分类模型，它选取不同的特征与权重来对样本进行概率分类，用一个 log 函数计算样本属于某一类的概率。即一个样本会有一定的概率属于一个类，会有一定的概率属于另一类，概率大的类即为样本所属类。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210519110110777.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>具体应用有：信用评级、营销活动成功概率、产品销售预测、某天是否将会地震发生。</p>
+<h5><span id="216-支持向量机"> 2.1.6 支持向量机</span></h5>
+<p>支持向量机 (Support Vector Machines) 是一个二分类算法，它可以在 N 维空间找到一个 (N-1) 维的超平面，这个超平面可以将这些点分为两类。也就是说，平面内如果存在线性可分的两类点，SVM 可以找到一条最优的直线将这些点分开。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210519110128579.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>具体应用有：广告展示、性别检测、大规模图像识别等。</p>
+<h5><span id="217-集成学习"> 2.1.7 集成学习</span></h5>
+<p>集成学习就是将很多分类器集成在一起，每个分类器有不同的权重，将这些分类器的分类结果合并在一起，作为最终的分类结果。最初集成方法为贝叶斯决策，现在多采用 error-correcting output coding, bagging, and boosting 等方法进行集成。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210519110145802.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>那么为什集成分类器要比单个分类器效果好呢？</p>
+<p>1. <code>偏差均匀化</code> ：如果你将民主党与共和党的投票数算一下均值，肯定会得到你原先没有发现的结果，集成学习与这个也类似，它可以学到其它任何一种方式都学不到的东西。</p>
+<p>2. <code>减少方差</code> ：总体的结果要比单一模型的结果好，因为其从多个角度考虑问题。类似于股票市场，综合考虑多只股票肯定要比只考虑一只股票好，这就是为什么多数据比少数据效果好原因，因为其考虑的因素更多。</p>
+<p>3. <code>不容易过拟合</code> 。如果的一个模型不过拟合，那么综合考虑多种因素的多模型就更不容易过拟合了。</p>
+<h5><span id="218-神经网络"> 2.1.8 神经网络</span></h5>
+<p>神经网络 (也称之为人工神经网络，ANN)(Neural networks) 算法是 80 年代机器学习界非常流行的算法，不过在 90 年代中途衰落。现在，携着 “深度学习” 之势，神经网络重装归来，重新成为最强大的机器学习算法之一。</p>
+<p>一个简单的神经网络的逻辑架构分成输入层，隐藏层，和输出层。输入层负责接收信号，隐藏层负责对数据的分解与处理，最后的结果被整合到输出层。每层中的一个圆代表一个处理单元，可以认为是模拟了一个神经元，若干个处理单元组成了一个层，若干个层再组成了一个网络，也就是” 神经网络”。</p>
+<h4><span id="22-无监督学习"> 2.2 无监督学习</span></h4>
+<p>常见的无监督学习算法分为三类：</p>
+<ul>
+<li>
+<p>聚类（Clustering）</p>
+<ul>
+<li>k-Means</li>
+<li>Hierarchical Cluster Analysis (HCA)</li>
+<li>Expectation Maximization</li>
+</ul>
+</li>
+<li>
+<p>可视化与降维（Visualization and dimensionality reduction）</p>
+<ul>
+<li>Principal Component Analysis (PCA)</li>
+<li>Kernel PCA</li>
+<li>Locally-Linear Embedding (LLE)</li>
+<li>t-distributed Stochastic Neighbor Embedding (t-SNE)</li>
+</ul>
+</li>
+<li>
+<p>关联规则学习（Association rule learning）</p>
+<ul>
+<li>Apriori</li>
+<li>Eclat</li>
+</ul>
+</li>
+</ul>
+<h5><span id="221-聚类算法"> 2.2.1 聚类算法</span></h5>
+<p>聚类算法就是将一堆数据进行处理，根据它们的相似性对数据进行聚类。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210519110216990.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>聚类算法有很多种，具体如下：中心聚类、关联聚类、密度聚类、概率聚类、降维、神经网络 / 深度学习。</p>
+<h5><span id="222-主成分分析pca"> 2.2.2 主成分分析（PCA）</span></h5>
+<p>主成分分析是利用正交变换将一些列可能相关数据转换为线性无关数据，从而找到主成分。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210519110236813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>PCA 主要用于简单学习与可视化中数据压缩、简化。但是 PCA 有一定的局限性，它需要你拥有特定领域的相关知识。对噪音比较多的数据并不适用。</p>
+<h5><span id="223-svd-矩阵分解"> 2.2.3 SVD 矩阵分解</span></h5>
+<p>SVD 矩阵是一个复杂的实复负数矩阵，给定一个 m 行、n 列的矩阵 M, 那么 M 矩阵可以分解为 M = UΣV。U 和 V 是酉矩阵，Σ 为对角阵。</p>
+<center><img src="https://img-blog.csdnimg.cn/2021051911025468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>PCA 实际上就是一个简化版本的 SVD 分解。在计算机视觉领域，第一个脸部识别算法就是基于 PCA 与 SVD 的，用特征对脸部进行特征表示，然后降维、最后进行面部匹配。尽管现在面部识别方法复杂，但是基本原理还是类似的。</p>
+<h5><span id="224-独立成分分析-ica"> 2.2.4 独立成分分析 (ICA)</span></h5>
+<p>ICA 是一门统计技术，用于发现存在于随机变量下的隐性因素。ICA 为给观测数据定义了一个生成模型。在这个模型中，其认为数据变量是由隐性变量，经一个混合系统线性混合而成，这个混合系统未知。并且假设潜在因素属于非高斯分布、并且相互独立，称之为可观测数据的独立成分。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210519110315572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<h5><span id="225-em-算法"> 2.2.5 EM 算法</span></h5>
+<p>EM 算法也称期望最大化（Expectation-Maximum, 简称 EM）算法。</p>
+<p>它是一个基础算法，是很多机器学习领域算法的基础，比如隐式马尔科夫算法（HMM）等等。</p>
+<p>EM 算法是一种迭代优化策略，由于它的计算方法中每一次迭代都分两步，</p>
+<ul>
+<li>一个为期望步（E 步）</li>
+<li>一个为极大步（M 步）</li>
+</ul>
+<p>所以算法被称为 EM 算法（Expectation-Maximization Algorithm）。</p>
+<p>EM 算法受到缺失思想影响，最初是为了 <code>解决数据缺失情况下的参数估计问题</code> ，其算法基础和收敛有效性等问题在 Dempster、Laird 和 Rubin 三人于 1977 年所做的文章《Maximum likelihood from incomplete data via the EM algorithm》中给出了详细的阐述。其基本思想是：</p>
+<ul>
+<li>首先根据己经给出的观测数据，估计出模型参数的值；</li>
+<li>然后再依据上一步估计出的参数值估计缺失数据的值，再根据估计出的缺失数据加上之前己经观测到的数据重新再对参数值进行估计；</li>
+<li>然后反复迭代，直至最后收敛，迭代结束。</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210519110340484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<h4><span id="23-半监督学习"> 2.3 半监督学习</span></h4>
+<h3><span id="3-强化学习"> 3 强化学习</span></h3>
+<p>强化学习又称再励学习、评价学习或增强学习。智能系统 <code>从环境到行为映射</code> 的学习，以使 <code>奖励信号(强化信号)函数值最大</code> 。如果 Agent 的某个行为策略导致环境正的奖赏 (强化信号)，那么 Agent 以后产生这个行为策略的趋势便会加强。强化学习四要素： <code>状态(state)</code> 、 <code>动作(action)</code> 、 <code>策略（policy）</code> 、 <code>奖励(reward)</code> 。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210519110511897.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<h4><span id="31-概念解释"> 3.1 概念解释</span></h4>
+<table>
+<thead>
+<tr>
+<th>名词</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>智能体</td>
+<td>学习器与决策者的角色</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>智能体之外一切组成的、与之交互的事物</td>
+</tr>
+<tr>
+<td>动作</td>
+<td>智能体的行为表征</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>智能体从环境中获取的信息</td>
+</tr>
+<tr>
+<td>奖励</td>
+<td>环境对于动作的反馈</td>
+</tr>
+<tr>
+<td>策略</td>
+<td>智能体根据状态进行下一步动作的函数</td>
+</tr>
+<tr>
+<td>状态转移概率</td>
+<td>智能体做出动作后进入下一状态的概率</td>
+</tr>
+</tbody>
+</table>
+<h4><span id="32-常见算法"> 3.2 常见算法</span></h4>
+<ul>
+<li>Q-Learning</li>
+<li>时间差学习（Temporal difference learning）</li>
+</ul>
+<h4><span id="33-应用场景"> 3.3 应用场景</span></h4>
+<ul>
+<li>动态系统</li>
+<li>机器人控制</li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年07月14日 21:00</p>
+        <p>原始链接： <a class="post-url" href="/2021/05/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" title="机器学习算法导论">https://leezhao415.github.io/2021/05/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/05/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/&title=《机器学习算法导论》 — 且听风吟，御剑于心！&pic=images/机器学习算法2.jpeg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/05/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/&title=《机器学习算法导论》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/05/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《机器学习算法导论》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/05/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/05/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/05/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/算法/" class="color3">算法</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> 机器学习算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 1 机器学习分类依据</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 1.1 按照任务是否需要和环境进行交互获取经验</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.1.1 监督学习</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.1.2 强化学习</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 1.2 按照算法功能和形式的类似性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2.1 回归算法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2.2 基于实例的算法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2.3 正则化方法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2.4 决策树学习</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2.5 贝叶斯方法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2.6 基于核的算法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2.7 聚类算法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2.8 关联规则学习</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2.9 人工神经网络</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2.10 深度学习</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2.11 降低维度算法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2.12 集成算法</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 2 监督学习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 2.1 有监督学习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.1.1 K - 近邻算法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.1.2 决策树和随机森林算法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.1.3 朴素贝叶斯</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.1.4 线性回归</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.1.5 逻辑回归</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.1.6 支持向量机</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.1.7 集成学习</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.1.8 神经网络</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 2.2 无监督学习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.2.1 聚类算法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.2.2 主成分分析（PCA）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.2.3 SVD 矩阵分解</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.2.4 独立成分分析 (ICA)</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.2.5 EM 算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 2.3 半监督学习</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 3 强化学习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 3.1 概念解释</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 3.2 常见算法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 3.3 应用场景</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/05/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          机器学习算法详解
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/04/26/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAWeb%E6%9C%8D%E5%8A%A1%E5%99%A8-LAMP/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">搭建个人Web服务器_LAMP</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="机器学习算法导论" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

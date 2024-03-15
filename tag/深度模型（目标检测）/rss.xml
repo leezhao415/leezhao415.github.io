@@ -1,0 +1,897 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;深度模型（目标检测）&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Sun, 20 Feb 2022 23:08:01 +0800</pubDate>
+        <lastBuildDate>Sun, 20 Feb 2022 23:08:01 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/</guid>
+            <title>【精华】目标检测模型对比</title>
+            <link>https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/</link>
+            <category>人工智能</category>
+            <category>深度模型（目标检测）</category>
+            <pubDate>Sun, 20 Feb 2022 23:08:01 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#yolo-fastestyoloxyolo-fastestv2nanodetnanodet-plus%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94&#34;&gt;YOLO fastest/YOLOX/YOLO fastestv2/Nanodet/Nanodet Plus 模型对比&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84&#34;&gt;（1）网络结构&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E5%B7%AE%E5%BC%82%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9D%97&#34;&gt;（2）模型结构差异（优化模块）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD&#34;&gt;（3）模型性能&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90&#34;&gt;（4）关键概念解析&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;yolo-fastestyoloxyolo-fastestv2nanodetnanodet-plus-模型对比&#34;&gt; YOLO fastest/YOLOX/YOLO fastestv2/Nanodet/Nanodet Plus 模型对比&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;YOLO fastest&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Paper&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dog-qiuqiu/Yolo-Fastest&#34;&gt;Github 库&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;YOLOX-Nano&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://arxiv.org/abs/2107.08430&#34;&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Github 库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;YOLO fastestv2&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Paper&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dog-qiuqiu/Yolo-FastestV2&#34;&gt;Github 库&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NanoDet&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://arxiv.org/pdf/2006.04388.pdf&#34;&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/RangiLyu/nanodet&#34;&gt;Github 库&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NanoDet Plus&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Paper&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/RangiLyu/nanodet&#34;&gt;Github 库&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;span id=&#34;1网络结构&#34;&gt; （1）网络结构&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1gt-yolo-fastest&#34;&gt; 1&amp;gt; YOLO fastest&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;https://ai-studio-static-online.cdn.bcebos.com/7f27fb556eef47c9bd96c2122172eba4c96598de8c39461d8d0e605c6c982374&#34; alt=&#34;img&#34; style=&#34;zoom: 33%;&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;2gt-yolox-nano&#34;&gt; 2&amp;gt; YOLOX-Nano&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210720132240327.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FtdXNpMTk5NA==,size_16,color_FFFFFF,t_70&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;3gt-yolo-fastestv2&#34;&gt; 3&amp;gt; YOLO fastestv2&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/559dbac4b6c75714bc82f5feca2c3342.png&#34; alt=&#34;检测头&#34; style=&#34;zoom:110%;&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;4gt-nanodet&#34;&gt; 4&amp;gt; NanoDet&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/9715e24503e3868f971fbfd722b29edf.png&#34; alt=&#34;img&#34; style=&#34;zoom: 120%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic2.zhimg.com/v2-b1116f4df5f4e4e79e294b3ccaf294ee_1440w.jpg?source=172ae18b&#34; alt=&#34;大白话 Generalized Focal Loss&#34; style=&#34;zoom:70%;&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;5gt-nanodet-plus&#34;&gt; 5&amp;gt; NanoDet Plus&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/ab1c5febbde9c97fce8d1ca414245c04.png&#34; alt=&#34;ab1c5febbde9c97fce8d1ca414245c04.png&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;2模型结构差异优化模块&#34;&gt; （2）模型结构差异（优化模块）&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1gt-yolo-fastest&#34;&gt; 1&amp;gt; YOLO fastest&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Backbone&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;EfficientNet-lite&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注重单核的实时推理性能，在满足实时的条件下的低 CPU 占用，不单单能在手机移动端达到实时，还要在 RK3399，树莓派 4 以及多种 Cortex-A53 低成本低功耗设备上满足一定实时性，毕竟这些嵌入式的设备相比与移动端手机要弱很多，但是使用更加广泛，成本更加低廉。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;2gt-yolox-nano&#34;&gt; 2&amp;gt; YOLOX-Nano&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Backbone&lt;/code&gt; ：YOLOv3（Darknet-53）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Head&lt;/code&gt; ：使用解耦合检测头&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;标签匹配策略&lt;/code&gt; ：SimOTA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;3gt-yolo-fastestv2&#34;&gt; 3&amp;gt; YOLO fastestv2&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Backbone&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Shufflenetv2（相比于 EfficientNet-lite，访存减少了，更加轻量）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Anchor 匹配机制：参考 YOLOv5&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Head&lt;/code&gt; ：参考 YOLOX，使用解耦合检测头。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;检测框的回归、前景背景的分类、检测类别的分类&lt;/li&gt;
+&lt;li&gt;前景背景的分类以及检测类别的分类采用同一网络分支参数共享&lt;/li&gt;
+&lt;li&gt;检测类别分类的 loss 由 sigmoid 替换为 softmax&lt;/li&gt;
+&lt;li&gt;输出尺度由 3 个变为 2 个：（11x11、22x22、44x44）变为（11x11、22x22）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;4gt-nanodet&#34;&gt; 4&amp;gt; NanoDet&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;项目思路&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;大模型发展历程：Two stage 到 One stage，Anchor-base 到 Anchor-free，Transformer&lt;/li&gt;
+&lt;li&gt;移动端目标检测：YOLO 系列和 SSD 等 Anchor-base 模型&lt;/li&gt;
+&lt;li&gt;NanoDet 项目：希望能够开源一个移动端实时的 Anchor-free 的检测模型。能够提供不亚于 YOLO 系列的性能，而且同样方便训练和移植。
+&lt;ul&gt;
+&lt;li&gt;思路一：将 FCOS 轻量化 &amp;lt;原因：FCOS 的 centerness 分支在轻量化模型上很难收敛&amp;gt;（效果不佳，不如 MobileNet+YOLOv3）&lt;/li&gt;
+&lt;li&gt;思路二：&lt;a href=&#34;https://zhuanlan.zhihu.com/p/147691786&#34;&gt;GFocalLoss&lt;/a&gt; 完美去掉了 FCOS 系列的 centerness 分支，省去了这一分支上的大量卷积，减少了检测头的计算开销，非常适合移动端的轻量化部署。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Backbone&lt;/code&gt; ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;尝试了 Mbilenet 系列、GhostNet、Shufflenet、EfficientNet&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;code&gt;Shufflenet v2&lt;/code&gt; ：权衡参数量、计算量以及权重大小，该模型在相似精度下体积最小，而且对移动端 CPU 推理比较友好。&lt;/p&gt;
+&lt;p&gt;使用 Shufflenetv2 1.0x 作为 Backbone，去掉最后一层卷积，并且抽取 8、16、32 倍下采样的特征输入进 PAN 做多尺度的特征融合。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Neck&lt;/code&gt; ：PAFPN&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;BiFPN：EfficientDet  （性能强大，但堆叠的特征融合操作势必会带来运行速度的降低）&lt;/li&gt;
+&lt;li&gt;PAN：YOLOv4/YOLOv5  （只有自下而上和自上而下的两条通路，非常简洁，是轻量化模型特征融合的不二选择）&lt;/li&gt;
+&lt;li&gt;BalancedFPN&lt;/li&gt;
+&lt;li&gt;PAFPN
+&lt;ul&gt;
+&lt;li&gt;完全去掉 PAN 中的所有卷积，只保留从骨干网络特征提取后的 1x1 卷积来进行特征通道维度的对齐，上采样和下采样均使用插值来完成。&lt;/li&gt;
+&lt;li&gt;与 yolo 使用的 concatenate 操作不同，将多尺度的 Feature Map 直接相加，使得整个特征融合模块的计算量变得非常非常小。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Head&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 2 个深度可分离卷积模块同时预测分类和回归，并将卷积堆叠的数量从 4 个减少到 2 组，通道由 256 压缩到 96 维（大模型中使用 4 组 256channel 的 3x3 卷积预测分类和回归）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;检测头不共享权重：取消 FCOS 系列模型的共享权重策略，由于移动端模型推理由 CPU 进行计算，共享权重并不会对推理过程进行加速，而且在检测头非常轻量的情况下，共享权重使得其检测能力进一步下降，因此还是选择每一层特征使用一组卷积比较合适。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用 BN 代替 GN (Group Normalization)：在推理时能够将其归一化的参数直接融合进卷积中，节省归一化时间。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;标签匹配策略&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1912.02424&#34;&gt;ATSS&lt;/a&gt;：根据 IOU 的均值和方差为每一层 feature map 动态选取匹配样本（本质上依然时基于先验信息（中心点和 Anchor）的静态匹配策略）&lt;/p&gt;
+&lt;p&gt;在每个 FPN 层选取离 gt 框中心点最近的 k 个 anchor，之后对所有选取的 anchor 与 gt 计算 IOU，同时计算 IOU 均值和方差，最后保留 IOU 大于均值加方差的并且中心点在 gt 之内的 anchor 作为正样本。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;训练策略&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SGD+momentum+MutiStepLr&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;5gt-nanodet-plus&#34;&gt; 5&amp;gt; NanoDet Plus&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Backbone&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;FBNetv5/PicoDet：ESNet（使用 NAS 搜索，在约束了计算量参数量和精度的搜索空间内搜出强的 Backbone）&lt;/li&gt;
+&lt;li&gt;NanoDet Plus：沿用 NanoDet 的 Backbone，后期可修改为 ESNet。（算力霸权下妥协）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Neck&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;YOLOX/PicoDet/YOLOv5：CSP-PAN&lt;/li&gt;
+&lt;li&gt;NanoDet： &lt;code&gt;Ghost-PAN&lt;/code&gt; （GhostNet 中的 GhostBlock（1x1 和 3x3 的 depthwise））(&lt;strong&gt;mAP 提升 2%&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Head&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ThunderNet：轻量级模型中将深度可分离卷积的 depthwise 部分从 3x3 改成 5x5（增加较少参数量的同时提升检测器感受野并提升性能）&lt;/li&gt;
+&lt;li&gt;PicoDet：在原本 NanoDet 的 3 层特征基础上增加一层下采样特征&lt;/li&gt;
+&lt;li&gt;NanoDet Plus：沿用通用技巧，将检测头的 depthwise 卷积的卷积核大小改成 5x5，并在 NanoDet 的 3 层特征基础上增加一层下采样特征。（&lt;strong&gt;mAP 提升 0.7%&lt;/strong&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;标签匹配策略&lt;/code&gt; （使用 AGM（Assign Guidance Module）并配合动态的软标签分配策略 DSLA（ynamic Soft Label Assigner）来解决轻量级模型中的最优标签匹配问题）(&lt;strong&gt;mAP 提升 2.1%&lt;/strong&gt;)&lt;/p&gt;
+&lt;p&gt;使用 AGM 预测的分类概率和检测框会送入 DSLA 模块计算 Matching Cost。Cost 函数由三部分组成：classification cost，regression cost 以及 distance cost：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/a1f20aaf1f5618bf51359ec171a9b3ac.png&#34; alt=&#34;a1f20aaf1f5618bf51359ec171a9b3ac.png&#34; style=&#34;zoom: 75%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;最终的代价函数就是这样：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/8108380145fa6e6c367bcf5678a41508.png&#34; alt=&#34;8108380145fa6e6c367bcf5678a41508.png&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;训练策略&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优化器：SGD+momentum 改成 AdamW（对超参数更不敏感且收敛更快）&lt;/li&gt;
+&lt;li&gt;学习率衰减策略：从 MultiStepLr 改成 CosineAnnealingLR，反向传播计算梯度时加了梯度裁剪。&lt;/li&gt;
+&lt;li&gt;其他：增加模型平滑策略 EMA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;部署优化&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;NanoDet：使用多尺度检测头，每层都有分类和回归两个输出，加上有三个尺度的特征图，共有 6 个输出。（对不熟悉模型结构的人不友好）&lt;/li&gt;
+&lt;li&gt;NanoDet Plus：将模型输出合为一个，所有的输出 Tensor 都提前 reshape，然后 concatenate 到一起。（略微影响后处理速度，但模型友好）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;span id=&#34;3模型性能&#34;&gt; （3）模型性能&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;yolo-fastest-官方库&#34;&gt; YOLO fastest 官方库&lt;/span&gt;&lt;/h6&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Network&lt;/th&gt;
+&lt;th&gt;COCO mAP(0.5)&lt;/th&gt;
+&lt;th&gt;Resolution&lt;/th&gt;
+&lt;th&gt;Run Time(Ncnn 4xCore)&lt;/th&gt;
+&lt;th&gt;Run Time(Ncnn 1xCore)&lt;/th&gt;
+&lt;th&gt;FLOPS&lt;/th&gt;
+&lt;th&gt;Params&lt;/th&gt;
+&lt;th&gt;Weight size&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/dog-qiuqiu/Yolo-Fastest/tree/master/ModelZoo/yolo-fastest-1.1_coco&#34;&gt;Yolo-Fastest-1.1&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;24.40 %&lt;/td&gt;
+&lt;td&gt;320X320&lt;/td&gt;
+&lt;td&gt;5.59 ms&lt;/td&gt;
+&lt;td&gt;7.52 ms&lt;/td&gt;
+&lt;td&gt;0.252BFlops&lt;/td&gt;
+&lt;td&gt;0.35M&lt;/td&gt;
+&lt;td&gt;1.4M&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/dog-qiuqiu/Yolo-Fastest/tree/master/ModelZoo/yolo-fastest-1.1_coco&#34;&gt;Yolo-Fastest-1.1-xl&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;34.33 %&lt;/td&gt;
+&lt;td&gt;320X320&lt;/td&gt;
+&lt;td&gt;9.27ms&lt;/td&gt;
+&lt;td&gt;15.72ms&lt;/td&gt;
+&lt;td&gt;0.725BFlops&lt;/td&gt;
+&lt;td&gt;0.925M&lt;/td&gt;
+&lt;td&gt;3.7M&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov3-tiny-prn.cfg&#34;&gt;Yolov3-Tiny-Prn&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;33.1%&lt;/td&gt;
+&lt;td&gt;416X416&lt;/td&gt;
+&lt;td&gt;%ms&lt;/td&gt;
+&lt;td&gt;%ms&lt;/td&gt;
+&lt;td&gt;3.5BFlops&lt;/td&gt;
+&lt;td&gt;4.7M&lt;/td&gt;
+&lt;td&gt;18.8M&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg&#34;&gt;Yolov4-Tiny&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;40.2%&lt;/td&gt;
+&lt;td&gt;416X416&lt;/td&gt;
+&lt;td&gt;23.67ms&lt;/td&gt;
+&lt;td&gt;40.14ms&lt;/td&gt;
+&lt;td&gt;6.9 BFlops&lt;/td&gt;
+&lt;td&gt;5.77M&lt;/td&gt;
+&lt;td&gt;23.1M&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h6&gt;&lt;span id=&#34;yolo-fastest-11-multi-platform-benchmark&#34;&gt; Yolo-Fastest-1.1 Multi-platform benchmark&lt;/span&gt;&lt;/h6&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Equipment&lt;/th&gt;
+&lt;th&gt;Computing backend&lt;/th&gt;
+&lt;th&gt;System&lt;/th&gt;
+&lt;th&gt;Framework&lt;/th&gt;
+&lt;th&gt;Run time&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Mi 11&lt;/td&gt;
+&lt;td&gt;Snapdragon 888&lt;/td&gt;
+&lt;td&gt;Android(arm64)&lt;/td&gt;
+&lt;td&gt;ncnn&lt;/td&gt;
+&lt;td&gt;5.59ms&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Mate 30&lt;/td&gt;
+&lt;td&gt;Kirin 990&lt;/td&gt;
+&lt;td&gt;Android(arm64)&lt;/td&gt;
+&lt;td&gt;ncnn&lt;/td&gt;
+&lt;td&gt;6.12ms&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Meizu 16&lt;/td&gt;
+&lt;td&gt;Snapdragon 845&lt;/td&gt;
+&lt;td&gt;Android(arm64)&lt;/td&gt;
+&lt;td&gt;ncnn&lt;/td&gt;
+&lt;td&gt;7.72ms&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Development board&lt;/td&gt;
+&lt;td&gt;Snapdragon 835(Monkey version)&lt;/td&gt;
+&lt;td&gt;Android(arm64)&lt;/td&gt;
+&lt;td&gt;ncnn&lt;/td&gt;
+&lt;td&gt;20.52ms&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Development board&lt;/td&gt;
+&lt;td&gt;RK3399&lt;/td&gt;
+&lt;td&gt;Linux(arm64)&lt;/td&gt;
+&lt;td&gt;ncnn&lt;/td&gt;
+&lt;td&gt;35.04ms&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Raspberrypi 3B&lt;/td&gt;
+&lt;td&gt;4xCortex-A53&lt;/td&gt;
+&lt;td&gt;Linux(arm64)&lt;/td&gt;
+&lt;td&gt;ncnn&lt;/td&gt;
+&lt;td&gt;62.31ms&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Orangepi Zero Lts&lt;/td&gt;
+&lt;td&gt;H2+ 4xCortex-A7&lt;/td&gt;
+&lt;td&gt;Linux(armv7)&lt;/td&gt;
+&lt;td&gt;ncnn&lt;/td&gt;
+&lt;td&gt;550ms&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Nvidia&lt;/td&gt;
+&lt;td&gt;Gtx 1050ti&lt;/td&gt;
+&lt;td&gt;Ubuntu(x64)&lt;/td&gt;
+&lt;td&gt;darknet&lt;/td&gt;
+&lt;td&gt;4.73ms&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Intel&lt;/td&gt;
+&lt;td&gt;i7-8700&lt;/td&gt;
+&lt;td&gt;Ubuntu(x64)&lt;/td&gt;
+&lt;td&gt;ncnn&lt;/td&gt;
+&lt;td&gt;5.78ms&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Pascal VOC performance index comparison&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Network&lt;/th&gt;
+&lt;th&gt;Model Size&lt;/th&gt;
+&lt;th&gt;mAP(VOC 2007)&lt;/th&gt;
+&lt;th&gt;FLOPS&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Tiny YOLOv2&lt;/td&gt;
+&lt;td&gt;60.5MB&lt;/td&gt;
+&lt;td&gt;57.1%&lt;/td&gt;
+&lt;td&gt;6.97BFlops&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Tiny YOLOv3&lt;/td&gt;
+&lt;td&gt;33.4MB&lt;/td&gt;
+&lt;td&gt;58.4%&lt;/td&gt;
+&lt;td&gt;5.52BFlops&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;YOLO Nano&lt;/td&gt;
+&lt;td&gt;4.0MB&lt;/td&gt;
+&lt;td&gt;69.1%&lt;/td&gt;
+&lt;td&gt;4.51Bflops&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MobileNetv2-SSD-Lite&lt;/td&gt;
+&lt;td&gt;13.8MB&lt;/td&gt;
+&lt;td&gt;68.6%&lt;/td&gt;
+&lt;td&gt;&amp;amp;Bflops&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MobileNetV2-YOLOv3&lt;/td&gt;
+&lt;td&gt;11.52MB&lt;/td&gt;
+&lt;td&gt;70.20%&lt;/td&gt;
+&lt;td&gt;2.02Bflos&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Pelee-SSD&lt;/td&gt;
+&lt;td&gt;21.68MB&lt;/td&gt;
+&lt;td&gt;70.09%&lt;/td&gt;
+&lt;td&gt;2.40Bflos&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;strong&gt;Yolo Fastest&lt;/strong&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;1.3MB&lt;/td&gt;
+&lt;td&gt;61.02%&lt;/td&gt;
+&lt;td&gt;0.23Bflops&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;&lt;strong&gt;Yolo Fastest-XL&lt;/strong&gt;&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;3.5MB&lt;/td&gt;
+&lt;td&gt;69.43%&lt;/td&gt;
+&lt;td&gt;0.70Bflops&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/dog-qiuqiu/MobileNet-Yolo#mobilenetv2-yolov3-litenano-darknet&#34;&gt;&lt;em&gt;&lt;strong&gt;MobileNetv2-YOLOv3-Lite&lt;/strong&gt;&lt;/em&gt;&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;8.0MB&lt;/td&gt;
+&lt;td&gt;73.26%&lt;/td&gt;
+&lt;td&gt;1.80Bflops&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h6&gt;&lt;span id=&#34;yolox-nano-官方库&#34;&gt; YOLOX-Nano 官方库&lt;/span&gt;&lt;/h6&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Model&lt;/th&gt;
+&lt;th&gt;size&lt;/th&gt;
+&lt;th&gt;mAPval 0.5:0.95&lt;/th&gt;
+&lt;th&gt;Params (M)&lt;/th&gt;
+&lt;th&gt;FLOPs (G)&lt;/th&gt;
+&lt;th&gt;weights&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/Megvii-BaseDetection/YOLOX/blob/main/exps/default/nano.py&#34;&gt;YOLOX-Nano&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;416&lt;/td&gt;
+&lt;td&gt;25.8&lt;/td&gt;
+&lt;td&gt;0.91&lt;/td&gt;
+&lt;td&gt;1.08&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_nano.pth&#34;&gt;github&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/Megvii-BaseDetection/YOLOX/blob/main/exps/default/yolox_tiny.py&#34;&gt;YOLOX-Tiny&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;416&lt;/td&gt;
+&lt;td&gt;32.8&lt;/td&gt;
+&lt;td&gt;5.06&lt;/td&gt;
+&lt;td&gt;6.45&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_tiny.pth&#34;&gt;github&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h6&gt;&lt;span id=&#34;nanodet-官方库&#34;&gt; NanoDet 官方库&lt;/span&gt;&lt;/h6&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Model&lt;/th&gt;
+&lt;th&gt;Resolution&lt;/th&gt;
+&lt;th&gt;mAPval 0.5:0.95&lt;/th&gt;
+&lt;th&gt;CPU Latency (i7-8700)&lt;/th&gt;
+&lt;th&gt;ARM Latency (4xA76)&lt;/th&gt;
+&lt;th&gt;FLOPS&lt;/th&gt;
+&lt;th&gt;Params&lt;/th&gt;
+&lt;th&gt;Model Size&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;NanoDet-m&lt;/td&gt;
+&lt;td&gt;320*320&lt;/td&gt;
+&lt;td&gt;20.6&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;4.98ms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;10.23ms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;0.72G&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;0.95M&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;1.8MB(FP16)&lt;/strong&gt; | &lt;strong&gt;980KB(INT8)&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;NanoDet-m&lt;/td&gt;
+&lt;td&gt;416*416&lt;/td&gt;
+&lt;td&gt;21.7&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;16.44ms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;1.2G&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;0.95M&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;1.8MB(FP16)&lt;/strong&gt; | &lt;strong&gt;980KB(INT8)&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;NanoDet-Plus-m&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;320*320&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;27.0&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;5.25ms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;11.97ms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;0.9G&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;1.17M&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;2.3MB(FP16)&lt;/strong&gt; | &lt;strong&gt;1.2MB(INT8)&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;NanoDet-Plus-m&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;416*416&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;30.4&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;8.32ms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;19.77ms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;1.52G&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;1.17M&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;2.3MB(FP16)&lt;/strong&gt; | &lt;strong&gt;1.2MB(INT8)&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;NanoDet-Plus-m-1.5x&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;320*320&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;29.9&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;7.21ms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;15.90ms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;1.75G&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;2.44M&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;4.7MB(FP16)&lt;/strong&gt; | &lt;strong&gt;2.3MB(INT8)&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;NanoDet-Plus-m-1.5x&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;416*416&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;34.1&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;11.50ms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;25.49ms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;2.97G&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;2.44M&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;4.7MB(FP16)&lt;/strong&gt; | &lt;strong&gt;2.3MB(INT8)&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;YOLOv3-Tiny&lt;/td&gt;
+&lt;td&gt;416*416&lt;/td&gt;
+&lt;td&gt;16.6&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;37.6ms&lt;/td&gt;
+&lt;td&gt;5.62G&lt;/td&gt;
+&lt;td&gt;8.86M&lt;/td&gt;
+&lt;td&gt;33.7MB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;YOLOv4-Tiny&lt;/td&gt;
+&lt;td&gt;416*416&lt;/td&gt;
+&lt;td&gt;21.7&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;32.81ms&lt;/td&gt;
+&lt;td&gt;6.96G&lt;/td&gt;
+&lt;td&gt;6.06M&lt;/td&gt;
+&lt;td&gt;23.0MB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;YOLOX-Nano&lt;/td&gt;
+&lt;td&gt;416*416&lt;/td&gt;
+&lt;td&gt;25.8&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;23.08ms&lt;/td&gt;
+&lt;td&gt;1.08G&lt;/td&gt;
+&lt;td&gt;0.91M&lt;/td&gt;
+&lt;td&gt;1.8MB(FP16)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;YOLOv5-n&lt;/td&gt;
+&lt;td&gt;640*640&lt;/td&gt;
+&lt;td&gt;28.4&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;44.39ms&lt;/td&gt;
+&lt;td&gt;4.5G&lt;/td&gt;
+&lt;td&gt;1.9M&lt;/td&gt;
+&lt;td&gt;3.8MB(FP16)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;FBNetV5&lt;/td&gt;
+&lt;td&gt;320*640&lt;/td&gt;
+&lt;td&gt;30.4&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;1.8G&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MobileDet&lt;/td&gt;
+&lt;td&gt;320*320&lt;/td&gt;
+&lt;td&gt;25.6&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;0.9G&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h6&gt;&lt;span id=&#34;yolo-fastestv2-官方库&#34;&gt; YOLO fastestv2 官方库&lt;/span&gt;&lt;/h6&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Network&lt;/th&gt;
+&lt;th&gt;COCO mAP(0.5)&lt;/th&gt;
+&lt;th&gt;Resolution&lt;/th&gt;
+&lt;th&gt;Run Time(4xCore)&lt;/th&gt;
+&lt;th&gt;Run Time(1xCore)&lt;/th&gt;
+&lt;th&gt;FLOPs(G)&lt;/th&gt;
+&lt;th&gt;Params(M)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/dog-qiuqiu/Yolo-FastestV2/tree/main/modelzoo&#34;&gt;Yolo-FastestV2&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;24.10 %&lt;/td&gt;
+&lt;td&gt;352X352&lt;/td&gt;
+&lt;td&gt;3.29 ms&lt;/td&gt;
+&lt;td&gt;5.37 ms&lt;/td&gt;
+&lt;td&gt;0.212&lt;/td&gt;
+&lt;td&gt;0.25M&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/dog-qiuqiu/Yolo-Fastest/tree/master/ModelZoo/yolo-fastest-1.1_coco&#34;&gt;Yolo-FastestV1.1&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;24.40 %&lt;/td&gt;
+&lt;td&gt;320X320&lt;/td&gt;
+&lt;td&gt;4.23 ms&lt;/td&gt;
+&lt;td&gt;7.54 ms&lt;/td&gt;
+&lt;td&gt;0.252&lt;/td&gt;
+&lt;td&gt;0.35M&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4-tiny.cfg&#34;&gt;Yolov4-Tiny&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;40.2%&lt;/td&gt;
+&lt;td&gt;416X416&lt;/td&gt;
+&lt;td&gt;26.00ms&lt;/td&gt;
+&lt;td&gt;55.44ms&lt;/td&gt;
+&lt;td&gt;6.9&lt;/td&gt;
+&lt;td&gt;5.77M&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h6&gt;&lt;span id=&#34;1gt-yolo-fastest&#34;&gt; 1&amp;gt; YOLO fastest&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;code&gt;初衷就是打破算力的瓶颈，能在更多的低成本的边缘端设备实时运行目标检测算法。&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基于 NCNN 推理框架开启 BF16s，在树莓派 3b，4 核 A53 1.2Ghz，320x320 图像单次推理时间在 60ms。&lt;/li&gt;
+&lt;li&gt;在性能更加强劲的树莓派 4b，单次推理 33ms，达到了 30fps 的全实时。&lt;/li&gt;
+&lt;li&gt;而相比较下应用最广泛的轻量化目标检测算法 MobileNet-SSD 要在树莓派 3b 跑 200ms 左右，Yolo-Fastest 速度整整要快 3 倍 +，而且模型才只有 1.3MB，而 MobileNet-SSD 模型达到 23.2MB，Yolo-Fastest 整整比它小了 20 倍，当然这也是有代价的，在 Pascal voc 上的 mAP，MobileNet-SSD 是 72.7，Yolo-Fastest 是 61.2，带来了接近 10 个点的精度损失&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;总结&lt;/strong&gt;：YOLO-Fastest 是个牺牲一定精度 （大约 5% 的 mAP）、大幅提升速度的目标检测模型。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2gt-yolox-nano&#34;&gt; 2&amp;gt; YOLOX-Nano&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;对于 YOLO-Nano，所提方法仅需 0.91M 参数 + 1.08G FLOPs 取得了 25.3% AP 指标，以 1.8% 超越了 NanoDet；&lt;/li&gt;
+&lt;li&gt;对于 YOLOv3，所提方法将指标提升到了 47.3%，以 3% 超越了当前最佳；&lt;/li&gt;
+&lt;li&gt;具有与 YOLOv4-CSP、YOLOv5-L 相当的参数量，YOLOX-L 取得了 50.0% AP 指标同事具有 68.9fps 推理速度 (Tesla V100)，指标超过 YOLOv5-L 1.8%;&lt;/li&gt;
+&lt;li&gt;值得一提的是，YOLOX-L 凭借单模型取得了 Streaming Perception (Workshop on Autonomous Driving at CVPR 2021) 竞赛冠军。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;3gt-yolo-fastestv2&#34;&gt; 3&amp;gt; YOLO fastestv2&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;用 0.3% 的精度损失换取 30% 推理速度的提升以及 25% 的参数量的减少&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;4gt-nanodet&#34;&gt; 4&amp;gt; NanoDet&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;在经过对 one-stage 检测模型三大模块（Head、Neck、Backbone）都进行轻量化之后，得到了目前开源的 NanoDet-m 模型，在 320x320 输入分辨率的情况下，整个模型的 Flops 只有 0.72B，而 yolov4-tiny 则有 6.96B，小了将近十倍！模型的参数量也只有 0.95M，权重文件在使用 ncnn optimize 进行 16 位存储之后，只有 1.8mb，非常适合在移动端部署，能够有效减少 APP 体积，同时也对更低端的嵌入式设备更加友好。&lt;/p&gt;
+&lt;p&gt;尽管模型非常的轻量，但是性能却依旧强劲。对于小模型，往往选择使用 AP50 这种比较宽容的评价指标进行对比，这里我选择用更严格一点的 COCO mAP (0.5:0.95) 作为评估指标，同时兼顾检测和定位的精度。在 COCO val 5000 张图片上测试，并没有使用 Testing-Time-Augmentation 的情况下，320 分辨率输入能够达到 20.6 的 mAP，比 tiny-yolov3 高 4 分，只比 yolov4-tiny 低 1 个百分点，而将输入分辨率与 yolo 保持一致，都使用 416 输入的情况下，得分持平。&lt;/p&gt;
+&lt;p&gt;最后用 ncnn 部署到手机上之后跑了一下 benchmark，模型前向计算时间只要 10 毫秒左右，对比 yolov3 和 v4 tiny，均在 30 毫秒的量级。在安卓摄像头 demo app 上，算上图片预处理，检测框后处理以及绘制检测框的时间，也能轻松跑到 40+FPS~。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;5gt-nanodet-plus&#34;&gt; 5&amp;gt; NanoDet Plus&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;NanoDet Plus 与上一代&lt;a href=&#34;https://blog.csdn.net/qq_29462849/article/details/122206615&#34;&gt; NanoDet&lt;/a&gt; 相比，在仅增加 1 毫秒多的延时的情况下，精度提升了 30%。&lt;/li&gt;
+&lt;li&gt;改进了代码和架构，提出了一种非常简单的训练辅助模块，使模型变得更易训练，同时新版本也更易部署。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;span id=&#34;4关键概念解析&#34;&gt; （4）关键概念解析&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1gt-基于-matching-cost-的动态匹配&#34;&gt; 1&amp;gt; 基于 Matching Cost 的动态匹配&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;简单来说，就是直接使用模型检测头的输出，与每一个 Ground Truth 计算一个匹配的代价，这个代价一般由分类 loss 和回归 loss 组成。Feature Map 上所有的点（N 个）的预测值与所有的 Ground Truth（M 个）计算得到的 NxM 的矩阵，就是所谓的 Cost Matrix，基于这个 Cost Matrix 进行二分图匹配也好还是传输优化也好再或者直接取 TopK 也好，就是一种动态匹配策略。这种策略与之前的基于 Anchor 算 IOU 的匹配最大的不同就是，它不再只依赖先验的静态的信息，而是使用当前的预测结果去动态寻找最优的匹配，只要模型预测的越准确，匹配算法求得的结果也会更优秀。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2gt-标签匹配策略&#34;&gt; 2&amp;gt; 标签匹配策略&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;基于位置&lt;/li&gt;
+&lt;li&gt;基于 Anchor IOU&lt;/li&gt;
+&lt;li&gt;基于 Matching Cost（直接使用检测头的输出与每一个 Ground Truth 计算一个匹配的代价（分类 Loss 和回归 Loss））
+&lt;ul&gt;
+&lt;li&gt;基于全局的动态匹配策略
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DETR&lt;/code&gt; ：使用匈牙利匹配算法进行双边匹配&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OTA&lt;/code&gt; ：使用 Sinkhorn 迭代求解匹配中的最优传输问题（位置约束：使用 5x5 的中心区域限制匹配自由度）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;YOLOX&lt;/code&gt; ：使用 OTA 的近似算法 SimOTA（位置约束：使用 5x5 的中心区域限制匹配自由度）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;----&lt;/code&gt; ：使用&lt;a href=&#34;https://arxiv.org/abs/2108.10520&#34;&gt; LAD（Label Assignment Distillation）&lt;/a&gt;用教室网络的结果计算标签匹配来指导学生网络的训练&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IQDet&lt;/code&gt; ：使用 QDE 模块对每个实例预测 PAA 中提出的高斯混合质量分布的三个参数来指导检测头的训练&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NanoDet Plus&lt;/code&gt; ：使用 AGM（Assign Guidance Module）并配合动态的软标签分配策略 DSLA（ynamic Soft Label Assigner）来解决轻量级模型中的最优标签匹配问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;3gt-label-assignment&#34;&gt; 3&amp;gt; &lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;主要是指检测算法在训练阶段，如何给特征图上的每个位置进行合适的学习目标的表示，以及如何进行正负样本的分配的。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;算法类型&lt;/th&gt;
+&lt;th&gt;先验&lt;/th&gt;
+&lt;th&gt;学习目标的表示&lt;/th&gt;
+&lt;th&gt;正负样本的分配&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;anchor box&lt;/td&gt;
+&lt;td&gt;anchor box&lt;/td&gt;
+&lt;td&gt;bounding box&lt;/td&gt;
+&lt;td&gt;IoU&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;anchor point&lt;/td&gt;
+&lt;td&gt;center&lt;/td&gt;
+&lt;td&gt;高斯等&lt;/td&gt;
+&lt;td&gt;高斯热图等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;key point&lt;/td&gt;
+&lt;td&gt;point&lt;/td&gt;
+&lt;td&gt;representative points&lt;/td&gt;
+&lt;td&gt;feature map bin 和 IoU 等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;set prediction&lt;/td&gt;
+&lt;td&gt;embedding&lt;/td&gt;
+&lt;td&gt;bounding box&lt;/td&gt;
+&lt;td&gt;Hungarian 算法&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;（1）ATSS&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;论文标题：&lt;/p&gt;
+&lt;p&gt;Bridging the Gap Between Anchor-based and Anchor-free Detection via Adaptive Training Sample Selection&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1912.02424&#34;&gt;论文链接&lt;/a&gt; | &lt;a href=&#34;https://github.com/sfzhang15/ATSS&#34;&gt;代码链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这篇文章从 anchor-free 和 anchor-base 算法的本质区别出发，通过分析对比 anchor-base 经典算法 retinanet 和 anchor-free 经典算法 FCOS 来说明正负样本分配（label assignment）的重要性。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Qc2hvOWRtN29ESGRvYmljdXE3QWJRaWMwWjJ1NWlhWkdpYUxpYlJFN2N4Y0FpYXZpYkpDOVQwZ01OTmlhRFhCVWFiSkpDaDNWQmZiZHliTWJUMWhGMzZpYThUcHZpYlEvNjQw?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;如上图所示，RetinaNet 使用 IoU 阈值来区分正负 anchor box，处于中间 anchor box 的全部忽略。FCOS 使用空间（spatial）和尺寸（scale）限制来区分正负 anchor point，正样本首先选择在 GT box 内的 anchor points，其次选择 GT 尺寸对应的层 anchor points，其余均为负样本。&lt;/p&gt;
+&lt;p&gt;最后通过交叉实验，发现在相同正负样本定义下情况下，RetinaNet 和 FCOS 性能几乎一样，而且 spatila and scale constraint 的方式比 IOU 的效果好，如下表：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9HVDFDVE9wVHdJSUJsRnNyOVZPN1ZTbFpOdlNEQjMyRFRKWmxrRzYxaWFZYUtCeEh0eUtVaGxyZ2hZTXR0UlBhSTJIMlNOZ05xa21DbXFDM1JYcnExeWcvNjQw?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;因此 ATSS 提出了一种新的正负样本选取方式，这种方法几乎不会引入额外的超参数并且更加鲁棒。&lt;/p&gt;
+&lt;p&gt;主要就是在每个 FPN 层选取离 gt 框中心点最近的 k 个 anchor，之后对所有选取的 anchor 与 gt 计算 IOU，同时计算 IOU 均值和方差，最后保留 IOU 大于均值加方差的并且中心点在 gt 之内的 anchor 作为正样本。&lt;/p&gt;
+&lt;p&gt;根据下表可以发现，即使 anchor box 数量为 1 的 RetinaNet 和 FOCS 在都加上 ATSS 策略之后，效果都有明显的提升，这也证明了 ATSS 策略的有效性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9HVDFDVE9wVHdJSUJsRnNyOVZPN1ZTbFpOdlNEQjMyRFRKWmxrRzYxaWFZYUtCeEh0eUtVaGxyZ2hZTXR0UlBhSTJIMlNOZ05xa21DbXFDM1JYcnExeWcvNjQw?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;（2）SAPD&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;论文标题：&lt;/p&gt;
+&lt;p&gt;Soft Anchor-Point Object Detection&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/1911.12448&#34;&gt;论文链接&lt;/a&gt; | &lt;a href=&#34;https://github.com/xuannianz/SAPD&#34;&gt;代码链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SAPD 就是对 anchor-free 检测器中的 anchor-point 检测器进行了训练策略的改进。SAPD 分析了两个问题：注意力偏差（attention bias）和特征选择（feature selection）。其中，特征选择的问题对金字塔特征层级做软选择，这里就不深入了。而为了解决注意力偏差（attention bias），SAPD 使用了一个新颖的训练策略：Soft-weighted anchor points。&lt;/p&gt;
+&lt;p&gt;3.1 Attention bias 注意力偏差&lt;/p&gt;
+&lt;p&gt;在自然图像中，可能会出现遮挡、背景混乱等干扰，SAPD 发现原始的 anchor-point 检测器在处理这些具有挑战性的场景时存在注意力偏差的问题，即具有清晰明亮 views 的目标会生成过高的得分区域，从而抑制了周围的其他目标的得分区域。&lt;/p&gt;
+&lt;p&gt;这个问题是由于特征不对齐导致了靠近目标边界的位置会得到不必要的高分 所导致的。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9ON0hTTU96RXJaaWIyckM1TVZIQ2FicWo0aWNzZDhWWHBIRWRGZ2ljTE1lTFljaWNidWliT0NtSjZJeFlmRHBWVzZya1RVQVlKRE9YUjkzRUpiaWIwaWNpY1AwaWFVZy82NDA?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;3.2 Soft-weighted anchor points&lt;/p&gt;
+&lt;p&gt;将目标实际位置与 anchor point（也就是 center）的距离作为一个 anchor 的惩罚权重，加入到损失函数的计算中（仅针对正样本，负样本不做改动）。公式如下：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9qbHRrYzdCNmo5WW9QY3RYMWdYZHZuRHdsRTlocW5zTmlicFNQb2ljeXV4aWFndnREb0owaWJBYXdLSjkxd05pYkJZd3M2NGdWWElIRE42V0w1V0tWOUxjeU53LzY0MA?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;其中，η 控制递减幅度，权重  范围为 0~1，公式保证了目标边界处的 points 权重为 0，目标中心处的 ponit 权重为 1。&lt;/p&gt;
+&lt;p&gt;这种通过对 anchor points 做软加权，就是 label assign 的进行优化，减少对靠近边界包含大量背景信息的锚点的关注。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;（3）AutoAssign&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;论文标题：&lt;/p&gt;
+&lt;p&gt;AutoAssign: Differentiable Label Assignment for Dense Object Detection&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2007.03496&#34;&gt;论文链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;AutoAssign 对 label assignment 进行非常全面的讨论。主要解决了在给定一个 bounding box （x, y, w, h） 后，根据框内的物体形状，动态分配正负样本的问题。如下图所示：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9RaWNoRGlhYmRReXNWaWJlaWNYUGlhbzBzNWxyYUNCbFlHT1kyQ3NsR25xMUJSVjFEeDlFTFBheGVpYUx2T3JpY0QzeFIwbFFjcGlibDZPZVB3NEo0RXlaQkpQTFRBLzY0MA?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;（1）RetinaNet 是根据 anchor box 和 ground truth 的 IOU 阈值定义正负样本，这样会每个样本都是打上非正即负以及 ignore 的标签，而且 anchor box 的  num，size，aspect ratios 等等都是超参数；&lt;/p&gt;
+&lt;p&gt;（2）FCOS 通过 centerness、空间和尺度约束来分配正负样本，也引入了很多超参数；&lt;/p&gt;
+&lt;p&gt;（3）AutoAssign 将 label assignment 看做一种连续问题，没有真正意义上的正负样本之分，每个特征图上的位置都有正样本属性和负样本属性，只是权重不同罢了；而且如上图最左变所示，动态分配正负样本更符合目标的形状，可以说有利用分割做检测的思想。&lt;/p&gt;
+&lt;p&gt;下面是 AutoAssign 的正负样本分配的示意图：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Qc2hvOWRtN29ESGRvYmljdXE3QWJRaWMwWjJ1NWlhWkdpYUwzcU1xVzU5YUlyU2QwZnVFMW5ZdE4zZThnVThZRWdOZHNaeUJkUVBBNHhPQm1pYXRUWmN1ekh3LzY0MA?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;可以看到，比一般的检测算法多了一个 Implict Objectness 分支，用于背景与前景的判断，已解决引入的大量背景位置的问题。&lt;/p&gt;
+&lt;p&gt;（1）Center Weighting&lt;/p&gt;
+&lt;p&gt;先使用高斯中心先验确定图像中一个目标正负样本的权重：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9MVGJCQjVDcDVzdVdkVWE5OTFuUUwwMGljaWNFaWI0aG5GU1VXcVU4UnRnV3RpY29IN2w5dXE3WmlhaWNBZ1N5dmljU0RWYzFjaWJwZ0IzTzRXRUN6dWs1V3g3VXF3LzY0MA?x-oss-process=image/format,png&#34; alt=&#34;img&#34;&gt;&lt;/center&gt;
+&lt;p&gt;（2）Confidence Weighting&lt;/p&gt;
+&lt;p&gt;通过 ImpObj 分支来避免引入大量背景位置&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy8zWldlZ1BDSFpjSXRTVkpNazJ3aWEzalhpY1FoM3RpYWN1ZXFjM2ljZjlpYVpTeWhvc0x4YlVBZEJXenpYNERpYzVhV1Axckh5VmlhUll1cmF6NUxPZWxkd3BHcmcvNjQw?x-oss-process=image/format,png&#34; alt=&#34;img&#34;&gt;&lt;/center&gt;
+&lt;p&gt;与 FreeAnchor 相似，将分类和定位联合看成极大似然估计问题，学习出样本的置信度 Confidence Weighting，即下面的 C (Pi)：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9PUGd3ZUdxaWNDdmdpYk4waWJYVmliZnE2S1ZQdWRieExGcllXRndpYWliaWFpYVZUbloyTUl4MXdHTU5NaWF3c0k2S2dHd2JvSW92NkV6d3psWHV5ZE5pYTRmMkVFV3cvNjQw?x-oss-process=image/format,png&#34; alt=&#34;img&#34;&gt;&lt;/center&gt;
+&lt;p&gt;直观的理解 C (Pi) 就是，分类得分高、框预测的准的 location 拥有较大的 C (Pi) 值的概率就会高。&lt;/p&gt;
+&lt;p&gt;（3）正负样本的权重（w+/w-）&lt;/p&gt;
+&lt;p&gt;positive weights：通过 Center Weighting 和 Confidence Weighting 得到 Positive weights&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9aSnJ3VGNBZXp3QWhPMDg3MWtkOWljOW1pYktzbnJaUUE0d1gxVEFYVUVxNzIyYlFUVU5OTm5EZDFpYm40empxcmJXRjdFc3Z1MG03SkNsRzVuTnFyd2pZUS82NDA?x-oss-process=image/format,png&#34; alt=&#34;img&#34;&gt;&lt;/center&gt;
+&lt;p&gt;negative weights：通过最大 IOU 得到 Negative weights&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy85dUROQUpEMzd5Q0F4VXpOcHRKMTdCVXVpY0hpYmZ1Q1c0SW5zMnVNbWFiNk9WWk9zdERpYjQzeWliYlFCRThvdGVGRUo1SXR3dzZZbjR0d3V6Z0hTcVI0RkEvNjQw?x-oss-process=image/format,png&#34; alt=&#34;img&#34;&gt;&lt;/center&gt;
+&lt;p&gt;对于前景和背景的 weighting function，有一个共同的特点是 “单调递增”；这就保证了一个位置预测 pos /neg 的置信度越高，那么对应的权重就越大。&lt;/p&gt;
+&lt;p&gt;（4）loss function&lt;/p&gt;
+&lt;p&gt;有了对于正负样本的权重之后，对于一个 gt box，其 loss 如下：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy80eGNFdktvRGg5aWJpY3RnUjVWdjNvS3NPTE1LUER4azRremJld0RqNTZ2YUNyUHlaMEtzaWJKWW5LdjFJaWF3MzR6UjA0dzlpYkEwM1RiTnk0dGZpY2JpYnMzaWFnLzY0MA?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;Positive weights 和 Negative weights 在训练过程中动态调整达到平衡，像是在学该目标的形状。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;（4）DETR&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;论文标题：&lt;/p&gt;
+&lt;p&gt;End-to-End Object Detection with Transformers&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2005.12872&#34;&gt;论文链接&lt;/a&gt; | &lt;a href=&#34;https://github.com/facebookresearch/detr&#34;&gt;代码链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;4.1 Object detection set prediction&lt;/p&gt;
+&lt;p&gt;DETR 将目标检测任务视为一个图像到集合（image-to-set）的问题，即给定一张图像，模型的预测结果是一个包含了所有目标的无序集合。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy8xd1duMk5tM0RVMG1wem5jaWEwclpQdUZxbTliU2JBaWJQZTFpYmlhUm92UUt6SXU1WlVvVHJnVGRNYnpuOVRWcE9VUm91V2ppY2sxNmtZRFZlTG5tNG5hS3BnLzY0MA?x-oss-process=image/format,png&#34; alt=&#34;img&#34;&gt;&lt;/center&gt;
+&lt;p&gt;那么对于一个目标 ground truth，如何找到对应的 prediction 呢？Detr 用的是 Hungarian algorithm 实现预测值与真值实现最大的匹配，并且是一一对应。&lt;/p&gt;
+&lt;p&gt;假设有 4 个 prediction（a,b,c,d），有 4 个 ground truth（p,q,r,s），每个 prediction 匹配 ground truth 的好坏都不同，那么便可构造一个代价矩阵（cost matrix，是 cost_bbox、cost_class 和 cost_giou 的加权和），通过求解最优的分配后，得到的每个 prediction 对应 ground truth 最佳分配的结果。&lt;/p&gt;
+&lt;p&gt;4.2 object queries&lt;/p&gt;
+&lt;p&gt;传统的 Anchor 是人工设计，铺在特征图上。最初人们给 Anchor 加上 scales 和 aspect ration，后来还有加上了 dense，再到后来，也出现了可学习的 Guided Anchoring，把 anchor 拆解为：位置预测和形状预测。&lt;/p&gt;
+&lt;p&gt;这种方式的 anchor 有个缺陷是：在推理阶段会产生大量的框，需要 NMS 进行抑制，这说明人工设计的 anchor 是存在冗余的（多个 anchor 匹配到一个 gt 上）。&lt;/p&gt;
+&lt;p&gt;而 DETR 的 object queries 就是一个 embedding 形式的 learned anchor，目的是让网络自己根据数据集自己学习 anchor。并且 DETR 的实验结果也证明 embedding 已经足够学习 anchor 了。&lt;/p&gt;
+&lt;p&gt;Detr 也在 coco 2017 val 上对把每个 object query 预测的框做了可视化，如下，选取 N=100 中的 20 个 object query，可以看到不同的 query vector 具有不同的分布（有些注重左下角，有些注重中间…），可以想成：有 N 个不同的人用不同的角度进行观测。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9hSEtKUFdhNUhvUlo3eHBqbnhHaWIzcjJqclhQV3gwQkJvNDVhcDN5V25OQ2VOdUh0aG1pYzlYOVI5dmx3MUZpYmliWkFEV0cxbHVEV1JndzBET2hycDZaV3cvNjQw?x-oss-process=image/format,png&#34; alt=&#34;img&#34;&gt;&lt;/center&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;4gt-generalized-focal-loss&#34;&gt; 4&amp;gt; &lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;论文地址：&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2006.04388.pdf&#34;&gt;https://arxiv.org/pdf/2006.04388.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;源码和预训练模型地址：&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/implus/GFocal&#34;&gt;https://github.com/implus/GFocal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;MMDetection 官方收录地址：&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/open-mmlab/mmdetection/blob/master/configs/gfl/README.md&#34;&gt;https://github.com/open-mmlab/mmdetection/blob/master/configs/gfl/README.md&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;总结&lt;/strong&gt;：基于任意 one-stage 检测器上，调整框本身与框质量估计的表示，同时用泛化版本的 GFocal Loss 训练该改进的表示，无 cost 涨点（一般 1 个点出头）AP。&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

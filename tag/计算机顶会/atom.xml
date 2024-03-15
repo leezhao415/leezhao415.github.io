@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;计算机顶会&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-08-07T10:57:43.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/08/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E2%80%94%E2%80%94%E9%A1%B6%E4%BC%9A%E3%80%81%E9%A1%B6%E5%88%8A/</id>
+        <title>计算机视觉——顶会、顶刊</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/08/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E2%80%94%E2%80%94%E9%A1%B6%E4%BC%9A%E3%80%81%E9%A1%B6%E5%88%8A/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E9%A1%B6%E4%BC%9A-%E9%A1%B6%E5%88%8A&#34;&gt;计算机视觉 —— 顶会、顶刊&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E8%AE%BA%E6%96%87&#34;&gt;1、论文&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-%E5%87%BA%E7%89%88%E7%A4%BE&#34;&gt;2、出版社&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-%E6%95%B0%E6%8D%AE%E5%BA%93&#34;&gt;3、数据库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-%E5%AD%A6%E4%BC%9A&#34;&gt;4、学会&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%80-%E5%9B%BD%E9%99%85&#34;&gt;一、国际&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%8C-%E5%9B%BD%E5%86%85&#34;&gt;二、国内&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h3&gt;&lt;span id=&#34;计算机视觉-顶会-顶刊&#34;&gt; 计算机视觉 —— 顶会、顶刊&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;1-论文&#34;&gt; 1、论文&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;（1）会议：目的 - 交流。某一个领域最好的那个会议称为顶会。&lt;br&gt;
+（2）期刊&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;2-出版社&#34;&gt; 2、出版社&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;IEEE&lt;br&gt;
+（1）出版会议：菜些 。绝大部分的 IEEE 会议并不是由 IEEE 主办，而是由一些学校或者其他机构主办，这些会议主办方提交申请由 IEEE 出版会议论文集，所以 IEEE 只参与后续的出版工作，并没有派遣专家学者参与论文评审。&lt;br&gt;
+（2）出版期刊：质量高&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;3-数据库&#34;&gt; 3、数据库&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;science，nature，（最顶尖，科学家级别）&lt;br&gt;
+专门会从世界上所有期刊和会议（顶会）里面选择性的收录高质量文章进数据库里面。&lt;br&gt;
+（1） &lt;code&gt;SCI&lt;/code&gt; （一般 ieee 这个出版社发行的期刊大部分文章，sci 都会收录），分为 1,2,3 区，质量逐渐降低。&lt;br&gt;
+（2） &lt;code&gt;EI&lt;/code&gt; ：相比 SCI 差些&lt;br&gt;
+（3）国内： &lt;code&gt;知网&lt;/code&gt; ， &lt;code&gt;万方&lt;/code&gt; ，一般只收录国内的毕业论文，不会去收录那些 ieee 等国际顶尖期刊和顶会的文章。中文核心，一般也只收录国内的一些中文写的高质量论文。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;4-学会&#34;&gt; 4、学会&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;CCF&lt;/code&gt;  是中国计算机学会，不是出版社（那就不能发行期刊），也不是数据库，也不是某个会议的名字。我们看到他关于论文方面，只是一个高水平论文推荐的作用。&lt;br&gt;
+官网能看到他的论文推荐目录，其中推荐的期刊，他划分不同研究领域，A,B,C 类级别的，论文质量逐渐下降。&lt;br&gt;
+ &lt;code&gt;ACM &lt;/code&gt; (Association for Computing Machinery) 中文：国际计算机学会 ACM 所评选的图灵奖（A.M. Turing Award）被公认为世界计算机领域的诺贝尔奖。每年举办 ACM 国际大学生程序设计竞赛。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;一-国际&#34;&gt; 一、国际&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1-国际会议&#34;&gt; (1) 国际会议&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;计算机视觉领域的三大顶会： &lt;code&gt;ICCV&lt;/code&gt; ，  &lt;code&gt;CVPR&lt;/code&gt;  和 &lt;code&gt;ECCV&lt;/code&gt; ，统称为 &lt;code&gt;ICE&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;1、 &lt;code&gt;ICCV&lt;/code&gt; ，International Comference on Computer Vision，国际计算机视觉会议，是公认的三个会议中级别最高的，收录率一般在 20% 左右，由 IEEE 主办。【收录论文的内容：底层视觉与感知，颜色、光照与纹理处理，分割与聚合，运动与跟踪，立体视觉与运动结构重构，基于图像的建模，基于物理的建模，视觉中的统计学习，视频监控，物体、事件和场景的识别，基于视觉的图形学，图片和视频的获取，性能评估，具体应用等。】&lt;br&gt;
+2、 &lt;code&gt;CVPR&lt;/code&gt; ，Internaltional Conference on Computer Vision and Pattern Recogintion，国际计算机视觉模式识别会议。一年一次，举办地在美国 (除 2002 年)，录取率 25% 左右，由 IEEE 主办。&lt;/p&gt;
+&lt;p&gt;3、 &lt;code&gt;ECCV&lt;/code&gt; ，Europeon Conference on Computer Vision，欧洲计算机视觉会议，两年一次 ，欧洲，收录率一般在 20% 多，由 springer 和一些商业媒体承办。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ACCV&lt;/code&gt; ，即亚洲计算机视觉会议（Asian Conference on Computer Vision）是亚洲计算机视觉联盟 (AFCV) 举办。1993 年举办第一届，每两年举办一次。ACCV 为中国计算机学会 CCF 推荐人工智能会议。论文录取率 20%~25%，是仅次于计算机视觉三大顶会的会议，近年学术水平及等级进一步提高。【百度百科】&lt;/p&gt;
+&lt;p&gt;其他&lt;br&gt;
+ &lt;code&gt;ICIP&lt;/code&gt; ——International Conference on Image Processing.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;BMVC&lt;/code&gt; ——British Machine Vision Conference.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;IAPR MVA&lt;/code&gt; ——IAPR Machine Vision Applications.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ICPR&lt;/code&gt; ——International Conference on Pattern Recognition. 国际模式识别会议&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ACCV&lt;/code&gt; ——Asian Conference on Computer Vision. 亚洲计算机视觉会议&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;SIGGRAPH&lt;/code&gt; ——Special Interest Group for Computer GRAPHICS，计算机图形图像特别兴趣小组，更偏重图形方面。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;EUROGRAPHICS&lt;/code&gt; ——European Association for computer graphics，与 SIGGRAPH 对应，只不过仅在欧洲范围内召开。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;IJCAI&lt;/code&gt; ——International Joint Conference on Artificial Intelligence.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ICSLP&lt;/code&gt; —— International Conference on Spoken Language Processing.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ICASSP&lt;/code&gt; ——International Conference on Acoustics, Speech and Signal Processing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;机器学习领域的两大国际会议：&lt;/strong&gt;&lt;br&gt;
+（1） &lt;code&gt;NIPS&lt;/code&gt; （NeurIPS），全称神经信息处理系统大会 (Conference and Workshop on Neural Information Processing Systems)，是一个关于机器学习和计算神经科学的国际会议。该会议固定在每年的 12 月举行，由 NIPS 基金会主办。NIPS 是机器学习领域的顶级会议 。在中国计算机学会的国际学术会议排名中，NIPS 为人工智能领域的 A 类会议。&lt;/p&gt;
+&lt;p&gt;（2） &lt;code&gt;ICML&lt;/code&gt; ——International Conference on Machine Learning&lt;br&gt;
+ 国际机器学习大会，由 IMLS 国际机器学习协会支持，始于 1980 年，此后每年夏季举行，2014 年举办地在北京。ICML 会接收到各路机器学习大牛的投稿，录用率只有百分之二十多。第 36 届 ICML 将于 2019 年 6 月 10 日到 15 日在美国长滩举办。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;人工智能领域的两个顶尖会议：&lt;/strong&gt;&lt;br&gt;
+（1） &lt;code&gt;AAAI&lt;/code&gt; ——AAAI Conference on Artificial Intelligence&lt;br&gt;
+ 会议由人工智能促进协会 AAAI（Association for the Advancement of Artificial Intelligence）主办。人工智能促进协会是一个国际化的非营利科学组织，旨在推动人工智能领域的研究和应用，增进大众对人工智能的了解。会议始于 1980 年，既注重理论，也注重应用，还会讨论对人工智能发展有着重要影响的社会、哲学、经济等话题。&lt;br&gt;
+（2） &lt;code&gt;IJCAI&lt;/code&gt; ——International Joint Conferences on AI&lt;br&gt;
+IJCAI 是一家 1969 年于美国加州成立的非营利企业，致力于推动科学和教育的发展，由负责会议和期刊的两个部分组成。会议始于 1969 年，每两年举办一次，从 2016 年开始改为一年举办一次。会议选拔要求非常严格，论文录取率几乎不超过 26%，2011 年录取率仅 17%。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-国际期刊&#34;&gt; (2) 国际期刊&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;以计算机视觉为主要内容：&lt;/p&gt;
+&lt;p&gt;1、 &lt;code&gt;PAMI&lt;/code&gt; ，IEEE Transactions on Pattern Analysis and Machine Intelligence&lt;br&gt;
+IEEE 旗下的期刊，是模式识别和机器学习领域最重要的学术性汇刊之一，有很高的影响影子和排名。&lt;/p&gt;
+&lt;p&gt;2、 &lt;code&gt;IJCV&lt;/code&gt; ，International Journal of Computer Vision&lt;/p&gt;
+&lt;p&gt;3、 &lt;code&gt;CVIU&lt;/code&gt; ，Computer Vision and Image Understanding&lt;/p&gt;
+&lt;p&gt;4、 &lt;code&gt;TIP&lt;/code&gt; ，IEEE Transactions on Image Processing&lt;/p&gt;
+&lt;p&gt;5、 &lt;code&gt;PR&lt;/code&gt; ，Pattern Recognition&lt;/p&gt;
+&lt;p&gt;6、 &lt;code&gt;PR Letters&lt;/code&gt; ，Pattern Recognition Letters&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;CVGIP&lt;/code&gt; ，Computer Vision, Graphics and Image Processing&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;IJPRAI&lt;/code&gt; ，Internatiorial Journat of Pattern Recognition and Artificial Intelligence&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;二-国内&#34;&gt; 二、国内&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1-国内会议&#34;&gt; (1) 国内会议&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;略&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-国内期刊&#34;&gt; (2) 国内期刊&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;自动化学报、计算机学报、软件学报、电子学报，中国图象图形学报，模式识别与人工智能，光电子激光，光学 精密工程等。&lt;br&gt;
+————————————————&lt;br&gt;
+ 版权声明：本文为 CSDN 博主「ShallowAnomaly」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。&lt;br&gt;
+原文链接：&lt;a href=&#34;https://blog.csdn.net/shiue_gx/article/details/102482081&#34;&gt;https://blog.csdn.net/shiue_gx/article/details/102482081&lt;/a&gt;&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="计算机顶会" />
+        <updated>2021-08-07T10:57:43.000Z</updated>
+    </entry>
+</feed>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【精华】AIGC启元2024 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   AIGC 前沿  (1) Gemini 1.5 Pro (2) Sora (3) EMO (4) Playground v2.5 (5) VSP-LLM (6) Ideogram.ai (7) LTX studio (8) Claude3 (9) Open Sora (10) Yi-9B (11) CARES Copilot1.0（多模态手术大模型） (12) Figure 01">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【精华】AIGC启元2024">
+<meta property="og:url" content="https://leezhao415.github.io/2024/03/15/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91AIGC%E5%90%AF%E5%85%832024/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   AIGC 前沿  (1) Gemini 1.5 Pro (2) Sora (3) EMO (4) Playground v2.5 (5) VSP-LLM (6) Ideogram.ai (7) LTX studio (8) Claude3 (9) Open Sora (10) Yi-9B (11) CARES Copilot1.0（多模态手术大模型） (12) Figure 01">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-15T08:16:00.000Z">
+<meta property="article:modified_time" content="2024-03-15T08:16:54.223Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="AIGC前沿">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-【精华】AIGC启元2024" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      【精华】AIGC启元2024
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2024-03-15
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#aigc-%E5%89%8D%E6%B2%BF">AIGC 前沿</a>
+<ul>
+<li><a href="#1-gemini-15-pro">(1) Gemini 1.5 Pro</a></li>
+<li><a href="#2-sora">(2) Sora</a></li>
+<li><a href="#3-emo">(3) EMO</a></li>
+<li><a href="#4-playground-v25">(4) Playground v2.5</a></li>
+<li><a href="#5-vsp-llm">(5) VSP-LLM</a></li>
+<li><a href="#6-ideogramai">(6) Ideogram.ai</a></li>
+<li><a href="#7-ltx-studio">(7) LTX studio</a></li>
+<li><a href="#8-claude3">(8) Claude3</a></li>
+<li><a href="#9-open-sora">(9) Open Sora</a></li>
+<li><a href="#10-yi-9b">(10) Yi-9B</a></li>
+<li><a href="#11-cares-copilot10%E5%A4%9A%E6%A8%A1%E6%80%81%E6%89%8B%E6%9C%AF%E5%A4%A7%E6%A8%A1%E5%9E%8B">(11) CARES Copilot1.0（多模态手术大模型）</a></li>
+<li><a href="#12-figure-01%E9%80%9A%E7%94%A8%E6%9C%BA%E5%99%A8%E4%BA%BAfigure-ai-openai">(12) Figure 01 通用机器人（Figure AI + OpenAI）</a></li>
+<li><a href="#13-devinai%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%8A%A9%E6%89%8B">(13) Devin（AI 软件工程师助手）</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h1><span id="aigc-前沿"> AIGC 前沿</span></h1>
+<h2><span id="1-gemini-15-pro"> (1) Gemini 1.5 Pro</span></h2>
+<p><em><strong>2024.02.16</strong></em>  谷歌新一代多模态大模型 Gemini 1.5 Pro，在性能上超越 OpenAI 的 GPT-4 Turbo，堪称业界最强大模型。</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU5OTI0NTc3Mg==&amp;mid=2247530889&amp;idx=1&amp;sn=0686f28b493fb61fdcd3e619b9a97517">“打假” Sora，谷歌 Gemini 1.5 Pro 第一波评测出炉｜甲子光年</a><br>
+<strong>官网链接：</strong> <a target="_blank" rel="noopener" href="https://openai.com/sora">https://openai.com/sora</a></p>
+<h2><span id="2-sora"> (2) Sora</span></h2>
+<p><em><strong>2024.02.16</strong></em>  Sora 文本生成视频的大模型。它所展现出来的能力几乎可以 “碾压” 目前全球能实现文本生成视频的大模型 包 括 Runway、Pika、Stable Video Diffusion 等 20 多个产品。<br>
+　　用户仅需输入简短一句话，Sora 就可生成一段长达 60 秒的视频，远远超过市面上同类型级别的 AI 视频生成时长。在此之前，AI 视频模型生成时长几乎在 10 秒以内，而 “明星模型” Runway 和 Pika 等也仅有 3 到 4 秒。</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://www.thepaper.cn/newsDetail_forward_26415514">Sora 到底有多强？</a> |  <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/zmKeNWrU6me3leNpdNH2wQ">微软最新 Sora 综述</a><br>
+<strong>官网链接：</strong> <a target="_blank" rel="noopener" href="https://ai.google.dev/gemma">Gemma Open Models</a></p>
+<h2><span id="3-emo"> (3) EMO</span></h2>
+<p><em><strong>2024.02.28</strong></em>  生成式 AI 模型 EMO（Emote Portrait Alive）。EMO 仅需一张人物肖像照片和音频，就可以让照片中的人物按照音频内容 “张嘴” 唱歌、说话，且口型基本一致，面部表情和头部姿态非常自然。</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1792189739510241856&amp;wfr=spider&amp;for=pc">阿里 EMO 模型，一张照片就能造谣</a><br>
+<strong>官网链接：</strong> <a target="_blank" rel="noopener" href="https://humanaigc.github.io/emote-portrait-alive/">https://humanaigc.github.io/emote-portrait-alive/</a></p>
+<h2><span id="4-playground-v25"> (4) Playground v2.5</span></h2>
+<p><em><strong>2024.02.28</strong></em>  Playground 在去年发布 Playground v2.0 之后再次开源新的文生图模型 Playground v2.5。相比上一个版本，Playground v2.5 在美学质量，颜色和对比度，多尺度生成以及以人为中心的细节处理有比较大的提升。</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/684287454">超过 Midjourney v5.2 的开源文生图大模型 Playground v2.5 来了</a><br>
+<strong>官网链接：</strong> <a target="_blank" rel="noopener" href="https://playground.com/">https://playground.com/</a></p>
+<h2><span id="5-vsp-llm"> (5) VSP-LLM</span></h2>
+<p><em><strong>2024.02.28</strong></em>  一种通过观察视频中人的嘴型来理解和翻译说话内容的技术，也就是识别唇语。该技术能够将视频中的唇动转化为文本（视觉语音识别），并将这些唇动直接翻译成目标语言的文本 (视觉语音翻译)。不仅如此，VSP-LLM 还能智能识别和去除视频中不必要的重复信息，使处理过程更加快速和准确。</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://www.chinaz.com/2024/0228/1599901.shtml">VSP-LLM：可通过观察视频中人的嘴型来识别唇语</a><br>
+<strong>官网链接：</strong> <a target="_blank" rel="noopener" href="https://github.com/sally-sh/vsp-llm">https://github.com/sally-sh/vsp-llm</a></p>
+<h2><span id="6-ideogramai"> (6) </span></h2>
+<p><em><strong>2024.02.29</strong></em>  Ideogram 发布了最新的 Ideogram1.0 图像生成模型，该模型具有强大的文字生成能力和提示词理解能力。Ideogram1.0 在文本渲染准确性方面实现了飞跃。</p>
+<p><strong>推荐文章：</strong><a target="_blank" rel="noopener" href="https://www.chinaz.com/2024/0229/1599986.shtml">Ideogram 1.0 图像生成模型发布 文字生成能力更强大了</a><br>
+<strong>官网链接：</strong><a target="_blank" rel="noopener" href="https://top.aibase.com/tool/ideogram-ai">https://top.aibase.com/tool/ideogram-ai</a></p>
+<h2><span id="7-ltx-studio"> (7) LTX studio</span></h2>
+<p><em><strong>2024.02.29</strong></em>  生成式 AI 电影制作平台 —LTX Studio，用户只需要输入文本就能生成超 25 秒的微电影视频，同时可对镜头切换、角色、场景一致性、摄像机、灯光等进行可视化精准控制。</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://new.qq.com/rain/a/20240229A02EA500">效果比 Sora 惊艳，著名 AI 平台大动作！文本生成超 25 秒视频，带背景音乐、转场等效果</a><br>
+<strong>官网链接：</strong> <a target="_blank" rel="noopener" href="https://ltx.studio">https://ltx.studio</a></p>
+<h2><span id="8-claude3"> (8) Claude3</span></h2>
+<p><em><strong>2024.03.04</strong></em>  Claude3 是由 Anthropic 发布的最新的 AI 大模型系列，同时，Claude3 是多模态大模型 ，具有强大的 “视觉能力”。Claude3 Opus 已经在部分行业行为准则中的表现优于 OpenAI 的 GPT-4 和谷歌的 Gemini Ultra，如本科生水平知识（MMLU）、研究生级别专家推理（GPQA）和基础数学（GSM8K）。</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://new.qq.com/rain/a/20240307A09O1N00">OpenAI 劲敌出现！Claude3 正式发布，超越 GTP-4?</a><br>
+<strong> 官网链接：</strong> <a target="_blank" rel="noopener" href="https://www.anthropic.com/claude">https://www.anthropic.com/claude</a></p>
+<h2><span id="9-open-sora"> (9) Open Sora</span></h2>
+<p><em><strong>2024.03.01</strong></em>  北大团队联合兔展发起了一项 Sora 复现计划 ——Open Sora</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1792479658318662669&amp;wfr=spider&amp;for=pc">北大与兔展智能发起复现 Sora，框架已开源</a><br>
+<strong>官网链接：</strong><br>
+<a target="_blank" rel="noopener" href="https://pku-yuangroup.github.io/Open-Sora-Plan/blog_cn.html">https://pku-yuangroup.github.io/Open-Sora-Plan/blog_cn.html</a><br>
+<a target="_blank" rel="noopener" href="https://github.com/PKU-YuanGroup/Open-Sora-Plan">https://github.com/PKU-YuanGroup/Open-Sora-Plan</a></p>
+<h2><span id="10-yi-9b"> (10) Yi-9B</span></h2>
+<p><em><strong>2024.03.06</strong></em>  李开复旗下 AI 公司零一万物的最新力作 ——Yi-9B 大模型正式对外开源发布。这款具有 90 亿参数的大模型，在代码和数学能力上达到了前所未有的高度，同时保持了对消费级显卡的良好兼容性，为广大开发者和研究人员提供了前所未有的便利性和强大功能。<br>
+　　Yi-9B 作为 Yi 系列中的新成员，被誉为 “理科状元”，特别加强了在代码和数学方面的学习能力。相较于市场上其他类似规模的开源模型，如 Mistral-7B、SOLAR-10.7B、Gemma-7B 等，Yi-9B 展现出了最佳的性能表现。特别值得一提的是，Yi-9B 既提供了浮点数版本（BF 16），也提供了整数版本（Int8），使其能够轻松部署在包括 RTX 4090 和 RTX 3090 在内的消费级显卡上，大大降低了使用门槛和成本。</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1792881393208541121&amp;wfr=spider&amp;for=pc">零一万物开源 Yi-9B 大模型，消费级显卡可用，代码数学历史最强</a><br>
+<strong>官网链接：</strong> <a target="_blank" rel="noopener" href="https://github.com/01-ai/Yi">https://github.com/01-ai/Yi</a></p>
+<h2><span id="11-cares-copilot10多模态手术大模型"> (11) CARES Copilot1.0（多模态手术大模型）</span></h2>
+<p><em><strong>2024.03.11</strong></em>  CARES Copilot 是由中国科学院香港创新院 AI 中心研发的一个可信赖、可解释、面向医疗垂直领域并能与智能医疗设备高度集成的大模型系统。CARES Copilot 1.0 实现了图像、文本、语音、视频、MRI、CT、超声等多模态的手术数据理解。支持超过 100K 上下文的长窗口理解和高效分析，能理解超过 3000 页的复杂手术教材，对于年轻医生的培训和教学具有极高的实用价值。此外，该系统能通过深度检索功能，快速精确地提取手术教材、专家指南、医学论文等专业文档的信息，确保其提供的答案具有高度的可信度和可追溯性。经测试，系统能在一秒钟内完成百万级数据的快速检索，同时保持 95% 的准确率。该系统已在多家医院的不同科室进行了内部测试和迭代优化。</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1793375529838669070&amp;wfr=spider&amp;for=pc">CARES Copilot 1.0 多模态手术大模型发布，可实现轻量化部署</a><br>
+<strong>官网链接：</strong> /</p>
+<h2><span id="12-figure-01-通用机器人figure-ai-openai"> (12) Figure 01 通用机器人（Figure AI + OpenAI）</span></h2>
+<p><em><strong>2024.03.13</strong></em>  Figure 01 通用机器人由 Figure AI 和 OpenAI 合作完成。展示视频中，Figure AI 人形机器人具有视觉能力并能表述所见画面，它伸手拿起桌上的苹果，并解释了这么做的原因，人类的提问后，这台人形机器人 “思索” 2~3 秒后便能顺畅作答，手部动作速度则接近人类。据视频介绍，机器人采用了端到端神经网络。<br>
+　　该人形机器人由 OpenAI 提供了视觉推理和语言理解，Figure AI 的神经网络则提供快速、灵巧的机器人动作。人形机器人将摄像机的图像输入和麦克风接收的语音文字输入 OpenAI 提供的视觉语言大模型（VLM）中，该模型可以理解图像和文字。Figure 机载相机以 10hz 的频率拍摄画面，随后神经网络以 200hz 的频率输出 24 个自由度动作。画面中的人形机器人不依赖远程操作，行为都是学习而得的。</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1793472537987147749&amp;wfr=spider&amp;for=pc">与 OpenAI 合作 13 天后，Figure 人形机器人展示与人类对话能力</a><br>
+<strong>官网链接：</strong> /</p>
+<h2><span id="13-devinai-软件工程师助手"> (13) Devin（AI 软件工程师助手）</span></h2>
+<p><em><strong>2024.03.13</strong></em>  一家成立不到两个月但拥有十名天才工程师的初创公司 Cognition 推出了一款名为 Devin 的人工智能（AI）助手，可以协助人类软件工程师完成诸多开发任务。Devin 不同于现有其他 AI 编码者，它可以从零构建网站、自行部署应用、修复漏洞、学习新技术等，人类只需扮演一个下指令和监督的角色。<br>
+　　这是第一个真正意义上完全自主的 AI 软件工程师，一亮相即掀起轩然大波，因为人们担心：人类程序员是不是真要失业了？</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://finance.eastmoney.com/a/202403153013211460.html">人类程序员真要失业？首位 “AI 软件工程师” 亮相引爆科技圈</a><br>
+<strong>官网链接：</strong> /</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2024年03月15日 16:16</p>
+        <p>原始链接： <a class="post-url" href="/2024/03/15/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91AIGC%E5%90%AF%E5%85%832024/" title="【精华】AIGC启元2024">https://leezhao415.github.io/2024/03/15/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91AIGC%E5%90%AF%E5%85%832024/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2024/03/15/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91AIGC%E5%90%AF%E5%85%832024/&title=《【精华】AIGC启元2024》 — 且听风吟，御剑于心！&pic=images/pycharm.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2024/03/15/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91AIGC%E5%90%AF%E5%85%832024/&title=《【精华】AIGC启元2024》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2024/03/15/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91AIGC%E5%90%AF%E5%85%832024/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【精华】AIGC启元2024》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2024/03/15/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91AIGC%E5%90%AF%E5%85%832024/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2024/03/15/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91AIGC%E5%90%AF%E5%85%832024/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2024/03/15/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91AIGC%E5%90%AF%E5%85%832024/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/AIGC前沿/" class="color2">AIGC前沿</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link"><span class="post-toc-text"> AIGC 前沿</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (1) Gemini 1.5 Pro</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (2) Sora</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (3) EMO</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (4) Playground v2.5</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (5) VSP-LLM</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (6) </span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (7) LTX studio</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (8) Claude3</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (9) Open Sora</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (10) Yi-9B</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (11) CARES Copilot1.0（多模态手术大模型）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (12) Figure 01 通用机器人（Figure AI + OpenAI）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> (13) Devin（AI 软件工程师助手）</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91%E7%BB%BC%E8%BF%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【精华】计算机视觉研究方向综述</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="【精华】AIGC启元2024" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

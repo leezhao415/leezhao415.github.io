@@ -1,0 +1,649 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;操作系统&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-04-23T08:59:35.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/04/23/Linux%E9%9D%A2%E8%AF%95%E8%AF%A6%E8%A7%A3-%E6%9C%80%E6%96%B0%E7%89%88/</id>
+        <title>Linux面试详解[最新版]</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/04/23/Linux%E9%9D%A2%E8%AF%95%E8%AF%A6%E8%A7%A3-%E6%9C%80%E6%96%B0%E7%89%88/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-linux-%E6%A6%82%E8%BF%B0&#34;&gt;1 Linux 概述&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#11-%E4%BB%80%E4%B9%88%E6%98%AFlinux&#34;&gt;1.1 什么是 Linux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#12-unix%E5%92%8Clinux%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB&#34;&gt;1.2 Unix 和 Linux 有什么区别？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#13-%E4%BB%80%E4%B9%88%E6%98%AF-linux-%E5%86%85%E6%A0%B8&#34;&gt;1.3 什么是 Linux 内核？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#14-linux%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88&#34;&gt;1.4 Linux 的基本组件是什么？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#15-linux-%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84&#34;&gt;1.5 Linux 的体系结构&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#16-%E4%B8%BA%E4%BB%80%E4%B9%88-linux-%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E8%A6%81%E5%88%86%E4%B8%BA%E7%94%A8%E6%88%B7%E7%A9%BA%E9%97%B4%E5%92%8C%E5%86%85%E6%A0%B8%E7%A9%BA%E9%97%B4&#34;&gt;1.6 为什么 Linux 体系结构要分为用户空间和内核空间？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#17-bash%E5%92%8Cdos%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8C%BA%E5%88%AB&#34;&gt;1.7 BASH 和 DOS 的基本区别？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#18-linux-%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B&#34;&gt;1.8 Linux 开机启动过程？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#19-linux%E7%B3%BB%E7%BB%9F%E7%BC%BA%E7%9C%81%E7%9A%84%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB&#34;&gt;1.9 Linux 系统缺省的运行级别？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#110-linux-%E4%BD%BF%E7%94%A8%E7%9A%84%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F&#34;&gt;1.10 Linux 使用的进程间通信方式？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#111-linux-%E6%9C%89%E5%93%AA%E4%BA%9B%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6&#34;&gt;1.11 Linux 有哪些系统日志文件？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#112-linux%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E5%A4%9A%E4%B8%AA%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E6%9C%89%E5%B8%AE%E5%8A%A9%E5%90%97&#34;&gt;1.12 Linux 系统安装多个桌面环境有帮助吗？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#113-%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4&#34;&gt;1.13 什么是交换空间？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#114-%E4%BB%80%E4%B9%88%E6%98%AFroot%E5%B8%90%E6%88%B7&#34;&gt;1.14 什么是 root 帐户&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#115-%E4%BB%80%E4%B9%88%E6%98%AFlilo&#34;&gt;1.15 什么是 LILO？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#116-%E4%BB%80%E4%B9%88%E6%98%AFbash&#34;&gt;1.16 什么是 BASH？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#117-%E4%BB%80%E4%B9%88%E6%98%AFcli&#34;&gt;1.17 什么是 CLI？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#118-%E4%BB%80%E4%B9%88%E6%98%AFgui&#34;&gt;1.18 什么是 GUI？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#119-%E5%BC%80%E6%BA%90%E7%9A%84%E4%BC%98%E5%8A%BF%E6%98%AF%E4%BB%80%E4%B9%88&#34;&gt;1.19 开源的优势是什么？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#120-gnu%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7%E6%98%AF%E4%BB%80%E4%B9%88&#34;&gt;1.20 GNU 项目的重要性是什么？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-%E7%A3%81%E7%9B%98-%E7%9B%AE%E5%BD%95-%E6%96%87%E4%BB%B6&#34;&gt;2 磁盘、目录、文件&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#21-%E7%AE%80%E5%8D%95-linux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F&#34;&gt;2.1 简单 Linux 文件系统？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#22-linux-%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84&#34;&gt;2.2 Linux 的目录结构是怎样的？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#23-%E4%BB%80%E4%B9%88%E6%98%AF-inode&#34;&gt;2.3 什么是 inode ？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#24-%E7%AE%80%E8%BF%B0-linux-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%80%9A%E8%BF%87-i-%E8%8A%82%E7%82%B9%E6%8A%8A%E6%96%87%E4%BB%B6%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84%E5%92%8C%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84%E8%BD%AC%E6%8D%A2%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B&#34;&gt;2.4 简述 Linux 文件系统通过 i 节点把文件的逻辑结构和物理结构转换的工作过程？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#25-%E4%BB%80%E4%B9%88%E6%98%AF%E7%A1%AC%E9%93%BE%E6%8E%A5%E5%92%8C%E8%BD%AF%E9%93%BE%E6%8E%A5&#34;&gt;2.5 什么是硬链接和软链接？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#26-raid-%E6%98%AF%E4%BB%80%E4%B9%88&#34;&gt;2.6 RAID 是什么？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8&#34;&gt;3 网络安全&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#31-%E4%B8%80%E5%8F%B0-linux-%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96%E7%8E%AF%E5%A2%83%E5%90%8E%E9%9C%80%E8%A6%81%E5%81%9A%E4%B8%80%E4%BA%9B%E4%BB%80%E4%B9%88%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C&#34;&gt;3.1 一台 Linux 系统初始化环境后需要做一些什么安全工作？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#32-%E4%BB%80%E4%B9%88%E5%8F%AB-cc-%E6%94%BB%E5%87%BB%E4%BB%80%E4%B9%88%E5%8F%AB-ddos-%E6%94%BB%E5%87%BB&#34;&gt;3.2 什么叫 CC 攻击？什么叫 DDOS 攻击？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#33-%E6%80%8E%E4%B9%88%E9%A2%84%E9%98%B2-cc-%E6%94%BB%E5%87%BB%E5%92%8C-ddos-%E6%94%BB%E5%87%BB&#34;&gt;3.3 怎么预防 CC 攻击和 DDOS 攻击？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#34-%E4%BB%80%E4%B9%88%E6%98%AF%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E5%BA%93%E6%B3%A8%E5%85%A5&#34;&gt;3.4 什么是网站数据库注入？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-shell%E4%B9%8Bsed&#34;&gt;4 Shell 之 sed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-linux%E7%9B%B8%E5%85%B3%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98&#34;&gt;5 Linux 相关经典问题&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#51-%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9-linux-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC&#34;&gt;5.1 如何选择 Linux 操作系统版本？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#52-%E5%A6%82%E4%BD%95%E8%A7%84%E5%88%92%E4%B8%80%E5%8F%B0-linux-%E4%B8%BB%E6%9C%BA%E6%AD%A5%E9%AA%A4%E6%98%AF%E6%80%8E%E6%A0%B7&#34;&gt;5.2 如何规划一台 Linux 主机，步骤是怎样？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#53-%E8%AF%B7%E9%97%AE%E5%BD%93%E7%94%A8%E6%88%B7%E5%8F%8D%E9%A6%88%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E6%85%A2%E4%BD%A0%E4%BC%9A%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86&#34;&gt;5.3 请问当用户反馈网站访问慢，你会如何处理？&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#531-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E9%9D%A2%E7%9A%84%E5%9B%A0%E7%B4%A0%E4%BC%9A%E5%AF%BC%E8%87%B4%E7%BD%91%E7%AB%99%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E6%85%A2&#34;&gt;5.3.1 有哪些方面的因素会导致网站网站访问慢？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#532-%E9%92%88%E5%AF%B9%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E6%85%A2%E6%80%8E%E4%B9%88%E5%8E%BB%E6%8E%92%E6%9F%A5&#34;&gt;5.3.2 针对网站访问慢，怎么去排查？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#533-%E9%92%88%E5%AF%B9%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E6%85%A2%E6%80%8E%E4%B9%88%E5%8E%BB%E8%A7%A3%E5%86%B3&#34;&gt;5.3.3 针对网站访问慢，怎么去解决？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#534-linux-%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E9%83%BD%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95&#34;&gt;5.3.4 Linux 性能调优都有哪几种方法？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-%E7%BD%91%E7%BB%9C%E9%80%9A%E8%AE%AF%E5%91%BD%E4%BB%A4&#34;&gt;6 网络通讯命令&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#61-ifconfig-%E5%91%BD%E4%BB%A4&#34;&gt;6.1 ifconfig 命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#62-iptables-%E5%91%BD%E4%BB%A4&#34;&gt;6.2 iptables 命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#63-netstat-%E5%91%BD%E4%BB%A4&#34;&gt;6.3 netstat 命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#64-ping-%E5%91%BD%E4%BB%A4&#34;&gt;6.4 ping 命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#65-telnet-%E5%91%BD%E4%BB%A4&#34;&gt;6.5 telnet 命令&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4&#34;&gt;7 系统管理命令&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#71-date-%E5%91%BD%E4%BB%A4&#34;&gt;7.1 date 命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#72-free-%E5%91%BD%E4%BB%A4&#34;&gt;7.2 free 命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#73-kill-%E5%91%BD%E4%BB%A4&#34;&gt;7.3 kill 命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#74-ps-%E5%91%BD%E4%BB%A4&#34;&gt;7.4 ps 命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#75-rpm-%E5%91%BD%E4%BB%A4&#34;&gt;7.5 rpm 命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#76-top-%E5%91%BD%E4%BB%A4&#34;&gt;7.6 top 命令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#77-yum-%E5%91%BD%E4%BB%A4&#34;&gt;7.7 yum 命令&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;资源链接&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1	Redis 面试题（2020 最新版）	&lt;a href=&#34;https://thinkwon.blog.csdn.net/article/details/103522351&#34;&gt;https://thinkwon.blog.csdn.net/article/details/103522351&lt;/a&gt;&lt;br&gt;
+2	MySQL 数据库面试题（2020 最新版）&lt;a href=&#34;https://thinkwon.blog.csdn.net/article/details/10477862&#34;&gt;https://thinkwon.blog.csdn.net/article/details/10477862&lt;/a&gt;&lt;br&gt;
+3	Linux 面试题（2020 最新版）	&lt;a href=&#34;https://thinkwon.blog.csdn.net/article/details/104588679&#34;&gt;https://thinkwon.blog.csdn.net/article/details/104588679&lt;/a&gt;&lt;br&gt;
+4	架构设计 &amp;amp; 分布式 &amp;amp; 数据结构与算法面试题（2020 最新版）&lt;a href=&#34;https://thinkwon.blog.csdn.net/article/details/105870730&#34;&gt;https://thinkwon.blog.csdn.net/article/details/105870730&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;1-linux-概述&#34;&gt; 1 Linux 概述&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;11-什么是-linux&#34;&gt; 1.1 什么是 Linux&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Linux 是一套免费使用和自由传播的类 Unix 操作系统，是一个基于 POSIX 和 Unix 的多用户、多任务、支持多线程和多 CPU 的操作系统。它能运行主要的 Unix 工具软件、应用程序和网络协议。它支持 32 位和 64 位硬件。Linux 继承了 Unix 以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;12-unix-和-linux-有什么区别&#34;&gt; 1.2 Unix 和 Linux 有什么区别？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Linux 和 Unix 都是功能强大的操作系统，都是应用广泛的服务器操作系统，有很多相似之处，甚至有一部分人错误地认为 Unix 和 Linux 操作系统是一样的，然而，事实并非如此，以下是两者的区别。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;开源性&lt;br&gt;
+ Linux 是一款开源操作系统，不需要付费，即可使用；Unix 是一款对源码实行知识产权保护的传统商业软件，使用需要付费授权使用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;跨平台性&lt;br&gt;
+ Linux 操作系统具有良好的跨平台性能，可运行在多种硬件平台上；Unix 操作系统跨平台性能较弱，大多需与硬件配套使用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可视化界面&lt;br&gt;
+ Linux 除了进行命令行操作，还有窗体管理系统；Unix 只是命令行下的系统。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;硬件环境&lt;br&gt;
+ Linux 操作系统对硬件的要求较低，安装方法更易掌握；Unix 对硬件要求比较苛刻，按照难度较大。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;用户群体&lt;br&gt;
+ Linux 的用户群体很广泛，个人和企业均可使用；Unix 的用户群体比较窄，多是安全性要求高的大型企业使用，如银行、电信部门等，或者 Unix 硬件厂商使用，如 Sun 等。&lt;br&gt;
+相比于 Unix 操作系统，Linux 操作系统更受广大计算机爱好者的喜爱，主要原因是 Linux 操作系统具有 Unix 操作系统的全部功能，并且能够在普通 PC 计算机上实现全部的 Unix 特性，开源免费的特性，更容易普及使用！&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;13-什么是-linux-内核&#34;&gt; 1.3 什么是 Linux 内核？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Linux 系统的核心是内核。内核控制着计算机系统上的所有硬件和软件，在必要时分配硬件，并根据需要执行软件。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;系统内存管理&lt;/li&gt;
+&lt;li&gt;应用程序管理&lt;/li&gt;
+&lt;li&gt;硬件设备管理&lt;/li&gt;
+&lt;li&gt;文件系统管理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;14-linux-的基本组件是什么&#34;&gt; 1.4 Linux 的基本组件是什么？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;就像任何其他典型的操作系统一样，Linux 拥有所有这些组件：内核，shell 和 GUI，系统实用程序和应用程序。Linux 比其他操作系统更具优势的是每个方面都附带其他功能，所有代码都可以免费下载。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;15-linux-的体系结构&#34;&gt; 1.5 Linux 的体系结构&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;从大的方面讲，Linux 体系结构可以分为两块：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户空间 (User Space) ：用户空间又包括用户的应用程序 (User Applications)、C 库 (C Library) 。&lt;/li&gt;
+&lt;li&gt;内核空间 (Kernel Space) ：内核空间又包括系统调用接口 (System Call Interface)、内核 (Kernel)、平台架构相关的代码 (Architecture-Dependent Kernel Code) 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;16-为什么-linux-体系结构要分为用户空间和内核空间&#34;&gt; 1.6 为什么 Linux 体系结构要分为用户空间和内核空间？&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;1、现代 CPU 实现了不同的工作模式，不同模式下 CPU 可以执行的指令和访问的寄存器不同。&lt;/li&gt;
+&lt;li&gt;2、Linux 从 CPU 的角度出发，为了保护内核的安全，把系统分成了两部分。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户空间和内核空间是程序执行的两种不同的状态，我们可以通过两种方式完成用户空间到内核空间的转移：1）系统调用；2）硬件中断。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;17-bash-和-dos-的基本区别&#34;&gt; 1.7 BASH 和 DOS 的基本区别？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;BASH 和 DOS 控制台之间的主要区别在于 3 个方面：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;BASH 命令区分大小写，而 DOS 命令则不区分；&lt;/li&gt;
+&lt;li&gt;在 BASH 下，/character 是目录分隔符，\ 作为转义字符。在 DOS 下，/ 用作命令参数分隔符，\ 是目录分隔符&lt;/li&gt;
+&lt;li&gt;DOS 遵循命名文件中的约定，即 8 个字符的文件名后跟一个点，扩展名为 3 个字符。BASH 没有遵循这样的惯例。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;18-linux-开机启动过程&#34;&gt; 1.8 Linux 开机启动过程？&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;1、主机加电自检，加载 BIOS 硬件信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2、读取 MBR 的引导文件 (GRUB、LILO)。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3、引导 Linux 内核。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;4、运行第一个进程 init (进程号永远为 1)。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;5、进入相应的运行级别。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;6、运行终端，输入用户名和密码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;19-linux-系统缺省的运行级别&#34;&gt; 1.9 Linux 系统缺省的运行级别？&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;关机。&lt;/li&gt;
+&lt;li&gt;单机用户模式。&lt;/li&gt;
+&lt;li&gt;字符界面的多用户模式 (不支持网络)。&lt;/li&gt;
+&lt;li&gt;字符界面的多用户模式。&lt;/li&gt;
+&lt;li&gt;未分配使用。&lt;/li&gt;
+&lt;li&gt;图形界面的多用户模式。&lt;/li&gt;
+&lt;li&gt;重启。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;110-linux-使用的进程间通信方式&#34;&gt; 1.10 Linux 使用的进程间通信方式？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;1、管道 (pipe)、流管道 (s_pipe)、有名管道 (FIFO)。&lt;br&gt;
+2、信号 (signal) 。&lt;br&gt;
+3、消息队列。&lt;br&gt;
+4、共享内存。&lt;br&gt;
+5、信号量。&lt;br&gt;
+6、套接字 (socket) 。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;111-linux-有哪些系统日志文件&#34;&gt; 1.11 Linux 有哪些系统日志文件？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;比较重要的是 /var/log/messages 日志文件。&lt;/p&gt;
+&lt;p&gt;该日志文件是许多进程日志文件的汇总，从该文件可以看出任何入侵企图或成功的入侵。&lt;/p&gt;
+&lt;p&gt;另外，如果胖友的系统里有 ELK 日志集中收集，它也会被收集进去。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;112-linux-系统安装多个桌面环境有帮助吗&#34;&gt; 1.12 Linux 系统安装多个桌面环境有帮助吗？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;通常，一个桌面环境，如 KDE 或 Gnome，足以在没有问题的情况下运行。尽管系统允许从一个环境切换到另一个环境，但这对用户来说都是优先考虑的问题。有些程序在一个环境中工作而在另一个环境中无法工作，因此它也可以被视为选择使用哪个环境的一个因素。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;113-什么是交换空间&#34;&gt; 1.13 什么是交换空间？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;交换空间是 Linux 使用的一定空间，用于临时保存一些并发运行的程序。当 RAM 没有足够的内存来容纳正在执行的所有程序时，就会发生这种情况。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;114-什么是-root-帐户&#34;&gt; 1.14 什么是 root 帐户&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;root 帐户就像一个系统管理员帐户，允许你完全控制系统。你可以在此处创建和维护用户帐户，为每个帐户分配不同的权限。每次安装 Linux 时都是默认帐户。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;115-什么是-lilo&#34;&gt; 1.15 什么是 LILO？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;LILO 是 Linux 的引导加载程序。它主要用于将 Linux 操作系统加载到主内存中，以便它可以开始运行。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;116-什么是-bash&#34;&gt; 1.16 什么是 BASH？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;BASH 是 Bourne Again SHell 的缩写。它由 Steve Bourne 编写，作为原始 Bourne Shell（由 /bin/sh 表示）的替代品。它结合了原始版本的 Bourne Shell 的所有功能，以及其他功能，使其更容易使用。从那以后，它已被改编为运行 Linux 的大多数系统的默认 shell。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;117-什么是-cli&#34;&gt; 1.17 什么是 CLI？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;命令行界面（英语：command-line interface，缩写]：CLI）是在图形用户界面得到普及之前使用最为广泛的用户界面，它通常不支持鼠标，用户通过键盘输入指令，计算机接收到指令后，予以执行。也有人称之为字符用户界面（CUI）。&lt;/p&gt;
+&lt;p&gt;通常认为，命令行界面（CLI）没有图形用户界面（GUI）那么方便用户操作。因为，命令行界面的软件通常需要用户记忆操作的命令，但是，由于其本身的特点，命令行界面要较图形用户界面节约计算机系统的资源。在熟记命令的前提下，使用命令行界面往往要较使用图形用户界面的操作速度要快。所以，图形用户界面的操作系统中，都保留着可选的命令行界面。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;118-什么是-gui&#34;&gt; 1.18 什么是 GUI？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;图形用户界面（Graphical User Interface，简称 GUI，又称图形用户接口）是指采用图形方式显示的计算机操作用户界面。&lt;/p&gt;
+&lt;p&gt;图形用户界面是一种人与计算机通信的界面显示格式，允许用户使用鼠标等输入设备操纵屏幕上的图标或菜单选项，以选择命令、调用文件、启动程序或执行其它一些日常任务。与通过键盘输入文本或字符命令来完成例行任务的字符界面相比，图形用户界面有许多优点。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;119-开源的优势是什么&#34;&gt; 1.19 开源的优势是什么？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;开源允许你将软件（包括源代码）免费分发给任何感兴趣的人。然后，人们可以添加功能，甚至可以调试和更正源代码中的错误。它们甚至可以让它运行得更好，然后再次自由地重新分配这些增强的源代码。这最终使社区中的每个人受益。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;120-gnu-项目的重要性是什么&#34;&gt; 1.20 GNU 项目的重要性是什么？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;这种所谓的自由软件运动具有多种优势，例如可以自由地运行程序以及根据你的需要自由学习和修改程序。它还允许你将软件副本重新分发给其他人，以及自由改进软件并将其发布给公众。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;2-磁盘-目录-文件&#34;&gt; 2 磁盘、目录、文件&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;21-简单-linux-文件系统&#34;&gt; 2.1 简单 Linux 文件系统？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;在 Linux 操作系统中，所有被操作系统管理的资源，例如网络接口卡、磁盘驱动器、打印机、输入输出设备、普通文件或是目录都被看作是一个文件。&lt;/p&gt;
+&lt;p&gt;也就是说在 Linux 系统中有一个重要的概念 **：一切都是文件 **。其实这是 Unix 哲学的一个体现，而 Linux 是重写 Unix 而来，所以这个概念也就传承了下来。在 Unix 系统中，把一切资源都看作是文件，包括硬件设备。UNIX 系统把每个硬件都看成是一个文件，通常称为设备文件，这样用户就可以用读写文件的方式实现对硬件的访问。&lt;/p&gt;
+&lt;p&gt;Linux 支持 5 种文件类型，如下图所示：&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;22-linux-的目录结构是怎样的&#34;&gt; 2.2 Linux 的目录结构是怎样的？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;这个问题，一般不会问。更多是实际使用时，需要知道。&lt;/p&gt;
+&lt;p&gt;Linux 文件系统的结构层次鲜明，就像一棵倒立的树，最顶层是其根目录：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;常见目录说明：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/bin： 存放二进制可执行文件(ls,cat,mkdir等)，常用命令一般都在这里；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/etc： 存放系统管理和配置文件；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/home： 存放所有用户文件的根目录，是用户主目录的基点，比如用户user的主目录就是/home/user，可以用~user表示；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;**/usr **： 用于存放系统应用程序；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/opt： 额外安装的可选应用程序包所放置的位置。一般情况下，我们可以把tomcat等都安装到这里；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/proc： 虚拟文件系统目录，是系统内存的映射。可直接访问这个目录来获取系统信息；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/root： 超级用户（系统管理员）的主目录（特权阶级o）；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/sbin: 存放二进制可执行文件，只有root才能访问。这里存放的是系统管理员使用的系统级别的管理命令和程序。如ifconfig等；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/dev： 用于存放设备文件；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/mnt： 系统管理员安装临时文件系统的安装点，系统提供这个目录是让用户临时挂载其他的文件系统；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/boot： 存放用于系统引导时使用的各种文件；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;**/lib **： 存放着和系统运行相关的库文件 ；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/tmp： 用于存放各种临时文件，是公用的临时文件存储点；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/var： 用于存放运行时需要改变数据的文件，也是某些大文件的溢出区，比方说各种服务的日志文件（系统启动日志等。）等；&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/lost+found： 这个目录平时是空的，系统非正常关机而留下“无家可归”的文件（windows下叫什么.chk）就在这里。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;23-什么是-inode&#34;&gt; 2.3 什么是 inode ？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;一般来说，面试不会问 inode 。但是 inode 是一个重要概念，是理解 Unix/Linux 文件系统和硬盘储存的基础。&lt;/p&gt;
+&lt;p&gt;理解 inode，要从文件储存说起。&lt;/p&gt;
+&lt;p&gt;文件储存在硬盘上，硬盘的最小存储单位叫做 &amp;quot;扇区&amp;quot;（Sector）。每个扇区储存 512 字节（相当于 0.5KB）。&lt;/p&gt;
+&lt;p&gt;操作系统读取硬盘的时候，不会一个个扇区地读取，这样效率太低，而是一次性连续读取多个扇区，即一次性读取一个 &amp;quot;块&amp;quot;（block）。这种由多个扇区组成的 &amp;quot;块&amp;quot;，是文件存取的最小单位。&amp;quot;块&amp;quot; 的大小，最常见的是 4KB，即连续八个 sector 组成一个 block。&lt;/p&gt;
+&lt;p&gt;文件数据都储存在 &amp;quot;块&amp;quot; 中，那么很显然，我们还必须找到一个地方储存文件的元信息，比如文件的创建者、文件的创建日期、文件的大小等等。这种储存文件元信息的区域就叫做 inode，中文译名为 &amp;quot;索引节点&amp;quot;。&lt;/p&gt;
+&lt;p&gt;每一个文件都有对应的 inode，里面包含了与该文件有关的一些信息。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;24-简述-linux-文件系统通过-i-节点把文件的逻辑结构和物理结构转换的工作过程&#34;&gt; 2.4 简述 Linux 文件系统通过 i 节点把文件的逻辑结构和物理结构转换的工作过程？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Linux 通过 inode 节点表将文件的逻辑结构和物理结构进行转换。&lt;/p&gt;
+&lt;p&gt;inode 节点是一个 64 字节长的表，表中包含了文件的相关信息，其中有文件的大小、文件所有者、文件的存取许可方式以及文件的类型等重要信息。在 inode 节点表中最重要的内容是磁盘地址表。在磁盘地址表中有 13 个块号，文件将以块号在磁盘地址表中出现的顺序依次读取相应的块。&lt;br&gt;
+Linux 文件系统通过把 inode 节点和文件名进行连接，当需要读取该文件时，文件系统在当前目录表中查找该文件名对应的项，由此得到该文件相对应的 inode 节点号，通过该 inode 节点的磁盘地址表把分散存放的文件物理块连接成文件的逻辑结构。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;25-什么是硬链接和软链接&#34;&gt; 2.5 什么是硬链接和软链接？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;​	1）硬链接&lt;/p&gt;
+&lt;p&gt;由于 Linux 下的文件是通过索引节点 (inode) 来识别文件，硬链接可以认为是一个指针，指向文件索引节点的指针，系统并不为它重新分配 inode 。每添加一个一个硬链接，文件的链接数就加 1 。&lt;/p&gt;
+&lt;p&gt;不足：1）不可以在不同文件系统的文件间建立链接；2）只有超级用户才可以为目录创建硬链接。&lt;br&gt;
+2）软链接&lt;/p&gt;
+&lt;p&gt;软链接克服了硬链接的不足，没有任何文件系统的限制，任何用户可以创建指向目录的符号链接。因而现在更为广泛使用，它具有更大的灵活性，甚至可以跨越不同机器、不同网络对文件进行链接。&lt;/p&gt;
+&lt;p&gt;不足：因为链接文件包含有原文件的路径信息，所以当原文件从一个目录下移到其他目录中，再访问链接文件，系统就找不到了，而硬链接就没有这个缺陷，你想怎么移就怎么移；还有它要系统分配额外的空间用于建立新的索引节点和保存原文件的路径。&lt;br&gt;
+实际场景下，基本是使用软链接。总结区别如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;硬链接不可以跨分区，软件链可以跨分区。&lt;/li&gt;
+&lt;li&gt;硬链接指向一个 inode 节点，而软链接则是创建一个新的 inode 节点。&lt;/li&gt;
+&lt;li&gt;删除硬链接文件，不会删除原文件，删除软链接文件，会把原文件删除。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;26-raid-是什么&#34;&gt; 2.6 RAID 是什么？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;RAID 全称为独立磁盘冗余阵列 (Redundant Array of Independent Disks)，基本思想就是把多个相对便宜的硬盘组合起来，成为一个硬盘阵列组，使性能达到甚至超过一个价格昂贵、 容量巨大的硬盘。RAID 通常被用在服务器电脑上，使用完全相同的硬盘组成一个逻辑扇区，因此操作系统只会把它当做一个硬盘。&lt;/p&gt;
+&lt;p&gt;RAID 分为不同的等级，各个不同的等级均在数据可靠性及读写性能上做了不同的权衡。在实际应用中，可以依据自己的实际需求选择不同的 RAID 方案。&lt;/p&gt;
+&lt;p&gt;当然，因为很多公司都使用云服务，大家很难接触到 RAID 这个概念，更多的可能是普通云盘、SSD 云盘的概念。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;3-网络安全&#34;&gt; 3 网络安全&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;31-一台-linux-系统初始化环境后需要做一些什么安全工作&#34;&gt; 3.1 一台 Linux 系统初始化环境后需要做一些什么安全工作？&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;1、添加普通用户登陆，禁止 root 用户登陆，更改 SSH 端口号。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2、服务器使用密钥登陆，禁止密码登陆。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3、开启防火墙，关闭 SElinux ，根据业务需求设置相应的防火墙规则。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;4、装 fail2ban 这种防止 SSH 暴力破击的软件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;5、设置只允许公司办公网出口 IP 能登陆服务器 (看公司实际需要)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​          也可以安装 VPN 等软件，只允许连接 VPN 到服务器上。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;6、修改历史命令记录的条数为 10 条。&lt;/li&gt;
+&lt;li&gt;7、只允许有需要的服务器可以访问外网，其它全部禁止。&lt;/li&gt;
+&lt;li&gt;8、做好软件层面的防护。
+&lt;ul&gt;
+&lt;li&gt;8.1 设置 nginx_waf 模块防止 SQL 注入。&lt;/li&gt;
+&lt;li&gt;8.2 把 Web 服务使用 www 用户启动，更改网站目录的所有者和所属组为 www 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;32-什么叫-cc-攻击什么叫-ddos-攻击&#34;&gt; 3.2 什么叫 CC 攻击？什么叫 DDOS 攻击？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;CC 攻击，主要是用来攻击页面的，模拟多个用户不停的对你的页面进行访问，从而使你的系统资源消耗殆尽。&lt;/p&gt;
+&lt;p&gt;DDOS 攻击，中文名叫分布式拒绝服务攻击，指借助服务器技术将多个计算机联合起来作为攻击平台，来对一个或多个目标发动 DDOS 攻击。&lt;/p&gt;
+&lt;p&gt;攻击，即是通过大量合法的请求占用大量网络资源，以达到瘫痪网络的目的。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;33-怎么预防-cc-攻击和-ddos-攻击&#34;&gt; 3.3 怎么预防 CC 攻击和 DDOS 攻击？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;防 CC、DDOS 攻击，这些只能是用硬件防火墙做流量清洗，将攻击流量引入黑洞。&lt;/p&gt;
+&lt;p&gt;流量清洗这一块，主要是买 ISP 服务商的防攻击的服务就可以，机房一般有空余流量，我们一般是买服务，毕竟攻击不会是持续长时间。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;34-什么是网站数据库注入&#34;&gt; 3.4 什么是网站数据库注入？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;由于程序员的水平及经验参差不齐，大部分程序员在编写代码的时候，没有对用户输入数据的合法性进行判断。&lt;br&gt;
+应用程序存在安全隐患。用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想得知的数据，这就是所谓的 SQL 注入。&lt;br&gt;
+SQL 注入，是从正常的 WWW 端口访问，而且表面看起来跟一般的 Web 页面访问没什么区别，如果管理员没查看日志的习惯，可能被入侵很长时间都不会发觉。&lt;br&gt;
+如何过滤与预防？&lt;/p&gt;
+&lt;p&gt;数据库网页端注入这种，可以考虑使用 nginx_waf 做过滤与预防。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;4-shell-之-sed&#34;&gt; 4 Shell 之 sed&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;写一个 sed 命令，修改 /tmp/input.txt 文件的内容？&lt;/strong&gt;&lt;br&gt;
+要求：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;删除所有空行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一行中，如果包含 “11111”，则在 “11111” 前面插入 “AAA”，在 “11111” 后面插入 “BBB” 。比如：将内容为 0000111112222 的一行改为 0000AAA11111BBB2222 。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[root@~]&lt;span class=&#34;comment&#34;&gt;## cat -n /tmp/input.txt&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     1  000011111222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     3  000011111222222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     4  11111000000222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     7  111111111111122222222222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     8  2211111111&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     9  112222222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    10  1122&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;## 删除所有空行命令&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[root@~]&lt;span class=&#34;comment&#34;&gt;## sed &amp;#x27;/^$/d&amp;#x27; /tmp/input.txt&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;000011111222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;000011111222222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11111000000222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;111111111111122222222222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2211111111&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;112222222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;1122&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;## 插入指定的字符&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[root@~]&lt;span class=&#34;comment&#34;&gt;## sed &amp;#x27;s#\(11111\)#AAA\1BBB#g&amp;#x27; /tmp/input.txt&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;0000AAA11111BBB222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;0000AAA11111BBB222222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;AAA11111BBB000000222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;AAA11111BBBAAA11111BBB11122222222222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22AAA11111BBB111&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;112222222&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;1122&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;sed 命令用法简析：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;# echo -e “booktestbook\nbook\n\ntest”&amp;gt;abc 实验文件创建&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;73&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;74&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;75&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;76&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;77&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;78&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;79&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;80&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;81&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;82&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;83&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;84&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;85&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;86&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;87&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;88&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;89&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;90&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;91&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;92&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;93&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;94&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;95&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;96&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;97&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;98&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;99&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;100&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;101&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;102&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;103&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;104&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;105&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;106&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;107&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;108&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;109&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;110&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;111&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;112&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;113&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;114&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;115&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;116&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;117&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;118&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;119&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;120&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;121&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;122&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;123&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;124&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;125&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;126&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;127&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;128&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;129&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;130&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;131&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;132&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;133&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;134&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;135&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;136&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1.替换命令s&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;   \&lt;span class=&#34;comment&#34;&gt;# sed -n ‘s/book/BOOK/p‘ abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    BOOKtestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    BOOK&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2.显示行内容命令-n p（p ：打印 &lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  显示12-19行的内容：&lt;span class=&#34;comment&#34;&gt;# sed -n ‘12,19p‘ file&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  如果想修改 需要加入 -i 参数&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed -i ‘s/book/BOOK/p‘ abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  这里就是把源文件中的所有book 都替换成了BOOK&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3.上个命令的 g 参数是作用是 全部替换&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  比较一下加不加 g 的区别&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed -n ‘s/book/BOOK/p‘ abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  BOOKtestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  BOOK&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  没有替换所有的book字符&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed -n ‘s/book/BOOK/gp‘ abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  BOOKtestBOOK&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  BOOK&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  替换了所有的book字符&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;如果需要从N处开始替换，可以使用Ng&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# echo abababab | sed ‘s/ab/AB/2g‘&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  abABABAB&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# echo abababab | sed ‘s/ab/AB/3g‘&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  ababABAB&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4.删除命令 d&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed ‘/^$/d‘ abc  (删除空行)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  booktestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;test&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  （类似命令 grep -v&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# grep -v &amp;quot;^$&amp;quot; abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  booktestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;test&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sed ‘1d‘ abc （删除第一行）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;test&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sed ‘1,&lt;span class=&#34;variable&#34;&gt;$d&lt;/span&gt;‘ abc （$代表最后一行，删除所有行）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sed ‘1,2d‘ abc （删除第一和第二行）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;test&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sed ‘&lt;span class=&#34;variable&#34;&gt;$d&lt;/span&gt;‘ abc  （删除最后一行）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  booktestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sed ‘/^b/d‘ abc （删除以b 开头的行）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;test&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;comment&#34;&gt;#&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6.已匹配字符串标记 &amp;amp; （\w\+ 匹配每个单词）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# echo hello world | sed ‘s/\w\+/[&amp;amp;]/‘&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  [hello] world&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# echo hello world | sed ‘s/\w\+/[&amp;amp;]/g‘ （更加加深了对g 使用的了解）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  [hello] [world]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  所有以192.168.1.120开头的都替换成自己加：localhost&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  这里以nginx的访问日中为例：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed ‘s/^192.168.1.120/&amp;amp;:localhost/g‘ /application/nginx/logs/20170202_access_www.log | awk ‘&amp;#123;print $1&amp;#125;‘|grep 120&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  192.168.1.120:localhost&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  awk ‘&amp;#123;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;$1&lt;/span&gt;&amp;#125;‘ 是提取出第一列 grep 120 找到 192.168.1.120&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7.子串匹配标记 \1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# echo BBB bbb | sed ‘s/\([A-Z]\+\) \([a-z]\+\)/\2 \1/‘&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  bbb BBB&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# echo loveable | sed ‘s/\(love\)able/\1evol/‘&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  loveevol&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8.选定行的范围&lt;span class=&#34;string&#34;&gt;&amp;quot;,&amp;quot;&lt;/span&gt; 在行上插入 i\ 在行下追加 a\ 替换本行 c\&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed ‘/^book/,/^test/i\abc‘ abc (在以book和test开头的行上面写入abc)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  abc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  booktestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  abc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  abc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  abc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;test&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed ‘/^book/,/^test/a\abc‘ abc （在以book和test开头的行下面写入abc）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  booktestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  abc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  abc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  abc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;test&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  abc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed -e ‘/^$/d‘ abc -e ‘/test/ c \give‘   &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  give&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  give&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9.多点编辑 命令 e&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed -e ‘/^$/d‘ -e ‘s/book/BOOK/g‘ abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  BOOKtestBOOK&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  BOOK&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;test&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10.下一个 n 命令： （如果book被匹配，则移动到匹配行的下一个将book替换成bookabc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed ‘/book/&amp;#123;n; s/\([a-z]\+\)/\1abc/;&amp;#125;‘ abc     &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  booktestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  bookabc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;test&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11.写入文件 w 命令 和 读取文件 r 命令&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  将abc中的包含book的行写入到 book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed ‘/book/w book‘ abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  booktestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;test&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  查看文件book 和abc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# cat book&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  booktestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# cat abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  booktestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;test&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  逐行读取文件book中含有book的字符的行。如果abc中也含有book并且行号一样，则显示在后面&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed ‘/book/r book‘ abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  booktestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  booktestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  booktestbook&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  book&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;test&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12.退出 q&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  \&lt;span class=&#34;comment&#34;&gt;# sed ‘2q‘ abc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  打印出第二行后退出。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;5-linux-相关经典问题&#34;&gt; 5  Linux 相关经典问题&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;51-如何选择-linux-操作系统版本&#34;&gt; 5.1 如何选择 Linux 操作系统版本？&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;一般来讲，桌面用户首选 Ubuntu ；服务器首选 RHEL 或 CentOS ，两者中首选 CentOS 。&lt;/p&gt;
+&lt;p&gt;根据具体要求：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安全性要求较高，则选择 Debian 或者 FreeBSD 。、&lt;/li&gt;
+&lt;li&gt;需要使用数据库高级服务和电子邮件网络应用的用户可以选择 SUSE 。&lt;/li&gt;
+&lt;li&gt;想要新技术新功能可以选择 Feddora ，Feddora 是 RHEL 和 CentOS 的一个测试版和预发布版本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;【重点】根据现有状况，绝大多数互联网公司选择 CentOS 。现在比较常用的是 6 系列，现在市场占有大概一半左右。另外的原因是 CentOS 更侧重服务器领域，并且无版权约束。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;52-如何规划一台-linux-主机步骤是怎样&#34;&gt; 5.2 如何规划一台 Linux 主机，步骤是怎样？&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;1、确定机器是做什么用的，比如是做 WEB 、DB、还是游戏服务器。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2、确定好之后，就要定系统需要怎么安装，默认安装哪些系统、分区怎么做。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3、需要优化系统的哪些参数，需要创建哪些用户等等的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;53-请问当用户反馈网站访问慢你会如何处理&#34;&gt; 5.3 请问当用户反馈网站访问慢，你会如何处理？&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;531-有哪些方面的因素会导致网站网站访问慢&#34;&gt; 5.3.1 有哪些方面的因素会导致网站网站访问慢？&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;1、服务器出口带宽不够用&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;本身服务器购买的出口带宽比较小。一旦并发量大的话，就会造成分给每个用户的出口带宽就小，访问速度自然就会慢。&lt;br&gt;
+跨运营商网络导致带宽缩减。例如，公司网站放在电信的网络上，那么客户这边对接是长城宽带或联通，这也可能导致带宽的缩减。&lt;br&gt;
+&lt;strong&gt;2、服务器负载过大，导致响应不过来&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;可以从两个方面入手分析：&lt;/p&gt;
+&lt;p&gt;分析系统负载，使用 w 命令或者 uptime 命令查看系统负载。如果负载很高，则使用 top 命令查看 CPU ，MEM 等占用情况，要么是 CPU 繁忙，要么是内存不够。&lt;br&gt;
+如果这二者都正常，再去使用 sar 命令分析网卡流量，分析是不是遭到了攻击。一旦分析出问题的原因，采取对应的措施解决，如决定要不要杀死一些进程，或者禁止一些访问等。&lt;br&gt;
+&lt;strong&gt;3、数据库瓶颈&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果慢查询比较多。那么就要开发人员或 DBA 协助进行 SQL 语句的优化。&lt;br&gt;
+如果数据库响应慢，考虑可以加一个数据库缓存，如 Redis 等。然后，也可以搭建 MySQL 主从，一台 MySQL 服务器负责写，其他几台从数据库负责读。&lt;br&gt;
+&lt;strong&gt;4、网站开发代码没有优化好&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;例如 SQL 语句没有优化，导致数据库读写相当耗时。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;532-针对网站访问慢怎么去排查&#34;&gt; 5.3.2 针对网站访问慢，怎么去排查？&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;1、确定问题&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;首先要确定是用户端还是服务端的问题。当接到用户反馈访问慢，那边自己立即访问网站看看，如果自己这边访问快，基本断定是用户端问题，就需要耐心跟客户解释，协助客户解决问题。&lt;/p&gt;
+&lt;p&gt;不要上来就看服务端的问题。一定要从源头开始，逐步逐步往下。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2、浏览器调试工具&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果访问也慢，那么可以利用浏览器的调试功能，看看加载那一项数据消耗时间过多，是图片加载慢，还是某些数据加载慢。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3、查服务器负载情况&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;查看服务器硬件 (网络、CPU、内存) 的消耗情况。如果是购买的云主机，比如阿里云，可以登录阿里云平台提供各方面的监控，比如 CPU、内存、带宽的使用情况。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4、查日志&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果发现硬件资源消耗都不高，那么就需要通过查日志，比如看看 MySQL 慢查询的日志，看看是不是某条 SQL 语句查询慢，导致网站访问慢。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;533-针对网站访问慢怎么去解决&#34;&gt; 5.3.3 针对网站访问慢，怎么去解决？&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;1、如果是出口带宽问题，那么久申请加大出口带宽。&lt;br&gt;
+2、如果慢查询比较多，那么就要开发人员或 DBA 协助进行 SQL 语句的优化。&lt;br&gt;
+3、如果数据库响应慢，考虑可以加一个数据库缓存，如 Redis 等等。然后也可以搭建 MySQL 主从，一台 MySQL 服务器负责写，其他几台从数据库负责读。&lt;br&gt;
+4、申请购买 CDN 服务，加载用户的访问。&lt;br&gt;
+5、如果访问还比较慢，那就需要从整体架构上进行优化咯。做到专角色专用，多台服务器提供同一个服务。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;534-linux-性能调优都有哪几种方法&#34;&gt; 5.3.4 Linux 性能调优都有哪几种方法？&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;1、Disabling daemons (关闭 daemons)。&lt;br&gt;
+2、Shutting down the GUI (关闭 GUI)。&lt;br&gt;
+3、Changing kernel parameters (改变内核参数)。&lt;br&gt;
+4、Kernel parameters (内核参数)。&lt;br&gt;
+5、Tuning the processor subsystem (处理器子系统调优)。&lt;br&gt;
+6、Tuning the memory subsystem (内存子系统调优)。&lt;br&gt;
+7、Tuning the file system (文件系统子系统调优)。&lt;br&gt;
+8、Tuning the network subsystem（网络子系统调优)。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;6-网络通讯命令&#34;&gt; 6 网络通讯命令&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;61-ifconfig-命令&#34;&gt; 6.1 ifconfig 命令&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;ifconfig 用于查看和配置 Linux 系统的网络接口。&lt;/li&gt;
+&lt;li&gt;查看所有网络接口及其状态：ifconfig -a 。&lt;/li&gt;
+&lt;li&gt;使用 up 和 down 命令启动或停止某个接口：ifconfig eth0 up 和 ifconfig eth0 down 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;62-iptables-命令&#34;&gt; 6.2 iptables 命令&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;iptables ，是一个配置 Linux 内核防火墙的命令行工具。功能非常强大，对于我们开发来说，主要掌握如何开放端口即可。例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;把来源 IP 为 192.168.1.101 访问本机 80 端口的包直接拒绝&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;iptables -I INPUT -s 192.168.1.101 -p tcp --dport 80 -j REJECT&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;开启 80 端口，因为 web 对外都是这个端口&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;iptables -A INPUT -p tcp --dport 80 -j ACCEP&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;另外，要注意使用 iptables save 命令，进行保存。否则，服务器重启后，配置的规则将丢失。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;63-netstat-命令&#34;&gt; 6.3 netstat 命令&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Linux netstat 命令用于显示网络状态。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;利用 netstat 指令可让你得知整个 Linux 系统的网络情况。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;语法&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;netstat [-acCeFghilMnNoprstuvVwx][-A&amp;lt;网络类型&amp;gt;][--ip]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;参数说明：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-a或–all 显示所有连线中的Socket。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-A&amp;lt;网络类型&amp;gt;或–&amp;lt;网络类型&amp;gt; 列出该网络类型连线中的相关地址。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-c或–continuous 持续列出网络状态。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-C或–cache 显示路由器配置的快取信息。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e或–extend 显示网络其他相关信息。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-F或–fib 显示FIB。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-g或–groups 显示多重广播功能群组组员名单。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-h或–&lt;span class=&#34;built_in&#34;&gt;help&lt;/span&gt; 在线帮助。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-i或–interfaces 显示网络界面信息表单。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-l或–listening 显示监控中的服务器的Socket。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-M或–masquerade 显示伪装的网络连线。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-n或–numeric 直接使用IP地址，而不通过域名服务器。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-N或–netlink或–symbolic 显示网络硬件外围设备的符号连接名称。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-o或–timers 显示计时器。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p或–programs 显示正在使用Socket的程序识别码和程序名称。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-r或–route 显示Routing Table。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-s或–statistice 显示网络工作信息统计表。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-t或–tcp 显示TCP传输协议的连线状况。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-u或–udp 显示UDP传输协议的连线状况。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-v或–verbose 显示指令执行过程。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-V或–version 显示版本信息。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-w或–raw 显示RAW传输协议的连线状况。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-x或–unix 此参数的效果和指定&lt;span class=&#34;string&#34;&gt;&amp;quot;-A unix&amp;quot;&lt;/span&gt;参数相同。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;–ip或–inet 此参数的效果和指定&lt;span class=&#34;string&#34;&gt;&amp;quot;-A inet&amp;quot;&lt;/span&gt;参数相同。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;实例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如何查看系统都开启了哪些端口？&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[root@centos6 ~ 13:20 &lt;span class=&#34;comment&#34;&gt;#55]# netstat -lnp&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Active Internet connections (only servers)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Proto Recv-Q Send-Q Local Address               Foreign Address             State       PID/Program name&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tcp        0      0 0.0.0.0:22                  0.0.0.0:*                   LISTEN      1035/sshd&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tcp        0      0 :::22                       :::*                        LISTEN      1035/sshd&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;udp        0      0 0.0.0.0:68                  0.0.0.0:*                               931/dhclient&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Active UNIX domain sockets (only servers)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Proto RefCnt Flags       Type       State         I-Node PID/Program name    Path&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;unix  2      [ ACC ]     STREAM     LISTENING     6825   1/init              @/com/ubuntu/upstart&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;unix  2      [ ACC ]     STREAM     LISTENING     8429   1003/dbus-daemon    /var/run/dbus/system_bus_socket&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;如何查看网络连接状况？&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[root@centos6 ~ 13:22 &lt;span class=&#34;comment&#34;&gt;#58]# netstat -an&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Active Internet connections (servers and established)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Proto Recv-Q Send-Q Local Address               Foreign Address             State&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tcp        0      0 0.0.0.0:22                  0.0.0.0:*                   LISTEN&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tcp        0      0 192.168.147.130:22          192.168.147.1:23893         ESTABLISHED&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tcp        0      0 :::22                       :::*                        LISTEN&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;udp        0      0 0.0.0.0:68                  0.0.0.0:*&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;如何统计系统当前进程连接数？&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入命令 netstat -an | grep ESTABLISHED | wc -l 。&lt;/li&gt;
+&lt;li&gt;输出结果 177 。一共有 177 连接数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;用 netstat 命令配合其他命令，按照源 IP 统计所有到 80 端口的 ESTABLISHED 状态链接的个数？&amp;lt;此题目考验的是对 awk 的使用&amp;gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;首先，使用 netstat -an|grep ESTABLISHED 命令。结果如下：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;tcp        0      0 120.27.146.122:80       113.65.18.33:62721      ESTABLISHED&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tcp        0      0 120.27.146.122:80       27.43.83.115:47148      ESTABLISHED&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tcp        0      0 120.27.146.122:58838    106.39.162.96:443       ESTABLISHED&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tcp        0      0 120.27.146.122:52304    203.208.40.121:443      ESTABLISHED&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tcp        0      0 120.27.146.122:33194    203.208.40.122:443      ESTABLISHED&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tcp        0      0 120.27.146.122:53758    101.37.183.144:443      ESTABLISHED&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tcp        0      0 120.27.146.122:27017    23.105.193.30:50556     ESTABLISHE&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;64-ping-命令&#34;&gt; 6.4 ping 命令&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Linux ping 命令用于检测主机。&lt;/p&gt;
+&lt;p&gt;执行 ping 指令会使用 ICMP 传输协议，发出要求回应的信息，若远端主机的网络功能没有问题，就会回应该信息，因而得知该主机运作正常。&lt;/p&gt;
+&lt;p&gt;指定接收包的次数&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;ping -c 2 www.baidu.com&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;65-telnet-命令&#34;&gt; 6.5 telnet 命令&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Linux telnet 命令用于远端登入。&lt;/p&gt;
+&lt;p&gt;执行 telnet 指令开启终端机阶段作业，并登入远端主机。&lt;/p&gt;
+&lt;p&gt;语法&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;telnet [-8acdEfFKLrx][-b&amp;lt;主机别名&amp;gt;][-e&amp;lt;脱离字符&amp;gt;][-k&amp;lt;域名&amp;gt;][-l&amp;lt;用户名称&amp;gt;][-n&amp;lt;记录文件&amp;gt;][-S&amp;lt;服务类型&amp;gt;][-X&amp;lt;认证形态&amp;gt;][主机名称或IP地址&amp;lt;通信端口&amp;gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;参数说明：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-8 允许使用8位字符资料，包括输入与输出。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-a 尝试自动登入远端系统。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-b&amp;lt;主机别名&amp;gt; 使用别名指定远端主机名称。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-c 不读取用户专属目录里的.telnetrc文件。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-d 启动排错模式。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-e&amp;lt;脱离字符&amp;gt; 设置脱离字符。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-E 滤除脱离字符。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-f 此参数的效果和指定&lt;span class=&#34;string&#34;&gt;&amp;quot;-F&amp;quot;&lt;/span&gt;参数相同。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-F 使用Kerberos V5认证时，加上此参数可把本地主机的认证数据上传到远端主机。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-k&amp;lt;域名&amp;gt; 使用Kerberos认证时，加上此参数让远端主机采用指定的领域名，而非该主机的域名。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-K 不自动登入远端主机。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-l&amp;lt;用户名称&amp;gt; 指定要登入远端主机的用户名称。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-L 允许输出8位字符资料。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-n&amp;lt;记录文件&amp;gt; 指定文件记录相关信息。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-r 使用类似rlogin指令的用户界面。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-S&amp;lt;服务类型&amp;gt; 设置telnet连线所需的IP TOS信息。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-x 假设主机有支持数据加密的功能，就使用它。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-X&amp;lt;认证形态&amp;gt; 关闭指定的认证形态。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;实例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;登录远程主机&lt;/p&gt;
+&lt;p&gt;登录 IP 为 192.168.0.5 的远程主机&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;telnet 192.168.0.5 &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;7-系统管理命令&#34;&gt; 7 系统管理命令&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;71-date-命令&#34;&gt; 7.1 date 命令&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;显示或设定系统的日期与时间。&lt;/p&gt;
+&lt;p&gt;命令参数：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;-d&amp;lt;字符串&amp;gt; 　显示字符串所指的日期与时间。字符串前后必须加上双引号。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-s&amp;lt;字符串&amp;gt; 　根据字符串来设置日期与时间。字符串前后必须加上双引号。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-u 　显示GMT。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%H 小时(00-23)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%I 小时(00-12)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%M 分钟(以00-59来表示)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%s 总秒数。起算时间为1970-01-01 00:00:00 UTC。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%S 秒(以本地的惯用法来表示)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%a 星期的缩写。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%A 星期的完整名称。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%d 日期(以01-31来表示)。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%D 日期(含年月日)。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%m 月份(以01-12来表示)。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%y 年份(以00-99来表示)。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%Y 年份(以四位数来表示)。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;实例：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;（1）显示下一天&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;date +%Y%m%d --date=&lt;span class=&#34;string&#34;&gt;&amp;quot;+1 day&amp;quot;&lt;/span&gt;  //显示下一天的日期&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（2）-d 参数使用&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;date -d &lt;span class=&#34;string&#34;&gt;&amp;quot;nov 22&amp;quot;&lt;/span&gt;  今年的 11 月 22 日是星期三&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;date -d &lt;span class=&#34;string&#34;&gt;&amp;#x27;2 weeks&amp;#x27;&lt;/span&gt; 2周后的日期&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;date -d &lt;span class=&#34;string&#34;&gt;&amp;#x27;next monday&amp;#x27;&lt;/span&gt; (下周一的日期)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;date -d next-day +%Y%m%d（明天的日期）或者：date -d tomorrow +%Y%m%d&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;date -d last-day +%Y%m%d(昨天的日期) 或者：date -d yesterday +%Y%m%d&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;date -d last-month +%Y%m(上个月是几月)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;date -d next-month +%Y%m(下个月是几月)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;72-free-命令&#34;&gt; 7.2 free 命令&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;显示系统内存使用情况，包括物理内存、交互区内存 (swap) 和内核缓冲区内存。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;命令参数：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-b 以Byte显示内存使用情况&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-k 以kb为单位显示内存使用情况&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-m 以mb为单位显示内存使用情况&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-g 以gb为单位显示内存使用情况&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-s&amp;lt;间隔秒数&amp;gt; 持续显示内存&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-t 显示内存使用总合&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;实例：&lt;/p&gt;
+&lt;p&gt;（1）显示内存使用情况&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;free&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;free -k&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;free -m&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（2）以总和的形式显示内存的使用信息&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;free -t&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（3）周期性查询内存使用情况&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;free -s 10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;73-kill-命令&#34;&gt; 7.3 kill 命令&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;发送指定的信号到相应进程。不指定型号将发送 SIGTERM（15）终止指定进程。如果任无法终止该程序可用 &amp;quot;-KILL&amp;quot; 参数，其发送的信号为 SIGKILL (9) ，将强制结束进程，使用 ps 命令或者 jobs 命令可以查看进程号。root 用户将影响用户的进程，非 root 用户只能影响自己的进程。&lt;/p&gt;
+&lt;p&gt;常用参数：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;-l  信号，若果不加信号的编号参数，则使用“-l”参数会列出全部的信号名称&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-a  当处理当前进程时，不限制命令名和进程号的对应关系&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p  指定&lt;span class=&#34;built_in&#34;&gt;kill&lt;/span&gt; 命令只打印相关进程的进程号，而不发送任何信号&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-s  指定发送信号&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-u  指定用户&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;实例：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;（1）先使用 ps 查找进程 pro1，然后用 kill 杀掉&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;kill&lt;/span&gt; -9 $(ps -ef | grep pro1)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;74-ps-命令&#34;&gt; 7.4 ps 命令&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;ps (process status)，用来查看当前运行的进程状态，一次性查看，如果需要动态连续结果使用 top&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;linux 上进程有 5 种状态:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;运行 (正在运行或在运行队列中等待)&lt;/li&gt;
+&lt;li&gt;中断 (休眠中，受阻，在等待某个条件的形成或接受到信号)&lt;/li&gt;
+&lt;li&gt;不可中断 (收到信号不唤醒和不可运行，进程必须等待直到有中断发生)&lt;/li&gt;
+&lt;li&gt;僵死 (进程已终止，但进程描述符存在，直到父进程调用 wait4 () 系统调用后释放)&lt;/li&gt;
+&lt;li&gt;停止 (进程收到 SIGSTOP, SIGSTP, SIGTIN, SIGTOU 信号后停止运行运行)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;ps 工具标识进程的 5 种状态码:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;D 不可中断 uninterruptible sleep (usually IO)&lt;/li&gt;
+&lt;li&gt;R 运行 runnable (on run queue)&lt;/li&gt;
+&lt;li&gt;S 中断 sleeping&lt;/li&gt;
+&lt;li&gt;T 停止 traced or stopped&lt;/li&gt;
+&lt;li&gt;Z 僵死 a defunct (”zombie”) process&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;命令参数：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-A 显示所有进程&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;a 显示所有进程&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-a 显示同一终端下所有进程&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;c 显示进程真实名称&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;e 显示环境变量&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;f 显示进程间的关系&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;r 显示当前终端运行的进程&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-aux 显示所有包含其它使用的进程&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;实例：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;（1）显示当前所有进程环境变量及进程间关系&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;ps -ef&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（2）显示当前所有进程&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;ps -A&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（3）与 grep 联用查找某进程&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;ps -aux | grep apache&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（4）找出与 cron 与 syslog 这两个服务有关的 PID 号码&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;ps aux | grep &lt;span class=&#34;string&#34;&gt;&amp;#x27;(cron|syslog)&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;75-rpm-命令&#34;&gt; 7.5 rpm 命令&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Linux rpm 命令用于管理套件。&lt;/p&gt;
+&lt;p&gt;rpm (redhat package manager) 原本是 Red Hat Linux 发行版专门用来管理 Linux 各项套件的程序，由于它遵循 GPL 规则且功能强大方便，因而广受欢迎。逐渐受到其他发行版的采用。RPM 套件管理方式的出现，让 Linux 易于安装，升级，间接提升了 Linux 的适用度。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;查看系统自带 jdk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;rpm -qa | grep jdk&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;删除系统自带 jdk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;rpm -e --nodeps 查看 jdk 显示的数据&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安装 jdk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;rpm -ivh jdk-7u80-linux-x64.rpm&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;76-top-命令&#34;&gt; 7.6 top 命令&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;显示当前系统正在执行的进程的相关信息，包括进程 ID、内存占用率、CPU 占用率等&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;常用参数：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-c 显示完整的进程命令&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-s 保密模式&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-p &amp;lt;进程号&amp;gt; 指定进程显示&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-n &amp;lt;次数&amp;gt;循环显示次数&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;实例：&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;top - 14:06:23 up 70 days, 16:44,  2 users,  load average: 1.25, 1.32, 1.35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Tasks: 206 total,   1 running, 205 sleeping,   0 stopped,   0 zombie&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Cpu(s):  5.9%us,  3.4%sy,  0.0%ni, 90.4%id,  0.0%wa,  0.0%hi,  0.2%si,  0.0%st&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Mem:  32949016k total, 14411180k used, 18537836k free,   169884k buffers&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Swap: 32764556k total,        0k used, 32764556k free,  3612636k cached&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28894 root      22   0 1501m 405m  10m S 52.2  1.3   2534:16 java  &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;前五行是当前系统情况整体的统计信息区。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第一行&lt;/strong&gt;，任务队列信息，同 uptime 命令的执行结果，具体参数说明情况如下：&lt;/p&gt;
+&lt;p&gt;14:06:23 — 当前系统时间&lt;/p&gt;
+&lt;p&gt;up 70 days, 16:44 — 系统已经运行了 70 天 16 小时 44 分钟（在这期间系统没有重启过的吆！）&lt;/p&gt;
+&lt;p&gt;2 users — 当前有 2 个用户登录系统&lt;/p&gt;
+&lt;p&gt;load average: 1.15, 1.42, 1.44 — load average 后面的三个数分别是 1 分钟、5 分钟、15 分钟的负载情况。&lt;/p&gt;
+&lt;p&gt;load average 数据是每隔 5 秒钟检查一次活跃的进程数，然后按特定算法计算出的数值。如果这个数除以逻辑 CPU 的数量，结果高于 5 的时候就表明系统在超负荷运转了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第二行&lt;/strong&gt;，Tasks — 任务（进程），具体信息说明如下：&lt;/p&gt;
+&lt;p&gt;系统现在共有 206 个进程，其中处于运行中的有 1 个，205 个在休眠（sleep），stoped 状态的有 0 个，zombie 状态（僵尸）的有 0 个。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第三行&lt;/strong&gt;，cpu 状态信息，具体属性说明如下：&lt;/p&gt;
+&lt;p&gt;5.9% us — 用户空间占用 CPU 的百分比。&lt;br&gt;
+3.4% sy — 内核空间占用 CPU 的百分比。&lt;br&gt;
+0.0% ni — 改变过优先级的进程占用 CPU 的百分比&lt;br&gt;
+ 90.4% id — 空闲 CPU 百分比&lt;br&gt;
+ 0.0% wa — IO 等待占用 CPU 的百分比&lt;br&gt;
+ 0.0% hi — 硬中断（Hardware IRQ）占用 CPU 的百分比&lt;br&gt;
+ 0.2% si — 软中断（Software Interrupts）占用 CPU 的百分比&lt;/p&gt;
+&lt;p&gt;备注：在这里 CPU 的使用比率和 windows 概念不同，需要理解 linux 系统用户空间和内核空间的相关知识！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第四行&lt;/strong&gt;，内存状态，具体信息如下：&lt;/p&gt;
+&lt;p&gt;32949016k total — 物理内存总量（32GB）&lt;br&gt;
+14411180k used — 使用中的内存总量（14GB）&lt;br&gt;
+18537836k free — 空闲内存总量（18GB）&lt;br&gt;
+169884k buffers — 缓存的内存量 （169M）&lt;br&gt;
+&lt;strong&gt;第五行&lt;/strong&gt;，swap 交换分区信息，具体信息说明如下：&lt;/p&gt;
+&lt;p&gt;32764556k total — 交换区总量（32GB）&lt;br&gt;
+0k used — 使用的交换区总量（0K）&lt;br&gt;
+32764556k free — 空闲交换区总量（32GB）&lt;br&gt;
+3612636k cached — 缓冲的交换区总量（3.6GB）&lt;br&gt;
+&lt;strong&gt;第六行&lt;/strong&gt;，空行。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第七行以下&lt;/strong&gt;：各进程（任务）的状态监控，项目列信息说明如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PID — 进程 id&lt;/li&gt;
+&lt;li&gt;USER — 进程所有者&lt;/li&gt;
+&lt;li&gt;PR — 进程优先级&lt;/li&gt;
+&lt;li&gt;NI — nice 值。负值表示高优先级，正值表示低优先级&lt;/li&gt;
+&lt;li&gt;VIRT — 进程使用的虚拟内存总量，单位 kb。VIRT=SWAP+RES&lt;/li&gt;
+&lt;li&gt;RES — 进程使用的、未被换出的物理内存大小，单位 kb。RES=CODE+DATA&lt;/li&gt;
+&lt;li&gt;SHR — 共享内存大小，单位 kb&lt;/li&gt;
+&lt;li&gt;S — 进程状态。D = 不可中断的睡眠状态 R = 运行 S = 睡眠 T = 跟踪 / 停止 Z = 僵尸进程&lt;/li&gt;
+&lt;li&gt;% CPU — 上次更新到现在的 CPU 时间占用百分比&lt;/li&gt;
+&lt;li&gt;% MEM — 进程使用的物理内存百分比&lt;/li&gt;
+&lt;li&gt;TIME+ — 进程使用的 CPU 时间总计，单位 1/100 秒&lt;/li&gt;
+&lt;li&gt;COMMAND — 进程名称（命令名 / 命令行）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;top 交互命令&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;h 显示top交互命令帮助信息&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;c 切换显示命令名称和完整命令行&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;m 以内存使用率排序&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;P 根据CPU使用百分比大小进行排序&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;T 根据时间/累计时间进行排序&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;W 将当前设置写入~/.toprc文件中&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;o或者O 改变显示项目的顺序&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;77-yum-命令&#34;&gt; 7.7 yum 命令&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;yum（ Yellow dog Updater, Modified）是一个在 Fedora 和 RedHat 以及 SUSE 中的 Shell 前端软件包管理器。&lt;/p&gt;
+&lt;p&gt;基於 RPM 包管理，能够从指定的服务器自动下载 RPM 包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软体包，无须繁琐地一次次下载、安装。&lt;/p&gt;
+&lt;p&gt;yum 提供了查找、安装、删除某一个、一组甚至全部软件包的命令，而且命令简洁而又好记。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1. 列出所有可更新的软件清单命令：yum check-update&lt;/li&gt;
+&lt;li&gt;2. 更新所有软件命令：yum update&lt;/li&gt;
+&lt;li&gt;3. 仅安装指定的软件命令：yum install &amp;lt;package_name&amp;gt;&lt;/li&gt;
+&lt;li&gt;4. 仅更新指定的软件命令：yum update &amp;lt;package_name&amp;gt;&lt;/li&gt;
+&lt;li&gt;5. 列出所有可安裝的软件清单命令：yum list&lt;/li&gt;
+&lt;li&gt;6. 删除软件包命令：yum remove &amp;lt;package_name&amp;gt;&lt;/li&gt;
+&lt;li&gt;7. 查找软件包 命令：yum search&lt;/li&gt;
+&lt;li&gt;8. 清除缓存命令:
+&lt;ul&gt;
+&lt;li&gt;yum clean packages: 清除缓存目录下的软件包&lt;/li&gt;
+&lt;li&gt;yum clean headers: 清除缓存目录下的 headers&lt;/li&gt;
+&lt;li&gt;yum clean oldheaders: 清除缓存目录下旧的 headers&lt;/li&gt;
+&lt;li&gt;yum clean, yum clean all (= yum clean packages; yum clean oldheaders) : 清除缓存目录下的软件包及旧的 headers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;实例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;安装 pam-devel&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;yum install pam-devel&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+        <category term="人工智能" />
+        <category term="操作系统" />
+        <updated>2021-04-23T08:59:35.000Z</updated>
+    </entry>
+</feed>

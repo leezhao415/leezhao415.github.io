@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;度量学习&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Sun, 21 Nov 2021 22:16:54 +0800</pubDate>
+        <lastBuildDate>Sun, 21 Nov 2021 22:16:54 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2021/11/21/%E5%B8%B8%E8%A7%81%E8%B7%9D%E7%A6%BB%E5%BA%A6%E9%87%8F%E6%80%BB%E7%BB%93%E4%BB%A5%E5%8F%8A%E4%BC%98%E7%BC%BA%E7%82%B9%E6%A6%82%E8%BF%B0/</guid>
+            <title>常见距离度量总结以及优缺点概述</title>
+            <link>https://leezhao415.github.io/2021/11/21/%E5%B8%B8%E8%A7%81%E8%B7%9D%E7%A6%BB%E5%BA%A6%E9%87%8F%E6%80%BB%E7%BB%93%E4%BB%A5%E5%8F%8A%E4%BC%98%E7%BC%BA%E7%82%B9%E6%A6%82%E8%BF%B0/</link>
+            <category>人工智能</category>
+            <category>度量学习</category>
+            <pubDate>Sun, 21 Nov 2021 22:16:54 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;center&gt;&lt;img src=&#34;https://pics1.baidu.com/feed/d0c8a786c9177f3eb4401dfa68c9c6c09e3d56db.jpeg?token=c91fdf0248b40743290f6c62d4f3d490&amp;s=0095ED32518FD0EA06FC54CE0000D0B3&#34; alt=&#34;img&#34; style=&#34;zoom: 80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;许多算法，无论是监督或非监督，都使用距离度量。这些度量，如欧几里得距离或余弦相似度，经常可以在 k-NN、UMAP、HDBSCAN 等算法中找到。&lt;/p&gt;
+&lt;p&gt;理解距离测量域比你可能意识到的更重要。以 k-NN 为例，这是一种经常用于监督学习的技术。作为默认值，它通常使用欧几里得距离。它本身就是一个很大的距离。&lt;/p&gt;
+&lt;p&gt;但是，如果您的数据是高维的呢？那么欧几里得距离还有效吗？或者，如果您的数据包含地理空间信息呢？也许 haversine 距离是更好的选择！&lt;/p&gt;
+&lt;p&gt;知道何时使用哪种距离量度可以帮助您从分类不正确的模型转变为准确的模型。&lt;/p&gt;
+&lt;p&gt;在本文中，我们将研究许多距离度量方法，并探讨如何以及何时最佳地使用它们。 最重要的是，我将谈论它们的缺点，以便您可以识别何时避开某些措施。&lt;/p&gt;
+&lt;p&gt;注意：对于大多数距离度量，可以并且已经针对其用例，优点和缺点编写了详尽的论文。 我会尽量覆盖，但可能会有所欠缺！ 因此，请将本文视为这些方法的概述。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;欧氏距离 Euclidean Distance&lt;/strong&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pics1.baidu.com/feed/1f178a82b9014a9047774df3b171c415b21beec5.png?token=764be78dac1ed7273a4b60aadd80ebf0&amp;s=2FC17B6EBBA383701C59F1070300A0C1&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;我们从最常见的距离度量开始，即欧几里得距离。 最好将距离量度解释为连接两个点的线段的长度。&lt;/p&gt;
+&lt;p&gt;该公式非常简单，因为使用勾股定理从这些点的笛卡尔坐标计算距离。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://tukuimg.bdstatic.com/scrop/a6c159de449b5b312c16ddf5a4395291.gif&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;尽管这是一种常用的距离度量，但欧几里德距离并不是比例不变的，这意味着所计算的距离可能会根据要素的单位而发生偏斜。 通常，在使用此距离度量之前，需要对数据进行标准化。&lt;/p&gt;
+&lt;p&gt;此外，随着数据维数的增加，欧氏距离的用处也就越小。 这与维数的诅咒有关，维数的诅咒与高维空间不能像期望的二维或 3 维空间那样起作用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当您拥有低维数据并且向量的大小非常重要时，欧几里得距离的效果非常好。 如果在低维数据上使用欧几里得距离，则 kNN 和 HDBSCAN 之类的方法将显示出出色的结果。&lt;/p&gt;
+&lt;p&gt;尽管已开发出许多其他措施来解决欧几里得距离的缺点，但出于充分的原因，它仍然是最常用的距离之一。 它使用起来非常直观，易于实现，并且在许多用例中都显示出了极好的效果。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;余弦相似度 Cosine Similarity&lt;/strong&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pics2.baidu.com/feed/4ec2d5628535e5ddb423b0656ec05ae8ce1b620e.png?token=81abf3470a8c6fbea458dbc7428de9af&amp;s=2B41736E3FA387704070B80B0300F0C3&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;余弦相似度经常被用作解决高维数欧几里德距离问题的方法。 余弦相似度就是两个向量夹角的余弦。 如果将向量归一化为长度均为 1，则向量的内积也相同。&lt;/p&gt;
+&lt;p&gt;两个方向完全相同的向量的余弦相似度为 1，而两个彼此相对的向量的相似度为 - 1。 注意，它们的大小并不重要，因为这是方向的度量。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://tukuimg.bdstatic.com/scrop/1840329bf5ceacb12f90981b79512dcd.gif&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;余弦相似度的一个主要缺点是没有考虑向量的大小，而只考虑它们的方向。在实践中，这意味着没有充分考虑价值的差异。以一个推荐系统为例，余弦相似度没有考虑到不同用户之间评分尺度的差异。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当我们对拥有的高维数据向量的大小不关注时，通常会使用余弦相似度。 对于文本分析，当数据由字数表示时，此度量非常常用。 例如，当一个单词在一个文档中比另一个单词更频繁出现时，这并不一定意味着一个文档与该单词更相关。 可能是文件长度不均匀，计数的重要性不太重要。 然后，我们最好使用忽略幅度的余弦相似度。。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;汉明距离 Hamming Distance&lt;/strong&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pics4.baidu.com/feed/77094b36acaf2eddf4a877a79516fcee39019334.png?token=72d7df56d4d205caa0aaf955d2615f13&amp;s=29C1336EFBADB3784E719C0F0300E0C2&#34; alt=&#34;img&#34; style=&#34;zoom: 80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;汉明距离是两个向量之间不同值的个数。它通常用于比较两个相同长度的二进制字符串。它还可以用于字符串，通过计算不同字符的数量来比较它们之间的相似程度。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如您所料，当两个向量的长度不相等时，很难使用汉明距离。为了了解哪些位置不匹配，您可能希望比较相同长度的向量。&lt;/p&gt;
+&lt;p&gt;此外，只要它们不同或相等，就不会考虑实际值。因此，当幅度是重要指标时，建议不要使用此距离指标。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;典型的用例包括数据通过计算机网络传输时的错误纠正 / 检测。它可以用来确定二进制字中失真的数目，作为估计误差的一种方法。&lt;/p&gt;
+&lt;p&gt;此外，您还可以使用汉明距离来度量分类变量之间的距离。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;曼哈顿距离 Manhattan Distance&lt;/strong&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pics5.baidu.com/feed/77094b36acaf2edd57cb11549416fcee39019367.png?token=01897b061752dccff8aad34eceb6adfe&amp;s=2FC17B6E3BA393701C59F1070300F0C1&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;曼哈顿距离，通常称为出租车距离或城市街区距离，计算实值向量之间的距离。想象描述均匀网格 (如棋盘) 上物体的向量。曼哈顿距离是指两个矢量之间的距离，如果它们只能移动直角。在计算距离时不涉及对角线移动。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://tukuimg.bdstatic.com/scrop/61c6fe871aaaec76d0bc75268aa2e27e.gif&#34; alt=&#34;img&#34; style=&#34;zoom: 50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;尽管曼哈顿距离在高维数据中似乎可以工作，但它比欧几里得距离更不直观，尤其是在高维数据中使用时。&lt;/p&gt;
+&lt;p&gt;此外，由于它不是可能的最短路径，它比欧几里得距离更有可能给出一个更高的距离值。虽然这并不一定会带来问题，但这是你应该考虑的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当数据集具有离散和 / 或二进制属性时，Manhattan 似乎工作得很好，因为它考虑了在这些属性的值中实际可以采用的路径。以欧几里得距离为例，它会在两个向量之间形成一条直线，但实际上这是不可能的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;切比雪夫距离 Chebyshev Distance&lt;/strong&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pics0.baidu.com/feed/b3119313b07eca80691f499888256adaa1448340.png?token=681b0e40ceae9be4f75c3d1c06bd7198&amp;s=2BC15B6E3BE383701C59F107030080C1&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;切比雪夫距离定义为两个向量在任意坐标维度上的最大差值。换句话说，它就是沿着一个轴的最大距离。由于其本质，它通常被称为棋盘距离，因为国际象棋的国王从一个方格到另一个方格的最小步数等于切比雪夫距离。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://tukuimg.bdstatic.com/scrop/40dac8a61d07eb15d042d4148ecb505b.gif&#34; alt=&#34;img&#34; style=&#34;zoom: 50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;切比雪夫通常用于非常特定的用例，这使得它很难像欧氏距离或余弦相似度那样作通用的距离度量，因此，建议您只在绝对确定它适合您的用例时才使用它。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如前所述，切比雪夫距离可用于提取从一个正方形移动到另一个正方形所需的最小移动次数。 此外，在允许无限制八向移动的游戏中，这可能是有用的方法。&lt;/p&gt;
+&lt;p&gt;在实践中，切比雪夫距离经常用于仓库物流，因为它非常类似于起重机移动一个物体的时间。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;可夫斯基距离（闵氏距离）Minkowski&lt;/strong&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pics5.baidu.com/feed/622762d0f703918fbf28f26c493bdb9058eec4ad.png?token=976a3013d6f4d9429ca3a9a59b311c89&amp;s=2FC15B6E7FE3B3701C59F40F030070C1&#34; alt=&#34;img&#34; style=&#34;zoom: 80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;Minkowski 距离比大多数距离更复杂。 它是在范数向量空间（n 维实数空间）中使用的度量，这意味着它可以在任何距离可以表示为具有长度的向量的空间中使用。&lt;/p&gt;
+&lt;p&gt;该措施具有三个要求：&lt;/p&gt;
+&lt;p&gt;零向量 — 零向量的长度为零，而每个其他向量的长度为正。 例如，如果我们从一个地方到另一个地方旅行，那么该距离始终为正。 但是，如果我们从一个地方到自己的地方旅行，则该距离为零。标量因数 — 当向量与正数相乘时，其长度会更改，同时保持其方向。 例如，如果我们在一个方向上走了一定距离并添加了相同的距离，则方向不会改变。三角形不等式 — 两点之间的最短距离是一条直线。Minkowski 距离的公式如下所示：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://tukuimg.bdstatic.com/scrop/ad4aa8b404e82a023799f6109cd16bf9.gif&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;关于这个距离度量最有趣的是参数 p 的使用。我们可以使用这个参数来操纵距离度量，使其与其他度量非常相似。&lt;/p&gt;
+&lt;p&gt;常见的 p 值有:&lt;/p&gt;
+&lt;p&gt;p=1 - 曼哈顿距离&lt;/p&gt;
+&lt;p&gt;p=2 - 欧氏距离&lt;/p&gt;
+&lt;p&gt;p=∞- 切比雪夫距离&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Minkowski 与它们所代表的距离度量具有相同的缺点，因此，良好地理解曼哈顿距离、欧几里得距离和切比雪夫距离等度量标准是非常重要的。&lt;/p&gt;
+&lt;p&gt;此外，使用参数 p 实际上可能很麻烦，因为根据您的用例，查找正确的值在计算上可能非常低效。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;p 的好处是可以迭代它，并找到最适合用例的距离度量。它允许您在距离度量上有很大的灵活性，如果您非常熟悉 p 和许多距离度量，这将是一个巨大的好处。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Jaccard 指数&lt;/strong&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pics5.baidu.com/feed/aec379310a55b319a81c14315baf7f21cefc179e.png?token=b8008f33237186d69e3b6ea76f670942&amp;s=2651AA66FD00BE554779D6800300B095&#34; alt=&#34;img&#34; style=&#34;zoom: 80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;Jaccard 指数 (交并比 IOU) 是一个用于计算样本集的相似性和多样性的度量。它是交集的大小除以样本集的并集的大小。&lt;/p&gt;
+&lt;p&gt;实际上，它是集合之间相似实体的总数除以实体的总数。例如，如果两个集合有 1 个共同的实体，而总共有 5 个不同的实体，那么 Jaccard 索引将是 1/5 = 0.2。&lt;/p&gt;
+&lt;p&gt;要计算 Jaccard 距离，我们只需从 1 中减去 Jaccard 指数：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://tukuimg.bdstatic.com/scrop/5f7a6b9bac1efd48d2278482a151baa3.gif&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Jaccard 指数的主要缺点是它受到数据大小的很大影响。 大型数据集可能会对指数产生很大影响，因为数据量大的话可能显著增加并集，同时保持交集不变。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Jaccard 索引通常用于使用二进制或二进制数据的应用程序中。 当您拥有一个预测图像片段（例如汽车）的深度学习模型时，可以使用 Jaccard 索引来计算给定真实标签的预测片段的准确性。&lt;/p&gt;
+&lt;p&gt;同样，它也可以用于文本相似度分析，以衡量文档之间的选词重叠程度。因此，它可以用来比较模式集。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;半正矢距离 (haversine)&lt;/strong&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pics3.baidu.com/feed/f636afc379310a55ee14636aaf43beae8226100d.png?token=36b0f386b19cc971beda9cba862ec30a&amp;s=2941736EEBA1B7700A7D90090300F0C3&#34; alt=&#34;img&#34; style=&#34;zoom: 80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;Haversine 距离是指球面上两个点之间的经度和纬度。 它与欧几里得距离非常相似，因为它可以计算两点之间的最短线。 主要区别在于不可能有直线，因为这里的假设是两个点都在一个球面上。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://tukuimg.bdstatic.com/scrop/ea181a301571bf2c6e176ca021c2215c.gif&#34; alt=&#34;img&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这种距离测量的一个缺点是，假定这些点位于一个球体上。 实际上，这种情况很少出现，例如，地球不是完美的圆形，在某些情况下可能会使计算变得困难。 取而代之的是，将目光转向假定椭圆形的 Vincenty 距离。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如您所料，Haversine 距离通常用于导航。 例如，您可以使用它来计算两个国家之间的飞行距离。 请注意，如果距离本身不那么大，则不太适合。 曲率不会产生太大的影响。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Srensen-Dice 指数&lt;/strong&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pics1.baidu.com/feed/4a36acaf2edda3cc9eae0c6d19efc406203f92c7.png?token=697780f9f857faaa7b5286a9b2fc23b5&amp;s=27915A6EE542175500449A9A03005091&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;Srensen-Dice 指数与 Jaccard 指数非常相似，它衡量的是样本集的相似性和多样性。尽管它们的计算方法类似，但 Srensen-Dice 索引更直观一些，因为它可以被视为两个集合之间重叠的百分比，这是一个介于 0 和 1 之间的值。&lt;/p&gt;
+&lt;p&gt;这个指数在距离度量中很重要，因为它允许更好地使用没有 v 的度量&lt;/p&gt;
+&lt;p&gt;Jaccard 指数是一个用于计算样本集的相似性和多样性的度量。它是交集的大小除以样本集的并集的大小。&lt;/p&gt;
+&lt;p&gt;实际上，它是集合之间相似实体的总数除以实体的总数。例如，如果两个集合有一个共同的实体，而总共有 5 个不同的实体，那么 DICE 指数将是 1/5 = 0.2。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://tukuimg.bdstatic.com/scrop/372ff4975da2ba49c50991c11742e552.gif&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;就像 Jaccard 指数一样，它们都夸大了很少或没有真值的集合。它可以控制多组平均得分并按相关集合的大小成反比地加权每个项目，而不是平等对待它们。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;用例与 Jaccard 指数相似。 您会发现它通常用于图像分割任务或文本相似性分析中。&lt;/p&gt;
+&lt;p&gt;注意：比这里提到的 9 种距离测量更多。 如果您正在寻找更有趣的指标，我建议您研究以下内容之一：Mahalanobis, Canberra, Braycurtis, and KL-divergence.&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

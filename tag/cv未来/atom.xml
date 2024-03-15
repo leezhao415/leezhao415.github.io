@@ -1,0 +1,320 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;cv未来&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2022-07-26T15:53:32.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91%E7%BB%BC%E8%BF%B0/</id>
+        <title>【精华】计算机视觉研究方向综述</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91%E7%BB%BC%E8%BF%B0/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B&#34;&gt;1 目标检测&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-pp-yoloe&#34;&gt;1 PP-YOLOE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-pp-picodet%E5%A2%9E%E5%BC%BA%E7%89%88picodet-xs&#34;&gt;2 PP-PicoDet 增强版 (PicoDet-XS)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-transformer%E6%A3%80%E6%B5%8B%E7%B3%BB%E5%88%97%E6%A8%A1%E5%9E%8B&#34;&gt;3 Transformer 检测系列模型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-yolov5&#34;&gt;4 YOLOv5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-yolox&#34;&gt;5 YOLOX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-yolov6&#34;&gt;6 YOLOv6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-yolov7&#34;&gt;7 YOLOv7&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-%E6%97%8B%E8%BD%AC%E6%A1%86%E6%A3%80%E6%B5%8Bs2anet&#34;&gt;7 旋转框检测 S2ANet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-%E5%AE%9E%E4%BE%8B%E5%88%86%E5%89%B2&#34;&gt;2 实例分割&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-mask-rcnn&#34;&gt;1 Mask RCNN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-solov2&#34;&gt;2 SOLOv2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-%E5%A4%9A%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA&#34;&gt;3 多目标跟踪&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-pp-tracking&#34;&gt;1 PP-Tracking&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-deepsort&#34;&gt;2 DeepSORT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-jde&#34;&gt;3 JDE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-fairmot&#34;&gt;4 FairMOT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-bytetrack&#34;&gt;5 ByteTrack&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-%E5%85%B3%E9%94%AE%E7%82%B9%E6%A3%80%E6%B5%8B&#34;&gt;4 关键点检测&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-pp-tinypose&#34;&gt;1 PP-TinyPose&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-higherhrnet&#34;&gt;2 HigherHRNet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-hrnet&#34;&gt;3 HRNet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2&#34;&gt;5 语义分割&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-pp-humanseg-v2&#34;&gt;1 PP-HumanSeg v2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-pp-liteseg&#34;&gt;2 PP-LiteSeg&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-ocrnet&#34;&gt;3 OCRNet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%88%86%E5%89%B2&#34;&gt;6 交互式分割&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-eiseg&#34;&gt;1 EISeg&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-ritm&#34;&gt;2 RITM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-edgeflow&#34;&gt;3 EdgeFlow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-matting&#34;&gt;7 Matting&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-pp-matting&#34;&gt;1 PP-Matting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-dim&#34;&gt;2 DIM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-modnet&#34;&gt;3 MODNet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-pp-humanmatting&#34;&gt;4 PP-HumanMatting&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8-%E5%85%A8%E6%99%AF%E5%88%86%E5%89%B2&#34;&gt;8 全景分割&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-panoptic-deeplab&#34;&gt;1 Panoptic-DeepLab&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9-ocr&#34;&gt;9 OCR&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-pp-ocrv3&#34;&gt;1 PP-OCRv3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-pp-ocrv2&#34;&gt;2 PP-OCRv2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-pp-structure&#34;&gt;3 PP-Structure&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#10-%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB&#34;&gt;10 图像分类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#11-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B&#34;&gt;11 应用案例&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-paddledetection&#34;&gt;1 PaddleDetection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-paddleseg&#34;&gt;2 PaddleSeg&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-paddleocr&#34;&gt;3 PaddleOCR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-paddleclas&#34;&gt;4 PaddleClas&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;1-目标检测&#34;&gt; 1 目标检测&lt;/span&gt;&lt;/h4&gt;
+&lt;center&gt;&lt;img src=&#34;https://github.com/PaddlePaddle/PaddleDetection/raw/release/2.4/docs/images/mobile_fps_map.png&#34; alt=&#34;img&#34; style=&#34;zoom: 20%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;1-pp-yoloe&#34;&gt; 1 PP-YOLOE&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;高精度云边一体 SOTA 目标检测模型&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/ppyoloe&#34;&gt; PP-YOLOE&lt;/a&gt;，分 s/m/l/x 版本，l 版本 COCO test2017 数据集精度 51.6%，V100 预测速度 78.1 FPS，支持混合精度训练，训练较 PP-YOLOv2 加速 33%，全系列多尺度模型，满足不同硬件算力需求，可适配服务器、边缘端 GPU 及其他服务器端 AI 加速卡。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;优化过程&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;PP-YOLO( &lt;code&gt;45.9%&lt;/code&gt; /V100  &lt;code&gt;72.9FPS&lt;/code&gt; )    ----&amp;gt;   PP-YOLOv2( &lt;code&gt;49.5%&lt;/code&gt; /V100  &lt;code&gt;68.9FPS&lt;/code&gt; )   ----&amp;gt;  PP-YOLOE( &lt;code&gt;51.6%&lt;/code&gt; /V100  &lt;code&gt;78.1FPS&lt;/code&gt; )&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2-pp-picodet-增强版-picodet-xs&#34;&gt; 2 PP-PicoDet 增强版 (PicoDet-XS)&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;边缘端和 CPU 端超轻量 SOTA 目标检测模型&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/picodet&#34;&gt; PP-PicoDet 增强版&lt;/a&gt;， &lt;code&gt;精度提升2%&lt;/code&gt;  左右，CPU &lt;code&gt;预测速度提升63%&lt;/code&gt; ，新增 &lt;code&gt;参数量0.7M&lt;/code&gt;  的 PicoDet-XS 模型，提供模型稀疏化和量化功能，便于模型加速，各类硬件无需单独开发后处理模块，降低部署门槛。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;3-transformer-检测系列模型&#34;&gt; 3 Transformer 检测系列模型&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1-detr&#34;&gt; 1 DETR&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/detr&#34;&gt;DETR&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-deformable-detr&#34;&gt; 2 Deformable DETR&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/deformable_detr&#34;&gt;Deformable DETR&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;3-sparse-rcnn&#34;&gt; 3 Sparse RCNN&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/sparse_rcnn&#34;&gt;Sparse RCNN&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;4-yolov5&#34;&gt; 4 YOLOv5&lt;/span&gt;&lt;/h5&gt;
+&lt;h5&gt;&lt;span id=&#34;5-yolox&#34;&gt; 5 YOLOX&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/yolox&#34;&gt;YOLOX&lt;/a&gt; 目标检测模型，支持 nano/tiny/s/m/l/x 版本，x 版本 COCO val2017 数据集精度 51.8%。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;6-yolov6&#34;&gt; 6 YOLOv6&lt;/span&gt;&lt;/h5&gt;
+&lt;h5&gt;&lt;span id=&#34;7-yolov7&#34;&gt; 7 YOLOv7&lt;/span&gt;&lt;/h5&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/06763ff468ab4905a82bd55612c98817.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 25%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;7-旋转框检测-s2anet&#34;&gt; 7 旋转框检测 S2ANet&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/dota/README.md&#34;&gt;S2ANet&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;2-实例分割&#34;&gt; 2 实例分割&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;1-mask-rcnn&#34;&gt; 1 Mask RCNN&lt;/span&gt;&lt;/h5&gt;
+&lt;h5&gt;&lt;span id=&#34;2-solov2&#34;&gt; 2 SOLOv2&lt;/span&gt;&lt;/h5&gt;
+&lt;h4&gt;&lt;span id=&#34;3-多目标跟踪&#34;&gt; 3 多目标跟踪&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;1-pp-tracking&#34;&gt; 1 PP-Tracking&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;实时跟踪系统&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/deploy/pptracking/README_cn.md&#34;&gt; PP-Tracking&lt;/a&gt;，覆盖单、多镜头下行人、车辆、多类别跟踪，对小目标、密集型特殊优化，提供人、车流量技术解决方案。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2-deepsort&#34;&gt; 2 DeepSORT&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/mot/deepsort/README_cn.md&#34;&gt;DeepSORT&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;3-jde&#34;&gt; 3 JDE&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/mot/jde/README_cn.md&#34;&gt;JDE&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;4-fairmot&#34;&gt; 4 FairMOT&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/mot/fairmot/README_cn.md&#34;&gt;FairMOT&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;5-bytetrack&#34;&gt; 5 ByteTrack&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/mot/bytetrack/README.md&#34;&gt;ByteTrack&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;4-关键点检测&#34;&gt; 4 关键点检测&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;1-pp-tinypose&#34;&gt; 1 PP-TinyPose&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/keypoint/tiny_pose&#34;&gt;PP-TinyPose&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;轻量级关键点特色模型 PP-TinyPose，单人场景 FP16 推理可达 122FPS、51.8AP，具有精度高速度快、检测人数无限制、微小目标效果好的优势。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2-higherhrnet&#34;&gt; 2 HigherHRNet&lt;/span&gt;&lt;/h5&gt;
+&lt;h5&gt;&lt;span id=&#34;3-hrnet&#34;&gt; 3 HRNet&lt;/span&gt;&lt;/h5&gt;
+&lt;h4&gt;&lt;span id=&#34;5-语义分割&#34;&gt; 5 语义分割&lt;/span&gt;&lt;/h4&gt;
+&lt;center&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/14087480/176379006-7f330e00-b6b0-480e-9df8-8fd1090da4cf.png&#34; alt=&#34;img&#34; style=&#34;zoom: 55%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;1-pp-humanseg-v2&#34;&gt; 1 PP-HumanSeg v2&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;实时人像分割模型&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.6/contrib/PP-HumanSeg&#34;&gt; PP-HumanSeg v2&lt;/a&gt;，推理速度提升 45.5%，移动端达到 64.26 FPS，分割精度更高、通用型更强、零成本开箱即用。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2-pp-liteseg&#34;&gt; 2 PP-LiteSeg&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;超轻量级语义分割模型&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.6/configs/pp_liteseg&#34;&gt; PP-LiteSeg&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;3-ocrnet&#34;&gt; 3 OCRNet&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.6/configs/ocrnet/README.md&#34;&gt;OCRNet&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;6-交互式分割&#34;&gt; 6 交互式分割&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;1-eiseg&#34;&gt; 1 EISeg&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.6/EISeg/README.md&#34;&gt;EISeg&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2-ritm&#34;&gt; 2 RITM&lt;/span&gt;&lt;/h5&gt;
+&lt;h5&gt;&lt;span id=&#34;3-edgeflow&#34;&gt; 3 EdgeFlow&lt;/span&gt;&lt;/h5&gt;
+&lt;h4&gt;&lt;span id=&#34;7-matting&#34;&gt; 7 Matting&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;1-pp-matting&#34;&gt; 1 PP-Matting&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;高精度抠图模型&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.6/Matting/ppmatting/README.md&#34;&gt; PP-Matting&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2-dim&#34;&gt; 2 DIM&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.6/Matting/configs/dim/dim-vgg16.yml&#34;&gt;DIM&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;3-modnet&#34;&gt; 3 MODNet&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.6/Matting/configs/modnet/modnet-hrnet_w18.yml&#34;&gt;MODNet&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;4-pp-humanmatting&#34;&gt; 4 PP-HumanMatting&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.6/Matting/configs/human_matting/human_matting-resnet34_vd.yml&#34;&gt;PP-HumanMatting&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;8-全景分割&#34;&gt; 8 全景分割&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;1-panoptic-deeplab&#34;&gt; 1 Panoptic-DeepLab&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.6/contrib/PanopticDeepLab/README_CN.md&#34;&gt;Panoptic-DeepLab&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;9-ocr&#34;&gt; 9 OCR&lt;/span&gt;&lt;/h4&gt;
+&lt;center&gt;&lt;img src=&#34;https://github.com/PaddlePaddle/PaddleOCR/raw/release/2.5/doc/features.png&#34; alt=&#34;img&#34; style=&#34;zoom: 35%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;1-pp-ocrv3&#34;&gt; 1 PP-OCRv3&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;速度可比情况下，&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.5/doc/doc_ch/ppocr_introduction.md#pp-ocrv3&#34;&gt;PP-OCRv3&lt;/a&gt; 中文场景效果相比于 PP-OCRv2 再提升 5%，英文场景提升 11%，80 语种多语言模型平均识别准确率提升 5% 以上；&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2-pp-ocrv2&#34;&gt; 2 PP-OCRv2&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.5/doc/doc_ch/ppocr_introduction.md#pp-ocrv2&#34;&gt;PP-OCRv2&lt;/a&gt; 在 CPU 推理速度相比于 PP-OCR server 提升 220%；效果相比于 PP-OCR mobile 提升 7%。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;3-pp-structure&#34;&gt; 3 PP-Structure&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;文档结构分析&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.5/ppstructure/README_ch.md&#34;&gt; PP-Structure&lt;/a&gt; 工具包，支持版面分析与表格识别（含 Excel 导出）&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;10-图像分类&#34;&gt; 10 图像分类&lt;/span&gt;&lt;/h4&gt;
+&lt;center&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/19523330/173273046-239a42da-c88d-4c2c-94b1-2134557afa49.png&#34; alt=&#34;img&#34; style=&#34;zoom: 65%;&#34;&gt;&lt;/center&gt;
+&lt;h4&gt;&lt;span id=&#34;11-应用案例&#34;&gt; 11 应用案例&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;1-paddledetection&#34;&gt; 1 PaddleDetection&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1-行人分析工具-pp-human-v2&#34;&gt; 1 行人分析工具 PP-Human v2&lt;/span&gt;&lt;/h6&gt;
+&lt;h6&gt;&lt;span id=&#34;行人分析工具-pp-human-v2&#34;&gt; &lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;四大产业特色功能：高性能易扩展的五大复杂行为识别、闪电级人体属性识别、一行代码即可实现的人流检测与轨迹留存以及高精度跨镜跟踪&lt;/li&gt;
+&lt;li&gt;底层核心算法性能强劲：覆盖行人检测、跟踪、属性三类核心算法能力，对目标人数、光线、背景均无限制&lt;/li&gt;
+&lt;li&gt;极低使用门槛：提供保姆级全流程开发及模型优化策略、一行命令完成推理、兼容各类数据输入格式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;2-基于-pp-picodet-增强版的路面垃圾检测&#34;&gt; 2 基于 PP-PicoDet 增强版的路面垃圾检测&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/3846170?channelType=0&amp;amp;channel=0&#34;&gt;基于 PP-PicoDet 增强版的路面垃圾检测&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;3-基于-pp-picodet-的通信塔识别及-android-端部署&#34;&gt; 3 基于 PP-PicoDet 的通信塔识别及 Android 端部署&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/3561097&#34;&gt;基于 PP-PicoDet 的通信塔识别及 Android 端部署&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;4-基于-faster-rcnn-的瓷砖表面瑕疵检测&#34;&gt; 4 基于 Faster-RCNN 的瓷砖表面瑕疵检测&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/2571419&#34;&gt;基于 Faster-RCNN 的瓷砖表面瑕疵检测&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;5-基于-paddledetection-的-pcb-瑕疵检测&#34;&gt; 5 基于 PaddleDetection 的 PCB 瑕疵检测&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/2367089&#34;&gt;基于 PaddleDetection 的 PCB 瑕疵检测&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;6-基于-fairmot-实现人流量统计&#34;&gt; 6 基于 FairMOT 实现人流量统计&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/2421822&#34;&gt;基于 FairMOT 实现人流量统计&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;7-基于-yolov3-实现跌倒检测&#34;&gt; 7 基于 YOLOv3 实现跌倒检测&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/2500639&#34;&gt;基于 YOLOv3 实现跌倒检测&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;8-基于-pp-picodetv2-的路面垃圾检测&#34;&gt; 8 基于 PP-PicoDetv2 的路面垃圾检测&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/3846170?channelType=0&amp;amp;channel=0&#34;&gt;基于 PP-PicoDetv2 的路面垃圾检测&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;9-基于人体关键点检测的合规检测&#34;&gt; 9 基于人体关键点检测的合规检测&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/4061642?contributionType=1&#34;&gt;基于人体关键点检测的合规检测&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2-paddleseg&#34;&gt; 2 PaddleSeg&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1-10-分钟上手-paddleseg&#34;&gt; 1 10 分钟上手 PaddleSeg&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/1672610?channelType=0&amp;amp;channel=0&#34;&gt;10 分钟上手 PaddleSeg&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-paddleseg-实战之人像分割&#34;&gt; 2 PaddleSeg 实战之人像分割&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/2189481?channelType=0&amp;amp;channel=0&#34;&gt;PaddleSeg 实战之人像分割&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;3-paddleseg-实战之小数据集-3d-椎骨分割&#34;&gt; 3 PaddleSeg 实战之小数据集 3D 椎骨分割&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/3878920&#34;&gt;PaddleSeg 实战之小数据集 3D 椎骨分割&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;4-paddleseg-实战之车道线图像分割&#34;&gt; 4 PaddleSeg 实战之车道线图像分割&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/1752986?channelType=0&amp;amp;channel=0&#34;&gt;PaddleSeg 实战之车道线图像分割&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;5-paddleseg-动态图-api-使用教程&#34;&gt; 5 PaddleSeg 动态图 API 使用教程&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://aistudio.baidu.com/aistudio/projectdetail/1339458?channelType=0&amp;amp;channel=0&#34;&gt;PaddleSeg 动态图 API 使用教程&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;3-paddleocr&#34;&gt; 3 PaddleOCR&lt;/span&gt;&lt;/h5&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;行业&lt;/th&gt;
+&lt;th&gt;类别&lt;/th&gt;
+&lt;th&gt;亮点&lt;/th&gt;
+&lt;th&gt;文档说明&lt;/th&gt;
+&lt;th&gt;模型下载&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;制造&lt;/td&gt;
+&lt;td&gt;数码管识别&lt;/td&gt;
+&lt;td&gt;数码管数据合成、漏识别调优&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.5/applications/%E5%85%89%E5%8A%9F%E7%8E%87%E8%AE%A1%E6%95%B0%E7%A0%81%E7%AE%A1%E5%AD%97%E7%AC%A6%E8%AF%86%E5%88%AB/%E5%85%89%E5%8A%9F%E7%8E%87%E8%AE%A1%E6%95%B0%E7%A0%81%E7%AE%A1%E5%AD%97%E7%AC%A6%E8%AF%86%E5%88%AB.md&#34;&gt;光功率计数码管字符识别&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.5/applications/README.md#%E6%A8%A1%E5%9E%8B%E4%B8%8B%E8%BD%BD&#34;&gt;下载链接&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;金融&lt;/td&gt;
+&lt;td&gt;通用表单识别&lt;/td&gt;
+&lt;td&gt;多模态通用表单结构化提取&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.5/applications/%E5%A4%9A%E6%A8%A1%E6%80%81%E8%A1%A8%E5%8D%95%E8%AF%86%E5%88%AB.md&#34;&gt;多模态表单识别&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.5/applications/README.md#%E6%A8%A1%E5%9E%8B%E4%B8%8B%E8%BD%BD&#34;&gt;下载链接&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;交通&lt;/td&gt;
+&lt;td&gt;车牌识别&lt;/td&gt;
+&lt;td&gt;多角度图像处理、轻量模型、端侧部署&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.5/applications/%E8%BD%BB%E9%87%8F%E7%BA%A7%E8%BD%A6%E7%89%8C%E8%AF%86%E5%88%AB.md&#34;&gt;轻量级车牌识别&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.5/applications/README.md#%E6%A8%A1%E5%9E%8B%E4%B8%8B%E8%BD%BD&#34;&gt;下载链接&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5&gt;&lt;span id=&#34;4-paddleclas&#34;&gt; 4 PaddleClas&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;PULC 超轻量图像分类方案快速体验：&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleClas/blob/release/2.4/docs/zh_CN/PULC/PULC_quickstart.md&#34;&gt;点击这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;PP-ShiTu 图像识别快速体验：&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleClas/blob/release/2.4/docs/zh_CN/quick_start/quick_start_recognition.md&#34;&gt;点击这里&lt;/a&gt;&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="CV未来" />
+        <updated>2022-07-26T15:53:32.000Z</updated>
+    </entry>
+</feed>

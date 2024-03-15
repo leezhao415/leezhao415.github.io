@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>人工智能数据集汇总 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   （1）金融 （2）交通 （3）商业 （4）推荐系统 （5）医疗健康 （6）图像数据 （7）视频数据 （8）音频数据 （9）自然语言处理 （10）社会数据 （11）处理后的科研和竞赛数据 （12）运动想象，情绪识别 （13）其他     （1）金融  美国劳工部统计局官方发布数据 上证 A 股日线数据，1999.12.09 至 2016.06.08，前复权，1095 支股票 深证">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人工智能数据集汇总">
+<meta property="og:url" content="https://leezhao415.github.io/2021/10/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   （1）金融 （2）交通 （3）商业 （4）推荐系统 （5）医疗健康 （6）图像数据 （7）视频数据 （8）音频数据 （9）自然语言处理 （10）社会数据 （11）处理后的科研和竞赛数据 （12）运动想象，情绪识别 （13）其他     （1）金融  美国劳工部统计局官方发布数据 上证 A 股日线数据，1999.12.09 至 2016.06.08，前复权，1095 支股票 深证">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-28T14:32:39.000Z">
+<meta property="article:modified_time" content="2021-10-28T14:55:27.895Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="数据集">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-人工智能数据集汇总" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      人工智能数据集汇总
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-10-28
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#1%E9%87%91%E8%9E%8D">（1）金融</a></li>
+<li><a href="#2%E4%BA%A4%E9%80%9A">（2）交通</a></li>
+<li><a href="#3%E5%95%86%E4%B8%9A">（3）商业</a></li>
+<li><a href="#4%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F">（4）推荐系统</a></li>
+<li><a href="#5%E5%8C%BB%E7%96%97%E5%81%A5%E5%BA%B7">（5）医疗健康</a></li>
+<li><a href="#6%E5%9B%BE%E5%83%8F%E6%95%B0%E6%8D%AE">（6）图像数据</a></li>
+<li><a href="#7%E8%A7%86%E9%A2%91%E6%95%B0%E6%8D%AE">（7）视频数据</a></li>
+<li><a href="#8%E9%9F%B3%E9%A2%91%E6%95%B0%E6%8D%AE">（8）音频数据</a></li>
+<li><a href="#9%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86">（9）自然语言处理</a></li>
+<li><a href="#10%E7%A4%BE%E4%BC%9A%E6%95%B0%E6%8D%AE">（10）社会数据</a></li>
+<li><a href="#11%E5%A4%84%E7%90%86%E5%90%8E%E7%9A%84%E7%A7%91%E7%A0%94%E5%92%8C%E7%AB%9E%E8%B5%9B%E6%95%B0%E6%8D%AE">（11）处理后的科研和竞赛数据</a></li>
+<li><a href="#12%E8%BF%90%E5%8A%A8%E6%83%B3%E8%B1%A1%E6%83%85%E7%BB%AA%E8%AF%86%E5%88%AB">（12）运动想象，情绪识别</a></li>
+<li><a href="#13%E5%85%B6%E4%BB%96">（13）其他</a></li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h4><span id="1金融"> （1）金融</span></h4>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/139">美国劳工部统计局官方发布数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/37">上证 A 股日线数据，1999.12.09 至 2016.06.08，前复权，1095 支股票</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/38">深证 A 股日线数据，1999.12.09 至 2016.06.08，前复权，1766 支股票</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/39">深证创业板日线数据，1999.12.09 至 2016.06.08，前复权，510 支股票</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/43">MT4 平台外汇交易历史数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/67">Forex 平台外汇交易历史数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/44">几组外汇交易逐笔（Ticks）数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/220">美国股票新闻数据【</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/220">Kaggle 数据</a>】</li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/225">美国医疗保险市场数据【</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/225">Kaggle 数据</a>】</li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/229">美国金融客户投诉数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/206">Lending Club 网贷违约数据</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/206">【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/214">信用卡欺诈数据</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/214">【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/227">某个金融产品实时交易数据</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/227">【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/249">美国股票数据 XBRL</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/249">【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/266">纽约股票交易所数据【Kaggle 数据】</a></li>
+</ul>
+<h4><span id="2交通"> （2）交通</span></h4>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/76">2013 年纽约出租车行驶数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/86">Udacity 自动驾驶数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/210">纽约 Uber 接客数据 【Kaggle 数据</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/210">】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/232">英国车祸数据（2005-2015）【Kaagle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/228">芝加哥汽车超速数据</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/228">【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/270">KITTI 自动驾驶任务数据【数据太大仅有一部分】</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/">Cityscapes 场景标注数据【数据太大仅有介绍】</a></li>
+</ul>
+<h4><span id="3商业"> （3）商业</span></h4>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/207">Amazon 食品评论数据</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/207">【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/208">Amazon 无锁手机评论数据</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/208">【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/230">美国视频游戏销售和评价数据</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/230">【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/213">Kaggle 各项竞赛情况数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/309">Airbnb 开放的民宿信息和住客评论数据</a></li>
+</ul>
+<h4><span id="4推荐系统"> （4）推荐系统</span></h4>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/32">Netflix 电影评价数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/116">MovieLens 20m 电影推荐数据集</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/97">WikiLens</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/99">Jester</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/101">HetRec2011</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/100">Book Crossing</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/98">Large Movie Review</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/290">Retailrocket 商品评论和推荐数据</a></li>
+</ul>
+<h4><span id="5医疗健康"> （5）医疗健康</span></h4>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/80">人识别物体时大脑核磁共振影像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/79">人理解单词时大脑核磁共振影像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/121">心脏病心房图像及标注数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/242">细胞病理识别</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/124">FIRE 视网膜眼底病变图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/250">食物营养成分数据 【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/258">EGG 大脑电波形状数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/261">某人基因序列数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/275">癌症 CT 影像数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/284">软组织肉瘤 CT 图像数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/283">美国国家健康与服务部 - 国家癌症研究所发起的癌症数据仓库介绍【仅有介绍】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/287">Data Science Bowl 2017 肺癌识别竞赛数据【数据太大仅有介绍】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/291">TCGA-LUAD 肺癌 CT 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/311">RAID 肺癌 CT 图像数据</a></li>
+</ul>
+<h4><span id="6图像数据"> （6）图像数据</span></h4>
+<h6><span id="61-综合图像"> 6.1 综合图像</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/85">Visual Genome 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/107">Visual7w 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/51">COCO 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/240">SUFR 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/55">ILSVRC 2014 训练数据（ImageNet 的一部分）</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/40">PASCAL Visual Object Classes 2012 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/45">PASCAL Visual Object Classes 2011 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/48">PASCAL Visual Object Classes 2010 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/138">80 Million Tiny Image 图像数据</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/138">【数据太大仅有介绍】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/83">ImageNet【数据太大仅有介绍】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/183">Google Open Images【数据太大仅有介绍】</a></li>
+</ul>
+<h6><span id="62-场景图像"> 6.2 场景图像</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/74">Street Scences 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/112">Places2 场景图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/160">UCF Google Street View 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/234">SUN 场景图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/173">The Celebrity in Places 图像数据</a></li>
+</ul>
+<h6><span id="63-web-标签图像"> 6.3 Web 标签图像</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/52">HARRISON 社交标签</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/52">图像</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/235">NUS-WIDE 标签图像</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/236">Visual Synset 标签图像</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/253">Animals With Attributes 标签图像</a></li>
+</ul>
+<h6><span id="64-人形轮廓图像"> 6.4 人形轮廓图像</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/129">MPII Human Shape</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/129"> 人体轮廓数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/110">Biwi Kinect Head Pose 头部姿势数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/dataDescriptionManagement/saveDatasetInstance/49">上半身人像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/73">INRIA Person 数据集</a></li>
+</ul>
+<h6><span id="65-视觉文字识别图像"> 6.5 视觉文字识别图像</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/47">Street View House Number 门牌号图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/23">MNIST 手写数字识别图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/203">3D MNIST 数字识别图像数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/128">MediaTeam Document 文档影印和内容数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/176">Text Recognition 文字图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/278">NIST Handprinted Forms and Characters 手写英文字符数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/294">NIST Structured Forms Reference Set of Binary Images (SFRS) 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/295">NIST Structured Forms Reference Set of Binary Images (SFRS) II 图像数据</a></li>
+</ul>
+<h6><span id="66-特定一类事物图像"> 6.6 特定一类事物图像</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/41">著名的猫图像标注数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/105">Caltech-UCSD Birds200 鸟类图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/106">Stanford Car 汽车图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/106">Cars 汽车图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/254">MIT Cars 汽车图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/255">Stanford Cars 汽车图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/109">Food-101 美食图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/114">17_Category_Flower 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/115">102_Category_Flower 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/60">UCI Folio Leaf 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/61">Labeled Fishes in the Wild 鱼类图像</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/63">美国 Yelp 点评网站酒店照片</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/174">CMU-Oxford Sculpture 塑像雕像图像</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/256">Oxford-IIIT Pet 宠物图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/301">Nature Conservancy Fisheries Monitoring 过度捕捞监控图像数据【Kaggle 数据】</a></li>
+</ul>
+<h6><span id="67-材质纹理图像"> 6.7 材质纹理图像</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/118">CURET 纹理材质图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/111">ETHZ Synthesizability 纹理图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/127">KTH-TIPS 纹理材质图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/172">Describable Textures 纹理图像数据</a></li>
+</ul>
+<h6><span id="68-物体分类图像"> 6.8 物体分类图像</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/71">COIL-20 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/62">COIL-100 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/70">Caltech-101 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/54">Caltech-256 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/46">CIFAR-10 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/42">CIFAR-100 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/53">STL-10 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/72">LabelMe_12_50k</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/72"> 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/69">NORB v1.0 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/117">NEC Toy Animal 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/237">iCubWorld 图像分类数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/238">Multi-class 图像分类数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/239">GRAZ 图像分类数据</a></li>
+</ul>
+<h6><span id="69-人脸图像"> 6.9 人脸图像</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/108">IMDB-WIKI 500k+ 人脸图像、年龄性别数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/68">Labeled Faces in the Wild 人脸数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/50">Extended Yale Face Database B 人脸数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/131">Bao Face 人脸数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/87">DC-IGN 论文人脸数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/119">300 Face in Wild 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/120">BioID Face 人脸数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/122">CMU Frontal Face Images</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/123">FDDB_Face Detection Data Set and Benchmark</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/130">NIST Mugshot Identification Database</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/140">Faces in the Wild 人脸数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/170">CelebA 名人人脸图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/175">VGG Face 人脸图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/189">Caltech 10k Web Faces 人脸图像数据</a></li>
+</ul>
+<h6><span id="610-姿势动作图像"> 6.10 姿势动作图像</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/125">HMDB_a large human motion database</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/126">Human Actions and Scenes Dataset</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/177">Buffy Stickmen V3 人体轮廓识别图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/178">Human Pose Evaluator 人体轮廓识别图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/179">Buffy pose 人类姿势图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/181">VGG Human Pose Estimation 姿势图像标注数据</a></li>
+</ul>
+<h6><span id="611-指纹识别"> 6.11 指纹识别</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/197">NIST FIGS 指纹识别数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/281">NIST Supplemental Fingerprint Card Data (SFCD) 指纹识别数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/280">NIST Plain and Rolled Images from Paired Fingerprint Cards in 500 pixels per inch 指纹识别数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/279">NIST Plain and Rolled Images from Paired Fingerprint Cards 1000 pixels per inch 指纹识别数据</a></li>
+</ul>
+<h6><span id="612-其它图像数据"> 6.12 其它图像数据</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/77">Visual Question Answering V1.0 图像数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/289">Visual Question Answering V2.0 图像数据</a></li>
+</ul>
+<h4><span id="7视频数据"> （7）视频数据</span></h4>
+<h6><span id="71-综合视频"> 7.1 综合视频</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/132">DAVIS_Densely Annotated Video Segmentation 数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/84">YouTube-8M 视频数据集【数据太大仅有介绍】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/241">YouTube 网站视频备份【数据太大仅有介绍】</a></li>
+</ul>
+<h6><span id="72-人类动作视频"> 7.2 人类动作视频</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/147">Microsoft Research Action 人类动作视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/133">UCF50 Action Recognition 动作识别数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/134">UCF101 Action Recognition 动作识别数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/144">UT-Interaction 人类动作视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/135">UCF iPhone 运动中传感器数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/136">UCF YouTube 人类动作视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/137">UCF Sport 人类动作视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/148">UCF-ARG 人类动作视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/125">HMDB 人类动作视频</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/126">HOLLYWOOD2 人类行为动作视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/141">Recognition of human actions 动作视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/157">Motion Capture 动作捕捉视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/146">SBU Kinect Interaction 肢体动作视频数据</a></li>
+</ul>
+<h6><span id="73-目标检测视频"> 7.3 目标检测视频</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/244">UCSD Pedestrian 行人视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/245">Caltech Pedestrian 行人视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/246">ETH 行人视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/247">INRIA 行人视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/248">TudBrussels 行人视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/223">Daimler 行人视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/159">ALOV++ 物体追踪视频数据</a></li>
+</ul>
+<h6><span id="74-密集人群视频"> 7.4 密集人群视频</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/151">Crowd Counting 高密度人群图像</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/150">Crowd Segmentation 高密度人群视频数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/152">Tracking in High Density Crowds 高密度人群视频</a></li>
+</ul>
+<h6><span id="75-其它视频"> 7.5 其它视频</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/156">Fire Detection 视频数据</a></li>
+</ul>
+<h4><span id="8音频数据"> （8）音频数据</span></h4>
+<h6><span id="81-综合音频"> 8.1 综合音频</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/243">Google Audioset 音频数据【数据太大仅有介绍】</a></li>
+</ul>
+<h6><span id="82-语音识别"> 8.2 语音识别</span></h6>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/200">Sinhala TTS 英语语音识别</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/186">TIMIT 美式英语语音识别数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/164">LibriSpeech ASR corpus 语音数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/251">Room Impulse Response and Noise 语音数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/252">ALFFA 非洲语音数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/194">THUYG-20 维吾尔语语音数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/191">AMI Corpus 语音识别</a></li>
+</ul>
+<h4><span id="9自然语言处理"> （9）自然语言处理</span></h4>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/96">RCV1</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/96"> 英语</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/96">新闻数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/93">20news 英语新闻数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/90">First Quora Release Question Pairs 问答数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/78">JRC Names</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/78"> 各国语言专有实体名称</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/94">Multi-Domain Sentiment V2.0</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/92">LETOR 信息检索数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/89">Yale Youtube Vedio Text</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/205">斯坦福问答数据</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/205">【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/221">美国假新闻数据</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/221">【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/212">NIPS 会议文章信息数据（1987-2016）【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/268">2016 年美国总统选举辩论数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/269">WikiLinks 跨文档指代语料</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/277">European Parliament Proceedings Parallel Corpus 机器翻译数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/285">WikiText 英语语义词库数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/272">WMT 2011 News Crawl 机器翻译数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/288">Stanford Sentiment Treebank 词汇数据</a></li>
+</ul>
+<h4><span id="10社会数据"> （10）社会数据</span></h4>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/201">希拉里邮件门泄露邮件</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/267">波士顿 Airbnb 公开数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/209">世界各国经济发展数据【Kaagle 数据】 </a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/202">世界大学排名芝加哥犯罪数据（2001-2017）【Kaagle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/233">世界范围显著地震数据（1965-2016）【Kaagle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/231">美国婴儿姓名数据【Kaagle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/222">全世界鲨鱼袭击人类数据【Kaagle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/219">1908 年以来空难数据【Kaagle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/218">2016 年美国总统大选数据【Kaagle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/217">2013 年美国社区统计数据【Kaagle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/273">2014 年美国社区统计数据【Kaagle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/274">2015 年美国社区统计数据【Kaagle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/215">欧洲足球运动员赛事表现数据【Kaagle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/211">美国环境污染数据【Kaagle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/224">美国 H1-B 签证申请数</a><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/224">据</a>【<a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/224">Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/226">IMDB 五千部电影数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/216">2015 年航班延误和取消数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/259">凶杀案报告数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/260">人力资源分析数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/262">美国费城犯罪数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/263">安然公司邮件数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/264">历史棒球数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/265">美联航 Twitter 用户评论数据【Kaggle 数据】</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/267">波士顿 Airbnb 公开数据【Kaggle 数据】</a></li>
+</ul>
+<h4><span id="11处理后的科研和竞赛数据"> （11）处理后的科研和竞赛数据</span></h4>
+<ul>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/296">NIPS 2003 属性选择竞赛数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/297">台湾大学林智仁教授处理为 LibSVM 格式的分类建模数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/298">Large-scale 分类建模数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/299">几个 UCI 中 large-scale 分类建模数据</a></li>
+<li><a href="http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/300">Social Computing Data Repository 社交网络数据</a></li>
+</ul>
+<h4><span id="12运动想象情绪识别"> （12）运动想象，情绪识别</span></h4>
+<ul>
+<li>
+<h6><span id="运动影像数据"> 运动影像数据</span></h6>
+</li>
+<li>
+<ol>
+<li>Left/Right Hand MI: <a target="_blank" rel="noopener" href="http://gigadb.org/dataset/100295">http://gigadb.org/dataset/100295</a></li>
+<li>Motor Movement/Imagery Dataset: <a target="_blank" rel="noopener" href="https://www.physionet.org/physiobank/database/eegmmidb/">https://www.physionet.org/physiobank/database/eegmmidb/</a></li>
+<li>Grasp and Lift EEG Challenge: <a target="_blank" rel="noopener" href="https://www.kaggle.com/c/grasp-and-lift-eeg-detection/data">https://www.kaggle.com/c/grasp-and-lift-eeg-detection/data</a></li>
+<li>The largest SCP data of Motor-Imagery: <a target="_blank" rel="noopener" href="https://doi.org/10.6084/m9.figshare.c.3917698">https://doi.org/10.6084/m9.figshare.c.3917698</a></li>
+<li>BCI Competition IV-1: <a target="_blank" rel="noopener" href="http://www.bbci.de/competition/iv/#dataset1">http://www.bbci.de/competition/iv/#dataset1</a></li>
+<li>BCI Competition IV-2a: <a target="_blank" rel="noopener" href="http://www.bbci.de/competition/iv/#dataset2a">http://www.bbci.de/competition/iv/#dataset2a</a></li>
+<li>BCI Competition IV-2b: <a target="_blank" rel="noopener" href="http://www.bbci.de/competition/iv/#dataset2b">http://www.bbci.de/competition/iv/#dataset2b</a></li>
+<li>High-Gamma Dataset: <a target="_blank" rel="noopener" href="https://github.com/robintibor/high-gamma-dataset">https://github.com/robintibor/high-gamma-dataset</a></li>
+<li>Left/Right Hand 1D/2D movements: <a target="_blank" rel="noopener" href="https://sites.google.com/site/projectbci/">https://sites.google.com/site/projectbci/</a></li>
+<li>Imagination of Right-hand Thumb Movement: <a target="_blank" rel="noopener" href="https://archive.ics.uci.edu/ml/datasets/Planning+Relax">https://archive.ics.uci.edu/ml/datasets/Planning+Relax</a></li>
+</ol>
+</li>
+<li>
+<h6><span id="情绪识别数据"> 情绪识别数据</span></h6>
+</li>
+<li>
+<ol>
+<li>DEAP: <a target="_blank" rel="noopener" href="http://www.eecs.qmul.ac.uk/mmv/datasets/deap/">http://www.eecs.qmul.ac.uk/mmv/datasets/deap/</a></li>
+<li>Enterface’06: <a target="_blank" rel="noopener" href="http://www.enterface.net/results/">http://www.enterface.net/results/</a></li>
+<li>Imagined Emotion: <a target="_blank" rel="noopener" href="http://headit.ucsd.edu/studies/3316f70e-35ff-11e3-a2a9-0050563f2612">http://headit.ucsd.edu/studies/3316f70e-35ff-11e3-a2a9-0050563f2612</a></li>
+<li>NeuroMarketing: <a target="_blank" rel="noopener" href="https://drive.google.com/open?id=0B2T1rQUvyyWcSGVVaHZBZzRtTms">https://drive.google.com/open?id=0B2T1rQUvyyWcSGVVaHZBZzRtTms</a></li>
+<li>SEED: <a target="_blank" rel="noopener" href="http://bcmi.sjtu.edu.cn/~seed/seed.html">http://bcmi.sjtu.edu.cn/~seed/seed.html</a></li>
+<li>SEED-IV: <a target="_blank" rel="noopener" href="http://bcmi.sjtu.edu.cn/~seed/seed-iv.html">http://bcmi.sjtu.edu.cn/~seed/seed-iv.html</a></li>
+<li>SEED-VIG: <a target="_blank" rel="noopener" href="http://bcmi.sjtu.edu.cn/~seed/seed-vig.html">http://bcmi.sjtu.edu.cn/~seed/seed-vig.html</a></li>
+<li>HCI-Tagging: <a target="_blank" rel="noopener" href="https://mahnob-db.eu/hci-tagging/">https://mahnob-db.eu/hci-tagging/</a></li>
+<li>REGULATION OF AROUSAL: <a target="_blank" rel="noopener" href="https://ieee-dataport.org/open-access/regulation-arousal-online-neurofeedback-improves-human-performance-demanding-sensory">https://ieee-dataport.org/open-access/regulation-arousal-online-neurofeedback-improves-human-performance-demanding-sensory</a></li>
+</ol>
+</li>
+<li>
+<h6><span id="误差相关电位-errp"> 误差相关电位 (ErrP)</span></h6>
+</li>
+<li>
+<ol>
+<li>BCI-NER Challenge: <a target="_blank" rel="noopener" href="https://www.kaggle.com/c/inria-bci-challenge">https://www.kaggle.com/c/inria-bci-challenge</a></li>
+<li>Monitoring ErrP in a target selection task: <a target="_blank" rel="noopener" href="http://bnci-horizon-2020.eu/database/data-sets">http://bnci-horizon-2020.eu/database/data-sets</a></li>
+<li>ErrPs during continuous feedback: <a target="_blank" rel="noopener" href="https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/contErrP_description.pdf">https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/contErrP_description.pdf</a>): 10 subjects with 28 EEG electrodes, playing a video game to study execution and outcome error. Dataset Part-1]: <a target="_blank" rel="noopener" href="https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/Continous_ErrP_dataset_Part1.rar">https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/Continous_ErrP_dataset_Part1.rar</a>) Dataset Part-2]: <a target="_blank" rel="noopener" href="https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/Continous_ErrP_dataset_Part2.rar">https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/Continous_ErrP_dataset_Part2.rar</a>)</li>
+<li>HCI-Tagging: <a target="_blank" rel="noopener" href="https://mahnob-db.eu/hci-tagging/">https://mahnob-db.eu/hci-tagging/</a></li>
+</ol>
+</li>
+<li>
+<h6><span id="视觉诱发电位-veps"> 视觉诱发电位 (VEPs)</span></h6>
+</li>
+<li>
+<ol>
+<li>c-VEP BCI: <a target="_blank" rel="noopener" href="https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/cVEP_dataset.rar">https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/cVEP_dataset.rar</a></li>
+<li>c-VEP BCI with dry electrodes: <a target="_blank" rel="noopener" href="https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/dry_cVEP_dataset.rar">https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/dry_cVEP_dataset.rar</a></li>
+<li>SSVEP - Visual Search/Discrimination and Handshake: <a target="_blank" rel="noopener" href="https://archive.ics.uci.edu/ml/datasets/EEG+Steady-State+Visual+Evoked+Potential+SignalsMore">https://archive.ics.uci.edu/ml/datasets/EEG+Steady-State+Visual+Evoked+Potential+SignalsMore</a> Dataset: Dataset 2: <a target="_blank" rel="noopener" href="http://www2.hu-berlin.de/eyetracking-eeg/testdata.html">http://www2.hu-berlin.de/eyetracking-eeg/testdata.html</a></li>
+</ol>
+</li>
+<li>
+<h6><span id="事件相关电位-erps"> 事件相关电位 (ERPs)</span></h6>
+</li>
+<li>
+<ol>
+<li>Pattern Visual Evoked Potentials: <a target="_blank" rel="noopener" href="https://www2.le.ac.uk/departments/engineering/research/bioengineering/neuroengineering-lab/software">https://www2.le.ac.uk/departments/engineering/research/bioengineering/neuroengineering-lab/software</a></li>
+<li>Face vs. House Discrimination: <a target="_blank" rel="noopener" href="https://purl.stanford.edu/xd109qh3109">https://purl.stanford.edu/xd109qh3109</a></li>
+</ol>
+</li>
+<li>
+<h6><span id="休息状态"> 休息状态</span></h6>
+</li>
+<li>
+<ol>
+<li>Resting State EEG Data: <a target="_blank" rel="noopener" href="https://dataverse.tdl.org/dataverse/txstatecogelectro">https://dataverse.tdl.org/dataverse/txstatecogelectro</a></li>
+<li>EID-M, EID-S: <a target="_blank" rel="noopener" href="https://drive.google.com/drive/folders/1t6tL434ZOESb06ZvA4Bw1p9chzxzbRbj">https://drive.google.com/drive/folders/1t6tL434ZOESb06ZvA4Bw1p9chzxzbRbj</a></li>
+</ol>
+</li>
+<li>
+<h6><span id="音乐与-eeg"> 音乐与 EEG</span></h6>
+</li>
+<li>
+<ol>
+<li>Music Imagery Information Retrieval: <a target="_blank" rel="noopener" href="https://github.com/sstober/openmiir">https://github.com/sstober/openmiir</a></li>
+</ol>
+</li>
+<li>
+<h6><span id="眨眼-动作"> 眨眼 / 动作</span></h6>
+</li>
+<li>
+<ol>
+<li>Involuntary Eye Movements during Face Perception: <a target="_blank" rel="noopener" href="http://www2.hu-berlin.de/eyetracking-eeg/testdata.html">http://www2.hu-berlin.de/eyetracking-eeg/testdata.html</a></li>
+<li>Voluntary-Involuntary Eye-Blinks: <a target="_blank" rel="noopener" href="https://drive.google.com/file/d/0By5iwWd39NblS2tRWmVTdmRzZUU/view?usp=sharing">https://drive.google.com/file/d/0By5iwWd39NblS2tRWmVTdmRzZUU/view?usp=sharing</a></li>
+<li>EEG-eye state: <a target="_blank" rel="noopener" href="https://archive.ics.uci.edu/ml/datasets/EEG+Eye+State">https://archive.ics.uci.edu/ml/datasets/EEG+Eye+State</a></li>
+<li>EEG-IO: <a target="_blank" rel="noopener" href="http://gnan.ece.gatech.edu/eeg-eyeblinks/">http://gnan.ece.gatech.edu/eeg-eyeblinks/</a></li>
+<li>EEG-VV, EEG-VR: <a target="_blank" rel="noopener" href="http://gnan.ece.gatech.edu/eeg-eyeblinks/">http://gnan.ece.gatech.edu/eeg-eyeblinks/</a></li>
+</ol>
+</li>
+<li>
+<h6><span id="其他一些数据集"> 其他一些数据集</span></h6>
+</li>
+<li>
+<ol>
+<li>MNIST Brain Digits: <a target="_blank" rel="noopener" href="http://mindbigdata.com/opendb/index.html">http://mindbigdata.com/opendb/index.html</a></li>
+<li>Imagenet Brain: <a target="_blank" rel="noopener" href="http://www.mindbigdata.com/opendb/imagenet.html">http://www.mindbigdata.com/opendb/imagenet.html</a></li>
+<li>Working Memory: <a target="_blank" rel="noopener" href="https://github.com/pbashivan/EEGLearn/tree/master/Sample%20data">https://github.com/pbashivan/EEGLearn/tree/master/Sample data</a></li>
+<li>Deep Sleep Slow Osciallation: <a target="_blank" rel="noopener" href="https://challengedata.ens.fr/challenges/10">https://challengedata.ens.fr/challenges/10</a></li>
+<li>Genetic Predisposition to Alcoholism: <a target="_blank" rel="noopener" href="https://archive.ics.uci.edu/ml/datasets/EEG+Database">https://archive.ics.uci.edu/ml/datasets/EEG+Database</a></li>
+</ol>
+</li>
+<li>
+<h6><span id="临床脑电图"> 临床脑电图</span></h6>
+</li>
+<li>
+<ol>
+<li>TUH EEG Resources: <a target="_blank" rel="noopener" href="https://www.isip.piconepress.com/projects/tuh_eeg/html/downloads.shtml">https://www.isip.piconepress.com/projects/tuh_eeg/html/downloads.shtml</a></li>
+</ol>
+</li>
+</ul>
+<h4><span id="13其他"> （13）其他</span></h4>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://sccn.ucsd.edu/~arno/fam2data/publicly_available_EEG_data.html">https://sccn.ucsd.edu/~arno/fam2data/publicly_available_EEG_data.html</a> - <a target="_blank" rel="noopener" href="http://headit.ucsd.edu/studies">http://headit.ucsd.edu/studies</a></li>
+<li><a target="_blank" rel="noopener" href="https://www2.le.ac.uk/departments/engineering/research/bioengineering/neuroengineering-lab/software">https://www2.le.ac.uk/departments/engineering/research/bioengineering/neuroengineering-lab/software</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/pbashivan/EEGLearn/tree/master/Sample%20data">https://github.com/pbashivan/EEGLearn/tree/master/Sample data</a></li>
+<li>Section 2: <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1611.08024.pdf">https://arxiv.org/pdf/1611.08024.pdf</a></li>
+<li>EEG Databases for Emotion Recognition, NTU</li>
+<li><a target="_blank" rel="noopener" href="https://engineuring.wordpress.com/2009/07/08/downloadable-eeg-data/">https://engineuring.wordpress.com/2009/07/08/downloadable-eeg-data/</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.brainsignals.de/">http://www.brainsignals.de/</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.fil.ion.ucl.ac.uk/spm/data/">http://www.fil.ion.ucl.ac.uk/spm/data/</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.brainliner.jp/search/showall/1">http://www.brainliner.jp/search/showall/1</a></li>
+<li><a target="_blank" rel="noopener" href="http://bnci-horizon-2020.eu/database/data-sets">http://bnci-horizon-2020.eu/database/data-sets</a></li>
+<li><a target="_blank" rel="noopener" href="http://archive.ics.uci.edu/ml/datasets/EEG+Database">http://archive.ics.uci.edu/ml/datasets/EEG+Database</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.physionet.org/physiobank/database/#neuro">https://www.physionet.org/physiobank/database/#neuro</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.physionet.org/pn6/chbmit/">http://www.physionet.org/pn6/chbmit/</a></li>
+<li><a target="_blank" rel="noopener" href="https://sites.google.com/site/iitrcsepradeep7/resume">https://sites.google.com/site/iitrcsepradeep7/resume</a></li>
+<li><a target="_blank" rel="noopener" href="http://memory.psych.upenn.edu/RAM">http://memory.psych.upenn.edu/RAM</a></li>
+<li>http://fcon_1000.projects.nitrc.org/indi/cmi_eeg/</li>
+<li><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8616018">https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8616018</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1805.06427.pdf">https://arxiv.org/pdf/1805.06427.pdf</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.gtec.at/Research/Biosignal-Data-Sets/content/Biosignal-Data-Sets">http://www.gtec.at/Research/Biosignal-Data-Sets/content/Biosignal-Data-Sets</a></li>
+<li><a target="_blank" rel="noopener" href="http://studycatalog.org/">http://studycatalog.org/</a></li>
+<li><a target="_blank" rel="noopener" href="http://predict.cs.unm.edu/">http://predict.cs.unm.edu/</a></li>
+<li><a target="_blank" rel="noopener" href="https://datadryad.org/resource/doi:10.5061/dryad.070jc">https://datadryad.org/resource/doi:10.5061/dryad.070jc</a></li>
+<li><a target="_blank" rel="noopener" href="https://ieee-dataport.org/data-competitions">https://ieee-dataport.org/data-competitions</a></li>
+<li>The Australian EEG Database <a target="_blank" rel="noopener" href="https://aed.newcastle.edu.au/AED/login.jsp">https://aed.newcastle.edu.au/AED/login.jsp</a></li>
+</ol>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年10月28日 22:55</p>
+        <p>原始链接： <a class="post-url" href="/2021/10/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB/" title="人工智能数据集汇总">https://leezhao415.github.io/2021/10/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/10/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB/&title=《人工智能数据集汇总》 — 且听风吟，御剑于心！&pic=images/人工智能数据集.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/10/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB/&title=《人工智能数据集汇总》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/10/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《人工智能数据集汇总》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/10/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/10/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/10/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/数据集/" class="color4">数据集</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （1）金融</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （2）交通</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （3）商业</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （4）推荐系统</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （5）医疗健康</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （6）图像数据</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.1 综合图像</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.2 场景图像</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.3 Web 标签图像</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.4 人形轮廓图像</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.5 视觉文字识别图像</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.6 特定一类事物图像</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.7 材质纹理图像</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.8 物体分类图像</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.9 人脸图像</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.10 姿势动作图像</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.11 指纹识别</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.12 其它图像数据</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （7）视频数据</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 7.1 综合视频</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 7.2 人类动作视频</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 7.3 目标检测视频</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 7.4 密集人群视频</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 7.5 其它视频</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （8）音频数据</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 8.1 综合音频</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 8.2 语音识别</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （9）自然语言处理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （10）社会数据</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （11）处理后的科研和竞赛数据</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （12）运动想象，情绪识别</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 运动影像数据</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 情绪识别数据</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 误差相关电位 (ErrP)</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 视觉诱发电位 (VEPs)</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 事件相关电位 (ERPs)</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 休息状态</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 音乐与 EEG</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 眨眼 &#x2F; 动作</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 其他一些数据集</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 临床脑电图</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> （13）其他</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/11/21/%E5%B8%B8%E8%A7%81%E8%B7%9D%E7%A6%BB%E5%BA%A6%E9%87%8F%E6%80%BB%E7%BB%93%E4%BB%A5%E5%8F%8A%E4%BC%98%E7%BC%BA%E7%82%B9%E6%A6%82%E8%BF%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          常见距离度量总结以及优缺点概述
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/10/28/%E4%BA%BA%E8%84%B8%E5%B1%9E%E6%80%A7%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95-%E6%80%A7%E5%88%AB-%E7%A7%8D%E6%97%8F-%E5%B9%B4%E9%BE%84-%E8%A1%A8%E6%83%85/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">人脸属性识别算法_性别+种族+年龄+表情</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="人工智能数据集汇总" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

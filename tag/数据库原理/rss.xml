@@ -1,0 +1,829 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;数据库原理&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Tue, 20 Apr 2021 20:05:20 +0800</pubDate>
+        <lastBuildDate>Tue, 20 Apr 2021 20:05:20 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2021/04/20/%E6%95%B0%E6%8D%AE%E5%BA%93MySQL%E8%AF%A6%E8%A7%A3-Python%E7%89%88/</guid>
+            <title>数据库MySQL详解_Python版</title>
+            <link>https://leezhao415.github.io/2021/04/20/%E6%95%B0%E6%8D%AE%E5%BA%93MySQL%E8%AF%A6%E8%A7%A3-Python%E7%89%88/</link>
+            <category>人工智能</category>
+            <category>数据库原理</category>
+            <pubDate>Tue, 20 Apr 2021 20:05:20 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86&#34;&gt;1 数据库基本知识&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F&#34;&gt;2 数据库管理系统&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-mysql%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA&#34;&gt;3 MySQL 环境搭建&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-%E5%AE%A2%E6%88%B7%E7%AB%AFnavicat&#34;&gt;4 客户端 Navicat&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-mysql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B&#34;&gt;5 MySQL 数据类型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7%E5%92%8C%E7%BA%A6%E6%9D%9F&#34;&gt;6 数据完整性和约束&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B&#34;&gt;7 数据库操作流程&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#71-%E5%AE%89%E8%A3%85%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E7%AB%AF&#34;&gt;7.1 安装数据库服务端&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#72-%E5%AE%89%E8%A3%85%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%A2%E6%88%B7%E7%AB%AF&#34;&gt;7.2 安装数据库客户端&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#73-%E5%BC%80%E5%90%AF%E6%9C%8D%E5%8A%A1%E7%AB%AF&#34;&gt;7.3 开启服务端&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#74-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%93%BE%E6%8E%A5%E6%9C%8D%E5%8A%A1%E7%AB%AF&#34;&gt;7.4 客户端链接服务端&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#75-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93&#34;&gt;7.5 登录数据库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#76-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6&#34;&gt;7.6 创建数据库文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#77-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8&#34;&gt;7.7 创建数据表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#78-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E8%A1%A8&#34;&gt;7.8 操作数据表&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8-%E6%95%B0%E6%8D%AE%E8%A1%A8%E6%9F%A5%E8%AF%A2&#34;&gt;8 数据表查询&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9-mysql%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6&#34;&gt;9 MySQL 高级进阶&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;1-数据库基本知识&#34;&gt; 1 数据库基本知识&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;1.1 概念&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;以一定格式进行组织的数据的集合&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;1.2 特点&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;持久性存储&lt;/li&gt;
+&lt;li&gt;读写速度极高&lt;/li&gt;
+&lt;li&gt;保证数据有效性&lt;/li&gt;
+&lt;li&gt;对程序的支持性比较好，容易拓展&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;1.3 作用&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;存储数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;1.4 分类&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;关系型数据库：采用&lt;u&gt;关系模型&lt;/u&gt;来组织数据的数据库，关系模型指的就是&lt;u&gt;二维数据表模型&lt;/u&gt;
+&lt;ul&gt;
+&lt;li&gt;MySQL：双授权政策，体积小，速度快&lt;/li&gt;
+&lt;li&gt;Oracle&lt;/li&gt;
+&lt;li&gt;SQL Server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;非关系型数据库：NoSQL（Not Only SQL），非关联型。强调&lt;u&gt;Key-Value 存储&lt;/u&gt;
+&lt;ul&gt;
+&lt;li&gt;MongoDB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;2-数据库管理系统&#34;&gt; 2 数据库管理系统&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;2.1 概念&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DBMS&lt;/strong&gt; （Database Management System）, 为管理数据库而设计的软件系统&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.2 组成&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据库文件集合：存储数据&lt;/li&gt;
+&lt;li&gt;数据库服务器&lt;/li&gt;
+&lt;li&gt;数据库客户端&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2.3 SQL 语句&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;作用&lt;/strong&gt;：实现数据库客户端和数据库服务端进行&lt;u&gt;通讯&lt;/u&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;含义&lt;/strong&gt;：结构化查询语言，用来操作 RDBMS（Relational Database Management System）的数据库语言。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2.4 RDBMS 的核心元素&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;字段&lt;/strong&gt;：一列数据类型相同的数据&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;记录&lt;/strong&gt;：一行记录某个事物的完整信息的数据&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据表&lt;/strong&gt;：由若干字段和记录组成&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据库&lt;/strong&gt;：由若干数据表组成&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;主键&lt;/strong&gt;：唯一标识一行记录的字段&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;3-mysql-环境搭建&#34;&gt; 3 MySQL 环境搭建&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;3.1 服务端搭建&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo apt-get install mysql-server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;启动&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo service mysql start&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ps -ajx|grep mysql  &lt;span class=&#34;comment&#34;&gt;# 查看进程中是否存在MySQL&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;停止&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo service mysql stop&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;3.2 客户端安装&lt;/strong&gt;&lt;/p&gt;
+  &lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo apt-get install mysql-client&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;mysql -uroot -pmysql    &lt;span class=&#34;comment&#34;&gt;#连接命令&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;quit  &lt;span class=&#34;comment&#34;&gt;#退出&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;3.3 MySQL 配置文件&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;配置文件路径&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;/etc/mysql/mysql.conf.d/mysqld.cnf&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;配置文件信息&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;bind&lt;/span&gt; -address 表示服务器绑定的ip,默认为127.0.0.1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;port 表示端口，默认为3306&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;datadir 表示数据库目录，默认为/var/lib/mysql&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;general_log_file 表示普通日志，默认为/var/&lt;span class=&#34;built_in&#34;&gt;log&lt;/span&gt;/mysql/mysql.log&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;log_error表示错误日志，默认为/var/&lt;span class=&#34;built_in&#34;&gt;log&lt;/span&gt;/mysql/error.log&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;配置文件操作命令&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 进入目录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; /etc/mysql/mysql.conf.d&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 编辑配置文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;vi mysqld.cnf&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;4-客户端-navicat&#34;&gt; 4 客户端 Navicat&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;MySQL 数据库本身&lt;u&gt;自带命令行工具&lt;/u&gt;，但使用上功能性和易用性不是太好。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;#安装文件所在目录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;tar -axvf &lt;span class=&#34;comment&#34;&gt;#安装文件名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;#解压的安装文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;./start.mysql  &lt;span class=&#34;comment&#34;&gt;#运行mysql&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;5-mysql-数据类型&#34;&gt; 5 MySQL 数据类型&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;5.1 数值&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;整型&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;TINYINT  &lt;span class=&#34;comment&#34;&gt;#1Bytes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;SMALLINT &lt;span class=&#34;comment&#34;&gt;#2Bytes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;MEDIUMINT  &lt;span class=&#34;comment&#34;&gt;#3Bytes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;INT   &lt;span class=&#34;comment&#34;&gt;#4Bytes     #-2^31~2^31-1或0~2^32-1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;BIGINT &lt;span class=&#34;comment&#34;&gt;#8Bytes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;浮点型&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;float&lt;/span&gt;		&lt;span class=&#34;comment&#34;&gt;#保留6位小数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;double	    &lt;span class=&#34;comment&#34;&gt;#保留16位小数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;decimal  &lt;span class=&#34;comment&#34;&gt;#定点数  例如：decimal(5,2) 5位数字，其中2位小数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;5.2 日期 / 时间&lt;/strong&gt;&lt;/p&gt;
+  &lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;date	年-月-日&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;datetime  年-月-日  时:分:秒&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;timestamp	年-月-日  时:分:秒&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;time	时:分:秒&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;year&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;5.3 字符串（字符）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;char(n)&lt;/strong&gt;  定长字符串     n 个字符&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;varchar(n)&lt;/strong&gt;  变长字符串     n+1 个字符&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;text&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;5.4 枚举类型&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;enum&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;6-数据完整性和约束&#34;&gt; 6 数据完整性和约束&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;6.1 数据完整性&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;用于保证数据的正确性，核实其约束条件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;参照完整性&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;约束&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;作用&lt;/strong&gt;：保证数据完整性和一致性&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;约束类型&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;NOT NULL		非空约束&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;PRIMARY KEY	    主键约束&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;UNIQUE KEY      唯一约束&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;DEFAULT         默认约束&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;FOREIGN KEY     外键约束&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;7-数据库操作流程&#34;&gt; 7 数据库操作流程&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;71-安装数据库服务端&#34;&gt; 7.1 安装数据库服务端&lt;/span&gt;&lt;/h5&gt;
+   &lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo apt-get install mysql-server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h5&gt;&lt;span id=&#34;72-安装数据库客户端&#34;&gt; 7.2 安装数据库客户端&lt;/span&gt;&lt;/h5&gt;
+   &lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo apt-get install mysql-client&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h5&gt;&lt;span id=&#34;73-开启服务端&#34;&gt; 7.3 开启服务端&lt;/span&gt;&lt;/h5&gt;
+   &lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo service mysql start &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h5&gt;&lt;span id=&#34;74-客户端链接服务端&#34;&gt; 7.4 客户端链接服务端&lt;/span&gt;&lt;/h5&gt;
+&lt;h5&gt;&lt;span id=&#34;75-登录数据库&#34;&gt; 7.5  登录数据库&lt;/span&gt;&lt;/h5&gt;
+   &lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;mysql &lt;span class=&#34;operator&#34;&gt;-&lt;/span&gt;uroot &lt;span class=&#34;operator&#34;&gt;-&lt;/span&gt;pmysql&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;mysql &lt;span class=&#34;operator&#34;&gt;-&lt;/span&gt;uroot &lt;span class=&#34;operator&#34;&gt;-&lt;/span&gt;p              &lt;span class=&#34;comment&#34;&gt;--输入密码&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;7.5.1 退出数据库&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;quit    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;exit    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;快捷操作：Ctrl&lt;span class=&#34;operator&#34;&gt;+&lt;/span&gt;D&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;7.5.2 显示数据库版本&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; version();     &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;快捷操作：Ctrl &lt;span class=&#34;operator&#34;&gt;+&lt;/span&gt;Shift &lt;span class=&#34;operator&#34;&gt;+&lt;/span&gt;V&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;7.5.3 显示时间&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; now();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;7.5.4 快捷操作&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Ctrl + a   &lt;span class=&#34;comment&#34;&gt;#到行首&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Ctrl + l    &lt;span class=&#34;comment&#34;&gt;#清屏&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Ctrl + e   &lt;span class=&#34;comment&#34;&gt;#到行尾&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Ctrl + C+回车   &lt;span class=&#34;comment&#34;&gt;#结束&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h5&gt;&lt;span id=&#34;76-创建数据库文件&#34;&gt; 7.6 创建数据库文件&lt;/span&gt;&lt;/h5&gt;
+   &lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;show&lt;/span&gt; databases;   &lt;span class=&#34;comment&#34;&gt;--查看所有数据库&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;create&lt;/span&gt; database 数据库名称;  &lt;span class=&#34;comment&#34;&gt;--查看创建的数据信息,包括字符集及名称等&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; database();  &lt;span class=&#34;comment&#34;&gt;--查看当前使用的数据库&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;create&lt;/span&gt; database 数据库名称  charset&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;utf8;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;use 数据库名称;  &lt;span class=&#34;comment&#34;&gt;--使用数据库&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;drop&lt;/span&gt; database 数据库名称;  &lt;span class=&#34;comment&#34;&gt;--删除指定数据库&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h5&gt;&lt;span id=&#34;77-创建数据表&#34;&gt; 7.7 创建数据表&lt;/span&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;指定字段&lt;/li&gt;
+&lt;li&gt;字段类型  int varchar&lt;/li&gt;
+&lt;li&gt;约束&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;span id=&#34;78-操作数据表&#34;&gt; 7.8 操作数据表&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;7.8.1 查看表结构&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;show&lt;/span&gt; tables;  &lt;span class=&#34;comment&#34;&gt;--查看当前所有的表&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;desc&lt;/span&gt; 表名; &lt;span class=&#34;comment&#34;&gt;--查看表结构&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;create&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; 表名; &lt;span class=&#34;comment&#34;&gt;--查看创建的数据表详细信息&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;7.8.2 约束&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; unsigned &lt;span class=&#34;comment&#34;&gt;--无符号整型&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;auto_increment  &lt;span class=&#34;comment&#34;&gt;--自动增长&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;null&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;--非空&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;primary&lt;/span&gt; key  &lt;span class=&#34;comment&#34;&gt;--主键&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;7.8.3 创建数据表&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;create&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; heima(&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     id &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; unsigned &lt;span class=&#34;keyword&#34;&gt;primary&lt;/span&gt; key auto_increment &lt;span class=&#34;keyword&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;null&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     name &lt;span class=&#34;type&#34;&gt;varchar&lt;/span&gt;(&lt;span class=&#34;number&#34;&gt;20&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;null&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     age &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; unsigned &lt;span class=&#34;keyword&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     high &lt;span class=&#34;type&#34;&gt;decimal&lt;/span&gt;(&lt;span class=&#34;number&#34;&gt;5&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     gender enum(&amp;quot;男&amp;quot;,&amp;quot;女&amp;quot;),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     cls_id &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; unsigned&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; );&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;​&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;7.8.4 数据表操作&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;增&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;alter&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; 表名 &lt;span class=&#34;keyword&#34;&gt;add&lt;/span&gt; 列名 类型; &lt;span class=&#34;comment&#34;&gt;--增加字段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;删&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;alter&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;drop&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; 表名; &lt;span class=&#34;comment&#34;&gt;--删除字段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;drop&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; 表名;   &lt;span class=&#34;comment&#34;&gt;--删除数据表&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;改&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#修改类型及约束&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;alter&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; 表名 modify 列名 类型及约束;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# 重命名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;alter&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; 表名 change 原名  新名 类型及约束;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;查&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;desc&lt;/span&gt; 表名;  &lt;span class=&#34;comment&#34;&gt;--查看表结构&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;7.8.5 表数据操作&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;增&lt;/strong&gt;&lt;/p&gt;
+ &lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;insert&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;into&lt;/span&gt; 表名 &lt;span class=&#34;keyword&#34;&gt;values&lt;/span&gt;();    &lt;span class=&#34;comment&#34;&gt;--全列插入&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;insert&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;into&lt;/span&gt; 表名 (表头&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;，表头&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;values&lt;/span&gt;(值&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;，值&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;);   &lt;span class=&#34;comment&#34;&gt;--部分列插入&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;insert&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;into&lt;/span&gt; 表名 &lt;span class=&#34;keyword&#34;&gt;values&lt;/span&gt;( ),( );   &lt;span class=&#34;comment&#34;&gt;--多行插入&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;删&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#方法一&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;delete&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; 表名 &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; 条件；&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#方法二&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;alter&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; 表名 &lt;span class=&#34;keyword&#34;&gt;add&lt;/span&gt; is_delete bit &lt;span class=&#34;keyword&#34;&gt;default&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;   &lt;span class=&#34;comment&#34;&gt;--定义is_delete字段来保留并标识删除的数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;update 表名 &lt;span class=&#34;keyword&#34;&gt;set&lt;/span&gt; is_delete&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; 条件;  &lt;span class=&#34;comment&#34;&gt;--将删除的数据的标志物置1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; 表名 &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; is_delete&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;  &lt;span class=&#34;comment&#34;&gt;--查询删除的数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;改&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;update 表名 &lt;span class=&#34;keyword&#34;&gt;set&lt;/span&gt; 列名&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;值;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;update 表名 &lt;span class=&#34;keyword&#34;&gt;set&lt;/span&gt; 列名&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;值 &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; 【条件】;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;查&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; 表名;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; 列&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;，列&lt;span class=&#34;number&#34;&gt;2.&lt;/span&gt;.. &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; 表名;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; 列&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; 别名&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;， 列名&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; 别名&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;  &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; 表名;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;文本编辑器&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;notepad++&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;sublime Text&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;&lt;span id=&#34;8-数据表查询&#34;&gt; 8 数据表查询&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;8.1 去重查询&lt;/strong&gt;&lt;/p&gt;
+  &lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;distinct&lt;/span&gt; 列名 &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; 表名; &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;8.2 起别名查询&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;字段起别名&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; 字段名 &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; 别名 &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; 表名;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数据表起别名&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; 字段名 &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; 表名 &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; 别名;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;8.3 where 查询&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;对数据表中的数据进行筛选，结果为 True 的记录会出现在结果集中。&lt;/p&gt;
+  &lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; 表名 &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; 条件;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;比较运算符&lt;/strong&gt;：=、&amp;gt;、&amp;lt;、&amp;gt;=、&amp;lt;=、&amp;lt;&amp;gt; 或者！=、!&amp;gt;、!&amp;lt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询年龄不为18岁的所有学生的名字&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; age &lt;span class=&#34;operator&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;18&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; age &lt;span class=&#34;operator&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;18&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;逻辑运算符&lt;/strong&gt;：and、or、not&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 不在 18岁以上的女性 这个范围内的信息&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;not&lt;/span&gt; (age&lt;span class=&#34;operator&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;number&#34;&gt;18&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; gender&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&amp;quot;女&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;模糊查询&lt;/strong&gt;：like、%(替代任意多个)、_(替代任意一个)、[ ]（指定一个字符、字符串或范围）、[^]（指定字符以外的任一个字符）&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;--查询姓名中 有 &amp;quot;小&amp;quot; 所有的名字&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; name &lt;span class=&#34;keyword&#34;&gt;like&lt;/span&gt; &amp;quot;%小%&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;范围查询&lt;/strong&gt;：in、between … and …&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;--查询身高在165-180，年龄在18-34岁的女性的姓名、性别、身高&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; name &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;姓名&amp;#x27;&lt;/span&gt;,gender &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;性别&amp;#x27;&lt;/span&gt;,height &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;身高&amp;#x27;&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; (height &lt;span class=&#34;keyword&#34;&gt;between&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;165&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;180&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; (age &lt;span class=&#34;keyword&#34;&gt;between&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;18&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;34&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; (gender &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;string&#34;&gt;&amp;#x27;女&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;空值判断&lt;/strong&gt;：is null、is not null&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 判非空is not null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; height &lt;span class=&#34;keyword&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;order 排序查询&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询年龄在18到34岁之间的女性，身高从高到矮排序, 如果身高相同的情况下按照年龄从大到小排序&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; (age &lt;span class=&#34;keyword&#34;&gt;between&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;18&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;34&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; gender&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;order&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; height &lt;span class=&#34;keyword&#34;&gt;desc&lt;/span&gt;, age &lt;span class=&#34;keyword&#34;&gt;desc&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;--查询身高在165-180的男性或者年龄在20-40的女性，并以年龄升序排序，如果相同则以身高降序排列。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; (height &lt;span class=&#34;keyword&#34;&gt;between&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;165&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;180&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; gender&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; (age &lt;span class=&#34;keyword&#34;&gt;between&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;20&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;40&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; gender&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;order&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; age &lt;span class=&#34;keyword&#34;&gt;asc&lt;/span&gt;,height &lt;span class=&#34;keyword&#34;&gt;desc&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;聚合函数&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;将当前所在表当做一个组进行统计&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;count ()：计算总行数&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询男性有多少人&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;count&lt;/span&gt;(&lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; gender&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;; &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;max ()：计算最大值&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询最大的年龄&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;max&lt;/span&gt;(age) &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;min ()：计算最小值&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询最低身高&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;min&lt;/span&gt;(height) &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;sum ()：求和&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 计算所有人的年龄总和&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;sum&lt;/span&gt;(age) &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;avg ()：求平均值&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 计算平均年龄&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;avg&lt;/span&gt;(age) &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;--round() 四舍五入取值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 计算所有人的平均年龄，保留2位小数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; round(&lt;span class=&#34;built_in&#34;&gt;avg&lt;/span&gt;(age),&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;8.4 group 分组查询&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;group by 将查询结果按照 1 个或者多个字段进行分组&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;group by&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 按照性别分组,查询所有的性别&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; gender &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; gender;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;group by + group_concat()&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;group_concat (字段名) 作用：根据分组结果，使用 group_concat () 来放置每一个分组中某字段的集合&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询同种性别中的姓名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; group_concat(name),gender &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; gender;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;group by +&lt;/strong&gt; &lt;strong&gt;聚合函数&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;作用：聚合函数在和 group by 结合使用的时候 统计的对象是每一个分组&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 计算每种性别中的人数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; gender,&lt;span class=&#34;built_in&#34;&gt;count&lt;/span&gt;(&lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; gender;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询每组性别的平均年龄&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;avg&lt;/span&gt;(age),gender &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; gender;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;group by + having&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;作用 : having 作用和 where 类似，但 having 只能用于 group by 对分组后的每组数据过滤 而 where 是用来过滤表数据&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询平均年龄超过30岁的性别，以及姓名 having avg(age) &amp;gt; 30(重点)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; group_concat(name),gender &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; gender &lt;span class=&#34;keyword&#34;&gt;having&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;avg&lt;/span&gt;(age) &lt;span class=&#34;operator&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;30&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;group by + with rollup&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;with rollup 的作用是：在数据表最后新增一行，来记录当前表中该字段对应的操作结果，一般是汇总结果&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- with rollup 汇总的作用(了解)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;count&lt;/span&gt;(&lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt;),gender &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; gender &lt;span class=&#34;keyword&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;rollup&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;8.5 limit 分页查询&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Why&lt;/strong&gt;：如果数据庞大，直接 select * 会导致数据库崩溃&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;含义&lt;/strong&gt;：限制取出记录的数量，limit 要写在 SQL 语句的最后。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;语法格式&lt;/strong&gt;：limit 起始记录 记录数&lt;/li&gt;
+&lt;/ul&gt;
+  &lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 每页显示2个，显示第4页的信息, 按照年龄从小到大排序&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;order&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; age &lt;span class=&#34;keyword&#34;&gt;asc&lt;/span&gt; limit &lt;span class=&#34;number&#34;&gt;6&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;8.6 连接查询&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当查询结果来源于多个表的时候，需要将多张表的内容连接成一个大的数据集进行汇总显示。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;内连接&lt;/strong&gt;：&lt;strong&gt;inner join&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;查询的结果为两个表符合条件匹配的数据集&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;语法格式&lt;/strong&gt;：select 字段  from  表 A inner join  表 B on 表 A. 字段 1 = 表 B. 字段 2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- select ... from 表A inner join 表B;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;inner&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;join&lt;/span&gt; classes;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询 有能够对应班级的学生以及班级信息&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;inner&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;join&lt;/span&gt; classes &lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt; students.cls_id&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;classes.id;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 显示姓名、班级&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; students.name,classes.name &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;inner&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;join&lt;/span&gt; classes &lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt; students.cls_id&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;classes.id;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 给数据表起名字&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; s.name,c.name &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; s &lt;span class=&#34;keyword&#34;&gt;inner&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;join&lt;/span&gt; classes &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; c &lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt; s.cls_id&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;c.id;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;on 和 where 的区别：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;on 连接条件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;where  连接后进行筛选的条件&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;外连接&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;左连接&lt;/strong&gt;：&lt;strong&gt;left join&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  主表在SQL语句的左边，连接后主表中未匹配的从表的数据对应字段以Null展示。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;语法格式&lt;/strong&gt;：主表 left join 从表 on 连接条件；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询每位学生对应的班级信息&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;left&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;join&lt;/span&gt; classes &lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt; students.cls_id&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;classes.id;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;右连接&lt;/strong&gt;：&lt;strong&gt;right join&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  主表在SQL语句的右边，连接后主表中未匹配的从表的数据对应字段以Null展示。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;语法格式&lt;/strong&gt;：主表 right join 从表 on 连接条件；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 将数据表名字互换位置，用left join完成&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; classes &lt;span class=&#34;keyword&#34;&gt;right&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;join&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt; students.cls_id&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;classes.id;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;自连接&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Why：加快查询速度，减少数据表占用空间。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;source 资源     # 快速导入资源数据库&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 从sql文件中导入文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;source areas.sql&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询省的名称为“广东省”的所有城市&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; city.&lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;areas &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; city&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;inner&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;join&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;areas &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; province&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt; city.pid&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;province.aid&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; province.atitle&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&amp;quot;广东省&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;8.7 子查询&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：把一个查询的结果当做另一个查询的条件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;分类&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;标量子查询&lt;/strong&gt;：子查询返回的结果是一个数据 (一行一列)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;列子查询&lt;/strong&gt;：返回的结果是一列 (一列多行)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;行子查询&lt;/strong&gt;：返回的结果是一行 (一行多列)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;语法格式&lt;/strong&gt;：&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;--(1)查询出高于平均身高的信息(height)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; height &lt;span class=&#34;operator&#34;&gt;&amp;gt;&lt;/span&gt; (&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;avg&lt;/span&gt;(height) &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;--(2)查询学生的班级号能够对应的 学生名字&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; cls_id &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; (&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; id &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; classes);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;9-mysql-高级进阶&#34;&gt; 9 MySQL 高级进阶&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;9.1 实战操作&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建数据库&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;create&lt;/span&gt; database 数据库 charset&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;utf8;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;打开数据库&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;use 数据库;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;show databases；查看所有数据库&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;show create database 数据库；查看创建的数据库信息&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建数据表&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;create&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; 数据表 (...);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;desc 数据表；查看数据表结构信息&lt;/li&gt;
+&lt;li&gt;show tables;  查看所有的数据表列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;插入数据&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;insert&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;into&lt;/span&gt; 数据库 &lt;span class=&#34;keyword&#34;&gt;values&lt;/span&gt;(...);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;select * from 数据表；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;常用数据表操作&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt; - 数据查询
+
+ &lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询类型 cate_name 为 &amp;#x27;超级本&amp;#x27; 的商品名称 name 、价格 price ( where )&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; name,price &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; cate_name&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&amp;quot;超级本&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 显示商品的种类&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 1 分组的方式( group by ) &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; cate_name &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; cate_name;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 2 去重的方法( distinct )&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;distinct&lt;/span&gt; cate_name &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 求所有电脑产品的平均价格 avg ,并且保留两位小数( round )&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; round(&lt;span class=&#34;built_in&#34;&gt;avg&lt;/span&gt;(price),&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 显示 每种类型 cate_name (由此可知需要分组)的 平均价格&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;avg&lt;/span&gt;(price),cate_name &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; cate_name;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询 每种类型 的商品中 最贵 max 、最便宜 min 、平均价 avg 、数量 count&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; cate_name,&lt;span class=&#34;built_in&#34;&gt;max&lt;/span&gt;(price),&lt;span class=&#34;built_in&#34;&gt;min&lt;/span&gt;(price),&lt;span class=&#34;built_in&#34;&gt;avg&lt;/span&gt;(price),&lt;span class=&#34;built_in&#34;&gt;count&lt;/span&gt;(&lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; cate_name;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询所有价格大于 平均价格 的商品，并且按 价格降序 排序 order desc&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 1 查询平局价格(avg_price)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;avg&lt;/span&gt;(price) &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; avg_price &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 2 使用子查询&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; price&lt;span class=&#34;operator&#34;&gt;&amp;gt;&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;avg&lt;/span&gt;(price) &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; avg_price &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods) &lt;span class=&#34;keyword&#34;&gt;order&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; price &lt;span class=&#34;keyword&#34;&gt;desc&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查询每种类型中最贵的电脑信息(难)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 1 查找 每种类型 中 最贵的 max_price 价格&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;max&lt;/span&gt;(price) &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; max_price,cate_name &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; cate_name;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 2 关联查询 inner join 每种类型 中最贵的物品信息&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;inner&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;join&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;(&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;max&lt;/span&gt;(price) &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; max_price,cate_name &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; cate_name) &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; max_price_goods&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt; goods.cate_name&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;max_price_goods.cate_name &lt;span class=&#34;keyword&#34;&gt;and&lt;/span&gt; goods.price&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;max_price_goods.max_price;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+ - 数据表优化
+
+   - 优化步骤
+
+     （1）创建商品种类表
+
+     （2）同步数据到商品种类表中
+
+     （3）更新商品信息表数据
+
+     （4）修改商品信息表表结构
+
+ &lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;第一步	创建表 (商品种类表 goods_cates )&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;create&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; if &lt;span class=&#34;keyword&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;exists&lt;/span&gt; goods_cates(&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    id &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; unsigned &lt;span class=&#34;keyword&#34;&gt;primary&lt;/span&gt; key auto_increment,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    name &lt;span class=&#34;type&#34;&gt;varchar&lt;/span&gt;(&lt;span class=&#34;number&#34;&gt;40&lt;/span&gt;) &lt;span class=&#34;keyword&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;第二步	同步 商品分类表 数据 将商品的所有 (种类信息) 写入到 (商品种类表) 中&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 按照 分组 的方式查询 goods 表中的所有 种类(cate_name)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; cate_name &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; cate_name;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;--插入分组后的数据，注意：语句中没有values关键字&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;insert&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;into&lt;/span&gt; goods_cates(name) (&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; cate_name &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;by&lt;/span&gt; cate_name);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;第三部 同步 商品表 数据 通过 goods_cates 数据表来更新 goods 表&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 因为要通过 goods_cates表 更新 goods 表 所以要把两个表连接起来&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;inner&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;join&lt;/span&gt; goods_cates &lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt; goods.cate_name&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;goods_cates.name;	&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 把 商品表 goods 中的 cate_name 全部替换成 商品分类表中的 商品id ( update ... set )&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;update (goods &lt;span class=&#34;keyword&#34;&gt;inner&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;join&lt;/span&gt; goods_cates &lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt; goods.cate_name&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;goods_cates.name) &lt;span class=&#34;keyword&#34;&gt;set&lt;/span&gt; goods.cate_name&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;goods_cates.id;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;第四部 修改表结构&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查看表结构(注意 两个表中的 外键类型需要一致)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;desc&lt;/span&gt; goods;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 修改表结构 alter table 字段名字不同 change,把 cate_name 改成 cate_id int unsigned not null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;alter&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; goods change cate_name cate_id &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; unsigned &lt;span class=&#34;keyword&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;9.2 外键&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定义：一个数据表的主键 A 在另一个数据表 B 中出现，则称为 A 是数据表 B 的外键。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;作用：限制无效信息的插入&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;操作说明&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 外键的使用&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 向goods表里插入任意一条数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;insert&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;into&lt;/span&gt; goods (name,cate_id,brand_id,price) &lt;span class=&#34;keyword&#34;&gt;values&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;老王牌拖拉机&amp;#x27;&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;10&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;10&lt;/span&gt;,&lt;span class=&#34;string&#34;&gt;&amp;#x27;6666&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 约束 数据的插入 使用 外键 foreign key&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- alter table goods add foreign key (brand_id) references goods_brands(id);&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;alter&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;add&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;foreign&lt;/span&gt; key(cate_id) &lt;span class=&#34;keyword&#34;&gt;references&lt;/span&gt; goods_cates(id); &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;alter&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;add&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;foreign&lt;/span&gt; key(brand_id) &lt;span class=&#34;keyword&#34;&gt;references&lt;/span&gt; goods_brands(id);	&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 失败原因 老王牌拖拉机 delete&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- delete from goods where name=&amp;quot;老王牌拖拉机&amp;quot;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;delete&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; name&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&amp;quot;老王牌拖拉机&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 如何取消外键约束&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 需要先获取外键约束名称,该名称系统会自动生成,可以通过查看表创建语句来获取名称&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;create&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; goods;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 获取名称之后就可以根据名称来删除外键约束&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;alter&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;drop&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;foreign&lt;/span&gt; key goods_ibfk_1;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;alter&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; goods &lt;span class=&#34;keyword&#34;&gt;drop&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;foreign&lt;/span&gt; key goods_ibfk_2;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;9.3 视图&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定义：能够把复杂 SQL 语句的功能封装起来的一个虚表&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;特点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;视图是对若干张基本表的引用，一张虚表，&lt;/li&gt;
+&lt;li&gt;不存储具体的数据（基本表数据发生了改变，视图也会跟着改变）&lt;/li&gt;
+&lt;li&gt;方便操作，特别是查询操作，减少复杂的 SQL 语句，增强可读性，复用性；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;操作说明&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 视图的定义方式&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;create&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;view&lt;/span&gt; 视图名称(一般使用v开头) &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt;语句;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查出学生的id,姓名,年龄,性别 和 学生的 班级&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; s.id,s.name,s.age,s.gender,c.name &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; cls_name &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; s &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;inner&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;join&lt;/span&gt; classes &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; c &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt; s.cls_id&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;c.id;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 创建上述结果的视图( v_students )&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- create view v_students as &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;--注意：连接后的字段名不能相同，若相同，需用as其别名区分。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;create&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;view&lt;/span&gt; v_students &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; s.id,s.name,s.age,s.gender,c.name &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; cls_name &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; students &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; s &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;inner&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;join&lt;/span&gt; classes &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; c &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt; s.cls_id&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;c.id;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;--查看视图&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;show&lt;/span&gt; tables;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 删除视图（drop view 视图名字）&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;drop&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;view&lt;/span&gt; v_students;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;9.4 事务&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定义：Transaction，是指作为一个基本工作单元执行的一系列 SQL 语句的操作，要么完全地执行，要么完全地都不执行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;应用&lt;/p&gt;
+&lt;p&gt;A 用户和 B 用户是银行的储户，现在 A 要给 B 转账 500 元，那么需要做以下几件事：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;检查 A 的账户余额 &amp;gt; 500 元；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A 账户中扣除 500 元；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;B 账户中增加 500 元；&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;事务四大特性 ACID&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;原子性 (Atomicity)[ætəˈmɪsəti]&lt;/p&gt;
+&lt;p&gt;一个事务必须被视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部提交成功，&lt;/p&gt;
+&lt;p&gt;要么全部失败回滚，对于一个事务来说，不可能只执行其中的一部分操作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;一致性 (Consistency)&lt;/p&gt;
+&lt;p&gt;数据库总是从一个一致性的状态转换到另一个一致性的状态。（在前面的例子中，一致性确保了即使在执行第三、四条语句之间时系统崩溃，支票账户中也不会损失 500 元，因为事务最终没有提交，所以事务中所做的修改也不会保存到数据库中。）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;隔离性 (Isolation)&lt;/p&gt;
+&lt;p&gt;通常来说，一个事务所做的修改在最终提交以前，对其他事务是不可见的。（在前面的例子中，当执行完第三条语句、第四条语句还未开始时，此时有另外的一个账户汇总程序开始运行，则其看到支票帐户的余额并没有被减去 500 元。）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;持久性 (Durability)&lt;/p&gt;
+&lt;p&gt;一旦事务提交，则其所做的修改会永久保存到数据库。（此时即使系统崩溃，修改的数据也不会丢失。）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;事务的使用&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;开启事务&lt;/p&gt;
+&lt;p&gt;开启事务后执行修改命令，变更会维护到本地缓存中，而不维护到物理表中 begin; 或者 start transaction;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提交事务&lt;/p&gt;
+&lt;p&gt;将缓存中的数据变更维护到物理表中 commit;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;回滚事务&lt;/p&gt;
+&lt;p&gt;放弃缓存中变更的数据 表示事务执行失败 应该回到开始事务前的状态 rollback;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;MySQL 默认的存储引擎：innodb&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;查看指令：show engines \G;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;9.5 索引&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定义：一种特殊的文件 (InnoDB 数据表上的索引是表空间的一个组成部分)，它们包含着对数据表里所有记录的位置信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用说明&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;查看表中已有索引&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;show&lt;/span&gt; index &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; 表名;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;创建索引&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;alter&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; 表名 &lt;span class=&#34;keyword&#34;&gt;add&lt;/span&gt; index 索引名【可选】（字段名，…）;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;删除索引&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;drop&lt;/span&gt; index 索引名称 &lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt; 表名;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;优缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;优点：&lt;/p&gt;
+&lt;p&gt;加快数据的查询速度&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;缺点：&lt;/p&gt;
+&lt;p&gt;创建索引会浪费时间和占用磁盘空间，并且随着数据量的增加所耗费的时间会越来越多。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;经常发生数据更新的表避免使用过多的索引&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数据量小的表没有必要使用索引&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数据量较大同时不会频发发生数据更改的表可以使用索引&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;代码实现&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 创建测试表&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;create&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; test_index(title &lt;span class=&#34;type&#34;&gt;varchar&lt;/span&gt;(&lt;span class=&#34;number&#34;&gt;10&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 向表中插入10万条数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;python3 insert_data.py&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 验证索引性能&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 没有索引&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 开启时间检测：&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;set&lt;/span&gt; profiling&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查找第1万条数据ha-99999&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; test_index &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; title&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&amp;quot;ha-99999&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查看执行时间&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;show&lt;/span&gt; profiles;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 有索引&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 给title字段创建索引&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;alter&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; test_index &lt;span class=&#34;keyword&#34;&gt;add&lt;/span&gt; index(title);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查找第1万条数据ha-99999&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; test_index &lt;span class=&#34;keyword&#34;&gt;where&lt;/span&gt; title&lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt;&amp;quot;ha-99999&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;-- 查看执行时间&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;show&lt;/span&gt; profiles;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;9.6 数据库设计三范式&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定义：设计关系数据库时，遵从不同的规范要求，设计出合理的关系型数据库，这些不同的规范要求被称为不同的范式，&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;各种范式呈递次规范，越高的范式数据库冗余越小。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第一范式（1NF）: 强调的是字段的原子性，即一个字段不能够再分成其他几个字段。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第二范式（2NF）: 满足 1NF 的基础上，另外包含两部分内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一是表必须有一个主键&lt;/li&gt;
+&lt;li&gt;二是非主键字段必须完全依赖于主键，而不能只依赖于主键的一部分&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;主键可以由多个字段共同组成&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;create&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;table&lt;/span&gt; test (&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; name &lt;span class=&#34;type&#34;&gt;varchar&lt;/span&gt;(&lt;span class=&#34;number&#34;&gt;19&lt;/span&gt;),       &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; id &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt;, &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt; &lt;span class=&#34;keyword&#34;&gt;primary&lt;/span&gt; key (name,id) &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;) &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第三范式（3NF）: 满足 2NF，另外非主键字段必须直接依赖于主键，不能存在传递依赖。即不能存在：非主键字段 A 依赖于非主键字段 B，非主键字段 B 依赖于主键的情况。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;其他范式：巴斯科德范式、第五范式等&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;9.7 E-R 模型及表间关系&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定义：实体 - 关系模型，用来描述数据库存储数据的结构模型&lt;/li&gt;
+&lt;li&gt;表现形式；
+&lt;ul&gt;
+&lt;li&gt;实体：用矩形表示，并标注实体名称&lt;/li&gt;
+&lt;li&gt;属性：用椭圆表示，并标注属性名称&lt;/li&gt;
+&lt;li&gt;关系：用菱形表示，并标注关系名称&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;E-R 模型三种关系:
+&lt;ul&gt;
+&lt;li&gt;一对一&lt;/li&gt;
+&lt;li&gt;一对多 (1-n)&lt;/li&gt;
+&lt;li&gt;多对多 (n-n)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;9.8 Python 连接 MySQL&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;数据库编程&lt;/strong&gt;：通过使用程序代码的方式去连接 MySQL 数据库，然后对 MySQL 数据库进行增删改查的方式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;使用步骤&lt;/strong&gt;：（调用 pymysql）&lt;/p&gt;
+&lt;p&gt;①导入 pymysql 包&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; import pymysql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;②创建连接对象&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; connect()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;③获取游标对象&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; 连接对象.cursor()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;④ pymysql 完成数据的查询操作&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; 游标对象.execute()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;⑤ 关闭游标和连接&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;   游标对象.close()   
+
+ 连接对象.close()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;代码实现&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;查询操作&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 导入pymysql包&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; pymysql&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 创建连接对象&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;conn = pymysql.connect(host=&lt;span class=&#34;string&#34;&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;, port=&lt;span class=&#34;number&#34;&gt;3306&lt;/span&gt;, user=&lt;span class=&#34;string&#34;&gt;&amp;quot;root&amp;quot;&lt;/span&gt;, password=&lt;span class=&#34;string&#34;&gt;&amp;quot;mysql&amp;quot;&lt;/span&gt;, database=&lt;span class=&#34;string&#34;&gt;&amp;quot;python_test_1&amp;quot;&lt;/span&gt;, charset=&lt;span class=&#34;string&#34;&gt;&amp;quot;utf8&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 获取游标对象&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cur = conn.cursor()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# pymysql完成数据的查询操作&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sql = &lt;span class=&#34;string&#34;&gt;&amp;quot;select * from students;&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 这里content获取的是sql影响的行数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# content = cur.execute(sql)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# print(content)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cur.execute(sql)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;content = cur.fetchone()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(content)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;content = cur.fetchall()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(content)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 关闭游标和连接&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cur.close()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;conn.close()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;增删改操作&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 导入pymysql包&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; pymysql&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 创建连接对象&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;conn = pymysql.connect(host=&lt;span class=&#34;string&#34;&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;, port=&lt;span class=&#34;number&#34;&gt;3306&lt;/span&gt;, user=&lt;span class=&#34;string&#34;&gt;&amp;quot;root&amp;quot;&lt;/span&gt;, password=&lt;span class=&#34;string&#34;&gt;&amp;quot;mysql&amp;quot;&lt;/span&gt;, database=&lt;span class=&#34;string&#34;&gt;&amp;quot;python_test_1&amp;quot;&lt;/span&gt;, charset=&lt;span class=&#34;string&#34;&gt;&amp;quot;utf8&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 获取游标对象&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cs = conn.cursor()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 增加数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# sql = &amp;quot;insert into students(name) values(&amp;#x27;老王&amp;#x27;)&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# cs.execute(sql)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 删除数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# sql = &amp;quot;delete from students where id=18&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# cs.execute(sql)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 修改数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sql = &lt;span class=&#34;string&#34;&gt;&amp;quot;update students set name=&amp;#x27;老王&amp;#x27; where id=1;&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cs.execute(sql)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; content:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(i)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 提交操作&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;conn.commit()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 关闭游标和连接&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cs.close()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;conn.close()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;9.9 SQL 语句参数化&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;目的&lt;/strong&gt;：防止 SQL 注入&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SQL 注入：用户提交带有恶意的数据与 SQL 语句进行字符串方式的拼接，从而影响了 SQL 语句的语义，最终产生数据泄露的现象。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;参数化实现&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 导入pymysql包&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; pymysql&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 创建连接对象&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;conn = pymysql.connect(host=&lt;span class=&#34;string&#34;&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;, port=&lt;span class=&#34;number&#34;&gt;3306&lt;/span&gt;, user=&lt;span class=&#34;string&#34;&gt;&amp;quot;root&amp;quot;&lt;/span&gt;, password=&lt;span class=&#34;string&#34;&gt;&amp;quot;mysql&amp;quot;&lt;/span&gt;, database=&lt;span class=&#34;string&#34;&gt;&amp;quot;python_test_1&amp;quot;&lt;/span&gt;, charset=&lt;span class=&#34;string&#34;&gt;&amp;quot;utf8&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 获取游标对象&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cs = conn.cursor()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 不安全的方式&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 根据id查询学生信息&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# find_name = input(&amp;quot;请输入您要查询的学生姓名:&amp;quot;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# sql = &amp;quot;select * from students where name=&amp;#x27;%s&amp;#x27;&amp;quot; % find_name&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# # 显示所有的数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# cs.execute(sql)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# content = cs.fetchall()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# for i in content:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#     print(i)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 安全的方式&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 根据id查询学生信息&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;find_name = &lt;span class=&#34;built_in&#34;&gt;input&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot;请输入您要查询的学生姓名:&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sql = &lt;span class=&#34;string&#34;&gt;&amp;quot;select * from students where name=%s&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 显示所有的数据&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cs.execute(sql, [find_name])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;content = cs.fetchall()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; content:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(i)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 关闭游标和连接&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cs.close()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;conn.close()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

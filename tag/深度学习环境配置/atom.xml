@@ -1,0 +1,406 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;深度学习环境配置&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2022-02-20T15:07:20.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2022/02/20/%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/</id>
+        <title>保姆级教程：深度学习环境配置指南</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2022/02/20/%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%80-windows%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE&#34;&gt;一、Windows 系统深度学习环境配置&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#11-%E6%89%93%E5%BC%80anaconda-prompt&#34;&gt;1.1 打开 Anaconda Prompt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#12-%E7%A1%AE%E5%AE%9A%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81%E7%9A%84cuda%E7%89%88%E6%9C%AC&#34;&gt;1.2 确定硬件支持的 CUDA 版本&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#13-%E7%A1%AE%E5%AE%9Apytorch%E7%89%88%E6%9C%ACtorchvision%E7%89%88%E6%9C%AC&#34;&gt;1.3 确定 pytorch 版本，torchvision 版本&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#14-%E9%95%9C%E5%83%8F%E4%B8%AD%E4%B8%8B%E8%BD%BD%E5%AF%B9%E5%BA%94%E7%9A%84%E5%AE%89%E8%A3%85%E5%8C%85&#34;&gt;1.4 镜像中下载对应的安装包&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#15-%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85&#34;&gt;1.5 本地安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#16-%E6%B5%8B%E8%AF%95&#34;&gt;1.6 测试&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#17-%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98&#34;&gt;1.7 遇到的问题&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%8C-mac%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE&#34;&gt;二、Mac 深度学习环境配置&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#21-%E5%AE%89%E8%A3%85anaconda&#34;&gt;2.1 安装 Anaconda&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#22-%E7%A1%AE%E8%AE%A4%E4%B8%8B%E8%BD%BD%E6%83%85%E5%86%B5&#34;&gt;2.2 确认下载情况&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#23-%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%92%8C%E5%8C%85%E7%9A%84%E4%B8%8B%E8%BD%BD&#34;&gt;2.3 虚拟环境和包的下载&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#24-%E9%A2%9D%E5%A4%96%E6%83%85%E5%86%B5&#34;&gt;2.4 额外情况&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%89-ubuntu%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE&#34;&gt;三、Ubuntu 深度学习环境配置&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#31-anacond%E5%AE%89%E8%A3%85&#34;&gt;3.1 Anacond 安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#32-pytorch-cpu%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%85&#34;&gt;3.2 pytorch cpu 版本安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#33-pytorch-gpu%E5%AE%89%E8%A3%85&#34;&gt;3.3 pytorch-gpu 安装&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%9B%9B-%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E&#34;&gt;四、写在最后&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/sz_mmbiz_gif/gYUsOT36vfo79RAKcrwMxL1P0GbYXJWVQpRCia4VbFOPm68ujfAVhBTFkEljX64EwSKsYDL8adZlh0vc6VleHIg/640?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;作者丨伍天舟、马曾欧、陈信达&lt;/p&gt;
+&lt;p&gt;来源丨 Datawhale&lt;/p&gt;
+&lt;p&gt;编辑丨极市平台&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;极市导读&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;俗话说，环境配不对，学习两行泪。本文为保姆级别的教程，详细介绍了 Windows、Mac 和 Ubuntu 的深度学习环境配置方法及问题，帮助卡在环境配置的小伙伴们，解决入门难关。&lt;/p&gt;
+&lt;p&gt;入门深度学习，很多人经历了从入门到放弃的心酸历程，且千军万马倒在了入门第一道关卡：环境配置问题。俗话说，环境配不对，学习两行泪。&lt;/p&gt;
+&lt;p&gt;如果你正在面临配置环境的痛苦，不管你是 Windows 用户、Ubuntu 用户还是苹果死忠粉，这篇文章都是为你量身定制的。接下来就依次讲下 Windows、Mac 和 Ubuntu 的深度学习环境配置问题。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;一-windows-系统深度学习环境配置&#34;&gt; 一、Windows 系统深度学习环境配置&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;系统：Win10 64 位操作系统&lt;/p&gt;
+&lt;p&gt;安装组合：Anaconda+PyTorch (GPU 版)+GTX1060&lt;/p&gt;
+&lt;p&gt;开源贡献：伍天舟，内蒙古农业大学&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;11-打开-anaconda-prompt&#34;&gt; 1.1 打开 Anaconda Prompt&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;1、conda create -n pytorch python=3.7.0：创建名为 pytorch 的虚拟环境，并为该环境安装 python=3.7。&lt;/p&gt;
+&lt;p&gt;2、activate pytorch：激活名为 pytorch 的环境&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f2aFick0ib6tPhgoUyLp3odzFciaAFQwia065usj87mme6jRjMbkRibjBtiaA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;12-确定硬件支持的-cuda-版本&#34;&gt; 1.2 确定硬件支持的 CUDA 版本&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;NVIDIA 控制面板 - 帮助 - 系统信息 - 组件&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f5ZA6PfOw0I25QoykuNrjjBic0DHcLPcNoHwQNYzrQDamrOYsTj2VQ9A/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;2020 年 5 月 19 日 16:46:31，我更新了显卡驱动，看到我的 cuda 支持 11 以内的&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;13-确定-pytorch-版本torchvision-版本&#34;&gt; 1.3 确定 pytorch 版本，torchvision 版本&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;进入 pytorch 官网：&lt;a href=&#34;https://pytorch.org/get-started/locally/&#34;&gt;https://pytorch.org/get-started/locally/&lt;/a&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2ficibObXdHrfaNNpEqZYeHkOichOevPbICJ3XZW0rCmsTHnkeobictlR5ug/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;因为官方源太慢了，这里使用清华源下载&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;14-镜像中下载对应的安装包&#34;&gt; 1.4 镜像中下载对应的安装包&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;清华镜像：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/win-64/&#34;&gt;https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/win-64/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;pytorch：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fLWr8gkqvANlB0MfP6JS32C3fzo7oXSQZiaicTP5rL2gczjl9aViaez99Q/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;torchvision：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fWEPEQ1JgMb7palNKtD8zsOIOuTruXzr8ceABBrUfibEg66fQwhskJOA/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;15-本地安装&#34;&gt; 1.5 本地安装&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;接着第一步，在 pytorch 环境下进行安装，依次输入如下指令。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fXNxmaIm7bLu0KyXn2LAliaSbEibgI0f6Kz1SVGxZ4SrqUR0O93wfhurA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fNlU69d9NiaJuBMKq1M9CV8vBaoNiapuorI5360xmEhTFkbfMaqRem0Vw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;然后回到虚拟环境所在目录，用 conda install anaconda 安装环境所需的基础包&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fImITnnmLnNib7nYJ7I7wIricSnTZKrtP6iaWNdCTsgcCos86YibeV8XBVw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;16-测试&#34;&gt; 1.6 测试&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;代码 1：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; future &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; print_function&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; torch&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;x = torch.rand(&lt;span class=&#34;number&#34;&gt;5&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(x)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;输出类似于以下的张量：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fW870wTpqJgVqmYtOMXttJFiaPTcmFJEV0QytrcYKf2McD9EcJhdGnDQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;代码 2：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; torch&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;torch.cuda.is_available()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;输出：True&lt;/p&gt;
+&lt;p&gt;如果以上两段代码输出无异常，表明环境搭建成功。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;17-遇到的问题&#34;&gt; 1.7 遇到的问题&lt;/span&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;用下面命令创建虚拟环境报错&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;conda create -n py37_torch131 python=3.7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fAcDPWnuy7ibGHe2RwZ5S9Ey0H6D2tCUuvwoTWoH5wRljvicDZC6icyvBQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;【解决方法】&lt;a href=&#34;https://blog.csdn.net/weixin_42329133/article/details/102640763&#34;&gt;https://blog.csdn.net/weixin_42329133/article/details/102640763&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;环境会保存在 Anaconda 目录下的 envs 文件夹内&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;PackagesNotFoundError: The following packages are not available from current channels&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fGIDNSg4kicAfaFSicYNvAGd9qUtKzBicI1U0U7sQlC35EBI8EAMGek5Qg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;【解决方法】：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/hellojiaojiao/p/10790273.html&#34;&gt;https://www.cnblogs.com/hellojiaojiao/p/10790273.html&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;conda 下载太慢问题&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;【解决方案】&lt;a href=&#34;https://mirror.tuna.tsinghua.edu.cn/help/anaconda/&#34;&gt;https://mirror.tuna.tsinghua.edu.cn/help/anaconda/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我直呼一声清华 NB！&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;cuda 安装&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;cuda 历史版本下载：&lt;a href=&#34;https://developer.nvidia.com/cuda-toolkit-archive&#34;&gt;https://developer.nvidia.com/cuda-toolkit-archive&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;要看 NVIDIA 的组件，自己的 CUDA 支持哪个版本，我是 1060 显卡，所以我下的 10.0 版本的 cuda&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fukEibKz1uVFsXTtUI0VxOAq97SWszuzzWFNlibo5LIamXCAClcEK0J0g/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;pytorch 安装&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;官网没有我的组合，我满脸问号&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fbB92U0hPHHawITPnhNqFjJumXpWOcXnmWkG0X2VIz2mqPpLtBias7Eg/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;这里我直接（别忘了先进入刚创建的环境）&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;conda install pytorch torchvision cudatoolkit=10.0 -c pytorch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;jupyter note 如何进入虚拟环境&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;python -m ipykernel install --name 虚拟环境名&lt;/p&gt;
+&lt;p&gt;1. 打开 Anaconda Prompt, 输入 conda env list 查看现有环境&lt;/p&gt;
+&lt;p&gt;2. 输入 activate name（name 是你想切换的环境）&lt;/p&gt;
+&lt;p&gt;3.conda install ipykernel 安装必要插件&lt;/p&gt;
+&lt;p&gt;4.python -m ipykernel install --name Name 将环境添加到 Jyputer 中（Name 是此环境显示在 Jyputer 中的名称，可自定义）&lt;/p&gt;
+&lt;p&gt;删除内核&lt;/p&gt;
+&lt;p&gt;jupyter kernelspec remove 内核名称&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fV4QhicwtmhOr0BXZLNRhu7RukWo61a1rFbmxiaGicv14Fb5E6XicaH5Nibg/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;报错 [Errono 13]&lt;/p&gt;
+&lt;p&gt;[Errno 13] Permission denied: ‘/usr/local/share/jupyter’&lt;/p&gt;
+&lt;p&gt;为此，需要添加–user 选项，将配置文件生成在本账户的家目录下。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python -m ipykernel install --user --name py27-caffe-notebook&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;至此，添加 kernel 完成。查看已有的 kernel：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;jupyter kernelspec list&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;删除已有的 kernel&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;jupyter kernelspec remove kernelname&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;以上的命令删除仅仅是配置文件，并没有卸载相应虚拟环境的 ipykernel，因此若要再次安装相应 python 虚拟环境的 kernel，只需激活虚拟环境，然后&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python -m ipykernel install --name kernelname&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;conda 安装一半总失败&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;把文件下载到本地，进入该文件的目录，然后用命令&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;conda install --offline 包名&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;二-mac-深度学习环境配置&#34;&gt; 二、Mac 深度学习环境配置&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;安装组合：Anaconda+PyTorch (GPU 版)&lt;/p&gt;
+&lt;p&gt;开源贡献：马曾欧，伦敦大学&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;21-安装-anaconda&#34;&gt; 2.1 安装 Anaconda&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Anaconda 的安装有两种方式，这里仅介绍一种最直观的 - macOS graphical install。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.anaconda.com/products/individual%E9%87%8C%EF%BC%8CAnaconda&#34;&gt;https://www.anaconda.com/products/individual 里，Anaconda&lt;/a&gt; Installers 的位置，选择 Python 3.7 下方的 “64-Bit Graphical Installer (442)”。下载好&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fqB2PlsOmDmkv4bJ6Yhnhqic0VjKWTlN7z9eUeAx211WhOgzhOqZ9kUA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;pkg 安装包后点击进入，按下一步完成安装即可。默认安装地点为～/opt。想用 command line install 的，请自行参考：&lt;a href=&#34;https://docs.anaconda.com/anaconda/install/mac-os/&#34;&gt;https://docs.anaconda.com/anaconda/install/mac-os/&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;22-确认下载情况&#34;&gt; 2.2 确认下载情况&lt;/span&gt;&lt;/h5&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fKOk66rtnv6CtGhfOx4Yq9rxz3Yjune8a0hrcZxZS2URWoq0icecjs3A/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;在 Mac 的 Terminal 里，输入&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python --version&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;确保安装的 Python 是 3.x 版本。在 Terminal 输入&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;jupyter notebook&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;弹出网页，即可进入 notebook。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fxJLkz3RN745Yibj0eTDzyicVvjSHrZPNxFZicUnxNkvMDHIQM2AzzWvKA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;在网页右上角点击 Quit，或返回 Terminal，command + c，退出 notebook。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fuiauJicicbOv9lKXricgOmPpRDic0pUNib3icrJgU83efZDTeg5GrYV2vLd9w/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;221-常见问题&#34;&gt; 2.2.1 常见问题&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;如果电脑中下载了多个 Anaconda，运行时可能出现冲突。在 Terminal 中输入&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; ~&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;返回 home 目录，输入&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;cat .bash_profile&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果只能看到一个 Anaconda 版本就没有问题。如果有多个则下载包时有可能&lt;/p&gt;
+&lt;p&gt;造成一定的冲突。用 vim、nano 或其他文本编辑器把旧版本 Anaconda 的&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;export&lt;/span&gt; PATH= ...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;删除。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;23-虚拟环境和包的下载&#34;&gt; 2.3 虚拟环境和包的下载&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;用 conda 去创建虚拟环境和下载对应的包是很简单的一件事。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;231-graphic&#34;&gt; 2.3.1 Graphic&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;点击 Anaconda-Navigator，可以看到自己下载好的应用程序，左上角 “Applications on” 应该指向的是 “base (root)”，左边点击 “Environments” 就可以看到自己建立的虚拟环境和对应的包了。点击左下角的 Create 即可创建一个新的虚拟环境。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f5QNMcAadtwcw9G2GuMcdAQRXuwthlg6rk2pRHx7NT6cOL3CUdUa63g/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;输入环境名称和 python 的版本，点击 create 进行创建。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fiaQVibwteEBwzCZesHTFjlACfeVTvkibAGGx4tXT9SuNo5Liau4iaMiaWMIA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;之后在 Home 页面，确保左上角指向的是你刚刚创建的环境名，在这个环境下 install jupyter notebook，注意原本装的 notebook 是在 base 里的，不可通用。&lt;/p&gt;
+&lt;p&gt;回到 Environments 中，可以看到在此环境中的所有包，左上方选择 All，然后输入想要下载的包名&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f0SXW9eFwalLD8sCcsd1qkKf7kaWC0G5DcibZADnq0ibt9oRIicibicCDrYw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:70%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;然后选中进行下载&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fpBBwSCTUyZBjKqAN6WT2sSsKFJRnsTDzkDMSBRDuWNbvM8ibroOkDYg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;232-command-line&#34;&gt; 2.3.2 Command Line&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;用 command line 完成以上的操作也很简洁。这次以 Pytorch 为例。在 Terminal 中输入&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;conda create --name env_name&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;就可以创建一个虚拟环境，叫 “env_name”。输入&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;conda env list&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;即可看到创建了的所有虚拟环境，其中打 * 的就是当前环境。输入&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;conda activate env_name&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;进入环境&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;conda deactivate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;退出当前虚拟环境，进入 base。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;233-下载-pytorch&#34;&gt; 2.3.3 下载 Pytorch&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;一般情况下 Mac 是不支持 CUDA 的。进入 https://pytorch.org/ 可以看到&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fbEicx48IfCjgILJhcJlbRg4sIjf0C4c2DTzaH4XPoiaQmVtgUNOChOPA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;pytorch 官网显示当前设备应该用的下载语句。此情况，我的是&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;conda install pytorch torchvision -c pytorch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;复制下来，粘贴到 Terminal 中运行就可以开始下载了。&lt;/p&gt;
+&lt;p&gt;下载完成后，在 Terminal 输入&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;之后 import 两个刚下载的包，确认下载完成&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; torch&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; torchvision&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(torch.__version__)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(torchvision.__version__)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果 import 和输出正常，配置就完成了！输入&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fBiaib23VtW02rrf0UVEsQo3HmLqrPiajGbcPrK1eKGn5qp6DUicDEe12YA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;quit()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;就 ok 了。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;24-额外情况&#34;&gt; 2.4 额外情况&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;国内如果直接用 conda 下载，可能会很慢。可以换下载源进行加速。换源方法可参考下列资料中的 Linux 部分：&lt;a href=&#34;https://zhuanlan.zhihu.com/p/87123943%E3%80%82&#34;&gt;https://zhuanlan.zhihu.com/p/87123943。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;conda 下载中常会出现 “Solving environment: failed…” 的问题，如果正常创建虚拟环境，这位问题应该就是没有问题的，如果还发生，可以再创建一个虚拟环境。&lt;/p&gt;
+&lt;p&gt;conda 的社群很大，基本上遇到的问题很有可能有人遇到、有人解答，Google 会是一个很好的解决办法。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;三-ubuntu-深度学习环境配置&#34;&gt; 三、Ubuntu 深度学习环境配置&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;安装组合：Anaconda+PyTorch (CPU 版) 或 PyTorch (GPU 版)&lt;/p&gt;
+&lt;p&gt;开源贡献：陈信达，华北电力大学&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;31-anacond-安装&#34;&gt; 3.1 Anacond 安装&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Anaconda 和 Python 版本是对应的，所以需要选择安装对应 Python2.7 版本的还是 Python3.7 版本或其他版本的，根据自己的需要下载合适的安装包。&lt;/p&gt;
+&lt;p&gt;下载链接：&lt;a href=&#34;https://www.anaconda.com/download/#linux&#34;&gt;https://www.anaconda.com/download/#linux&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;点击下面的 64-Bit (x86) Installer (522 MB)，下载 64 位的版本。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fUjOia81NjbE4AObd6cCP7HRd1dg6VdKdKtg6dAgLu6HyEicrOFpCstbA/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;下载完后的文件名是：Anaconda3-2020.02-Linux-x86_64.sh。&lt;/p&gt;
+&lt;p&gt;cd 到 Anaconda3-2020.02-Linux-x86_64.sh 所在的目录：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fHSCOI0tn1taIlanI9IlocC7YfEYT3K4AydPTOn2TN6Xwbnb2O7ibxaw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;执行 bash Anaconda3-2020.02-Linux-x86_64.sh 开始安装：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fo3F5SvjkR8AF5ANfvcGXgEddSUNIwBeIHJKGQRshARBHXJt8tRSvLQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;一直按回车直到如下界面，然后输入 yes：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fqweNblBIm08xAzLxQAjPnVf7nQmG7ga2slUJUq5zJLLFApfEdyE9icg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;这里直接回车安装到默认路径，或者在 &amp;gt;&amp;gt;&amp;gt; 后输入自定义路径&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2foCN2cAluJqnfwekW1Ua8Xqwl9J1YPvSzeicdN1a5lgU91LS4AYXqYhA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;等待安装进度条走完，然后出现下面的提示，yes 是加入环境变量，no 是不加入环境变量，这里我们以输入 no 为例&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fMvn2AZaQt7Zrnve9gCzwGTvPydPInclO3zN65iaiaAQOvmsAChzs2v5Q/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;接下来手动加入环境变量，先 cd 到～，然后编辑.bashrc 文件：sudo vim .bashrc&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fm3XHEuEzTYTy0pIGREJLYv2I53bVCBiaQNL64PicZ3rn9KsfsSQhLZiaA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;在最下面添加如下几行 (注意。后有空格)：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 区分anaconda python与系统内置python&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;alias&lt;/span&gt; python3=&lt;span class=&#34;string&#34;&gt;&amp;quot;/usr/bin/python3.5&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;alias&lt;/span&gt; python2=&lt;span class=&#34;string&#34;&gt;&amp;quot;/usr/bin/python2.7&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;. /home/cxd/anaconda3/etc/profile.d/conda.sh&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后按 esc + : + wq! 保存&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fZ3SlNw02GUbMibm7CGiaqics05aqIa8HoVS6IuwuFPO5vCsMamBaH19mg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;输入 source .bashrc 来执行刚修改的初始化文档&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fs4TYgDPu2jcKk9OypNtcxZSdWn7h0nD1SAickh5o7VbVg6d3czIdicKQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;下面输入 conda env list 来试试环境变量是否设置成功：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f0zS2p0Zxicwv0DhQwpfxVZV1axVEEzLmEWLRABlxIXIhOX7jQHV7fbg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;试试刚刚设置的使用内置 python 的命令：python2、python3&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fUcZqevh4w4TJ0c13IOOibLuxwezSGXQm2RZWISsyVjmOV0b8aL2uKyw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;如果到这就结束的话，大家安装包的时候肯定会无比煎熬～这里需要将 anaconda 换一下源（加入清华源）：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fPYNWX2pP6QUuHocpI6jjmiax4FicUmrcJvGoJ4XXv6bYVicuPuJMTNDibg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;然后我们创建一个名为 pytorch 的虚拟环境，发现报了下面的错误：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fDYaWmicHibiara8cKs5euxibicd0v3icGM3resVsxgGKcQXSphR2NNU2lcOA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;原因是我们没有清除上次安装留下来的源，输入 sudo vim  .condarc，修改该文件的内容（记得删除 default 那行）：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fIxicz8Om2Fzc14Nlic5w9OsAicRRcicsibVvSYhHLEw7SQxRApY5bbaKicDg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;然后输入 source .condarc，再次创建虚拟环境：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fmrGmOicwRn5kaGrXwqPlGXhPTRfMYTnPpL2lvd86uGXp2LfEQavpyPQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;32-pytorch-cpu-版本安装&#34;&gt; 3.2 pytorch cpu 版本安装&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;打开 pytorch 官网：&lt;a href=&#34;https://pytorch.org/&#34;&gt;https://pytorch.org/&lt;/a&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2faiaz8wQAFLUBicxp7oZ3bo7dnlqJwQiady5nvw4lGhsZiciba7YubQnElcg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;激活刚刚创建的虚拟环境：conda activate pytorch 在安装之前先添加下面这个源：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后输入下面代码：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;conda install pytorch torchvision cpuonly -c pytorch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fy2zLrLl3EWicAKR3Om2cPRJAjMXR4nad8tG21DPEg5ZAtq78Y4icDOXw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;等到安装好后测试一下是否安装完成：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; torch&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(torch.__version__)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;输出如下则安装成功：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fqtMZwPicg22mDbQz3GnVhdhaY1QQA2dDo3PNTcdxHDB0h9bS7IYOUzg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;33-pytorch-gpu-安装&#34;&gt; 3.3 pytorch-gpu 安装&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;331-gpu-驱动安装&#34;&gt; 3.3.1 GPU 驱动安装&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;检测显卡类型&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;执行命令：’ ubuntu-drivers devices’&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;modalias : pci:v000010DEd00001C8Dsv00001028sd0000086Fbc03sc02i00&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;vendor   : NVIDIA Corporation&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;model    : GP107M [GeForce GTX 1050 Mobile]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;driver   : nvidia-driver-390 - distro non-free&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;driver   : nvidia-driver-435 - distro non-free&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;driver   : nvidia-driver-440 - distro non-free recommended&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;driver   : xserver-xorg-video-nouveau - distro free &lt;span class=&#34;built_in&#34;&gt;builtin&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;== /sys/devices/pci0000:00/0000:00:14.3 ==&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;modalias : pci:v00008086d0000A370sv00008086sd000042A4bc02sc80i00&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;vendor   : Intel Corporation&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;model    : Wireless-AC 9560 [Jefferson Peak]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;manual_install: True&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;driver   : backport-iwlwifi-dkms - distro free&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;大家可以看到，这里有个设备是 GTX1050。推荐安装驱动是 440。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;安装驱动&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;安装所有推荐驱动&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo ubuntu-drivers autoinstall&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;安装一个驱动&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo apt install nvidia-440&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h6&gt;&lt;span id=&#34;332-安装-cuda&#34;&gt; 3.3.2 安装 cuda&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;cuda 安装需要对应合适的显卡驱动。下面是驱动和 cuda 的版本对应关系&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Table 1. CUDA Toolkit and Compatible Driver Versions&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CUDA Toolkit    Linux x86_64 Driver Version Windows x86_64 Driver Version&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CUDA 10.2.89    &amp;gt;= 440.33   &amp;gt;= 441.22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CUDA 10.1 (10.1.105 general release, and updates)   &amp;gt;= 418.39   &amp;gt;= 418.96&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CUDA 10.0.130   &amp;gt;= 410.48   &amp;gt;= 411.31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CUDA 9.2 (9.2.148 Update 1) &amp;gt;= 396.37   &amp;gt;= 398.26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CUDA 9.2 (9.2.88)   &amp;gt;= 396.26   &amp;gt;= 397.44&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CUDA 9.1 (9.1.85)   &amp;gt;= 390.46   &amp;gt;= 391.29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CUDA 9.0 (9.0.76)   &amp;gt;= 384.81   &amp;gt;= 385.54&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CUDA 8.0 (8.0.61 GA2)   &amp;gt;= 375.26   &amp;gt;= 376.51&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CUDA 8.0 (8.0.44)   &amp;gt;= 367.48   &amp;gt;= 369.30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CUDA 7.5 (7.5.16)   &amp;gt;= 352.31   &amp;gt;= 353.66&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;CUDA 7.0 (7.0.28)   &amp;gt;= 346.46   &amp;gt;= 347.62&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;cuda 下载链接：&lt;a href=&#34;http://suo.im/6dY8rL&#34;&gt;http://suo.im/6dY8rL&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Installer Type 选择第一第二个都可。但是要在获得 cuda 文件后先检测 gcc 版本。下面以第一个 runfile (local) 安装方式为例。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;安装 gcc&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;linux 一般会自带了 gcc，我们先检测一下自己系统的 gcc 版本&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;gcc --version&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;而 cuda 的 gcc 依赖版本在官方文档的安装指南上会给出&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fEV0YcbUibNNgGd6wt8DtCTB7AHhCW3Eblv1Hu4Gz5zTwgaBrTYfiaAZg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fHgkt0LX69cHmHvLoDWMo9pibxLD8fdPuKwibBjnnM9ibGjj4qpLA1qQKQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;如果版本和 cuda 依赖 gcc 不对应，就安装 cuda 需要的版本&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo apt-get install gcc-7.0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sudo apt-get install g++-7.0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;安装完成后需要更换系统 gcc 版本&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 50&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 50&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;选择需要的版本&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo update-alternatives --config gcc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  选择       路径          优先级  状态------------------------------------------------------------&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  * 0            /usr/bin/gcc-9   50        自动模式&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    1            /usr/bin/g++-9   50        手动模式&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    2            /usr/bin/gcc-7   50        手动模式&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;输入前面显示的编号即可。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;安装 cuda&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo sh cuda_你的版本_linux.run&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;配置环境变量&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo vim ~/.bashrc&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;将下面的命令复制进去&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;export&lt;/span&gt; PATH=/usr/&lt;span class=&#34;built_in&#34;&gt;local&lt;/span&gt;/cuda-10.2/bin&lt;span class=&#34;variable&#34;&gt;$&amp;#123;PATH:+:$PATH&amp;#125;&lt;/span&gt;&amp;#125;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;export&lt;/span&gt; LD_LIBRARY_PATH=/usr/&lt;span class=&#34;built_in&#34;&gt;local&lt;/span&gt;/cuda-10.2/lib64&lt;span class=&#34;variable&#34;&gt;$&amp;#123;LD_LIBRARY_PATH:+:&lt;span class=&#34;variable&#34;&gt;$&amp;#123;LD_LIBRARY_PATH&amp;#125;&lt;/span&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;检查是否安装成功&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;nvcc -V&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h6&gt;&lt;span id=&#34;333-安装-cudnn&#34;&gt; 3.3.3 安装 cudnn&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.nvidia.com/cudnn&#34;&gt;https://developer.nvidia.com/cudnn&lt;/a&gt;   选择对应 cuda 的版本即可&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fdhJEDuSO4piaUUDP3a21Xhiaq9dKxvXB0a2VvicricViaq4hLu9AUfDcMVw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;然后将 cudnn 解压后的 include 和 lib64 文件夹复制到 cuda 中&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo cp cuda/include/cudnn.h    /usr/&lt;span class=&#34;built_in&#34;&gt;local&lt;/span&gt;/cuda-10.2/include    &lt;span class=&#34;comment&#34;&gt;#解压后的文件夹名字为cuda-10.2  &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sudo cp cuda/lib64/libcudnn*    /usr/&lt;span class=&#34;built_in&#34;&gt;local&lt;/span&gt;/cuda-10.2/lib64&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sudo chmod a+r /usr/&lt;span class=&#34;built_in&#34;&gt;local&lt;/span&gt;/cuda-10.2/include/cudnn.h   /usr/&lt;span class=&#34;built_in&#34;&gt;local&lt;/span&gt;/cuda-10.2/lib64/libcudnn*&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h6&gt;&lt;span id=&#34;334-安装-pytorch-gpu&#34;&gt; 3.3.4 安装 pytorch-gpu&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fsB3mCN9yibmbGIuEM3WVGUWRXlLWHZnIk9Qic831NSib5ynakTcibIqEEw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;conda 安装：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 选择自己对应的cuda版本&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;conda install pytorch torchvision cudatoolkit=10.2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;pip 安装：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;pip install torch torchvision -i  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;https://pypi.mirrors.ustc.edu.cn/simple&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;四-写在最后&#34;&gt; 四、写在最后&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;所有的深度学习环境安装指南到这里就结束了，希望能解决你面临的环境配置难题。关于实践项目，可以结合阿里天池的学习赛进行动手实践。&lt;/p&gt;
+&lt;p&gt;数据挖掘学习赛（进行中，5832 人参与）&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://tianchi.aliyun.com/competition/entrance/231784/forum&#34;&gt;https://tianchi.aliyun.com/competition/entrance/231784/forum&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;cv 实践学习赛（进行中，1933 参与）&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://tianchi.aliyun.com/competition/entrance/531795/forum&#34;&gt;https://tianchi.aliyun.com/competition/entrance/531795/forum&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;nlp 实践学习赛（进行中，573 人参与）&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://tianchi.aliyun.com/competition/entrance/531810/forum&#34;&gt;https://tianchi.aliyun.com/competition/entrance/531810/forum&lt;/a&gt;&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="深度学习环境配置" />
+        <updated>2022-02-20T15:07:20.000Z</updated>
+    </entry>
+</feed>

@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;目标跟踪&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2022-07-26T15:53:05.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%A4%9A%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AAMOT%E7%BB%BC%E8%BF%B0/</id>
+        <title>【精华】多目标跟踪MOT综述</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%A4%9A%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AAMOT%E7%BB%BC%E8%BF%B0/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%A4%9A%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AAmot&#34;&gt;多目标跟踪 MOT&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA%E5%88%86%E7%B1%BB&#34;&gt;1 目标跟踪分类&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86%E5%8F%8A%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86&#34;&gt;2 常用数据集及下载管理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-github&#34;&gt;3 Github&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2&#34;&gt;4 参考博客&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;多目标跟踪-mot&#34;&gt; 多目标跟踪 MOT&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;多目标跟踪技术（MOT），作为计算机视觉领域中基础的、重要的研究方向之一，可广泛应用在交通管理、安防监控、自动驾驶、机器人、体育赛事转播等领域，其已成为一大研究热点。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/8d9fa4746bdbb10f4e07718004ca7cde.gif&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;1-目标跟踪分类&#34;&gt; 1 目标跟踪分类&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;● 根据跟踪的目标数量，目标跟踪任务可分为&lt;strong&gt;单目标跟踪（SOT）&lt;strong&gt;和&lt;/strong&gt;多目标跟踪（MOT）&lt;/strong&gt;；&lt;/p&gt;
+&lt;p&gt;● 根据背景状态，可分为&lt;strong&gt;静态背景&lt;/strong&gt;下的目标跟踪和&lt;strong&gt;动态背景&lt;/strong&gt;下的目标跟踪；&lt;/p&gt;
+&lt;p&gt;● 根据摄像头数量，可分为&lt;strong&gt;单摄像头跟踪&lt;/strong&gt;和&lt;strong&gt;多摄像头跟踪&lt;/strong&gt;；&lt;/p&gt;
+&lt;p&gt;● 根据任务计算类型，可分为&lt;strong&gt;在线跟踪&lt;/strong&gt;、&lt;strong&gt;离线跟踪&lt;/strong&gt;；&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/f6f7cdff018c21247104888fa0d98788.png&#34; alt=&#34;img&#34; style=&#34;zoom: 50%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;2-常用数据集及下载管理&#34;&gt; 2 常用数据集及下载管理&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;目前多目标跟踪领域的重要基准是 MOTChallenge，作为上传并公布多目标跟踪方法研究成果的公共平台，其拥有最大的公开行人跟踪数据集。&lt;/p&gt;
+&lt;p&gt;其提供的数据集包括：MOT 15、MOT 16、 MOT 17、MOT 20，这些数据集都提供了训练集的标注，训练集与测试集的检测，以及数据集的目标检测结果，主要侧重于密集场景下行人跟踪任务。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/img_convert/f908a064c78ac5e800f28541fed59114.png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;下载地址&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://opendatalab.com/MOT15&#34;&gt;MOT15&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://opendatalab.com/MOT16&#34;&gt;MOT16&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://opendatalab.com/MOT17&#34;&gt;MOT17&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://opendatalab.com/MOT20&#34;&gt;MOT20&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://opendatalab.com/TAO&#34;&gt;TAO&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;数据集快速下载管理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;首先按照以下命令下载 image_lists.zip 并解压放在 &lt;code&gt;PaddleDetection/dataset/mot&lt;/code&gt;  目录下：&lt;/p&gt;
+&lt;figure class=&#34;highlight plain&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;wget https:&amp;#x2F;&amp;#x2F;dataset.bj.bcebos.com&amp;#x2F;mot&amp;#x2F;image_lists.zip&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后按照以下命令可以快速下载 MIX 数据集的各个子数据集，并解压放在 &lt;code&gt;PaddleDetection/dataset/mot&lt;/code&gt;  目录下：&lt;/p&gt;
+&lt;figure class=&#34;highlight plain&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;wget https:&amp;#x2F;&amp;#x2F;dataset.bj.bcebos.com&amp;#x2F;mot&amp;#x2F;MOT17.zip&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;wget https:&amp;#x2F;&amp;#x2F;dataset.bj.bcebos.com&amp;#x2F;mot&amp;#x2F;Caltech.zip&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;wget https:&amp;#x2F;&amp;#x2F;dataset.bj.bcebos.com&amp;#x2F;mot&amp;#x2F;CUHKSYSU.zip&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;wget https:&amp;#x2F;&amp;#x2F;dataset.bj.bcebos.com&amp;#x2F;mot&amp;#x2F;PRW.zip&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;wget https:&amp;#x2F;&amp;#x2F;dataset.bj.bcebos.com&amp;#x2F;mot&amp;#x2F;Cityscapes.zip&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;wget https:&amp;#x2F;&amp;#x2F;dataset.bj.bcebos.com&amp;#x2F;mot&amp;#x2F;ETHZ.zip&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;wget https:&amp;#x2F;&amp;#x2F;dataset.bj.bcebos.com&amp;#x2F;mot&amp;#x2F;MOT16.zip&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;最终目录为：&lt;/p&gt;
+&lt;figure class=&#34;highlight plain&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;dataset&amp;#x2F;mot&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  |——————image_lists&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————caltech.10k.val  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————caltech.all  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————caltech.train  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————caltech.val  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————citypersons.train  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————citypersons.val  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————cuhksysu.train  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————cuhksysu.val  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————eth.train  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————mot16.train  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————mot17.train  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————prw.train  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            |——————prw.val&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  |——————Caltech&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  |——————Cityscapes&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  |——————CUHKSYSU&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  |——————ETHZ&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  |——————MOT16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  |——————MOT17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  |——————PRW&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h5&gt;&lt;span id=&#34;3-github&#34;&gt; 3 Github&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/open-mmlab/mmtracking&#34;&gt;mmtracking&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.4/configs/mot/README.md&#34;&gt;PaddleDetection&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;4-参考博客&#34;&gt; 4 参考博客&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/OpenDataLab/article/details/125329004&#34;&gt;多目标跟踪（MOT）数据集&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/weixin_55775980/article/details/124369512&#34;&gt;多目标跟踪数据集 ：MOT16、MOT17 数据集介绍以及多目标跟踪指标评测&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/ab66ac3554fa?u_atoken=1cdee26c-3b50-4c4b-957d-113b15ace128&amp;amp;u_asession=01N_uSvDgsrEQyZIAkxXyGNBiwgL_L1nIdZ8tsxPIgDiHC0p815VmFnFjeCcn4zMXtX0KNBwm7Lovlpxjd_P_q4JsKWYrT3W_NKPr8w6oU7K_JKT6t2ius-kVmWmJV90GQPpcarp92QKzyJKyYjREPlmBkFo3NEHBv0PZUm6pbxQU&amp;amp;u_asig=05_fwDKN1_HcXjqquf-kG3i20-lSRa5KGRHJyIcfhNiQHylLYxAvfNWymDZ0KwHcSSK0rPyV9f_he08JW2dDHTOvCASmtHqIXU4WHIi_C2jHP4-sRKX_Wk6zZAHE4OxNgn_6sxy7yTJcwkSDLse9si4P-unDl22Uxja505l4bwn1X9JS7q8ZD7Xtz2Ly-b0kmuyAKRFSVJkkdwVUnyHAIJzVvdoODnDpNiHCtODvbbm49V-SMb0Xsi_IPi0Az_OhWZWPRPQyB_SKrj-61LB_f61u3h9VXwMyh6PgyDIVSG1W92q7SDjAGRM5QPDoiHKF2tDqFWLkYaEDWsFsgEz2vjfaNzpuf1Q5VebdABMF75ipWaoaMr0l6fhpeOBnU4BrPCmWspDxyAEEo4kbsryBKb9Q&amp;amp;u_aref=IvetFgamgfNhC5f%2BjfOsqbdcX3s%3D&#34;&gt;多目标跟踪之 OC-SORT&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/kuweicai/article/details/120873335&#34;&gt;目标跟踪之 MOT 经典算法：ByteTrack 算法原理以及多类别跟踪&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/selami/article/details/122495805&#34;&gt;自动驾驶论文阅读笔记 —— 精读 QDTrack&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/qq_41590635/article/details/124234365?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_ecpm_v1~rank_v31_ecpm-2-124234365-null-null.pc_agg_new_rank&amp;amp;utm_term=%E5%A4%9A%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA%20%E9%A3%9E%E6%A1%A8&amp;amp;spm=1000.2123.3001.4430&#34;&gt;多目标跟踪 MOT 未来研究方向讨论&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.163.com/dy/article/HCN4KH880511CQLG.html&#34;&gt;ECCV 2022 Oral | 大连理工 / 字节 / 港大提出 Unicorn：目标跟踪任务的大统一模型&lt;/a&gt;&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="目标跟踪" />
+        <updated>2022-07-26T15:53:05.000Z</updated>
+    </entry>
+</feed>

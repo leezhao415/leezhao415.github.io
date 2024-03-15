@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;目标检测（人脸检测）&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2022-03-06T07:15:55.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/</id>
+        <title>【精华】最强六大开源轻量级人脸检测项目分析</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%B2%BE%E5%8D%8E%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90&#34;&gt;【精华】最强六大开源轻量级人脸检测项目分析&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-libfacedetection&#34;&gt;1 libfacedetection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-ultra-light-fast-generic-face-detector-1mb&#34;&gt;2 Ultra-Light-Fast-Generic-Face-Detector-1MB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-a-light-and-fast-face-detector-for-edge-devices&#34;&gt;3 A-Light-and-Fast-Face-Detector-for-Edge-Devices&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-centerface&#34;&gt;4 CenterFace&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-dbface&#34;&gt;5 DBFace&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-retinaface-mobilenet025&#34;&gt;6 RetinaFace MobileNet0.25&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;精华最强六大开源轻量级人脸检测项目分析&#34;&gt; 【精华】最强六大开源轻量级人脸检测项目分析&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;随着深度学习的兴起，工业界和学术界越来越多的使用基于深度学习的方法，而不是传统的基于模板匹配，纹理提取或者像素积分图等方法。因为人脸检测本身并不属于特别复杂的任务，因此轻量级的深度学习模型即可满足该任务。本文汇总了六大开源的人脸检测项目。&lt;/p&gt;
+&lt;p&gt;虽说深度学习是个黑箱，但基于深度学习的通用目标检测算法（例 如 Faster-RCNN，SSD，YoloV3、 RetinaNet 等）的检测效果和鲁棒性，远远的超过基于纹理、边缘、Harr 特征、Sift 特征的传统计算机视觉方法，而且近几年随着&lt;strong&gt;模型压缩、量化技术&lt;/strong&gt;的进步，模型运行速度也越来越快。&lt;/p&gt;
+&lt;p&gt;对于通用的目标检测算法，以大家常用的 SSD 和 YoloV3 算法为例，因为算法在设计之初，是为 Pascal VOC 或者 COCO 这种 20 类 和 80 类的多类别任务设计的，因此其 backbone 网络，也就是特征提取网络一般使用 VGG16、Darknet53、ResNet18 这种网络，这些网络的一个通用特点是，其卷积层的卷积核数目通常比较多（例如 256，512），导致模型参数量动辄几千万，运算量巨大。&lt;/p&gt;
+&lt;p&gt;如果我们拿这些通用目标检测算法来检测一类，比如只检测人脸、行人或者车辆时，使用那么多的卷积核数量、那么深的网络其实是不必要的。如果要检测 80 个类别，可能需要更多参数量来拟合，但是对于一两个类别，其实是有点&lt;strong&gt;杀鸡用宰牛刀&lt;/strong&gt;了，如果你的任务不复杂，却用了 ResNet18/34 这种网络，你会发现很多卷积核的激活，其实是 0，导致白白多增加了很多计算量。所以，针对特定的人脸检测任务，其实一些非常轻量级的网络即可满足任务要求。&lt;/p&gt;
+&lt;p&gt;对于比赛刷榜，我们可以用很大的模型，例如某 AI 公司在 WiderFace 上夺冠的模型，结构用 RetinaNet，backbone 用 ResNet152，另外，FPN 结构也安排上，多模型融合安排上，更多的 anchor 组数安排上，这样的模型对于刷榜非常实用，但是在工业界非常不实用，假如要部署到 ARM 的嵌入式设备上，大概率直接卡死。&lt;/p&gt;
+&lt;p&gt;随着 AI 落地为王时代的到来，大家越来越注重精度和速度的权衡（trade off），本文精选了六大轻量级的开源人脸检测项目，并对其进行简单赏析和介绍。&lt;/p&gt;
+&lt;p&gt;言归正传，下面我们按照 Github 上 star 数目从高到低依次介绍。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;1-libfacedetection&#34;&gt; 1 libfacedetection&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Github star: 9.3k&lt;/p&gt;
+&lt;p&gt;作者：于仕琪&lt;/p&gt;
+&lt;p&gt;链接：&lt;a href=&#34;https://github.com/ShiqiYu/libfacedetection&#34;&gt;https://github.com/ShiqiYu/libfacedetection&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;模型参数量：232 万，体积 3.34M&lt;/p&gt;
+&lt;p&gt;前几天元峰已经对该项目进行过一次介绍了，该项目使用一个 SSD 架构的人脸检测模型，在酷睿 i7 的 CPU 上，320x240 分辨率下可以达到 296.21 FPS，下图是该项目在不同分辨率和单线程下的速度概览。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hD0X3AIs3iajYXmuVEianibibG3w2ibTC3D9dySRiaIauXtibJzlWu3kddD4IXA/640?wx_fmt=png&amp;amp;wxfrom=5&amp;amp;wx_lazy=1&amp;amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/p&gt;
+&lt;p&gt;模型结构也比较简单，就是一个轻量级的 SSD 架构，共四个定位层，而且借鉴了 RetinFace 的关键点方法，可以同时回归 5 个关键点。模型体积只有 232 万，体积仅有 3.34M&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jYxiaA1UFYibXU1lMicXZY6k4nhGribokxWkRohPNxC8XbRNNtLEfDxFCjJ2XXnXlY8hXb7xpcSbzU9RQ/640?wx_fmt=jpeg&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:70%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;该项目的最大亮点，其实是于老师搞了一个纯 C++ 的推理版本，不依赖第三方深度学习库，非常有利于工程部署。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2-ultra-light-fast-generic-face-detector-1mb&#34;&gt; 2 Ultra-Light-Fast-Generic-Face-Detector-1MB&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Github star: 4.7k&lt;/p&gt;
+&lt;p&gt;作者：Linzaer&lt;/p&gt;
+&lt;p&gt;链接：&lt;a href=&#34;https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB&#34;&gt;https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;体积：1.04M， int8 量化后 300KB&lt;/p&gt;
+&lt;p&gt;该模型是针对边缘计算设备设计的人脸检测模型。并提供了精简网络和 RFB 网络两种，在 320x240 的输入分辨率下 90~109 FPS 左右。&lt;/p&gt;
+&lt;p&gt;该模型的结构与上述于老师的模型结构非常相似，也是 SSD 架构，共有 4 个定位层，模型结构如下图所示。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hDrV5xqXRtlqXiaiakBTwHDRDDic62JGDMYibW2c3XuLxia6fSUKYiaGRBibmzg/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;另外，该项目提供了 NCNN、MNN、Caffe、Onnx、Opencv 的推理代码，可以给我们部署项目提供大量参考样例。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;3-a-light-and-fast-face-detector-for-edge-devices&#34;&gt; 3 A-Light-and-Fast-Face-Detector-for-Edge-Devices&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Github star: &lt;strong&gt;897&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;作者：YonghaoHe&lt;/p&gt;
+&lt;p&gt;链接：&lt;a href=&#34;https://github.com/YonghaoHe/A-Light-and-Fast-Face-Detector-for-Edge-Devices&#34;&gt;https://github.com/YonghaoHe/A-Light-and-Fast-Face-Detector-for-Edge-Devices&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;体积：6.1 M&lt;/p&gt;
+&lt;p&gt;从名字可以看出来，这也是一个面向边缘设备的检测模型，该模型同样是 SSD 架构的，不过相比前述两个模型，该模型有八个定位层，分别对应 tiny、small、medium 和 large 四个尺度，backbone 网络共有 25 个卷积层。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hD1Htn5CjPXVLdcib6Ha2PS64GGUvnEQ1VrKN1lSX8p4icyoicwRia057bkg/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:70%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;该模型在 Nvidia TX2 下，320x240 分辨率下可以达到 50.92 FPS。&lt;/p&gt;
+&lt;p&gt;另外，该 repo 还提供了人头检测、行人检测、车辆检测的代码和模型。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;4-centerface&#34;&gt; 4 CenterFace&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Github star: 607&lt;/p&gt;
+&lt;p&gt;作者：Star-Clouds&lt;/p&gt;
+&lt;p&gt;链接：&lt;a href=&#34;https://github.com/Star-Clouds/CenterFace&#34;&gt;https://github.com/Star-Clouds/CenterFace&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;体积：7.3 M、同精度小模型 2.3M&lt;/p&gt;
+&lt;p&gt;CenterFace 是 anchor free 的模型结构，应该算是 CenterNet 针对人脸检测任务的特例，这一点上跟 RetinaFace 作为 RetinaNet 的在人脸任务的特例有异曲同工之妙，而且该模型同时回归了五个关键点。&lt;/p&gt;
+&lt;p&gt;该网络的 backbone 是 MobileNetV2，额外添加了 FPN 结构。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hD3icPo8er3sCM2mHu274JGUyNebiaib6l9GgZKnrPllUfPEzySnjTfvtSA/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;下图是 CenterFace 的速度，在 2080TI 上可以仅 4.4ms。Anchor Free 的模型，没有 NMS 的过程，也能节省很多后处理时间。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hDpkOicanQzLGajibia9FXWtH6iaxPnm2zOA4h0PPBUibibK2ibZLjqPhAAZ5DA/640?wx_fmt=png&amp;amp;wxfrom=5&amp;amp;wx_lazy=1&amp;amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;5-dbface&#34;&gt; 5 DBFace&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Github star: &lt;strong&gt;195&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;作者：dlunion&lt;/p&gt;
+&lt;p&gt;链接：&lt;a href=&#34;https://github.com/dlunion/DBFace&#34;&gt;https://github.com/dlunion/DBFace&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;体积：7.03M&lt;/p&gt;
+&lt;p&gt;DBFace 是一个 Anchor Free 的网络结构，模型原理可以说与 CenterFace 非常相似。这里不再展开详细的介绍了。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;6-retinaface-mobilenet025&#34;&gt; 6 RetinaFace MobileNet0.25&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Github star: 不好定义（6.4k）&lt;/p&gt;
+&lt;p&gt;作者：yangfly&lt;/p&gt;
+&lt;p&gt;链接：&lt;a href=&#34;https://github.com/deepinsight/insightface/issues/669&#34;&gt;https://github.com/deepinsight/insightface/issues/669&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;体积：1.68M&lt;/p&gt;
+&lt;p&gt;这个项目来自于知名的 InsightFace 项目，该项目在 Github 有 6.4k star，InsightFace 提出了知名的 RetinaFace、ArcFace 算法，而且开源了详细的训练代码和预训练模型，可以说是非常良心的开源项目。&lt;/p&gt;
+&lt;p&gt;但是 RetinaFace（应该是受 RetianNet 的结构启发而成）本身的 backbone 是 ResNet50，yangfly 大佬将其替换为了 MobileNet0.25，模型大小仅 1.68MB。RetinaFace 的模型结构如下，这里的 backbone 网络是 MobileNet 0.25。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hDtXkb2xBicqVHiasb3EUxfwtkN7WoqibElWgOicGXJAbpw7Tial7YlFLLM7w/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:70%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;​    根据作者的开源结果，我们对以上 6 大开源轻量级人脸检测做一个速度和准确度的对比汇总。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名称&lt;/th&gt;
+&lt;th&gt;模型大小（MB）&lt;/th&gt;
+&lt;th&gt;速度（FPS）&lt;/th&gt;
+&lt;th&gt;WiderFace Easy&lt;/th&gt;
+&lt;th&gt;WiderFace Medium&lt;/th&gt;
+&lt;th&gt;WiderFace Hard&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;libfacedetection&lt;/td&gt;
+&lt;td&gt;3.34&lt;/td&gt;
+&lt;td&gt;296（i7CPU， 320x240）&lt;/td&gt;
+&lt;td&gt;0.773&lt;/td&gt;
+&lt;td&gt;0.718&lt;/td&gt;
+&lt;td&gt;0.485&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;UltraLightFace&lt;/td&gt;
+&lt;td&gt;1.04&lt;/td&gt;
+&lt;td&gt;109（ 320x240）&lt;/td&gt;
+&lt;td&gt;0.853&lt;/td&gt;
+&lt;td&gt;0.819&lt;/td&gt;
+&lt;td&gt;0.539&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;LightFast&lt;/td&gt;
+&lt;td&gt;5.81&lt;/td&gt;
+&lt;td&gt;131（Titan xp， 640x480）&lt;/td&gt;
+&lt;td&gt;0.910&lt;/td&gt;
+&lt;td&gt;0.881&lt;/td&gt;
+&lt;td&gt;0.780&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CenterFace&lt;/td&gt;
+&lt;td&gt;7.3&lt;/td&gt;
+&lt;td&gt;227（2080TI，640x480）&lt;/td&gt;
+&lt;td&gt;0.931&lt;/td&gt;
+&lt;td&gt;0.924&lt;/td&gt;
+&lt;td&gt;0.870&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;DBFace&lt;/td&gt;
+&lt;td&gt;7.03&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;0.905&lt;/td&gt;
+&lt;td&gt;0.896&lt;/td&gt;
+&lt;td&gt;0.794&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RetinaFace MobileNet0.25&lt;/td&gt;
+&lt;td&gt;1.68&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;0.887&lt;/td&gt;
+&lt;td&gt;0.87&lt;/td&gt;
+&lt;td&gt;0.791&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content>
+        <category term="人工智能" />
+        <category term="目标检测（人脸检测）" />
+        <updated>2022-03-06T07:15:55.000Z</updated>
+    </entry>
+</feed>

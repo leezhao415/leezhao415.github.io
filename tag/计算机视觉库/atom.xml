@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;计算机视觉库&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2022-01-20T13:06:30.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2022/01/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/</id>
+        <title>【精华】常用计算机视觉库</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2022/01/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93&#34;&gt;1 常用计算机视觉库&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93-opencv&#34;&gt;（1）计算机视觉库 OpenCV&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB-faceservicecgi&#34;&gt;（2）人脸识别 faceservice.cgi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3opencvdotnetopencv%E7%9A%84net%E7%89%88&#34;&gt;（3）OpenCVDotNet（OpenCV 的.NET 版 ）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95-jviolajones&#34;&gt;（4）人脸检测算法 jViolajones&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5java%E8%A7%86%E8%A7%89%E5%A4%84%E7%90%86%E5%BA%93-javacv&#34;&gt;（5）Java 视觉处理库 JavaCV&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6%E8%BF%90%E5%8A%A8%E6%A3%80%E6%B5%8B%E7%A8%8B%E5%BA%8F-qmotion&#34;&gt;（6）运动检测程序 QMotion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7%E8%A7%86%E9%A2%91%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F-openvss&#34;&gt;（7）视频监控系统 OpenVSS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB-hand-gesture-detection&#34;&gt;（8）手势识别 hand-gesture-detection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E8%AF%86%E5%88%AB-mcvai-tracking&#34;&gt;（9）人脸检测识别 mcvai-tracking&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#10%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E4%B8%8E%E8%B7%9F%E8%B8%AA%E5%BA%93-asmlibrary&#34;&gt;（10）人脸检测与跟踪库 asmlibrary&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#11lua%E8%A7%86%E8%A7%89%E5%BC%80%E5%8F%91%E5%BA%93-libecv&#34;&gt;（11）Lua 视觉开发库 libecv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#12opencvsharpopencv%E7%9A%84net%E5%B0%81%E8%A3%85&#34;&gt;（12）OpenCVSharp（OpenCV 的.Net 封装）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#133d%E8%A7%86%E8%A7%89%E5%BA%93-fvision2010&#34;&gt;（13）3D 视觉库 fvision2010&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#14%E5%9F%BA%E4%BA%8Eqt%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93-qvision&#34;&gt;（14）基于 QT 的计算机视觉库 QVision&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#15%E5%9B%BE%E5%83%8F%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96-cvblob&#34;&gt;（15）图像特征提取 cvBlob&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#16%E5%AE%9E%E6%97%B6%E5%9B%BE%E5%83%8F%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86%E6%BB%A4%E6%B3%A2%E5%BC%80%E5%8F%91%E5%8C%85-gshow&#34;&gt;（16）实时图像 / 视频处理滤波开发包 GShow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#17%E8%A7%86%E9%A2%91%E6%8D%95%E8%8E%B7-api-videoman&#34;&gt;（17）视频捕获 API VideoMan&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#18%E5%BC%80%E6%94%BE%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E9%A1%B9%E7%9B%AE-openpr&#34;&gt;（18）开放模式识别项目 OpenPR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#19opencv%E7%9A%84python%E5%B0%81%E8%A3%85-pyopencv&#34;&gt;（19）OpenCV 的 Python 封装 pyopencv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#20%E8%A7%86%E8%A7%89%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0-qcv&#34;&gt;（20）视觉快速开发平台 qcv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#21%E5%9B%BE%E5%83%8F%E6%8D%95%E8%8E%B7-libv4l2cam&#34;&gt;（21）图像捕获 libv4l2cam&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#22%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95-openvidia&#34;&gt;（22）计算机视觉算法 OpenVIDIA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#23%E9%AB%98%E6%96%AF%E6%A8%A1%E5%9E%8B%E7%82%B9%E9%9B%86%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95-gmmreg&#34;&gt;（23）高斯模型点集配准算法 gmmreg&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#24%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E5%92%8C%E8%A7%86%E8%A7%89%E5%BA%93-ravl&#34;&gt;（24）模式识别和视觉库 RAVL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#25%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%92%8C%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E5%BA%93-lti-lib&#34;&gt;（25）图像处理和计算机视觉常用算法库 LTI-Lib&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#26opencv%E4%BC%98%E5%8C%96-opencv-dsp-acceleration&#34;&gt;（26）OpenCV 优化 opencv-dsp-acceleration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#27c%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93-integrating-vision-toolkit&#34;&gt;（27）C++ 计算机视觉库 Integrating Vision Toolkit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#28%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%92%8C%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF%E7%9A%84%E5%B7%A5%E5%85%B7%E5%8C%85-egt&#34;&gt;（28）计算机视觉和机器人技术的工具包 EGT&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#29opencv%E7%9A%84%E6%89%A9%E5%B1%95%E5%BA%93-imagenets&#34;&gt;（29）OpenCV 的扩展库 ImageNets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#30libvideogfx&#34;&gt;（30）libvideogfx&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#31matlab%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%8C%85-mvision&#34;&gt;（31）Matlab 计算机视觉包 mVision&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#32scilab%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93-sip&#34;&gt;（32）Scilab 的计算机视觉库 SIP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#33stair-vision-library&#34;&gt;（33）STAIR Vision Library&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-python%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93&#34;&gt;2 Python 计算机视觉库&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%80-python%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BA%93&#34;&gt;一、python 计算机视觉中常用的库&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%8C-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C&#34;&gt;二、基本操作&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%89-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0&#34;&gt;三、常用的函数&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-%E5%B8%B8%E7%94%A8%E5%8D%81%E5%A4%A7%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AE%97%E6%B3%95%E5%BA%93&#34;&gt;3 常用十大图像处理算法库&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1scikit-image&#34;&gt;（1）scikit Image&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2numpy&#34;&gt;（2）Numpy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3scipy&#34;&gt;（3）Scipy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4pil-pillow&#34;&gt;（4）PIL/ Pillow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5opencv-python&#34;&gt;（5）OpenCV-Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6simplecv&#34;&gt;（6）SimpleCV&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7mahotas&#34;&gt;（7）Mahotas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8simpleitk&#34;&gt;（8）SimpleITK&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9pgmagick&#34;&gt;（9）pgmagick&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#10pycairo&#34;&gt;（10）Pycairo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;1-常用计算机视觉库&#34;&gt; 1 常用计算机视觉库&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;1计算机视觉库-opencv&#34;&gt; （1）计算机视觉库 OpenCV&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;OpenCV 是 Intel? 开源计 算机视觉库。它由一系列 C 函数和少量 C++ 类构成，实现了图像处理和计算机视觉方面的很多通用算法。 OpenCV 拥有包括 300 多个 C 函数的跨平台的中、高层 API。它不依赖于其它的外部库 —— 尽管也可以使用某些外部库。 OpenCV 对非商业…&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2人脸识别-faceservicecgi&#34;&gt; （2）人脸识别 faceservice.cgi&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;faceservice.cgi 是一个用来进行人脸识别的 CGI 程序， 你可以通过上传图像，然后该程序即告诉你人脸的大概坐标位置。faceservice 是采用 OpenCV 库进行开发的。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;3opencvdotnetopencv-的net-版&#34;&gt; （3）OpenCVDotNet（OpenCV 的.NET 版 ）&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;OpenCVDotNet 是一个 .NET 对 OpenCV 包的封装。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;4人脸检测算法-jviolajones&#34;&gt; （4）人脸检测算法 jViolajones&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;jViolajones 是人脸检测算法 Viola-Jones 的一个 Java 实现，并能够加载 OpenCV XML 文件。 示例代码：&lt;a href=&#34;http://www.oschina.net/code/snippet_12_2033&#34;&gt;http://www.oschina.net/code/snippet_12_2033&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;5java-视觉处理库-javacv&#34;&gt; （5）Java 视觉处理库 JavaCV&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;JavaCV 提供了在计算机视觉领域的封装库，包括：OpenCV、ARToolKitPlus、libdc1394 2.x 、PGR FlyCapture 和 FFmpeg。此外，该工具可以很容易地使用 Java 平台的功能。 JavaCV 还带有硬件加速的全屏幕图像显示 (CanvasFrame)，易于在多个内核中执行并行代码 (并…&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;6运动检测程序-qmotion&#34;&gt; （6）运动检测程序 QMotion&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;QMotion 是一个采用 OpenCV 开发的运动检测程序，基于 QT。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;7视频监控系统-openvss&#34;&gt; （7）视频监控系统 OpenVSS&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;OpenVSS - 开放平台的视频监控系统 - 是一个系统级别的视频监控软件视频分析框架 (VAF) 的视频分析与检索和播放服务，记录和索引技术。它被设计成插件式的支持多摄像头平台，多分析仪模块 (OpenCV 的集成)，以及多核心架构。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;8手势识别-hand-gesture-detection&#34;&gt; （8）手势识别 hand-gesture-detection&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;手势识别，用 OpenCV 实现&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;9人脸检测识别-mcvai-tracking&#34;&gt; （9）人脸检测识别 mcvai-tracking&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;提供人脸检测、识别与检测特定人脸 的功能，示例代码&lt;/p&gt;
+&lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cvReleaseImage&lt;/span&gt;( &amp;amp;gray ); &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cvReleaseMemStorage&lt;/span&gt;(&amp;amp;storage); &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cvReleaseHaarClassifierCascade&lt;/span&gt;(&amp;amp;cascade);...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h5&gt;&lt;span id=&#34;10人脸检测与跟踪库-asmlibrary&#34;&gt; （10）人脸检测与跟踪库 asmlibrary&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Active Shape Model Library (ASMLibrary?) SDK, 用 OpenCV 开发，用于人脸检测与跟踪。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;11lua-视觉开发库-libecv&#34;&gt; （11）Lua 视觉开发库 libecv&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;ECV 是 lua 的计算机视觉开发库 (目前只提供 linux 支持)&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;12opencvsharpopencv-的net-封装&#34;&gt; （12）OpenCVSharp（OpenCV 的.Net 封装）&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;OpenCVSharp &lt;a href=&#34;http://xn--OpenCV-9m7iglh22q2e8a.Net&#34;&gt;是一个 OpenCV 的.Net&lt;/a&gt; wrapper，应用最新的 OpenCV 库开发，使用习惯比 EmguCV 更接近原始的 OpenCV，有详细的使用样例供参考。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;133d-视觉库-fvision2010&#34;&gt; （13）3D 视觉库 fvision2010&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;基于 OpenCV 构建的图像处理和 3D 视觉库。 示例代码：&lt;/p&gt;
+&lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;ImageSequenceReaderFactory factory; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ImageSequenceReader* reader = factory.&lt;span class=&#34;built_in&#34;&gt;pathRegex&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot;c:/a/im_d.jpg&amp;quot;&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;20&lt;/span&gt;); &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;//ImageSequenceReader* reader = factory.avi(&amp;quot;a.avi&amp;quot;); &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (reader == &lt;span class=&#34;literal&#34;&gt;NULL&lt;/span&gt;) &amp;#123; ...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h5&gt;&lt;span id=&#34;14基于-qt-的计算机视觉库-qvision&#34;&gt; （14）基于 QT 的计算机视觉库 QVision&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;基于 QT 的面向对象的多平台计算机视觉库。可以方便的创建图形化应用程序，算法库主要从 OpenCV，GSL，CGAL，IPP，Octave 等高性能库借鉴而来。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;15图像特征提取-cvblob&#34;&gt; （15）图像特征提取 cvBlob&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;cvBlob 是计算机视觉应用中在二值图像里寻找连通域的库。能够执行连通域分析与特征提取.&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;16实时图像-视频处理滤波开发包-gshow&#34;&gt; （16）实时图像 / 视频处理滤波开发包 GShow&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;GShow is a real-time image/video processing filter development kit. It successfully integrates DirectX11 with DirectShow framework. So it has the following features: GShow 是实时 图像 / 视频 处理滤波开发包，集成 DiretX11。…&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;17视频捕获-api-videoman&#34;&gt; （17）视频捕获 API VideoMan&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;VideoMan 提供一组视频捕获 API 。支持多种视频流同时输入 (视频传输线、USB 摄像头和视频文件等)。能利用 OpenGL 对输入进行处理，方便的与 OpenCV，CUDA 等集成开发计算机视觉系统。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;18开放模式识别项目-openpr&#34;&gt; （18）开放模式识别项目 OpenPR&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Pattern Recognition project (开放模式识别项目)，致力于开发出一套包含图像处理、计算机视觉、自然语言处理、模式识别、机器学习和相关领域算法的函数库。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;19opencv-的-python-封装-pyopencv&#34;&gt; （19）OpenCV 的 Python 封装 pyopencv&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;OpenCV 的 Python 封装， 主要特性包括： 提供与 OpenCV 2.x 中最新的 C&lt;ins&gt; 接口极为相似的 Python 接口，并且包括 C&lt;/ins&gt; 中不包括的 C 接口 提供对 OpenCV 2.x 中所有主要部件的绑定：CxCORE (almost complete), CxFLANN (complete), Cv (complete), CvAux (C++ part almost…&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;20视觉快速开发平台-qcv&#34;&gt; （20）视觉快速开发平台 qcv&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;计算机视觉快速开发平台，提供测试框架，使开发者可以专注于算法研究。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;21图像捕获-libv4l2cam&#34;&gt; （21）图像捕获 libv4l2cam&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;对函数库 v412 的封装，从网络摄像头等硬件获得图像数据，支持 YUYV 裸数据输出和 BGR24 的 OpenCV IplImage 输出&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;22计算机视觉算法-openvidia&#34;&gt; （22）计算机视觉算法 OpenVIDIA&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;OpenVIDIA projects implement computer vision algorithms running on on graphics hardware such as single or multiple graphics processing units(GPUs) using OpenGL, Cg and CUDA-C. Some samples will soon support OpenCL and Direct Compute API’…&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;23高斯模型点集配准算法-gmmreg&#34;&gt; （23）高斯模型点集配准算法 gmmreg&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;实现了基于混合高斯模型的点集配准 算法，该算法描述在论文： A Robust Algorithm for Point Set Registration Using Mixture of Gaussians, Bing Jian and Baba C. Vemuri. ，实现了 C++/Matlab/Python 接口…&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;24模式识别和视觉库-ravl&#34;&gt; （24）模式识别和视觉库 RAVL&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Recognition And Vision Library (RAVL) 是一个通用 C++ 库，包含计算机视觉、模式识别等模块。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;25图像处理和计算机视觉常用算法库-lti-lib&#34;&gt; （25）图像处理和计算机视觉常用算法库 LTI-Lib&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;LTI-Lib 是一个包含图像处理和计算机视觉常用算法和数据结构的面向对象库，提供 Windows 下的 VC 版本和 Linux 下的 gcc 版本，主要包含以下几方面内容： 1、线性代数 2、聚类分析 3、图像处理 4、可视化和绘图工具&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;26opencv-优化-opencv-dsp-acceleration&#34;&gt; （26）OpenCV 优化 opencv-dsp-acceleration&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;优化了 OpenCV 库在 DSP 上的速度。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;27c-计算机视觉库-integrating-vision-toolkit&#34;&gt; （27）C++ 计算机视觉库 Integrating Vision Toolkit&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Integrating Vision Toolkit (IVT) 是一个强大而迅速的 C++ 计算机视觉库，拥有易用的接口和面向对象的架构，并且含有自己的一套跨平台 GUI 组件，另外可以选择集成 OpenCV&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;28计算机视觉和机器人技术的工具包-egt&#34;&gt; （28）计算机视觉和机器人技术的工具包 EGT&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;The Epipolar Geometry Toolbox (EGT) is a toolbox designed for Matlab (by Mathworks Inc.). EGT provides a wide set of functions to approach computer vision and robotics problems with single and multiple views, and with different vision se…&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;29opencv-的扩展库-imagenets&#34;&gt; （29）OpenCV 的扩展库 ImageNets&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;ImageNets 是对 OpenCV 的扩展，提供对机器人视觉算法方面友好的支持，使用 Nokia 的 QT 编写界面。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;30libvideogfx&#34;&gt; （30）libvideogfx&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;视频处理、计算机视觉和计算机图形学的快速开发库。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;31matlab-计算机视觉包-mvision&#34;&gt; （31）Matlab 计算机视觉包 mVision&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Matlab 的计算机视觉包，包含用于观察结果的 GUI 组件，貌似也停止开发了，拿来做学习用挺不错的。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;32scilab-的计算机视觉库-sip&#34;&gt; （32）Scilab 的计算机视觉库 SIP&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;SIP 是 Scilab (一种免费的类 Matlab 编程环境) 的图像处理和计算机视觉库。SIP 可以读写 JPEG/PNG/BMP 格式的图片。具备图像滤波、分割、边缘检测、形态学处理和形状分析等功能。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;33stair-vision-library&#34;&gt; （33）STAIR Vision Library&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;STAIR Vision Library (SVL) 最初是为支持斯坦福智能机器人设计的，提供对计算机视觉、机器学习和概率统计模型的支持。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;2-python-计算机视觉库&#34;&gt; 2 Python 计算机视觉库&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;一-python-计算机视觉中常用的库&#34;&gt; 一、python 计算机视觉中常用的库&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;一般我们在处理计算机视觉任务时会同时调用多种库，初学者在复现论文中的代码时往往会不知所措，不明白各种库的作用。这里笔者简单介绍一下自己平时在处理计算机视觉任务时的是如何将这些库函数与我们的计算机视觉任务进行关联，不足之处也请各位可以指出。&lt;br&gt;
+计算机视觉任务需要调用的库大致可分为三类： &lt;code&gt;图像处理类&lt;/code&gt; （PIL、OpenCV、Matplotlib 等）， &lt;code&gt;数学类&lt;/code&gt; （Numpy）， &lt;code&gt;神经网络类&lt;/code&gt; （Tensorflow、Pytorch 等）。首先，我们通过调用图像处理类的库函数，进行图像处理的基本操作，例如：图像读取、颜色空间变换、以及常用的图像处理算法。然后，当你需要实现自己的图像处理算法时，需要将图像数据类型转换为数组类型进行运算，这时候需要使用数学类的库函数。最后，使用神经网络时，则需要将数组类型的数据转换到张量类型。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;（一）PIL（Python Image Library）图像处理库&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;（二）Matplotlib&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;（三）Numpy&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;（四）Pytorch&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;（五）torchvision&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;（六）SKimage&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;（七）OpenCV&lt;/strong&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;二-基本操作&#34;&gt; 二、基本操作&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;一利用-pil-读取图像数据&#34;&gt; （一）利用 PIL 读取图像数据&lt;/span&gt;&lt;/h6&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; PIL &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; Image&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;imgPath = &lt;span class=&#34;string&#34;&gt;&amp;quot;F:/path/test.png&amp;quot;&lt;/span&gt;&lt;span class=&#34;comment&#34;&gt;#图像路径&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;img = Image.&lt;span class=&#34;built_in&#34;&gt;open&lt;/span&gt;(imgPath)   &lt;span class=&#34;comment&#34;&gt;#读取图像，保存为PIL.Image类型，默认为RGB格式&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#&amp;lt;PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=1728x2304 at 0x241C742AA90&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h6&gt;&lt;span id=&#34;二使用-matplotlib-显示图像&#34;&gt; （二）使用 Matplotlib 显示图像&lt;/span&gt;&lt;/h6&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; matplotlib.pyplot &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; plt&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.imshow(img)&lt;span class=&#34;comment&#34;&gt;#plt.imshow()函数负责对图像进行处理，并显示其格式，但是不能显示图像内容。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.axis(&lt;span class=&#34;string&#34;&gt;&amp;#x27;off&amp;#x27;&lt;/span&gt;)&lt;span class=&#34;comment&#34;&gt;#显示的图像不展示轴线&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.show()     &lt;span class=&#34;comment&#34;&gt;#显示图像内容&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h6&gt;&lt;span id=&#34;三pil-类型与-numpy-类型转换&#34;&gt; （三）PIL 类型与 Numpy 类型转换&lt;/span&gt;&lt;/h6&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; numpy &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; np&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;img = np.array(img)&lt;span class=&#34;comment&#34;&gt;#将PIL.Image类型转换为np类型&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;img = Image.fromarray(img.astype(&lt;span class=&#34;string&#34;&gt;&amp;#x27;uint8&amp;#x27;&lt;/span&gt;))&lt;span class=&#34;comment&#34;&gt;#将np类型转换为PIL.Image类型&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h6&gt;&lt;span id=&#34;四-numpy-类型与-torch-类型互换&#34;&gt; （四) Numpy 类型与 torch 类型互换&lt;/span&gt;&lt;/h6&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; torch&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;img = torch.from_numpy(img).&lt;span class=&#34;built_in&#34;&gt;float&lt;/span&gt;()&lt;span class=&#34;comment&#34;&gt;#将np类型转换为张量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;img = img.numpy()&lt;span class=&#34;comment&#34;&gt;#将张量转换为np类型&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h6&gt;&lt;span id=&#34;五保存张量为图像&#34;&gt; （五）保存张量为图像&lt;/span&gt;&lt;/h6&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; torchvision&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;imgPath = &lt;span class=&#34;string&#34;&gt;&amp;quot;F:/path/test.png&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;torchvision.utils.save_image(img,imgPath)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h5&gt;&lt;span id=&#34;三-常用的函数&#34;&gt; 三、常用的函数&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;一打开图像返回张量&#34;&gt; （一）打开图像，返回张量&lt;/span&gt;&lt;/h6&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; PIL &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; Image&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; numpy &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; np&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; torch&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; PIL &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; Image&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; numpy &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; np&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; torch&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#输入图片路径，返回四维张量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;openImage&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;path, w=-&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, h=-&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, mode=&lt;span class=&#34;string&#34;&gt;&amp;#x27;RGB&amp;#x27;&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img = Image.&lt;span class=&#34;built_in&#34;&gt;open&lt;/span&gt;(path)                 &lt;span class=&#34;comment&#34;&gt;#打开路径下的图片，保存维PIL.Image类型&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(w==-&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        w,_ = img.size&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(h==-&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        _,h = img.size&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img = img.resize((w,h),Image.ANTIALIAS)&lt;span class=&#34;comment&#34;&gt;#修改图像尺寸&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img = img.convert(mode)                &lt;span class=&#34;comment&#34;&gt;#转换颜色空间&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img = np.array(img)                    &lt;span class=&#34;comment&#34;&gt;#将Image类型转换维Numpy类型&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img = img/&lt;span class=&#34;number&#34;&gt;255.0&lt;/span&gt;                        &lt;span class=&#34;comment&#34;&gt;#将图像进行归一化&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img = torch.from_numpy(img).&lt;span class=&#34;built_in&#34;&gt;float&lt;/span&gt;()    &lt;span class=&#34;comment&#34;&gt;#将Numpy类型转换维张量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    d = img.dim()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(d==&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        img = img.unsqueeze(&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;).unsqueeze(&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;elif&lt;/span&gt;(d==&lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        img = img.permute(&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;)           &lt;span class=&#34;comment&#34;&gt;#更换维度，因为Image表示通道在第三维，变为张量后转换到第一维&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        img = img.unsqueeze(&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)             &lt;span class=&#34;comment&#34;&gt;#增加维度&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; img &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h6&gt;&lt;span id=&#34;二显示使用张量表示的图像&#34;&gt; （二）显示使用张量表示的图像&lt;/span&gt;&lt;/h6&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; PIL &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; Image&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; numpy &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; np&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; torch&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; matplotlib.pyplot &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; plt&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#输入一个四维张量，转换为PIL格式后显示&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;showImage&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;img, mode=&lt;span class=&#34;string&#34;&gt;&amp;#x27;RGB&amp;#x27;&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    _,c,_,_ = img.size()                                     &lt;span class=&#34;comment&#34;&gt;#获取img的尺寸&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(c==&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;):                                                &lt;span class=&#34;comment&#34;&gt;#判断是否为单通道&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        img = img[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;][&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        img = img[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        img = img.permute(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img = img.numpy()                                        &lt;span class=&#34;comment&#34;&gt;#将张量转换为np数组&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img = img*&lt;span class=&#34;number&#34;&gt;255.0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img = Image.fromarray(img.astype(&lt;span class=&#34;string&#34;&gt;&amp;#x27;uint8&amp;#x27;&lt;/span&gt;)).convert(mode)&lt;span class=&#34;comment&#34;&gt;#将np数组转换为PIL类型&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    plt.imshow(img)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    plt.axis(&lt;span class=&#34;string&#34;&gt;&amp;#x27;off&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    plt.show()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h6&gt;&lt;span id=&#34;三保存张量为图像&#34;&gt; （三）保存张量为图像&lt;/span&gt;&lt;/h6&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; PIL &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; Image&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; numpy &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; np&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; torch&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; matplotlib.pyplot &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; plt&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#输入一个四维张量，转换为PIL格式后保存&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;saveImage&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;img,path,mode=&lt;span class=&#34;string&#34;&gt;&amp;#x27;RGB&amp;#x27;&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    _,c,_,_ = img.size()                                     &lt;span class=&#34;comment&#34;&gt;#获取img的尺寸&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt;(c==&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;):                                                &lt;span class=&#34;comment&#34;&gt;#判断是否为单通道&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        img = img[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;][&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;elif&lt;/span&gt;(c==&lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        img = img[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        img = img.permute(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img = img.numpy()                                        &lt;span class=&#34;comment&#34;&gt;#将张量转换为np数组&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img = img*&lt;span class=&#34;number&#34;&gt;255.0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img = Image.fromarray(img.astype(&lt;span class=&#34;string&#34;&gt;&amp;#x27;uint8&amp;#x27;&lt;/span&gt;)).convert(mode)&lt;span class=&#34;comment&#34;&gt;#将np数组转换为PIL类型&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    img.save(path)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;3-常用十大图像处理算法库&#34;&gt; 3 常用十大图像处理算法库&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;当今世界充满了各种数据，而图像是其中高的重要组成部分。然而，若想其有所应用，我们需要对这些图像进行处理。图像处理是分析和操纵数字图像的过程，旨在提高其质量或从中提取一些信息，然后将其用于某些方面。&lt;/p&gt;
+&lt;p&gt;图像处理中的常见任务包括显示图像，基本操作（如裁剪、翻转、旋转等），图像分割，分类和特征提取，图像恢复和图像识别等。 Python 之成为图像处理任务的最佳选择，是因为这一科学编程语言日益普及，并且其自身免费提供许多最先进的图像处理工具。&lt;/p&gt;
+&lt;p&gt;让我们看一下用于图像处理任务的一些常用 Python 库。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;1scikit-image&#34;&gt; （1）scikit Image&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;scikit-image 是一个基于 numpy 数组的开源 Python 包。 它实现了用于研究、教育和工业应用的算法和实用程序。 即使是对于那些刚接触 Python 的人，它也是一个相当简单的库。 此库代码质量非常高并已经过同行评审，是由一个活跃的志愿者社区编写的。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;使用说明文档&lt;/code&gt; ：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://scikit-image.org/docs/stable/user_guide.html&#34;&gt;https://scikit-image.org/docs/stable/user_guide.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;用法举例&lt;/code&gt; ：图像过滤、模版匹配&lt;/p&gt;
+&lt;p&gt;可使用 “skimage” 来导入该库。大多数功能都能在子模块中找到。&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; matplotlib.pyplot &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; plt&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%matplotlib inline&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; skimage &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; data,filters&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;image = data.coins()&lt;span class=&#34;comment&#34;&gt;# ... or any other NumPy array!&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;edges = filters.sobel(image)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.imshow(edges, cmap=&lt;span class=&#34;string&#34;&gt;&amp;#x27;gray&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU8yQUlxVW1BQUJQZl9qWUczbzQ0Ni5wbmc?x-oss-process=image/format,png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;模版匹配（使用 match_template 函数）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU82QUVrblJBQUJLbndIVnI2VTA1My5wbmc?x-oss-process=image/format,png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;gallery 上还有更多例子。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://scikit-image.org/docs/dev/auto_examples/&#34;&gt;https://scikit-image.org/docs/dev/auto_examples/&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2numpy&#34;&gt; （2）Numpy&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Numpy 是 Python 编程的核心库之一，支持数组结构。 图像本质上是包含数据点像素的标准 Numpy 数组。 因此，通过使用基本的 NumPy 操作 —— 例如切片、脱敏和花式索引，可以修改图像的像素值。 可以使用 skimage 加载图像并使用 matplotlib 显示。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;使用说明文档&lt;/code&gt; ：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.numpy.org/&#34;&gt;http://www.numpy.org/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;用法举例&lt;/code&gt; ：使用 Numpy 来对图像进行脱敏处理&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; numpy &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; np&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; skimage &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; data&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; matplotlib.pyplot &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; plt&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;%matplotlib inline&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;image = data.camera()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;type&lt;/span&gt;(image)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;numpy.ndarray &lt;span class=&#34;comment&#34;&gt;#Image is a numpy array&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;mask = image &amp;lt; &lt;span class=&#34;number&#34;&gt;87&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;image[mask]=&lt;span class=&#34;number&#34;&gt;255&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.imshow(image, cmap=&lt;span class=&#34;string&#34;&gt;&amp;#x27;gray&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU82QVBpN0ZBQUNqek8yblp6bzIxNi5wbmc?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom: 70%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;3scipy&#34;&gt; （3）Scipy&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;scipy 是 Python 的另一个核心科学模块，就像 Numpy 一样，可用于基本的图像处理和处理任务。值得一提的是，子模块 scipy.ndimage 提供了在 n 维 NumPy 数组上运行的函数。 该软件包目前包括线性和非线性滤波、二进制形态、B 样条插值和对象测量等功能。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;使用说明文档&lt;/code&gt; ：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html#correlation-and-convolution&#34;&gt;https://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html#correlation-and-convolution&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;用法举例&lt;/code&gt; ：使用 SciPy 的高斯滤波器对图像进行模糊处理&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; scipy &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; misc,ndimage&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;face = misc.face()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;blurred_face = ndimage.gaussian_filter(face, sigma=&lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;very_blurred = ndimage.gaussian_filter(face, sigma=&lt;span class=&#34;number&#34;&gt;5&lt;/span&gt;)&lt;span class=&#34;comment&#34;&gt;#Resultsplt.imshow()&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU8tQWJSLUNBQUJrWk40anJVRTc2Ni5wbmc?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;4pil-pillow&#34;&gt; （4）PIL/ Pillow&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;PIL （Python Imaging Library）是一个免费的 Python 编程语言库，它增加了对打开、处理和保存许多不同图像文件格式的支持。 然而，它的发展停滞不前，其最后一次更新还是在 2009 年。幸运的是， PIL 有一个正处于积极开发阶段的分支 Pillow，它非常易于安装。Pillow 能在所有主要操作系统上运行并支持 Python 3。该库包含基本的图像处理功能，包括点操作、使用一组内置卷积内核进行过滤以及颜色空间转换。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;使用说明文档&lt;/code&gt; ：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://pillow.readthedocs.io/en/3.1.x/index.html&#34;&gt;https://pillow.readthedocs.io/en/3.1.x/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;用法举例&lt;/code&gt; ：使用 ImageFilter 增强 Pillow 中的图像&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; PIL &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; Image, ImageFilter&lt;span class=&#34;comment&#34;&gt;#Read image&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;im = Image.&lt;span class=&#34;built_in&#34;&gt;open&lt;/span&gt;( &lt;span class=&#34;string&#34;&gt;&amp;#x27;image.jpg&amp;#x27;&lt;/span&gt; )&lt;span class=&#34;comment&#34;&gt;#Display image&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;im.show()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; PIL &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; ImageEnhance&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;enh = ImageEnhance.Contrast(im)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;enh.enhance(&lt;span class=&#34;number&#34;&gt;1.8&lt;/span&gt;).show(&lt;span class=&#34;string&#34;&gt;&amp;quot;30% more contrast&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU8tQUZVeTdBQUNxYXJnemd0dzAwNC5wbmc?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:70%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;5opencv-python&#34;&gt; （5）OpenCV-Python&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;OpenCV（ 开源计算机视觉库，Open Source Computer Vision Library）是计算机视觉应用中使用最广泛的库之一。OpenCV-Python 是 OpenCV 的 python API。 OpenCV-Python 不仅速度快（因为后台由用 C / C ++ 编写的代码组成），也易于编码和部署（由于前端的 Python 包装器）。 这使其成为执行计算密集型计算机视觉程序的绝佳选择。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;使用说明文档&lt;/code&gt; ：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/abidrahmank/OpenCV2-Python-Tutorials&#34;&gt;https://github.com/abidrahmank/OpenCV2-Python-Tutorials&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;用法举例&lt;/code&gt; ：使用 Pyramids 创建一个名为’Orapple’的新水果的功能&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBDQUwzSXhBQUNhTHFoRHVnTTUyOC5qcGc?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;6simplecv&#34;&gt; （6）SimpleCV&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;SimpleCV 也是用于构建计算机视觉应用程序的开源框架。 通过它可以访问如 OpenCV 等高性能的计算机视觉库，而无需首先了解位深度、文件格式或色彩空间等。学习难度远远小于 OpenCV，并且正如他们的标语所说，“它使计算机视觉变得简单”。支持 SimpleCV 的一些观点是：&lt;/p&gt;
+&lt;p&gt;即使是初学者也可以编写简单的机器视觉测试&lt;/p&gt;
+&lt;p&gt;摄像机、视频文件、图像和视频流都可以交互操作&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;使用说明文档&lt;/code&gt; ：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://simplecv.readthedocs.io/en/latest/&#34;&gt;https://simplecv.readthedocs.io/en/latest/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;用法举例&lt;/code&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBDQVYwemFBQURnSlB3NUw0NDQ1MS5wbmc?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;7mahotas&#34;&gt; （7）Mahotas&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Mahotas 是另一个用于 Python 的计算机视觉和图像处理库。 它包含传统的图像处理功能（如滤波和形态学操作）以及用于特征计算的更现代的计算机视觉功能（包括兴趣点检测和局部描述符）。 该接口使用 Python，适用于快速开发，但算法是用 C ++ 实现的，并且针对速度进行了优化。Mahotas 库运行很快，它的代码很简单，（对其它库的）依赖性也很小。 建议阅读他们的官方文档以了解更多内容。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;使用说明文档&lt;/code&gt; ：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mahotas.readthedocs.io/en/latest/install.html&#34;&gt;https://mahotas.readthedocs.io/en/latest/install.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;用法举例&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Mahotas 库使用简单的代码来完成工作。 对于 “寻找 Wally” 的问题，Mahotas 完成的得很好，而且代码量非常小。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBHQWZSN3lBQUZma19JOE5USTUzNC5wbmc?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBLQUtWT2VBQUNZaG1iSXFORTY3MS5wbmc?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;8simpleitk&#34;&gt; （8）SimpleITK&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;ITK（Insight Segmentation and Registration Toolkit）是一个开源的跨平台系统，为开发人员提供了一整套用于图像分析的软件工具。 其中， SimpleITK 是一个建立在 ITK 之上的简化层，旨在促进其在快速原型设计、教育以及脚本语言中的使用。SimpleITK 是一个包含大量组件的图像分析工具包，支持一般的过滤操作、图像分割和配准。 SimpleITK 本身是用 C++ 编写的，但可用于包括 Python 在内的大量编程语言。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;使用说明文档&lt;/code&gt; ：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/hhatto/pgmagick&#34;&gt;https://github.com/hhatto/pgmagick&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里有大量说明了如何使用 SimpleITK 进行教育和研究活动的 Jupyter notebook。notebook 中演示了如何使用 SimpleITK 进行使用 Python 和 R 编程语言的交互式图像分析。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;用法举例&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;下面的动画是使用 SimpleITK 和 Python 创建的可视化的严格 CT / MR 配准过程。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBlQWMyNW5BQVlRRU1zT3RCZzcyNy5naWY&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;9pgmagick&#34;&gt; （9）pgmagick&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;pgmagick 是 GraphicsMagick 库基于 Python 的包装器。GraphicsMagick 图像处理系统有时被称为图像处理的瑞士军刀。它提供了强大而高效的工具和库集合，支持超过 88 种主要格式图像的读取、写入和操作，包括 DPX，GIF，JPEG，JPEG-2000，PNG，PDF，PNM 和 TIFF 等重要格式。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;使用说明文档&lt;/code&gt; ：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/hhatto/pgmagick&#34;&gt;https://github.com/hhatto/pgmagick&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;用法举例&lt;/code&gt; ：图片缩放、边缘提取&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBlQVc0dUxBQUR0WGM5V1BDRTI5Ny5wbmc?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom: 50%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBpQVBuc1NBQURHekQ3TlNuczcyMS5wbmc?x-oss-process=image/format,png&#34; alt=&#34;边缘提取&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;10pycairo&#34;&gt; （10）Pycairo&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;Pycairo 是图形库 cairo 的一组 python 绑定。 Cairo 是一个用于绘制矢量图形的 2D 图形库。 矢量图形很有趣，因为它们在调整大小或进行变换时不会降低清晰度。Pycairo 库可以从 Python 调用 cairo 命令。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;使用说明文档&lt;/code&gt; ：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/pygobject/pycairo&#34;&gt;https://github.com/pygobject/pycairo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;用法&lt;/code&gt; ：Pycairo 可以绘制线条、基本形状和径向渐变&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBpQWVCQThBQUJENVg1M3ItQTYxOC5wbmc?x-oss-process=image/format,png&#34; alt=&#34;img&#34; style=&#34;zoom: 90%;&#34;&gt;&lt;/center&gt;
+</content>
+        <category term="人工智能" />
+        <category term="计算机视觉库" />
+        <updated>2022-01-20T13:06:30.000Z</updated>
+    </entry>
+</feed>

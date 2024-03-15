@@ -1,0 +1,431 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;yolox目标检测&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Sun, 12 Dec 2021 18:45:17 +0800</pubDate>
+        <lastBuildDate>Sun, 12 Dec 2021 18:45:17 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2021/12/12/%E4%BD%BF%E7%94%A8YoloX%E8%AE%AD%E7%BB%83%E8%87%AA%E5%BB%BA%E6%95%B0%E6%8D%AE%E9%9B%86/</guid>
+            <title>使用YoloX训练自建数据集</title>
+            <link>https://leezhao415.github.io/2021/12/12/%E4%BD%BF%E7%94%A8YoloX%E8%AE%AD%E7%BB%83%E8%87%AA%E5%BB%BA%E6%95%B0%E6%8D%AE%E9%9B%86/</link>
+            <category>人工智能</category>
+            <category>YOLOX目标检测</category>
+            <pubDate>Sun, 12 Dec 2021 18:45:17 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-yolox%E4%BB%A3%E7%A0%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA&#34;&gt;1 Yolox 代码环境搭建&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#11-%E4%B8%8B%E8%BD%BDyolox%E4%BB%A3%E7%A0%81&#34;&gt;1.1 下载 Yolox 代码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#12-%E6%90%AD%E5%BB%BA%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83&#34;&gt;1.2 搭建测试环境&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#13-%E4%BB%A3%E7%A0%81%E6%B5%8B%E8%AF%95demo%E6%95%88%E6%9E%9C%E6%B5%8B%E8%AF%95&#34;&gt;1.3 代码测试：Demo 效果测试&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#131-%E4%B8%8B%E8%BD%BDyolox_spth%E6%96%87%E4%BB%B6&#34;&gt;1.3.1 下载 Yolox_s.pth 文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#132-demo%E6%B5%8B%E8%AF%95&#34;&gt;1.3.2 Demo 测试&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-yolox%E8%87%AA%E6%9C%89%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AE%AD%E7%BB%83&#34;&gt;2 Yolox 自有数据集训练&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#21-%E6%95%B0%E6%8D%AE%E9%9B%86%E5%87%86%E5%A4%87%E6%A0%87%E6%B3%A8%E6%95%B0%E6%8D%AE&#34;&gt;2.1 数据集准备：标注数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#22-%E6%95%B0%E6%8D%AE%E9%9B%86%E5%87%86%E5%A4%87%E8%AE%AD%E7%BB%83%E9%AA%8C%E8%AF%81%E9%9B%86%E5%88%92%E5%88%86&#34;&gt;2.2 数据集准备：训练 &amp;amp; 验证集划分&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#221-%E6%95%B0%E6%8D%AE%E9%9B%86%E4%BB%8B%E7%BB%8D&#34;&gt;2.2.1 数据集介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#222-%E6%A8%A1%E4%BB%BFvoc%E6%A0%BC%E5%BC%8F%E6%8E%92%E5%B8%83&#34;&gt;2.2.2 模仿 VOC 格式排布&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#223-%E5%88%92%E5%88%86%E8%AE%AD%E7%BB%83%E9%9B%86%E5%92%8C%E9%AA%8C%E8%AF%81%E9%9B%86&#34;&gt;2.2.3 划分训练集和验证集&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#23-%E8%AE%AD%E7%BB%83%E5%87%86%E5%A4%87%E4%BF%AE%E6%94%B9%E8%AE%AD%E7%BB%83%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0&#34;&gt;2.3 训练准备：修改训练配置参数&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#231-%E4%BF%AE%E6%94%B9%E7%B1%BB%E5%88%AB%E6%A0%87%E7%AD%BE%E5%92%8C%E6%95%B0%E9%87%8F&#34;&gt;2.3.1 修改类别标签和数量&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#232-%E4%BF%AE%E6%94%B9%E8%AE%AD%E7%BB%83%E9%9B%86%E4%BF%A1%E6%81%AF&#34;&gt;2.3.2 修改训练集信息&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#233-%E4%BF%AE%E6%94%B9%E9%AA%8C%E8%AF%81%E9%9B%86%E4%BF%A1%E6%81%AF&#34;&gt;2.3.3 修改验证集信息&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#234-%E4%BF%AE%E6%94%B9%E4%B8%8D%E5%90%8C%E7%9A%84%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84&#34;&gt;2.3.4 修改不同的网络结构&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#235-%E4%BF%AE%E6%94%B9%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3&#34;&gt;2.3.5 修改其他相关&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#24-yolox%E8%AE%AD%E7%BB%83%E5%8F%8A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98&#34;&gt;2.4 Yolox 训练及常见问题&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#241-%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83&#34;&gt;2.4.1 开始训练&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#242-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98&#34;&gt;2.4.2 常见问题&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#25-%E8%AE%AD%E7%BB%83%E6%95%88%E6%9E%9C%E6%B5%8B%E8%AF%95&#34;&gt;2.5 训练效果测试&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;p&gt;随着旷视科技发布 Yolox 的论文和代码后，Yolox 得到了广泛的关注。但由于训练代码和之前的 Yolov3、Yolov4、Yolov5 的代码都不相同。且代码中的训练案例，以 COCO 和 VOC 格式为基准，和平时大家标注的文件，并不是完全相同的格式。而且训练自有数据的讲解流程，很多人不太熟悉。&lt;/p&gt;
+&lt;p&gt;因此本文以自有标注的人头数据集为案例，一步步和大家一起学习，整体的训练和测试全流程。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;1-yolox-代码环境搭建&#34;&gt; 1 Yolox 代码环境搭建&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;在 Yolox 代码训练之前，我们先下载 Yolox 代码，将测试环境搭建起来。&lt;/p&gt;
+&lt;p&gt;测试的 Demo 跑通了，训练的环境也就没问题了。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;11-下载-yolox-代码&#34;&gt; 1.1 下载 Yolox 代码&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Yolox 代码链接：&lt;a href=&#34;https://github.com/Megvii-BaseDetection/YOLOX&#34;&gt;https://github.com/Megvii-BaseDetection/YOLOX&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;12-搭建测试环境&#34;&gt; 1.2 搭建测试环境&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;电脑系统为 Ubuntu 18.04 版本。&lt;/p&gt;
+&lt;p&gt;而 Yolox 测试环境的搭建，其实在代码中的，README.md 中 “Quick Start” 这部分。&lt;/p&gt;
+&lt;p&gt;首先为了测试环境更加独立，以 conda 为例，新建一个 Yolox 环境。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;（1）新建一个 Conda 环境&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;conda create -n Yolox_3.7 python=3.7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;（2）进入 Conda 环境&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;source&lt;/span&gt; activate Yolox_3.7    &lt;span class=&#34;comment&#34;&gt;# 进入Conda环境中，并到下载好的YOLOX文件夹下。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;（3）安装代码依赖的库文件&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;pip3 install -U pip &amp;amp;&amp;amp; pip3 install -r requirements.txt&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;（4）通过 setup.py 安装一些库文件&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python3 setup.py develop&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;（5）下载 apex 文件并安装 apex&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;git &lt;span class=&#34;built_in&#34;&gt;clone&lt;/span&gt; https://github.com/NVIDIA/apex&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; apex&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sudo pip3 install -v --disable-pip-version-check --no-cache-dir --global-option=&lt;span class=&#34;string&#34;&gt;&amp;quot;--cpp_ext&amp;quot;&lt;/span&gt; --global-option=&lt;span class=&#34;string&#34;&gt;&amp;quot;--cuda_ext&amp;quot;&lt;/span&gt; ./ &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;（6）下载 pycocotools&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;pip3 install cython&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;pip3 install &lt;span class=&#34;string&#34;&gt;&amp;#x27;git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;13-代码测试demo-效果测试&#34;&gt; 1.3 代码测试：Demo 效果测试&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;131-下载-yolox_spth-文件&#34;&gt; 1.3.1 下载 Yolox_s.pth 文件&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;搭建好环境后，就可以下载官方的预训练模型，对图片进行测试了。&lt;/p&gt;
+&lt;p&gt;预训练权重的下载链接，在官方代码的说明中。&lt;/p&gt;
+&lt;p&gt;我们先下载 Yolox_s.pth 文件，尝试测试效果。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Megvii-BaseDetection/YOLOX/blob/main/README.md&#34;&gt;https://github.com/Megvii-BaseDetection/YOLOX/blob/main/README.md&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;下载好 yolox_s.pth.tar 后，放到 YOLOX 代码的根目录下。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;132-demo-测试&#34;&gt; 1.3.2 Demo 测试&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;使用代码中自带的图片，进行 Demo 测试。&lt;/p&gt;
+&lt;p&gt;在 YOLOX 文件夹的终端页面输入：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python3 tools/demo.py image -n yolox-s -c yolox_s.pth.tar --path assets/dog.jpg --conf 0.3 --nms 0.5 --tsize 640 --save_result --device [gpu]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;YOLOX 的代码中，会新建一个 YOLOX_outputs 文件夹，在其中的 yolox_s/vis_res/，可以看到带有检测效果的图片。&lt;/p&gt;
+&lt;p&gt;到此 Yolox 的测试环境，以及测试效果都实现了，下面我们再进行 Yolox 的自有数据集训练。&lt;/p&gt;
+&lt;h2&gt;&lt;span id=&#34;2-yolox-自有数据集训练&#34;&gt; 2 Yolox 自有数据集训练&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;21-数据集准备标注数据&#34;&gt; 2.1 数据集准备：标注数据&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;在数据集中，大白采用教室场景下的一个人头数据集，和大家一起尝试整个流程。&lt;/p&gt;
+&lt;p&gt;① 标注的工具：采用 Labelimg 标注软件&lt;/p&gt;
+&lt;p&gt;② 标注的图片：3000 张人头图片&lt;/p&gt;
+&lt;p&gt;③ 标签的类别：head。&lt;/p&gt;
+&lt;p&gt;④ 下载链接：&lt;/p&gt;
+&lt;p&gt;​	PartA of SCUT-HEAD [&lt;a href=&#34;https://drive.google.com/open?id=1DWZHnmcOR8H9adXRRMV_DaOLCnBEcMLi&#34;&gt;Google Drive]&lt;/a&gt;[&lt;a href=&#34;https://pan.baidu.com/s/19IyPWLpdY3iEjgucyWMjQQ&#34;&gt;Baidu Drive]&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;PartB of SCUT-HEAD [&lt;a href=&#34;https://drive.google.com/open?id=1LZ_KlTPStDEcqycfqUkDkqQ-aNMMC3cl&#34;&gt;Google Drive]&lt;/a&gt; [&lt;a href=&#34;https://pan.baidu.com/s/1CASxJBkjKoW3_yO8OVKBvQ&#34;&gt;Baidu Drive]&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;22-数据集准备训练-amp-验证集划分&#34;&gt; 2.2 数据集准备：训练 &amp;amp; 验证集划分&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;221-数据集介绍&#34;&gt; 2.2.1 数据集介绍&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;当下载好人头数据集后，可以看到 head 的数据集文件夹，数据集只有一个标签：head（人头）。&lt;/p&gt;
+&lt;p&gt;进入 head 文件夹中，其中包含两个文件夹：&lt;/p&gt;
+&lt;p&gt;① JPEGImages 文件夹：数据集的图片&lt;/p&gt;
+&lt;p&gt;② Annotations 文件夹：与图片对应的所有 xml 文件。&lt;/p&gt;
+&lt;p&gt;我们前面说明，总共有 3000 张图片，即有对应的 3000 个 xml 文件。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;222-模仿-voc-格式排布&#34;&gt; 2.2.2 模仿 VOC 格式排布&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;Yolox 的代码中有 VOC、和 COCO 两个数据集加载的格式，这里大白主要演示 VOC 加载的方式。&lt;/p&gt;
+&lt;p&gt;那么我们首先看一下 VOC 格式的分布：&lt;/p&gt;
+&lt;p&gt;在 VOC 这些文件夹中，我们主要用到：&lt;/p&gt;
+&lt;p&gt;① JPEGImages 文件夹：数据集图片&lt;/p&gt;
+&lt;p&gt;② Annotations 文件夹：与图片对应的 xml 文件&lt;/p&gt;
+&lt;p&gt;③ ImageSets/Main 文件夹：将数据集分为训练集和验证集，因此产生的 train.txt 和 val.txt。&lt;/p&gt;
+&lt;p&gt;从 Voc 的文件夹排布，和 head 的文件夹排布，可以看出：还缺少一个 ImageSets/Main 文件夹。&lt;/p&gt;
+&lt;p&gt;因此在 head 文件夹中，新建一个 ImageSets 文件集，再在其中新建一个 Main 子文件夹。&lt;/p&gt;
+&lt;p&gt;即得到下图这样的文件夹结构：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;|--head&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  |--Annotations&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  |--ImageSets&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;     |--Main&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  |---JPEGImages&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;223-划分训练集和验证集&#34;&gt; 2.2.3 划分训练集和验证集&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;因为自有标注好的图片数据，都是放在一起的。&lt;/p&gt;
+&lt;p&gt;而训练过程中，需要划分为训练集和验证集。&lt;/p&gt;
+&lt;p&gt;因此还需要编写脚本，将数据集分为训练集和验证集，并且生成对应的 train.txt，和 val.txt，放在 Main 文件夹中。&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 对head文件夹进行拆分，分为train.txt和val.txt&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; os&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; random&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;image_path = &lt;span class=&#34;string&#34;&gt;&amp;quot;JPEGImages/&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;xmls_path = &lt;span class=&#34;string&#34;&gt;&amp;quot;Annotations/&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;train_val_txt_path = &lt;span class=&#34;string&#34;&gt;&amp;quot;ImageSets/Main/&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;val_percent = &lt;span class=&#34;number&#34;&gt;0.1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;images_list = os.listdir(images_path)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;random.shuffle(images_list)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 划分训练集和验证集的数量&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;train_images_count = &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt;((&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;-val_percent)*&lt;span class=&#34;built_in&#34;&gt;len&lt;/span&gt;(images_list))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;val_images_count = &lt;span class=&#34;built_in&#34;&gt;int&lt;/span&gt;(val_percent*&lt;span class=&#34;built_in&#34;&gt;len&lt;/span&gt;(images_list))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 生成训练集的train.txt文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;train_txt = &lt;span class=&#34;built_in&#34;&gt;open&lt;/span&gt;(os.path.join(train_val_txt_path,&lt;span class=&#34;string&#34;&gt;&amp;quot;train.txt&amp;quot;&lt;/span&gt;),&lt;span class=&#34;string&#34;&gt;&amp;quot;w&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;train_count = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;range&lt;/span&gt;(train_images_count):&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    text = images_list[i].split(&lt;span class=&#34;string&#34;&gt;&amp;quot;.jpg&amp;quot;&lt;/span&gt;)[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;] + &lt;span class=&#34;string&#34;&gt;&amp;quot;\n&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    train_txt.write(text)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    train_count +=&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot;train_count:&amp;quot;&lt;/span&gt; + &lt;span class=&#34;built_in&#34;&gt;str&lt;/span&gt;(train_count))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;train_txt.close()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 生成验证集的val.txt文件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;val_txt = &lt;span class=&#34;built_in&#34;&gt;open&lt;/span&gt;(os.path.join(train_val_txt_path,&lt;span class=&#34;string&#34;&gt;&amp;quot;val.txt&amp;quot;&lt;/span&gt;),&lt;span class=&#34;string&#34;&gt;&amp;quot;w&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;val_count = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;range&lt;/span&gt;(val_images_count):&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    text = images_list[train_images_count + i].split(&lt;span class=&#34;string&#34;&gt;&amp;quot;.jpg&amp;quot;&lt;/span&gt;)[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;] + &lt;span class=&#34;string&#34;&gt;&amp;quot;\n&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    val_txt.write(text)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    val_count+=&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot;val_count:&amp;quot;&lt;/span&gt; + &lt;span class=&#34;built_in&#34;&gt;str&lt;/span&gt;(val_count))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;val_txt.close()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;下载好代码后，将脚本文件 train_val_data_split.py 放在 JPEGImages 同路径下：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;|--Annotations&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;|--ImageSets&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;|--JPEGImages&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;train_val_data_split.py&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;并进行运行后，在 ImageSets/Main 文件夹下，就会生成对应的 train.txt 和 val.txt。&lt;/p&gt;
+&lt;p&gt;主要注意的是：代码中，训练集和验证集的比例，为 9：1，大家也可以自行调整。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;23-训练准备修改训练配置参数&#34;&gt; 2.3 训练准备：修改训练配置参数&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;231-修改类别标签和数量&#34;&gt; 2.3.1 修改类别标签和数量&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;① 修改类别标签&lt;/p&gt;
+&lt;p&gt;因此前面自有的数据集只有一个类别，head。&lt;/p&gt;
+&lt;p&gt;将 yolox/data/datasets/voc_classes.py 中的标签信息，进行修改。&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;VOC_CLASSES = (&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;string&#34;&gt;&amp;quot;head&amp;quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注意：类别后面都要加逗号，例如 “head” 后面加了一个逗号 “，”。&lt;/p&gt;
+&lt;p&gt;② 修改类别数量&lt;/p&gt;
+&lt;p&gt;（1）修改 exps/example/yolox_voc/yolox_voc_s.py 中的 self.num_classes&lt;/p&gt;
+&lt;p&gt;​        因为只有 head 一种，所以 self.num_classes=1。&lt;/p&gt;
+&lt;p&gt;（2）修改 yolox/exp/yolox_base.py 中的 self.num_classes&lt;/p&gt;
+&lt;p&gt;​        将 self.num_classes=80 修改为 1。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;232-修改训练集信息&#34;&gt; 2.3.2 修改训练集信息&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;（1）修改 exps/example/yolox_voc/yolox_voc_s.py 中的 VOCDetection。&lt;/p&gt;
+&lt;p&gt;因为是自己的数据集，所以修改为：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;data_dir = &lt;span class=&#34;string&#34;&gt;&amp;quot;/mnt/data/head/&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;image_sets=[(&lt;span class=&#34;string&#34;&gt;&amp;#x27;train&amp;#x27;&lt;/span&gt;)],&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;data_dir 是前面 2.2 节中 head 的绝对路径，images_sets 修改为 train。&lt;/p&gt;
+&lt;p&gt;此外，max_labels，表示图片最多的目标数量，这里大白因为使用的是人头，数量较多，所以改为 100。&lt;/p&gt;
+&lt;p&gt;（2）修改 yolox/data/datasets/voc.py 中，VOCDection 函数中的读取 txt 文件。&lt;/p&gt;
+&lt;p&gt;因为自有的数据集，没有 year 年代的信息，所以修改为：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;将：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;self._year = year&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;rootpath = os.path.join(self.root, &lt;span class=&#34;string&#34;&gt;&amp;quot;VOC&amp;quot;&lt;/span&gt; + year)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;修改为：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;rootpath = self.root&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;233-修改验证集信息&#34;&gt; 2.3.3 修改验证集信息&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;修改 exps/example/yolox_voc/yolox_voc_s.py 中的 get_eval_loader 函数。&lt;/p&gt;
+&lt;p&gt;因为是自己的验证数据集，所以修改为：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;将：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;data_dir = os.path.join(get_yolox_datadir(),&lt;span class=&#34;string&#34;&gt;&amp;quot;VOCdevkit&amp;quot;&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;image_sets = [(&lt;span class=&#34;string&#34;&gt;&amp;#x27;2007&amp;#x27;&lt;/span&gt;,&lt;span class=&#34;string&#34;&gt;&amp;#x27;test&amp;#x27;&lt;/span&gt;)]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;修改为：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;data_dir = &lt;span class=&#34;string&#34;&gt;&amp;quot;/mnt/data/head/&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;image_sets = [(&lt;span class=&#34;string&#34;&gt;&amp;#x27;val&amp;#x27;&lt;/span&gt;)]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;data_dir 是前面 2.2 节中 head 的绝对路径，images_sets 修改为 val。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;234-修改不同的网络结构&#34;&gt; 2.3.4 修改不同的网络结构&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;以&lt;strong&gt; Yolox_s 网络&lt;/strong&gt;为例，比如在 &lt;code&gt;exps/default/yolox_s.py&lt;/code&gt;  中，self.depth= &lt;code&gt;0.33&lt;/code&gt; ，self.width= &lt;code&gt;0.5&lt;/code&gt; 。和 Yolov5 中的不同网络调用方式一样。&lt;/p&gt;
+&lt;p&gt;为了统一不同的网络结构，继续修改 &lt;code&gt;exps/example/yolox_voc/yolox_voc_s.py&lt;/code&gt;  中的，self.depth 和 self.width。&lt;/p&gt;
+&lt;p&gt;再修改 &lt;code&gt;yolox/exp/yolox_base.py&lt;/code&gt;  中的，self.depth 和 self.width。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;235-修改其他相关&#34;&gt; 2.3.5 修改其他相关&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;（1）删除 year 等信息&lt;/p&gt;
+&lt;p&gt;因为自有数据集中，没有 year 信息，所以需要删除。&lt;/p&gt;
+&lt;p&gt;即修改 yolox/data/datasets/voc.py 中，_get_voc_results_file_template 函数。&lt;/p&gt;
+&lt;p&gt;所以将第三行的 year 等删除，如下图所示：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;将：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;filedir = os.path.join(self.root, &lt;span class=&#34;string&#34;&gt;&amp;quot;results&amp;quot;&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&amp;quot;VOC&amp;quot;&lt;/span&gt; + self._year, &lt;span class=&#34;string&#34;&gt;&amp;quot;Main&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;修改为：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;filedir = os.path.join(self.root, &lt;span class=&#34;string&#34;&gt;&amp;quot;results&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在训练过程中，在原始的 head 数据集中，会生成一个 results 的文件夹，保存历史信息。&lt;/p&gt;
+&lt;p&gt;（２）修改验证 epoch 的数量&lt;/p&gt;
+&lt;p&gt;目前代码中是训练迭代 10 个 epoch，再对验证集做１次验证，但大白想每迭代 1 个 epoch，即做一个验证，及时看到效果。&lt;/p&gt;
+&lt;p&gt;参数在 yolox/exp/yolox_base.py 的 class Exp 中：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;将&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;self.print_interval = 10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;self.eval_interval = 10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;修改为：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;self.print_interval = 1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;self.eval_interval = 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;设置为每迭代一个 epoch，即使用验证集验证一次。&lt;/p&gt;
+&lt;p&gt;（３）修改验证时的相关信息&lt;/p&gt;
+&lt;p&gt;主要对读取验证信息的相关代码进行调整，代码在 yolox/data/datasets/voc.py 中_do_python_eval 函数中。&lt;/p&gt;
+&lt;p&gt;① 因为自有数据集没有 year 信息，所以将其中的 rootpath 和 name：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;将：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;rootpath = os.path.join(self.root, &lt;span class=&#34;string&#34;&gt;&amp;quot;VOC&amp;quot;&lt;/span&gt; + self._year)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;修改为：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;rootpath = self.root&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;② 因为没有 year 信息，所以将其中的 cachedir:&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;将：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cachedir = os.path.join(self.root, &lt;span class=&#34;string&#34;&gt;&amp;quot;annotations_cache&amp;quot;&lt;/span&gt;, &lt;span class=&#34;string&#34;&gt;&amp;quot;VOC&amp;quot;&lt;/span&gt; + self._year,name)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;修改为：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;cachedir = os.path.join(self.root, &lt;span class=&#34;string&#34;&gt;&amp;quot;annotations_cache&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在训练过程中，在原始的 head 数据集中，会生成一个 annotations_cache 的文件夹，保存历史信息。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;|--Annotations&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;|--annotations_cache&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;|--ImageSets&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;|--JPEGImages&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;|--results&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;③ 因为没有 year 信息，所以修改 use_07_metric 的信息。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;将：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;use_07_metric = True &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; int(self._year) &amp;lt; 2010 &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; False&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;修改为：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;use_07_metric = True&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;24-yolox-训练及常见问题&#34;&gt; 2.4 Yolox 训练及常见问题&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;241-开始训练&#34;&gt; 2.4.1 开始训练&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;（1）终端训练&lt;/p&gt;
+&lt;p&gt;将下载好的 yolox_s.pth.tar 放到 YOLOX 文件夹中，打开终端，在终端中输入：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python3 tools/train.py -f exps/example/yolox_voc/yolox_voc_s.py -d 0 -b 64  -c yolox_s.pth.tar&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（2）Pycharm 训练&lt;/p&gt;
+&lt;p&gt;代码运行时，常常需要 Debug 的方式，进行调试执行。&lt;/p&gt;
+&lt;p&gt;所以可以修改 train.py 的几个配置参数，采用 Debug 或者 Run 的方式进行执行。&lt;/p&gt;
+&lt;p&gt;主要需要修改以下参数：&lt;/p&gt;
+&lt;p&gt;① batch-size&lt;/p&gt;
+&lt;p&gt;根据自己机器的配置，设置 batch-size 的参数，比如大白这里设置的 64。&lt;/p&gt;
+&lt;p&gt;② devices 参数&lt;/p&gt;
+&lt;p&gt;如果 GPU 服务器只有 1 张卡，将 devices 的 default 修改为 0。&lt;/p&gt;
+&lt;p&gt;③ exp_file 参数&lt;/p&gt;
+&lt;p&gt;将 exp_file 的 default 修改为 yolox_voc_s.py 的路径（如代码版本更新，可重置路径）。&lt;/p&gt;
+&lt;p&gt;④ ckpt 参数&lt;/p&gt;
+&lt;p&gt;如果使用预训练权重，将 ckpt 的 default 修改为模型权重的路径。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;242-常见问题&#34;&gt; 2.4.2 常见问题&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;在运行 tools/train.py 时，可能会出现以下问题，如没有可以跳过：&lt;/p&gt;
+&lt;p&gt;问题 1：apex 路径报错&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;File &lt;span class=&#34;string&#34;&gt;&amp;quot;/mnt/code/YOLOX/yolox/core/trainer.py&amp;quot;&lt;/span&gt;, line9, &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; &amp;lt;module&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	from apex import amp &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ImportError: cannot import name &lt;span class=&#34;string&#34;&gt;&amp;#x27;amp&amp;#x27;&lt;/span&gt; from &lt;span class=&#34;string&#34;&gt;&amp;#x27;apex&amp;#x27;&lt;/span&gt;(unknown location)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;因为 YOLOX 内的 apex 文件夹，还有一个 apex 文件夹，所以引用路径有点问题。&lt;/p&gt;
+&lt;p&gt;解决方法：&lt;/p&gt;
+&lt;p&gt;这时在每个调用 apex 的地方，添加一个 apex. 即可。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;将：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;from apex import amp&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;修改为：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;from apex.apex import amp&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;需要注意的是，不少的地方，需要添加 apex.，大概有 10 处左右，修改完之后，错误即可解决。&lt;/p&gt;
+&lt;p&gt;问题 2：probubuf 报错&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;from google.protobuf.internal import enum_type_wrapper&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ModuleNotFoundError: No module named &lt;span class=&#34;string&#34;&gt;&amp;#x27;google.protobuf.internal&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;解决方法：&lt;/p&gt;
+&lt;p&gt;（1）pip3 uninsall probobuf&lt;/p&gt;
+&lt;p&gt;（2）pip3 install google&lt;/p&gt;
+&lt;p&gt;（3）pip3 install protobuf&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;25-训练效果测试&#34;&gt; 2.5 训练效果测试&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;在上面训练好模型后，我们可以得到一个精度测试最优的网络模型：&lt;/p&gt;
+&lt;p&gt;① best_ckpt.pth.tar：在 tools/YOLOX_outputs/yolox_voc_s 文件夹中。&lt;/p&gt;
+&lt;p&gt;② 为了方便测试，再挑选一张人头测试图片，放到 assets 文件夹中。&lt;/p&gt;
+&lt;p&gt;在 YOLOX 文件夹的终端页面输入：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;python3 tools/demo.py image -n yolox-s -c tools/YOLOX_outputs/yolox_voc_s/best_ckpt.pth.tar --path assets/head.jpg --conf 0.3 --nms 0.5 --tsize 640 --save_result --device [gpu] &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在 YOLOX_outputs/yolox_s/vis_res，根据时间新建的文件夹下，可以看到检测出的效果图片。&lt;/p&gt;
+&lt;p&gt;** 注意：** 如最后的类别都显示 person，将 coco_classes.py 中的类别，也修改为 “head”。&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2021/12/12/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8YOLOX%E8%BF%9B%E8%A1%8C%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%EF%BC%88%E9%99%84%E6%95%B0%E6%8D%AE%E9%9B%86%EF%BC%89/</guid>
+            <title>【精华】使用YOLOX进行物体检测（附数据集）</title>
+            <link>https://leezhao415.github.io/2021/12/12/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8YOLOX%E8%BF%9B%E8%A1%8C%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%EF%BC%88%E9%99%84%E6%95%B0%E6%8D%AE%E9%9B%86%EF%BC%89/</link>
+            <category>人工智能</category>
+            <category>YOLOX目标检测</category>
+            <pubDate>Sun, 12 Dec 2021 18:40:37 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BD%BF%E7%94%A8yolox%E8%BF%9B%E8%A1%8C%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E9%99%84%E6%95%B0%E6%8D%AE%E9%9B%86&#34;&gt;使用 YOLOX 进行物体检测（附数据集）&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%80-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83&#34;&gt;一、 配置环境&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%8C-%E5%88%B6%E4%BD%9C%E6%95%B0%E6%8D%AE%E9%9B%86&#34;&gt;二、 制作数据集&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%89-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6&#34;&gt;三、 修改数据配置文件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%9B%9B-%E8%AE%AD%E7%BB%83&#34;&gt;四、 训练&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%94-%E6%B5%8B%E8%AF%95&#34;&gt;五、 测试&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%85%AD-%E4%BF%9D%E5%AD%98%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C&#34;&gt;六、 保存测试结果&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%83-%E9%81%87%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF&#34;&gt;七、遇到的错误&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;使用-yolox-进行物体检测附数据集&#34;&gt; 使用 YOLOX 进行物体检测（附数据集）&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;YOLOX: Exceeding YOLO Series in 2021&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;・代码：&lt;a href=&#34;https://github.com/Megvii-BaseDetection/YOLOX&#34;&gt;https://github.com/Megvii-BaseDetection/YOLOX&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;・论文：&lt;a href=&#34;https://arxiv.org/abs/2107.08430&#34;&gt;https://arxiv.org/abs/2107.08430&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;YOLOX 是旷视开源的高性能检测器。旷视的研究者将解耦头、数据增强、无锚点以及标签分类等目标检测领域的优秀进展与 YOLO 进行了巧妙的集成组合，提出了 YOLOX，不仅实现了超越 YOLOv3、YOLOv4 和 YOLOv5 的 AP，而且取得了极具竞争力的推理速度。如下图：&lt;/p&gt;
+&lt;p&gt;其中 YOLOX-L 版本以 68.9 FPS 的速度在 COCO 上实现了 50.0% AP，比 YOLOv5-L 高出 1.8% AP！还提供了支持 ONNX、TensorRT、NCNN 和 Openvino 的部署版本，本文将详细介绍如何使用 YOLOX 进行物体检测。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;一-配置环境&#34;&gt; 一、 配置环境&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;本机的环境：&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;11-下载源码&#34;&gt; 1.1 下载源码&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;GitHub 地址：&lt;a href=&#34;https://github.com/Megvii-BaseDetection/YOLOX%EF%BC%8C%E4%B8%8B%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%E6%94%BE%E5%88%B0D%E7%9B%98%E6%A0%B9%E7%9B%AE%E5%BD%95%EF%BC%8C%E7%84%B6%E5%90%8E%E7%94%A8PyCharm%E6%89%93%E5%BC%80%E3%80%82&#34;&gt;https://github.com/Megvii-BaseDetection/YOLOX，下载完成后放到 D 盘根目录，然后用 PyCharm 打开。&lt;/a&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;12-安装依赖包&#34;&gt; 1.2 安装依赖包&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;点击 “Terminal”, 如下图，&lt;/p&gt;
+&lt;p&gt;然后执行下面的命令，安装所有的依赖包。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;13-安装-yolox&#34;&gt; 1.3 安装 yolox&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990343488/641&#34; alt=&#34;图片&#34; style=&#34;zoom: 80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;看到如下信息，则说明安装完成了&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990343489/641&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;14-安装-apex&#34;&gt; 1.4 安装 apex&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;APEX 是英伟达开源的，完美支持 PyTorch 框架，用于改变数据格式来减小模型显存占用的工具。其中最有价值的是 amp（Automatic Mixed Precision），将模型的大部分操作都用 Float16 数据类型测试，一些特别操作仍然使用 Float32。并且用户仅仅通过三行代码即可完美将自己的训练代码迁移到该模型。实验证明，使用 Float16 作为大部分操作的数据类型，并没有降低参数，在一些实验中，反而由于可以增大 Batch size，带来精度上的提升，以及训练速度上的提升。&lt;/p&gt;
+&lt;p&gt;安装步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;到官网下载 apex，地址：mirrors /nvidia/apex・CODE CHINA (&lt;a href=&#34;http://csdn.net&#34;&gt;csdn.net&lt;/a&gt;)[1]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下载完成后，解压后，在 Shell 里，进入到 apex-master 中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;执行安装命令&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;看到如下 log，则表明安装成功。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990343566/641&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;15-安装-pycocotools&#34;&gt; 1.5 安装 pycocotools&lt;/span&gt;&lt;/h6&gt;
+&lt;h6&gt;&lt;span id=&#34;16-验证环境&#34;&gt; 1.6 验证环境&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;下载预训练模型，本文选用的是 YOLOX-s，&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href=&#34;https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_s.pth%E3%80%82&#34;&gt;https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_s.pth。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;下载完成后，将预训练模型放到工程的根目录，如下图：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990343567/641&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;然后验证环境，执行：&lt;/p&gt;
+&lt;p&gt;参数说明&lt;/p&gt;
+&lt;p&gt;查看运行结果：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990343622/641&#34; alt=&#34;图片&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;看到上图说明环境没有问题了。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;二-制作数据集&#34;&gt; 二、 制作数据集&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;数据集我们采用 VOC 数据集，原始数据集是 Labelme 标注的数据集。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href=&#34;https://pan.baidu.com/s/1kj-diqEK2VNVqd2n4ROa5g&#34;&gt;https://pan.baidu.com/s/1kj-diqEK2VNVqd2n4ROa5g&lt;/a&gt; （提取码 rrnz）&lt;/p&gt;
+&lt;p&gt;新建 labelme2voc.py 文件&lt;/p&gt;
+&lt;p&gt;运行上面的代码就可以得到 VOC2007 数据集。如下图所示：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990343623/641&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;VOC 的目录如下，所以要新建 data/VOCdevkit 目录，然后将上面的结果复制进去&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990343711/641&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;到这里，数据集制作完成。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;三-修改数据配置文件&#34;&gt; 三、 修改数据配置文件&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;31-修改类别&#34;&gt; 3.1 修改类别&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;文件路径：exps/example/yolox_voc/yolox_voc_s.py，本次使用的类别有 2 类，所以将 num_classes 修改为 2。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990343712/641&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;打开 yolox/data/datasets/voc_classes.py 文件，修改为自己的类别名：&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;32-修改数据集目录&#34;&gt; 3.2 修改数据集目录&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;文件路径：exps/example/yolox_voc/yolox_voc_s.py，data_dir 修改为 “./data/VOCdevkit”，image_sets 删除 2012 的，最终结果如下：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990343757/641&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;接着往下翻，修改 test 的路径，如下图：&lt;/p&gt;
+&lt;p&gt;打开 yolox/data/datasets/voc.py, 这里面有个错误。画框位置，将大括号的 “% s” 去掉，否则验证的时候一直报找不到文件的错误。&lt;/p&gt;
+&lt;p&gt;修改完成后，执行&lt;/p&gt;
+&lt;p&gt;重新编译 yolox。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;四-训练&#34;&gt; 四、 训练&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;推荐使用命令行的方式训练。&lt;/p&gt;
+&lt;p&gt;执行命令：&lt;/p&gt;
+&lt;p&gt;就可以开始训练了。如果不喜欢使用命令行的方式，&lt;a href=&#34;http://xn--train-064jz9m2z0c0v6ayyp.py&#34;&gt;想直接运行 train.py&lt;/a&gt;，那就需要就如 train.py 修改参数了。首先把 train.py 从 tools 里面复制一份到工程的根目录（建议这样做，否则需要修改的路径比较多，新手容易犯错误），如图：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990343895/641&#34; alt=&#34;图片&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;打开，修改里面的参数。需要修改的参数如下：&lt;/p&gt;
+&lt;p&gt;按照上面的参数配置就可以运行了，如下图：&lt;/p&gt;
+&lt;p&gt;如果训练了一段时间，再想接着以前的模型再训练，应该如何做呢？修改 train.py 的参数即可，需要修改的参数如下：&lt;/p&gt;
+&lt;p&gt;命令行：&lt;/p&gt;
+&lt;p&gt;再次训练，你发现 epoch 不是从 0 开始了。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;五-测试&#34;&gt; 五、 测试&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;修改 yolox/data/datasets/_&lt;em&gt;init&lt;/em&gt;_.py，导入 “VOC_CLASSES”，如下图：&lt;/p&gt;
+&lt;p&gt;修改 tools/demo.py 中代码，将 “COCO_CLASSES”，改为 “VOC_CLASSES”。&lt;/p&gt;
+&lt;p&gt;将 “295” 行的 Predictor 类初始化传入的 “COCO_CLASSES” 改为 “VOC_CLASSES”，如下图：&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;51-单张图片预测&#34;&gt; 5.1 单张图片预测&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;使用训练好的模型进行测试。测试调用 tools/demo.py, 先用命令行的方式演示：&lt;/p&gt;
+&lt;p&gt;运行结果：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990344093/641&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;如果不想使用命令行，将 demo.py 复制一份放到工程的根目录，然后修改里面的参数。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://xn--demo-zk1gv93ftwvbqk0k3byyp.py&#34;&gt;然后直接运行 demo.py&lt;/a&gt;, 运行结果如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990344094/641&#34; alt=&#34;图片&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;52-批量预测&#34;&gt; 5.2 批量预测&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;批量预测很简单，将 path 参数由文件路径改为图片的文件夹路径就可以。例：&lt;/p&gt;
+&lt;p&gt;这样就可以预测 assets 文件夹下面所有的图片了。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;六-保存测试结果&#34;&gt; 六、 保存测试结果&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;demo.py 只有将结果画到图片上，没有保存结果，所以要增加这部分的功能。&lt;/p&gt;
+&lt;p&gt;在 demo.py 的 178 行增加获取结果，并返回上层方法，如下图：&lt;/p&gt;
+&lt;p&gt;然后在 182，修改 image_demo 函数，增加获取结果，保存结果的逻辑，具体代码如下：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://xn--demo-zk1gh85mb17a0tm.py&#34;&gt;然后运行 demo.py&lt;/a&gt;, 就可以将结果保存到 txt 中。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990344197/641&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;七-遇到的错误&#34;&gt; 七、遇到的错误&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;1、RuntimeError: DataLoader worker (pid(s) 9368, 12520, 6392, 7384) exited unexpectedly&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;打开 yolox/exp/yolox_base.py, 将 data_num_workers 设置为 0，如下图：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990344198/641&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;将 num_workers 设置为 0，程序报错，并提示设置环境变量 KMP_DUPLICATE_LIB_OK=TRUE 那你可以在设置环境变量 KMP_DUPLICATE_LIB_OK=TRUE 或者使用临时环境变量：（在代码开始处添加这行代码)&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://inews.gtimg.com/newsapp_bt/0/13990344199/641&#34; alt=&#34;图片&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;2、RuntimeError: cuDNN error: CUDNN_STATUS_INTERNAL_ERROR&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;执行命令&lt;/p&gt;
+&lt;p&gt;报的错误，把 -“-o” 去掉后就正常了&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

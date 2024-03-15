@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【精华】主流的深度学习推理架构 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   主流的深度学习推理架构  （1）NCNN （2）OpenVino （3）TensorRT （4）MediaPipe （5）ONNX （6）MNN （7）MACE （8）TNN （9）TVM       主流的深度学习推理架构 发布时间: 2021-10-20 12:29 以深度学习为主的人工智能算法模型在日常 AI 应用中逐渐占据主流方向，相关的各类产品也是层出不穷。我们平时所看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【精华】主流的深度学习推理架构">
+<meta property="og:url" content="https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%B8%BB%E6%B5%81%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E7%90%86%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   主流的深度学习推理架构  （1）NCNN （2）OpenVino （3）TensorRT （4）MediaPipe （5）ONNX （6）MNN （7）MACE （8）TNN （9）TVM       主流的深度学习推理架构 发布时间: 2021-10-20 12:29 以深度学习为主的人工智能算法模型在日常 AI 应用中逐渐占据主流方向，相关的各类产品也是层出不穷。我们平时所看">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pics4.baidu.com/feed/6f061d950a7b02089df539b2dc3cb9da562cc890.jpeg?token=8a2b1fa318f2ae76490ea6bd4c360c36">
+<meta property="og:image" content="https://pics0.baidu.com/feed/d50735fae6cd7b89012233e4b1c109aed8330e7d.jpeg?token=e956710da06ddaa90696d2d0a71dda12">
+<meta property="og:image" content="https://pics2.baidu.com/feed/bf096b63f6246b60d6fee1c5561d5145530fa2fa.jpeg?token=d7c9a1ea55b036d1da0cb1f7600f8986">
+<meta property="og:image" content="https://pics0.baidu.com/feed/242dd42a2834349b323b4f890d0f5ec737d3beef.jpeg?token=aec96dcaf69a1e9c03e87883d6ae1098">
+<meta property="og:image" content="https://pics4.baidu.com/feed/00e93901213fb80e43b8685289346427b838943c.jpeg?token=078fc24b610382ff85ef46331734a2ab">
+<meta property="og:image" content="https://pics0.baidu.com/feed/d000baa1cd11728b87604edf0c1988c7c1fd2ce9.jpeg?token=63445328b92e67bc8d2a9a170e4b2c25">
+<meta property="og:image" content="https://pics3.baidu.com/feed/08f790529822720ec0468fffab2e414ff31fab1e.jpeg?token=a7ba6e4e9e0bef3fc90c2f4d12d6de1d">
+<meta property="og:image" content="https://pics6.baidu.com/feed/a2cc7cd98d1001e9731508d205eb30e555e79734.jpeg?token=ee687e606a9c8ac3a55277dcf2bed804">
+<meta property="og:image" content="https://pics4.baidu.com/feed/9c16fdfaaf51f3de2f9367d7540bbb163b29794b.jpeg?token=e99e9155d9ea0bee44a6ae020a9c8537">
+<meta property="og:image" content="https://pics0.baidu.com/feed/3b87e950352ac65cd5e1c02b4617f91891138af5.jpeg?token=30908a1c4e1e018e68b4b5fe68d913eb">
+<meta property="og:image" content="https://pics6.baidu.com/feed/b3fb43166d224f4aa822e448cd12db5b9922d125.jpeg?token=5ebfd55ec0ce398da0190460f29f21cd">
+<meta property="og:image" content="https://pics1.baidu.com/feed/4e4a20a4462309f72aafe27acfeb47fad5cad681.jpeg?token=2048eb6e71d6a01d744bccf83dc96a10">
+<meta property="og:image" content="https://pics0.baidu.com/feed/377adab44aed2e73a34652fe3be4ea8285d6faa0.jpeg?token=8e65a91d6b3cdde3d34cd6b1985c12d5">
+<meta property="og:image" content="https://pics1.baidu.com/feed/d0c8a786c9177f3e5217be81b52a70ce9e3d560d.jpeg?token=a9eaa07c36f8e834d24c104df4d110bf">
+<meta property="og:image" content="https://pics4.baidu.com/feed/8644ebf81a4c510f70bd4c1bdebc6e24d52aa5a1.jpeg?token=5c3ed7fa6a2c0bfa4eeba204a30aaa75">
+<meta property="og:image" content="https://pics4.baidu.com/feed/5882b2b7d0a20cf4cd20a6bbcbec003fadaf9915.jpeg?token=131436ea2d13a4af3d07a01a427b2184">
+<meta property="og:image" content="https://pics2.baidu.com/feed/aa18972bd40735fa6cac32875ab444ba0e24089a.jpeg?token=0f2931f539d3ddfd5e3759f24d93aeea">
+<meta property="og:image" content="https://static.oschina.net/uploads/space/2019/0507/114930_QiJ8_4062684.png">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-0ab891db0248c2c6f12badf0ba31efdd_720w.jpg">
+<meta property="article:published_time" content="2022-03-06T07:15:30.000Z">
+<meta property="article:modified_time" content="2022-03-06T07:16:43.769Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="模型部署">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pics4.baidu.com/feed/6f061d950a7b02089df539b2dc3cb9da562cc890.jpeg?token=8a2b1fa318f2ae76490ea6bd4c360c36">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-【精华】主流的深度学习推理架构" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      【精华】主流的深度学习推理架构
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-03-06
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E4%B8%BB%E6%B5%81%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E7%90%86%E6%9E%B6%E6%9E%84">主流的深度学习推理架构</a>
+<ul>
+<li><a href="#1ncnn">（1）NCNN</a></li>
+<li><a href="#2openvino">（2）OpenVino</a></li>
+<li><a href="#3tensorrt">（3）TensorRT</a></li>
+<li><a href="#4mediapipe">（4）MediaPipe</a></li>
+<li><a href="#5onnx">（5）ONNX</a></li>
+<li><a href="#6mnn">（6）MNN</a></li>
+<li><a href="#7mace">（7）MACE</a></li>
+<li><a href="#8tnn">（8）TNN</a></li>
+<li><a href="#9tvm">（9）TVM</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h4><span id="主流的深度学习推理架构"> 主流的深度学习推理架构</span></h4>
+<p>发布时间: 2021-10-20 12:29</p>
+<p>以深度学习为主的人工智能算法模型在日常 AI 应用中逐渐占据主流方向，相关的各类产品也是层出不穷。我们平时所看到的 AI 产品，像刷脸支付、智能语音、银行的客服机器人等，都是 AI 算法的具体落地应用。AI 技术在具体落地应用方面，和其他软件技术一样，也需要具体的部署和实施的。既然要做部署，那就会有不同平台设备上的各种不同的部署方法和相关的部署架构工具，目前在人工智能的落地部署方面，各大平台机构也都是大展身手，纷纷推出自家的部署平台。</p>
+<p>目前市场上应用最广泛的部署工具主要有以下几种：</p>
+<ul>
+<li>
+<p>腾讯公司开发的移动端平台部署工具 —— <code>NCNN</code></p>
+</li>
+<li>
+<p>Intel 公司针对自家设备开开发的部署工具 —— <code>OpenVino</code></p>
+</li>
+<li>
+<p>NVIDIA 公司针对自家 GPU 开发的部署工具 —— <code>TensorRT</code></p>
+</li>
+<li>
+<p>Google 针对自家硬件设备和深度学习框架开发的部署工具 —— <code>MediaPipe</code></p>
+</li>
+<li>
+<p>由微软、亚马逊、Facebook 和 IBM 等公司共同开发的开放神经网络交换格式 —— <code>ONNX</code> (Open Neural Network Exchange)</p>
+</li>
+<li>
+<p>阿里巴巴公司开发的移动端部署工具 ——MNN</p>
+</li>
+<li>
+<p>小米公司开发的移动端平台部署工具 ——MACE</p>
+</li>
+<li>
+<p>腾讯公司基于 Rapidnet、ncnn 开发的平台部署工具 ——TNN</p>
+</li>
+<li>
+<p>华盛顿大学的 SAMPL 组开发的平台部署工具 ——TVM</p>
+</li>
+</ul>
+<p>除此之外，还有一些深度学习框架有自己的专用部署服务：</p>
+<ul>
+<li>
+<p>TensorFlow 自己提供的部署服务： <code>TensorFlow Serving</code> 、 <code>TensorFlow Lite</code></p>
+</li>
+<li>
+<p>Pytorch 自己提供的部署服务： <code>libtorch</code></p>
+</li>
+</ul>
+<center><img src="https://pics4.baidu.com/feed/6f061d950a7b02089df539b2dc3cb9da562cc890.jpeg?token=8a2b1fa318f2ae76490ea6bd4c360c36" alt="img" style="zoom:80%;"></center>
+<p>本文主要是针对这些不同的部署工具做一个简单的分析，对比一下各家不同的部署工具到底有哪些优势和不足之处，方便大家在做部署的时候能够找到适合自己的项目的部署方法。具体的各种不同的部署工具的下载安装和使用方法会在后续的文章中做出详细的教程，关注深度人工智能学院，了解最实用的人工智能干货知识。</p>
+<h5><span id="1ncnn"> （1）NCNN</span></h5>
+<p><a target="_blank" rel="noopener" href="https://github.com/Tencent/ncnn">Github 地址</a></p>
+<p>NCNN 是腾讯优图实验室首个开源项目，是一个为手机端极致优化的高性能神经网络前向计算框架。并在 2017 年 7 月正式开源。NCNN 做为腾讯优图最 “火” 的开源项目之一，是一个为手机端极致优化的高性能神经网络前向计算框架，在设计之初便将手机端的特殊场景融入核心理念，是业界首个为移动端优化的开源神经网络推断库。能实现无第三方依赖，跨平台操作，在手机端 CPU 运算速度在开源框架中处于领先水平。基于该平台，开发者能够轻松将深度学习算法移植到手机端，输出高效的执行，进而产出人工智能 APP，将 AI 技术带到用户指尖。</p>
+<p>NCNN 从设计之初深刻考虑手机端的部署和使用。无第三方依赖，跨平台，手机端 CPU 的速度快于目前所有已知的开源框架。基于 NCNN，开发者能够将深度学习算法轻松移植到手机端高效执行，开发出人工智能 APP，将 AI 带到你的指尖。NCNN 目前已在腾讯多款应用中使用，如 QQ，Qzone，微信，天天 P 图等。</p>
+<p>下面是 NCNN 在各大系统平台的应用发展状态情况：</p>
+<center><img src="https://pics0.baidu.com/feed/d50735fae6cd7b89012233e4b1c109aed8330e7d.jpeg?token=e956710da06ddaa90696d2d0a71dda12" alt="img" style="zoom:80%;"></center>
+<p>从 NCNN 的发展矩阵可以看出，NCNN 覆盖了几乎所有常用的系统平台，尤其是在移动平台上的适用性更好，在 Linux、Windows 和 Android、以及 iOS、macOS 平台上都可以使用 GPU 来部署模型。</p>
+<p>根据官方的功能描述，NCNN 在各方面的性能都比较优良：</p>
+<ul>
+<li>
+<p>支持卷积神经网络，支持多输入和多分支结构，可计算部分分支</p>
+</li>
+<li>
+<p>无任何第三方库依赖，不依赖 BLAS/NNPACK 等计算框架</p>
+</li>
+<li>
+<p>纯 C++ 实现，跨平台，支持 android ios 等</p>
+</li>
+<li>
+<p>ARM NEON 汇编级良心优化，计算速度极快</p>
+</li>
+<li>
+<p>精细的内存管理和数据结构设计，内存占用极低</p>
+</li>
+<li>
+<p>支持多核并行计算加速，ARM big.LITTLE cpu 调度优化</p>
+</li>
+<li>
+<p>支持基于全新低消耗的 vulkan api GPU 加速</p>
+</li>
+<li>
+<p>整体库体积小于 700K，并可轻松精简到小于 300K</p>
+</li>
+<li>
+<p>可扩展的模型设计，支持 8bit 量化 和半精度浮点存储，可导入 caffe/pytorch/mxnet/onnx/darknet/keras/tensorflow (mlir) 模型</p>
+</li>
+<li>
+<p>支持直接内存零拷贝引用加载网络模型</p>
+</li>
+<li>
+<p>可注册自定义层实现并扩展</p>
+</li>
+</ul>
+<p>除此之外，NCNN 在对各种硬件设备的支持上也非常给力：</p>
+<center><img src="https://pics2.baidu.com/feed/bf096b63f6246b60d6fee1c5561d5145530fa2fa.jpeg?token=d7c9a1ea55b036d1da0cb1f7600f8986" alt="img" style="zoom:80%;"></center>
+<p>NCNN 的官方代码地址：<a target="_blank" rel="noopener" href="https://github.com/Tencent/ncnn">https://github.com/Tencent/ncnn</a></p>
+<p>移动端的部署工具除了 NCNN，还有<strong>华盛顿大学的 TVM、阿里的 MNN、小米的 MACE、腾讯优图基于 NCNN 开发的 TNN</strong> 等推理部署工具。</p>
+<h5><span id="2openvino"> （2）OpenVino</span></h5>
+<p><a target="_blank" rel="noopener" href="https://github.com/openvinotoolkit/openvino">Github 地址</a></p>
+<p>OpenVINO 工具套件全称是<strong> O</strong>pen <strong>V</strong>isual <strong>I</strong>nference &amp; <strong>N</strong>eural Network <strong>O</strong>ptimization，是 Intel 于 2018 年发布的，<strong>开源、商用免费</strong>、主要应用于计算机视觉、实现神经网络模型优化和推理计算 (Inference) 加速的软件工具套件。由于其商用免费，且可以把深度学习模型部署在英尔特 CPU 和集成 GPU 上，大大节约了显卡费用，所以越来越多的深度学习应用都使用 OpenVINO 工具套件做深度学习模型部署。</p>
+<p>OpenVINO 是一个 Pipeline 工具集，同时可以兼容各种开源框架训练好的模型，拥有算法模型上线部署的各种能力，只要掌握了该工具，你可以轻松的将预训练模型在 Intel 的 CPU 上快速部署起来。</p>
+<p>对于 AI 工作负载来说，OpenVINO 提供了深度学习推理套件（DLDT)，该套件可以将各种开源框架训练好的模型进行线上部署，除此之外，还包含了图片处理工具包 OpenCV，视频处理工具包 Media SDK，用于处理图像视频解码，前处理和推理结果后处理等。</p>
+<p>在做推理的时候，大多数情况需要前处理和后处理，前处理如通道变换，取均值，归一化，Resize 等，后处理是推理后，需要将检测框等特征叠加至原图等，都可以使用 OpenVINO 工具套件里的 API 接口完成。</p>
+<p>OpenVino 目前支持 Linux、Windows、macOS、Raspbian 等系统平台。</p>
+<center><img src="https://pics0.baidu.com/feed/242dd42a2834349b323b4f890d0f5ec737d3beef.jpeg?token=aec96dcaf69a1e9c03e87883d6ae1098" alt="img" style="zoom:80%;"></center>
+<p><strong>OpenVINO 工具套件</strong>主要包括：Model Optimizer (模型优化器)—— 用于优化神经网络模型的工具，Inference Engine (推理引擎)—— 用于加速推理计算的软件包。</p>
+<center><img src="https://pics4.baidu.com/feed/00e93901213fb80e43b8685289346427b838943c.jpeg?token=078fc24b610382ff85ef46331734a2ab" alt="img"></center>
+<p>模型优化器是一个 python 脚本工具，用于将开源框架训练好的模型转化为推理引擎可以识别的中间表达，其实就是两个文件，xml 和 bin 文件，前者是网络结构的描述，后者是权重文件。模型优化器的作用包括压缩模型和加速，比如，去掉推理无用的操作 (Dropout)，层的融合 (Conv + BN + Relu)，以及内存优化。</p>
+<p>推理引擎是一个支持 C\C++ 和 python 的一套 API 接口，需要开发人员自己实现推理过程的开发，开发流程其实非常的简单，核心流程如下：</p>
+<ul>
+<li>装载处理器的插件库</li>
+<li>读取网络结构和权重</li>
+<li>配置输入和输出参数</li>
+<li>装载模型</li>
+<li>创建推理请求</li>
+<li>准备输入 Data</li>
+<li>推理</li>
+<li>结果处理</li>
+</ul>
+<p>OpenVino 工具套件的工作流程图：</p>
+<center><img src="https://pics0.baidu.com/feed/d000baa1cd11728b87604edf0c1988c7c1fd2ce9.jpeg?token=63445328b92e67bc8d2a9a170e4b2c25" alt="img"></center>
+<p>OpenVino 的官方地址：<a target="_blank" rel="noopener" href="https://docs.openvinotoolkit.org/latest/index.html">https://docs.openvinotoolkit.org/latest/index.html</a></p>
+<p>提醒一下，大家不要去下面这个网站，因为这个网站是一个酿酒厂的网站：</p>
+<p><a target="_blank" rel="noopener" href="https://openvino.org/">https://openvino.org/</a></p>
+<h5><span id="3tensorrt"> （3）TensorRT</span></h5>
+<p><a target="_blank" rel="noopener" href="https://github.com/NVIDIA/TensorRT">Github 地址</a></p>
+<p>TensorRT 是 NVIDIA 开发的一个高性能的深度学习推理（Inference）优化器，可以为深度学习应用提供低延迟、高吞吐率的部署推理。TensorRT 可用于对超大规模数据中心、嵌入式平台或自动驾驶平台进行推理加速。TensorRT 现已能支持 TensorFlow、Caffe、Mxnet、Pytorch 等几乎所有的深度学习框架，将 TensorRT 和 NVIDIA 的 GPU 结合起来，能在几乎所有的框架中进行快速和高效的部署推理。</p>
+<p>TensorRT 是一个 C<ins> 库，从 TensorRT 3 开始提供 C</ins> API 和 Python API，主要用来针对 NVIDIA GPU 进行高性能推理（Inference）加速，它可为深度学习推理应用提供低延迟和高吞吐量。在推理期间，基于 TensorRT 的应用比仅 CPU 平台的执行速度快 40 倍。</p>
+<center><img src="https://pics3.baidu.com/feed/08f790529822720ec0468fffab2e414ff31fab1e.jpeg?token=a7ba6e4e9e0bef3fc90c2f4d12d6de1d" alt="img" style="zoom:70%;"></center>
+<p>一般的深度学习项目，训练时为了加快速度，会使用多 GPU 分布式训练。但在部署推理时，为了降低成本，往往使用单个 GPU 机器甚至嵌入式平台（比如 NVIDIA Jetson）进行部署，部署端也要有与训练时相同的深度学习环境，如 caffe，TensorFlow 等。由于训练的网络模型可能会很大（比如，inception，resnet 等），参数很多，而且部署端的机器性能存在差异，就会导致推理速度慢，延迟高。这对于那些高实时性的应用场合是致命的，比如自动驾驶要求实时目标检测，目标追踪等。所以为了提高部署推理的速度，出现了很多轻量级神经网络，比如 squeezenet，mobilenet，shufflenet 等。基本做法都是基于现有的经典模型提出一种新的模型结构，然后用这些改造过的模型重新训练，再重新部署。</p>
+<p>而 TensorRT 则是对训练好的模型进行优化。TensorRT 就只是推理优化器。当你的网络训练完之后，可以将训练模型文件直接丢进 TensorRT 中，而不再需要依赖深度学习框架（Caffe，TensorFlow 等）</p>
+<center><img src="https://pics6.baidu.com/feed/a2cc7cd98d1001e9731508d205eb30e555e79734.jpeg?token=ee687e606a9c8ac3a55277dcf2bed804" alt="img" style="zoom:80%;"></center>
+<p>可以认为 TensorRT 是一个只有前向传播的深度学习推理框架，这个框架可以将 Caffe，TensorFlow，PyTorch 等网络模型解析，然后与 TensorRT 中对应的层进行一一映射，把其他框架的模型统一全部转换到 TensorRT 中，然后在 TensorRT 中可以针对 NVIDIA 自家 GPU 实施优化策略，并进行部署加速。</p>
+<center><img src="https://pics4.baidu.com/feed/9c16fdfaaf51f3de2f9367d7540bbb163b29794b.jpeg?token=e99e9155d9ea0bee44a6ae020a9c8537" alt="img"></center>
+<p>TensorRT 依赖于 Nvidia 的深度学习硬件环境，可以是 GPU 也可以是 DLA，如果没有的话则无法使用。TensorRT 支持目前大部分的神经网络 Layer 的定义，同时提供了 API 让开发者自己实现特殊 Layer 的操作。</p>
+<p>TensorRT 基于 CUDA，NVIDIA 的并行编程模型，能够利用 CUDA-X AI 中的库、开发工具和技术，为人工智能、自动机器、高性能计算和图形优化所有深度学习框架的推理。</p>
+<p>TensorRT 的部署分为两个部分：</p>
+<ol>
+<li>
+<p>优化训练好的模型并生成计算流图</p>
+</li>
+<li>
+<p>使用 TensorRT Runtime 部署计算流图</p>
+</li>
+</ol>
+<p><strong>TensorRT 的部署流程</strong>：</p>
+<center><img src="https://pics0.baidu.com/feed/3b87e950352ac65cd5e1c02b4617f91891138af5.jpeg?token=30908a1c4e1e018e68b4b5fe68d913eb" alt="img"></center>
+<p><strong>TensorRT 的模型导入流程</strong>：</p>
+<center><img src="https://pics6.baidu.com/feed/b3fb43166d224f4aa822e448cd12db5b9922d125.jpeg?token=5ebfd55ec0ce398da0190460f29f21cd" alt="img" style="zoom: 67%;"></center>
+<p><strong>TensorRT 的优化过程</strong>：</p>
+<center><img src="https://pics1.baidu.com/feed/4e4a20a4462309f72aafe27acfeb47fad5cad681.jpeg?token=2048eb6e71d6a01d744bccf83dc96a10" alt="img"></center>
+<p>网络模型在导入至 TensorRT 后会进行一系列的优化，主要优化内容如下图所示</p>
+<p>TensorRT 官网下载地址：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/zh-cn/tensorrt">https://developer.nvidia.com/zh-cn/tensorrt</a></p>
+<p>开发者指南：<a target="_blank" rel="noopener" href="https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html">https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html</a></p>
+<p>Github 地址：<a target="_blank" rel="noopener" href="https://github.com/NVIDIA/TensorRT">https://github.com/NVIDIA/TensorRT</a></p>
+<h5><span id="4mediapipe"> （4）MediaPipe</span></h5>
+<p><a target="_blank" rel="noopener" href="https://github.com/google/mediapipe">Github 地址</a></p>
+<p>MediaPipe 是一款由 Google Research 开发并开源的多媒体机器学习模型应用框架。在谷歌，一系列重要产品，如 YouTube、Google Lens、ARCore、Google Home 以及 Nest，都已深度整合了 MediaPipe。</p>
+<p>MediaPipe 是一个基于图形的跨平台框架，用于构建多模式（视频，音频和传感器）应用的机器学习管道。MediaPipe 可在移动设备、工作站和服务器上跨平台运行，并支持移动 GPU 加速。使用 MediaPipe，可以将应用的机器学习管道构建为模块化组件的图形。MediaPipe 不仅可以被部署在服务器端，更可以在多个移动端 （安卓和苹果 iOS）和嵌入式平台（Google Coral 和树莓派）中作为设备端机器学习推理 （On-device Machine Learning Inference）框架。</p>
+<center><img src="https://pics0.baidu.com/feed/377adab44aed2e73a34652fe3be4ea8285d6faa0.jpeg?token=8e65a91d6b3cdde3d34cd6b1985c12d5" alt="img" style="zoom:80%;"></center>
+<p>一款多媒体机器学习应用的成败除了依赖于模型本身的好坏，还取决于设备资源的有效调配、多个输入流之间的高效同步、跨平台部署上的便捷程度、以及应用搭建的快速与否。</p>
+<p>基于这些需求，谷歌开发并开源了 MediaPipe 项目。除了上述的特性，MediaPipe 还支持 TensorFlow 和 TF Lite 的推理引擎（Inference Engine），任何 TensorFlow 和 TF Lite 的模型都可以在 MediaPipe 上使用。同时，在移动端和嵌入式平台，MediaPipe 也支持设备本身的 GPU 加速。</p>
+<p>MediaPipe 专为机器学习（ML）从业者而设计，包括研究人员，学生和软件开发人员，他们实施生产就绪的 ML 应用程序，发布伴随研究工作的代码，以及构建技术原型。MediaPipe 的主要用例是使用推理模型和其他可重用组件对应用机器学习管道进行快速原型设计。MediaPipe 还有助于将机器学习技术部署到各种不同硬件平台上的演示和应用程序中。</p>
+<p>MediaPipe 的核心框架由 C++ 实现，并提供 Java 以及 Objective C 等语言的支持。MediaPipe 的主要概念包括数据包（Packet）、数据流（Stream）、计算单元（Calculator）、图（Graph）以及子图（Subgraph）。数据包是最基础的数据单位，一个数据包代表了在某一特定时间节点的数据，例如一帧图像或一小段音频信号；数据流是由按时间顺序升序排列的多个数据包组成，一个数据流的某一特定时间戳（Timestamp）只允许至多一个数据包的存在；而数据流则是在多个计算单元构成的图中流动。MediaPipe 的图是有向的 —— 数据包从数据源（Source Calculator 或者 Graph Input Stream）流入图直至在汇聚结点（Sink Calculator 或者 Graph Output Stream） 离开。</p>
+<center><img src="https://pics1.baidu.com/feed/d0c8a786c9177f3e5217be81b52a70ce9e3d560d.jpeg?token=a9eaa07c36f8e834d24c104df4d110bf" alt="img" style="zoom:90%;"></center>
+<p>MediaPipe 在开源了多个由谷歌内部团队实现的计算单元（Calculator）的同时，也向用户提供定制新计算单元的接口。创建一个新的 Calculator，需要用户实现 Open ()，Process ()，Close () 去分别定义 Calculator 的初始化，针对数据流的处理方法，以及 Calculator 在完成所有运算后的关闭步骤。为了方便用户在多个图中复用已有的通用组件，例如图像数据的预处理、模型的推理以及图像的渲染等， MediaPipe 引入了子图（Subgraph）的概念。因此，一个 MediaPipe 图中的节点既可以是计算单元，亦可以是子图。子图在不同图内的复用，方便了大规模模块化的应用搭建。</p>
+<p>MediaPipe 不支持除了 tensorflow 之外的其他深度学习框架，但是对各种系统平台和语言的支持非常友好：</p>
+<center><img src="https://pics4.baidu.com/feed/8644ebf81a4c510f70bd4c1bdebc6e24d52aa5a1.jpeg?token=5c3ed7fa6a2c0bfa4eeba204a30aaa75" alt="img" style="zoom:80%;"></center>
+<p>MediaPipe 的官方地址：<a target="_blank" rel="noopener" href="https://google.github.io/mediapipe/">https://google.github.io/mediapipe/</a></p>
+<p>GitHub 地址：<a target="_blank" rel="noopener" href="https://github.com/google/mediapipe">https://github.com/google/mediapipe</a></p>
+<h5><span id="5onnx"> （5）ONNX</span></h5>
+<p><a target="_blank" rel="noopener" href="https://github.com/onnx/onnx">Github 地址</a></p>
+<p>Open Neural Network Exchange（ONNX，开放神经网络交换）格式，是一个用于表示深度学习模型的标准，可使模型在不同框架之间进行转移。ONNX 是一种针对机器学习所设计的开放式的文件格式，用于存储训练好的模型。它使得不同的人工智能框架（如 Pytorch, MXNet）可以采用相同格式存储模型数据并交互。ONNX 的规范及代码主要由微软，亚马逊 ，Facebook 和 IBM 等公司共同开发，以开放源代码的方式托管在 Github 上。目前官方支持加载 ONNX 模型并进行推理的深度学习框架有：Caffe2, PyTorch, MXNet，<a target="_blank" rel="noopener" href="http://ML.NET">ML.NET</a>，TensorRT 和 Microsoft CNTK，并且 TensorFlow 也非官方的支持 ONNX。</p>
+<p>比方说现在某组织因为主要开发用 TensorFlow 为基础的框架，现在有一个深度算法，需要将其部署在移动设备上，以观测变现。传统地我们需要用 caffe2 重新将模型写好，然后再训练参数；试想下这将是一个多么耗时耗力的过程。</p>
+<p>此时，ONNX 便应运而生，Caffe2，PyTorch，Microsoft Cognitive Toolkit，Apache MXNet 等主流框架都对 ONNX 有着不同程度的支持。这就便于了我们的算法及模型在不同的框架之间的迁移。无论你使用何种训练框架训练模型（比如 TensorFlow/Pytorch/OneFlow/Paddle），在训练完毕后你都可以将这些框架的模型统一转换为 ONNX 这种统一的格式进行存储。</p>
+<p>开放式神经网络交换（ONNX）是迈向开放式生态系统的第一步，它使 AI 开发人员能够随着项目的发展选择合适的工具。ONNX 为 AI 模型提供开源格式。它定义了可扩展的计算图模型，以及内置运算符和标准数据类型的定义。最初的 ONNX 专注于推理（评估）所需的功能。ONNX 解释计算图的可移植，它使用 graph 的序列化格式。它不一定是框架选择在内部使用和操作计算的形式。例如，如果在优化过程中操作更有效，则实现可以在存储器中以不同方式表示模型。</p>
+<p>在获得 ONNX 模型之后，模型部署人员自然就可以将这个模型部署到兼容 ONNX 的运行环境中去。这里一般还会设计到额外的模型转换工作，典型的比如在 Android 端利用 NCNN 部署 ONNX 格式模型，那么就需要将 ONNX 利用 NCNN 的转换工具转换到 NCNN 所支持的 bin 和 param 格式。</p>
+<p>ONNX 作为一个文件格式，我们自然需要一定的规则去读取我们想要的信息或者是写入我们需要保存信息。ONNX 使用的是 Protobuf 这个序列化数据结构去存储神经网络的权重信息。熟悉 Caffe 或者 Caffe2 的同学应该知道，它们的模型存储数据结构协议也是 Protobuf。</p>
+<p>Protobuf 是一种轻便高效的结构化数据存储格式，可以用于结构化数据串行化，或者说序列化。它很适合做数据存储或数据交换格式。可用于通讯协议、数据存储等领域的语言无关、平台无关、可扩展的序列化结构数据格式。目前提供了 C++、Java、Python 三种语言的 API（摘自官方介绍）。</p>
+<p>Protobuf 协议是一个以 *.proto 后缀文件为基础的，这个文件描述了用户自定义的数据结构。如果需要了解更多细节请参考 0x7 节的资料 3，这里只是想表达 ONNX 是基于 Protobuf 来做数据存储和传输，那么自然 onnx.proto 就是 ONNX 格式文件了。</p>
+<p>ONNX 作为框架共用的一种模型交换格式，使用 protobuf 二进制格式来序列化模型，可以提供更好的传输性能我们可能会在某一任务中将 Pytorch 或者 TensorFlow 模型转化为 ONNX 模型 (ONNX 模型一般用于中间部署阶段)，然后再拿转化后的 ONNX 模型进而转化为我们使用不同框架部署需要的类型，ONNX 相当于一个翻译的作用。</p>
+<center><img src="https://pics4.baidu.com/feed/5882b2b7d0a20cf4cd20a6bbcbec003fadaf9915.jpeg?token=131436ea2d13a4af3d07a01a427b2184" alt="img" style="zoom:80%;"></center>
+<p>ONNX 将每一个网络的每一层或者说是每一个算子当作节点 Node，再由这些 Node 去构建一个 Graph，相当于是一个网络。最后将 Graph 和这个 onnx 模型的其他信息结合在一起，生成一个 model，也就是最终的.onnx 的模型。</p>
+<p>构建一个简单的 onnx 模型，实质上，只要构建好每一个 node，然后将它们和输入输出超参数一起塞到 graph，最后转成 model 就可以了。</p>
+<p>在计算方面，虽然更高级的表达不同，但不同框架产生的最终结果都是非常接近。因此实时跟踪某一个神经网络是如何在这些框架上生成的，接着使用这些信息创建一个通用的计算图，即符合 ONNX 标准的计算图。</p>
+<p>ONNX 为可扩展的计算图模型、内部运算器（Operator）以及标准数据类型提供了定义。在初始阶段，每个计算数据流图以节点列表的形式组织起来，构成一个非循环的图。节点有一个或多个的输入与输出。每个节点都是对一个运算器的调用。图还会包含协助记录其目的、作者等信息的元数据。运算器在图的外部实现，但那些内置的运算器可移植到不同的框架上，每个支持 ONNX 的框架将在匹配的数据类型上提供这些运算器的实现。</p>
+<p>Microsoft 和合作伙伴社区创建了 ONNX 作为表示机器学习模型的开放标准。 许多框架（包括 TensorFlow、PyTorch、SciKit-Learn、Keras、Chainer、MXNet、MATLAB 和 SparkML）中的模型都可以导出或转换为标准 ONNX 格式。模型采用 ONNX 格式后，可在各种平台和设备上运行。</p>
+<p>ONNX 运行时是一种用于将 ONNX 模型部署到生产环境的高性能推理引擎。它针对云和 Edge 进行了优化，适用于 Linux、Windows 和 Mac。它使用 C++ 编写，还包含 C、Python、C#、Java 和 Javascript (Node.js) API，可在各种环境中使用。ONNX 运行时同时支持 DNN 和传统 ML 模型，并与不同硬件上的加速器（例如，NVidia GPU 上的 TensorRT、Intel 处理器上的 OpenVINO、Windows 上的 DirectML 等）集成。通过使用 ONNX 运行时，可以从大量的生产级优化、测试和不断改进中受益。</p>
+<p>ONNX 运行时用于大规模 Microsoft 服务，如必应、Office 和 Azure 认知服务。性能提升取决于许多因素，但这些 Microsoft 服务的 CPU 平均起来可实现 2 倍的性能提升。除了 Azure 机器学习服务外，ONNX 运行时还在支持机器学习工作负荷的其他产品中运行，包括：</p>
+<ul>
+<li>
+<p>Windows: 该运行时作为 Windows 机器学习的一部分内置于 Windows 中，在数亿台设备上运行。</p>
+</li>
+<li>
+<p>Azure SQL 产品系列：针对 Azure SQL Edge 和 Azure SQL 托管实例中的数据运行本机评分。</p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="http://ML.NET">ML.NET</a>：在 <a target="_blank" rel="noopener" href="http://ML.NET">ML.NET</a> 中运行 ONNX 模型。</p>
+</li>
+</ul>
+<center><img src="https://pics2.baidu.com/feed/aa18972bd40735fa6cac32875ab444ba0e24089a.jpeg?token=0f2931f539d3ddfd5e3759f24d93aeea" alt="img" style="zoom:80%;"></center>
+<p>ONNX 的官方网站：<a target="_blank" rel="noopener" href="https://onnx.ai/">https://onnx.ai/</a></p>
+<p>ONXX 的 GitHub 地址：<a target="_blank" rel="noopener" href="https://github.com/onnx/onnx">https://github.com/onnx/onnx</a></p>
+<h5><span id="6mnn"> （6）MNN</span></h5>
+<p><a target="_blank" rel="noopener" href="https://github.com/alibaba/MNN">Github 地址</a></p>
+<p>MNN 是一个高效、轻量的深度学习框架。由阿里巴巴开源，它支持深度模型推理与训练，尤其在端侧的推理与训练性能在业界处于领先地位。目前，MNN 已经在阿里巴巴的手机淘宝、手机天猫、优酷、钉钉、闲鱼等 20 多个 App 中使用，覆盖直播、短视频、搜索推荐、商品图像搜索、互动营销、权益发放、安全风控等 70 多个场景。此外，IoT 等场景下也有若干应用。</p>
+<p>MNN 的架构设计理念与性能数据在 MLSys 2020 上面发表。Paper <a target="_blank" rel="noopener" href="https://proceedings.mlsys.org/static/paper_files/mlsys/2020/7-Paper.pdf">在此处</a>。如果 MNN 对你的研究有所助益，欢迎引用 MNN 的论文：</p>
+<p><strong>（1）整体特点</strong></p>
+<p>1&gt;  <code>轻量性</code></p>
+<ul>
+<li>针对端侧设备特点深度定制和裁剪，无任何依赖，可以方便地部署到移动设备和各种嵌入式设备中。</li>
+<li>iOS 平台：armv7+arm64 静态库大小 5MB 左右，链接生成可执行文件增加大小 620KB 左右，metallib 文件 600KB 左右。</li>
+<li>Android 平台：so 大小 400KB 左右，OpenCL 库 400KB 左右，Vulkan 库 400KB 左右。</li>
+</ul>
+<p>2&gt;  <code>通用性</code></p>
+<ul>
+<li>支持 <code>Tensorflow</code> 、 <code>Caffe</code> 、 <code>ONNX</code>  等主流模型文件格式，支持 <code>CNN</code> 、 <code>RNN</code> 、 <code>GAN</code>  等常用网络。</li>
+<li>支持 86 个 <code>Tensorflow</code> Op、34 个 <code>Caffe</code> Op；各计算设备支持的 MNN Op 数：CPU 71 个，Metal 55 个，OpenCL 29 个，Vulkan 31 个。</li>
+<li>支持 iOS 8.0+、Android 4.3 + 和具有 POSIX 接口的嵌入式设备。</li>
+<li>支持异构设备混合计算，目前支持 CPU 和 GPU，可以动态导入 GPU Op 插件，替代 CPU Op 的实现。</li>
+</ul>
+<p>3&gt;  <code>高性能</code></p>
+<ul>
+<li>不依赖任何第三方计算库，依靠大量手写汇编实现核心运算，充分发挥 ARM CPU 的算力。</li>
+<li>iOS 设备上可以开启 GPU 加速（Metal），常用模型上快于苹果原生的 CoreML。</li>
+<li>Android 上提供了 <code>OpenCL</code> 、 <code>Vulkan</code> 、 <code>OpenGL</code>  三套方案，尽可能多地满足设备需求，针对主流 GPU（ <code>Adreno</code>  和 <code>Mali</code> ）做了深度调优。</li>
+<li>卷积、转置卷积算法高效稳定，对于任意形状的卷积均能高效运行，广泛运用了 Winograd 卷积算法，对 3x3 -&gt; 7x7 之类的对称卷积有高效的实现。</li>
+<li>针对 ARM v8.2 的新架构额外作了优化，新设备可利用半精度计算的特性进一步提速。</li>
+</ul>
+<p>4&gt;  <code>易用性</code></p>
+<ul>
+<li>有高效的图像处理模块，覆盖常见的形变、转换等需求，一般情况下，无需额外引入 libyuv 或 opencv 库处理图像。</li>
+<li>支持回调机制，可以在网络运行中插入回调，提取数据或者控制运行走向。</li>
+<li>支持只运行网络中的一部分，或者指定 CPU 和 GPU 间并行运行。</li>
+</ul>
+<p><strong>（2）架构设计</strong></p>
+<center><img src="https://static.oschina.net/uploads/space/2019/0507/114930_QiJ8_4062684.png" alt="img" style="zoom: 50%;"></center>
+<p>MNN 可以分为 Converter 和 Interpreter 两部分。</p>
+<p>Converter 由 Frontends 和 Graph Optimize 构成。前者负责支持不同的训练框架，MNN 当前支持 Tensorflow (Lite)、Caffe 和 ONNX (PyTorch/MXNet 的模型可先转为 ONNX 模型再转到 MNN)；后者通过算子融合、算子替代、布局调整等方式优化图。</p>
+<p>Interpreter 由 Engine 和 Backends 构成。前者负责模型的加载、计算图的调度；后者包含各计算设备下的内存分配、Op 实现。在 Engine 和 Backends 中，MNN 应用了多种优化方案，包括在卷积和反卷积中应用 Winograd 算法、在矩阵乘法中应用 Strassen 算法、低精度计算、Neon 优化、手写汇编、多线程优化、内存复用、异构计算等。</p>
+<h5><span id="7mace"> （7）MACE</span></h5>
+<p><a target="_blank" rel="noopener" href="https://github.com/XiaoMi/mace">Github 地址</a></p>
+<p><code>Mobile AI Compute Engine (MACE)</code>  是小米开发的一个专为移动端异构计算平台 (支持 Android, iOS, Linux, Windows) 优化的神经网络计算框架。 主要从以下的角度做了专门的优化：</p>
+<ul>
+<li>性能
+<ul>
+<li>代码经过 NEON 指令，OpenCL 以及 Hexagon HVX 专门优化，并且采用 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1509.09308">Winograd 算法</a>来进行卷积操作的加速。 此外，还对启动速度进行了专门的优化。</li>
+</ul>
+</li>
+<li>功耗
+<ul>
+<li>支持芯片的功耗管理，例如 ARM 的 big.LITTLE 调度，以及高通 Adreno GPU 功耗选项。</li>
+</ul>
+</li>
+<li>系统响应
+<ul>
+<li>支持自动拆解长时间的 OpenCL 计算任务，来保证 UI 渲染任务能够做到较好的抢占调度， 从而保证系统 UI 的相应和用户体验。</li>
+</ul>
+</li>
+<li>内存占用
+<ul>
+<li>通过运用内存依赖分析技术，以及内存复用，减少内存的占用。另外，保持尽量少的外部 依赖，保证代码尺寸精简。</li>
+</ul>
+</li>
+<li>模型加密与保护
+<ul>
+<li>模型保护是重要设计目标之一。支持将模型转换成 C++ 代码，以及关键常量字符混淆，增加逆向的难度。</li>
+</ul>
+</li>
+<li>硬件支持范围
+<ul>
+<li>支持高通，联发科，以及松果等系列芯片的 CPU，GPU 与 DSP (目前仅支持 Hexagon) 计算加速。CPU 模式支持 Android, iOS, Linux 等系统。</li>
+</ul>
+</li>
+<li>模型格式支持
+<ul>
+<li>支持<a target="_blank" rel="noopener" href="https://github.com/tensorflow/tensorflow"> TensorFlow</a>， <a target="_blank" rel="noopener" href="https://github.com/BVLC/caffe">Caffe</a> 和<a target="_blank" rel="noopener" href="https://github.com/onnx/onnx"> ONNX</a> 等模型格式。</li>
+</ul>
+</li>
+</ul>
+<h5><span id="8tnn"> （8）TNN</span></h5>
+<p><a target="_blank" rel="noopener" href="https://github.com/Tencent/TNN">Github 地址</a></p>
+<p>TNN 是由腾讯优图实验室开源的高性能、轻量级神经网络推理框架，同时拥有跨平台、高性能、模型压缩、代码裁剪等众多突出优势。TNN 框架在原有 Rapidnet、ncnn 框架的基础上进一步加强了移动端设备的支持以及性能优化，同时借鉴了业界主流开源框架高性能和良好拓展性的特性，拓展了对于后台 X86, NV GPU 的支持。手机端 TNN 已经在手 Q、微视、P 图等众多应用中落地，服务端 TNN 作为腾讯云 AI 基础加速框架已为众多业务落地提供加速支持。欢迎大家参与协同共建，促进 TNN 推理框架进一步完善。</p>
+<h5><span id="9tvm"> （9）TVM</span></h5>
+<p><a target="_blank" rel="noopener" href="https://github.com/apache/tvm">Github 地址</a></p>
+<p>TVM 是一款开源项目，主要由华盛顿大学的 SAMPL 组贡献开发。目前深度学习社区十分活跃，每天都有研究者提出新的 operation 以期望更好的提升模型的准确率。同时，随着越来越多的厂商开始做硬件（比如寒武纪，商汤科技等等），运行神经网络的时候会有越来越多的后端设备可供选择。</p>
+<p>而这对于做框架的人来说就比较头疼，既要尝试为新出现的各种 operation 提供支持，又要在新出现的后端设备上实现现有的 operation。TVM 项目因此应运而生，希望达到的目标就是研究人员只用写一次 operation，然后 TVM 自动对各种后端设备生成性能可观的代码。</p>
+<p>按照官方的定义，TVM 是一套完整的 stack，包括神经网络图优化（比如 op fusion）和单个 operation 优化等部分。我习惯于将图优化的部分归类做 Relay 项目，而仅仅把单个 operation 优化看做 TVM，因此文章之后提到的 TVM 基本是指单个算子优化这部分。</p>
+<center><img src="https://pic2.zhimg.com/80/v2-0ab891db0248c2c6f12badf0ba31efdd_720w.jpg" alt="img"></center>
+<p>上面这张摘自 tvm 的官网 (<a href="https://link.zhihu.com/?target=https%3A//tvm.ai/about">https://tvm.ai/about</a>) 的图片说明了 TVM 处于深度学习框架的位置。TVM 位于神经网络图（High-Level Differentiable IR）的下方，底层硬件（LLVM, CUDA, Metal）的上方。</p>
+<p>图片右边的 AutoTVM 我认为比较独立。这个目的是自动调整 TVM 生成的代码的一些参数，试图让 TVM 生成的代码尽可能快。做自动代码优化的优秀项目除了 AutoTVM，还有<a target="_blank" rel="noopener" href="https://halide-lang.org/papers/autoscheduler2019.html"> Halide</a>，个人认为目前 Halide 做代码自动优化做的更好。TVM 的基本思路参考自 Halide，其中的数据结构也引用了很多 Halide 的实现，强烈推荐感兴趣的朋友研究一下 Halide</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2022年03月06日 15:16</p>
+        <p>原始链接： <a class="post-url" href="/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%B8%BB%E6%B5%81%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E7%90%86%E6%9E%B6%E6%9E%84/" title="【精华】主流的深度学习推理架构">https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%B8%BB%E6%B5%81%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E7%90%86%E6%9E%B6%E6%9E%84/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%B8%BB%E6%B5%81%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E7%90%86%E6%9E%B6%E6%9E%84/&title=《【精华】主流的深度学习推理架构》 — 且听风吟，御剑于心！&pic=images/主流的深度学习推理架构.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%B8%BB%E6%B5%81%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E7%90%86%E6%9E%B6%E6%9E%84/&title=《【精华】主流的深度学习推理架构》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%B8%BB%E6%B5%81%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E7%90%86%E6%9E%B6%E6%9E%84/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【精华】主流的深度学习推理架构》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%B8%BB%E6%B5%81%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E7%90%86%E6%9E%B6%E6%9E%84/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%B8%BB%E6%B5%81%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E7%90%86%E6%9E%B6%E6%9E%84/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%B8%BB%E6%B5%81%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E7%90%86%E6%9E%B6%E6%9E%84/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/模型部署/" class="color5">模型部署</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 主流的深度学习推理架构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （1）NCNN</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （2）OpenVino</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （3）TensorRT</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （4）MediaPipe</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （5）ONNX</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （6）MNN</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （7）MACE</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （8）TNN</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （9）TVM</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          【精华】最强六大开源轻量级人脸检测项目分析
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/03/03/%E3%80%90%E7%B2%BE%E9%80%89%E3%80%91%E4%B8%89%E8%A7%82%E8%B6%85%E6%AD%A3%E7%9A%84%E6%96%87%E6%A1%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【精选】三观超正的文案</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="【精华】主流的深度学习推理架构" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【精华】最强六大开源轻量级人脸检测项目分析 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   【精华】最强六大开源轻量级人脸检测项目分析  1 libfacedetection 2 Ultra-Light-Fast-Generic-Face-Detector-1MB 3 A-Light-and-Fast-Face-Detector-for-Edge-Devices 4 CenterFace 5 DBFace 6 RetinaFace MobileNet0.25">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【精华】最强六大开源轻量级人脸检测项目分析">
+<meta property="og:url" content="https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   【精华】最强六大开源轻量级人脸检测项目分析  1 libfacedetection 2 Ultra-Light-Fast-Generic-Face-Detector-1MB 3 A-Light-and-Fast-Face-Detector-for-Edge-Devices 4 CenterFace 5 DBFace 6 RetinaFace MobileNet0.25">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hD0X3AIs3iajYXmuVEianibibG3w2ibTC3D9dySRiaIauXtibJzlWu3kddD4IXA/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jYxiaA1UFYibXU1lMicXZY6k4nhGribokxWkRohPNxC8XbRNNtLEfDxFCjJ2XXnXlY8hXb7xpcSbzU9RQ/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hDrV5xqXRtlqXiaiakBTwHDRDDic62JGDMYibW2c3XuLxia6fSUKYiaGRBibmzg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hD1Htn5CjPXVLdcib6Ha2PS64GGUvnEQ1VrKN1lSX8p4icyoicwRia057bkg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hD3icPo8er3sCM2mHu274JGUyNebiaib6l9GgZKnrPllUfPEzySnjTfvtSA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hDpkOicanQzLGajibia9FXWtH6iaxPnm2zOA4h0PPBUibibK2ibZLjqPhAAZ5DA/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hDtXkb2xBicqVHiasb3EUxfwtkN7WoqibElWgOicGXJAbpw7Tial7YlFLLM7w/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2022-03-06T07:15:55.000Z">
+<meta property="article:modified_time" content="2022-03-06T07:57:42.489Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="目标检测（人脸检测）">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hD0X3AIs3iajYXmuVEianibibG3w2ibTC3D9dySRiaIauXtibJzlWu3kddD4IXA/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-【精华】最强六大开源轻量级人脸检测项目分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      【精华】最强六大开源轻量级人脸检测项目分析
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-03-06
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E7%B2%BE%E5%8D%8E%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90">【精华】最强六大开源轻量级人脸检测项目分析</a>
+<ul>
+<li><a href="#1-libfacedetection">1 libfacedetection</a></li>
+<li><a href="#2-ultra-light-fast-generic-face-detector-1mb">2 Ultra-Light-Fast-Generic-Face-Detector-1MB</a></li>
+<li><a href="#3-a-light-and-fast-face-detector-for-edge-devices">3 A-Light-and-Fast-Face-Detector-for-Edge-Devices</a></li>
+<li><a href="#4-centerface">4 CenterFace</a></li>
+<li><a href="#5-dbface">5 DBFace</a></li>
+<li><a href="#6-retinaface-mobilenet025">6 RetinaFace MobileNet0.25</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h4><span id="精华最强六大开源轻量级人脸检测项目分析"> 【精华】最强六大开源轻量级人脸检测项目分析</span></h4>
+<p>随着深度学习的兴起，工业界和学术界越来越多的使用基于深度学习的方法，而不是传统的基于模板匹配，纹理提取或者像素积分图等方法。因为人脸检测本身并不属于特别复杂的任务，因此轻量级的深度学习模型即可满足该任务。本文汇总了六大开源的人脸检测项目。</p>
+<p>虽说深度学习是个黑箱，但基于深度学习的通用目标检测算法（例 如 Faster-RCNN，SSD，YoloV3、 RetinaNet 等）的检测效果和鲁棒性，远远的超过基于纹理、边缘、Harr 特征、Sift 特征的传统计算机视觉方法，而且近几年随着<strong>模型压缩、量化技术</strong>的进步，模型运行速度也越来越快。</p>
+<p>对于通用的目标检测算法，以大家常用的 SSD 和 YoloV3 算法为例，因为算法在设计之初，是为 Pascal VOC 或者 COCO 这种 20 类 和 80 类的多类别任务设计的，因此其 backbone 网络，也就是特征提取网络一般使用 VGG16、Darknet53、ResNet18 这种网络，这些网络的一个通用特点是，其卷积层的卷积核数目通常比较多（例如 256，512），导致模型参数量动辄几千万，运算量巨大。</p>
+<p>如果我们拿这些通用目标检测算法来检测一类，比如只检测人脸、行人或者车辆时，使用那么多的卷积核数量、那么深的网络其实是不必要的。如果要检测 80 个类别，可能需要更多参数量来拟合，但是对于一两个类别，其实是有点<strong>杀鸡用宰牛刀</strong>了，如果你的任务不复杂，却用了 ResNet18/34 这种网络，你会发现很多卷积核的激活，其实是 0，导致白白多增加了很多计算量。所以，针对特定的人脸检测任务，其实一些非常轻量级的网络即可满足任务要求。</p>
+<p>对于比赛刷榜，我们可以用很大的模型，例如某 AI 公司在 WiderFace 上夺冠的模型，结构用 RetinaNet，backbone 用 ResNet152，另外，FPN 结构也安排上，多模型融合安排上，更多的 anchor 组数安排上，这样的模型对于刷榜非常实用，但是在工业界非常不实用，假如要部署到 ARM 的嵌入式设备上，大概率直接卡死。</p>
+<p>随着 AI 落地为王时代的到来，大家越来越注重精度和速度的权衡（trade off），本文精选了六大轻量级的开源人脸检测项目，并对其进行简单赏析和介绍。</p>
+<p>言归正传，下面我们按照 Github 上 star 数目从高到低依次介绍。</p>
+<h5><span id="1-libfacedetection"> 1 libfacedetection</span></h5>
+<p>Github star: 9.3k</p>
+<p>作者：于仕琪</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://github.com/ShiqiYu/libfacedetection">https://github.com/ShiqiYu/libfacedetection</a></p>
+<p>模型参数量：232 万，体积 3.34M</p>
+<p>前几天元峰已经对该项目进行过一次介绍了，该项目使用一个 SSD 架构的人脸检测模型，在酷睿 i7 的 CPU 上，320x240 分辨率下可以达到 296.21 FPS，下图是该项目在不同分辨率和单线程下的速度概览。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hD0X3AIs3iajYXmuVEianibibG3w2ibTC3D9dySRiaIauXtibJzlWu3kddD4IXA/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p>
+<p>模型结构也比较简单，就是一个轻量级的 SSD 架构，共四个定位层，而且借鉴了 RetinFace 的关键点方法，可以同时回归 5 个关键点。模型体积只有 232 万，体积仅有 3.34M</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jYxiaA1UFYibXU1lMicXZY6k4nhGribokxWkRohPNxC8XbRNNtLEfDxFCjJ2XXnXlY8hXb7xpcSbzU9RQ/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:70%;"></center>
+<p>该项目的最大亮点，其实是于老师搞了一个纯 C++ 的推理版本，不依赖第三方深度学习库，非常有利于工程部署。</p>
+<h5><span id="2-ultra-light-fast-generic-face-detector-1mb"> 2 Ultra-Light-Fast-Generic-Face-Detector-1MB</span></h5>
+<p>Github star: 4.7k</p>
+<p>作者：Linzaer</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB">https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB</a></p>
+<p>体积：1.04M， int8 量化后 300KB</p>
+<p>该模型是针对边缘计算设备设计的人脸检测模型。并提供了精简网络和 RFB 网络两种，在 320x240 的输入分辨率下 90~109 FPS 左右。</p>
+<p>该模型的结构与上述于老师的模型结构非常相似，也是 SSD 架构，共有 4 个定位层，模型结构如下图所示。</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hDrV5xqXRtlqXiaiakBTwHDRDDic62JGDMYibW2c3XuLxia6fSUKYiaGRBibmzg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>另外，该项目提供了 NCNN、MNN、Caffe、Onnx、Opencv 的推理代码，可以给我们部署项目提供大量参考样例。</p>
+<h5><span id="3-a-light-and-fast-face-detector-for-edge-devices"> 3 A-Light-and-Fast-Face-Detector-for-Edge-Devices</span></h5>
+<p>Github star: <strong>897</strong></p>
+<p>作者：YonghaoHe</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://github.com/YonghaoHe/A-Light-and-Fast-Face-Detector-for-Edge-Devices">https://github.com/YonghaoHe/A-Light-and-Fast-Face-Detector-for-Edge-Devices</a></p>
+<p>体积：6.1 M</p>
+<p>从名字可以看出来，这也是一个面向边缘设备的检测模型，该模型同样是 SSD 架构的，不过相比前述两个模型，该模型有八个定位层，分别对应 tiny、small、medium 和 large 四个尺度，backbone 网络共有 25 个卷积层。</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hD1Htn5CjPXVLdcib6Ha2PS64GGUvnEQ1VrKN1lSX8p4icyoicwRia057bkg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:70%;"></center>
+<p>该模型在 Nvidia TX2 下，320x240 分辨率下可以达到 50.92 FPS。</p>
+<p>另外，该 repo 还提供了人头检测、行人检测、车辆检测的代码和模型。</p>
+<h5><span id="4-centerface"> 4 CenterFace</span></h5>
+<p>Github star: 607</p>
+<p>作者：Star-Clouds</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://github.com/Star-Clouds/CenterFace">https://github.com/Star-Clouds/CenterFace</a></p>
+<p>体积：7.3 M、同精度小模型 2.3M</p>
+<p>CenterFace 是 anchor free 的模型结构，应该算是 CenterNet 针对人脸检测任务的特例，这一点上跟 RetinaFace 作为 RetinaNet 的在人脸任务的特例有异曲同工之妙，而且该模型同时回归了五个关键点。</p>
+<p>该网络的 backbone 是 MobileNetV2，额外添加了 FPN 结构。</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hD3icPo8er3sCM2mHu274JGUyNebiaib6l9GgZKnrPllUfPEzySnjTfvtSA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>下图是 CenterFace 的速度，在 2080TI 上可以仅 4.4ms。Anchor Free 的模型，没有 NMS 的过程，也能节省很多后处理时间。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hDpkOicanQzLGajibia9FXWtH6iaxPnm2zOA4h0PPBUibibK2ibZLjqPhAAZ5DA/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片"></p>
+<h5><span id="5-dbface"> 5 DBFace</span></h5>
+<p>Github star: <strong>195</strong></p>
+<p>作者：dlunion</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://github.com/dlunion/DBFace">https://github.com/dlunion/DBFace</a></p>
+<p>体积：7.03M</p>
+<p>DBFace 是一个 Anchor Free 的网络结构，模型原理可以说与 CenterFace 非常相似。这里不再展开详细的介绍了。</p>
+<h5><span id="6-retinaface-mobilenet025"> 6 RetinaFace MobileNet0.25</span></h5>
+<p>Github star: 不好定义（6.4k）</p>
+<p>作者：yangfly</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://github.com/deepinsight/insightface/issues/669">https://github.com/deepinsight/insightface/issues/669</a></p>
+<p>体积：1.68M</p>
+<p>这个项目来自于知名的 InsightFace 项目，该项目在 Github 有 6.4k star，InsightFace 提出了知名的 RetinaFace、ArcFace 算法，而且开源了详细的训练代码和预训练模型，可以说是非常良心的开源项目。</p>
+<p>但是 RetinaFace（应该是受 RetianNet 的结构启发而成）本身的 backbone 是 ResNet50，yangfly 大佬将其替换为了 MobileNet0.25，模型大小仅 1.68MB。RetinaFace 的模型结构如下，这里的 backbone 网络是 MobileNet 0.25。</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/b6P5kstO2jbV99iaFxZSCXdqvs8lbr1hDtXkb2xBicqVHiasb3EUxfwtkN7WoqibElWgOicGXJAbpw7Tial7YlFLLM7w/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:70%;"></center>
+<p>​    根据作者的开源结果，我们对以上 6 大开源轻量级人脸检测做一个速度和准确度的对比汇总。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>模型大小（MB）</th>
+<th>速度（FPS）</th>
+<th>WiderFace Easy</th>
+<th>WiderFace Medium</th>
+<th>WiderFace Hard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>libfacedetection</td>
+<td>3.34</td>
+<td>296（i7CPU， 320x240）</td>
+<td>0.773</td>
+<td>0.718</td>
+<td>0.485</td>
+</tr>
+<tr>
+<td>UltraLightFace</td>
+<td>1.04</td>
+<td>109（ 320x240）</td>
+<td>0.853</td>
+<td>0.819</td>
+<td>0.539</td>
+</tr>
+<tr>
+<td>LightFast</td>
+<td>5.81</td>
+<td>131（Titan xp， 640x480）</td>
+<td>0.910</td>
+<td>0.881</td>
+<td>0.780</td>
+</tr>
+<tr>
+<td>CenterFace</td>
+<td>7.3</td>
+<td>227（2080TI，640x480）</td>
+<td>0.931</td>
+<td>0.924</td>
+<td>0.870</td>
+</tr>
+<tr>
+<td>DBFace</td>
+<td>7.03</td>
+<td></td>
+<td>0.905</td>
+<td>0.896</td>
+<td>0.794</td>
+</tr>
+<tr>
+<td>RetinaFace MobileNet0.25</td>
+<td>1.68</td>
+<td></td>
+<td>0.887</td>
+<td>0.87</td>
+<td>0.791</td>
+</tr>
+</tbody>
+</table>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2022年03月06日 15:57</p>
+        <p>原始链接： <a class="post-url" href="/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/" title="【精华】最强六大开源轻量级人脸检测项目分析">https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/&title=《【精华】最强六大开源轻量级人脸检测项目分析》 — 且听风吟，御剑于心！&pic=images/人脸检测项目分析.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/&title=《【精华】最强六大开源轻量级人脸检测项目分析》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【精华】最强六大开源轻量级人脸检测项目分析》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%9C%80%E5%BC%BA%E5%85%AD%E5%A4%A7%E5%BC%80%E6%BA%90%E8%BD%BB%E9%87%8F%E7%BA%A7%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/目标检测（人脸检测）/" class="color1">目标检测（人脸检测）</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 【精华】最强六大开源轻量级人脸检测项目分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1 libfacedetection</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2 Ultra-Light-Fast-Generic-Face-Detector-1MB</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3 A-Light-and-Fast-Face-Detector-for-Edge-Devices</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 4 CenterFace</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 5 DBFace</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 6 RetinaFace MobileNet0.25</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91VSLAM%E5%8F%8A3D%E8%A7%86%E8%A7%89%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          【精华】VSLAM及3D视觉详解
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/03/06/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%B8%BB%E6%B5%81%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8E%A8%E7%90%86%E6%9E%B6%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【精华】主流的深度学习推理架构</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="【精华】最强六大开源轻量级人脸检测项目分析" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

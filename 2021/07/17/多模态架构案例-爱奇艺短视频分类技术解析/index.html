@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>多模态架构案例-爱奇艺短视频分类技术解析 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   爱奇艺短视频分类技术解析  简介 技术难点  分类体系复杂 需要文本、图像、生态信息等多模态特征综合判断   解决方案  特征表示模块  01 文本表示 02 图像表示   层次分类模块   后续工作       爱奇艺短视频分类技术解析  简介 近年来，短视频领域一直广受关注，且发展迅速。每天有大量 UGC 短视频被生产、分发和消费，为生产系统带来了巨大的压力，其中的难点之一就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多模态架构案例-爱奇艺短视频分类技术解析">
+<meta property="og:url" content="https://leezhao415.github.io/2021/07/17/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9E%B6%E6%9E%84%E6%A1%88%E4%BE%8B-%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   爱奇艺短视频分类技术解析  简介 技术难点  分类体系复杂 需要文本、图像、生态信息等多模态特征综合判断   解决方案  特征表示模块  01 文本表示 02 图像表示   层次分类模块   后续工作       爱奇艺短视频分类技术解析  简介 近年来，短视频领域一直广受关注，且发展迅速。每天有大量 UGC 短视频被生产、分发和消费，为生产系统带来了巨大的压力，其中的难点之一就">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/8f/b8/8f26140138fb645e6fee459ad546cbb8.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/5e/f1/5e904f602b5ad9f3c8a8fdd78be7c4f1.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/57/4b/57ee7a601eb53e38ce05254ffbc7ba4b.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/af/85/af5f89f151181229da7c95d4ec373e85.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/63/57/632ba2d6eddcb974ddc16e9c88b6fc57.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/91/14/91c7fea9afb1f7aa75d206399dce5f14.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/6a/2c/6a40b5cca93a42dff735e60b4332042c.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/6e/a8/6e69252c3c143475ff3dd25de65c95a8.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/07/31/07cf34e6604bca9f6af60520292d5231.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/a3/1d/a3ef89074d99c6adb9851b961fb2011d.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/a8/2f/a8e9d297a24d9426fde597cbe6025f2f.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/46/af/4600a06036f049f23e947f930418eaaf.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/c7/e0/c7ebdbcadeeb8d181fe899893ec257e0.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/8b/36/8b8786166152a888e9f943ee8eebff36.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/29/c3/29b9205e239bfc2287654f935ddc7cc3.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/e7/b0/e7b5e83a9c7b8c10fc6b29131edd09b0.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/53/0d/53a3310a2235392c6662c65b3559440d.png">
+<meta property="og:image" content="https://static001.infoq.cn/resource/image/4e/ad/4eda324c24a53328869dc5beab05a7ad.png">
+<meta property="article:published_time" content="2021-07-17T02:26:25.000Z">
+<meta property="article:modified_time" content="2021-07-17T02:27:22.106Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="多模态">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://static001.infoq.cn/resource/image/8f/b8/8f26140138fb645e6fee459ad546cbb8.png">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-多模态架构案例-爱奇艺短视频分类技术解析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      多模态架构案例-爱奇艺短视频分类技术解析
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-07-17
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90">爱奇艺短视频分类技术解析</a>
+<ul>
+<li><a href="#%E7%AE%80%E4%BB%8B">简介</a></li>
+<li><a href="#%E6%8A%80%E6%9C%AF%E9%9A%BE%E7%82%B9">技术难点</a>
+<ul>
+<li><a href="#%E5%88%86%E7%B1%BB%E4%BD%93%E7%B3%BB%E5%A4%8D%E6%9D%82">分类体系复杂</a></li>
+<li><a href="#%E9%9C%80%E8%A6%81%E6%96%87%E6%9C%AC-%E5%9B%BE%E5%83%8F-%E7%94%9F%E6%80%81%E4%BF%A1%E6%81%AF%E7%AD%89%E5%A4%9A%E6%A8%A1%E6%80%81%E7%89%B9%E5%BE%81%E7%BB%BC%E5%90%88%E5%88%A4%E6%96%AD">需要文本、图像、生态信息等多模态特征综合判断</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">解决方案</a>
+<ul>
+<li><a href="#%E7%89%B9%E5%BE%81%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9D%97">特征表示模块</a>
+<ul>
+<li><a href="#01-%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA">01 文本表示</a></li>
+<li><a href="#02-%E5%9B%BE%E5%83%8F%E8%A1%A8%E7%A4%BA">02 图像表示</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B1%82%E6%AC%A1%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9D%97">层次分类模块</a></li>
+</ul>
+</li>
+<li><a href="#%E5%90%8E%E7%BB%AD%E5%B7%A5%E4%BD%9C">后续工作</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h1><span id="爱奇艺短视频分类技术解析"> 爱奇艺短视频分类技术解析</span></h1>
+<h3><span id="简介"> 简介</span></h3>
+<p>近年来，短视频领域一直广受关注，且发展迅速。每天有大量 UGC 短视频被生产、分发和消费，为生产系统带来了巨大的压力，其中的难点之一就是为每个短视频快速、准确地打上标签。为了解决人工编辑的时效和积压问题，自动化标签技术成为各大内容领域公司都非常关注的关键课题。短视频大规模层次分类作为内容理解技术的一个重要方向，为爱奇艺的短视频智能分发业务提供着强力支持，其输出被称为 “类型标签”。</p>
+<p>以下是我们对一条爱奇艺短视频的分类效果：（<a target="_blank" rel="noopener" href="https://www.infoq.cn/article/f49e-Gb1xQxh8DttFDgb%EF%BC%89">https://www.infoq.cn/article/f49e-Gb1xQxh8DttFDgb）</a></p>
+<center><img src="https://static001.infoq.cn/resource/image/8f/b8/8f26140138fb645e6fee459ad546cbb8.png" alt="img" style="zoom:50%;"></center>
+<p>算法结果：游戏 - 题材 - 角色扮演，与人工结果一致。其实 “漫威”、“蜘蛛侠” 这类 IP 的作品既可能是 “影视” 也可能是 “游戏”，或者其他周边，如果缺乏背景知识，人工也不容易做出准确的分类，但是模型由于见到了足够多的样本，反而比单个人工有更大概率做出正确判断，在一定程度上体现了集体智慧和算法的优势。</p>
+<p><strong>类型标签在爱奇艺内部有着广泛的应用。</strong></p>
+<p>在<strong>短视频生产领域</strong>，类型标签从视频的生成、准入、审核、标注等多个方面发挥着重要作用。</p>
+<ul>
+<li><strong>标签自动化</strong>：部分标签的准确率已经达到 95% 以上，这部分标签已经用算法结果替代人工标注，减少了大量标注人力，提高了视频生产效率；</li>
+<li><strong>频道自动化</strong>：目前的频道由上传者填写，上传者会投机取巧乱填频道导致频道混乱，影响用户的使用体验，使用类型标签替换频道，提升了频道的分类准确率。</li>
+</ul>
+<p>由于准确率很高，短视频生产系统乐高已经部分将自动化标签代替人工标签，并推送到各个业务线，支持着大量业务的智能运营策略。</p>
+<p>在<strong>个性化推荐领域</strong>，已使用算法生成的类型标签全面替代人工标注的频道，成为推荐系统最重要的基础数据之一，在以下的策略中发挥了重要作用。</p>
+<ul>
+<li><strong>多样性控制</strong>：使用标签完成多样性控制，减少相似内容对用户带来的疲劳，提升播放时长等关键业务指标和多样性等生态指标；</li>
+<li><strong>用户画像</strong>：基于标签完善用户的长期兴趣和短期兴趣，提升用户画像的完整性、准确性和可解释性；</li>
+<li><strong>召回</strong>：增强无用户行为的新视频的分发能力，提升用户兴趣探索阶段的泛化性，提升用户的负向兴趣过滤的泛化性，从而提升用户体验；</li>
+<li><strong>排序</strong>：基于画像的用户兴趣和视频类型标签作为模型的特征，增强排序模型的排序效果。</li>
+</ul>
+<p><strong>本文将详细介绍爱奇艺短视频大规模层次分类算法。</strong></p>
+<h3><span id="技术难点"> 技术难点</span></h3>
+<h4><span id="分类体系复杂"> 分类体系复杂</span></h4>
+<p>短视频分类体系是一棵人工精心制定的层次结构，体系和规则都比较复杂：层级最少有 3 级，最多有 5 级，总计近 800 个有效类别，类别间有互斥和共同出现的需求。</p>
+<center><img src="https://static001.infoq.cn/resource/image/5e/f1/5e904f602b5ad9f3c8a8fdd78be7c4f1.png" alt="img" style="zoom: 67%;"></center>
+<h4><span id="需要文本-图像-生态信息等多模态特征综合判断"> 需要文本、图像、生态信息等多模态特征综合判断</span></h4>
+<p>短视频具有标题、描述、封面图、视频、音频等媒体信息。同时，一个短视频也不一定是独立存在的，它可能来自一个影视、综艺片段，它的上传者可能是一个垂直领域的内容贡献者，所以，关联正片、视频来源、上传者等信息对分类也可能有帮助。</p>
+<h3><span id="解决方案"> 解决方案</span></h3>
+<p>短视频分类可以分为特征表示 (Feature Representation) 和层次分类 (Hierarchical Classification) 两个模块，前者基于多模态特征建模短视频的整体表达（在我们的模型中通过 Feature Representation 和 Representation Fusion 两个子网络级联建模完成），后者基于前者完成分类任务。我们模型的整体结构如下图：</p>
+<center><img src="https://static001.infoq.cn/resource/image/57/4b/57ee7a601eb53e38ce05254ffbc7ba4b.png" alt="img" style="zoom:67%;"></center>
+<p>下文将分别介绍这两个模块。</p>
+<h4><span id="特征表示模块"> 特征表示模块</span></h4>
+<p>短视频的特征种类和形态各异，只有正确使用这些信息才能提升模型效果的天花板，下文将介绍各种特征表示的建模方式以及融合方式。</p>
+<h5><span id="01-文本表示"> 01 文本表示</span></h5>
+<p>短视频一般都有一个代表其视频意义的简短标题和更为详细的描述信息，通过对这些人工抽象出的文本信息进行分类会比直接从视频学习出分类更容易。下文将首先介绍业界常见的文本表建模方式，然后分享在我们任务中采用的方案。</p>
+<p><strong>业界常见建模方式：</strong></p>
+<p><strong>1.BOW</strong></p>
+<p>Bag-of-words model 忽略掉文档的语法和语序等要素，将其仅仅看作是若干个词汇的集合，每个单词的出现都是独立的，由一组无序的单词 (words) 来表达。实际操作上可以直接使用线性分类（单层 NN，下左图）或者嵌入到一个词向量空间中进行 AVG 等操作后再进行分类（CBOW，多层 NN，下右图）。由于模型假设文档是一个词袋，忽略了出现的顺序和组合，所以在构建特征时，可以考虑将表示了词组的 ngram 和词共现的组合特征放入模型中，提高模型的效果。</p>
+<p>优点：建模容易，性能好，在使用了大量人工构造的特征后也可以达到极佳的效果。</p>
+<p>缺点：过渡依赖人工特征的构造，构造的人工特征可能因为过大，在模型训练上带来困难。</p>
+<center><img src="https://static001.infoq.cn/resource/image/af/85/af5f89f151181229da7c95d4ec373e85.png" alt="img" style="zoom:67%;"></center>
+<p><strong>2.CNN</strong></p>
+<p>利用 CNN 对文本建模表示进行分类是源自图像领域 CNN 取得的巨大成功，但是在文本领域仅用 CNN 进行文本建模效果并不突出。CNN 通过不同大小的 filter 对有序的词向量进行卷积操作，以期望模型能够从中学到不同大小的 ngram 信息，并且通过 pooling 操作（一般是 max-pooling），找到最强的信号，作为该文本的表示。</p>
+<p>优点：建模比较容易，性能不差。</p>
+<p>缺点：模型效果上限较低，对长距离共现信息建模较差。</p>
+<center><img src="https://static001.infoq.cn/resource/image/63/57/632ba2d6eddcb974ddc16e9c88b6fc57.png" alt="img" style="zoom:67%;"></center>
+<p><strong>3.RNN</strong></p>
+<p>利用 RNN（GRU/LSTM）进行文本建模，理论上具有最高的天花板，在实操上效果也介于 CNN 和精选了人工特征的 BOW，以 LSTM 为例，其不仅对词序敏感，并且具有长短记忆功能，能够将短距离的 ngram 信息和长距离的共现信息学习到。</p>
+<p>优点：模型效果上限高，效果较好。</p>
+<p>缺点：建模和训练较难，运行时间慢，在大数据集训练实用性不高。</p>
+<center><img src="https://static001.infoq.cn/resource/image/91/14/91c7fea9afb1f7aa75d206399dce5f14.png" alt="img" style="zoom:60%;"></center>
+<p><strong>4.Attention</strong></p>
+<p>使用 Attention 可以对长距离的共现信息进行建模，并且能够识别整个序列中最为关注的部分，该技术可以和上述的 CNN 和 RNN 这种与序列有关的技术配合使用，能够取得更好的效果，下图是典型的基于点积的（多头）注意力机制。</p>
+<p>优点：建模难度一般（Attention 实现方式多种多样），几乎总是能够提升模型效果。</p>
+<p>缺点：无明显缺点，可以和其他模型共用。</p>
+<center><img src="https://static001.infoq.cn/resource/image/6a/2c/6a40b5cca93a42dff735e60b4332042c.png" alt="img" style="zoom:60%;"></center>
+<p><strong>我们的建模方式：</strong></p>
+<p>权衡模型的执行效率和效果，最终类型标签采用的是 BOW 和 CNN+Attention 方式完成文本表示的建模。</p>
+<p><strong>1.CBOW 与人工特征构造</strong></p>
+<p>前面已经提到 BOW 在使用了大量人工构造的特征后也可以达到极佳的效果，所以我们也尝试了很多人工 / 机器构造的特征：</p>
+<p>(1) 字、词特征，用以提高模型的泛化能力</p>
+<p>(2) Ngram 特征，提供片段特征</p>
+<p>(3) 词对特征，提供远距离组合特征</p>
+<p>(4) 经过 gbdt 学习到的组合特征，更高维的组合特征</p>
+<p>(5) 一些 ID 类的离散特征我们也一起和字和词组合到一起</p>
+<p><strong>2. 带位置信息的 CNN</strong></p>
+<p>普通的 TextCNN 使用的 Max Pooling 是全文进行，忽略了文本表达的顺序信息，我们将 Max Pooling 以一定步长进行，提取出每个位置上的文本表示。</p>
+<center><img src="https://static001.infoq.cn/resource/image/6e/a8/6e69252c3c143475ff3dd25de65c95a8.png" alt="img" style="zoom: 50%;"></center>
+<p><strong>3.Self-Attention</strong></p>
+<p>基于 CNN 提取出的带位置信息的文本表示，我们加入 Attention 结构，组合不同位置的文本表示，并且让模型识别应该关注哪个部分。</p>
+<center><img src="https://static001.infoq.cn/resource/image/07/31/07cf34e6604bca9f6af60520292d5231.png" alt="img" style="zoom: 50%;"></center>
+<h5><span id="02-图像表示"> 02 图像表示</span></h5>
+<p>短视频数据存在的文不对题、标题描述类型区分力弱的问题，这些问题都对模型的学习带来较大的困难。封面图作为从短视频中精选的一帧，能够在一定程度上代表短视频主题的意义，并且与文本具有互补性，如果能够从其中识别图像表征，补充到类型标签分类任务，应该能够提升模型的分类效果。</p>
+<p><strong>表达融合方式：</strong></p>
+<p>对图像进行表征，并融合到分类模型中，目前业界非常流行的做法是基于预训练的 ImageNet 模型在训练数据较少的目标任务上进行迁移学习，有 3 种方式：</p>
+<ol>
+<li><strong>特征抽取</strong></li>
+<li>实现方式：把 ImageNet 预训练的模型作为特征抽取器，将模型的某一层或者某几层特征作为类型标签模型特征提取源。</li>
+<li>优点：预训练模型容易获取，不需要训练模型，只需要进行特征抽取，上线速度快。</li>
+<li>缺点：模型效果差，需要选择抽取那一层的输出作为抽取的特征，需要保留的特征如果很多的话，特征保存的开销会很大。</li>
+<li><strong>FineTune + 特征抽取</strong></li>
+<li>实现方式：把 ImageNet 预训练的模型以类型标签为目标进行 FineTune，然后将模型的某一层或者某几层特征作为类型标签模型特征提取源（因训练目标一致，一般选择最后一层即可达到较好的效果）。</li>
+<li>优点：模型效果好，输出的特征维度低，容易储存。</li>
+<li>缺点：FineTune 耗时较大。</li>
+<li><strong>模型融合</strong></li>
+<li>实现方式：把 ImageNet 预训练的模型嵌入到类型标签的模型当中，让图像的表示和其他特征的表示同时进行训练。</li>
+<li>优点：效果最好，End2End 完成最终的上线模型。</li>
+<li>缺点：模型训练调参困难，并且耗时巨大。</li>
+</ol>
+<p>基于上述 3 种方式的介绍和分析，我们尝试了 1、2 两种方式，最终采纳了第 2 种方式。</p>
+<p><strong>模型选择：</strong></p>
+<p>图像模型的好坏直接影响到最终提取的图像特征的效果，需要选择一个效果与效率都很高的模型来完成我们的任务，在项目中我们尝试了 ResNet50 和 Xception 两个模型，并且最终选择后者，后者在我们的场景中训练、预测耗时接近，Accuracy 高 3%。</p>
+<center><img src="https://static001.infoq.cn/resource/image/a3/1d/a3ef89074d99c6adb9851b961fb2011d.png" alt="img" style="zoom: 67%;"></center>
+<p><strong>特征融合：</strong></p>
+<p>通过上述不同的特征表达方式，每一种特征都被映射为了一个向量，一种好的特征融合方式可以提升表示的整体效果，为此我们尝试了 3 种方案，并最终采用了 LMF 模型。</p>
+<p><strong>1.Concatenate</strong></p>
+<p>顾名思义，这种方式就是将每种表达连接到一起后连接全连接学习整体的表达，这种方式简单，并且能够提供一个不错的基线。</p>
+<center><img src="https://static001.infoq.cn/resource/image/a8/2f/a8e9d297a24d9426fde597cbe6025f2f.png" alt="img" style="zoom: 67%;"></center>
+<p><strong>2.CentralNet[6]</strong></p>
+<p>该模型借助多任务对每个模态的表达进行约束，以期 Fusion 后的表达能够获取更好的泛化能力，相对于 Concatenate 有 1% 的效果提升，模型示例如下：</p>
+<center><img src="https://static001.infoq.cn/resource/image/46/af/4600a06036f049f23e947f930418eaaf.png" alt="img" style="zoom:67%;"></center>
+<p><strong>3.LMF[7]</strong></p>
+<p>LMF (Low-rank Multimodal Fusion) 通过将 N 个模态的外积运算近似等价为内积和按位相乘的运算实现特征的全组合，相对于 CentralNet 有 0.2% 的效果提升，模型示例如下：</p>
+<center><img src="https://static001.infoq.cn/resource/image/c7/e0/c7ebdbcadeeb8d181fe899893ec257e0.png" alt="img" style="zoom:67%;"></center>
+<h4><span id="层次分类模块"> 层次分类模块</span></h4>
+<p>下文将首先介绍业界常见层次分类建模方式，然后分享在我们任务中采用的方案。</p>
+<p><strong>业界常见建模方式：</strong></p>
+<p>对于层次分类，业界常见的有 4 大类方法。</p>
+<p><strong>1. 弹珠机模型</strong></p>
+<p>分类树的每个非叶子节点都有一个独立的模型，利用分类信息做数据的划分。优点是扩展性好，但是由于仅从样本维度使用层次信息，未能共享特征表达，而且模型数量和层次结构体系对应，在我们的应用场景中，需要数量巨大的独立模型，代表论文 [1]。以下图为例，预测过程为：</p>
+<p>(1) 模型 1 预测为影视</p>
+<p>(2) 模型 2 预测为电视剧</p>
+<p>(3) 模型 3、模型 4 分别预测为古装和解读</p>
+<p><img src="https://static001.infoq.cn/resource/image/8b/36/8b8786166152a888e9f943ee8eebff36.png" alt="img"></p>
+<p><strong>2. 级联策略</strong></p>
+<p>低层级模型的输出作为高层级模型的特征，仅从分类结果维度使用层次信息，信息利用率低，实验效果不佳。代表论文 [2],[3]。</p>
+<p><strong>3. 正则化约束</strong></p>
+<p>通过正则化约束，通过让有上下级关系的分类模型的参数具有符合该正则化约束的相似性，正则化方式通过人工先验知识确定，无法让模型学习，正则化罚项超参也需要人工调整，实验代价大，效果不佳。代表论文 [4]。</p>
+<p><strong>4. 多任务</strong></p>
+<p>将各层级分类的多个任务合并，以共享模型参数方式学习模型的层次结构，共享样本信息和模型参数，使用合并的 Loss 驱动模型调整参数，完成层次结构信息的使用。代表论文 [5]。</p>
+<p><strong>我们的解决方案：DHMCN</strong></p>
+<p><strong>(Dense Hierarchical Multilabel Classification Network)</strong></p>
+<p>结合实际应用场景，经过多次迭代升级，形成了最终的解决方案。</p>
+<p>V1：上文提到的多任务模型（HMC）：其核心思想可以简化为采用多任务来分别学习一级、叶子的 global 和 local 表示。</p>
+<p>V2：借鉴 DenseNet 的思想，尝试让层级间的连接更加的丰富，让模型更加容易收敛，而不会陷入局部最优解。下图是一个可视化的解释：</p>
+<center><img src="https://static001.infoq.cn/resource/image/29/c3/29b9205e239bfc2287654f935ddc7cc3.png" alt="img" style="zoom:50%;"></center>
+<p>下图为我们构建的基于多任务的层次分类网络：</p>
+<center><img src="https://static001.infoq.cn/resource/image/e7/b0/e7b5e83a9c7b8c10fc6b29131edd09b0.png" alt="img" style="zoom:50%;"></center>
+<p>其中：</p>
+<ul>
+<li>X 是短视频的表达，具体构建方式前文已经介绍</li>
+<li>AG1 和 AG2 分别表示 Global 的 1 级和末级分类的隐层表达，PG 表示 Global（所有）的分类概率</li>
+<li>AL1 和 AL2 分别表示 Local 的 1 级和末级的分类的隐层表达，PL1 和 PL2 分别表示 1 级和末级分类的概率</li>
+<li>训练的 Loss 由 PG，PL1 和 PL2 三者与 GroundTruth 计算交叉熵得出</li>
+<li>PF 表示合并了 Local 和 Global 的最终分类概率</li>
+</ul>
+<p>V3：借鉴级联策略，用一级表示形成权重去指导叶子节点的分类，这样叶子节点就只用专注在某一级的内部去分类，相当于把其他无关的分类全 mask 掉。</p>
+<center><img src="https://static001.infoq.cn/resource/image/53/0d/53a3310a2235392c6662c65b3559440d.png" alt="img" style="zoom:50%;"></center>
+<p>这是一个端到端的自动学习，我们通过可视化权重，发现学习到的 Reweight Vector 符合我们的预期：模型在预测出一级分类为 19 号分类时发现应该提升该分类对应的叶子分类的置信度（如下图）。</p>
+<center><img src="https://static001.infoq.cn/resource/image/4e/ad/4eda324c24a53328869dc5beab05a7ad.png" alt="img" style="zoom: 67%;"></center>
+<h3><span id="后续工作"> 后续工作</span></h3>
+<ol>
+<li>对于长度较短的短视频，将引入视频和音频特征，保证线上服务性能的情况下提升分类效果</li>
+<li>对于样本较少的分类，将引入用户搜索、推荐 Session 行为进行训练获取初始化的短视频表达，然后基于该表达继续训练</li>
+<li>更加充分的使用视频之间的关系进行训练（同一专辑、剧集、综艺、UP 主等）</li>
+</ol>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年07月17日 10:27</p>
+        <p>原始链接： <a class="post-url" href="/2021/07/17/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9E%B6%E6%9E%84%E6%A1%88%E4%BE%8B-%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/" title="多模态架构案例-爱奇艺短视频分类技术解析">https://leezhao415.github.io/2021/07/17/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9E%B6%E6%9E%84%E6%A1%88%E4%BE%8B-%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/07/17/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9E%B6%E6%9E%84%E6%A1%88%E4%BE%8B-%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/&title=《多模态架构案例-爱奇艺短视频分类技术解析》 — 且听风吟，御剑于心！&pic=images/多模态.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/07/17/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9E%B6%E6%9E%84%E6%A1%88%E4%BE%8B-%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/&title=《多模态架构案例-爱奇艺短视频分类技术解析》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/07/17/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9E%B6%E6%9E%84%E6%A1%88%E4%BE%8B-%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《多模态架构案例-爱奇艺短视频分类技术解析》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/07/17/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9E%B6%E6%9E%84%E6%A1%88%E4%BE%8B-%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/07/17/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9E%B6%E6%9E%84%E6%A1%88%E4%BE%8B-%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/07/17/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9E%B6%E6%9E%84%E6%A1%88%E4%BE%8B-%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/多模态/" class="color4">多模态</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link"><span class="post-toc-text"> 爱奇艺短视频分类技术解析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 技术难点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 分类体系复杂</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 需要文本、图像、生态信息等多模态特征综合判断</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 特征表示模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 01 文本表示</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 02 图像表示</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 层次分类模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 后续工作</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/07/17/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0%E6%96%B9%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          【详解】神经网络梯度更新方法
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/07/17/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91%E5%A4%9A%E6%A8%A1%E6%80%81MMML%E4%BB%8B%E7%BB%8D/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【详解】多模态MMML介绍</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="多模态架构案例-爱奇艺短视频分类技术解析" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

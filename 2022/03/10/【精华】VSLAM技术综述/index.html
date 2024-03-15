@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【精华】VSLAM技术综述 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   1 什么是视觉 SLAM 2 VSLAM 算法分类  （1）间接法及其典型系统 （2）直接法及其典型系统   3 总结    随着 ORB-SLAM 的崛起，视觉 SLAM 技术掀起了一波热潮，今天小白带着小伙伴一起学习视觉 SLAM 经典的解决方案。  1 什么是视觉 SLAM SLAM 是 “Simultaneous Localization And Mapping” 的缩写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【精华】VSLAM技术综述">
+<meta property="og:url" content="https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91VSLAM%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   1 什么是视觉 SLAM 2 VSLAM 算法分类  （1）间接法及其典型系统 （2）直接法及其典型系统   3 总结    随着 ORB-SLAM 的崛起，视觉 SLAM 技术掀起了一波热潮，今天小白带着小伙伴一起学习视觉 SLAM 经典的解决方案。  1 什么是视觉 SLAM SLAM 是 “Simultaneous Localization And Mapping” 的缩写">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s8.51cto.com/images/blog/202107/29/9e930d6b379bc81df2cfefc0cdb0103f.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s7.51cto.com/images/blog/202107/29/2be47cb0ee887e3e6b63f1711e20a794.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s3.51cto.com/images/blog/202107/29/f47ca6d0787ab03dbad2e921887ce4b1.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s5.51cto.com/images/blog/202107/29/93b9a6766f7185f25040f322af7f91bd.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s2.51cto.com/images/blog/202107/29/28dc022b704dc9604084b9ed8b90140c.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s5.51cto.com/images/blog/202107/29/056374056f2d69d2120a93785c588f17.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s7.51cto.com/images/blog/202107/29/4d63756f6f63ded35f24d4eed7b2183f.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s4.51cto.com/images/blog/202107/29/58e9d9ae882690ff6e489aa6f0aaf6fb.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s3.51cto.com/images/blog/202107/29/0f55571be0181780fca4d2d81e3645ca.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s3.51cto.com/images/blog/202107/29/a33e09938b52d1dcc4ef81735cf7712e.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s3.51cto.com/images/blog/202107/29/113b0b61808e7a64bcc034c0f6989f6a.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s3.51cto.com/images/blog/202107/29/7fc1778d4c435fd0c7c3f04558a220cc.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s3.51cto.com/images/blog/202107/29/ce84242bda9b58b50cb19936fd8ef114.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s7.51cto.com/images/blog/202107/29/6c2f019a8a2140424d1a5c6d7e5db643.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s2.51cto.com/images/blog/202107/29/834dcb13745181287c227fb3ba0d7f84.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s9.51cto.com/images/blog/202107/29/d682f3582473880344c8cf2b5fbb00f5.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s3.51cto.com/images/blog/202107/29/a1c47e2036fc75798931a4863f80fdc0.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="og:image" content="https://s6.51cto.com/images/blog/202107/29/0ac23c7e266764116eba015435b7382a.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+<meta property="article:published_time" content="2022-03-10T13:35:51.000Z">
+<meta property="article:modified_time" content="2022-03-10T13:38:13.379Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="VSLAM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s8.51cto.com/images/blog/202107/29/9e930d6b379bc81df2cfefc0cdb0103f.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-【精华】VSLAM技术综述" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      【精华】VSLAM技术综述
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-03-10
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%A7%86%E8%A7%89slam">1 什么是视觉 SLAM</a></li>
+<li><a href="#2-vslam%E7%AE%97%E6%B3%95%E5%88%86%E7%B1%BB">2 VSLAM 算法分类</a>
+<ul>
+<li><a href="#1%E9%97%B4%E6%8E%A5%E6%B3%95%E5%8F%8A%E5%85%B6%E5%85%B8%E5%9E%8B%E7%B3%BB%E7%BB%9F">（1）间接法及其典型系统</a></li>
+<li><a href="#2%E7%9B%B4%E6%8E%A5%E6%B3%95%E5%8F%8A%E5%85%B6%E5%85%B8%E5%9E%8B%E7%B3%BB%E7%BB%9F">（2）直接法及其典型系统</a></li>
+</ul>
+</li>
+<li><a href="#3-%E6%80%BB%E7%BB%93">3 总结</a></li>
+</ul>
+<!-- tocstop -->
+<hr>
+<p>随着 ORB-SLAM 的崛起，视觉 SLAM 技术掀起了一波热潮，今天小白带着小伙伴一起学习视觉 SLAM 经典的解决方案。</p>
+<h4><span id="1-什么是视觉-slam"> 1 什么是视觉 SLAM</span></h4>
+<p>SLAM 是 “Simultaneous Localization And Mapping” 的缩写，可译为同步定位与建图。概率 SLAM 问题 (the probabilistic SLAM problem) 起源于 1986 年的 IEEE Robotics and Automation Conference 大会上，研究人员希望能将估计理论方法 (estimation-theoretic methods) 应用在构图和定位问题中。 SLAM 最早被应用在机器人领域，其目标是在没有任何先验知识的情况下，根据传感器数据实时构建周围环境地图，同时根据这个地图推测自身的定位。</p>
+<p>假设机器人携带传感器 (相机) 在未知环境中运动，为方便起见，把一段连续时间的运动变成离散时刻 t=1，…k，而在这些时刻，用 x 表示机器人的自身位置，则各时刻的位置就记为 x1，x2…xk，它构成了机器人的轨迹。地图方面，假设地图由许多个路标组成，而每个时刻，传感器会测量到一部分路标点，得到它们的观测数据。设路标点共有 N 个，用 y1，y2…yn 表示。通过运动测量 u 和传感器读数 z 来求解定位问题 (估计 x) 和建图问题 (估计 y)。</p>
+<center><img src="https://s8.51cto.com/images/blog/202107/29/9e930d6b379bc81df2cfefc0cdb0103f.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM" style="zoom:80%;"></center>
+<p>只利用相机作为外部感知传感器的 SLAM 称为视觉 SLAM (vSLAM)。相机具有视觉信息丰富、硬件成本低等优点，经典的 vSLAM 系统一般包含前端视觉里程计、 后端优化、 闭环检测和构图四个主要部分。</p>
+<center><img src="https://s7.51cto.com/images/blog/202107/29/2be47cb0ee887e3e6b63f1711e20a794.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_02" style="zoom:80%;"></center>
+<p>● 视觉里程计 (Visual Odometry)：仅有视觉输入的姿态估计；</p>
+<p>● 后端优化 (Optimization): 后端接受不同时刻视觉里程计测量的相机位姿，以及闭环检测的信息，对它们进行优化，得到全局一致的轨迹和地图 [5]；</p>
+<p>● 闭环检测 (Loop Closing): 指机器人在地图构建过程中，通过视觉等传感器信息检测是否发生了轨迹闭环，即判断自身是否进入历史同一地点 [6];</p>
+<p>● 建图 (Mapping): 根据估计的轨迹，建立与任务要求对应的地图 [5]。</p>
+<h4><span id="2-vslam-算法分类"> 2 VSLAM 算法分类</span></h4>
+<p>根据生成方法的不同，SLAM 可以分成两大类：间接方法和直接方法</p>
+<h5><span id="1间接法及其典型系统"> （1）间接法及其典型系统</span></h5>
+<p>间接法首先对测量数据进行预处理来产生中间层，通过稀疏的特征点提取和匹配来实现的，也可以采用稠密规则的光流，或者提取直线或曲线特征来实现。然后计算出地图点坐标或光流向量等几何量，因此间接法优化的是几何误差：</p>
+<center><img src="https://s3.51cto.com/images/blog/202107/29/f47ca6d0787ab03dbad2e921887ce4b1.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_03" style="zoom: 25%;"></center>
+<p>其中 ui 为 Ik-1 中任意像素点，它投影到空间点的坐标为 Pi， u′i 是 Pi 投影到 Ik 上的坐标。之后利用中间层的数值来估计周围环境的三维模型和相机运动。</p>
+<center><img src="https://s5.51cto.com/images/blog/202107/29/93b9a6766f7185f25040f322af7f91bd.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_04" style="zoom:80%;"></center>
+<h6><span id="1gt-monoslam"> 1&gt; MonoSLAM</span></h6>
+<p>MonoSLAM 是第一个实时的单目视觉 SLAM 系统 [7]。 MonoSLAM 以 EKF (扩展卡尔曼滤波) 为后端，追踪前端稀疏的特征点，以相机的当前状态和所有路标点为状态量，更新其均值和协方差。在 EKF 中，每个特征点的位置服从高斯分布，可以用一个椭球表示它的均值和不确定性，它们在某个方向上越长，说明在该方向上越不稳定。 该方法的缺点：场景窄、路标数有限、稀疏特征点易丢失等。</p>
+<center><img src="https://s2.51cto.com/images/blog/202107/29/28dc022b704dc9604084b9ed8b90140c.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_05" style="zoom:80%;"></center>
+<h6><span id="2gt-ptam"> 2&gt; PTAM</span></h6>
+<p>PTAM [8] 提出并实现了跟踪和建图的并行化，首次区分出前后端 (跟踪需要实时响应图像数据，地图优化放在后端进行)，后续许多视觉 SLAM 系统设计也采取了类似的方法。PTAM 是第一个使用非线性优化作为后端的方案，而不是滤波器的后端方案。提出了关键帧 (keyframes) 机制，即不用精细处理每一幅图像，而是把几个关键图像串起来优化其轨迹和地图。该方法的缺点是：场景小、跟踪容易丢失。</p>
+<center><img src="https://s5.51cto.com/images/blog/202107/29/056374056f2d69d2120a93785c588f17.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_06" style="zoom:80%;"></center>
+<h6><span id="3gt-orb-slam-orb_slam2"> 3&gt; ORB-SLAM (ORB_SLAM2)</span></h6>
+<p>ORB-SLAM [9] 围绕 ORB 特征计算，包括视觉里程计与回环检测的 ORB 字典。ORB 特征计算效率比 SIFT 或 SURF 高，又具有良好的旋转和缩放不变性。ORB-SLAM 创新地使用了三个线程完成 SLAM，三个线程是：实时跟踪特征点的 Tracking 线程，局部 Bundle Adjustment 的优化线程和全局 Pose Graph 的回环检测与优化线程。该方法的缺点：每幅图像都计算一遍 ORB 特征非常耗时，三线程结构给 CPU 带来了较重负担。稀疏特征点地图只能满足定位需求，无法提供导航、避障等功能。</p>
+<center><img src="https://s7.51cto.com/images/blog/202107/29/4d63756f6f63ded35f24d4eed7b2183f.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_07" style="zoom:80%;"></center>
+<p>ORB-SLAM2 [10] 基于单目的 ORB-SLAM 做了如下贡献：第一个用于单目、双目和 RGB-D 的开源 SLAM 系统，包括闭环，重定位和地图重用；RGB-D 结果显示，通过使用 bundle adjustment，比基于迭代最近点 (ICP) 或者光度和深度误差最小化的最先进方法获得更高的精度；通过使用近距离和远距离的立体点和单目观察结果，立体效果比最先进的直接立体 SLAM 更准确；轻量级的本地化模式，当建图不可用时，可以有效地重新使用地图。</p>
+<h5><span id="2直接法及其典型系统"> （2）直接法及其典型系统</span></h5>
+<p>直接法跳过预处理步骤直接使用实际传感器测量值，例如在特定时间内从某个方向接收的光，如下图所示。在被动视觉的情况下，由于相机提供光度测量，因此直接法优化的是光度误差：</p>
+<center><img src="https://s4.51cto.com/images/blog/202107/29/58e9d9ae882690ff6e489aa6f0aaf6fb.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_08" style="zoom: 33%;"></center>
+<center><img src="https://s3.51cto.com/images/blog/202107/29/0f55571be0181780fca4d2d81e3645ca.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_09" style="zoom:33%;"></center>
+<center><img src="https://s3.51cto.com/images/blog/202107/29/a33e09938b52d1dcc4ef81735cf7712e.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_10" style="zoom:80%;"></center>
+<h6><span id="1gt-dtam"> 1&gt; DTAM</span></h6>
+<p>DTAM [11] 是单目 VSLAM 系统，是一种直接稠密的方法，通过最小化全局空间规范能量函数来计算关键帧构建稠密深度图，而相机的位姿则使用深度地图通过直接图像匹配来计算得到。对特征缺失、 图像模糊有很好的鲁棒性。该方法的缺点是：计算量非常大，需要 GPU 并行计算。 DTAM 假设光度恒定，对全局照明处理不够鲁棒。</p>
+<h6><span id="2gt-lsd-slam"> 2&gt; LSD-SLAM</span></h6>
+<p>LSD-SLAM [12] 建了一个大尺度直接单目 SLAM 的框架，提出了一种用来直接估计关键帧之间相似变换、尺度感知的图像匹配算法，在 CPU 上实现了半稠密场景的重建。该方法的缺点：对相机内参敏感和曝光敏感，相机快速运动时容易丢失，依然需要特征点进行回环检测。</p>
+<center><img src="https://s3.51cto.com/images/blog/202107/29/113b0b61808e7a64bcc034c0f6989f6a.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_11"></center>
+<h6><span id="3gt-svo"> 3&gt; SVO</span></h6>
+<p>SVO 是一种半直接法的视觉里程计，它是特征点和直接法的混合使用：跟踪了一些角点，然后像直接法那样，根据关键点周围信息估计相机运动及位置。由于不需要计算大量描述子，因此速度极快，在消费级笔记本电脑上可以达到每秒 300 帧，在无人机上可以达到每秒 55 帧。该方法的缺点是：舍弃了后端优化和回环检测，位姿估计存在累积误差，丢失后重定位困难。</p>
+<center><img src="https://s3.51cto.com/images/blog/202107/29/7fc1778d4c435fd0c7c3f04558a220cc.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_12" style="zoom:80%;"></center>
+<h6><span id="4gt-dso"> 4&gt; DSO</span></h6>
+<p>DSO 是基于高度精确的稀疏直接结构和运动公式的视觉里程计的方法。不考虑几何先验信息，能够直接优化光度误差。并且考虑了光度标定模型，其优化范围不是所有帧，而是由最近帧及其前几帧形成的滑动窗口，并且保持这个窗口有 7 个关键帧。DSO 中除了完善直接法位姿估计的误差模型外，还加入了仿射亮度变换、 光度标定、 深度优化等。该方法没有回环检测。</p>
+<center><img src="https://s3.51cto.com/images/blog/202107/29/ce84242bda9b58b50cb19936fd8ef114.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_13" style="zoom:80%;"></center>
+<h6><span id="5gt-基于深度学习的-slam"> 5&gt; 基于深度学习的 SLAM</span></h6>
+<p>传统的视觉 SLAM 在环境的适应性方面依然存在瓶颈，深度学习有望在这方面发挥较大的作用。目前，深度学习已经在语义地图、重定位、回环检测、特征点提取与匹配以及端到端的视觉里程计等问题上有了相关工作，下面列举一些典型成果：</p>
+<p>●CNN-SLAM [17] 在 LSD-SLAM [12] 基础上将深度估计以及图像匹配改为基于卷积神经网络的方法，并且可以融合语义信息，得到了较鲁棒的效果；</p>
+<p>● 剑桥大学开发的 PoseNet [18]，是在 GoogleNet [19] 的基础上将 6 自由度位姿作为回归问题进行的网络改进，可以利用单张图片得到对应的相机位姿；</p>
+<p>● 《视觉 SLAM 十四讲》[5] 一书的作者高翔，利用深度神经网络而不是常见的视觉特征来学习原始数据的特征，实现了基于深度网络的回环检测 [20]；</p>
+<p>● LIFT [21] 利用深度神经网络学习图像中的特征点，相比于 SIFT [22] 匹配度更高，其流程图如下图所示：</p>
+<center><img src="https://s7.51cto.com/images/blog/202107/29/6c2f019a8a2140424d1a5c6d7e5db643.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_14" style="zoom:80%;"></center>
+<p>LIFT (Learned Invariant Feature Transform) 由三个部分组成：Detector，Orientation Estimator 和 Descriptor。每一个部分都基于 CNN 实现，作者用 Spatial Transformers 将它们联系起来，并用 soft argmax 函数替代了传统的非局部最大值抑制，保证了端到端的可微性。</p>
+<center><img src="https://s2.51cto.com/images/blog/202107/29/834dcb13745181287c227fb3ba0d7f84.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_15" style="zoom:80%;"></center>
+<p>孪生训练架构（Siamese Network）包含四个分支，其中 P1 和 P2 对应同一个点的不同视角，作为训练 Descriptor 的正样本，P3 代表不同的 3D 点，作为 Descriptor 的负样本；P4 不包含特征点，仅作为训练 Detector 的负样本。由大 P，Detector，softargmax 和 Spatial Transformer layer Crop 共同得到的小 p 反馈到 Orientation Estimator，Orientation Estimator 和 Spatial Transformer layer Rot 提供 pθ 给 Descriptor，得到最终的描述向量 d。作者给出了 LIFT 与 SIFT 特征匹配的效果对比。</p>
+<center><img src="https://s9.51cto.com/images/blog/202107/29/d682f3582473880344c8cf2b5fbb00f5.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_16" style="zoom:80%;"></center>
+<p>特征匹配对比图中左列为 SIFT 匹配结果，右列为 LIFT。绿色线条代表正确匹配，红色圆圈代表描述子区域，可以看到，LIFT 得到了比 SIFT 更稠密的匹配效果。</p>
+<p>UnDeepVO [23] 能够通过使用深度神经网络估计单目相机的 6 自由度位姿及其视野内的深度，整体系统框架概图见下图。</p>
+<center><img src="https://s3.51cto.com/images/blog/202107/29/a1c47e2036fc75798931a4863f80fdc0.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_17" style="zoom:80%;"></center>
+<p>UnDeepVO 有两个显著的特点：一个是采用了无监督深度学习机制，另一个是能够恢复绝对尺度。UnDeepVO 在训练过程中使用双目图像恢复尺度，但是在测试过程中只使用连续的单目图像。该文的主要贡献包括以下几点：</p>
+<p>1. 通过空间和时间几何约束，用无监督的方式恢复了单目视觉里程计的绝对尺度；</p>
+<p>2. 利用训练过程中的双目图像对，不仅估计了姿态还估计了稠密的带有绝对尺度的深度图；</p>
+<p>3. 在 KITTI 数据集上评价了该系统， UnDeepVO 对于单目相机有良好的位姿估计结果。</p>
+<p>UnDeepVO 由位姿估计和深度估计构成，两个估计系统均把单目连续图像作为输入，分别以带有尺度的 6 自由度位姿和深度作为输出。对于位姿估计器，它是基于 VGG 的 CNN 架构。 它把两个连续的单目图像作为输入，并预测它们之间的 6 自由度变换。 由于旋转（由欧拉角表示）具有高非线性，因此与平移相比通常难以训练。 在有监督训练中，一种常用的方法是将旋转损失作为一种归一化方式给予更大的权重。 为了使用无监督学习更好地训练旋转，作者在最后一个卷积层之后用两组独立的全连接层解耦平移和旋转。 这使得作者能够引入一个权重来标准化旋转和平移的预测，以获得更好的性能。对于深度估计器，它基于 encoder-decoder 结构来生成稠密的深度图。 与其他深度估计方法不同的是，该方法从网络中产生视差图像（深度的倒数），UnDeepVO 的深度估计器可以直接预测深度图，以这种方式训练整个系统更容易收敛。系统结构图如下图所示。</p>
+<center><img src="https://s6.51cto.com/images/blog/202107/29/0ac23c7e266764116eba015435b7382a.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" alt="vSLAM技术综述_vSLAM_18" style="zoom:80%;"></center>
+<h4><span id="3-总结"> 3 总结</span></h4>
+<p>本文介绍了基于传统算法和深度学习的代表性 SLAM 方法。当前的 SLAM 算法在复杂的机器人运动和环境中很容易失效 (例如：机器人的快速运动， 高度动态性的环境)，通常不能面对严格的性能要求，例如，用于快速闭环控制的高速率估计。大多数的 SLAM 没有自由主动地收集数据，行动方案不够高效，并且，目前 vSLAM 方案中所采用的图像特征的语义级别太低，造成特征的可区别性太弱。因此，今后的视觉 SLAM 将向着主动 SLAM、语义 SLAM 以及与其它传感器（例如 IMU）融合的方向发展。</p>
+<p>参考文献</p>
+<p>[1] Durrant-Whyte, H, and Bailey, Tim. ”Simultaneous Localization and Mapping: Part I.” IEEE Robotics &amp; Amp Amp Automation Magazine 13.2(2006):99 - 110.</p>
+<p>[2] Fuentes-Pacheco, Jorge, J. Ruiz-Ascencio, and J. M. Rendón-Mancha. ”Visual simultaneous localization and mapping: a survey.” Artifcial Intelligence Review 43.1(2015):55-81.</p>
+<p>[3] 陈常，朱华，由韶泽。基于视觉的同时定位与地图构建的研究进展 [J/OL]. 计算机应用研究，2018,(03):1-9 (2017-08-18).</p>
+<p>[4] Nister, D, O. Naroditsky, and J. Bergen. ”Visual odometry.” Computer Vision and Pattern Recognition, 2004. CVPR 2004. Proceedings of the 2004 IEEE Computer Society Conference on IEEE, 2004:I-652-I-659 Vol.1.</p>
+<p>[5] 高翔。视觉 SLAM 十四讲 [M]. 北京：电子工业出版社，2017.</p>
+<p>[6] 赵洋等. ” 基于深度学习的视觉 SLAM 综述.” 机器人 39.6 (2017):889-896.</p>
+<p>[7] Davison, Andrew J., et al. ”MonoSLAM: Real-time single camera SLAM.” IEEE transactions on pattern analysis and machine intelligence 29.6 (2007): 1052-1067.</p>
+<p>[8] Klein, Georg, and David Murray. ”Parallel tracking and mapping for small AR workspaces.” Mixed and Augmented Reality, 2007. ISMAR 2007. 6th IEEE and ACM International Symposium on. IEEE, 2007.</p>
+<p>[9] Mur-Artal, Raúl, J. M. M. Montiel, and J. D. Tardós. ”ORB-SLAM: A Versatile and Accurate Monocular SLAM System.” IEEE Transactions on Robotics 31.5(2015):1147-1163.</p>
+<p>[10] Mur-Artal, Raul, and Juan D. Tardós. ”Orb-slam2: An open-source slam system for monocular, stereo, and rgb-d cameras.” IEEE Transactions on Robotics 33.5 (2017): 1255-1262.</p>
+<p>[11] Newcombe, Richard A, S. J. Lovegrove, and A. J. Davison. ”DTAM: Dense tracking and mapping in real-time.” International Conference on Computer Vision IEEE Computer Society, 2011:2320-2327.</p>
+<p>[12] Engel, Jakob, T. Schöps, and D. Cremers. ”LSD-SLAM: Large-Scale Direct Monocular SLAM.” 8690(2014):834-849.</p>
+<p>[13] Forster, Christian, M. Pizzoli, and D. Scaramuzza. ”SVO: Fast semi-direct monocular visual odometry.” IEEE International Conference on Robotics and Automation IEEE, 2014:15-22.</p>
+<p>[14] Engel, Jakob, V. Koltun, and D. Cremers. ”Direct Sparse Odometry.” IEEE Transactions on Pattern Analysis &amp; Machine Intelligence PP.99(2016):1-1.</p>
+<p>[15] Cadena, Cesar, et al. ”Past, Present, and Future of Simultaneous Localization and Mapping:Toward the Robust-Perception Age.” IEEE Transactions on Robotics 32.6(2016):1309-1332.</p>
+<p>[16] 吕霖华。基于视觉的即时定位与地图重建 (V-SLAM) 综述 [J]. 中国战略新兴产业，2017 (4).</p>
+<p>[17] Tateno K, Tombari F, Laina I, et al. CNN-SLAM: Real-time dense monocular SLAM with learned depth prediction[C]//Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR). 2017, 2.</p>
+<p>[18] Kendall A, Grimes M, Cipolla R. Posenet: A convolutional network for real-time 6-dof camera relocalization[C]//Proceedings of the IEEE international conference on computer vision. 2015: 2938-2946.</p>
+<p>[19] Szegedy C, Liu W, Jia Y, et al. Going deeper with convolutions[C]//Proceedings of the IEEE conference on computer vision and pattern recognition. 2015: 1-9.</p>
+<p>[20] Gao X, Zhang T. Loop closure detection for visual slam systems using deep neural networks[C]//Control Conference (CCC), 2015 34th Chinese. IEEE, 2015: 5851-5856.</p>
+<p>[21] Yi K M, Trulls E, Lepetit V, et al. Lift: Learned invariant feature transform[C]//European Conference on Computer Vision. Springer, Cham, 2016: 467-483.</p>
+<p>[22] Lowe D G. Distinctive image features from scale-invariant keypoints[J]. International journal of computer vision, 2004, 60(2): 91-110.</p>
+<p>[23] Li R, Wang S, Long Z, et al. Undeepvo: Monocular visual odometry through unsupervised deep learning[C]//2018 IEEE International Conference on Robotics and Automation (ICRA). IEEE, 2018: 7286-7291.</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2022年03月10日 21:38</p>
+        <p>原始链接： <a class="post-url" href="/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91VSLAM%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/" title="【精华】VSLAM技术综述">https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91VSLAM%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91VSLAM%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/&title=《【精华】VSLAM技术综述》 — 且听风吟，御剑于心！&pic=images/VSLAM技术综述.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91VSLAM%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/&title=《【精华】VSLAM技术综述》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91VSLAM%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【精华】VSLAM技术综述》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91VSLAM%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91VSLAM%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91VSLAM%E6%8A%80%E6%9C%AF%E7%BB%BC%E8%BF%B0/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/VSLAM/" class="color1">VSLAM</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 1 什么是视觉 SLAM</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 2 VSLAM 算法分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （1）间接法及其典型系统</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1&gt; MonoSLAM</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2&gt; PTAM</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3&gt; ORB-SLAM (ORB_SLAM2)</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （2）直接法及其典型系统</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1&gt; DTAM</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2&gt; LSD-SLAM</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3&gt; SVO</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4&gt; DSO</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 5&gt; 基于深度学习的 SLAM</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 3 总结</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%AD%E4%BB%8E%E5%9F%BA%E7%A1%80%E7%BB%BC%E8%BF%B0%E3%80%81%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E5%88%B0%E5%B7%A5%E7%A8%8B%E7%BB%8F%E9%AA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          【精华】深度学习中从基础综述、论文笔记到工程经验、训练技巧
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/03/10/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91VSLAM%E5%8F%8A3D%E8%A7%86%E8%A7%89%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【精华】VSLAM及3D视觉详解</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="【精华】VSLAM技术综述" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>保姆级教程：深度学习环境配置指南 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   一、Windows 系统深度学习环境配置  1.1 打开 Anaconda Prompt 1.2 确定硬件支持的 CUDA 版本 1.3 确定 pytorch 版本，torchvision 版本 1.4 镜像中下载对应的安装包 1.5 本地安装 1.6 测试 1.7 遇到的问题   二、Mac 深度学习环境配置  2.1 安装 Anaconda 2.2 确认下载情况 2.3 虚拟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="保姆级教程：深度学习环境配置指南">
+<meta property="og:url" content="https://leezhao415.github.io/2022/02/20/%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   一、Windows 系统深度学习环境配置  1.1 打开 Anaconda Prompt 1.2 确定硬件支持的 CUDA 版本 1.3 确定 pytorch 版本，torchvision 版本 1.4 镜像中下载对应的安装包 1.5 本地安装 1.6 测试 1.7 遇到的问题   二、Mac 深度学习环境配置  2.1 安装 Anaconda 2.2 确认下载情况 2.3 虚拟">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mmbiz.qpic.cn/sz_mmbiz_gif/gYUsOT36vfo79RAKcrwMxL1P0GbYXJWVQpRCia4VbFOPm68ujfAVhBTFkEljX64EwSKsYDL8adZlh0vc6VleHIg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f2aFick0ib6tPhgoUyLp3odzFciaAFQwia065usj87mme6jRjMbkRibjBtiaA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f5ZA6PfOw0I25QoykuNrjjBic0DHcLPcNoHwQNYzrQDamrOYsTj2VQ9A/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2ficibObXdHrfaNNpEqZYeHkOichOevPbICJ3XZW0rCmsTHnkeobictlR5ug/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fLWr8gkqvANlB0MfP6JS32C3fzo7oXSQZiaicTP5rL2gczjl9aViaez99Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fWEPEQ1JgMb7palNKtD8zsOIOuTruXzr8ceABBrUfibEg66fQwhskJOA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fXNxmaIm7bLu0KyXn2LAliaSbEibgI0f6Kz1SVGxZ4SrqUR0O93wfhurA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fNlU69d9NiaJuBMKq1M9CV8vBaoNiapuorI5360xmEhTFkbfMaqRem0Vw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fImITnnmLnNib7nYJ7I7wIricSnTZKrtP6iaWNdCTsgcCos86YibeV8XBVw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fW870wTpqJgVqmYtOMXttJFiaPTcmFJEV0QytrcYKf2McD9EcJhdGnDQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fAcDPWnuy7ibGHe2RwZ5S9Ey0H6D2tCUuvwoTWoH5wRljvicDZC6icyvBQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fGIDNSg4kicAfaFSicYNvAGd9qUtKzBicI1U0U7sQlC35EBI8EAMGek5Qg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fukEibKz1uVFsXTtUI0VxOAq97SWszuzzWFNlibo5LIamXCAClcEK0J0g/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fbB92U0hPHHawITPnhNqFjJumXpWOcXnmWkG0X2VIz2mqPpLtBias7Eg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fV4QhicwtmhOr0BXZLNRhu7RukWo61a1rFbmxiaGicv14Fb5E6XicaH5Nibg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fqB2PlsOmDmkv4bJ6Yhnhqic0VjKWTlN7z9eUeAx211WhOgzhOqZ9kUA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fKOk66rtnv6CtGhfOx4Yq9rxz3Yjune8a0hrcZxZS2URWoq0icecjs3A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fxJLkz3RN745Yibj0eTDzyicVvjSHrZPNxFZicUnxNkvMDHIQM2AzzWvKA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fuiauJicicbOv9lKXricgOmPpRDic0pUNib3icrJgU83efZDTeg5GrYV2vLd9w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f5QNMcAadtwcw9G2GuMcdAQRXuwthlg6rk2pRHx7NT6cOL3CUdUa63g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fiaQVibwteEBwzCZesHTFjlACfeVTvkibAGGx4tXT9SuNo5Liau4iaMiaWMIA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f0SXW9eFwalLD8sCcsd1qkKf7kaWC0G5DcibZADnq0ibt9oRIicibicCDrYw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fpBBwSCTUyZBjKqAN6WT2sSsKFJRnsTDzkDMSBRDuWNbvM8ibroOkDYg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fbEicx48IfCjgILJhcJlbRg4sIjf0C4c2DTzaH4XPoiaQmVtgUNOChOPA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fBiaib23VtW02rrf0UVEsQo3HmLqrPiajGbcPrK1eKGn5qp6DUicDEe12YA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fUjOia81NjbE4AObd6cCP7HRd1dg6VdKdKtg6dAgLu6HyEicrOFpCstbA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fHSCOI0tn1taIlanI9IlocC7YfEYT3K4AydPTOn2TN6Xwbnb2O7ibxaw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fo3F5SvjkR8AF5ANfvcGXgEddSUNIwBeIHJKGQRshARBHXJt8tRSvLQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fqweNblBIm08xAzLxQAjPnVf7nQmG7ga2slUJUq5zJLLFApfEdyE9icg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2foCN2cAluJqnfwekW1Ua8Xqwl9J1YPvSzeicdN1a5lgU91LS4AYXqYhA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fMvn2AZaQt7Zrnve9gCzwGTvPydPInclO3zN65iaiaAQOvmsAChzs2v5Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fm3XHEuEzTYTy0pIGREJLYv2I53bVCBiaQNL64PicZ3rn9KsfsSQhLZiaA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fZ3SlNw02GUbMibm7CGiaqics05aqIa8HoVS6IuwuFPO5vCsMamBaH19mg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fs4TYgDPu2jcKk9OypNtcxZSdWn7h0nD1SAickh5o7VbVg6d3czIdicKQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f0zS2p0Zxicwv0DhQwpfxVZV1axVEEzLmEWLRABlxIXIhOX7jQHV7fbg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fUcZqevh4w4TJ0c13IOOibLuxwezSGXQm2RZWISsyVjmOV0b8aL2uKyw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fPYNWX2pP6QUuHocpI6jjmiax4FicUmrcJvGoJ4XXv6bYVicuPuJMTNDibg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fDYaWmicHibiara8cKs5euxibicd0v3icGM3resVsxgGKcQXSphR2NNU2lcOA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fIxicz8Om2Fzc14Nlic5w9OsAicRRcicsibVvSYhHLEw7SQxRApY5bbaKicDg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fmrGmOicwRn5kaGrXwqPlGXhPTRfMYTnPpL2lvd86uGXp2LfEQavpyPQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2faiaz8wQAFLUBicxp7oZ3bo7dnlqJwQiady5nvw4lGhsZiciba7YubQnElcg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fy2zLrLl3EWicAKR3Om2cPRJAjMXR4nad8tG21DPEg5ZAtq78Y4icDOXw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fqtMZwPicg22mDbQz3GnVhdhaY1QQA2dDo3PNTcdxHDB0h9bS7IYOUzg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fEV0YcbUibNNgGd6wt8DtCTB7AHhCW3Eblv1Hu4Gz5zTwgaBrTYfiaAZg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fHgkt0LX69cHmHvLoDWMo9pibxLD8fdPuKwibBjnnM9ibGjj4qpLA1qQKQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fdhJEDuSO4piaUUDP3a21Xhiaq9dKxvXB0a2VvicricViaq4hLu9AUfDcMVw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fsB3mCN9yibmbGIuEM3WVGUWRXlLWHZnIk9Qic831NSib5ynakTcibIqEEw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2022-02-20T15:07:20.000Z">
+<meta property="article:modified_time" content="2022-02-20T15:32:35.712Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="深度学习环境配置">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/sz_mmbiz_gif/gYUsOT36vfo79RAKcrwMxL1P0GbYXJWVQpRCia4VbFOPm68ujfAVhBTFkEljX64EwSKsYDL8adZlh0vc6VleHIg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-保姆级教程：深度学习环境配置指南" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      保姆级教程：深度学习环境配置指南
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-02-20
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E4%B8%80-windows%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">一、Windows 系统深度学习环境配置</a>
+<ul>
+<li><a href="#11-%E6%89%93%E5%BC%80anaconda-prompt">1.1 打开 Anaconda Prompt</a></li>
+<li><a href="#12-%E7%A1%AE%E5%AE%9A%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81%E7%9A%84cuda%E7%89%88%E6%9C%AC">1.2 确定硬件支持的 CUDA 版本</a></li>
+<li><a href="#13-%E7%A1%AE%E5%AE%9Apytorch%E7%89%88%E6%9C%ACtorchvision%E7%89%88%E6%9C%AC">1.3 确定 pytorch 版本，torchvision 版本</a></li>
+<li><a href="#14-%E9%95%9C%E5%83%8F%E4%B8%AD%E4%B8%8B%E8%BD%BD%E5%AF%B9%E5%BA%94%E7%9A%84%E5%AE%89%E8%A3%85%E5%8C%85">1.4 镜像中下载对应的安装包</a></li>
+<li><a href="#15-%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85">1.5 本地安装</a></li>
+<li><a href="#16-%E6%B5%8B%E8%AF%95">1.6 测试</a></li>
+<li><a href="#17-%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98">1.7 遇到的问题</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-mac%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">二、Mac 深度学习环境配置</a>
+<ul>
+<li><a href="#21-%E5%AE%89%E8%A3%85anaconda">2.1 安装 Anaconda</a></li>
+<li><a href="#22-%E7%A1%AE%E8%AE%A4%E4%B8%8B%E8%BD%BD%E6%83%85%E5%86%B5">2.2 确认下载情况</a></li>
+<li><a href="#23-%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%92%8C%E5%8C%85%E7%9A%84%E4%B8%8B%E8%BD%BD">2.3 虚拟环境和包的下载</a></li>
+<li><a href="#24-%E9%A2%9D%E5%A4%96%E6%83%85%E5%86%B5">2.4 额外情况</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-ubuntu%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">三、Ubuntu 深度学习环境配置</a>
+<ul>
+<li><a href="#31-anacond%E5%AE%89%E8%A3%85">3.1 Anacond 安装</a></li>
+<li><a href="#32-pytorch-cpu%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%85">3.2 pytorch cpu 版本安装</a></li>
+<li><a href="#33-pytorch-gpu%E5%AE%89%E8%A3%85">3.3 pytorch-gpu 安装</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E">四、写在最后</a></li>
+</ul>
+<!-- tocstop -->
+<hr>
+<center><img src="https://mmbiz.qpic.cn/sz_mmbiz_gif/gYUsOT36vfo79RAKcrwMxL1P0GbYXJWVQpRCia4VbFOPm68ujfAVhBTFkEljX64EwSKsYDL8adZlh0vc6VleHIg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>作者丨伍天舟、马曾欧、陈信达</p>
+<p>来源丨 Datawhale</p>
+<p>编辑丨极市平台</p>
+<p><strong>极市导读</strong></p>
+<p>俗话说，环境配不对，学习两行泪。本文为保姆级别的教程，详细介绍了 Windows、Mac 和 Ubuntu 的深度学习环境配置方法及问题，帮助卡在环境配置的小伙伴们，解决入门难关。</p>
+<p>入门深度学习，很多人经历了从入门到放弃的心酸历程，且千军万马倒在了入门第一道关卡：环境配置问题。俗话说，环境配不对，学习两行泪。</p>
+<p>如果你正在面临配置环境的痛苦，不管你是 Windows 用户、Ubuntu 用户还是苹果死忠粉，这篇文章都是为你量身定制的。接下来就依次讲下 Windows、Mac 和 Ubuntu 的深度学习环境配置问题。</p>
+<h4><span id="一-windows-系统深度学习环境配置"> 一、Windows 系统深度学习环境配置</span></h4>
+<p>系统：Win10 64 位操作系统</p>
+<p>安装组合：Anaconda+PyTorch (GPU 版)+GTX1060</p>
+<p>开源贡献：伍天舟，内蒙古农业大学</p>
+<h5><span id="11-打开-anaconda-prompt"> 1.1 打开 Anaconda Prompt</span></h5>
+<p>1、conda create -n pytorch python=3.7.0：创建名为 pytorch 的虚拟环境，并为该环境安装 python=3.7。</p>
+<p>2、activate pytorch：激活名为 pytorch 的环境</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f2aFick0ib6tPhgoUyLp3odzFciaAFQwia065usj87mme6jRjMbkRibjBtiaA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<h5><span id="12-确定硬件支持的-cuda-版本"> 1.2 确定硬件支持的 CUDA 版本</span></h5>
+<p>NVIDIA 控制面板 - 帮助 - 系统信息 - 组件</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f5ZA6PfOw0I25QoykuNrjjBic0DHcLPcNoHwQNYzrQDamrOYsTj2VQ9A/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>2020 年 5 月 19 日 16:46:31，我更新了显卡驱动，看到我的 cuda 支持 11 以内的</p>
+<h5><span id="13-确定-pytorch-版本torchvision-版本"> 1.3 确定 pytorch 版本，torchvision 版本</span></h5>
+<p>进入 pytorch 官网：<a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2ficibObXdHrfaNNpEqZYeHkOichOevPbICJ3XZW0rCmsTHnkeobictlR5ug/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>因为官方源太慢了，这里使用清华源下载</p>
+<h5><span id="14-镜像中下载对应的安装包"> 1.4 镜像中下载对应的安装包</span></h5>
+<p>清华镜像：</p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/win-64/">https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/win-64/</a></p>
+<p>pytorch：</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fLWr8gkqvANlB0MfP6JS32C3fzo7oXSQZiaicTP5rL2gczjl9aViaez99Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>torchvision：</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fWEPEQ1JgMb7palNKtD8zsOIOuTruXzr8ceABBrUfibEg66fQwhskJOA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<h5><span id="15-本地安装"> 1.5 本地安装</span></h5>
+<p>接着第一步，在 pytorch 环境下进行安装，依次输入如下指令。</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fXNxmaIm7bLu0KyXn2LAliaSbEibgI0f6Kz1SVGxZ4SrqUR0O93wfhurA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fNlU69d9NiaJuBMKq1M9CV8vBaoNiapuorI5360xmEhTFkbfMaqRem0Vw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>然后回到虚拟环境所在目录，用 conda install anaconda 安装环境所需的基础包</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fImITnnmLnNib7nYJ7I7wIricSnTZKrtP6iaWNdCTsgcCos86YibeV8XBVw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<h5><span id="16-测试"> 1.6 测试</span></h5>
+<p>代码 1：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> future <span class="keyword">import</span> print_function</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">x = torch.rand(<span class="number">5</span>, <span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+<p>输出类似于以下的张量：</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fW870wTpqJgVqmYtOMXttJFiaPTcmFJEV0QytrcYKf2McD9EcJhdGnDQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>代码 2：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">torch.cuda.is_available()</span><br></pre></td></tr></table></figure>
+<p>输出：True</p>
+<p>如果以上两段代码输出无异常，表明环境搭建成功。</p>
+<h5><span id="17-遇到的问题"> 1.7 遇到的问题</span></h5>
+<ul>
+<li><strong>用下面命令创建虚拟环境报错</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n py37_torch131 python=3.7</span><br></pre></td></tr></table></figure>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fAcDPWnuy7ibGHe2RwZ5S9Ey0H6D2tCUuvwoTWoH5wRljvicDZC6icyvBQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>【解决方法】<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42329133/article/details/102640763">https://blog.csdn.net/weixin_42329133/article/details/102640763</a></p>
+<p>环境会保存在 Anaconda 目录下的 envs 文件夹内</p>
+<ul>
+<li><strong>PackagesNotFoundError: The following packages are not available from current channels</strong></li>
+</ul>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fGIDNSg4kicAfaFSicYNvAGd9qUtKzBicI1U0U7sQlC35EBI8EAMGek5Qg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:90%;"></center>
+<p>【解决方法】：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hellojiaojiao/p/10790273.html">https://www.cnblogs.com/hellojiaojiao/p/10790273.html</a></p>
+<ul>
+<li><strong>conda 下载太慢问题</strong></li>
+</ul>
+<p>【解决方案】<a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/anaconda/">https://mirror.tuna.tsinghua.edu.cn/help/anaconda/</a></p>
+<p>我直呼一声清华 NB！</p>
+<ul>
+<li><strong>cuda 安装</strong></li>
+</ul>
+<p>cuda 历史版本下载：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-toolkit-archive">https://developer.nvidia.com/cuda-toolkit-archive</a></p>
+<p>要看 NVIDIA 的组件，自己的 CUDA 支持哪个版本，我是 1060 显卡，所以我下的 10.0 版本的 cuda</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fukEibKz1uVFsXTtUI0VxOAq97SWszuzzWFNlibo5LIamXCAClcEK0J0g/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<ul>
+<li><strong>pytorch 安装</strong></li>
+</ul>
+<p>官网没有我的组合，我满脸问号</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fbB92U0hPHHawITPnhNqFjJumXpWOcXnmWkG0X2VIz2mqPpLtBias7Eg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:90%;"></center>
+<p>这里我直接（别忘了先进入刚创建的环境）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision cudatoolkit=10.0 -c pytorch</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>jupyter note 如何进入虚拟环境</strong></li>
+</ul>
+<p>python -m ipykernel install --name 虚拟环境名</p>
+<p>1. 打开 Anaconda Prompt, 输入 conda env list 查看现有环境</p>
+<p>2. 输入 activate name（name 是你想切换的环境）</p>
+<p>3.conda install ipykernel 安装必要插件</p>
+<p>4.python -m ipykernel install --name Name 将环境添加到 Jyputer 中（Name 是此环境显示在 Jyputer 中的名称，可自定义）</p>
+<p>删除内核</p>
+<p>jupyter kernelspec remove 内核名称</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fV4QhicwtmhOr0BXZLNRhu7RukWo61a1rFbmxiaGicv14Fb5E6XicaH5Nibg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>报错 [Errono 13]</p>
+<p>[Errno 13] Permission denied: ‘/usr/local/share/jupyter’</p>
+<p>为此，需要添加–user 选项，将配置文件生成在本账户的家目录下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m ipykernel install --user --name py27-caffe-notebook</span><br></pre></td></tr></table></figure>
+<p>至此，添加 kernel 完成。查看已有的 kernel：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter kernelspec list</span><br></pre></td></tr></table></figure>
+<p>删除已有的 kernel</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter kernelspec remove kernelname</span><br></pre></td></tr></table></figure>
+<p>以上的命令删除仅仅是配置文件，并没有卸载相应虚拟环境的 ipykernel，因此若要再次安装相应 python 虚拟环境的 kernel，只需激活虚拟环境，然后</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m ipykernel install --name kernelname</span><br></pre></td></tr></table></figure>
+<ul>
+<li>conda 安装一半总失败</li>
+</ul>
+<p>把文件下载到本地，进入该文件的目录，然后用命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install --offline 包名</span><br></pre></td></tr></table></figure>
+<h4><span id="二-mac-深度学习环境配置"> 二、Mac 深度学习环境配置</span></h4>
+<p>安装组合：Anaconda+PyTorch (GPU 版)</p>
+<p>开源贡献：马曾欧，伦敦大学</p>
+<h5><span id="21-安装-anaconda"> 2.1 安装 Anaconda</span></h5>
+<p>Anaconda 的安装有两种方式，这里仅介绍一种最直观的 - macOS graphical install。</p>
+<p><a target="_blank" rel="noopener" href="https://www.anaconda.com/products/individual%E9%87%8C%EF%BC%8CAnaconda">https://www.anaconda.com/products/individual 里，Anaconda</a> Installers 的位置，选择 Python 3.7 下方的 “64-Bit Graphical Installer (442)”。下载好</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fqB2PlsOmDmkv4bJ6Yhnhqic0VjKWTlN7z9eUeAx211WhOgzhOqZ9kUA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>pkg 安装包后点击进入，按下一步完成安装即可。默认安装地点为～/opt。想用 command line install 的，请自行参考：<a target="_blank" rel="noopener" href="https://docs.anaconda.com/anaconda/install/mac-os/">https://docs.anaconda.com/anaconda/install/mac-os/</a></p>
+<h5><span id="22-确认下载情况"> 2.2 确认下载情况</span></h5>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fKOk66rtnv6CtGhfOx4Yq9rxz3Yjune8a0hrcZxZS2URWoq0icecjs3A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>在 Mac 的 Terminal 里，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br></pre></td></tr></table></figure>
+<p>确保安装的 Python 是 3.x 版本。在 Terminal 输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+<p>弹出网页，即可进入 notebook。</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fxJLkz3RN745Yibj0eTDzyicVvjSHrZPNxFZicUnxNkvMDHIQM2AzzWvKA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>在网页右上角点击 Quit，或返回 Terminal，command + c，退出 notebook。</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fuiauJicicbOv9lKXricgOmPpRDic0pUNib3icrJgU83efZDTeg5GrYV2vLd9w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<h6><span id="221-常见问题"> 2.2.1 常见问题</span></h6>
+<p>如果电脑中下载了多个 Anaconda，运行时可能出现冲突。在 Terminal 中输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure>
+<p>返回 home 目录，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat .bash_profile</span><br></pre></td></tr></table></figure>
+<p>如果只能看到一个 Anaconda 版本就没有问题。如果有多个则下载包时有可能</p>
+<p>造成一定的冲突。用 vim、nano 或其他文本编辑器把旧版本 Anaconda 的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH= ...</span><br></pre></td></tr></table></figure>
+<p>删除。</p>
+<h5><span id="23-虚拟环境和包的下载"> 2.3 虚拟环境和包的下载</span></h5>
+<p>用 conda 去创建虚拟环境和下载对应的包是很简单的一件事。</p>
+<h6><span id="231-graphic"> 2.3.1 Graphic</span></h6>
+<p>点击 Anaconda-Navigator，可以看到自己下载好的应用程序，左上角 “Applications on” 应该指向的是 “base (root)”，左边点击 “Environments” 就可以看到自己建立的虚拟环境和对应的包了。点击左下角的 Create 即可创建一个新的虚拟环境。</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f5QNMcAadtwcw9G2GuMcdAQRXuwthlg6rk2pRHx7NT6cOL3CUdUa63g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:50%;"></center>
+<p>输入环境名称和 python 的版本，点击 create 进行创建。</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fiaQVibwteEBwzCZesHTFjlACfeVTvkibAGGx4tXT9SuNo5Liau4iaMiaWMIA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:50%;"></center>
+<p>之后在 Home 页面，确保左上角指向的是你刚刚创建的环境名，在这个环境下 install jupyter notebook，注意原本装的 notebook 是在 base 里的，不可通用。</p>
+<p>回到 Environments 中，可以看到在此环境中的所有包，左上方选择 All，然后输入想要下载的包名</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f0SXW9eFwalLD8sCcsd1qkKf7kaWC0G5DcibZADnq0ibt9oRIicibicCDrYw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:70%;"></center>
+<p>然后选中进行下载</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fpBBwSCTUyZBjKqAN6WT2sSsKFJRnsTDzkDMSBRDuWNbvM8ibroOkDYg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:90%;"></center>
+<h6><span id="232-command-line"> 2.3.2 Command Line</span></h6>
+<p>用 command line 完成以上的操作也很简洁。这次以 Pytorch 为例。在 Terminal 中输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name env_name</span><br></pre></td></tr></table></figure>
+<p>就可以创建一个虚拟环境，叫 “env_name”。输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
+<p>即可看到创建了的所有虚拟环境，其中打 * 的就是当前环境。输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate env_name</span><br></pre></td></tr></table></figure>
+<p>进入环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+<p>退出当前虚拟环境，进入 base。</p>
+<h6><span id="233-下载-pytorch"> 2.3.3 下载 Pytorch</span></h6>
+<p>一般情况下 Mac 是不支持 CUDA 的。进入 https://pytorch.org/ 可以看到</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fbEicx48IfCjgILJhcJlbRg4sIjf0C4c2DTzaH4XPoiaQmVtgUNOChOPA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>pytorch 官网显示当前设备应该用的下载语句。此情况，我的是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision -c pytorch</span><br></pre></td></tr></table></figure>
+<p>复制下来，粘贴到 Terminal 中运行就可以开始下载了。</p>
+<p>下载完成后，在 Terminal 输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3</span><br></pre></td></tr></table></figure>
+<p>之后 import 两个刚下载的包，确认下载完成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(torch.__version__)</span><br><span class="line"><span class="built_in">print</span>(torchvision.__version__)</span><br></pre></td></tr></table></figure>
+<p>如果 import 和输出正常，配置就完成了！输入</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fBiaib23VtW02rrf0UVEsQo3HmLqrPiajGbcPrK1eKGn5qp6DUicDEe12YA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quit()</span><br></pre></td></tr></table></figure>
+<p>就 ok 了。</p>
+<h5><span id="24-额外情况"> 2.4 额外情况</span></h5>
+<p>国内如果直接用 conda 下载，可能会很慢。可以换下载源进行加速。换源方法可参考下列资料中的 Linux 部分：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/87123943%E3%80%82">https://zhuanlan.zhihu.com/p/87123943。</a></p>
+<p>conda 下载中常会出现 “Solving environment: failed…” 的问题，如果正常创建虚拟环境，这位问题应该就是没有问题的，如果还发生，可以再创建一个虚拟环境。</p>
+<p>conda 的社群很大，基本上遇到的问题很有可能有人遇到、有人解答，Google 会是一个很好的解决办法。</p>
+<h4><span id="三-ubuntu-深度学习环境配置"> 三、Ubuntu 深度学习环境配置</span></h4>
+<p>安装组合：Anaconda+PyTorch (CPU 版) 或 PyTorch (GPU 版)</p>
+<p>开源贡献：陈信达，华北电力大学</p>
+<h5><span id="31-anacond-安装"> 3.1 Anacond 安装</span></h5>
+<p>Anaconda 和 Python 版本是对应的，所以需要选择安装对应 Python2.7 版本的还是 Python3.7 版本或其他版本的，根据自己的需要下载合适的安装包。</p>
+<p>下载链接：<a target="_blank" rel="noopener" href="https://www.anaconda.com/download/#linux">https://www.anaconda.com/download/#linux</a></p>
+<p>点击下面的 64-Bit (x86) Installer (522 MB)，下载 64 位的版本。</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_jpg/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fUjOia81NjbE4AObd6cCP7HRd1dg6VdKdKtg6dAgLu6HyEicrOFpCstbA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>下载完后的文件名是：Anaconda3-2020.02-Linux-x86_64.sh。</p>
+<p>cd 到 Anaconda3-2020.02-Linux-x86_64.sh 所在的目录：</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fHSCOI0tn1taIlanI9IlocC7YfEYT3K4AydPTOn2TN6Xwbnb2O7ibxaw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>执行 bash Anaconda3-2020.02-Linux-x86_64.sh 开始安装：</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fo3F5SvjkR8AF5ANfvcGXgEddSUNIwBeIHJKGQRshARBHXJt8tRSvLQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>一直按回车直到如下界面，然后输入 yes：</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fqweNblBIm08xAzLxQAjPnVf7nQmG7ga2slUJUq5zJLLFApfEdyE9icg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>这里直接回车安装到默认路径，或者在 &gt;&gt;&gt; 后输入自定义路径</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2foCN2cAluJqnfwekW1Ua8Xqwl9J1YPvSzeicdN1a5lgU91LS4AYXqYhA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>等待安装进度条走完，然后出现下面的提示，yes 是加入环境变量，no 是不加入环境变量，这里我们以输入 no 为例</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fMvn2AZaQt7Zrnve9gCzwGTvPydPInclO3zN65iaiaAQOvmsAChzs2v5Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>接下来手动加入环境变量，先 cd 到～，然后编辑.bashrc 文件：sudo vim .bashrc</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fm3XHEuEzTYTy0pIGREJLYv2I53bVCBiaQNL64PicZ3rn9KsfsSQhLZiaA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>在最下面添加如下几行 (注意。后有空格)：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 区分anaconda python与系统内置python</span></span><br><span class="line"><span class="built_in">alias</span> python3=<span class="string">&quot;/usr/bin/python3.5&quot;</span></span><br><span class="line"><span class="built_in">alias</span> python2=<span class="string">&quot;/usr/bin/python2.7&quot;</span></span><br><span class="line"></span><br><span class="line">. /home/cxd/anaconda3/etc/profile.d/conda.sh</span><br></pre></td></tr></table></figure>
+<p>然后按 esc + : + wq! 保存</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fZ3SlNw02GUbMibm7CGiaqics05aqIa8HoVS6IuwuFPO5vCsMamBaH19mg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:90%;"></center>
+<p>输入 source .bashrc 来执行刚修改的初始化文档</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fs4TYgDPu2jcKk9OypNtcxZSdWn7h0nD1SAickh5o7VbVg6d3czIdicKQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>下面输入 conda env list 来试试环境变量是否设置成功：</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2f0zS2p0Zxicwv0DhQwpfxVZV1axVEEzLmEWLRABlxIXIhOX7jQHV7fbg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:90%;"></center>
+<p>试试刚刚设置的使用内置 python 的命令：python2、python3</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fUcZqevh4w4TJ0c13IOOibLuxwezSGXQm2RZWISsyVjmOV0b8aL2uKyw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:90%;"></center>
+<p>如果到这就结束的话，大家安装包的时候肯定会无比煎熬～这里需要将 anaconda 换一下源（加入清华源）：</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fPYNWX2pP6QUuHocpI6jjmiax4FicUmrcJvGoJ4XXv6bYVicuPuJMTNDibg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:90%;"></center>
+<p>然后我们创建一个名为 pytorch 的虚拟环境，发现报了下面的错误：</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fDYaWmicHibiara8cKs5euxibicd0v3icGM3resVsxgGKcQXSphR2NNU2lcOA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:90%;"></center>
+<p>原因是我们没有清除上次安装留下来的源，输入 sudo vim  .condarc，修改该文件的内容（记得删除 default 那行）：</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fIxicz8Om2Fzc14Nlic5w9OsAicRRcicsibVvSYhHLEw7SQxRApY5bbaKicDg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:90%;"></center>
+<p>然后输入 source .condarc，再次创建虚拟环境：</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fmrGmOicwRn5kaGrXwqPlGXhPTRfMYTnPpL2lvd86uGXp2LfEQavpyPQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:90%;"></center>
+<h5><span id="32-pytorch-cpu-版本安装"> 3.2 pytorch cpu 版本安装</span></h5>
+<p>打开 pytorch 官网：<a target="_blank" rel="noopener" href="https://pytorch.org/">https://pytorch.org/</a></p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2faiaz8wQAFLUBicxp7oZ3bo7dnlqJwQiady5nvw4lGhsZiciba7YubQnElcg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>激活刚刚创建的虚拟环境：conda activate pytorch 在安装之前先添加下面这个源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch</span><br></pre></td></tr></table></figure>
+<p>然后输入下面代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision cpuonly -c pytorch</span><br></pre></td></tr></table></figure>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fy2zLrLl3EWicAKR3Om2cPRJAjMXR4nad8tG21DPEg5ZAtq78Y4icDOXw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>等到安装好后测试一下是否安装完成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="built_in">print</span>(torch.__version__)</span><br></pre></td></tr></table></figure>
+<p>输出如下则安装成功：</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fqtMZwPicg22mDbQz3GnVhdhaY1QQA2dDo3PNTcdxHDB0h9bS7IYOUzg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<h5><span id="33-pytorch-gpu-安装"> 3.3 pytorch-gpu 安装</span></h5>
+<h6><span id="331-gpu-驱动安装"> 3.3.1 GPU 驱动安装</span></h6>
+<ul>
+<li><strong>检测显卡类型</strong></li>
+</ul>
+<p>执行命令：’ ubuntu-drivers devices’</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==</span><br><span class="line">modalias : pci:v000010DEd00001C8Dsv00001028sd0000086Fbc03sc02i00</span><br><span class="line">vendor   : NVIDIA Corporation</span><br><span class="line">model    : GP107M [GeForce GTX 1050 Mobile]</span><br><span class="line">driver   : nvidia-driver-390 - distro non-free</span><br><span class="line">driver   : nvidia-driver-435 - distro non-free</span><br><span class="line">driver   : nvidia-driver-440 - distro non-free recommended</span><br><span class="line">driver   : xserver-xorg-video-nouveau - distro free <span class="built_in">builtin</span></span><br><span class="line"></span><br><span class="line">== /sys/devices/pci0000:00/0000:00:14.3 ==</span><br><span class="line">modalias : pci:v00008086d0000A370sv00008086sd000042A4bc02sc80i00</span><br><span class="line">vendor   : Intel Corporation</span><br><span class="line">model    : Wireless-AC 9560 [Jefferson Peak]</span><br><span class="line">manual_install: True</span><br><span class="line">driver   : backport-iwlwifi-dkms - distro free</span><br></pre></td></tr></table></figure>
+<p>大家可以看到，这里有个设备是 GTX1050。推荐安装驱动是 440。</p>
+<ul>
+<li><strong>安装驱动</strong></li>
+</ul>
+<p>安装所有推荐驱动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ubuntu-drivers autoinstall</span><br></pre></td></tr></table></figure>
+<p>安装一个驱动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nvidia-440</span><br></pre></td></tr></table></figure>
+<h6><span id="332-安装-cuda"> 3.3.2 安装 cuda</span></h6>
+<p>cuda 安装需要对应合适的显卡驱动。下面是驱动和 cuda 的版本对应关系</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Table 1. CUDA Toolkit and Compatible Driver Versions</span><br><span class="line">CUDA Toolkit    Linux x86_64 Driver Version Windows x86_64 Driver Version</span><br><span class="line">CUDA 10.2.89    &gt;= 440.33   &gt;= 441.22</span><br><span class="line">CUDA 10.1 (10.1.105 general release, and updates)   &gt;= 418.39   &gt;= 418.96</span><br><span class="line">CUDA 10.0.130   &gt;= 410.48   &gt;= 411.31</span><br><span class="line">CUDA 9.2 (9.2.148 Update 1) &gt;= 396.37   &gt;= 398.26</span><br><span class="line">CUDA 9.2 (9.2.88)   &gt;= 396.26   &gt;= 397.44</span><br><span class="line">CUDA 9.1 (9.1.85)   &gt;= 390.46   &gt;= 391.29</span><br><span class="line">CUDA 9.0 (9.0.76)   &gt;= 384.81   &gt;= 385.54</span><br><span class="line">CUDA 8.0 (8.0.61 GA2)   &gt;= 375.26   &gt;= 376.51</span><br><span class="line">CUDA 8.0 (8.0.44)   &gt;= 367.48   &gt;= 369.30</span><br><span class="line">CUDA 7.5 (7.5.16)   &gt;= 352.31   &gt;= 353.66</span><br><span class="line">CUDA 7.0 (7.0.28)   &gt;= 346.46   &gt;= 347.62</span><br></pre></td></tr></table></figure>
+<p>cuda 下载链接：<a target="_blank" rel="noopener" href="http://suo.im/6dY8rL">http://suo.im/6dY8rL</a></p>
+<p>Installer Type 选择第一第二个都可。但是要在获得 cuda 文件后先检测 gcc 版本。下面以第一个 runfile (local) 安装方式为例。</p>
+<ul>
+<li><strong>安装 gcc</strong></li>
+</ul>
+<p>linux 一般会自带了 gcc，我们先检测一下自己系统的 gcc 版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc --version</span><br></pre></td></tr></table></figure>
+<p>而 cuda 的 gcc 依赖版本在官方文档的安装指南上会给出</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fEV0YcbUibNNgGd6wt8DtCTB7AHhCW3Eblv1Hu4Gz5zTwgaBrTYfiaAZg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fHgkt0LX69cHmHvLoDWMo9pibxLD8fdPuKwibBjnnM9ibGjj4qpLA1qQKQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>如果版本和 cuda 依赖 gcc 不对应，就安装 cuda 需要的版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gcc-7.0</span><br><span class="line">sudo apt-get install g++-7.0</span><br></pre></td></tr></table></figure>
+<p>安装完成后需要更换系统 gcc 版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 50</span><br><span class="line">sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 50</span><br></pre></td></tr></table></figure>
+<p>选择需要的版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --config gcc</span><br><span class="line"></span><br><span class="line">  选择       路径          优先级  状态------------------------------------------------------------</span><br><span class="line">  * 0            /usr/bin/gcc-9   50        自动模式</span><br><span class="line">    1            /usr/bin/g++-9   50        手动模式</span><br><span class="line">    2            /usr/bin/gcc-7   50        手动模式</span><br></pre></td></tr></table></figure>
+<p>输入前面显示的编号即可。</p>
+<ul>
+<li><strong>安装 cuda</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh cuda_你的版本_linux.run</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>配置环境变量</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>将下面的命令复制进去</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/cuda-10.2/bin<span class="variable">$&#123;PATH:+:$PATH&#125;</span>&#125;    </span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/cuda-10.2/lib64<span class="variable">$&#123;LD_LIBRARY_PATH:+:<span class="variable">$&#123;LD_LIBRARY_PATH&#125;</span>&#125;</span></span><br></pre></td></tr></table></figure>
+<p>检查是否安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc -V</span><br></pre></td></tr></table></figure>
+<h6><span id="333-安装-cudnn"> 3.3.3 安装 cudnn</span></h6>
+<p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/cudnn">https://developer.nvidia.com/cudnn</a>   选择对应 cuda 的版本即可</p>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fdhJEDuSO4piaUUDP3a21Xhiaq9dKxvXB0a2VvicricViaq4hLu9AUfDcMVw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></center>
+<p>然后将 cudnn 解压后的 include 和 lib64 文件夹复制到 cuda 中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo cp cuda/include/cudnn.h    /usr/<span class="built_in">local</span>/cuda-10.2/include    <span class="comment">#解压后的文件夹名字为cuda-10.2  </span></span><br><span class="line">sudo cp cuda/lib64/libcudnn*    /usr/<span class="built_in">local</span>/cuda-10.2/lib64</span><br><span class="line">sudo chmod a+r /usr/<span class="built_in">local</span>/cuda-10.2/include/cudnn.h   /usr/<span class="built_in">local</span>/cuda-10.2/lib64/libcudnn*</span><br></pre></td></tr></table></figure>
+<h6><span id="334-安装-pytorch-gpu"> 3.3.4 安装 pytorch-gpu</span></h6>
+<center><img src="https://mmbiz.qpic.cn/mmbiz_png/vI9nYe94fsHF5g2hb3YqSl9vp653Vm2fsB3mCN9yibmbGIuEM3WVGUWRXlLWHZnIk9Qic831NSib5ynakTcibIqEEw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;"></center>
+<p>conda 安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择自己对应的cuda版本</span></span><br><span class="line">conda install pytorch torchvision cudatoolkit=10.2</span><br></pre></td></tr></table></figure>
+<p>pip 安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install torch torchvision -i  </span><br><span class="line">https://pypi.mirrors.ustc.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<h4><span id="四-写在最后"> 四、写在最后</span></h4>
+<p>所有的深度学习环境安装指南到这里就结束了，希望能解决你面临的环境配置难题。关于实践项目，可以结合阿里天池的学习赛进行动手实践。</p>
+<p>数据挖掘学习赛（进行中，5832 人参与）</p>
+<p><a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/competition/entrance/231784/forum">https://tianchi.aliyun.com/competition/entrance/231784/forum</a></p>
+<p>cv 实践学习赛（进行中，1933 参与）</p>
+<p><a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/competition/entrance/531795/forum">https://tianchi.aliyun.com/competition/entrance/531795/forum</a></p>
+<p>nlp 实践学习赛（进行中，573 人参与）</p>
+<p><a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/competition/entrance/531810/forum">https://tianchi.aliyun.com/competition/entrance/531810/forum</a></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2022年02月20日 23:32</p>
+        <p>原始链接： <a class="post-url" href="/2022/02/20/%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" title="保姆级教程：深度学习环境配置指南">https://leezhao415.github.io/2022/02/20/%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2022/02/20/%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/&title=《保姆级教程：深度学习环境配置指南》 — 且听风吟，御剑于心！&pic=images/深度学习环境配置.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2022/02/20/%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/&title=《保姆级教程：深度学习环境配置指南》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2022/02/20/%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《保姆级教程：深度学习环境配置指南》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2022/02/20/%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2022/02/20/%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2022/02/20/%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/深度学习环境配置/" class="color4">深度学习环境配置</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 一、Windows 系统深度学习环境配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.1 打开 Anaconda Prompt</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2 确定硬件支持的 CUDA 版本</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.3 确定 pytorch 版本，torchvision 版本</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.4 镜像中下载对应的安装包</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.5 本地安装</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.6 测试</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.7 遇到的问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 二、Mac 深度学习环境配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.1 安装 Anaconda</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.2 确认下载情况</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2.2.1 常见问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.3 虚拟环境和包的下载</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2.3.1 Graphic</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2.3.2 Command Line</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2.3.3 下载 Pytorch</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.4 额外情况</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 三、Ubuntu 深度学习环境配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.1 Anacond 安装</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.2 pytorch cpu 版本安装</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.3 pytorch-gpu 安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3.3.1 GPU 驱动安装</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3.3.2 安装 cuda</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3.3.3 安装 cudnn</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3.3.4 安装 pytorch-gpu</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 四、写在最后</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8NCNN%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          【精华】使用NCNN在移动端部署深度学习模型
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91Linux%E6%9C%80%E5%BC%BA%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【精华】Linux最强总结</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="保姆级教程：深度学习环境配置指南" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,607 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;数据集&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Thu, 03 Mar 2022 22:55:49 +0800</pubDate>
+        <lastBuildDate>Thu, 03 Mar 2022 22:55:49 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2022/03/03/ForgeryNet-%E7%9B%AE%E5%89%8D%E5%85%AC%E5%BC%80%E6%9C%80%E5%A4%A7%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BA%BA%E8%84%B8%E4%BC%AA%E9%80%A0%E6%95%B0%E6%8D%AE%E9%9B%86CVPR2021/</guid>
+            <title>ForgeryNet_目前公开最大的深度人脸伪造数据集CVPR2021</title>
+            <link>https://leezhao415.github.io/2022/03/03/ForgeryNet-%E7%9B%AE%E5%89%8D%E5%85%AC%E5%BC%80%E6%9C%80%E5%A4%A7%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BA%BA%E8%84%B8%E4%BC%AA%E9%80%A0%E6%95%B0%E6%8D%AE%E9%9B%86CVPR2021/</link>
+            <category>人工智能</category>
+            <category>数据集</category>
+            <pubDate>Thu, 03 Mar 2022 22:55:49 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#forgerynet-%E7%9B%AE%E5%89%8D%E5%85%AC%E5%BC%80%E6%9C%80%E5%A4%A7%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BA%BA%E8%84%B8%E4%BC%AA%E9%80%A0%E6%95%B0%E6%8D%AE%E9%9B%86cvpr-2021-oral&#34;&gt;ForgeryNet | 目前公开最大的深度人脸伪造数据集 | CVPR 2021 oral&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;forgerynet-目前公开最大的深度人脸伪造数据集-cvpr-2021-oral&#34;&gt; ForgeryNet | 目前公开最大的深度人脸伪造数据集 | CVPR 2021 oral&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;#CVPR 2021 oral## 伪造人脸分析#&lt;/p&gt;
+&lt;p&gt;ForgeryNet: A Versatile Benchmark for Comprehensive Forgery Analysis&lt;/p&gt;
+&lt;p&gt;逼真的合成技术飞速发展，使真实图像与操纵图像之间的界限开始模糊。因此，基准化和推进数字伪造分析已经成为一个迫在眉睫的问题。&lt;/p&gt;
+&lt;p&gt;但现有的对此问题所需要的人脸伪造数据集要么多样性有限，要么只支持粗粒度的分析。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-9ef057b916a42789a42275f52eaad5af_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;作者在本次工作中，针对上述挑战，构建了 ForgeryNet 数据集，是一个极其庞大的人脸伪造数据集，在图像和视频级数据中具有统一的标注，涵盖以下四个任务。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;**Image Forgery Classification：** 图像伪造分类，包括双向（真 / 假）、三向（真 / 假与身份置换的伪造方法 / 假与身份保留的伪造方法）和 n 向（真和 15 种各自的伪造方法）分类。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-f7c069046ffdd2ba00de8be096d206d7_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:110%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-6ed99ac8e8c52d086f8a25c14d4703df_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:110%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-3f6faca4f2caf9fcebe1342f402b8190_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom: 75%;&#34;&gt;&lt;/center&gt;
+&lt;ul&gt;
+&lt;li&gt;**Spatial Forgery Localization：** 空间伪造定位，将伪造图像的操纵区域与其对应的源头真实图像进行对比分割。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-ed6380422e427493e46c7f94ba6a0050_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-edb28a6836d01bea4ff6b4e9126c7e28_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;ul&gt;
+&lt;li&gt;**Video Forgery Classification：** 视频伪造分类，对视频级作假分类进行重新定义，在随机位置上进行操纵帧。因为现实世界中的攻击者可以自由操纵任何目标帧。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-08d2bcc146b27cb6ccafaee89c3701bb_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-2c7d2e2eb0a81b40a2de97e442e53414_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;ul&gt;
+&lt;li&gt;**Temporal Forgery Localization：** 时间伪造定位，对被操纵的时间段进行定位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-05932b6cdc1008de5091060c196753ba_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;ForgeryNet 是目前公开的最大的深度人脸伪造数据集，从&lt;strong&gt;数据规模&lt;/strong&gt;（290 万张图像，221247 个视频）、&lt;strong&gt;manipulations 操纵&lt;/strong&gt;（7 种图像级方法，8 种视频级方法）、perturbations 扰动（36 种独立的和更多的混合扰动）和&lt;strong&gt;标注&lt;/strong&gt;（630 万个分类标签，290 万个操纵区域标注和 221247 个时空伪造段标签）来看，它都是最大的。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-ddc9e3aaaaa379525a804c9b4b8c40ea_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.zhihu.com/zvideo/1352956616392687617&#34;&gt;Forgery&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;作者 | Yinan He, Bei Gan, Siyu Chen, Yichun Zhou, Guojun Yin, Luchuan Song, Lu Sheng, Jing Shao, Ziwei Liu&lt;/p&gt;
+&lt;p&gt;单位 | 北京邮电大学；商汤；中国科学技术大学；南洋理工大学&lt;/p&gt;
+&lt;p&gt;论文 | &lt;a href=&#34;https://link.zhihu.com/?target=https%3A//arxiv.org/abs/2103.05630&#34;&gt;ForgeryNet: A Versatile Benchmark for Comprehensive Forgery Analysis&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;主页 | &lt;a href=&#34;https://link.zhihu.com/?target=https%3A//yinanhe.github.io/projects/forgerynet.html&#34;&gt;ForgeryNet Dataset&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;备注 | CVPR 2021 oral&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/52CV/CVPR-2021-Papers&#34;&gt;52CV/CVPR-2021-Papersgithub.com/52CV/CVPR-2021-Papers)&lt;/a&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2021/10/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB/</guid>
+            <title>人工智能数据集汇总</title>
+            <link>https://leezhao415.github.io/2021/10/28/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB/</link>
+            <category>人工智能</category>
+            <category>数据集</category>
+            <pubDate>Thu, 28 Oct 2021 22:32:39 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1%E9%87%91%E8%9E%8D&#34;&gt;（1）金融&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2%E4%BA%A4%E9%80%9A&#34;&gt;（2）交通&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3%E5%95%86%E4%B8%9A&#34;&gt;（3）商业&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F&#34;&gt;（4）推荐系统&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5%E5%8C%BB%E7%96%97%E5%81%A5%E5%BA%B7&#34;&gt;（5）医疗健康&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6%E5%9B%BE%E5%83%8F%E6%95%B0%E6%8D%AE&#34;&gt;（6）图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7%E8%A7%86%E9%A2%91%E6%95%B0%E6%8D%AE&#34;&gt;（7）视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8%E9%9F%B3%E9%A2%91%E6%95%B0%E6%8D%AE&#34;&gt;（8）音频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86&#34;&gt;（9）自然语言处理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#10%E7%A4%BE%E4%BC%9A%E6%95%B0%E6%8D%AE&#34;&gt;（10）社会数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#11%E5%A4%84%E7%90%86%E5%90%8E%E7%9A%84%E7%A7%91%E7%A0%94%E5%92%8C%E7%AB%9E%E8%B5%9B%E6%95%B0%E6%8D%AE&#34;&gt;（11）处理后的科研和竞赛数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#12%E8%BF%90%E5%8A%A8%E6%83%B3%E8%B1%A1%E6%83%85%E7%BB%AA%E8%AF%86%E5%88%AB&#34;&gt;（12）运动想象，情绪识别&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#13%E5%85%B6%E4%BB%96&#34;&gt;（13）其他&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;1金融&#34;&gt; （1）金融&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/139&#34;&gt;美国劳工部统计局官方发布数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/37&#34;&gt;上证 A 股日线数据，1999.12.09 至 2016.06.08，前复权，1095 支股票&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/38&#34;&gt;深证 A 股日线数据，1999.12.09 至 2016.06.08，前复权，1766 支股票&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/39&#34;&gt;深证创业板日线数据，1999.12.09 至 2016.06.08，前复权，510 支股票&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/43&#34;&gt;MT4 平台外汇交易历史数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/67&#34;&gt;Forex 平台外汇交易历史数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/44&#34;&gt;几组外汇交易逐笔（Ticks）数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/220&#34;&gt;美国股票新闻数据【&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/220&#34;&gt;Kaggle 数据&lt;/a&gt;】&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/225&#34;&gt;美国医疗保险市场数据【&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/225&#34;&gt;Kaggle 数据&lt;/a&gt;】&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/229&#34;&gt;美国金融客户投诉数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/206&#34;&gt;Lending Club 网贷违约数据&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/206&#34;&gt;【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/214&#34;&gt;信用卡欺诈数据&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/214&#34;&gt;【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/227&#34;&gt;某个金融产品实时交易数据&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/227&#34;&gt;【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/249&#34;&gt;美国股票数据 XBRL&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/249&#34;&gt;【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/266&#34;&gt;纽约股票交易所数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;2交通&#34;&gt; （2）交通&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/76&#34;&gt;2013 年纽约出租车行驶数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/86&#34;&gt;Udacity 自动驾驶数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/210&#34;&gt;纽约 Uber 接客数据 【Kaggle 数据&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/210&#34;&gt;】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/232&#34;&gt;英国车祸数据（2005-2015）【Kaagle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/228&#34;&gt;芝加哥汽车超速数据&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/228&#34;&gt;【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/270&#34;&gt;KITTI 自动驾驶任务数据【数据太大仅有一部分】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/&#34;&gt;Cityscapes 场景标注数据【数据太大仅有介绍】&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;3商业&#34;&gt; （3）商业&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/207&#34;&gt;Amazon 食品评论数据&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/207&#34;&gt;【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/208&#34;&gt;Amazon 无锁手机评论数据&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/208&#34;&gt;【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/230&#34;&gt;美国视频游戏销售和评价数据&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/230&#34;&gt;【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/213&#34;&gt;Kaggle 各项竞赛情况数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/309&#34;&gt;Airbnb 开放的民宿信息和住客评论数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;4推荐系统&#34;&gt; （4）推荐系统&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/32&#34;&gt;Netflix 电影评价数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/116&#34;&gt;MovieLens 20m 电影推荐数据集&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/97&#34;&gt;WikiLens&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/99&#34;&gt;Jester&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/101&#34;&gt;HetRec2011&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/100&#34;&gt;Book Crossing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/98&#34;&gt;Large Movie Review&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/290&#34;&gt;Retailrocket 商品评论和推荐数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;5医疗健康&#34;&gt; （5）医疗健康&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/80&#34;&gt;人识别物体时大脑核磁共振影像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/79&#34;&gt;人理解单词时大脑核磁共振影像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/121&#34;&gt;心脏病心房图像及标注数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/242&#34;&gt;细胞病理识别&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/124&#34;&gt;FIRE 视网膜眼底病变图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/250&#34;&gt;食物营养成分数据 【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/258&#34;&gt;EGG 大脑电波形状数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/261&#34;&gt;某人基因序列数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/275&#34;&gt;癌症 CT 影像数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/284&#34;&gt;软组织肉瘤 CT 图像数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/283&#34;&gt;美国国家健康与服务部 - 国家癌症研究所发起的癌症数据仓库介绍【仅有介绍】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/287&#34;&gt;Data Science Bowl 2017 肺癌识别竞赛数据【数据太大仅有介绍】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/291&#34;&gt;TCGA-LUAD 肺癌 CT 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/311&#34;&gt;RAID 肺癌 CT 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;6图像数据&#34;&gt; （6）图像数据&lt;/span&gt;&lt;/h4&gt;
+&lt;h6&gt;&lt;span id=&#34;61-综合图像&#34;&gt; 6.1 综合图像&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/85&#34;&gt;Visual Genome 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/107&#34;&gt;Visual7w 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/51&#34;&gt;COCO 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/240&#34;&gt;SUFR 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/55&#34;&gt;ILSVRC 2014 训练数据（ImageNet 的一部分）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/40&#34;&gt;PASCAL Visual Object Classes 2012 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/45&#34;&gt;PASCAL Visual Object Classes 2011 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/48&#34;&gt;PASCAL Visual Object Classes 2010 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/138&#34;&gt;80 Million Tiny Image 图像数据&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/138&#34;&gt;【数据太大仅有介绍】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/83&#34;&gt;ImageNet【数据太大仅有介绍】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/183&#34;&gt;Google Open Images【数据太大仅有介绍】&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;62-场景图像&#34;&gt; 6.2 场景图像&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/74&#34;&gt;Street Scences 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/112&#34;&gt;Places2 场景图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/160&#34;&gt;UCF Google Street View 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/234&#34;&gt;SUN 场景图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/173&#34;&gt;The Celebrity in Places 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;63-web-标签图像&#34;&gt; 6.3 Web 标签图像&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/52&#34;&gt;HARRISON 社交标签&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/52&#34;&gt;图像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/235&#34;&gt;NUS-WIDE 标签图像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/236&#34;&gt;Visual Synset 标签图像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/253&#34;&gt;Animals With Attributes 标签图像&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;64-人形轮廓图像&#34;&gt; 6.4 人形轮廓图像&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/129&#34;&gt;MPII Human Shape&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/129&#34;&gt; 人体轮廓数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/110&#34;&gt;Biwi Kinect Head Pose 头部姿势数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/dataDescriptionManagement/saveDatasetInstance/49&#34;&gt;上半身人像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/73&#34;&gt;INRIA Person 数据集&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;65-视觉文字识别图像&#34;&gt; 6.5 视觉文字识别图像&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/47&#34;&gt;Street View House Number 门牌号图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/23&#34;&gt;MNIST 手写数字识别图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/203&#34;&gt;3D MNIST 数字识别图像数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/128&#34;&gt;MediaTeam Document 文档影印和内容数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/176&#34;&gt;Text Recognition 文字图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/278&#34;&gt;NIST Handprinted Forms and Characters 手写英文字符数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/294&#34;&gt;NIST Structured Forms Reference Set of Binary Images (SFRS) 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/295&#34;&gt;NIST Structured Forms Reference Set of Binary Images (SFRS) II 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;66-特定一类事物图像&#34;&gt; 6.6 特定一类事物图像&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/41&#34;&gt;著名的猫图像标注数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/105&#34;&gt;Caltech-UCSD Birds200 鸟类图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/106&#34;&gt;Stanford Car 汽车图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/106&#34;&gt;Cars 汽车图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/254&#34;&gt;MIT Cars 汽车图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/255&#34;&gt;Stanford Cars 汽车图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/109&#34;&gt;Food-101 美食图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/114&#34;&gt;17_Category_Flower 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/115&#34;&gt;102_Category_Flower 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/60&#34;&gt;UCI Folio Leaf 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/61&#34;&gt;Labeled Fishes in the Wild 鱼类图像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/63&#34;&gt;美国 Yelp 点评网站酒店照片&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/174&#34;&gt;CMU-Oxford Sculpture 塑像雕像图像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/256&#34;&gt;Oxford-IIIT Pet 宠物图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/301&#34;&gt;Nature Conservancy Fisheries Monitoring 过度捕捞监控图像数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;67-材质纹理图像&#34;&gt; 6.7 材质纹理图像&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/118&#34;&gt;CURET 纹理材质图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/111&#34;&gt;ETHZ Synthesizability 纹理图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/127&#34;&gt;KTH-TIPS 纹理材质图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/172&#34;&gt;Describable Textures 纹理图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;68-物体分类图像&#34;&gt; 6.8 物体分类图像&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/71&#34;&gt;COIL-20 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/62&#34;&gt;COIL-100 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/70&#34;&gt;Caltech-101 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/54&#34;&gt;Caltech-256 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/46&#34;&gt;CIFAR-10 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/42&#34;&gt;CIFAR-100 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/53&#34;&gt;STL-10 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/72&#34;&gt;LabelMe_12_50k&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/72&#34;&gt; 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/69&#34;&gt;NORB v1.0 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/117&#34;&gt;NEC Toy Animal 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/237&#34;&gt;iCubWorld 图像分类数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/238&#34;&gt;Multi-class 图像分类数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/239&#34;&gt;GRAZ 图像分类数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;69-人脸图像&#34;&gt; 6.9 人脸图像&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/108&#34;&gt;IMDB-WIKI 500k+ 人脸图像、年龄性别数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/68&#34;&gt;Labeled Faces in the Wild 人脸数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/50&#34;&gt;Extended Yale Face Database B 人脸数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/131&#34;&gt;Bao Face 人脸数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/87&#34;&gt;DC-IGN 论文人脸数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/119&#34;&gt;300 Face in Wild 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/120&#34;&gt;BioID Face 人脸数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/122&#34;&gt;CMU Frontal Face Images&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/123&#34;&gt;FDDB_Face Detection Data Set and Benchmark&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/130&#34;&gt;NIST Mugshot Identification Database&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/140&#34;&gt;Faces in the Wild 人脸数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/170&#34;&gt;CelebA 名人人脸图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/175&#34;&gt;VGG Face 人脸图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/189&#34;&gt;Caltech 10k Web Faces 人脸图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;610-姿势动作图像&#34;&gt; 6.10 姿势动作图像&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/125&#34;&gt;HMDB_a large human motion database&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/126&#34;&gt;Human Actions and Scenes Dataset&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/177&#34;&gt;Buffy Stickmen V3 人体轮廓识别图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/178&#34;&gt;Human Pose Evaluator 人体轮廓识别图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/179&#34;&gt;Buffy pose 人类姿势图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/181&#34;&gt;VGG Human Pose Estimation 姿势图像标注数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;611-指纹识别&#34;&gt; 6.11 指纹识别&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/197&#34;&gt;NIST FIGS 指纹识别数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/281&#34;&gt;NIST Supplemental Fingerprint Card Data (SFCD) 指纹识别数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/280&#34;&gt;NIST Plain and Rolled Images from Paired Fingerprint Cards in 500 pixels per inch 指纹识别数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/279&#34;&gt;NIST Plain and Rolled Images from Paired Fingerprint Cards 1000 pixels per inch 指纹识别数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;612-其它图像数据&#34;&gt; 6.12 其它图像数据&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/77&#34;&gt;Visual Question Answering V1.0 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/289&#34;&gt;Visual Question Answering V2.0 图像数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;7视频数据&#34;&gt; （7）视频数据&lt;/span&gt;&lt;/h4&gt;
+&lt;h6&gt;&lt;span id=&#34;71-综合视频&#34;&gt; 7.1 综合视频&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/132&#34;&gt;DAVIS_Densely Annotated Video Segmentation 数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/84&#34;&gt;YouTube-8M 视频数据集【数据太大仅有介绍】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/241&#34;&gt;YouTube 网站视频备份【数据太大仅有介绍】&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;72-人类动作视频&#34;&gt; 7.2 人类动作视频&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/147&#34;&gt;Microsoft Research Action 人类动作视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/133&#34;&gt;UCF50 Action Recognition 动作识别数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/134&#34;&gt;UCF101 Action Recognition 动作识别数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/144&#34;&gt;UT-Interaction 人类动作视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/135&#34;&gt;UCF iPhone 运动中传感器数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/136&#34;&gt;UCF YouTube 人类动作视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/137&#34;&gt;UCF Sport 人类动作视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/148&#34;&gt;UCF-ARG 人类动作视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/125&#34;&gt;HMDB 人类动作视频&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/126&#34;&gt;HOLLYWOOD2 人类行为动作视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/141&#34;&gt;Recognition of human actions 动作视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/157&#34;&gt;Motion Capture 动作捕捉视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/146&#34;&gt;SBU Kinect Interaction 肢体动作视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;73-目标检测视频&#34;&gt; 7.3 目标检测视频&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/244&#34;&gt;UCSD Pedestrian 行人视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/245&#34;&gt;Caltech Pedestrian 行人视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/246&#34;&gt;ETH 行人视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/247&#34;&gt;INRIA 行人视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/248&#34;&gt;TudBrussels 行人视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/223&#34;&gt;Daimler 行人视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/159&#34;&gt;ALOV++ 物体追踪视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;74-密集人群视频&#34;&gt; 7.4 密集人群视频&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/151&#34;&gt;Crowd Counting 高密度人群图像&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/150&#34;&gt;Crowd Segmentation 高密度人群视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/152&#34;&gt;Tracking in High Density Crowds 高密度人群视频&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;75-其它视频&#34;&gt; 7.5 其它视频&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/156&#34;&gt;Fire Detection 视频数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;8音频数据&#34;&gt; （8）音频数据&lt;/span&gt;&lt;/h4&gt;
+&lt;h6&gt;&lt;span id=&#34;81-综合音频&#34;&gt; 8.1 综合音频&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/243&#34;&gt;Google Audioset 音频数据【数据太大仅有介绍】&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;82-语音识别&#34;&gt; 8.2 语音识别&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/200&#34;&gt;Sinhala TTS 英语语音识别&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/186&#34;&gt;TIMIT 美式英语语音识别数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/164&#34;&gt;LibriSpeech ASR corpus 语音数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/251&#34;&gt;Room Impulse Response and Noise 语音数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/252&#34;&gt;ALFFA 非洲语音数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/194&#34;&gt;THUYG-20 维吾尔语语音数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/191&#34;&gt;AMI Corpus 语音识别&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;9自然语言处理&#34;&gt; （9）自然语言处理&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/96&#34;&gt;RCV1&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/96&#34;&gt; 英语&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/96&#34;&gt;新闻数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/93&#34;&gt;20news 英语新闻数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/90&#34;&gt;First Quora Release Question Pairs 问答数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/78&#34;&gt;JRC Names&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/78&#34;&gt; 各国语言专有实体名称&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/94&#34;&gt;Multi-Domain Sentiment V2.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/92&#34;&gt;LETOR 信息检索数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/89&#34;&gt;Yale Youtube Vedio Text&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/205&#34;&gt;斯坦福问答数据&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/205&#34;&gt;【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/221&#34;&gt;美国假新闻数据&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/221&#34;&gt;【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/212&#34;&gt;NIPS 会议文章信息数据（1987-2016）【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/268&#34;&gt;2016 年美国总统选举辩论数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/269&#34;&gt;WikiLinks 跨文档指代语料&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/277&#34;&gt;European Parliament Proceedings Parallel Corpus 机器翻译数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/285&#34;&gt;WikiText 英语语义词库数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/272&#34;&gt;WMT 2011 News Crawl 机器翻译数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/288&#34;&gt;Stanford Sentiment Treebank 词汇数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;10社会数据&#34;&gt; （10）社会数据&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/201&#34;&gt;希拉里邮件门泄露邮件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/267&#34;&gt;波士顿 Airbnb 公开数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/209&#34;&gt;世界各国经济发展数据【Kaagle 数据】 &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/202&#34;&gt;世界大学排名芝加哥犯罪数据（2001-2017）【Kaagle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/233&#34;&gt;世界范围显著地震数据（1965-2016）【Kaagle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/231&#34;&gt;美国婴儿姓名数据【Kaagle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/222&#34;&gt;全世界鲨鱼袭击人类数据【Kaagle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/219&#34;&gt;1908 年以来空难数据【Kaagle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/218&#34;&gt;2016 年美国总统大选数据【Kaagle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/217&#34;&gt;2013 年美国社区统计数据【Kaagle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/273&#34;&gt;2014 年美国社区统计数据【Kaagle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/274&#34;&gt;2015 年美国社区统计数据【Kaagle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/215&#34;&gt;欧洲足球运动员赛事表现数据【Kaagle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/211&#34;&gt;美国环境污染数据【Kaagle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/224&#34;&gt;美国 H1-B 签证申请数&lt;/a&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/224&#34;&gt;据&lt;/a&gt;【&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/224&#34;&gt;Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/226&#34;&gt;IMDB 五千部电影数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/216&#34;&gt;2015 年航班延误和取消数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/259&#34;&gt;凶杀案报告数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/260&#34;&gt;人力资源分析数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/262&#34;&gt;美国费城犯罪数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/263&#34;&gt;安然公司邮件数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/264&#34;&gt;历史棒球数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/265&#34;&gt;美联航 Twitter 用户评论数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/267&#34;&gt;波士顿 Airbnb 公开数据【Kaggle 数据】&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;11处理后的科研和竞赛数据&#34;&gt; （11）处理后的科研和竞赛数据&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/296&#34;&gt;NIPS 2003 属性选择竞赛数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/297&#34;&gt;台湾大学林智仁教授处理为 LibSVM 格式的分类建模数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/298&#34;&gt;Large-scale 分类建模数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/299&#34;&gt;几个 UCI 中 large-scale 分类建模数据&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://link.zhihu.com/?target=http%3A//dataju.cn/Dataju/web/datasetInstanceDetail/300&#34;&gt;Social Computing Data Repository 社交网络数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;12运动想象情绪识别&#34;&gt; （12）运动想象，情绪识别&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h6&gt;&lt;span id=&#34;运动影像数据&#34;&gt; 运动影像数据&lt;/span&gt;&lt;/h6&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;Left/Right Hand MI: &lt;a href=&#34;http://gigadb.org/dataset/100295&#34;&gt;http://gigadb.org/dataset/100295&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Motor Movement/Imagery Dataset: &lt;a href=&#34;https://www.physionet.org/physiobank/database/eegmmidb/&#34;&gt;https://www.physionet.org/physiobank/database/eegmmidb/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Grasp and Lift EEG Challenge: &lt;a href=&#34;https://www.kaggle.com/c/grasp-and-lift-eeg-detection/data&#34;&gt;https://www.kaggle.com/c/grasp-and-lift-eeg-detection/data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The largest SCP data of Motor-Imagery: &lt;a href=&#34;https://doi.org/10.6084/m9.figshare.c.3917698&#34;&gt;https://doi.org/10.6084/m9.figshare.c.3917698&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;BCI Competition IV-1: &lt;a href=&#34;http://www.bbci.de/competition/iv/#dataset1&#34;&gt;http://www.bbci.de/competition/iv/#dataset1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;BCI Competition IV-2a: &lt;a href=&#34;http://www.bbci.de/competition/iv/#dataset2a&#34;&gt;http://www.bbci.de/competition/iv/#dataset2a&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;BCI Competition IV-2b: &lt;a href=&#34;http://www.bbci.de/competition/iv/#dataset2b&#34;&gt;http://www.bbci.de/competition/iv/#dataset2b&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;High-Gamma Dataset: &lt;a href=&#34;https://github.com/robintibor/high-gamma-dataset&#34;&gt;https://github.com/robintibor/high-gamma-dataset&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Left/Right Hand 1D/2D movements: &lt;a href=&#34;https://sites.google.com/site/projectbci/&#34;&gt;https://sites.google.com/site/projectbci/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Imagination of Right-hand Thumb Movement: &lt;a href=&#34;https://archive.ics.uci.edu/ml/datasets/Planning+Relax&#34;&gt;https://archive.ics.uci.edu/ml/datasets/Planning+Relax&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h6&gt;&lt;span id=&#34;情绪识别数据&#34;&gt; 情绪识别数据&lt;/span&gt;&lt;/h6&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;DEAP: &lt;a href=&#34;http://www.eecs.qmul.ac.uk/mmv/datasets/deap/&#34;&gt;http://www.eecs.qmul.ac.uk/mmv/datasets/deap/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Enterface’06: &lt;a href=&#34;http://www.enterface.net/results/&#34;&gt;http://www.enterface.net/results/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Imagined Emotion: &lt;a href=&#34;http://headit.ucsd.edu/studies/3316f70e-35ff-11e3-a2a9-0050563f2612&#34;&gt;http://headit.ucsd.edu/studies/3316f70e-35ff-11e3-a2a9-0050563f2612&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;NeuroMarketing: &lt;a href=&#34;https://drive.google.com/open?id=0B2T1rQUvyyWcSGVVaHZBZzRtTms&#34;&gt;https://drive.google.com/open?id=0B2T1rQUvyyWcSGVVaHZBZzRtTms&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;SEED: &lt;a href=&#34;http://bcmi.sjtu.edu.cn/~seed/seed.html&#34;&gt;http://bcmi.sjtu.edu.cn/~seed/seed.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;SEED-IV: &lt;a href=&#34;http://bcmi.sjtu.edu.cn/~seed/seed-iv.html&#34;&gt;http://bcmi.sjtu.edu.cn/~seed/seed-iv.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;SEED-VIG: &lt;a href=&#34;http://bcmi.sjtu.edu.cn/~seed/seed-vig.html&#34;&gt;http://bcmi.sjtu.edu.cn/~seed/seed-vig.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;HCI-Tagging: &lt;a href=&#34;https://mahnob-db.eu/hci-tagging/&#34;&gt;https://mahnob-db.eu/hci-tagging/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;REGULATION OF AROUSAL: &lt;a href=&#34;https://ieee-dataport.org/open-access/regulation-arousal-online-neurofeedback-improves-human-performance-demanding-sensory&#34;&gt;https://ieee-dataport.org/open-access/regulation-arousal-online-neurofeedback-improves-human-performance-demanding-sensory&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h6&gt;&lt;span id=&#34;误差相关电位-errp&#34;&gt; 误差相关电位 (ErrP)&lt;/span&gt;&lt;/h6&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;BCI-NER Challenge: &lt;a href=&#34;https://www.kaggle.com/c/inria-bci-challenge&#34;&gt;https://www.kaggle.com/c/inria-bci-challenge&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Monitoring ErrP in a target selection task: &lt;a href=&#34;http://bnci-horizon-2020.eu/database/data-sets&#34;&gt;http://bnci-horizon-2020.eu/database/data-sets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ErrPs during continuous feedback: &lt;a href=&#34;https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/contErrP_description.pdf&#34;&gt;https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/contErrP_description.pdf&lt;/a&gt;): 10 subjects with 28 EEG electrodes, playing a video game to study execution and outcome error. Dataset Part-1]: &lt;a href=&#34;https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/Continous_ErrP_dataset_Part1.rar&#34;&gt;https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/Continous_ErrP_dataset_Part1.rar&lt;/a&gt;) Dataset Part-2]: &lt;a href=&#34;https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/Continous_ErrP_dataset_Part2.rar&#34;&gt;https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/Continous_ErrP_dataset_Part2.rar&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;HCI-Tagging: &lt;a href=&#34;https://mahnob-db.eu/hci-tagging/&#34;&gt;https://mahnob-db.eu/hci-tagging/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h6&gt;&lt;span id=&#34;视觉诱发电位-veps&#34;&gt; 视觉诱发电位 (VEPs)&lt;/span&gt;&lt;/h6&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;c-VEP BCI: &lt;a href=&#34;https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/cVEP_dataset.rar&#34;&gt;https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/cVEP_dataset.rar&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;c-VEP BCI with dry electrodes: &lt;a href=&#34;https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/dry_cVEP_dataset.rar&#34;&gt;https://www-ti.informatik.uni-tuebingen.de/~spueler/eeg_data/dry_cVEP_dataset.rar&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;SSVEP - Visual Search/Discrimination and Handshake: &lt;a href=&#34;https://archive.ics.uci.edu/ml/datasets/EEG+Steady-State+Visual+Evoked+Potential+SignalsMore&#34;&gt;https://archive.ics.uci.edu/ml/datasets/EEG+Steady-State+Visual+Evoked+Potential+SignalsMore&lt;/a&gt; Dataset: Dataset 2: &lt;a href=&#34;http://www2.hu-berlin.de/eyetracking-eeg/testdata.html&#34;&gt;http://www2.hu-berlin.de/eyetracking-eeg/testdata.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h6&gt;&lt;span id=&#34;事件相关电位-erps&#34;&gt; 事件相关电位 (ERPs)&lt;/span&gt;&lt;/h6&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;Pattern Visual Evoked Potentials: &lt;a href=&#34;https://www2.le.ac.uk/departments/engineering/research/bioengineering/neuroengineering-lab/software&#34;&gt;https://www2.le.ac.uk/departments/engineering/research/bioengineering/neuroengineering-lab/software&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Face vs. House Discrimination: &lt;a href=&#34;https://purl.stanford.edu/xd109qh3109&#34;&gt;https://purl.stanford.edu/xd109qh3109&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h6&gt;&lt;span id=&#34;休息状态&#34;&gt; 休息状态&lt;/span&gt;&lt;/h6&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;Resting State EEG Data: &lt;a href=&#34;https://dataverse.tdl.org/dataverse/txstatecogelectro&#34;&gt;https://dataverse.tdl.org/dataverse/txstatecogelectro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;EID-M, EID-S: &lt;a href=&#34;https://drive.google.com/drive/folders/1t6tL434ZOESb06ZvA4Bw1p9chzxzbRbj&#34;&gt;https://drive.google.com/drive/folders/1t6tL434ZOESb06ZvA4Bw1p9chzxzbRbj&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h6&gt;&lt;span id=&#34;音乐与-eeg&#34;&gt; 音乐与 EEG&lt;/span&gt;&lt;/h6&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;Music Imagery Information Retrieval: &lt;a href=&#34;https://github.com/sstober/openmiir&#34;&gt;https://github.com/sstober/openmiir&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h6&gt;&lt;span id=&#34;眨眼-动作&#34;&gt; 眨眼 / 动作&lt;/span&gt;&lt;/h6&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;Involuntary Eye Movements during Face Perception: &lt;a href=&#34;http://www2.hu-berlin.de/eyetracking-eeg/testdata.html&#34;&gt;http://www2.hu-berlin.de/eyetracking-eeg/testdata.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Voluntary-Involuntary Eye-Blinks: &lt;a href=&#34;https://drive.google.com/file/d/0By5iwWd39NblS2tRWmVTdmRzZUU/view?usp=sharing&#34;&gt;https://drive.google.com/file/d/0By5iwWd39NblS2tRWmVTdmRzZUU/view?usp=sharing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;EEG-eye state: &lt;a href=&#34;https://archive.ics.uci.edu/ml/datasets/EEG+Eye+State&#34;&gt;https://archive.ics.uci.edu/ml/datasets/EEG+Eye+State&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;EEG-IO: &lt;a href=&#34;http://gnan.ece.gatech.edu/eeg-eyeblinks/&#34;&gt;http://gnan.ece.gatech.edu/eeg-eyeblinks/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;EEG-VV, EEG-VR: &lt;a href=&#34;http://gnan.ece.gatech.edu/eeg-eyeblinks/&#34;&gt;http://gnan.ece.gatech.edu/eeg-eyeblinks/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h6&gt;&lt;span id=&#34;其他一些数据集&#34;&gt; 其他一些数据集&lt;/span&gt;&lt;/h6&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;MNIST Brain Digits: &lt;a href=&#34;http://mindbigdata.com/opendb/index.html&#34;&gt;http://mindbigdata.com/opendb/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Imagenet Brain: &lt;a href=&#34;http://www.mindbigdata.com/opendb/imagenet.html&#34;&gt;http://www.mindbigdata.com/opendb/imagenet.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Working Memory: &lt;a href=&#34;https://github.com/pbashivan/EEGLearn/tree/master/Sample%20data&#34;&gt;https://github.com/pbashivan/EEGLearn/tree/master/Sample data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Deep Sleep Slow Osciallation: &lt;a href=&#34;https://challengedata.ens.fr/challenges/10&#34;&gt;https://challengedata.ens.fr/challenges/10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Genetic Predisposition to Alcoholism: &lt;a href=&#34;https://archive.ics.uci.edu/ml/datasets/EEG+Database&#34;&gt;https://archive.ics.uci.edu/ml/datasets/EEG+Database&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h6&gt;&lt;span id=&#34;临床脑电图&#34;&gt; 临床脑电图&lt;/span&gt;&lt;/h6&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;TUH EEG Resources: &lt;a href=&#34;https://www.isip.piconepress.com/projects/tuh_eeg/html/downloads.shtml&#34;&gt;https://www.isip.piconepress.com/projects/tuh_eeg/html/downloads.shtml&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;13其他&#34;&gt; （13）其他&lt;/span&gt;&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://sccn.ucsd.edu/~arno/fam2data/publicly_available_EEG_data.html&#34;&gt;https://sccn.ucsd.edu/~arno/fam2data/publicly_available_EEG_data.html&lt;/a&gt; - &lt;a href=&#34;http://headit.ucsd.edu/studies&#34;&gt;http://headit.ucsd.edu/studies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www2.le.ac.uk/departments/engineering/research/bioengineering/neuroengineering-lab/software&#34;&gt;https://www2.le.ac.uk/departments/engineering/research/bioengineering/neuroengineering-lab/software&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/pbashivan/EEGLearn/tree/master/Sample%20data&#34;&gt;https://github.com/pbashivan/EEGLearn/tree/master/Sample data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Section 2: &lt;a href=&#34;https://arxiv.org/pdf/1611.08024.pdf&#34;&gt;https://arxiv.org/pdf/1611.08024.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;EEG Databases for Emotion Recognition, NTU&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://engineuring.wordpress.com/2009/07/08/downloadable-eeg-data/&#34;&gt;https://engineuring.wordpress.com/2009/07/08/downloadable-eeg-data/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.brainsignals.de/&#34;&gt;http://www.brainsignals.de/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.fil.ion.ucl.ac.uk/spm/data/&#34;&gt;http://www.fil.ion.ucl.ac.uk/spm/data/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.brainliner.jp/search/showall/1&#34;&gt;http://www.brainliner.jp/search/showall/1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://bnci-horizon-2020.eu/database/data-sets&#34;&gt;http://bnci-horizon-2020.eu/database/data-sets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://archive.ics.uci.edu/ml/datasets/EEG+Database&#34;&gt;http://archive.ics.uci.edu/ml/datasets/EEG+Database&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.physionet.org/physiobank/database/#neuro&#34;&gt;https://www.physionet.org/physiobank/database/#neuro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.physionet.org/pn6/chbmit/&#34;&gt;http://www.physionet.org/pn6/chbmit/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://sites.google.com/site/iitrcsepradeep7/resume&#34;&gt;https://sites.google.com/site/iitrcsepradeep7/resume&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://memory.psych.upenn.edu/RAM&#34;&gt;http://memory.psych.upenn.edu/RAM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;http://fcon_1000.projects.nitrc.org/indi/cmi_eeg/&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;amp;arnumber=8616018&#34;&gt;https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;amp;arnumber=8616018&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://arxiv.org/pdf/1805.06427.pdf&#34;&gt;https://arxiv.org/pdf/1805.06427.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.gtec.at/Research/Biosignal-Data-Sets/content/Biosignal-Data-Sets&#34;&gt;http://www.gtec.at/Research/Biosignal-Data-Sets/content/Biosignal-Data-Sets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://studycatalog.org/&#34;&gt;http://studycatalog.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://predict.cs.unm.edu/&#34;&gt;http://predict.cs.unm.edu/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://datadryad.org/resource/doi:10.5061/dryad.070jc&#34;&gt;https://datadryad.org/resource/doi:10.5061/dryad.070jc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ieee-dataport.org/data-competitions&#34;&gt;https://ieee-dataport.org/data-competitions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The Australian EEG Database &lt;a href=&#34;https://aed.newcastle.edu.au/AED/login.jsp&#34;&gt;https://aed.newcastle.edu.au/AED/login.jsp&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

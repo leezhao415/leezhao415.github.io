@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>DETR：基于 Transformers 的目标检测 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   DETR：基于 Transformers 的目标检测  前言 相关工作 DETR 的实现原理  CNN   Transformers encoder-decoder FFN 匈牙利匹配 通过对比 ViT 思考 DETR DETR 还能做分割 实验结果分析  Comparison Study Ablation Study   简易代码 结论       DETR：基于 Transf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DETR：基于 Transformers 的目标检测">
+<meta property="og:url" content="https://leezhao415.github.io/2021/08/07/DETR%EF%BC%9A%E5%9F%BA%E4%BA%8E-Transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   DETR：基于 Transformers 的目标检测  前言 相关工作 DETR 的实现原理  CNN   Transformers encoder-decoder FFN 匈牙利匹配 通过对比 ViT 思考 DETR DETR 还能做分割 实验结果分析  Comparison Study Ablation Study   简易代码 结论       DETR：基于 Transf">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://filescdn.proginn.com/1d6c50abbc38128ab241c904721fd40a/20f49d71d223862824251e9f618d8324.webp">
+<meta property="og:image" content="https://filescdn.proginn.com/45d878d32204d9a7ced473158b1391ee/19e6480cf1c51b1a692c58a616128bc9.webp">
+<meta property="og:image" content="https://filescdn.proginn.com/7c8222d0fa35c09590751d12a0cb60b1/8a3a853c4037a1e1ea3927e14a252369.webp">
+<meta property="og:image" content="https://filescdn.proginn.com/c543cb1abdfeacf431fae3d0c23f5067/75f00e1c21f1f9f8aafb922475704ca3.webp">
+<meta property="og:image" content="https://filescdn.proginn.com/4f698e89fac1c0f6306728900f821dde/1ddbec9e3a7cda74289d8d094b6d3d4d.webp">
+<meta property="og:image" content="https://filescdn.proginn.com/b24f3678c5314f42eece7d97d5a8113e/07033f9208979fc87463922a1b880492.webp">
+<meta property="og:image" content="https://filescdn.proginn.com/be267a0d4f97e447624fd4a309d6cfda/11c96a44231d180d6eb6fd98d1c23fd3.webp">
+<meta property="og:image" content="https://filescdn.proginn.com/71775ca96643ecd9b0102a86503fa333/cc9864649b6ca5eb89a580b205c645bd.webp">
+<meta property="og:image" content="https://filescdn.proginn.com/e9b2f4326a970e9db04c311e1efc7d3c/3519e6a3afba1f87dce95e9d901e5aa6.webp">
+<meta property="og:image" content="https://filescdn.proginn.com/7a815e66a7ef4c06a9acc9002b89be62/d5cccf07b43347dcbd1d047eb343959c.webp">
+<meta property="article:published_time" content="2021-08-07T10:48:23.000Z">
+<meta property="article:modified_time" content="2021-08-07T11:12:12.517Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能&#x2F;CV">
+<meta property="article:tag" content="Transformer&#x2F;DETR(CV)">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://filescdn.proginn.com/1d6c50abbc38128ab241c904721fd40a/20f49d71d223862824251e9f618d8324.webp">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-DETR：基于-Transformers-的目标检测" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      DETR：基于 Transformers 的目标检测
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-08-07
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#detr%E5%9F%BA%E4%BA%8E-transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B">DETR：基于 Transformers 的目标检测</a>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C">相关工作</a></li>
+<li><a href="#detr-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">DETR 的实现原理</a>
+<ul>
+<li><a href="#cnn">CNN</a></li>
+</ul>
+</li>
+<li><a href="#transformers-encoder-decoder">Transformers encoder-decoder</a></li>
+<li><a href="#ffn">FFN</a></li>
+<li><a href="#%E5%8C%88%E7%89%99%E5%88%A9%E5%8C%B9%E9%85%8D">匈牙利匹配</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87%E5%AF%B9%E6%AF%94-vit-%E6%80%9D%E8%80%83-detr">通过对比 ViT 思考 DETR</a></li>
+<li><a href="#detr-%E8%BF%98%E8%83%BD%E5%81%9A%E5%88%86%E5%89%B2">DETR 还能做分割</a></li>
+<li><a href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90">实验结果分析</a>
+<ul>
+<li><a href="#comparison-study">Comparison Study</a></li>
+<li><a href="#ablation-study">Ablation Study</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AE%80%E6%98%93%E4%BB%A3%E7%A0%81">简易代码</a></li>
+<li><a href="#%E7%BB%93%E8%AE%BA">结论</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h2><span id="detr基于-transformers-的目标检测"> DETR：基于 Transformers 的目标检测</span></h2>
+<h3><span id="前言"> 前言</span></h3>
+<p>最近可以说是随着 ViT 的大火，几乎可以说是一天就能看到一篇基于 Transformers 的 CV 论文，今天给大家介绍的是另一篇由 Facebook 在 ECCV2020 上发表的一篇基于 Transformers 的目标检测论文，这篇论文也是后续相当多的 Transformers 检测 / 分割的 baseline, 透过这篇论文我们来了解其套路.</p>
+<h3><span id="相关工作"> 相关工作</span></h3>
+<p>提到目标检测，我们先来简要回顾一下最基础的一个工作 Faster R-CNN</p>
+<center><img src="https://filescdn.proginn.com/1d6c50abbc38128ab241c904721fd40a/20f49d71d223862824251e9f618d8324.webp" alt="img" style="zoom:50%;"></center>
+<p>Faster R-CNN 第一步是用 CNN 给图像提特征，再通过非极大值抑制算法提取出候选框，最后预测每个候选框的位置和类别，</p>
+<h3><span id="detr-的实现原理"> DETR 的实现原理</span></h3>
+<p>DETR 这篇文章就极大的简化了这个过程，他把候选框提取的过程通过一个标准的 Transformers encoder-decoder 架构代替，在 decoder 部分直接预测出来物体的位置和类别.</p>
+<center><img src="https://filescdn.proginn.com/45d878d32204d9a7ced473158b1391ee/19e6480cf1c51b1a692c58a616128bc9.webp" alt="img" style="zoom: 67%;"></center>
+<p>流程分为三步:</p>
+<ol>
+<li>CNN 提特征</li>
+<li>Transformers 的 encoder-decoder 进行信息的融合</li>
+<li>FFN 预测 class 和 box</li>
+</ol>
+<h4><span id="cnn"> CNN</span></h4>
+<p>利用 resnet-50 网络，将输入的图像 3 X <em>W</em><sub>0</sub> X <em>H</em><sub>0</sub> 变成尺度为 2048 X <em>W</em><sub>0</sub>/32 X <em>H</em><sub>0</sub>/32 的特征，再通过一个 1X1 卷积，将 channel 从 2048 变为更小 (通常 512)</p>
+<h3><span id="transformers-encoder-decoder"> Transformers encoder-decoder</span></h3>
+<p>Transformer encoder 部分首先将输入的特征图降维并 flatten 成 d 个 <em>H</em> X <em>W</em> 维的向量，每个向量作为输入的 token, 由于 Self-attention 是置换不变形的，所以为了体现每个 token 在原图中的顺序关系，我们给每个 token 加上一个 positional encodings. 输出这是对应 Decoder 部分的 V 和 K.</p>
+<p>比如说我们一开始输入的图片是 512*512, 那么 d 应该是 256.</p>
+<p>Transformers decoder 部分是输入是 100 个 Object queries, 比如说我们数据集总共有 100 个类别的物体需要预测，那么这 100 object queries 经过 Transformers decoder 之后会预测出若干类别的物体和位置信息.</p>
+<center><img src="https://filescdn.proginn.com/7c8222d0fa35c09590751d12a0cb60b1/8a3a853c4037a1e1ea3927e14a252369.webp" alt="img" style="zoom:67%;"></center>
+<p>作者发现在训练过程中在 decoder 中使用 auxiliary losses 很有帮助，特别是有助于模型输出正确数量的每个类的对象。</p>
+<h3><span id="ffn"> FFN</span></h3>
+<p>DETR 在每个解码器层之后添加预测 FFN 和 Hungarian loss，所有预测 FFN 共享其参数。我们使用附加的共享层范数来标准化来自不同解码器层的预测 FFN 的输入，FFN 是一个最简单的多层感知机模块，对 Transformers decoder 的输出预测每个 object query 的类别和位置信息。在实际训练的过程中，通过匈牙利算法匹配预测和标签最小的损失，仅适用配对上的 query 计算 loss 回传梯度.</p>
+<p>loss 包括 Box loss 和 class loss</p>
+<p>Box Loss 包括 IOUloss 和 L1loss, 这个原理很简单.</p>
+<p>where  are hyperparameters and  is the generalized IoU [38]:</p>
+<p>class loss 就是最简单的交叉熵了.</p>
+<h3><span id="匈牙利匹配"> 匈牙利匹配</span></h3>
+<p>匈牙利匹配算法是离散数学中图论部分的一个经典算法，描述的问题是一个二分图的最大匹配。换成人话来说就是这个二分图分成两部分，一部分是我们对 100 种 object query 预测的结果，另一部分是实际的标签，由于我们一开始是不知道这 100 个 object query 输入的时候应该预测那些类别的物体，有可能一开始第一个 token 预测的是 A 物体，第二个 token 预测的是 C 物体，总而言之是无序的，我们就要根据实际的 label, 找到预测结果中和他最接近的计算 loss. 其他没匹配上的则不计算 loss 回传梯度。下面这张图一目了然:</p>
+<center><img src="https://filescdn.proginn.com/c543cb1abdfeacf431fae3d0c23f5067/75f00e1c21f1f9f8aafb922475704ca3.webp" alt="img" style="zoom:67%;"></center>
+<h3><span id="通过对比-vit-思考-detr"> 通过对比 ViT 思考 DETR</span></h3>
+<p>其实笔者在阅读这篇文章的时候更加重点的是对比 ViT 在一些实现细节上的不同之处，</p>
+<center><img src="https://filescdn.proginn.com/4f698e89fac1c0f6306728900f821dde/1ddbec9e3a7cda74289d8d094b6d3d4d.webp" alt="img" style="zoom:67%;"></center>
+<ol>
+<li>首先 ViT 是没有使用 CNN 的，而 DETR 是先用 CNN 提取了图像的特征</li>
+<li>ViT 只使用了 Transformers-encoder, 在 encoder 的时候额外添加了一个 Class token 来预测图像类型，而 DETR 的 object token 则是通过 Decoder 学习的.</li>
+<li>DETR 和 VIT 中的 Transformers 在 encoder 部分都使用了 Position Embedding, 但是使用的并不一样，而 VIT 在使用的 Position Embedding 也是笔者一开始阅读文献的疑惑所在.</li>
+<li>DETR 的 Transformers encoder 使用的 feature 的每一个 pixel 作为 token embeddings 输入，而 ViT 则是直接把图像切成 16*16 个 Patch, 每个 patch 直接拉平作为 token embeddings</li>
+<li>相比较 VIT,DETR 更接近原始的 Transformers 架构.</li>
+</ol>
+<h3><span id="detr-还能做分割"> DETR 还能做分割</span></h3>
+<center><img src="https://filescdn.proginn.com/b24f3678c5314f42eece7d97d5a8113e/07033f9208979fc87463922a1b880492.webp" alt="img" style="zoom: 90%;"></center>
+<ol>
+<li>首先检测 box</li>
+<li>对每个 box 做分割</li>
+<li>为每个像素的类别投票</li>
+</ol>
+<p>作者在这篇论文在并没有详细讲实现细节，但是今年 CVPR2021 上发表的 SETR 则是重点讲如何利用 Transformers 做分割，我们下次细讲.</p>
+<h3><span id="实验结果分析"> 实验结果分析</span></h3>
+<h4><span id="comparison-study"> Comparison Study</span></h4>
+<center><img src="https://filescdn.proginn.com/be267a0d4f97e447624fd4a309d6cfda/11c96a44231d180d6eb6fd98d1c23fd3.webp" alt="img" style="zoom:50%;"></center>
+<p>对比的是检测领域最经典的 Faster R-CNN, 可以看得出来了在同等参数两的情况下，在大目标物体的检测结果优于 Faster R-CNN, 道理嘛作者说是 Transformers 可以更关注全局信息.</p>
+<h4><span id="ablation-study"> Ablation Study</span></h4>
+<center><img src="https://filescdn.proginn.com/71775ca96643ecd9b0102a86503fa333/cc9864649b6ca5eb89a580b205c645bd.webp" alt="img" style="zoom: 60%;"></center>
+<ol>
+<li>Decoder 比 Encoder 重要</li>
+<li>Decoder 具有隐含的 “锚”，这对检测至关重要</li>
+<li>Encoder 仅帮助聚合同一对象的像素，减轻 decoder 的负担</li>
+</ol>
+<center><img src="https://filescdn.proginn.com/e9b2f4326a970e9db04c311e1efc7d3c/3519e6a3afba1f87dce95e9d901e5aa6.webp" alt="img" style="zoom:55%;"></center>
+<p>在位置编码部分，作者对比了可学习的位置编码和基于 Sincos 函数的位置编码方法 (也就是原始 Transformers 的位置编码方法) 可以看得出来效果是 Sincos 的更好，但是都显著好于不加位置编码，因为作者也在原文中 Self-Attention 是并行的，他如果不加位置编码的话是置换不变性的 (这个看 Attention is All you Need 原文)</p>
+<center><img src="https://filescdn.proginn.com/7a815e66a7ef4c06a9acc9002b89be62/d5cccf07b43347dcbd1d047eb343959c.webp" alt="img" style="zoom: 60%;"></center>
+<p>这个嘛，就是很简单的实验了，验证一下 loss 每个部分的作用，基本上就是格式化的东西.</p>
+<h3><span id="简易代码"> 简易代码</span></h3>
+<p>作者最后在附录部分贴上了简易的代码实现细节</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch </span><br><span class="line"><span class="keyword">from</span> torch </span><br><span class="line"><span class="keyword">import</span> nn </span><br><span class="line"><span class="keyword">from</span> torchvision.models <span class="keyword">import</span> resnet50</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DETR</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, num_classes, hidden_dim, nheads,</span></span></span><br><span class="line"><span class="function"><span class="params">               num_encoder_layers, num_decoder_layers</span>):</span></span><br><span class="line">        <span class="built_in">super</span>().__init__() </span><br><span class="line">        <span class="comment"># We take only convolutional layers from ResNet-50 model</span></span><br><span class="line">        self.backbone=nn.Sequential(</span><br><span class="line">          *<span class="built_in">list</span>(resnet50(pretrained=<span class="literal">True</span>).children())[:-<span class="number">2</span>])</span><br><span class="line">        self.conv = nn.Conv2d(<span class="number">2048</span>, hidden_dim, <span class="number">1</span>) </span><br><span class="line">        self.transformer = nn.Transformer(hidden_dim, nheads,</span><br><span class="line">                                          num_encoder_layers,</span><br><span class="line">                                          num_decoder_layers)</span><br><span class="line">        self.linear_class = nn.Linear(hidden_dim, num_classes + <span class="number">1</span>)</span><br><span class="line">        self.linear_bbox = nn.Linear(hidden_dim, <span class="number">4</span>) </span><br><span class="line">        self.query_pos =nn.Parameter(torch.rand(<span class="number">100</span>, hidden_dim))</span><br><span class="line">        self.row_embed = nn.Parameter(torch.rand(<span class="number">50</span>, hidden_dim // <span class="number">2</span>))</span><br><span class="line">        self.col_embed = nn.Parameter(torch.rand(<span class="number">50</span>, hidden_dim // <span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, inputs</span>):</span></span><br><span class="line">        x = self.backbone(inputs) h = self.conv(x)</span><br><span class="line">        H,W=h.shape[-<span class="number">2</span>:]</span><br><span class="line">        pos = torch.cat([</span><br><span class="line">          self.col_embed[:W].unsqueeze(<span class="number">0</span>).repeat(H, <span class="number">1</span>, <span class="number">1</span>),</span><br><span class="line">          self.row_embed[:H].unsqueeze(<span class="number">1</span>).repeat(<span class="number">1</span>, W, <span class="number">1</span>), ],</span><br><span class="line">          dim=-<span class="number">1</span>).flatten(<span class="number">0</span>, <span class="number">1</span>).unsqueeze(<span class="number">1</span>) </span><br><span class="line">        h = self.transformer(pos + </span><br><span class="line">                             h.flatten(<span class="number">2</span>).permute(<span class="number">2</span>, <span class="number">0</span>,<span class="number">1</span>),</span><br><span class="line">                             self.query_pos.unsqueeze(<span class="number">1</span>)) </span><br><span class="line">        <span class="keyword">return</span> self.linear_class(h), self.linear_bbox(h).sigmoid()</span><br><span class="line"></span><br><span class="line">detr = DETR(num_classes=<span class="number">91</span>, hidden_dim=<span class="number">256</span>, nheads=<span class="number">8</span>, num_encoder_layers=<span class="number">6</span>, num_decoder_layers=<span class="number">6</span>)</span><br><span class="line">detr.<span class="built_in">eval</span>() </span><br><span class="line">inputs = torch.randn(<span class="number">1</span>, <span class="number">3</span>, <span class="number">800</span>, <span class="number">1200</span>) </span><br><span class="line">logits, bboxes = detr(inputs)</span><br></pre></td></tr></table></figure>
+<h3><span id="结论"> 结论</span></h3>
+<p>一篇很简单的 Transformers 在目标检测上的应用，也是最近大火的 Transformers 系列必引的一篇论文，我觉得他和 VIT 代表了 CV 对 Transformers 架构的两种看法吧，VIT 是只用 Encoder, 这也是目前最主流的做法，而 DETR 则是运用了 CNN 和 Transformers encoder-decoder 的结合，从 motivation 上来说我个人更喜欢 DETR, 这段时间也基本上把 Transformers 一系列都读完了，会以一个系列调几篇好的论文讲解 (水文实在是太多了)。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年08月07日 19:12</p>
+        <p>原始链接： <a class="post-url" href="/2021/08/07/DETR%EF%BC%9A%E5%9F%BA%E4%BA%8E-Transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" title="DETR：基于 Transformers 的目标检测">https://leezhao415.github.io/2021/08/07/DETR%EF%BC%9A%E5%9F%BA%E4%BA%8E-Transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/08/07/DETR%EF%BC%9A%E5%9F%BA%E4%BA%8E-Transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/&title=《DETR：基于 Transformers 的目标检测》 — 且听风吟，御剑于心！&pic=images/DETR.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/08/07/DETR%EF%BC%9A%E5%9F%BA%E4%BA%8E-Transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/&title=《DETR：基于 Transformers 的目标检测》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/08/07/DETR%EF%BC%9A%E5%9F%BA%E4%BA%8E-Transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《DETR：基于 Transformers 的目标检测》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/08/07/DETR%EF%BC%9A%E5%9F%BA%E4%BA%8E-Transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/08/07/DETR%EF%BC%9A%E5%9F%BA%E4%BA%8E-Transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/08/07/DETR%EF%BC%9A%E5%9F%BA%E4%BA%8E-Transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/CV/" class="color3">人工智能/CV</a>
+      
+    <a href="/tags/Transformer/DETR(CV)/" class="color1">Transformer/DETR(CV)</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> DETR：基于 Transformers 的目标检测</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 相关工作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> DETR 的实现原理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> CNN</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> Transformers encoder-decoder</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> FFN</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 匈牙利匹配</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 通过对比 ViT 思考 DETR</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> DETR 还能做分割</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 实验结果分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> Comparison Study</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> Ablation Study</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 简易代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 结论</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/08/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E2%80%94%E2%80%94%E9%A1%B6%E4%BC%9A%E3%80%81%E9%A1%B6%E5%88%8A/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          计算机视觉——顶会、顶刊
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/07/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91BiLSTM-CRF%E6%A8%A1%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【详解】BiLSTM+CRF模型</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="DETR：基于-Transformers-的目标检测" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

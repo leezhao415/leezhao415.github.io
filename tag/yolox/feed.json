@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "且听风吟，御剑于心！ • All posts by \"yolox\" tag",
+    "description": "",
+    "home_page_url": "https://leezhao415.github.io",
+    "items": [
+        {
+            "id": "https://leezhao415.github.io/2021/12/25/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B-%E5%8E%9F%E7%90%86%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/",
+            "url": "https://leezhao415.github.io/2021/12/25/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B-%E5%8E%9F%E7%90%86%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/",
+            "title": "YOLOX目标检测_原理与源码解析",
+            "date_published": "2021-12-25T13:42:55.000Z",
+            "content_html": "<meta name=\"referrer\" content=\"no-referrer\">\n<hr>\n<p><strong>文章目录</strong></p>\n<!-- toc -->\n<ul>\n<li><a href=\"#yolox%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%8E%9F%E7%90%86%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90\">YOLOX 目标检测：原理与源码解析</a>\n<ul>\n<li><a href=\"#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0%E8%BF%99%E9%97%A8%E8%AF%BE\">【为什么要学习这门课】</a></li>\n<li><a href=\"#%E8%AF%BE%E7%A8%8B%E5%86%85%E5%AE%B9%E4%B8%8E%E6%94%B6%E8%8E%B7\">【课程内容与收获】</a></li>\n<li><a href=\"#%E7%9B%B8%E5%85%B3%E8%AF%BE%E7%A8%8B\">【相关课程】</a></li>\n</ul>\n</li>\n</ul>\n<!-- tocstop -->\n<hr>\n<h4><span id=\"yolox-目标检测原理与源码解析\"> YOLOX 目标检测：原理与源码解析</span></h4>\n<p>课程链接：YOLOX 目标检测：原理与源码解析–计算机视觉视频教程 - 人工智能 - CSDN 程序员研修院</p>\n<h5><span id=\"为什么要学习这门课\"> 【为什么要学习这门课】</span></h5>\n<p>Linux 创始人 Linus Torvalds 有一句名言：Talk is cheap. Show me the code. 冗谈不够，放码过来！代码阅读是从基础到提高的必由之路。</p>\n<p>YOLOX 是旷视科技新近推出的高性能实时目标检测网络，性能超越了 YOLOv3/YOLOv4 /YOLOv5。YOLOX 使用 PyTorch 实现，含有很多业界前沿和常用的技巧，可以作为很好的代码阅读案例，让我们深入探究其实现原理，其中不少知识点的代码可以作为相关项目的借鉴。</p>\n<h5><span id=\"课程内容与收获\"> 【课程内容与收获】</span></h5>\n<p>本课程将在 Ubuntu 和 Windows 系统演示 YOLOX 对 PASCAL VOC 数据集和训练和测试，并详细解析 YOLOX 的实现原理和源码，对关键代码使用 PyCharm 的 debug 模式逐行分析解读。 本课程将提供注释后的 YOLOX 的源码程序文件。</p>\n<h5><span id=\"相关课程\"> 【相关课程】</span></h5>\n<p>除本课程《YOLOX 目标检测：原理与源码解析》外，请关注 YOLOX 系列的其它课程，包括：</p>\n<p>《YOLOX 目标检测实战：训练自己的数据集》<a href=\"https://edu.csdn.net/course/detail/35586\">https://edu.csdn.net/course/detail/35586</a></p>\n<p>《YOLOX 目标检测实战：TensorRT 加速部署》<a href=\"https://edu.csdn.net/course/detail/35716\">https://edu.csdn.net/course/detail/35716</a></p>\n<p>《YOLOX 目标检测实战：OpenVINO 部署》<a href=\"https://edu.csdn.net/course/detail/35791\">https://edu.csdn.net/course/detail/35791</a></p>\n<p>《YOLOX 目标检测实战：Flask 部署》<a href=\"https://edu.csdn.net/course/detail/35815\">https://edu.csdn.net/course/detail/35815</a></p>\n<center><img src=\"https://img-blog.csdnimg.cn/e45395c578f54cdd92b28c596e87a808.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpNjY2YWk=,size_20,color_FFFFFF,t_70,g_se,x_16\" alt=\"img\" style=\"zoom: 50%;\"></center>\n<center><img src=\"https://img-blog.csdnimg.cn/9231fd8afad446718385173174a4a2a9.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAYmFpNjY2YWk=,size_20,color_FFFFFF,t_70,g_se,x_16\" alt=\"img\" style=\"zoom:80%;\"></center>\n<p>————————————————<br>\n 版权声明：本文为 CSDN 博主「bai666ai」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>\n原文链接：<a href=\"https://blog.csdn.net/bai666ai/article/details/120265651\">https://blog.csdn.net/bai666ai/article/details/120265651</a></p>\n",
+            "tags": [
+                "人工智能",
+                "YOLOX"
+            ]
+        }
+    ]
+}

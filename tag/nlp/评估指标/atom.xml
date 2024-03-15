@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;nlp/评估指标&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-08-08T09:41:58.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/08/08/%E5%B8%B8%E8%A7%81%E7%9A%84NLG%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/</id>
+        <title>常见的NLG评估指标</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/08/08/%E5%B8%B8%E8%A7%81%E7%9A%84NLG%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%B8%B8%E8%A7%81%E7%9A%84nlg%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87&#34;&gt;常见的 NLG 评估指标&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%BC%95%E8%A8%80&#34;&gt;引言&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#bleu%E8%AF%84%E4%BC%B0%E6%B3%95%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91&#34;&gt;BLEU 评估法（机器翻译）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#rouge%E8%AF%84%E4%BC%B0%E6%B3%95%E8%87%AA%E5%8A%A8%E6%91%98%E8%A6%81&#34;&gt;ROUGE 评估法（自动摘要）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#rouge-n&#34;&gt;Rouge-N&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#rouge-l&#34;&gt;Rouge-L&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#rouge-w&#34;&gt;Rouge-W&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#rouge-s&#34;&gt;Rouge-S&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#meteor%E8%AF%84%E4%BC%B0%E6%B3%95%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91-%E8%87%AA%E5%8A%A8%E6%96%87%E6%91%98&#34;&gt;METEOR 评估法（机器翻译、自动文摘）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cider%E8%AF%84%E4%BB%B7%E6%96%B9%E6%B3%95&#34;&gt;CIDEr 评价方法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;span id=&#34;常见的-nlg-评估指标&#34;&gt; 常见的 NLG 评估指标&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;引言&#34;&gt; 引言&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;如何判定训练出来的模型好与坏呢？关键是要有一个比较好的模型评估方法，那么今天作者就给大家汇总一下自然语言生成（NLG）中经常见到的无监督自评估方法（BLEU、METEOR、ROUGE、CIDEr）（&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/Maluuba/nlg-eval&#34;&gt;含评估代码&lt;/a&gt;）。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;bleu-评估法机器翻译&#34;&gt; BLEU 评估法（机器翻译）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Bleu 全称为 Bilingual Evaluation Understudy（双语评估研究） ，意为双语评估替换，是 IBM 在 2002 年提出的用于机器翻译的一个评测指标，是衡量一个有多个正确输出结果的模型的精确度的评估指标。&lt;/p&gt;
+&lt;p&gt;BLEU 的设计思想与评判机器翻译好坏的思想是一致的：机器翻译结果越接近专业人工翻译的结果，则越好。BLEU 算法实际上在做的事：判断两个句子的相似程度。我想知道一个句子翻译前后的表示是否意思一致，显然没法直接比较，那我就拿这个句子的标准人工翻译与我的机器翻译的结果作比较，如果它们是很相似的，说明我的翻译很成功。因此，BLUE 去做判断：一句机器翻译的话与其相对应的几个参考翻译作比较，算出一个综合分数。这个分数越高说明机器翻译得越好。&lt;/p&gt;
+&lt;p&gt;举个例子：下面拿中英机器翻译做例子：&lt;/p&gt;
+&lt;p&gt;中文：垫上有一只老鼠。&lt;/p&gt;
+&lt;p&gt;参考翻译 1：The cat is on the mat.&lt;/p&gt;
+&lt;p&gt;参考翻译 1：There is a cat on the mat.&lt;/p&gt;
+&lt;p&gt;MT (机器翻译):the cat the cat on the mat.&lt;/p&gt;
+&lt;p&gt;bleu 的得分有&lt;strong&gt;一元组&lt;/strong&gt;，&lt;strong&gt;二元组&lt;/strong&gt;，&lt;strong&gt;三元组&lt;/strong&gt;等等，这里做了 1-3 元组的例子，如下：&lt;/p&gt;
+&lt;p&gt;下面先计算&lt;strong&gt; BELU 一元组&lt;/strong&gt;得分，即先把 MT 输出的句子拆分成 the,cat,on,mat，频数分别为 3,2,1,1:&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-8ae2d3fadb00a63a5e73e9eb13dbf0ab_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;上面的 Count (clip) 叫截取计数，是取每个单词在所有参考翻译句子中，出现最多的次数，the 在参考翻译 1 中出现 2 次，在参考翻译 2 中出现 1 次，所以 the 的 Count (clip) 取最大值就是 2，剩下的单词依次类推。&lt;/p&gt;
+&lt;p&gt;所以 BLEU 的一元组上的得分为： p1 = Count (clip)/Count=（2+1+1+1）/(3+2+1+1) =5/7&lt;/p&gt;
+&lt;p&gt;下面再计算&lt;strong&gt; BLEU 的二元组&lt;/strong&gt;得分：&lt;/p&gt;
+&lt;p&gt;参考翻译 1：The cat is on the mat.&lt;/p&gt;
+&lt;p&gt;参考翻译 1：There is a cat on the mat.&lt;/p&gt;
+&lt;p&gt;MT (机器翻译):the cat the cat on the mat.&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-f2c6f109284c59bd0887e4a0137a9995_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;所以 bleu 的二元组的得分为：p2 = Count (clip)/Count=（1+0+1+1+1）/(2+1+1+1+1) =4/6=2/3&lt;/p&gt;
+&lt;p&gt;同理&lt;strong&gt; BELU 的三元组&lt;/strong&gt;得分：&lt;/p&gt;
+&lt;p&gt;参考翻译 1：The cat is on the mat.&lt;/p&gt;
+&lt;p&gt;参考翻译 1：There is a cat on the mat.&lt;/p&gt;
+&lt;p&gt;MT (机器翻译):the cat the cat on the mat.&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-993d4d0704d91edd23292ed2827fa934_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;所以 bleu 的三元组的得分为：p3 = Count (clip)/Count= 2/5；最后加所有元组的 bleu 得分都加起来然后取平均数得:     bleu（avg） = （p1+p2+p3）/3 = (5/7+2/3+2/5)/3 = 0.594&lt;/p&gt;
+&lt;p&gt;最后再乘上一个 “简短惩罚” BP（brevity penalty），即最后的 bleu 得分为：Bleu (total)=BP * bleu (avg)。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这里为什么要乘以 BP&lt;/strong&gt;：如果 MT 输出了一个非常短的翻译，那么会更容易得到一个高精度的 bleu，因为输出的大部分词都会出现在参考翻译中，所以我们并不想要特别短的翻译结果，所以加入 BP 这么一个调整因子：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-e7c0d7ce113d96155364a08e09ba5c23_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;上式中，r 为参考翻译的句子长度，c 为 MT 的输出句子长度，若 c&amp;lt;=r , 则 0&amp;lt;exp (1-r/c)&amp;lt;=1, 得分 bleu (avg) 就会乘以小于 1 的系数 ，从而被 “惩罚”。 那么最后：Bleu (total)=BP*bleu (avg)&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;rouge-评估法自动摘要&#34;&gt; ROUGE 评估法（自动摘要）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Rouge (recall-oriented understanding for gisting evaluation) 是评估自动文摘以及机器翻译的一组指标。&lt;/p&gt;
+&lt;p&gt;论文链接地址：&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//citeseer.ist.psu.edu/viewdoc/download%3Bjsessionid%3D368956B77243860A93FC0E3726EE7919%3Fdoi%3D10.1.1.111.9426%26rep%3Drep1%26type%3Dpdf&#34;&gt;http://citeseer.ist.psu.edu/viewdoc/download&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;该方法的主要是思想是：由多个专家分别生成人工摘要，构成标准摘要集。将系统生成的自动摘要与人工生成的标准摘要相对比，通过统计二者之间重叠的基本单元（n 元语法、词序列和词对）的数目，来评价摘要的质量。通过多专家人工摘要的对比，提高评价系统的稳定性和健壮性。该方法现在已经成为摘要评价技术的通用标准之一。关于该算法演变评价标准有：Rouge-N、Rouge-L、Rouge-S、Rouge-W、Rouge-SU。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;rouge-n&#34;&gt; Rouge-N&lt;/span&gt;&lt;/h3&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-30791390edaa5d66a779be534b936646_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;其中，n 表示 n-gram 的长度，{Reference Summaries} 表示参考摘要，即事先获得的标准摘要，&lt;em&gt;Count&lt;sub&gt;m&lt;/sub&gt;atch (gram&lt;sub&gt;n&lt;/sub&gt;)&lt;/em&gt;  表示候选摘要和参考摘要中同时出现 n-gram 的个数，&lt;em&gt;Count (gram&lt;sub&gt;n&lt;/sub&gt;)&lt;/em&gt;  则表示参考摘要中出现的 n-gram 个数。不难看出，ROUGE 公式是由召回率的计算公式演变而来的，分子可以看作 “检出的相关文档数目”，即系统生成摘要与标准摘要相匹配的 N-gram 个数，分母可以看作 “相关文档数目”，即标准摘要中所有的 N-gram 个数。具体计算方式具体如下：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-9fa38c74b2926581e7284e613aaf76ff_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:89%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;通过上面可以看到其实 ROUGE-N 和 BLEU 几乎一模一样，区别是 BLEU 只计算准确率，而 ROUGE 只计算召回率。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;：直观，简介，能反映词序。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;：区分度不高，且当 N&amp;gt;3 时，ROUGE-N 值通常很小。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;应用场景&lt;/strong&gt;：ROUGE-1：短摘要评估，多文档摘要（去停用词条件）;ROUGE-2: 单文档摘要，多文档摘要（去停用词条件）;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;rouge-l&#34;&gt; Rouge-L&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;子序列：一个给定序列的子序列就是该给定序列中去掉零个或者多个元素。&lt;/p&gt;
+&lt;p&gt;公共子序列：给定两个序列 X 和 Y，如果 Z 既是 X 的一个子序列又是 Y 的一个子序列，则序列 Z 是 X 和 Y 的一个公共子序列。&lt;/p&gt;
+&lt;p&gt;LCS（最长公共子序列）：给定两个序列 X 和 Y，使得公共子序列长度最大的序列是 X 和 Y 的最长公共子序列。其计算公式为：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-7bac4d4bd9cb519c6280a7c32ae0bfd1_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;其中&lt;em&gt; X&lt;/em&gt; 为参考摘要，长度为&lt;em&gt; m&lt;/em&gt;，&lt;em&gt;Y&lt;/em&gt; 为候选摘要，长度为&lt;em&gt; n&lt;/em&gt;，用&lt;em&gt; F&lt;/em&gt; 值来衡量摘要&lt;em&gt; X&lt;/em&gt; 与&lt;em&gt; Y&lt;/em&gt; 的相似度，在 DUC 测评中，由于&lt;em&gt; β&lt;/em&gt;—&amp;gt;+∞，所以只考虑&lt;em&gt; R&lt;sub&gt;lcs&lt;/sub&gt;&lt;/em&gt;  。具体计算例子如下：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-27439099bdb83809c4b222cfac62ad2e_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;：不要求词的连续匹配，只要求按词的出现顺序匹配即可，能够像 n-gram 一样反映句子级的词序。自动匹配最长公共子序列，不需要预先定义 n-gram 的长度。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;：只计算一个最长子序列，最终的值忽略了其他备选的最长子序列及较短子序列的影响。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;应用场景&lt;/strong&gt;：单文档摘要；短摘要评估。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-86f9db9ab475873fc5ed03d163ae6d1a_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;将 LCS 应用到摘要级数相时，对参考摘要中的每一个句子 *r&lt;sub&gt;i&lt;/sub&gt;&lt;em&gt; 与候选摘要中的所有句子比对，以 union LCS 作为摘要句&lt;/em&gt; r&lt;sub&gt;i&lt;/sub&gt; * 的匹配结果。计算公式：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-653d0fe4c5691d5a23632ce74d09e6af_720w.png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;其中&lt;em&gt; R&lt;/em&gt; 为参考摘要，包含&lt;em&gt; u&lt;/em&gt; 个句子，&lt;em&gt;m&lt;/em&gt; 个词，&lt;em&gt;C&lt;/em&gt; 为候选摘要，包含&lt;em&gt; v&lt;/em&gt; 个句子，&lt;em&gt;n&lt;/em&gt; 个词，长度为&lt;em&gt; n&lt;/em&gt;，&lt;em&gt;LCS&lt;sub&gt;U&lt;/sub&gt;(r&lt;sub&gt;i&lt;/sub&gt;，C)&lt;/em&gt; 是句子&lt;em&gt; r&lt;sub&gt;i&lt;/sub&gt;&lt;em&gt; 和候选摘要&lt;/em&gt; C&lt;/em&gt; 的 union LCS。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-9cb58863ae0d12818f1292b0c973c4c4_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;h3&gt;&lt;span id=&#34;rouge-w&#34;&gt; Rouge-W&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;为使连续匹配比不连续匹配赋予更大的权重，公式描述如下：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://www.zhihu.com/equation?tex=f%28x%2By%29%3Ef%28x%29%2Bf%28y%29&#34; alt=&#34;[公式]&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;例如 &lt;em&gt;f(k) = k&lt;sup&gt;α&lt;/sup&gt;&lt;/em&gt;，α&amp;gt;1 ，同时为了归一化最终的 Rouge-W 的值，通常选择函数与反函数具有相似形式的函数。例如：  &lt;em&gt;f(k) = k&lt;sup&gt;2&lt;/sup&gt;&lt;/em&gt;, &lt;em&gt;f&lt;sup&gt;-1&lt;/sup&gt; = k&lt;sup&gt;1/2&lt;/sup&gt;&lt;/em&gt; ，具体计算公式如下所示：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-f7cfe012de24608676367e6b1627c874_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;举个例子如下：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-1cb9caf59f0549f5fcab3f1bf88a7260_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:95%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;：同一 LCS 下，对连续匹配词数多的句子赋予更高权重，比 LCS 区分度更高。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;：同 ROUGE-L，只计算一个最长子序列，最终的值忽略了其他备选的最长子序列及较短子序列的影响。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;应用场景&lt;/strong&gt;：单文档摘要；短摘要评估。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;rouge-s&#34;&gt; Rouge-S&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Skip-Bigram 是按句子顺序中的任何成对词语。计算公式如下：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-86e38cbfc3b109917ad542980aca3d47_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;其中 X 为参考摘要，长度为 m，Y 为候选摘要，长度为 n。SKIP2 (X，Y) 表示候选摘要与参考摘要的 skip-bigram 匹配次数。&lt;/p&gt;
+&lt;p&gt;Skip-gram 如果不限制跳跃的距离，会出现很多无意义的词对，比如 “the of”、“in the” 等。为了减少无意义词对的出现，可以限制最大跳跃距离&lt;em&gt; d&lt;sub&gt;skip&lt;/sub&gt;&lt;/em&gt;，通常写 ROUGE-S4 表示最大跳跃距离为 4，ROUGE-S9 表示最大跳跃距离为 9，依次类推。如果 &lt;em&gt;d&lt;sub&gt;skip&lt;/sub&gt;&lt;/em&gt; 为 0，那么 ROUGE-S0 = ROUGE-2。举个例子如下：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-4d5addc579f85b2185f2b9e3b26f49bf_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:95%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-7bf0d2e1cc39843f4d5663ca70992f3c_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;：考虑了所有按词序排列的词对，比 n-gram 模型更深入反映句子级词序。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;：若不设定最大跳跃词数会出现很多无意义词对。若设定最大跳跃词数，需要指定最大跳跃词数的值。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;应用场景&lt;/strong&gt;：单文档摘要；ROUGE-S4，ROUGE-S9: 多文档摘要（去停用词条件)。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;meteor-评估法机器翻译-自动文摘&#34;&gt; METEOR 评估法（机器翻译、自动文摘）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;2004 年，卡内基梅隆大学的 Lavir 提出评价指标中召回率的意义，基于此研究，Banerjee 和 Lavie（Banerjee and Lavie, 2005）发明了基于单精度的加权调和平均数和单字召回率的 METEOR 度量方法，目的是解决 BLEU 标准中的一些固有缺陷。&lt;/p&gt;
+&lt;p&gt;论文链接地址：&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cs.cmu.edu/~alavie/METEOR/pdf/Banerjee-Lavie-2005-METEOR.pdf&#34;&gt;http://www.cs.cmu.edu/~alavie/METEOR/pdf/Banerjee-Lavie-2005-METEOR.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;METEOR 扩展了 BLEU 有关 “共现” 的概念，提出了三个统计共现次数的模块：一是 “绝对” 模块（“exact” module），即统计待测译文与参考译文中绝对一致单词的共现次数；二是 “波特词干” 模块（porter stem module），即基于波特词干算法计算待测译文与参考译文中词干相同的词语 “变体” 的共现次数，如 happy 和 happiness 将在此模块中被认定为共现词；三是 “WN 同义词” 模块（WN synonymy module），即基于 WordNet 词典匹配待测译文与参考译文中的同义词，计入共现次数，如 sunlight 与 sunshine。&lt;/p&gt;
+&lt;p&gt;同时 METEOR 将词序纳入评估范畴，设立基于词序变化的罚分机制，当待测译文词序与参考译文不同时，进行适当的罚分。最终基于共现次数计算准确率、召回率与 F 值，并考虑罚分最终得到待测译文的 METEOR 值。&lt;/p&gt;
+&lt;p&gt;该算法首先计算 unigram 情况下的准确率 P 和召回率 R（计算方式与 BLEU、ROUGE 类似），得到调和均值 F 值：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://www.zhihu.com/equation?tex=F%3D%5Cfrac%7B%28%5Calpha%5E2%2B1%29P%7D%7BR%2B%5Calpha+P%7D&#34; alt=&#34;[公式]&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;看到这可能还没有什么特别的。Meteor 的特别之处在于，它不希望生成很 “碎” 的译文：比如参考译文是 “A B C D”，模型给出的译文是 “B A D C”，虽然每个 unigram 都对应上了，但是会受到很严重的惩罚。惩罚因子的计算方式为：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://www.zhihu.com/equation?tex=Penalty%3D%5Cgamma+%28%5Cfrac%7Bchunks%7D%7Bunigrams%5C_matched%7D%29%5E%7B%5Ctheta%7D&#34; alt=&#34;[公式]&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;上式中的&lt;em&gt; chunks&lt;/em&gt; 表示匹配上的语块个数，如果模型生成的译文很碎的话，语块个数会非常多；&lt;em&gt;unigrams_matched&lt;/em&gt; 表示匹配上的 unigram 个数。所以最终的评分为：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://www.zhihu.com/equation?tex=Meteor%3D%281-Penalty%29%5Ccdot+F&#34; alt=&#34;[公式]&#34; style=&#34;zoom:90%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;用于机器翻译评测时，通常取 α = 3，γ = 0.5，θ = 3。&lt;/p&gt;
+&lt;p&gt;自从 2004 年以来，该团队也在不断的对 METEOR 评估方法进行优化，具体可见：&lt;a href=&#34;https://link.zhihu.com/?target=http%3A//www.cs.cmu.edu/~alavie/METEOR/index.html&#34;&gt;http://www.cs.cmu.edu/~alavie/METEOR/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;cider-评价方法&#34;&gt; CIDEr 评价方法&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;CIDEr（Consensuus-based Image Description Evaluation）评价标准是 Vedantm 在 2015 年计算机视觉与模式识别大会上提出来的针对图像摘要问题的度量标准。&lt;/p&gt;
+&lt;p&gt;论文链接地址为：&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1411.5726.pdf&#34;&gt;https://arxiv.org/pdf/1411.5726.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;研究者认为过去的多种评价方法和人类评价具有较强的相关性，但是无法统一到一个度量标准来评价与人的相似性（human-like），为了解决这个问题，从而评价计算机自动生成的句子到底有多像人工书写的，Vedantam 等人提出了基于共识的评价标准（consensus-based protocol），其基本工作原理就是通过度量带测评语句与其他大部分人工描述句之间的相似性来评价相似性。研究者证明 CIDEr 在与人工共识的匹配度上要好于前述其它评价指标。&lt;/p&gt;
+&lt;p&gt;CIDEr 首先将 n-grams 在参考句子中的出现频率编码进来，n-gram 在数据集所有图片中经常出现的图片的权重应该减少，因为其包含的信息量更少，该权重研究者通过 TF-IDF 计算每个 n-gram 的权重。将句子用 n-gram 表示成向量形式，每个参考句和待评测句之间通过计算 TF-IDF 项链的余玄距离来度量其相似性。&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="NLP/评估指标" />
+        <updated>2021-08-08T09:41:58.000Z</updated>
+    </entry>
+</feed>

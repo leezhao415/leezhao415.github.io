@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;表面缺陷检测&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Thu, 28 Oct 2021 22:31:40 +0800</pubDate>
+        <lastBuildDate>Thu, 28 Oct 2021 22:31:40 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2021/10/28/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/</guid>
+            <title>表面缺陷检测数据集汇总及其相关项目推荐</title>
+            <link>https://leezhao415.github.io/2021/10/28/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B%E6%95%B0%E6%8D%AE%E9%9B%86%E6%B1%87%E6%80%BB%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/</link>
+            <category>人工智能</category>
+            <category>表面缺陷检测</category>
+            <pubDate>Thu, 28 Oct 2021 22:31:40 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B%E5%85%B3%E9%94%AE%E9%97%AE%E9%A2%98&#34;&gt;1 表面缺陷检测关键问题&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E5%B0%8F%E6%A0%B7%E6%9C%AC%E9%97%AE%E9%A2%98&#34;&gt;1、小样本问题&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1%E6%95%B0%E6%8D%AE%E6%89%A9%E5%A2%9E-%E7%94%9F%E6%88%90&#34;&gt;1）数据扩增、生成&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2%E7%BD%91%E7%BB%9C%E9%A2%84%E8%AE%AD%E7%BB%83%E4%B8%8E%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0&#34;&gt;2）网络预训练与迁移学习&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3%E5%90%88%E7%90%86%E7%9A%84%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1&#34;&gt;3）合理的网络结构设计&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4%E6%97%A0%E7%9B%91%E7%9D%A3%E6%88%96%E5%8D%8A%E7%9B%91%E7%9D%A3&#34;&gt;4）无监督或半监督&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-%E5%AE%9E%E6%97%B6%E6%80%A7%E9%97%AE%E9%A2%98&#34;&gt;2、实时性问题&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-%E5%B7%A5%E4%B8%9A%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86&#34;&gt;2 工业表面缺陷检测常用数据集&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1%E9%92%A2%E6%9D%90%E8%A1%A8%E9%9D%A2neu-cls%E5%8F%AF%E7%94%A8%E4%BA%8E%E5%88%86%E7%B1%BB-%E5%AE%9A%E4%BD%8D%E4%BB%BB%E5%8A%A1&#34;&gt;1）钢材表面：NEU-CLS（可用于分类、定位任务）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2%E5%A4%AA%E9%98%B3%E8%83%BD%E6%9D%BFelpv-dataset&#34;&gt;2）太阳能板：elpv-dataset&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3%E9%87%91%E5%B1%9E%E8%A1%A8%E9%9D%A2kolektorsdd&#34;&gt;3）金属表面：KolektorSDD&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4pcb%E6%9D%BF%E6%A3%80%E6%B5%8Bdeeppcb&#34;&gt;4）PCB 板检测：DeepPCB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5aitex%E6%95%B0%E6%8D%AE%E9%9B%86%E9%9D%A2%E6%96%99%E7%BC%BA%E9%99%B7&#34;&gt;5）AITEX 数据集（面料缺陷）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6%E5%A4%A9%E6%B1%A0%E5%B8%83%E5%8C%B9%E7%BC%BA%E9%99%B7%E6%95%B0%E6%8D%AE%E7%AB%9E%E8%B5%9B&#34;&gt;6）天池布匹缺陷数据（竞赛）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7%E5%A4%A9%E6%B1%A0%E9%93%9D%E5%9E%8B%E6%9D%90%E8%A1%A8%E9%9D%A2%E7%91%95%E7%96%B5%E6%95%B0%E6%8D%AE%E9%9B%86%E7%AB%9E%E8%B5%9B&#34;&gt;7）天池铝型材表面瑕疵数据集（竞赛）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8%E5%BC%B1%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E4%B8%8B%E7%9A%84%E5%B7%A5%E4%B8%9A%E5%85%89%E5%AD%A6%E6%A3%80%E6%B5%8Bdagm-2007&#34;&gt;8）弱监督学习下的工业光学检测（DAGM 2007）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9%E5%9F%BA%E5%BB%BA%E8%A1%A8%E9%9D%A2%E8%A3%82%E7%BA%B9%E6%A3%80%E6%B5%8B%E6%95%B0%E6%8D%AE&#34;&gt;9）基建表面裂纹检测数据&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90&#34;&gt;3 项目推荐&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%80-defect-eye&#34;&gt;一、Defect Eye&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8deye&#34;&gt;如何使用 DEye&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%BA%94%E7%94%A8&#34;&gt;应用&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%8C-%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B%E6%96%87%E7%8C%AE%E8%AE%B0%E5%BD%95&#34;&gt;二、缺陷检测文献记录&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%89-%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80&#34;&gt;三、项目地址：&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99&#34;&gt;参考资料&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;p&gt;最近，有许多朋友都在关注缺陷检测领域，今天来看看缺陷检测。&lt;/p&gt;
+&lt;p&gt;目前，基于机器视觉的表面缺陷装备已经在各工业领域广泛替代人工肉眼检测，包括 3C、汽车、家电、机械制造、半导体及电子、化工、医药、航空航天、轻工等行业。传统的基于机器视觉的表面缺陷检测方法，往往采用常规图像处理 算法或人工设计特征加分类器方式。一般来说，通常利用被检表面或缺陷的不同性质进行成像方案的设计，合理的成像方案有助于获得光照均匀的图像，并将物体表面缺陷明显的体现出来。近年来，不少基于深度学习的缺陷检测方法也被广泛应用在各种工业场景中。&lt;/p&gt;
+&lt;p&gt;对比计算机视觉中明确的分 类、检测和分割任务，缺陷检测的需求非常笼统。实 际上，其需求可以划分为三个不同的层次: &lt;strong&gt;“缺陷是什么”（分类）、“缺陷在哪里”（定位）和 “缺陷是多少”（分割）。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;1-表面缺陷检测关键问题&#34;&gt; 1 表面缺陷检测关键问题&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;1-小样本问题&#34;&gt; 1、小样本问题&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;目前深度学习方法广泛应用在各种计算机视觉 任务中，表面缺陷检测一般被看作是其在工业领域的具体应用。在传统的认识中，深度学习方法无法直接应用在表面缺陷检测中的原因是因为在真实的 工业环境中，所能提供的工业缺陷样本太少。&lt;/p&gt;
+&lt;p&gt;相比于 ImageNet 数据集中 1400 多万张样本数据，表面缺陷检测中面临的最关键的问题是小样本问题，在很多真实的工业场景下甚至只有几张或几十张缺陷图片。 实际上，针对于工业表面缺陷检测中关键问题之 一的小样本问题，目前有 4 种不同的解决方式:&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;1数据扩增-生成&#34;&gt; 1）数据扩增、生成&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;最常用的缺陷图像扩 增方法是对原始缺陷样本采用镜像、旋转、平移、扭曲、滤波、对比度调整等多种图像处理操作来获取 更多的样本。另外一种较为 常见方法是数据合成，常常将单独缺陷融合叠加到 正常 (无缺陷) 样本上构成缺陷样本。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2网络预训练与迁移学习&#34;&gt; 2）网络预训练与迁移学习&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;一般来说，，采用小样本来训练深度学习网络很容易导致过拟合，因此 基于预训练网络或迁移学习的方法是目前针对样 本中最常用的方法之一。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;3合理的网络结构设计&#34;&gt; 3）合理的网络结构设计&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;通过设计合理的网络 结构也可以大大减少样本的需求。基于压缩采样定理来压缩和扩充小样本数据，使 用 CNN 直接对压缩采样的数据特征进行分类。相比 于原始的图像输入，通过对输入进行压缩采样能大 大降低网络对样本的需求。此外，基于孪生网络的表 面缺陷检测方法也可以看作是一种特殊的网络设计，能够大幅减少样本需求。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;4无监督或半监督&#34;&gt; 4）无监督或半监督&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;在无监督模型中，只利用正 常样本进行训练，因此不需要缺陷样本。半监督方法 可以利用没有标注的样本来解决小样本情况下的网络训练难题。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;2-实时性问题&#34;&gt; 2、实时性问题&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;基于深度学习的缺陷检测方法在工业应用中包括三个主要环节：数据标注、模型训练与模型推断。在实际工业应用中的实时性更关注模型推断这一环节。目前大多数缺陷检测方法都集中在分类或 识别的准确性上，而很少关注模型推断的效率。有不少方法用于加速模型，例如模型权重量化和模型剪枝等。另外，虽然现有深度学习模型 使用 GPU 作为通用计算单元，但随着技术发展，相信 FPGA 会成为一个具有吸引力的替代方案。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;2-工业表面缺陷检测常用数据集&#34;&gt; 2 工业表面缺陷检测常用数据集&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;1钢材表面neu-cls可用于分类-定位任务&#34;&gt; 1）钢材表面：NEU-CLS（可用于分类、定位任务）&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;项目地址&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://faculty.neu.edu.cn/yunhyan/NEU_surface_defect_database.html&#34;&gt;http://faculty.neu.edu.cn/yunhyan/NEU_surface_defect_database.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据集简介&lt;/strong&gt;：由东北大学（NEU）发布的表面缺陷数据库，收集了热轧钢带的六种典型表面缺陷，即轧制氧化皮（RS），斑块（Pa），开裂（Cr），点蚀表面（ PS），内含物（In）和划痕（Sc）。该数据库包括 1,800 个灰度图像：六种不同类型的典型表面缺陷，每一类缺陷包含 300 个样本。对于缺陷检测任务，数据集提供了注释，指示每个图像中缺陷的类别和位置。对于每个缺陷，黄色框是指示其位置的边框，绿色标签是类别分数。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;2太阳能板elpv-dataset&#34;&gt; 2）太阳能板：elpv-dataset&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;地址&lt;/strong&gt;：&lt;a href=&#34;https://github.com/zae-bayern/elpv-dataset&#34;&gt;https://github.com/zae-bayern/elpv-dataset&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;3金属表面kolektorsdd&#34;&gt; 3）金属表面：KolektorSDD&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;地址&lt;/strong&gt;：&lt;a href=&#34;http://www.vicos.si/Downloads/KolektorSDD&#34;&gt;http://www.vicos.si/Downloads/KolektorSDD&lt;/a&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/Z8w2ExrFgDwNaIgv9VUHeCAeXfauWU8dNvhYK1st5CuJsp4vOzcdj7jnrqy6QV29icM0ugRhHr7UcD04eb4KEIQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h4&gt;&lt;span id=&#34;4pcb-板检测deeppcb&#34;&gt; 4）PCB 板检测：DeepPCB&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;地址&lt;/strong&gt;：&lt;a href=&#34;https://github.com/tangsanli5201/DeepPCB&#34;&gt;https://github.com/tangsanli5201/DeepPCB&lt;/a&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/Z8w2ExrFgDwNaIgv9VUHeCAeXfauWU8dmOIZHXibYaekGcFO5zZH47kflQa7ovZYSicpW52uZH32HeYSWO1n6Uug/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;h4&gt;&lt;span id=&#34;5aitex-数据集面料缺陷&#34;&gt; 5）AITEX 数据集（面料缺陷）&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;数据集下载链接&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://pan.baidu.com/s/1cfC4Ll5QlnwN5RTuSZ6b7w&#34;&gt;https://pan.baidu.com/s/1cfC4Ll5QlnwN5RTuSZ6b7w&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;提取码&lt;/strong&gt;：b9uy&lt;/p&gt;
+&lt;p&gt;该数据库由七个不同织物结构的 245 张 4096 x 256 像素图像组成。数据库中有 140 个无缺陷图像，每种类型的织物 20 个，除此之外，有 105 幅纺织行业中常见的不同类型的织物缺陷（12 种缺陷）图像。图像的大尺寸允许用户使用不同的窗口尺寸，从而增加了样本数量。Internet 上的数据库还包含所有具有缺陷的图像的分割 mask，使得白色像素表示缺陷区域，其余像素为黑色。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/Q0FNTB1XHicxJNERSSNPubP0Ga9pfKj8IUdjRibNe3rZlunjB5RqiaqMia7cqYZVQTDV0via1sZ00sAt9wYxhQJ4kyg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/Q0FNTB1XHicxJNERSSNPubP0Ga9pfKj8InGd4lPybGWvRpw9fLZQsVLG6orrTGvgKp8R73z2VftN3hviaPh8Fd3w/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;h4&gt;&lt;span id=&#34;6天池布匹缺陷数据竞赛&#34;&gt; 6）天池布匹缺陷数据（竞赛）&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;数据下载链接&lt;/strong&gt;：&lt;a href=&#34;https://pan.baidu.com/s/1LMbujxvr5iB3SwjFGYHspA&#34;&gt;https://pan.baidu.com/s/1LMbujxvr5iB3SwjFGYHspA&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;提取码：gat2&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据集简介&lt;/strong&gt;：在布匹的实际生产过程中，由于各方面因素的影响，会产生污渍、破洞、毛粒等瑕疵，为保证产品质量，需要对布匹进行瑕疵检测。布匹疵点检验是纺织行业生产和质量管理的重要环节，目前人工检测易受主观因素影响，缺乏一致性；并且检测人员在强光下长时间工作对视力影响极大。由于布匹疵点种类繁多、形态变化多样、观察识别难道大，导致布匹疵点智能检测是困扰行业多年的技术瓶颈。本数据涵盖了纺织业中布匹的各类重要瑕疵，每张图片含一个或多种瑕疵。数据包括包括素色布和花色布两类，其中，素色布数据约 8000 张，用于初赛；花色布数据约 12000 张，用于复赛。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;7天池铝型材表面瑕疵数据集竞赛&#34;&gt; 7）天池铝型材表面瑕疵数据集（竞赛）&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;数据集下载链接&lt;/strong&gt;：&lt;a href=&#34;https://tianchi.aliyun.com/competition/entrance/231682/information&#34;&gt;https://tianchi.aliyun.com/competition/entrance/231682/information&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据介绍&lt;/strong&gt;：在铝型材的实际生产过程中，由于各方面因素的影响，铝型材表面会产生裂纹、起皮、划伤等瑕疵，这些瑕疵会严重影响铝型材的质量。为保证产品质量，需要人工进行肉眼目测。然而，铝型材的表面自身会含有纹路，与瑕疵的区分度不高。传统人工肉眼检查十分费力，不能及时准确的判断出表面瑕疵，质检的效率难以把控。近年来，深度学习在图像识别等领域取得了突飞猛进的成果。铝型材制造商迫切希望采用最新的 AI 技术来革新现有质检流程，自动完成质检任务，减少漏检发生率，提高产品的质量，使铝型材产品的生产管理者彻底摆脱了无法全面掌握产品表面质量的状态。大赛数据集里有 1 万份来自实际生产中有瑕疵的铝型材监测影像数据，每个影像包含一个或多种瑕疵。供机器学习的样图会明确标识影像中所包含的瑕疵类型。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/Q0FNTB1XHicxJNERSSNPubP0Ga9pfKj8IyT8MicZr9csEJNue4RazNhTWpaCmc1UjDB2ibPKMkNlayuUCD9ENAmJQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;h4&gt;&lt;span id=&#34;8弱监督学习下的工业光学检测dagm-2007&#34;&gt; 8）弱监督学习下的工业光学检测（DAGM 2007）&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;数据下载链接&lt;/strong&gt;：&lt;a href=&#34;https://hci.iwr.uni-heidelberg.de/node/3616&#34;&gt;https://hci.iwr.uni-heidelberg.de/node/3616&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据集介绍&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;主要针对纹理背景上的杂项缺陷。&lt;/li&gt;
+&lt;li&gt;较弱监督的训练数据。&lt;/li&gt;
+&lt;li&gt;包含是个数据集，前六个为训练数据集，后四个为测试数据集。&lt;/li&gt;
+&lt;li&gt;每个数据集均包含以灰度 8 位 PNG 格式保存的 1000 个 “无缺陷” 图像和 150 个 “有缺陷” 图像。每个数据集由不同的纹理模型和缺陷模型生成。&lt;/li&gt;
+&lt;li&gt;“无缺陷” 图像显示的背景纹理没有缺陷，“无缺陷” 图像的背景纹理上恰好有一个标记的缺陷。&lt;/li&gt;
+&lt;li&gt;所有数据集已随机分为大小相等的训练和测试子数据集。&lt;/li&gt;
+&lt;li&gt;弱标签以椭圆形表示，大致表示缺陷区域。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;9基建表面裂纹检测数据&#34;&gt; 9）基建表面裂纹检测数据&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;数据集是 github 上的一个项目，主要是一些基建（水泥表面裂纹）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;项目地址&lt;/strong&gt;：&lt;a href=&#34;https://github.com/cuilimeng/CrackForest-dataset%E6%88%96%E8%80%85%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps://pan.baidu.com/s/1108j5QbDr7T3XQvDxAzVpg&#34;&gt;https://github.com/cuilimeng/CrackForest-dataset 或者链接：https://pan.baidu.com/s/1108j5QbDr7T3XQvDxAzVpg&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;提取码：jajn&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;更多数据集可参考&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/abin24/Surface-Inspection-defect-detection-dataset&#34;&gt;https://github.com/abin24/Surface-Inspection-defect-detection-dataset&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;3-项目推荐&#34;&gt; 3 项目推荐&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;一-defect-eye&#34;&gt; 一、Defect Eye&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;项目地址&lt;/strong&gt;: &lt;a href=&#34;https://github.com/sundyCoder/DEye&#34;&gt;https://github.com/sundyCoder/DEye&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Defect Eye 是一个基于 tensorflow1.4 的开源软件库，专注于表面缺陷检测。应用领域涵盖制造环境中的所有良率应用，包括进入来料加工工具认证，晶圆认证，玻璃表面认证，光罩鉴定，研究和开发以及工具，工艺和生产线监控。图案化和未图案化的晶圆缺陷检查和鉴定工具在晶圆的前表面，后表面和边缘上发现颗粒和图案缺陷，使工程师能够检测和监控关键的屈服偏移。此外，它可用于医学图像的注射，包括肺 PET / CT，乳房 MRI，CT Colongraphy，数字胸部 X 射线图像。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/Z8w2ExrFgDzZJCiczwcBvkghPc7P0sMdko8g0CKFzFRlbthXuYjWSkQDTrZyoynTuPMuibTwDDOndwSYW85CPf0A/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;使用 CMake，VisualStudio 2015，CUDA8.0，cudnn6.0 编译 tensorflow-r1.4 GPU 版本。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;tensorflow.dll，tensorflow.lib，libprotobuf.lib&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;百度云盘链接：&lt;a href=&#34;https://pan.baidu.com/s/1o9tv1n8&#34;&gt;https://pan.baidu.com/s/1o9tv1n8&lt;/a&gt;  密码：ekec&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Google 云端硬盘链接：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://drive.google.com/open?id=1kANDNErMNLU9wNR3rKhUTz--ltwPNPUv&#34;&gt;https://drive.google.com/open?id=1kANDNErMNLU9wNR3rKhUTz--ltwPNPUv&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;span id=&#34;如何使用-deye&#34;&gt; 如何使用 DEye&lt;/span&gt;&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;安装 VisualStudio Community 2015、安装 NVIDIA CUDA 8.0&lt;/li&gt;
+&lt;li&gt;git clone &lt;a href=&#34;https://github.com/sundyCoder/DEye&#34;&gt;https://github.com/sundyCoder/DEye&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载 tensorflow.dll，将其置于 DEye /bin 下&lt;/li&gt;
+&lt;li&gt;下载 tensorflow.lib 和 libprotobuf.lib，在 DEye /extra/tensorflow-r1.4 / 下放置主题&lt;/li&gt;
+&lt;li&gt;下载 inception_v3_2016_08_28_frozen.pb，将其置于 DEye /data 下&lt;/li&gt;
+&lt;li&gt;打开 Visual Studio 解决方案 “DEye.sln”，它应该在 DEye /build/vc14 下，解决方案配置选项选择 “Release”，Soluton Platform 选项选择 “x64”。&lt;/li&gt;
+&lt;li&gt;构建并运行 GUI 项目，您可以为您的检查案例进行模型训练。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/Z8w2ExrFgDzZJCiczwcBvkghPc7P0sMdkYmbO6LPaMklTsCKPFXVYrlPcXnGrmWvibBXmH4lFQicKV2OXkZvjjyBw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;应用&#34;&gt; 应用&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1ic-芯片缺陷检查&#34;&gt; （1）IC 芯片缺陷检查&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/Z8w2ExrFgDzZJCiczwcBvkghPc7P0sMdkgxdONmkibVAeFh8rgGVbnQicJTv9ibzic3BVkr2ObRWRhlUTFGbB925gUQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;2公路道路裂缝损坏检查&#34;&gt; （2）公路道路裂缝损坏检查&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/Z8w2ExrFgDzZJCiczwcBvkghPc7P0sMdkIicGW8GMUUs9LaUiczwzZ59CqpFIZolsRvtonhTq025WNIUR0bO1Rr8A/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom: 80%;&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;3编织物瑕疵点检查&#34;&gt; （3）编织物瑕疵点检查&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_jpg/Z8w2ExrFgDzZJCiczwcBvkghPc7P0sMdk1BYdee7aUSBnJd1JsenajZWaWd36B1VcENBz23tH8cNKziaNtNU2q5g/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;4盖玻片检查&#34;&gt; （4）盖玻片检查&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/Z8w2ExrFgDzZJCiczwcBvkghPc7P0sMdkibwMGJIdVjlMOLlr2TvBuAT0IoJjZFyibuteVpdwY3yvRJsDUmDoMtKw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;5民用基础设施缺陷检测&#34;&gt; （5）民用基础设施缺陷检测&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_jpg/Z8w2ExrFgDzZJCiczwcBvkghPc7P0sMdkUcXQmJM23r0zBI3aCDrZdkSn0qYnRE5biaQEx3Yd7JCNTK296C5U6Gg/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;6电力线裂纹检测&#34;&gt; （6）电力线裂纹检测&lt;/span&gt;&lt;/h6&gt;
+&lt;center&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_jpg/Z8w2ExrFgDzZJCiczwcBvkghPc7P0sMdkvdiaX5iazy4tskukz9LgMm9BgoyyhstupDOgnq03kUjHdM7yZGmrRzYA/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1&#34; alt=&#34;图片&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;h4&gt;&lt;span id=&#34;二-缺陷检测文献记录&#34;&gt; 二、缺陷检测文献记录&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;项目地址&lt;/strong&gt;：&lt;a href=&#34;https://github.com/Eatzhy/surface-defect-detection&#34;&gt;https://github.com/Eatzhy/surface-defect-detection&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;三-项目地址&#34;&gt; 三、项目地址：&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;项目地址&lt;/strong&gt;：&lt;a href=&#34;https://github.com/Wslsdx/Deep-Learning-Approach-for-Surface-Defect-Detection&#34;&gt;https://github.com/Wslsdx/Deep-Learning-Approach-for-Surface-Defect-Detection&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;参考资料&#34;&gt; 参考资料&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;[1] 《Github 项目推荐丨深度学习缺陷检测       &lt;a href=&#34;https://www.yanxishe.com/blogDetail/13979&#34;&gt;https://www.yanxishe.com/blogDetail/13979&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[2] 《基于深度学习的表面缺陷检测方法综述》陶显等，中科院自动化所&lt;/p&gt;
+&lt;p&gt;[3] 《汇总丨缺陷检测数据集》&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;网络通信&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Mon, 19 Apr 2021 20:25:01 +0800</pubDate>
+        <lastBuildDate>Mon, 19 Apr 2021 20:25:01 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2021/04/19/URL%E5%8F%8AHTTP%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/</guid>
+            <title>URL及HTTP协议详解</title>
+            <link>https://leezhao415.github.io/2021/04/19/URL%E5%8F%8AHTTP%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/</link>
+            <category>人工智能</category>
+            <category>网络通信</category>
+            <pubDate>Mon, 19 Apr 2021 20:25:01 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-url&#34;&gt;1 URL&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-http%E5%8D%8F%E8%AE%AE&#34;&gt;2 HTTP 协议&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-http%E6%8A%A5%E6%96%87&#34;&gt;3 HTTP 报文&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-http%E5%8D%8F%E8%AE%AE%E9%80%9A%E4%BF%A1&#34;&gt;4 HTTP 协议通信&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h3&gt;&lt;span id=&#34;1-url&#34;&gt; 1 URL&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;统一资源定位符&lt;/strong&gt;，(Uniform Resoure Locator) 通俗理解就是网络资源地址，通过 URL 能够找到对应的资源数据。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;URL 地址&lt;/strong&gt;：&lt;a href=&#34;https://www.baidu.com/10/E178J2O489FH.html?page=1&amp;amp;count=10&#34;&gt;https://www.baidu.com/10/E178J2O489FH.html?page=1&amp;amp;count=10&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;​               &amp;lt;协议部分 +      域名       +           资源路径          +              查询参数&amp;gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;协议部分&lt;/strong&gt;: https://、http://、ftp://&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;域名&lt;/strong&gt;：IP 地址的别名，它是用点进行分割使用英文字母和数字组成的名字，使用域名目的就是方便的记住某台主机 IP 地址。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;参数说明：&lt;/strong&gt;? 后面的 page 表示第一个参数，后面的参数都使用 &amp;amp; 进行连接&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;2-http-协议&#34;&gt; 2 HTTP 协议&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;HTTP 协议的全称是 (HyperText Transfer Protocol)，&lt;strong&gt;超文本传输协议&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;超文本是指&lt;strong&gt;在文本数据的基础上还包括非文本数据&lt;/strong&gt;，非文本数据有&lt;strong&gt;图片&lt;/strong&gt;、&lt;strong&gt;音乐&lt;/strong&gt;、&lt;strong&gt;视频&lt;/strong&gt;等，而这些非文本数据会使用&lt;strong&gt;链接&lt;/strong&gt;的方式进行加载显示，通俗来说超文本就是&lt;strong&gt;带有链接的文本数据&lt;/strong&gt;也就是我们常说的&lt;strong&gt;网页数据&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;HTTP 协议的制作者是蒂姆・伯纳斯 - 李，1991 年设计出来的，HTTP 协议设计之前目的是传输网页数据的，现在允许传输任意类型的数据。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;传输 HTTP 协议格式的数据是基于 TCP 传输协议的，发送数据之前需要先建立连接。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;TCP 传输协议&lt;/strong&gt;是用来保证网络中传输的数据的安全性的，HTTP 协议是用来规定这些数据的具体格式的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HTTP 协议规定的数据格式是&lt;strong&gt;浏览器和 Web 服务器通信数据的格式&lt;/strong&gt;，也就是说浏览器和 Web 服务器通信需要使用 HTTP 协议。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210412122210706.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;h3&gt;&lt;span id=&#34;3-http-报文&#34;&gt; 3 HTTP 报文&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;HTTP 请求报文&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;GET&lt;/strong&gt; 方式的请求报文：获取 Web 服务器数据&lt;/p&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;---- 请求行 ----&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;GET /a/b/c HTTP/1.1  # GET请求方式 请求资源路径 HTTP协议版本&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;---- 请求头 -----&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Host: www.itcast.cn  # 服务器的主机地址和端口号,默认是80&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Connection: keep-alive # 和服务端保持长连接&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Upgrade-Insecure-Requests: 1 # 让浏览器升级不安全请求，使用https请求&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36  # 用户代理，也就是客户端的名称&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8 # 可接受的数据类型&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Accept-Encoding: gzip, deflate # 可接受的压缩格式&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Accept-Language: zh-CN,zh;q=0.9 #可接受的语言&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Cookie: pgv_pvi=1246921728; # 登录用户的身份标识&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;---- 空行 ----&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：每项数据之间使用:&lt;strong&gt;\r\n&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;POST&lt;/strong&gt; 方式的请求报文：向 Web 服务器提交数据&lt;/p&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;---- 请求行 ----&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;POST /xmweb?host=mail.itcast.cn&amp;amp;_t=1542884567319 HTTP/1.1 # POST请求方式 请求资源路径 HTTP协议版本&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;---- 请求头 ----&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Host: mail.itcast.cn # 服务器的主机地址和端口号,默认是80&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Connection: keep-alive # 和服务端保持长连接&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Content-Type: application/x-www-form-urlencoded  # 告诉服务端请求的数据类型&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 # 客户端的名称&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;---- 空行 ----&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;---- 请求体 ----&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;username=hello&amp;amp;pass=hello # 请求参数&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：每项数据之间使用:&lt;strong&gt;\r\n&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总结：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一个 HTTP 请求报文可以由&lt;strong&gt;请求行&lt;/strong&gt;、&lt;strong&gt;请求头&lt;/strong&gt;、&lt;strong&gt;空行&lt;/strong&gt;和&lt;strong&gt;请求体&lt;/strong&gt; 4 个部分组成。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;请求行是由三部分组成: &lt;strong&gt;请求方式&lt;/strong&gt; &lt;strong&gt;请求资源路径&lt;/strong&gt; &lt;strong&gt;HTTP 协议版本&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GET 方式的请求报文&lt;strong&gt;没有请求体&lt;/strong&gt;，只有&lt;strong&gt;请求行&lt;/strong&gt;、&lt;strong&gt;请求头&lt;/strong&gt;、&lt;strong&gt;空行&lt;/strong&gt;组成。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;POST 方式的请求报文可以有&lt;strong&gt;请求行&lt;/strong&gt;、&lt;strong&gt;请求头&lt;/strong&gt;、&lt;strong&gt;空行&lt;/strong&gt;、&lt;strong&gt;请求体&lt;/strong&gt;四部分组成。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：POST 方式可以允许没有请求体，但是这种格式很少见。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;HTTP 响应报文&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;--- 响应行/状态行 ---&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;HTTP/1.1 200 OK # HTTP协议版本 状态码 状态描述&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--- 响应头 ---&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Server: Tengine # 服务器名称&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Content-Type: text/html; charset=UTF-8 # 内容类型&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Connection: keep-alive # 和客户端保持长连接&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Date: Fri, 23 Nov 2018 02:01:05 GMT # 服务端的响应时间&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--- 空行 ---&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--- 响应体 ---&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;&amp;lt;!DOCTYPE &lt;span class=&#34;meta-keyword&#34;&gt;html&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;html&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;lang&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;“en”&lt;/span&gt;&amp;gt;&lt;/span&gt; …&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;html&lt;/span&gt;&amp;gt;&lt;/span&gt; # 响应给客户端的数据&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：每项数据之间使用:&lt;strong&gt;\r\n&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;HTTP 状态码&lt;/strong&gt;：表示 Web 服务器响应状态&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;状态码&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;说明&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;200&lt;/td&gt;
+&lt;td&gt;服务器已成功处理了请求&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;400&lt;/td&gt;
+&lt;td&gt;错误的请求，请求地址或者参数有误&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;404&lt;/td&gt;
+&lt;td&gt;请求资源在服务器不存在&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;500&lt;/td&gt;
+&lt;td&gt;服务器内部源代码出现错误&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总结：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个 HTTP 响应报文是由&lt;strong&gt;响应行&lt;/strong&gt;、&lt;strong&gt;响应头&lt;/strong&gt;、&lt;strong&gt;空行&lt;/strong&gt;和&lt;strong&gt;响应体&lt;/strong&gt; 4 个部分组成。&lt;/li&gt;
+&lt;li&gt;响应行是由三部分组成：&lt;strong&gt;HTTP 协议版本 状态码 状态描述&lt;/strong&gt;，最常见的状态码是 200&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;4-http-协议通信&#34;&gt; 4 HTTP 协议通信&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;通信原理&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210412122210687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：每一次浏览器和服务器的数据通讯，都是成对出现的即请求和响应，&lt;/p&gt;
+&lt;p&gt;同时每一次请求和响应都必须符合 HTTP 协议的格式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;谷歌浏览器开发者工具的使用&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210412122337659.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;标签选项说明：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;元素（Elements）：用于查看或修改 HTML 标签&lt;/li&gt;
+&lt;li&gt;控制台（Console）：执行 JS 代码&lt;/li&gt;
+&lt;li&gt;源代码（Sources）：查看静态资源文件，断点调试 JS 代码&lt;/li&gt;
+&lt;li&gt;网络（Network）：查看 http 协议的通信过程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;使用说明：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;①点击 Network 标签选项&lt;/p&gt;
+&lt;p&gt;②在浏览器地址栏输入百度的网址，就能看到请求百度首页的 HTTP 的通信过程&lt;/p&gt;
+&lt;p&gt;③这里的每项记录都是请求 + 响应的一次过程&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/2021041212234280.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;查看 HTTP 协议的通信过程&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210412122341357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;总结：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;谷歌浏览器的开发者工具是查看 http 协议的通信过程利器，通过&lt;strong&gt; Network&lt;/strong&gt; 标签选项可以查看每一次的请求和响应的通信过程，调出开发者工具的通用方法是在网页右击选择检查。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Headers&lt;/strong&gt; 选项总共有三部分组成:&lt;/p&gt;
+&lt;p&gt;①&lt;strong&gt;General&lt;/strong&gt;: 主要信息&lt;/p&gt;
+&lt;p&gt;②&lt;strong&gt;Response Headers&lt;/strong&gt;: 响应头&lt;/p&gt;
+&lt;p&gt;③&lt;strong&gt;Request Headers&lt;/strong&gt;: 请求头&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Response&lt;/strong&gt; 选项是查看响应体信息的&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

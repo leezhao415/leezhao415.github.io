@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;自然语言处理nlp&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Wed, 28 Jul 2021 14:52:19 +0800</pubDate>
+        <lastBuildDate>Wed, 28 Jul 2021 14:52:19 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2021/07/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91BiLSTM-CRF%E6%A8%A1%E5%9E%8B/</guid>
+            <title>【详解】BiLSTM+CRF模型</title>
+            <link>https://leezhao415.github.io/2021/07/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91BiLSTM-CRF%E6%A8%A1%E5%9E%8B/</link>
+            <category>人工智能</category>
+            <category>自然语言处理NLP</category>
+            <pubDate>Wed, 28 Jul 2021 14:52:19 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-bilstm-crf%E6%A8%A1%E5%9E%8B%E7%94%A8%E9%80%94&#34;&gt;1 BiLSTM-CRF 模型用途&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-bilstm-crf%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D&#34;&gt;2 BiLSTM-CRF 模型介绍&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#21-%E6%95%B0%E6%8D%AE%E6%A0%87%E7%AD%BE%E5%8F%8A%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84&#34;&gt;2.1 数据标签及模型架构&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#22-bilstm%E6%A8%A1%E5%9E%8B&#34;&gt;2.2 BiLSTM 模型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#23-crf%E6%A8%A1%E5%9E%8B&#34;&gt;2.3 CRF 模型&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#24-bilstm-crf%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0&#34;&gt;2.4 BiLSTM-CRF 模型代码实现&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;1-bilstm-crf-模型用途&#34;&gt; 1 BiLSTM-CRF 模型用途&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;命名实体识别 (Named Entity Recognition，NER)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;定义&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从一段自然语言文本中找出相关实体，并标注出其位置以及类型。&lt;/li&gt;
+&lt;li&gt;是信息提取，问答系统，句法分析，机器翻译等应用领域的重要基础工具。&lt;/li&gt;
+&lt;li&gt;在自然语言处理技术走向实用化的过程中占有重要地位。包含行业，领域专有名词，如人名，地名，公司名，机构名，日期，时间，疾病名，症状名，手术名称，软件名称等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;命名实体识别问题实际上是 &lt;code&gt;序列标注问题&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;序列标注问题指的是模型的输入是一个序列，包括文字，时间等，输出也是一个序列。针对输入序列的每一个单元，输出一个特定的标签.&lt;/p&gt;
+&lt;p&gt;以中文分词任务进行举例，例如输入序列是一串文字: “我是中国人”, 输出序列是一串标签: “OOBII”, 其中 &amp;quot;BIO&amp;quot; 组成了一种中文分词的标签体系: B 表示这个字是词的开始，I 表示词的中间到结尾，O 表示其他类型词。因此我们可以根据输出序列 &amp;quot;OOBII&amp;quot; 进行解码，得到分词结果 &amp;quot;我 \ 是 \ 中国人&amp;quot;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;序列标注问题涵盖了自然语言处理中的很多任务，包括语音识别，中文分词，机器翻译，命名实体识别等，而常见的序列标注模型包括 HMM, CRF, RNN, LSTM, GRU 等模型。&lt;/li&gt;
+&lt;li&gt;其中在命名实体识别技术上，目前主流的技术是通过 BiLSTM+CRF 模型进行序列标注。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;&lt;span id=&#34;2-bilstm-crf-模型介绍&#34;&gt; 2 BiLSTM-CRF 模型介绍&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;21-数据标签及模型架构&#34;&gt; 2.1 数据标签及模型架构&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;211-数据标签&#34;&gt; 2.1.1 数据标签&lt;/span&gt;&lt;/h6&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;B-Person （人名的开始部分）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;I- Person （人名的中间部分）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;B-Organization （组织机构的开始部分）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;I-Organization （组织机构的中间部分）&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;O （非实体信息）&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h6&gt;&lt;span id=&#34;212-模型架构&#34;&gt; 2.1.2 模型架构&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;x 是包含了 5 个单词的一句话（W&lt;sub&gt;0&lt;/sub&gt;,W&lt;sub&gt;1&lt;/sub&gt;,W&lt;sub&gt;2&lt;/sub&gt;,W&lt;sub&gt;3&lt;/sub&gt;,W&lt;sub&gt;4&lt;/sub&gt;）。还有，在句子 x 中 [W&lt;sub&gt;0&lt;/sub&gt;,W&lt;sub&gt;1&lt;/sub&gt;] 是人名，[W&lt;sub&gt;3&lt;/sub&gt;] 是组织机构名称，其他都是 “O”。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/c9b16f3f8a1f415bb78e389f41763270.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =500x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;ul&gt;
+&lt;li&gt;句中的每个单词是一条包含词嵌入和字嵌入的词向量，词嵌入通常是事先训练好的，字嵌入则是随机初始化的。所有的嵌入都会随着训练的迭代过程被调整。&lt;/li&gt;
+&lt;li&gt;BiLSTM-CRF 的输入是词嵌入向量，输出是每个单词对应的预测标签。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/ff5c9af681af41e6888205eb7662bc3d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =600x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;ul&gt;
+&lt;li&gt;BiLSTM 层的输入表示该单词对应各个类别的分数。如 W&lt;sub&gt;0&lt;/sub&gt;，BiLSTM 节点的输出是&lt;strong&gt; 1.5 (B-Person), 0.9 (I-Person), 0.1 (B-Organization), 0.08 (I-Organization) and 0.05 (O)&lt;/strong&gt;。这些分数将会是&lt;strong&gt; CRF 层的输入&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;所有的经 BiLSTM 层输出的分数将作为 CRF 层的输入，类别序列中分数最高的类别就是我们预测的最终结果。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;span id=&#34;22-bilstm-模型&#34;&gt; 2.2 BiLSTM 模型&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;221-bilstm-模型介绍及联系&#34;&gt; 2.2.1 BiLSTM 模型介绍及联系&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;所谓的 BiLSTM，就是 (Bidirectional LSTM) 双向 LSTM. 单向的 LSTM 模型只能捕捉到从前向后传递的信息，而双向的网络可以同时捕捉正向信息和反向信息，使得对文本信息的利用更全面，效果也更好.&lt;/li&gt;
+&lt;li&gt;在 BiLSTM 网络最终的输出层后面增加了一个线性层，用来将 BiLSTM 产生的隐藏层输出结果投射到具有某种表达标签特征意义的区间，具体如下图所示：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/238333d60d9e447792641724c3995127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =650x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;h6&gt;&lt;span id=&#34;222-代码实现细节&#34;&gt; 2.2.2 代码实现细节&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;BiLSTM 网络结构
+&lt;ul&gt;
+&lt;li&gt;设置隐藏层维度的时候，需要将 hidden_size // 2&lt;/li&gt;
+&lt;li&gt;总共有 3 层需要构建，分别是词嵌入层，双向 LSTM 层，全连接线性层&lt;/li&gt;
+&lt;li&gt;在代码层面，双向 LSTM 就是将 nn.LSTM () 中的参数 bidirectional 设置为 True&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;BiLSTM 网络的代码实现
+&lt;ul&gt;
+&lt;li&gt;构建类 BiLSTM 的初始化函数&lt;/li&gt;
+&lt;li&gt;添加文本向量化的辅助函数，注意 padding 填充为相同长度的 Tensor&lt;/li&gt;
+&lt;li&gt;要注意 forward 函数中不同张量的形状约定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;span id=&#34;23-crf-模型&#34;&gt; 2.3 CRF 模型&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;231-crf-模型定义及联系&#34;&gt; 2.3.1 CRF 模型定义及联系&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;CRF (全称 Conditional Random Fields), 条件随机场。是给定输入序列的条件下，求解输出序列的条件概率分布模型.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;即使没有 CRF 层，我们照样可以训练一个基于 BiLSTM 的命名实体识别模型（因为 BiLSTM 模型的结果是单词对应各类别的分数，我们可以选择分数最高的类别作为预测结果。）&lt;/p&gt;
+&lt;p&gt;例如 W&lt;sub&gt;0&lt;/sub&gt;，“B-Person” 的分数最高（1.5），那么我们可以选定 “B-Person” 作为预测结果。同样的，W&lt;sub&gt;1&lt;/sub&gt; 是 “I-Person”, W&lt;sub&gt;2&lt;/sub&gt; 是 “O”,W&lt;sub&gt;3&lt;/sub&gt; 是 “B-Organization” ，W&lt;sub&gt;4&lt;/sub&gt; 是 “O”。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;但实际情况可能出现下列预测结果&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/b038d64b6c2e47f79cbeeab504aaffd4.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =600x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;232-crf-作用&#34;&gt; 2.3.2 CRF 作用&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;CRF 层可以加入一些约束来保证最终预测结果是有效的（CRF 层可以学习到句子的约束条件）。这些约束可以在训练数据时被 CRF 层自动学习得到。&lt;/p&gt;
+&lt;p&gt;可能的约束条件有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;句子的开头应该是 “B-” 或 “O”，而不是 “I-”。&lt;/li&gt;
+&lt;li&gt;“B-label1 I-label2 I-label3…”，在该模式中，类别 1,2,3 应该是同一种实体类别。比如，“B-Person I-Person” 是正确的，而 “B-Person I-Organization” 则是错误的。&lt;/li&gt;
+&lt;li&gt;“O I-label” 是错误的，命名实体的开头应该是 “B-” 而不是 “I-”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;有了这些有用的约束，错误的预测序列将会大大减少。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;233-crf-层的损失函数&#34;&gt; 2.3.3 CRF 层的损失函数&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;&lt;strong&gt;1 Emission Score（发射分数 / 状态分数）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;发射概率，是指已知当前标签的情况下，对应所出现字符的概率。通俗理解就是当前标签比较可能出现的文字有哪些，及其对应出现的概率.&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/194572acbeb94b59944df0a11fc2c539.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =650x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;X&lt;sub&gt;i&lt;/sub&gt;,&lt;sub&gt;yj&lt;/sub&gt; 代表状态分数，i 是单词的位置索引，y&lt;sub&gt;j&lt;/sub&gt; 是类别的索引。根据上表，&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/d8973a290d344120a83be0d7aae7bc97.png#pic_center =350x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;表示单词&lt;strong&gt; W&lt;sub&gt;1&lt;/sub&gt;&lt;strong&gt; 被预测为&lt;/strong&gt; B−Organization&lt;/strong&gt; 的分数是 0.1。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/bd521eaaa9244d8cb760aea84b8712f9.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =500x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/c92ab1c94b174b3c99c02cb2eb347db8.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =500x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/afd0d55621e04d36ad22b9e6d9497b81.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =600x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;2 Transition Score （转移分数）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我们用 t (y&lt;sub&gt;i&lt;/sub&gt;,y&lt;sub&gt;j&lt;/sub&gt;) 来表示转移分数。例如，t (B−Person,I−Person)=0.9 表示从类别 B−Person→I−Person 的分数是 0.9。因此，我们有一个所有类别间的转移分数矩阵。&lt;/p&gt;
+&lt;p&gt;为了使转移分数矩阵更具鲁棒性，我们加上 START 和 END 两类标签。START 代表一个句子的开始（不是句子的第一个单词），END 代表一个句子的结束。&lt;/p&gt;
+&lt;p&gt;下表是加上 START 和 END 标签的转移分数矩阵。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/428eb6d59c8d4376b12e016306a43f3e.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =600x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 60%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;如上表格所示，转移矩阵已经学习到一些有用的约束条件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;句子的第一个单词应该是 “B-” 或 “O”，而不是 “I”。（从 “START”-&amp;gt;“I-Person 或 I-Organization” 的转移分数很低）&lt;/li&gt;
+&lt;li&gt;“B-label1 I-label2 I-label3…”，在该模式中，类别 1,2,3 应该是同一种实体类别。比如，“B-Person I-Person” 是正确的，而 “B-Person I-Organization” 则是错误的。（“B-Organization” -&amp;gt; “I-Person” 的分数很低）&lt;/li&gt;
+&lt;li&gt;“O I-label” 是错误的，命名实体的开头应该是 “B-” 而不是 “I-”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/f36b77d5fec74017b7a1f00888423305.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =500x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;要怎样得到这个转移矩阵呢？&lt;/p&gt;
+&lt;p&gt;实际上，转移矩阵是 BiLSTM-CRF 模型的一个参数。在训练模型之前，你可以&lt;strong&gt;随机初始化转移矩阵&lt;/strong&gt;的分数。这些分数将随着训练的迭代过程被更新，换句话说，CRF 层可以自己学到这些约束条件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3 CRF 损失函数&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;CRF 损失函数由两部分组成，真实路径的分数 和 所有路径的总分数。真实路径的分数应该是所有路径中分数最高的。&lt;/p&gt;
+&lt;p&gt;例如，我们的数据集中有如下几种类别：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/5e20d266963e46c6929c155f9cd71f51.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center =600x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;一个包含 5 个单词的句子，可能的类别序列如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;\1. START B-Person B-Person B-Person B-Person B-Person END&lt;/li&gt;
+&lt;li&gt;\2. START B-Person I-Person B-Person B-Person B-Person END&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;……&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;10. START B-Person I-Person O B-Organization O END&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;N. O O O O O O O&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每种可能的路径的分数为 Pi，共有 N 条路径，则路径的总分是&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/537d04e7484b454cb687bc62f050e371.png#pic_center =450x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 55%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;，e 是常数 e。&lt;/p&gt;
+&lt;p&gt;如果第十条路径是真实路径，也就是说第十条是正确预测结果，那么第十条路径的分数应该是所有可能路径里得分最高的。&lt;/p&gt;
+&lt;p&gt;根据如下损失函数，在训练过程中，BiLSTM-CRF 模型的参数值将随着训练过程的迭代不断更新，使得真实路径所占的比值越来越大。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/1487e85399d74614b1668f7a5e5b03ff.png#pic_center =300x&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 60%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;24-bilstm-crf-模型代码实现&#34;&gt; 2.4 BiLSTM-CRF 模型代码实现&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;241-bilstmcrf-模型的实现&#34;&gt; 2.4.1 BiLSTM+CRF 模型的实现&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;第一步：导入工具包并完成辅助函数&lt;/li&gt;
+&lt;li&gt;第二步：文本信息张量化&lt;/li&gt;
+&lt;li&gt;第三步：创建类的初始化函数&lt;/li&gt;
+&lt;li&gt;第四步：创建获取发射矩阵张量的函数&lt;/li&gt;
+&lt;li&gt;第五步：计算前向传播分值的函数&lt;/li&gt;
+&lt;li&gt;第六步：计算句子真实分值的函数&lt;/li&gt;
+&lt;li&gt;第七步：维特比算法的实现&lt;/li&gt;
+&lt;li&gt;第八步：完善 BiLSTM_CRF 类的全部功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;&lt;span id=&#34;242-模型训练的流程&#34;&gt; 2.4.2 模型训练的流程&lt;/span&gt;&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;第一步：熟悉字符到数字编码的码表&lt;/li&gt;
+&lt;li&gt;第二步：熟悉训练数据集的样式和含义解释&lt;/li&gt;
+&lt;li&gt;第三步：完成字符到 id 的映射函数&lt;/li&gt;
+&lt;li&gt;第四步：获取训练数据和验证数据的函数&lt;/li&gt;
+&lt;li&gt;第五步：完成准确率和召回率的评估代码&lt;/li&gt;
+&lt;li&gt;第六步：绘制损失曲线和评估曲线图&lt;/li&gt;
+&lt;li&gt;第七步：完成训练模型的完整代码&lt;/li&gt;
+&lt;li&gt;第八步：训练集和验证集损失曲线和指标数据曲线的分析&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

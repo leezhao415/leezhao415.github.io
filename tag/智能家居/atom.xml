@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;智能家居&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2022-03-10T13:36:30.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2022/03/10/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85%E7%B3%BB%E7%BB%9F%E6%96%B9%E6%A1%88/</id>
+        <title>智能家居系统方案</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2022/03/10/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85%E7%B3%BB%E7%BB%9F%E6%96%B9%E6%A1%88/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85%E7%B3%BB%E7%BB%9F%E6%96%B9%E6%A1%88&#34;&gt;智能家居系统方案&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;智能家居系统方案&#34;&gt; 智能家居系统方案&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;智能家居体验馆七大体验：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;玄关&lt;/code&gt; ：智能门锁、入侵报警、一键场景、照明联动、背景音。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;厨房&lt;/code&gt; ：环境监测、用水安全、一键场景、用电安全、用气安全、新风空调。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;餐厅&lt;/code&gt; ：智能调光、背景音乐、暖通空调、一键场景。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;客厅&lt;/code&gt; ：环境监测、智能灯光、一键场景、家庭影院、暖通空调、智能电器、安防报警。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;书房&lt;/code&gt; ：环境监测、智能灯光、一键场景、背景音乐、暖通空调。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;卧室&lt;/code&gt; ：环境监测、智能灯光、一键场景、背景音乐、暖通空调、智能电器、睡眠监测。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;卫生间&lt;/code&gt; ：暖通空调、智能电器、一键场景、背景音乐、人体感应。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以根据个人需求尽情体验智能家居带来的舒适生活！&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-239455ffde09a463b56f883f289c5001_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-56754a033b730c94b911ddf27e9bf82b_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-58fbf33e673f511c91b25255c82636fc_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-c413570183c1310f1cbdfd9525fc3368_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-67352d86a9fe23688cbd4385d1d06e13_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-ab57f3b1a3008c61f4a3a9a50b970996_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-3f618f7d3ba31a413b8f0748ba7a5747_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-b46206677842e78346a996c90128ba1a_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-51ea39cef651c40b54f638f210d0f69c_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-eaaeecfaac1d4c65595a7d4f2ff4addb_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-0538d892d91e344caca74e637688ea13_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-a4f50c3cd309425035e8471ff673906c_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-b039316a3bdf60ffdfae20dd899de37e_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-3472133766f32cb3827f7c7f6bf43c2f_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-4b8ad706c98ddaea05de1c95ad83deef_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-b2d64cb5cd24a7a86ac32f5216789f36_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-039995faddf48d2f1fad5fa025a0d128_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-a32a787ab35a4cb3ddbe89f5b25a55a9_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-c5d96d040b407f106a2e25deeb6da6d1_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-4963f39f0144f0b57b6089fddeb1122d_720w.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+</content>
+        <category term="人工智能" />
+        <category term="智能家居" />
+        <updated>2022-03-10T13:36:30.000Z</updated>
+    </entry>
+</feed>

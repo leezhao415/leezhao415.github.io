@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;科研项目成果&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-08-08T09:40:40.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/08/08/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C%E5%90%88%E9%9B%86%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/</id>
+        <title>科研项目成果合集（持续更新中）</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/08/08/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C%E5%90%88%E9%9B%86%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1%E5%9F%BA%E4%BA%8E%E6%94%B9%E8%BF%9B%E7%9A%84msrcr%E4%B8%8B%E7%A9%BF%E7%AB%8B%E4%BA%A4%E7%9B%91%E6%8E%A7%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6&#34;&gt;（1）基于改进的 MSRCR 下穿立交监控图像增强算法研究&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2%E4%B8%8B%E7%A9%BF%E7%AB%8B%E4%BA%A4%E7%9B%91%E6%8E%A7%E5%9B%BE%E5%83%8F%E8%B4%A8%E9%87%8F%E6%8F%90%E5%8D%87%E7%AE%97%E6%B3%95%E7%A0%94%E7%A9%B6&#34;&gt;（2）下穿立交监控图像质量提升算法研究&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3%E5%9F%BA%E4%BA%8E%E4%BA%8C%E6%AC%A1%E6%A8%A1%E7%89%88%E5%BA%93%E7%9A%84%E8%BD%A6%E7%89%8C%E6%AE%8B%E7%BC%BA%E5%AD%97%E7%AC%A6%E8%AF%86%E5%88%AB&#34;&gt;（3）基于二次模版库的车牌残缺字符识别&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4detecting-the-trajectory-of-moving-object-for-single-pixel-imaging-systeminternational-conference-on-electrical-engineering-control-and-robotics-eecr-2018&#34;&gt;（4）Detecting the Trajectory of Moving Object for Single-Pixel Imaging System.International Conference on Electrical Engineering, Control  and Robotics (EECR 2018)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5%E5%9F%BA%E4%BA%8E%E5%8F%8C%E9%80%9A%E8%B7%AF%E8%B7%83%E5%B1%82%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C%E7%9A%84%E4%BA%A4%E9%80%9A%E6%A0%87%E5%BF%97%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95&#34;&gt;（5）基于双通路跃层卷积网络的交通标志识别算法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;论文标题&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;次序&lt;/th&gt;
+&lt;th&gt;主题&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;（1）基于改进的 MSRCR 下穿立交监控图像增强算法研究&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;第一作者&lt;/td&gt;
+&lt;td&gt;图像增强算法&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;（2）下穿立交监控图像质量提升算法研究&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;第一作者&lt;/td&gt;
+&lt;td&gt;图像增强 + 图像滤波&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;（3）基于二次模版库的车牌残缺字符识别&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;第四作者&lt;/td&gt;
+&lt;td&gt;车牌识别 + 残缺字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;（4）Detecting the Trajectory of Moving Object for Single-Pixel  Imaging System.International Conference on Electrical Engineering, Control  and Robotics (EECR 2018)&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;第四作者&lt;/td&gt;
+&lt;td&gt;单像素图像系统 + 移动目标检测&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;（5）基于双通路跃层卷积网络的交通标志识别算法&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;第三作者&lt;/td&gt;
+&lt;td&gt;交通标志识别 + 改进 SSD 算法&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;&lt;span id=&#34;1基于改进的-msrcr-下穿立交监控图像增强算法研究&#34;&gt; （1）基于改进的 MSRCR 下穿立交监控图像增强算法研究&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;文章链接：&lt;a href=&#34;https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;amp;dbname=CJFDLAST2019&amp;amp;filename=AHJG201806014&amp;amp;v=NDAi69LzBpJZYBiZyBSfnttq85jikD0OZA1uvKnP0jzAkmESPDAZvQHLv0FXe%25mmd2Bwz&#34;&gt;https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;amp;dbname=CJFDLAST2019&amp;amp;filename=AHJG201806014&amp;amp;v=NDAi69LzBpJZYBiZyBSfnttq85jikD0OZA1uvKnP0jzAkmESPDAZvQHLv0FXe%mmd2Bwz&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;摘要&lt;/code&gt; ：受粉尘、低照度或点光源等因素影响，城市道路下穿立交监控图像存在对比度低、背景噪声强和整体视觉效果不理想等问题。针对这类问题，本文提出了一种改进的带色彩恢复的多尺度视网膜增强（MSRCR）算法，并且详细分析了改进的 MSRCR 算法的原理和实现方法。为验证本文算法的有效性，以实际采集的 4 幅彩色图像为实验样本，分别利用 SSR（单尺度 Retinex）算法、MSRCR 算法和本文算法对其进行了增强处理。实验结果表明，与对比算法相比，本文算法具有更大的优势。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;关键词&lt;/code&gt; ：图像增强；下穿立交；Retinex; 多尺度；&lt;/p&gt;
+&lt;p&gt;​&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;2下穿立交监控图像质量提升算法研究&#34;&gt; （2）下穿立交监控图像质量提升算法研究&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;文章链接：&lt;a href=&#34;https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CMFD&amp;amp;dbname=CMFD201902&amp;amp;filename=1019602718.nh&amp;amp;v=osFmEM3yWVV%25mmd2FEt9hS1OGERKQAg9HWx%25mmd2FOOyISXwFfPO8KEBddyAj8GaI0EHrRIE14&#34;&gt;https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CMFD&amp;amp;dbname=CMFD201902&amp;amp;filename=1019602718.nh&amp;amp;v=osFmEM3yWVV%mmd2FEt9hS1OGERKQAg9HWx%mmd2FOOyISXwFfPO8KEBddyAj8GaI0EHrRIE14&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;摘要&lt;/code&gt; ：视频监控系统作为智慧城市重要的信息采集环节，能够提供实时、直观和全方位的数据信息，已辐射到生产和生活中的各个环节和领域。下穿立交作为城市交通的重要组成部分，一直以来都是智慧城市和平安社区建设中监控系统布控的的重点区域。因此，市政管理部门在下穿立交中布设大量监控设备以实现对下穿立交的全方位、立体化的监测。下穿立交由于所处位置的光照不均匀，大雾、沙尘、雨天等恶劣天气以及采集设备精度和传输线路等的影响，其监控系统不可避免地引入了噪声，使得采集到的视频图像存在对比度低，边缘等细节信息丢失等的问题，影响到真实和原始监控信息的利用效率。因此，为了能够充分发挥下穿立交监控系统的作用，提高监控视频图像的利用效率，对其图像质量提升算法的研究就显得非常必要。针对上述问题，本文主要开展以下的研究工作:（1）在对经典的图像增强算法以及带色彩恢复的多尺度视网膜增强算法分析的基础上，本文结合下穿立交监控图像的特征，提出一种改进的带色彩恢复的多尺度视网膜下穿立交图像增强算法。通过单尺度视网膜增强算法获取更丰富的细节信息，然后再经过多尺度视网膜增强算法来平衡细节信息和全局信息，达到在不影响全局信息量的同时，能够获取到更丰富的细节信息的目的。（2）对多种噪声的特性进行分析建模，本文实现了基于三维块匹配的下穿立交监控视频图像去噪算法。采用非局部块匹配思想，首先在图像中寻找相似块，使用硬阈值线性变换降低欧式距离的复杂度，然后通过相似块域转换，利用联合滤波器降低相似块自身含有的噪声，并在聚集处对相似块进行加权处理，得到降噪后的目标块。（3）结合基于三维块匹配的图像去噪算法和改进的带色彩恢复的多尺度视网膜增强算法来设计联合滤波器，提出了基于联合滤波的下穿立交监控图像质量提升算法。实验结果表明，与上述两种算法相比，经过该算法处理后的图像具有较好的视觉效果和较高的客观质量评价得分，能够在有效提升图像对比度的同时抑制噪声的影响。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;关键词&lt;/code&gt; ：下穿立交；图像增强；图像去噪；联合滤波；图像质量提升；&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;3基于二次模版库的车牌残缺字符识别&#34;&gt; （3）基于二次模版库的车牌残缺字符识别&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;文章链接：&lt;a href=&#34;https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;amp;dbname=CJFDLAST2017&amp;amp;filename=AHJG201704008&amp;amp;v=yUvHFsUJxakb0FonScKyGsACK6cnYvjgAgO2NfOHXtmUVP5sLvmCfcyAmJg7PNYE&#34;&gt;https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;amp;dbname=CJFDLAST2017&amp;amp;filename=AHJG201704008&amp;amp;v=yUvHFsUJxakb0FonScKyGsACK6cnYvjgAgO2NfOHXtmUVP5sLvmCfcyAmJg7PNYE&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;摘要&lt;/code&gt; ：字符识别在车牌识别中的作用不可或缺，最简便的识别方式为模版匹配法。本文提出改进的模板匹配法，通过细化的字符子库，结合相关匹配算法，提升识别效果，克服了传统模版匹配无法识别残缺字符或匹配识别错误的缺点，实现遮挡或残缺字符的精确识别。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;关键词&lt;/code&gt; ：字符识别；二次模板匹配；残缺字符；字符子库；精确识别；&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;4detecting-the-trajectory-of-moving-object-for-single-pixel-imaging-systeminternational-conference-on-electrical-engineering-control-and-robotics-eecr-2018&#34;&gt; （4）Detecting the Trajectory of Moving Object for Single-Pixel Imaging System.International Conference on Electrical Engineering, Control  and Robotics (EECR 2018)&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;文章链接：&lt;a href=&#34;https://xueshu.baidu.com/usercenter/paper/show?paperid=ab95bf7f27e2c2463d256d31f284def6&amp;amp;site=xueshu_se&#34;&gt;https://xueshu.baidu.com/usercenter/paper/show?paperid=ab95bf7f27e2c2463d256d31f284def6&amp;amp;site=xueshu_se&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Abstract&lt;/code&gt; . In order to get the trajectory of moving object using single-pixel imaging system, an algorithm is proposed. The same pseudorandom masks are employed to illuminate the different time scene. A time weighted sum of the background correction signals is employed to get the trajectory information using compressed sensing (CS) method. In ideal situation, we can obtain other parameters (e.g., speed, orientation) besides the trajectory. However, the reflective intensity of the object can be change due to the reflective angle change caused by the motion in some situations. This will mislead for achieving the speed, orientation parameters. In order to eliminate this effect, a division method is utilized. At last, the computer simulation results prove the effect validity of the proposed algorithm.&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;5基于双通路跃层卷积网络的交通标志识别算法&#34;&gt; （5）基于双通路跃层卷积网络的交通标志识别算法&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;文章链接：&lt;a href=&#34;https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;amp;dbname=CJFDLAST2018&amp;amp;filename=AHJG201801012&amp;amp;v=NDAi69LzBpLYDA8VvVrEQkPCaziaZj7FTVmFQrmPJ1bkdaKe6WbwHcKwi8MYD%25mmd2BKo&#34;&gt;https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;amp;dbname=CJFDLAST2018&amp;amp;filename=AHJG201801012&amp;amp;v=NDAi69LzBpLYDA8VvVrEQkPCaziaZj7FTVmFQrmPJ1bkdaKe6WbwHcKwi8MYD%mmd2BKo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;摘要&lt;/code&gt; ：交通标志识别（Traffic Sign Recognition,TSR）是智能交通系统的重要研究方向之一。因道路交通的环境复杂、交通标志数据库规模大小等因素制约，在设计 TSR 系统可行性方案时必须考虑算法的复杂度、识别率和鲁棒性。针对这一问题，本文提出了一种不同尺度的双通路跃层卷积神经网络算法，在同一通路上交通标志的底层局部特征和高层全局的特征，与不同通路上经过局部响应归一化和池化后的特征在全连接层融合，从而丰富了交通标志分类的特征，最后将特征图输入分类器进行交通标志识别。采用德国交通标志识别标准数据集（German Traffic Sign Recognition Benchmark,GTSRB）进行训练和测试，本文算法的识别率达到 97.96%, 明显优于单一通路的跃层卷积网络算法和人工方法。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;关键词&lt;/code&gt; ：卷积神经网络；交通标志识别；双通路跃层；特征融合；深度学习；&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="科研项目成果" />
+        <updated>2021-08-08T09:40:40.000Z</updated>
+    </entry>
+</feed>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python 实现的十大经典排序算法 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   Python 实现的十大经典排序算法  需求 划分方法 常见排序方法  选择排序（Selection Sort） 冒泡排序（Bubble Sort） 插入排序（Insertion Sort） 希尔排序（Shell Sort） 归并排序（Merge Sort） 快速排序（Quick Sort） 堆排序（Heap Sort） 计数排序（Counting Sort） 桶排序（Bucke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 实现的十大经典排序算法">
+<meta property="og:url" content="https://leezhao415.github.io/2021/08/28/Python-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   Python 实现的十大经典排序算法  需求 划分方法 常见排序方法  选择排序（Selection Sort） 冒泡排序（Bubble Sort） 插入排序（Insertion Sort） 希尔排序（Shell Sort） 归并排序（Merge Sort） 快速排序（Quick Sort） 堆排序（Heap Sort） 计数排序（Counting Sort） 桶排序（Bucke">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.leetcode-cn.com/3b5a9383650b7ba01211846defeda8917d78827f02132113c57fcbd09715bf4b-849589-20171015224719590-1433219824.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/faa1a3c1b3f1ae8a406e9c8e86bd28a9a1fb621ed6cc8eead1fe6e14ee0ec1c4-v2-d4c88b8cc620af6af67c33910899fcf7_b.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/7d9af5dcad63d4097876f2614f38484f49b4e34f75c296a75001b19cf8134bb4-849589-20171015223238449-2146169197.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/8ccbfd04148694bb4435bce230ff57620d7d551d060f1d077df6514966ce4f0d-Insertion-sort-example-300px.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/bc80b45fb9b68f86b62b9fb968a377d8dbee807a5e54a9276cb684648663181f-849589-20171015225645277-1151100000.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/cb7ce9df25f122c02e243d5f9b69ae4692fd3c04da25fab2c60775eb95cb6749-849589-20180331170017421-364506073.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/96cc37ec397c0ce8edb20fc7e724f2064556f9f4b338e01930d092fd86b335f6-1252882-20190217215522179-1982419775.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/6cd459ced71fa1f899e547c2ebbd4c51b19258e983f7bee38ef068fa81c6a863-849589-20171015230557043-37375010.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/d13bd82917a8eba049efa261bebd3beb74b9e7c1adf39ce51bf1c9dd60d49f57-Quicksort-example.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/e9ca22f1693e33a2fef64f55c10096ec93b9466459937f69eb409b0dad3f55bd-849589-20171015230936371-1413523412.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/5fbad99ff809738ba9a619cca3cb0680d5034a2e8ca8b936f44a49b67ef48c12-Heapsort-example.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/33f8780a82b2be153c5c1e272c2aecd9eab4c3e5b2534caae02d4cfc6e0d3648-849589-20171015231308699-356134237.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/4cc62bc0a03212520bf955bf0fb4a4bc91bf9ba571a11b827dd09a8e3d27dcdc-849589-20171015231740840-6968181.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/000fb11d2f5cda9c6241a87926583582891552ddc7d6cd944db5e7bce75cdb76-849589-20171015232107090-1920702011.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/1df246bf456e537f508a40ca8951c21f001491ea0f6c9386d65d27d4c4c091ca-849589-20171015232453668-1397662527.gif">
+<meta property="og:image" content="https://pic.leetcode-cn.com/7c4b99fa8324e4245c2147fc9f4eb9fc23df9dc1d9dee8b2ebd9009c4100ad7e-849589-20171015233043168-1867817869.png">
+<meta property="article:published_time" content="2021-08-28T07:15:08.000Z">
+<meta property="article:modified_time" content="2021-08-28T07:19:41.342Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="数据结构与算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.leetcode-cn.com/3b5a9383650b7ba01211846defeda8917d78827f02132113c57fcbd09715bf4b-849589-20171015224719590-1433219824.gif">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Python-实现的十大经典排序算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Python 实现的十大经典排序算法
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-08-28
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#python-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">Python 实现的十大经典排序算法</a>
+<ul>
+<li><a href="#%E9%9C%80%E6%B1%82">需求</a></li>
+<li><a href="#%E5%88%92%E5%88%86%E6%96%B9%E6%B3%95">划分方法</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95">常见排序方法</a>
+<ul>
+<li><a href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8Fselection-sort">选择排序（Selection Sort）</a></li>
+<li><a href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8Fbubble-sort">冒泡排序（Bubble Sort）</a></li>
+<li><a href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8Finsertion-sort">插入排序（Insertion Sort）</a></li>
+<li><a href="#%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8Fshell-sort">希尔排序（Shell Sort）</a></li>
+<li><a href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8Fmerge-sort">归并排序（Merge Sort）</a></li>
+<li><a href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8Fquick-sort">快速排序（Quick Sort）</a></li>
+<li><a href="#%E5%A0%86%E6%8E%92%E5%BA%8Fheap-sort">堆排序（Heap Sort）</a></li>
+<li><a href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8Fcounting-sort">计数排序（Counting Sort）</a></li>
+<li><a href="#%E6%A1%B6%E6%8E%92%E5%BA%8Fbucket-sort">桶排序（Bucket Sort）</a></li>
+<li><a href="#%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8Fradix-sort">基数排序（Radix Sort）</a></li>
+</ul>
+</li>
+<li><a href="#%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93">算法总结</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h2><span id="python-实现的十大经典排序算法"> Python 实现的十大经典排序算法</span></h2>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/MobiusStrip/article/details/83785159?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task">https://blog.csdn.net/MobiusStrip/article/details/83785159?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task</a></p>
+<h3><span id="需求"> 需求</span></h3>
+<p>对一个无序数组，根据某个关键字排序。</p>
+<h3><span id="划分方法"> 划分方法</span></h3>
+<p>排序算法划分方法有：稳定性，内外排序，时空复杂度</p>
+<p>按照<strong>稳定性</strong>划分，稳定排序，如果 <code>a</code>  原本在 <code>b</code>  前面，而 <code>a=b</code> ，排序之后 <code>a</code>  仍然在 <code>b</code>  的前面；而不稳定可能出现在 <code>b</code>  之后。</p>
+<p>按照<strong>内外排序</strong>划分，内排序，所有排序操作都在内存中完成；外排序 ：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行；</p>
+<p>按照<strong>时空复杂度</strong>划分，时间复杂度是指运行时间，空间复杂度运行完一个程序所需内存的大小。</p>
+<h3><span id="常见排序方法"> 常见排序方法</span></h3>
+<h4><span id="选择排序selection-sort"> 选择排序（Selection Sort）</span></h4>
+<center><img src="https://pic.leetcode-cn.com/3b5a9383650b7ba01211846defeda8917d78827f02132113c57fcbd09715bf4b-849589-20171015224719590-1433219824.gif" alt="849589-20171015224719590-1433219824.gif" style="zoom:80%;"></center>
+<p>这应该最符合人类思维的排序方法，工作原理，首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+<p>稳定性：用数组实现的选择排序是不稳定的，用链表实现的选择排序是稳定的；内排序；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">selection_sort</span>(<span class="params">nums</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i, n):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &gt; nums[j]:</span><br><span class="line">                nums[i], nums[j] = nums[j], nums[i]</span><br><span class="line">    <span class="keyword">return</span> nums</span><br></pre></td></tr></table></figure>
+<p><strong>算法分析</strong>：</p>
+<p>时间复杂度：O (n<sup>2</sup>) ， <code>n</code>  是数组长度</p>
+<h4><span id="冒泡排序bubble-sort"> 冒泡排序（Bubble Sort）</span></h4>
+<p>冒泡排序时针对<strong>相邻元素之间</strong>的比较，可以将大的数慢慢 “沉底”(数组尾部)</p>
+<center><img src="https://pic.leetcode-cn.com/faa1a3c1b3f1ae8a406e9c8e86bd28a9a1fb621ed6cc8eead1fe6e14ee0ec1c4-v2-d4c88b8cc620af6af67c33910899fcf7_b.gif" alt="v2-d4c88b8cc620af6af67c33910899fcf7_b.gif" style="zoom:80%;"></center>
+<center><img src="https://pic.leetcode-cn.com/7d9af5dcad63d4097876f2614f38484f49b4e34f75c296a75001b19cf8134bb4-849589-20171015223238449-2146169197.gif" alt="849589-20171015223238449-2146169197.gif" style="zoom:75%;"></center>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span>(<span class="params">nums</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    <span class="comment"># 进行多次循环</span></span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n - c):</span><br><span class="line">            <span class="keyword">if</span> nums[i - <span class="number">1</span>] &gt; nums[i]:</span><br><span class="line">                nums[i - <span class="number">1</span>], nums[i] = nums[i], nums[i - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> nums</span><br></pre></td></tr></table></figure>
+<p><strong>算法分析</strong>：</p>
+<p>稳定排序，内排序，时间复杂度：O (n<sup>2</sup>)</p>
+<h4><span id="插入排序insertion-sort"> 插入排序（Insertion Sort）</span></h4>
+<p>插入排序是前面<strong>已排序数组</strong>找到插入的位置</p>
+<center><img src="https://pic.leetcode-cn.com/8ccbfd04148694bb4435bce230ff57620d7d551d060f1d077df6514966ce4f0d-Insertion-sort-example-300px.gif" alt="Insertion-sort-example-300px.gif" style="zoom:80%;"></center>
+<center><img src="https://pic.leetcode-cn.com/bc80b45fb9b68f86b62b9fb968a377d8dbee807a5e54a9276cb684648663181f-849589-20171015225645277-1151100000.gif" alt="849589-20171015225645277-1151100000.gif" style="zoom:67%;"></center>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertion_sort</span>(<span class="params">nums</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">        <span class="keyword">while</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i - <span class="number">1</span>] &gt; nums[i]:</span><br><span class="line">            nums[i - <span class="number">1</span>], nums[i] = nums[i], nums[i - <span class="number">1</span>]</span><br><span class="line">            i -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> nums</span><br></pre></td></tr></table></figure>
+<p><strong>算法分析</strong>：</p>
+<p>稳定排序，<sub>内排序</sub>，时间复杂度：O (n<sup>2</sup>)</p>
+<h4><span id="希尔排序shell-sort"> 希尔排序（Shell Sort）</span></h4>
+<p>插入排序进阶版，</p>
+<p><strong>算法描述：</strong></p>
+<p>我们来看下希尔排序的基本步骤，在此我们选择增量 <code>gap=length/2</code> ，缩小增量继续以 <code>gap = gap/2</code>  的方式，这种增量选择我们可以用一个序列来表示， <code>&#123;n/2,(n/2)/2…1&#125;</code> ，称为增量序列。希尔排序的增量序列的选择与证明是个数学难题，我们选择的这个增量序列是比较常用的，也是希尔建议的增量，称为希尔增量，但其实这个增量序列不是最优的。</p>
+<p>先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，具体算法描述：</p>
+<ul>
+<li>步骤 1：选择一个增量序列 t<sub>1</sub>，t<sub>2</sub>，…，t<sub>k</sub>，其中 t<sub>i</sub>&gt;t<sub>j</sub>，t<sub>k</sub>=1；</li>
+<li>步骤 2：按增量序列个数 k，对序列进行 k 趟排序；</li>
+<li>步骤 3：每趟排序，根据对应的增量 ti，将待排序列分割成若干长度为 m 的子序列，分别对各子表进行直接插入排序。仅增量因子为 1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。</li>
+</ul>
+<center><img src="https://pic.leetcode-cn.com/cb7ce9df25f122c02e243d5f9b69ae4692fd3c04da25fab2c60775eb95cb6749-849589-20180331170017421-364506073.gif" alt="849589-20180331170017421-364506073.gif" style="zoom:80%;"></center>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_sort</span>(<span class="params">nums</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    gap = n // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> gap:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gap, n):</span><br><span class="line">            <span class="keyword">while</span> i - gap &gt;= <span class="number">0</span> <span class="keyword">and</span> nums[i - gap] &gt; nums[i]:</span><br><span class="line">                nums[i - gap], nums[i] = nums[i], nums[i - gap]</span><br><span class="line">                i -= gap</span><br><span class="line">        gap //= <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> nums</span><br></pre></td></tr></table></figure>
+<p><strong>算法分析</strong>：</p>
+<p>非稳定排序，内排序；</p>
+<p>希尔排序的时间复杂度和增量序列是相关的。</p>
+<p><code>&#123;1,2,4,8,...&#125;</code>  这种序列并不是很好的增量序列，使用这个增量序列的时间复杂度（最坏情形）是 O (n<sup>2</sup>)；</p>
+<p><code>Hibbard</code>  提出了另一个增量序列 1,3,7，…,2<sup>k</sup>-1，这种序列的时间复杂度 (最坏情形) 为 O (n<sup>1.5</sup>)；</p>
+<p><code>Sedgewick</code>  提出了几种增量序列，其最坏情形运行时间为 O (n<sup>1.3</sup>)，其中最好的一个序列是 <code>&#123;1,5,19,41,109,...&#125;</code> ；</p>
+<p>对于不同增量的复杂度感兴趣可以参考《数据结构与算法分析》一书或其他相关论文。</p>
+<h4><span id="归并排序merge-sort"> 归并排序（Merge Sort）</span></h4>
+<p>归并排序，采用是分治法，先将数组分成子序列，让子序列有序，再将子序列间有序，合并成有序数组。</p>
+<p>算法描述：</p>
+<ol>
+<li>把长度为 <code>n</code>  的输入序列分成长度  <code>n/2</code>  的子序列；</li>
+<li>对两个子序列采用归并排序；</li>
+<li>合并所有子序列。</li>
+</ol>
+<center><img src="https://pic.leetcode-cn.com/96cc37ec397c0ce8edb20fc7e724f2064556f9f4b338e01930d092fd86b335f6-1252882-20190217215522179-1982419775.gif" alt="1252882-20190217215522179-1982419775.gif" style="zoom: 80%;"></center>
+<center><img src="https://pic.leetcode-cn.com/6cd459ced71fa1f899e547c2ebbd4c51b19258e983f7bee38ef068fa81c6a863-849589-20171015230557043-37375010.gif" alt="849589-20171015230557043-37375010.gif" style="zoom: 67%;"></center>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span>(<span class="params">nums</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(nums) &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> nums</span><br><span class="line">    mid = <span class="built_in">len</span>(nums) // <span class="number">2</span></span><br><span class="line">    <span class="comment"># 分</span></span><br><span class="line">    left = merge_sort(nums[:mid])</span><br><span class="line">    right = merge_sort(nums[mid:])</span><br><span class="line">    <span class="comment"># 合并</span></span><br><span class="line">    <span class="keyword">return</span> merge(left, right)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span>(<span class="params">left, right</span>):</span></span><br><span class="line">    res = []</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(left) <span class="keyword">and</span> j &lt; <span class="built_in">len</span>(right):</span><br><span class="line">        <span class="keyword">if</span> left[i] &lt;= right[j]:</span><br><span class="line">            res.append(left[i])</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res.append(right[j])</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">    res += left[i:]</span><br><span class="line">    res += right[j:]</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><strong>算法分析</strong>：</p>
+<p>稳定排序，外排序（占用额外内存），时间复杂度 O (nlogn)。</p>
+<h4><span id="快速排序quick-sort"> 快速排序（Quick Sort）</span></h4>
+<p>快速排序是选取一个 “哨兵”( <code>pivot</code> )，将小于 <code>pivot</code>  放在左边，把大于 <code>pivot</code>  放在右边，分割成两部分，并且可以固定 <code>pivot</code>  在数组的位置，在对左右两部分继续进行排序。</p>
+<p>快速排序使用分治法来把一个串（list）分为两个子串（sub-lists）。具体算法描述如下：</p>
+<ul>
+<li>步骤 1：从数列中挑出一个元素，称为 “基准”（<strong>pivot</strong> ）；</li>
+<li>步骤 2：重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；</li>
+<li>步骤 3：递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。</li>
+</ul>
+<center><img src="https://pic.leetcode-cn.com/d13bd82917a8eba049efa261bebd3beb74b9e7c1adf39ce51bf1c9dd60d49f57-Quicksort-example.gif" alt="Quicksort-example.gif" style="zoom:67%;"></center>
+<center><img src="https://pic.leetcode-cn.com/e9ca22f1693e33a2fef64f55c10096ec93b9466459937f69eb409b0dad3f55bd-849589-20171015230936371-1413523412.gif" alt="849589-20171015230936371-1413523412.gif" style="zoom:75%;"></center>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span>(<span class="params">nums</span>):</span></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">quick</span>(<span class="params">left, right</span>):</span></span><br><span class="line">        <span class="keyword">if</span> left &gt;= right:</span><br><span class="line">            <span class="keyword">return</span> nums</span><br><span class="line">        pivot = left</span><br><span class="line">        i = left</span><br><span class="line">        j = right</span><br><span class="line">        <span class="keyword">while</span> i &lt; j:</span><br><span class="line">            <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[j] &gt; nums[pivot]:</span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[i] &lt;= nums[pivot]:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            nums[i], nums[j] = nums[j], nums[i]</span><br><span class="line">        nums[pivot], nums[j] = nums[j], nums[pivot]</span><br><span class="line">        quick(left, j - <span class="number">1</span>)</span><br><span class="line">        quick(j + <span class="number">1</span>, right)</span><br><span class="line">        <span class="keyword">return</span> nums</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> quick(<span class="number">0</span>, n - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>算法分析</strong>：</p>
+<p>不稳定排序，内排序，时间复杂度度 O (nlogn)。</p>
+<h4><span id="堆排序heap-sort"> 堆排序（Heap Sort）</span></h4>
+<p>堆排序是利用堆这个数据结构设计的排序算法。</p>
+<p>算法描述：</p>
+<ol>
+<li>建堆，从底向上调整堆，使得父亲节点比孩子节点值大，构成大顶堆；</li>
+<li>交换堆顶和最后一个元素，重新调整堆。</li>
+</ol>
+<p>调整堆方法写了递归和迭代，都很好理解！</p>
+<center><img src="https://pic.leetcode-cn.com/5fbad99ff809738ba9a619cca3cb0680d5034a2e8ca8b936f44a49b67ef48c12-Heapsort-example.gif" alt="Heapsort-example.gif" style="zoom: 80%;"></center>
+<center><img src="https://pic.leetcode-cn.com/33f8780a82b2be153c5c1e272c2aecd9eab4c3e5b2534caae02d4cfc6e0d3648-849589-20171015231308699-356134237.gif" alt="849589-20171015231308699-356134237.gif" style="zoom: 80%;"></center>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span>(<span class="params">nums</span>):</span></span><br><span class="line">    <span class="comment"># 调整堆</span></span><br><span class="line">    <span class="comment"># 迭代写法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">adjust_heap</span>(<span class="params">nums, startpos, endpos</span>):</span></span><br><span class="line">        newitem = nums[startpos]</span><br><span class="line">        pos = startpos</span><br><span class="line">        childpos = pos * <span class="number">2</span> + <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> childpos &lt; endpos:</span><br><span class="line">            rightpos = childpos + <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> rightpos &lt; endpos <span class="keyword">and</span> nums[rightpos] &gt;= nums[childpos]:</span><br><span class="line">                childpos = rightpos</span><br><span class="line">            <span class="keyword">if</span> newitem &lt; nums[childpos]:</span><br><span class="line">                nums[pos] = nums[childpos]</span><br><span class="line">                pos = childpos</span><br><span class="line">                childpos = pos * <span class="number">2</span> + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        nums[pos] = newitem</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 递归写法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">adjust_heap</span>(<span class="params">nums, startpos, endpos</span>):</span></span><br><span class="line">        pos = startpos</span><br><span class="line">        chilidpos = pos * <span class="number">2</span> + <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> chilidpos &lt; endpos:</span><br><span class="line">            rightpos = chilidpos + <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> rightpos &lt; endpos <span class="keyword">and</span> nums[rightpos] &gt; nums[chilidpos]:</span><br><span class="line">                chilidpos = rightpos</span><br><span class="line">            <span class="keyword">if</span> nums[chilidpos] &gt; nums[pos]:</span><br><span class="line">                nums[pos], nums[chilidpos] = nums[chilidpos], nums[pos]</span><br><span class="line">                adjust_heap(nums, pos, endpos)</span><br><span class="line"></span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    <span class="comment"># 建堆</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">reversed</span>(<span class="built_in">range</span>(n // <span class="number">2</span>)):</span><br><span class="line">        adjust_heap(nums, i, n)</span><br><span class="line">    <span class="comment"># 调整堆</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">        nums[<span class="number">0</span>], nums[i] = nums[i], nums[<span class="number">0</span>]</span><br><span class="line">        adjust_heap(nums, <span class="number">0</span>, i)</span><br><span class="line">    <span class="keyword">return</span> nums</span><br></pre></td></tr></table></figure>
+<p><strong>算法分析</strong>：</p>
+<p>不稳定排序，内排序，时间复杂度为 O (nlogn)。</p>
+<h4><span id="计数排序counting-sort"> 计数排序（Counting Sort）</span></h4>
+<p>计数排序是典型的空间换时间算法，开辟额外数据空间存储用索引号记录数组的值和数组值个数</p>
+<p>算法描述：</p>
+<ol>
+<li>找出待排序的数组的最大值和最小值</li>
+<li>统计数组值的个数</li>
+<li>反向填充目标数组</li>
+</ol>
+<center><img src="https://pic.leetcode-cn.com/4cc62bc0a03212520bf955bf0fb4a4bc91bf9ba571a11b827dd09a8e3d27dcdc-849589-20171015231740840-6968181.gif" alt="849589-20171015231740840-6968181.gif" style="zoom:67%;"></center>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">counting_sort</span>(<span class="params">nums</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> nums: <span class="keyword">return</span> []</span><br><span class="line">    n = <span class="built_in">len</span>(nums)</span><br><span class="line">    _<span class="built_in">min</span> = <span class="built_in">min</span>(nums)</span><br><span class="line">    _<span class="built_in">max</span> = <span class="built_in">max</span>(nums)</span><br><span class="line">    tmp_arr = [<span class="number">0</span>] * (_<span class="built_in">max</span> - _<span class="built_in">min</span> + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">        tmp_arr[num - _<span class="built_in">min</span>] += <span class="number">1</span></span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">while</span> tmp_arr[j] == <span class="number">0</span>:</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        nums[i] = j + _<span class="built_in">min</span></span><br><span class="line">        tmp_arr[j] -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> nums</span><br></pre></td></tr></table></figure>
+<p><strong>算法分析</strong>：</p>
+<p>稳定排序，外排序，时间复杂度 O (n + k)，但是对于数据范围很大的数组，需要大量时间和内存。</p>
+<h4><span id="桶排序bucket-sort"> 桶排序（Bucket Sort）</span></h4>
+<p>桶排序是计数排序的升级版，原理是：输入数据服从均匀分布的，将数据分到有限数量的桶里，每个桶再分别排序（有可能再使用别的算法或是以递归方式继续使用桶排序，此文编码采用递归方式）</p>
+<p>算法描述：</p>
+<ol>
+<li>人为设置一个桶的 <code>BucketSize</code> ，作为每个桶放置多少个<strong>不同数值</strong>（意思就是 <code>BucketSize = 5</code> ，可以放 5 个不同数字比如 <code>[1, 2, 3,4,5]</code>  也可以放  <code>100000</code>  个 <code>3</code> ，只是表示该桶能存几个不同的数值）</li>
+<li>遍历待排序数据，并且把数据一个一个放到对应的桶里去</li>
+<li>对每个不是桶进行排序，可以使用其他排序方法，也递归排序</li>
+<li>不是空的桶里数据拼接起来</li>
+</ol>
+<center><img src="https://pic.leetcode-cn.com/000fb11d2f5cda9c6241a87926583582891552ddc7d6cd944db5e7bce75cdb76-849589-20171015232107090-1920702011.png" alt="849589-20171015232107090-1920702011.png" style="zoom: 80%;"></center>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bucket_sort</span>(<span class="params">nums, bucketSize</span>):</span>    <span class="keyword">if</span> <span class="built_in">len</span>(nums) &lt; <span class="number">2</span>:        <span class="keyword">return</span> nums    _<span class="built_in">min</span> = <span class="built_in">min</span>(nums)    _<span class="built_in">max</span> = <span class="built_in">max</span>(nums)    <span class="comment"># 需要桶个数    bucketNum = (_max - _min) // bucketSize + 1    buckets = [[] for _ in range(bucketNum)]    for num in nums:        # 放入相应的桶中        buckets[(num - _min) // bucketSize].append(num)    res = []    for bucket in buckets:        if not bucket: continue        if bucketSize == 1:            res.extend(bucket)        else:            # 当都装在一个桶里,说明桶容量大了            if bucketNum == 1:                bucketSize -= 1            res.extend(bucket_sort(bucket, bucketSize))    return res</span></span><br></pre></td></tr></table></figure>
+<p>算法分析：</p>
+<p>稳定排序，外排序，时间复杂度 O (n + k)， <code>k</code>  为桶的个数。</p>
+<h4><span id="基数排序radix-sort"> 基数排序（Radix Sort）</span></h4>
+<p>基数排序是对数字每一位进行排序，从最低位开始排序</p>
+<p>算法描述：</p>
+<ol>
+<li>找到数组最大值，得最大位数；</li>
+<li>从最低位开始取每个位组成 <code>radix</code>  数组；</li>
+<li>对 <code>radix</code>  进行计数排序（计数排序适用于小范围的特点）。</li>
+</ol>
+<center><img src="https://pic.leetcode-cn.com/1df246bf456e537f508a40ca8951c21f001491ea0f6c9386d65d27d4c4c091ca-849589-20171015232453668-1397662527.gif" alt="849589-20171015232453668-1397662527.gif" style="zoom: 67%;"></center>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Radix_sort</span>(<span class="params">nums</span>):</span>    <span class="keyword">if</span> <span class="keyword">not</span> nums: <span class="keyword">return</span> []    _<span class="built_in">max</span> = <span class="built_in">max</span>(nums)    <span class="comment"># 最大位数    maxDigit = len(str(_max))    bucketList = [[] for _ in range(10)]    # 从低位开始排序    div, mod = 1, 10    for i in range(maxDigit):        for num in nums:            bucketList[num % mod // div].append(num)        div *= 10        mod *= 10        idx = 0        for j in range(10):            for item in bucketList[j]:                nums[idx] = item                idx += 1            bucketList[j] = []    return nums</span></span><br></pre></td></tr></table></figure>
+<p><strong>算法分析</strong>：</p>
+<p>稳定排序，外排序，时间复杂度 posCount * (n + n) ，其中  <code>posCount</code>  为数组中最大元素的最高位数；简化下得：$O (k *n) $；其中 k 为常数，n 为元素个数。</p>
+<h3><span id="算法总结"> 算法总结</span></h3>
+<center><img src="https://pic.leetcode-cn.com/7c4b99fa8324e4245c2147fc9f4eb9fc23df9dc1d9dee8b2ebd9009c4100ad7e-849589-20171015233043168-1867817869.png" alt="849589-20171015233043168-1867817869.png" style="zoom: 67%;"></center>
+<p><strong>图片名词解释：</strong></p>
+<ul>
+<li>n: 数据规模</li>
+<li>k: “桶” 的个数</li>
+<li>In-place: 占用常数内存，不占用额外内存</li>
+<li>Out-place: 占用额外内存</li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年08月28日 15:19</p>
+        <p>原始链接： <a class="post-url" href="/2021/08/28/Python-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" title="Python 实现的十大经典排序算法">https://leezhao415.github.io/2021/08/28/Python-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/08/28/Python-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/&title=《Python 实现的十大经典排序算法》 — 且听风吟，御剑于心！&pic=images/排序算法.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/08/28/Python-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/&title=《Python 实现的十大经典排序算法》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/08/28/Python-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Python 实现的十大经典排序算法》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/08/28/Python-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/08/28/Python-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/08/28/Python-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/数据结构与算法/" class="color3">数据结构与算法</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> Python 实现的十大经典排序算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 需求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 划分方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 常见排序方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 选择排序（Selection Sort）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 冒泡排序（Bubble Sort）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 插入排序（Insertion Sort）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 希尔排序（Shell Sort）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 归并排序（Merge Sort）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 快速排序（Quick Sort）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 堆排序（Heap Sort）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 计数排序（Counting Sort）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 桶排序（Bucket Sort）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 基数排序（Radix Sort）</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 算法总结</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/08/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91IoU%E3%80%81GIoU%E3%80%81DIoU%E3%80%81CIoU%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          【详解】IoU、GIoU、DIoU、CIoU损失函数
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/08/09/Hadoop%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Hadoop详解</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Python-实现的十大经典排序算法" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【详解】OpenCV4.X - DNN模块 Python API | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   1. dnn.blobFromImage 2. dnn.blobFromImages 3. dnn.Net_readFromModelOptimizer 4. dnn.NMSBoxes 5. dnn.NMSBoxesRotated 6. dnn.readNet 7. dnn.readNetFromCaffe 8. dnn.readNetFromDarknet 9. dnn.rea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【详解】OpenCV4.X - DNN模块 Python API">
+<meta property="og:url" content="https://leezhao415.github.io/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91OpenCV4-X-DNN%E6%A8%A1%E5%9D%97-Python-API/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   1. dnn.blobFromImage 2. dnn.blobFromImages 3. dnn.Net_readFromModelOptimizer 4. dnn.NMSBoxes 5. dnn.NMSBoxesRotated 6. dnn.readNet 7. dnn.readNetFromCaffe 8. dnn.readNetFromDarknet 9. dnn.rea">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.aiuai.cn/uploads/2019/04/1097911958.png">
+<meta property="article:published_time" content="2021-07-15T10:51:37.000Z">
+<meta property="article:modified_time" content="2021-07-15T13:09:20.340Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="OpenCV之DNN模块">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.aiuai.cn/uploads/2019/04/1097911958.png">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-【详解】OpenCV4-X-DNN模块-Python-API" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      【详解】OpenCV4.X - DNN模块 Python API
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-07-15
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#1-dnnblobfromimage">1. dnn.blobFromImage</a></li>
+<li><a href="#2-dnnblobfromimages">2. dnn.blobFromImages</a></li>
+<li><a href="#3-dnnnet_readfrommodeloptimizer">3. dnn.Net_readFromModelOptimizer</a></li>
+<li><a href="#4-dnnnmsboxes">4. dnn.NMSBoxes</a></li>
+<li><a href="#5-dnnnmsboxesrotated">5. dnn.NMSBoxesRotated</a></li>
+<li><a href="#6-dnnreadnet">6. dnn.readNet</a></li>
+<li><a href="#7-dnnreadnetfromcaffe">7. dnn.readNetFromCaffe</a></li>
+<li><a href="#8-dnnreadnetfromdarknet">8. dnn.readNetFromDarknet</a></li>
+<li><a href="#9-dnnreadnetfrommodeloptimizer">9. dnn.readNetFromModelOptimizer</a></li>
+<li><a href="#10-dnnreadnetfromonnx">10. dnn.readNetFromONNX</a></li>
+<li><a href="#11-dnnreadnetfromtensorflow">11. dnn.readNetFromTensorflow</a></li>
+<li><a href="#12-dnnreadnetfromtorch">12. dnn.readNetFromTorch</a></li>
+<li><a href="#13-dnnreadtensorfromonnx">13. dnn.readTensorFromONNX</a></li>
+<li><a href="#14-dnnresetmyriaddevice">14. dnn.resetMyriadDevice</a></li>
+<li><a href="#15-dnnshrinkcaffemodel">15. dnn.shrinkCaffeModel</a></li>
+<li><a href="#16-dnnwritetextgraph">16. dnn.writeTextGraph</a></li>
+</ul>
+<!-- tocstop -->
+<hr>
+<p>OpenCV 4.X 版本集成了很多直接利用 DNN 模块的 Python API 接口.</p>
+<p>安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install opencv-python</span><br></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> cv2 <span class="keyword">import</span> dnn</span><br><span class="line"><span class="comment"># Variables with simple values</span></span><br><span class="line">DNN_BACKEND_DEFAULT = <span class="number">0</span></span><br><span class="line">DNN_BACKEND_HALIDE = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">DNN_BACKEND_INFERENCE_ENGINE = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">DNN_BACKEND_OPENCV = <span class="number">3</span></span><br><span class="line">DNN_BACKEND_VKCOM = <span class="number">4</span></span><br><span class="line"></span><br><span class="line">DNN_TARGET_CPU = <span class="number">0</span></span><br><span class="line">DNN_TARGET_MYRIAD = <span class="number">3</span></span><br><span class="line">DNN_TARGET_OPENCL = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">DNN_TARGET_OPENCL_FP16 = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">DNN_TARGET_VULKAN = <span class="number">4</span></span><br><span class="line"></span><br><span class="line">__loader__ = <span class="literal">None</span></span><br><span class="line">__spec__ = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<h3><span id="1-dnnblobfromimage"> 1. dnn.blobFromImage</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">blobFromImage</span>(<span class="params">image, </span></span></span><br><span class="line"><span class="function"><span class="params">                  scalefactor=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">                  size=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">                  mean=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">                  swapRB=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">                  crop=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">                  ddepth=<span class="literal">None</span></span>):</span> </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>根据输入图像，创建 NCHW 次序的 4-dim blobs.</p>
+<p>参数：</p>
+<p>[1] - image: cv2.imread 读取的图片数据；</p>
+<p>[2] - scalefactor: 缩放像素值，如 [0, 255] - [0, 1].</p>
+<p>[3] - size: 输出图像的尺寸，如 netInWidth,netInHeight.</p>
+<p>[4] - mean: 从各通道减均值。如果输入 image 为 BGR 次序，且 swapRB=True，则通道次序为 mean−R,mean−G,mean−B.</p>
+<p>[5] - swapRB: 交换 3 通道图片的第一个和最后一个通道，如 BGR - RGB.</p>
+<p>[6] - crop: 图像尺寸 resize 后是否裁剪。如果 <code>crop=True</code> ，则，输入图片的尺寸调整 resize 后，一个边对应与 size 的一个维度，而另一个边的值大于等于 size 的另一个维度；然后从 resize 后的图片中心进行 crop. 如果 <code>crop=False</code> ，则无需 crop，只需保持图片的长宽比.</p>
+<p>[7] - ddepth: 输出 blob 的 Depth. 可选: CV_32F 或 CV_8U.</p>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">from</span> cv2 <span class="keyword">import</span> dnn</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">img_cv2 = cv2.imread(<span class="string">&quot;test.jpg&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[INFO]Image shape: &quot;</span>, img_cv2.shape)</span><br><span class="line"></span><br><span class="line">inWidth = <span class="number">256</span></span><br><span class="line">inHeight = <span class="number">256</span></span><br><span class="line">outBlob1 = cv2.dnn.blobFromImage(img_cv2,</span><br><span class="line">                                scalefactor=<span class="number">1.0</span> / <span class="number">255</span>,</span><br><span class="line">                                size=(inWidth, inHeight),</span><br><span class="line">                                mean=(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>),</span><br><span class="line">                                swapRB=<span class="literal">False</span>,</span><br><span class="line">                                crop=<span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[INFO]outBlob1 shape: &quot;</span>, outBlob1.shape)</span><br><span class="line">outimg1 = np.transpose(outBlob1[<span class="number">0</span>], (<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">outBlob2 = cv2.dnn.blobFromImage(img_cv2,</span><br><span class="line">                                scalefactor=<span class="number">1.0</span> / <span class="number">255</span>,</span><br><span class="line">                                size=(inWidth, inHeight),</span><br><span class="line">                                mean=(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>),</span><br><span class="line">                                swapRB=<span class="literal">False</span>,</span><br><span class="line">                                crop=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[INFO]outBlob2 shape: &quot;</span>, outBlob2.shape)</span><br><span class="line">outimg2 = np.transpose(outBlob2[<span class="number">0</span>], (<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=[<span class="number">10</span>, <span class="number">10</span>])</span><br><span class="line">plt.subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Input image&#x27;</span>, fontsize=<span class="number">16</span>)</span><br><span class="line">plt.imshow(cv2.cvtColor(img_cv2, cv2.COLOR_BGR2RGB))</span><br><span class="line">plt.axis(<span class="string">&quot;off&quot;</span>)</span><br><span class="line">plt.subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Output image - no crop&#x27;</span>, fontsize=<span class="number">16</span>)</span><br><span class="line">plt.imshow(cv2.cvtColor(outimg1, cv2.COLOR_BGR2RGB))</span><br><span class="line">plt.axis(<span class="string">&quot;off&quot;</span>)</span><br><span class="line">plt.subplot(<span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;Output image - crop&#x27;</span>, fontsize=<span class="number">16</span>)</span><br><span class="line">plt.imshow(cv2.cvtColor(outimg2, cv2.COLOR_BGR2RGB))</span><br><span class="line">plt.axis(<span class="string">&quot;off&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.aiuai.cn/uploads/2019/04/1097911958.png" alt="img"></p>
+<h3><span id="2-dnnblobfromimages"> 2. dnn.blobFromImages</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">blobFromImages</span>(<span class="params">images, </span></span></span><br><span class="line"><span class="function"><span class="params">                   scalefactor=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">                   size=<span class="literal">None</span>, mean=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">                   swapRB=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">                   crop=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">                   ddepth=<span class="literal">None</span></span>):</span> </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>批量处理图片，创建 4-dim blobs. 其它参数类似于  <code>dnn.blobFromImage</code> .</p>
+<h3><span id="3-dnnnet_readfrommodeloptimizer"> 3. dnn.Net_readFromModelOptimizer</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Net_readFromModelOptimizer</span>(<span class="params">xml, <span class="built_in">bin</span></span>):</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>从 Intel’s Model Optimizer intermediate representation 创建网络.</p>
+<p>参数：</p>
+<p>[1] - xml: XML 网络拓扑结果的配置文件.</p>
+<p>[2] - bin: 训练权重值的二值文件.</p>
+<h3><span id="4-dnnnmsboxes"> 4. dnn.NMSBoxes</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">NMSBoxes</span>(<span class="params">bboxes, </span></span></span><br><span class="line"><span class="function"><span class="params">             scores, </span></span></span><br><span class="line"><span class="function"><span class="params">             score_threshold, </span></span></span><br><span class="line"><span class="function"><span class="params">             nms_threshold, </span></span></span><br><span class="line"><span class="function"><span class="params">             eta=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">             top_k=<span class="literal">None</span></span>):</span> </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>根据给定的 boxes 和对应的 scores 进行 NMS 处理.</p>
+<p>参数：</p>
+<p>[1] - boxes: 待处理的边界框 bounding boxes.</p>
+<p>[2] - scores: 对于于待处理边界框的 scores.</p>
+<p>[3] - score_threshold: 用于过滤 boxes 的 score 阈值.</p>
+<p>[4] - nms_threshold: NMS 用到的阈值.</p>
+<p>[5] - indices: NMS 处理后所保留的边界框的索引值.</p>
+<p>[6] - eta: 自适应阈值公式中的相关系数：nms_thresholdi+1=eta⋅nms_thresholdi</p>
+<p>[7] - top_k: 如果 top_k&gt;0，则保留最多 top_k 个边界框索引值.</p>
+<h3><span id="5-dnnnmsboxesrotated"> 5. dnn.NMSBoxesRotated</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">NMSBoxesRotated</span>(<span class="params">bboxes, </span></span></span><br><span class="line"><span class="function"><span class="params">                    scores, </span></span></span><br><span class="line"><span class="function"><span class="params">                    score_threshold, </span></span></span><br><span class="line"><span class="function"><span class="params">                    nms_threshold, </span></span></span><br><span class="line"><span class="function"><span class="params">                    eta=<span class="literal">None</span>, </span></span></span><br><span class="line"><span class="function"><span class="params">                    top_k=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h3><span id="6-dnnreadnet"> 6. dnn.readNet</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readNet</span>(<span class="params">model, config=<span class="literal">None</span>, framework=<span class="literal">None</span></span>):</span>    </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>从支持的格式中加载深度学习网络和模型参数.</p>
+<p>参数：</p>
+<p>[1] - model: 训练的权重参数的模型二值文件，支持的格式有： <code>*.caffemodel</code> Caffe、 <code>*.pb</code> TensorFlow、 <code>*.t7</code>  或  <code>*.net</code> Torch、  <code>*.weights</code> Darknet、 <code>*.bin</code> DLDT.</p>
+<p>[2] - config: 包含网络配置的文本文件，支持的格式有： <code>*.prototxt</code>  Caffe、 <code>*.pbtxt</code>  TensorFlow、 <code>*.cfg</code>  Darknet、 <code>*.xml</code>  DLDT.</p>
+<p>[3] - framework: 所支持格式的框架名.</p>
+<p>该函数自动检测训练模型所采用的深度框架，然后调用  <code>readNetFromCaffe</code> 、 <code>readNetFromTensorflow</code> 、 <code>readNetFromTorch</code>  或  <code>readNetFromDarknet</code>  中的某个函数.</p>
+<h3><span id="7-dnnreadnetfromcaffe"> 7. dnn.readNetFromCaffe</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readNetFromCaffe</span>(<span class="params">prototxt, caffeModel=<span class="literal">None</span></span>):</span>     </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>加载采用 Caffe 的配置网络和训练的权重参数.</p>
+<h3><span id="8-dnnreadnetfromdarknet"> 8. dnn.readNetFromDarknet</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readNetFromDarknet</span>(<span class="params">cfgFile, darknetModel=<span class="literal">None</span></span>):</span>    </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>加载采用 Darknet 的配置网络和训练的权重参数.</p>
+<h3><span id="9-dnnreadnetfrommodeloptimizer"> 9. dnn.readNetFromModelOptimizer</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readNetFromModelOptimizer</span>(<span class="params">xml, <span class="built_in">bin</span></span>):</span>     </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>加载采用 Intel’s Model Optimizer intermediate representation 的配置网络和训练的权重参数.</p>
+<h3><span id="10-dnnreadnetfromonnx"> 10. dnn.readNetFromONNX</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readNetFromONNX</span>(<span class="params">onnxFile</span>):</span>    </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>加载 .onnx 模型网络配置参数和权重参数.</p>
+<h3><span id="11-dnnreadnetfromtensorflow"> 11. dnn.readNetFromTensorflow</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readNetFromTensorflow</span>(<span class="params">model, config=<span class="literal">None</span></span>):</span>    </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>加载采用 Tensorflow 的配置网络和训练的权重参数.</p>
+<p>[1] - model: .pb 文件.</p>
+<p>[2] - config: .pbtxt 文件.</p>
+<h3><span id="12-dnnreadnetfromtorch"> 12. dnn.readNetFromTorch</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readNetFromTorch</span>(<span class="params">model, isBinary=<span class="literal">None</span></span>):</span>     </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>加载采用 Torch 的配置网络和训练的权重参数.</p>
+<p>[1] - model: 采用  <code>torch.save() </code> 函数保存的文件.</p>
+<p>所支持的 Torch nn.Module 网络层有：</p>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- nn.Sequential</span><br><span class="line">- nn.Parallel</span><br><span class="line">- nn.Concat</span><br><span class="line">- nn.Linear</span><br><span class="line">- nn.SpatialConvolution</span><br><span class="line">- nn.SpatialMaxPooling, nn.SpatialAveragePooling</span><br><span class="line">- nn.ReLU, nn.TanH, nn.Sigmoid</span><br><span class="line">- nn.Reshape</span><br><span class="line">- nn.SoftMax, nn.LogSoftMax</span><br></pre></td></tr></table></figure>
+<h3><span id="13-dnnreadtensorfromonnx"> 13. dnn.readTensorFromONNX</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readTensorFromONNX</span>(<span class="params">path</span>):</span>    </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>从  <code>.pb</code>  文件创建 blob.</p>
+<p>[1] - path: 包含 input tensor 的 <code>.pb</code>  文件.</p>
+<h3><span id="14-dnnresetmyriaddevice"> 14. dnn.resetMyriadDevice</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">resetMyriadDevice</span>():</span>    </span><br><span class="line">    <span class="string">&quot;&quot;&quot;    resetMyriadDevice() -&gt; None    .   @brief Release a Myriad device is binded by OpenCV.    .   *    .   * Single Myriad device cannot be shared across multiple processes which uses    .   * Inference Engine&#x27;s Myriad plugin.    &quot;&quot;&quot;</span>    </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h3><span id="15-dnnshrinkcaffemodel"> 15. dnn.shrinkCaffeModel</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shrinkCaffeModel</span>(<span class="params">src, dst, layersTypes=<span class="literal">None</span></span>):</span>    </span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>将 Caffe 网络的所有权重转换为半精度浮点数值 halfprecisionfloatingpoint.</p>
+<p>参数：</p>
+<p>[1] - src: Caffe 网路的原始单精度浮点数值权重模型文件 (后缀一般为 <code>.caffemodel</code> ).</p>
+<p>[2] - dst: 转换后的权重文件.</p>
+<p>[3] - layersTypes: 待转换参数的网络层类型，默认是只转换卷积层和全连接层的权重参数.</p>
+<h3><span id="16-dnnwritetextgraph"> 16. dnn.writeTextGraph</span></h3>
+<p>定义：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writeTextGraph</span>(<span class="params">model, output</span>):</span>    </span><br><span class="line">    <span class="comment">#note: To reduce output file size, trained weights are not included.    </span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>作用：</p>
+<p>将以 protocol buffer 格式的二值网络，创建为文本表示 Createatextrepresentationforabinarynetworkstoredinprotocolbufferformat.</p>
+<p>参数：</p>
+<p>[1] - model: 二值网络 binarynetwork 的路径.</p>
+<p>[2] - output: 创建的输出文件路径.</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年07月15日 21:09</p>
+        <p>原始链接： <a class="post-url" href="/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91OpenCV4-X-DNN%E6%A8%A1%E5%9D%97-Python-API/" title="【详解】OpenCV4.X - DNN模块 Python API">https://leezhao415.github.io/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91OpenCV4-X-DNN%E6%A8%A1%E5%9D%97-Python-API/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91OpenCV4-X-DNN%E6%A8%A1%E5%9D%97-Python-API/&title=《【详解】OpenCV4.X - DNN模块 Python API》 — 且听风吟，御剑于心！&pic=images/DNN模块.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91OpenCV4-X-DNN%E6%A8%A1%E5%9D%97-Python-API/&title=《【详解】OpenCV4.X - DNN模块 Python API》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91OpenCV4-X-DNN%E6%A8%A1%E5%9D%97-Python-API/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【详解】OpenCV4.X - DNN模块 Python API》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91OpenCV4-X-DNN%E6%A8%A1%E5%9D%97-Python-API/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91OpenCV4-X-DNN%E6%A8%A1%E5%9D%97-Python-API/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91OpenCV4-X-DNN%E6%A8%A1%E5%9D%97-Python-API/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/OpenCV之DNN模块/" class="color3">OpenCV之DNN模块</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 1. dnn.blobFromImage</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 2. dnn.blobFromImages</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 3. dnn.Net_readFromModelOptimizer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 4. dnn.NMSBoxes</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 5. dnn.NMSBoxesRotated</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 6. dnn.readNet</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 7. dnn.readNetFromCaffe</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 8. dnn.readNetFromDarknet</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 9. dnn.readNetFromModelOptimizer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 10. dnn.readNetFromONNX</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 11. dnn.readNetFromTensorflow</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 12. dnn.readNetFromTorch</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 13. dnn.readTensorFromONNX</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 14. dnn.resetMyriadDevice</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 15. dnn.shrinkCaffeModel</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 16. dnn.writeTextGraph</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          【详解】激活函数
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/07/14/%E5%9C%A8%E6%80%80%E7%96%91%E7%9A%84%E6%97%B6%E4%BB%A3%E4%BE%9D%E7%84%B6%E9%9C%80%E8%A6%81%E4%BF%A1%E4%BB%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">在怀疑的时代依然需要信仰</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="【详解】OpenCV4-X-DNN模块-Python-API" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;python数据分析&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Fri, 09 Jul 2021 19:41:03 +0800</pubDate>
+        <lastBuildDate>Fri, 09 Jul 2021 19:41:03 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2021/07/09/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%88%86%E6%9E%90/</guid>
+            <title>Python数据分析第三方库分析</title>
+            <link>https://leezhao415.github.io/2021/07/09/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%88%86%E6%9E%90/</link>
+            <category>人工智能</category>
+            <category>Python数据分析</category>
+            <pubDate>Fri, 09 Jul 2021 19:41:03 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%88%86%E6%9E%90&#34;&gt;Python 数据分析第三方库分析&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%B8%B8%E7%94%A8%E5%BA%93%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80&#34;&gt;@常用库下载地址&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#1-numpy&#34;&gt;1 Numpy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-matplotlib&#34;&gt;2 Matplotlib&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-pandas&#34;&gt;3 Pandas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-scipy&#34;&gt;4 SciPy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-scikit-learn&#34;&gt;5 Scikit-Learn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-keras&#34;&gt;6 Keras&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-gensim&#34;&gt;7 Gensim&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8-scrapy&#34;&gt;8 Scrapy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%80%BB%E7%BB%93&#34;&gt;总结&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;span id=&#34;python-数据分析第三方库分析&#34;&gt; Python 数据分析第三方库分析&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;使用原因&lt;/strong&gt;：Python 可用于数据分析，但其单纯依赖 Python 本身自带的库进行数据分析还是具有一定的局限性的，需要安装第三方扩展库来增强分析和挖掘能力。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python 数据分析第三方扩展库&lt;/strong&gt;： &lt;code&gt;Numpy&lt;/code&gt; 、 &lt;code&gt;Pandas&lt;/code&gt; 、 &lt;code&gt;SciPy&lt;/code&gt; 、 &lt;code&gt;Matplotlib&lt;/code&gt; 、 &lt;code&gt;Scikit-Learn&lt;/code&gt; 、 &lt;code&gt;Keras&lt;/code&gt; 、 &lt;code&gt;Gensim&lt;/code&gt; 、 &lt;code&gt;Scrapy&lt;/code&gt;  等&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;常用库下载地址&#34;&gt; @常用库下载地址&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;1 网络爬虫&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;requests&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/requests/&#34;&gt;https://pypi.org/project/requests/&lt;/a&gt;    简洁且简单的处理 HTTP 请求的第三方库&lt;br&gt;
+&lt;strong&gt; scrapy&lt;/strong&gt;：&lt;a href=&#34;https://scrapy.org/&#34;&gt;https://scrapy.org/&lt;/a&gt;    快速、高层次的 Web 获取框架&lt;br&gt;
+&lt;strong&gt; 2 数据分析&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;numpy&lt;/strong&gt;：&lt;a href=&#34;http://www.numpy.org/&#34;&gt;http://www.numpy.org/&lt;/a&gt;    开源数值计算扩展第三方库&lt;br&gt;
+&lt;strong&gt; scipy&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/scipy/&#34;&gt;https://pypi.org/project/scipy/&lt;/a&gt;    专为科学以及工程计算的第三方库&lt;br&gt;
+&lt;strong&gt; pandas&lt;/strong&gt;：&lt;a href=&#34;http://pandas.pydata.org/&#34;&gt;http://pandas.pydata.org/&lt;/a&gt;    可高效地操作大型数据集的第三方库&lt;br&gt;
+&lt;strong&gt; 3 文本处理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pdfminer&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/pdfminer/&#34;&gt;https://pypi.org/project/pdfminer/&lt;/a&gt;    从 PDF 文档中提取各类信息的第三方库&lt;br&gt;
+&lt;strong&gt; openpyxl&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/openpyxl/&#34;&gt;https://pypi.org/project/openpyxl/&lt;/a&gt;    处理 Microsoft Excel 文档的 Python 第三方库&lt;br&gt;
+&lt;strong&gt; python-docx&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/python-docx/&#34;&gt;https://pypi.org/project/python-docx/&lt;/a&gt;    处理 Microsoft Word 文档的 Python 第三方库&lt;br&gt;
+&lt;strong&gt; beautifulsoup4&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/beautifulsoup4/&#34;&gt;https://pypi.org/project/beautifulsoup4/&lt;/a&gt;    从 HTML 和 XML 文件中解析出数据的第三方库&lt;br&gt;
+&lt;strong&gt; 4 用户图形界面&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PyQt5&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/PyQt5/&#34;&gt;https://pypi.org/project/PyQt5/&lt;/a&gt;    成熟的商业级 GUI 第三方库&lt;br&gt;
+&lt;strong&gt; wxpython&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/wxPython/&#34;&gt;https://pypi.org/project/wxPython/&lt;/a&gt;    优秀的 GUI 图形库&lt;br&gt;
+&lt;strong&gt; pygtk&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/PyGTK/&#34;&gt;https://pypi.org/project/PyGTK/&lt;/a&gt;    轻松创建具有图形用户界面程序的第三方库&lt;br&gt;
+&lt;strong&gt; 5 机器学习&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Scikit-learn&lt;/strong&gt;：&lt;a href=&#34;https://scikit-learn.org/stable/&#34;&gt;https://scikit-learn.org/stable/&lt;/a&gt;    简单且高效的数据挖掘和数据分析工具&lt;br&gt;
+&lt;strong&gt; Tensorflow&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/tensorflow/&#34;&gt;https://pypi.org/project/tensorflow/&lt;/a&gt;    人工智能学习系统&lt;br&gt;
+&lt;strong&gt; Theano&lt;/strong&gt; ：&lt;a href=&#34;http://deeplearning.net/software/theano/&#34;&gt;http://deeplearning.net/software/theano/&lt;/a&gt;    执行深度学习中大规模神经网络算法的运算&lt;br&gt;
+&lt;strong&gt; 6 Web 开发&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Django&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/Django/&#34;&gt;https://pypi.org/project/Django/&lt;/a&gt;    最流行的开源 Web 应用框架&lt;br&gt;
+&lt;strong&gt; Pyramid&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/pyramid/&#34;&gt;https://pypi.org/project/pyramid/&lt;/a&gt;    通用、开源的 Python Web 应用程序开发框架&lt;br&gt;
+&lt;strong&gt; Flask&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/Flask/&#34;&gt;https://pypi.org/project/Flask/&lt;/a&gt;    轻量级 Web 应用框架&lt;br&gt;
+&lt;strong&gt; 7 游戏开发&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pygame&lt;/strong&gt;：&lt;a href=&#34;https://www.python.org/&#34;&gt;https://www.python.org/&lt;/a&gt;    面向游戏开发入门的 Python 第三方库&lt;br&gt;
+&lt;strong&gt; Panda3D&lt;/strong&gt;：&lt;a href=&#34;http://www.panda3d.org/&#34;&gt;http://www.panda3d.org/&lt;/a&gt;    开源、跨平台的 3D 渲染和游戏开发库&lt;br&gt;
+&lt;strong&gt; cocos2d&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/cocos2d/&#34;&gt;https://pypi.org/project/cocos2d/&lt;/a&gt;    构建 2D 游戏和图形界面交互式应用的框架&lt;br&gt;
+&lt;strong&gt; 8 数据可视化&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Matplotlib&lt;/strong&gt;：&lt;a href=&#34;https://matplotlib.org/&#34;&gt;https://matplotlib.org/&lt;/a&gt;    提供数据绘图功能的第三方库，主要进行二维图表数据展示&lt;br&gt;
+&lt;strong&gt; TVTK&lt;/strong&gt;：&lt;a href=&#34;https://www.lfd.uci.edu/~gohlke/pythonlibs/&#34;&gt;https://www.lfd.uci.edu/~gohlke/pythonlibs/&lt;/a&gt;    图形应用函数库，是专业可编程的三维可视化工具&lt;br&gt;
+&lt;strong&gt; mayavi&lt;/strong&gt;：&lt;a href=&#34;https://pypi.org/project/mayavi/&#34;&gt;https://pypi.org/project/mayavi/&lt;/a&gt;    方便实用的可视化软件&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;1-numpy&#34;&gt; 1 Numpy&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;提供数组支持以及相应的高效处理函数，是 Python 数据分析的基础，也是 SciPy、Pandas 等数据处理和科学计算库最基本的函数功能库。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;2-matplotlib&#34;&gt; 2 Matplotlib&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;强大的数据可视化工具和作图库，是主要用于绘制数据图表的 Python 库，提供了绘制各类可视化图形的命令字库、简单的接口，可以方便用户轻松掌握图形的格式，绘制各类可视化图形。&lt;/li&gt;
+&lt;li&gt;基于 Numpy 的一套 Python 包，这个包提供了吩咐的数据绘图工具，主要用于绘制一些统计图形。&lt;/li&gt;
+&lt;li&gt;有一套允许定制各种属性的默认设置，可以控制 Matplotlib 中的每一个默认属性：图像大小、每英寸点数、线宽、色彩和样式、子图、坐标轴、网格属性、文字和文字属性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;3-pandas&#34;&gt; 3 Pandas&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;最初被用作金融数据分析工具而开发出来，因此 Pandas 为时间序列分析提供了很好的支持&lt;/li&gt;
+&lt;li&gt;为了解决数据分析任务而创建的，Pandas 纳入了大量的库和一些标准的数据模型，提供了高效的操作大型数据集所需要的工具。&lt;/li&gt;
+&lt;li&gt;带有坐标轴的数据结构，支持自动或明确的数据对齐。这能防止由于数据结构没有对齐，以及处理不同来源、采用不同索引的数据而产生的常见错误。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;4-scipy&#34;&gt; 4 SciPy&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一组专门解决科学计算中各种标准问题域的包的集合，包含的功能有最优化、线性代数、积分、插值、拟合、特殊函数、快速傅里叶变换、信号处理和图像处理、常微分方程求解和其他科学与工程中常用的计算等&lt;/li&gt;
+&lt;li&gt;包括统计、优化、整合、线性代数模块、傅里叶变换、信号和图像处理、常微分方程求解器等。Scipy 依赖于 Numpy，并提供许多对用户友好的和有效的数值例程，如数值积分和优化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;5-scikit-learn&#34;&gt; 5 Scikit-Learn&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Python 常用的机器学习工具包，提供了完善的机器学习工具箱，支持数据预处理、分类、回归、聚类、预测和模型分析等强大机器学习库，其依赖于 Numpy、Scipy 和 Matplotlib 等。&lt;/li&gt;
+&lt;li&gt;主要功能分为六个部分，分类、回归、聚类、数据降维、模型选择、数据预处理。&lt;/li&gt;
+&lt;li&gt;自带一些经典的数据集，比如用于分类的 iris 和 digits 数据集，还有用于回归分析的 boston house prices 数据集。该数据集是一种字典结构，数据存储在.data 成员中，输出标签存储在.target 成员中。&lt;/li&gt;
+&lt;li&gt;Scikit-Learn 还有一些库，比如：用于自然语言处理的 Nltk、用于网站数据抓取的 Scrappy、用于网络挖掘的 Pattern、用于深度学习的 Theano 等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;6-keras&#34;&gt; 6 Keras&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;深度学习库，人工神经网络和深度学习模型，基于 Theano 之上，依赖于 Numpy 和 Scipy，利用它可以搭建普通的神经网络和各种深度学习模型，如语言处理、图像识别、自编码器、循环神经网络、递归审计网络、卷积神经网络等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;7-gensim&#34;&gt; 7 Gensim&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用来做文本主题模型的库，常用于处理语言方面的任务，支持 TF-IDF、LSA、LDA 和 Word2Vec 在内的多种主题模型算法，支持流式训练，并提供了诸如相似度计算、信息检索等一些常用任务的 API 接口。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;8-scrapy&#34;&gt; 8 Scrapy&lt;/span&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;专门为爬虫而生的工具，具有 URL 读取、HTML 解析、存储数据等功能，可以使用 Twisted 异步网络库来处理网络通讯，架构清晰，且包含了各种中间件接口，可以灵活的完成各种需求。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;&lt;span id=&#34;总结&#34;&gt; 总结&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Python 能直接处理数据，而 Pandas 几乎可以像 SQL 那样对数据进行控制。Matplotlib 能够对数据和记过进行可视化，快速理解数据。Scikit-Learn 提供了机器学习算法的支持，Theano 提供了升读学习框架（还可以使用 CPU 加速）。&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

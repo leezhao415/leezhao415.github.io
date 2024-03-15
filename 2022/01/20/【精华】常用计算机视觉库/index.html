@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【精华】常用计算机视觉库 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   1 常用计算机视觉库  （1）计算机视觉库 OpenCV （2）人脸识别 faceservice.cgi （3）OpenCVDotNet（OpenCV 的.NET 版 ） （4）人脸检测算法 jViolajones （5）Java 视觉处理库 JavaCV （6）运动检测程序 QMotion （7）视频监控系统 OpenVSS （8）手势识别 hand-gesture-detec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【精华】常用计算机视觉库">
+<meta property="og:url" content="https://leezhao415.github.io/2022/01/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   1 常用计算机视觉库  （1）计算机视觉库 OpenCV （2）人脸识别 faceservice.cgi （3）OpenCVDotNet（OpenCV 的.NET 版 ） （4）人脸检测算法 jViolajones （5）Java 视觉处理库 JavaCV （6）运动检测程序 QMotion （7）视频监控系统 OpenVSS （8）手势识别 hand-gesture-detec">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU8yQUlxVW1BQUJQZl9qWUczbzQ0Ni5wbmc?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU82QUVrblJBQUJLbndIVnI2VTA1My5wbmc?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU82QVBpN0ZBQUNqek8yblp6bzIxNi5wbmc?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU8tQWJSLUNBQUJrWk40anJVRTc2Ni5wbmc?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU8tQUZVeTdBQUNxYXJnemd0dzAwNC5wbmc?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBDQUwzSXhBQUNhTHFoRHVnTTUyOC5qcGc?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBDQVYwemFBQURnSlB3NUw0NDQ1MS5wbmc?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBHQWZSN3lBQUZma19JOE5USTUzNC5wbmc?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBLQUtWT2VBQUNZaG1iSXFORTY3MS5wbmc?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBlQWMyNW5BQVlRRU1zT3RCZzcyNy5naWY">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBlQVc0dUxBQUR0WGM5V1BDRTI5Ny5wbmc?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBpQVBuc1NBQURHekQ3TlNuczcyMS5wbmc?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBpQWVCQThBQUJENVg1M3ItQTYxOC5wbmc?x-oss-process=image/format,png">
+<meta property="article:published_time" content="2022-01-20T13:06:30.000Z">
+<meta property="article:modified_time" content="2022-01-20T13:27:02.747Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="计算机视觉库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU8yQUlxVW1BQUJQZl9qWUczbzQ0Ni5wbmc?x-oss-process=image/format,png">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-【精华】常用计算机视觉库" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      【精华】常用计算机视觉库
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-01-20
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#1-%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93">1 常用计算机视觉库</a>
+<ul>
+<li><a href="#1%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93-opencv">（1）计算机视觉库 OpenCV</a></li>
+<li><a href="#2%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB-faceservicecgi">（2）人脸识别 faceservice.cgi</a></li>
+<li><a href="#3opencvdotnetopencv%E7%9A%84net%E7%89%88">（3）OpenCVDotNet（OpenCV 的.NET 版 ）</a></li>
+<li><a href="#4%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95-jviolajones">（4）人脸检测算法 jViolajones</a></li>
+<li><a href="#5java%E8%A7%86%E8%A7%89%E5%A4%84%E7%90%86%E5%BA%93-javacv">（5）Java 视觉处理库 JavaCV</a></li>
+<li><a href="#6%E8%BF%90%E5%8A%A8%E6%A3%80%E6%B5%8B%E7%A8%8B%E5%BA%8F-qmotion">（6）运动检测程序 QMotion</a></li>
+<li><a href="#7%E8%A7%86%E9%A2%91%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F-openvss">（7）视频监控系统 OpenVSS</a></li>
+<li><a href="#8%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB-hand-gesture-detection">（8）手势识别 hand-gesture-detection</a></li>
+<li><a href="#9%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E8%AF%86%E5%88%AB-mcvai-tracking">（9）人脸检测识别 mcvai-tracking</a></li>
+<li><a href="#10%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%E4%B8%8E%E8%B7%9F%E8%B8%AA%E5%BA%93-asmlibrary">（10）人脸检测与跟踪库 asmlibrary</a></li>
+<li><a href="#11lua%E8%A7%86%E8%A7%89%E5%BC%80%E5%8F%91%E5%BA%93-libecv">（11）Lua 视觉开发库 libecv</a></li>
+<li><a href="#12opencvsharpopencv%E7%9A%84net%E5%B0%81%E8%A3%85">（12）OpenCVSharp（OpenCV 的.Net 封装）</a></li>
+<li><a href="#133d%E8%A7%86%E8%A7%89%E5%BA%93-fvision2010">（13）3D 视觉库 fvision2010</a></li>
+<li><a href="#14%E5%9F%BA%E4%BA%8Eqt%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93-qvision">（14）基于 QT 的计算机视觉库 QVision</a></li>
+<li><a href="#15%E5%9B%BE%E5%83%8F%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96-cvblob">（15）图像特征提取 cvBlob</a></li>
+<li><a href="#16%E5%AE%9E%E6%97%B6%E5%9B%BE%E5%83%8F%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86%E6%BB%A4%E6%B3%A2%E5%BC%80%E5%8F%91%E5%8C%85-gshow">（16）实时图像 / 视频处理滤波开发包 GShow</a></li>
+<li><a href="#17%E8%A7%86%E9%A2%91%E6%8D%95%E8%8E%B7-api-videoman">（17）视频捕获 API VideoMan</a></li>
+<li><a href="#18%E5%BC%80%E6%94%BE%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E9%A1%B9%E7%9B%AE-openpr">（18）开放模式识别项目 OpenPR</a></li>
+<li><a href="#19opencv%E7%9A%84python%E5%B0%81%E8%A3%85-pyopencv">（19）OpenCV 的 Python 封装 pyopencv</a></li>
+<li><a href="#20%E8%A7%86%E8%A7%89%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0-qcv">（20）视觉快速开发平台 qcv</a></li>
+<li><a href="#21%E5%9B%BE%E5%83%8F%E6%8D%95%E8%8E%B7-libv4l2cam">（21）图像捕获 libv4l2cam</a></li>
+<li><a href="#22%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95-openvidia">（22）计算机视觉算法 OpenVIDIA</a></li>
+<li><a href="#23%E9%AB%98%E6%96%AF%E6%A8%A1%E5%9E%8B%E7%82%B9%E9%9B%86%E9%85%8D%E5%87%86%E7%AE%97%E6%B3%95-gmmreg">（23）高斯模型点集配准算法 gmmreg</a></li>
+<li><a href="#24%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E5%92%8C%E8%A7%86%E8%A7%89%E5%BA%93-ravl">（24）模式识别和视觉库 RAVL</a></li>
+<li><a href="#25%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%92%8C%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E5%BA%93-lti-lib">（25）图像处理和计算机视觉常用算法库 LTI-Lib</a></li>
+<li><a href="#26opencv%E4%BC%98%E5%8C%96-opencv-dsp-acceleration">（26）OpenCV 优化 opencv-dsp-acceleration</a></li>
+<li><a href="#27c%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93-integrating-vision-toolkit">（27）C++ 计算机视觉库 Integrating Vision Toolkit</a></li>
+<li><a href="#28%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%92%8C%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%8A%80%E6%9C%AF%E7%9A%84%E5%B7%A5%E5%85%B7%E5%8C%85-egt">（28）计算机视觉和机器人技术的工具包 EGT</a></li>
+<li><a href="#29opencv%E7%9A%84%E6%89%A9%E5%B1%95%E5%BA%93-imagenets">（29）OpenCV 的扩展库 ImageNets</a></li>
+<li><a href="#30libvideogfx">（30）libvideogfx</a></li>
+<li><a href="#31matlab%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%8C%85-mvision">（31）Matlab 计算机视觉包 mVision</a></li>
+<li><a href="#32scilab%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93-sip">（32）Scilab 的计算机视觉库 SIP</a></li>
+<li><a href="#33stair-vision-library">（33）STAIR Vision Library</a></li>
+</ul>
+</li>
+<li><a href="#2-python%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93">2 Python 计算机视觉库</a>
+<ul>
+<li><a href="#%E4%B8%80-python%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BA%93">一、python 计算机视觉中常用的库</a></li>
+<li><a href="#%E4%BA%8C-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">二、基本操作</a></li>
+<li><a href="#%E4%B8%89-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0">三、常用的函数</a></li>
+</ul>
+</li>
+<li><a href="#3-%E5%B8%B8%E7%94%A8%E5%8D%81%E5%A4%A7%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%AE%97%E6%B3%95%E5%BA%93">3 常用十大图像处理算法库</a>
+<ul>
+<li><a href="#1scikit-image">（1）scikit Image</a></li>
+<li><a href="#2numpy">（2）Numpy</a></li>
+<li><a href="#3scipy">（3）Scipy</a></li>
+<li><a href="#4pil-pillow">（4）PIL/ Pillow</a></li>
+<li><a href="#5opencv-python">（5）OpenCV-Python</a></li>
+<li><a href="#6simplecv">（6）SimpleCV</a></li>
+<li><a href="#7mahotas">（7）Mahotas</a></li>
+<li><a href="#8simpleitk">（8）SimpleITK</a></li>
+<li><a href="#9pgmagick">（9）pgmagick</a></li>
+<li><a href="#10pycairo">（10）Pycairo</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h4><span id="1-常用计算机视觉库"> 1 常用计算机视觉库</span></h4>
+<h5><span id="1计算机视觉库-opencv"> （1）计算机视觉库 OpenCV</span></h5>
+<p>OpenCV 是 Intel? 开源计 算机视觉库。它由一系列 C 函数和少量 C++ 类构成，实现了图像处理和计算机视觉方面的很多通用算法。 OpenCV 拥有包括 300 多个 C 函数的跨平台的中、高层 API。它不依赖于其它的外部库 —— 尽管也可以使用某些外部库。 OpenCV 对非商业…</p>
+<h5><span id="2人脸识别-faceservicecgi"> （2）人脸识别 faceservice.cgi</span></h5>
+<p>faceservice.cgi 是一个用来进行人脸识别的 CGI 程序， 你可以通过上传图像，然后该程序即告诉你人脸的大概坐标位置。faceservice 是采用 OpenCV 库进行开发的。</p>
+<h5><span id="3opencvdotnetopencv-的net-版"> （3）OpenCVDotNet（OpenCV 的.NET 版 ）</span></h5>
+<p>OpenCVDotNet 是一个 .NET 对 OpenCV 包的封装。</p>
+<h5><span id="4人脸检测算法-jviolajones"> （4）人脸检测算法 jViolajones</span></h5>
+<p>jViolajones 是人脸检测算法 Viola-Jones 的一个 Java 实现，并能够加载 OpenCV XML 文件。 示例代码：<a target="_blank" rel="noopener" href="http://www.oschina.net/code/snippet_12_2033">http://www.oschina.net/code/snippet_12_2033</a></p>
+<h5><span id="5java-视觉处理库-javacv"> （5）Java 视觉处理库 JavaCV</span></h5>
+<p>JavaCV 提供了在计算机视觉领域的封装库，包括：OpenCV、ARToolKitPlus、libdc1394 2.x 、PGR FlyCapture 和 FFmpeg。此外，该工具可以很容易地使用 Java 平台的功能。 JavaCV 还带有硬件加速的全屏幕图像显示 (CanvasFrame)，易于在多个内核中执行并行代码 (并…</p>
+<h5><span id="6运动检测程序-qmotion"> （6）运动检测程序 QMotion</span></h5>
+<p>QMotion 是一个采用 OpenCV 开发的运动检测程序，基于 QT。</p>
+<h5><span id="7视频监控系统-openvss"> （7）视频监控系统 OpenVSS</span></h5>
+<p>OpenVSS - 开放平台的视频监控系统 - 是一个系统级别的视频监控软件视频分析框架 (VAF) 的视频分析与检索和播放服务，记录和索引技术。它被设计成插件式的支持多摄像头平台，多分析仪模块 (OpenCV 的集成)，以及多核心架构。</p>
+<h5><span id="8手势识别-hand-gesture-detection"> （8）手势识别 hand-gesture-detection</span></h5>
+<p>手势识别，用 OpenCV 实现</p>
+<h5><span id="9人脸检测识别-mcvai-tracking"> （9）人脸检测识别 mcvai-tracking</span></h5>
+<p>提供人脸检测、识别与检测特定人脸 的功能，示例代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cvReleaseImage</span>( &amp;gray ); </span><br><span class="line"><span class="built_in">cvReleaseMemStorage</span>(&amp;storage); </span><br><span class="line"><span class="built_in">cvReleaseHaarClassifierCascade</span>(&amp;cascade);...</span><br></pre></td></tr></table></figure>
+<h5><span id="10人脸检测与跟踪库-asmlibrary"> （10）人脸检测与跟踪库 asmlibrary</span></h5>
+<p>Active Shape Model Library (ASMLibrary?) SDK, 用 OpenCV 开发，用于人脸检测与跟踪。</p>
+<h5><span id="11lua-视觉开发库-libecv"> （11）Lua 视觉开发库 libecv</span></h5>
+<p>ECV 是 lua 的计算机视觉开发库 (目前只提供 linux 支持)</p>
+<h5><span id="12opencvsharpopencv-的net-封装"> （12）OpenCVSharp（OpenCV 的.Net 封装）</span></h5>
+<p>OpenCVSharp <a target="_blank" rel="noopener" href="http://xn--OpenCV-9m7iglh22q2e8a.Net">是一个 OpenCV 的.Net</a> wrapper，应用最新的 OpenCV 库开发，使用习惯比 EmguCV 更接近原始的 OpenCV，有详细的使用样例供参考。</p>
+<h5><span id="133d-视觉库-fvision2010"> （13）3D 视觉库 fvision2010</span></h5>
+<p>基于 OpenCV 构建的图像处理和 3D 视觉库。 示例代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ImageSequenceReaderFactory factory; </span><br><span class="line">ImageSequenceReader* reader = factory.<span class="built_in">pathRegex</span>(<span class="string">&quot;c:/a/im_d.jpg&quot;</span>, <span class="number">0</span>, <span class="number">20</span>); </span><br><span class="line"><span class="comment">//ImageSequenceReader* reader = factory.avi(&quot;a.avi&quot;); </span></span><br><span class="line"><span class="keyword">if</span> (reader == <span class="literal">NULL</span>) &#123; ...</span><br></pre></td></tr></table></figure>
+<h5><span id="14基于-qt-的计算机视觉库-qvision"> （14）基于 QT 的计算机视觉库 QVision</span></h5>
+<p>基于 QT 的面向对象的多平台计算机视觉库。可以方便的创建图形化应用程序，算法库主要从 OpenCV，GSL，CGAL，IPP，Octave 等高性能库借鉴而来。</p>
+<h5><span id="15图像特征提取-cvblob"> （15）图像特征提取 cvBlob</span></h5>
+<p>cvBlob 是计算机视觉应用中在二值图像里寻找连通域的库。能够执行连通域分析与特征提取.</p>
+<h5><span id="16实时图像-视频处理滤波开发包-gshow"> （16）实时图像 / 视频处理滤波开发包 GShow</span></h5>
+<p>GShow is a real-time image/video processing filter development kit. It successfully integrates DirectX11 with DirectShow framework. So it has the following features: GShow 是实时 图像 / 视频 处理滤波开发包，集成 DiretX11。…</p>
+<h5><span id="17视频捕获-api-videoman"> （17）视频捕获 API VideoMan</span></h5>
+<p>VideoMan 提供一组视频捕获 API 。支持多种视频流同时输入 (视频传输线、USB 摄像头和视频文件等)。能利用 OpenGL 对输入进行处理，方便的与 OpenCV，CUDA 等集成开发计算机视觉系统。</p>
+<h5><span id="18开放模式识别项目-openpr"> （18）开放模式识别项目 OpenPR</span></h5>
+<p>Pattern Recognition project (开放模式识别项目)，致力于开发出一套包含图像处理、计算机视觉、自然语言处理、模式识别、机器学习和相关领域算法的函数库。</p>
+<h5><span id="19opencv-的-python-封装-pyopencv"> （19）OpenCV 的 Python 封装 pyopencv</span></h5>
+<p>OpenCV 的 Python 封装， 主要特性包括： 提供与 OpenCV 2.x 中最新的 C<ins> 接口极为相似的 Python 接口，并且包括 C</ins> 中不包括的 C 接口 提供对 OpenCV 2.x 中所有主要部件的绑定：CxCORE (almost complete), CxFLANN (complete), Cv (complete), CvAux (C++ part almost…</p>
+<h5><span id="20视觉快速开发平台-qcv"> （20）视觉快速开发平台 qcv</span></h5>
+<p>计算机视觉快速开发平台，提供测试框架，使开发者可以专注于算法研究。</p>
+<h5><span id="21图像捕获-libv4l2cam"> （21）图像捕获 libv4l2cam</span></h5>
+<p>对函数库 v412 的封装，从网络摄像头等硬件获得图像数据，支持 YUYV 裸数据输出和 BGR24 的 OpenCV IplImage 输出</p>
+<h5><span id="22计算机视觉算法-openvidia"> （22）计算机视觉算法 OpenVIDIA</span></h5>
+<p>OpenVIDIA projects implement computer vision algorithms running on on graphics hardware such as single or multiple graphics processing units(GPUs) using OpenGL, Cg and CUDA-C. Some samples will soon support OpenCL and Direct Compute API’…</p>
+<h5><span id="23高斯模型点集配准算法-gmmreg"> （23）高斯模型点集配准算法 gmmreg</span></h5>
+<p>实现了基于混合高斯模型的点集配准 算法，该算法描述在论文： A Robust Algorithm for Point Set Registration Using Mixture of Gaussians, Bing Jian and Baba C. Vemuri. ，实现了 C++/Matlab/Python 接口…</p>
+<h5><span id="24模式识别和视觉库-ravl"> （24）模式识别和视觉库 RAVL</span></h5>
+<p>Recognition And Vision Library (RAVL) 是一个通用 C++ 库，包含计算机视觉、模式识别等模块。</p>
+<h5><span id="25图像处理和计算机视觉常用算法库-lti-lib"> （25）图像处理和计算机视觉常用算法库 LTI-Lib</span></h5>
+<p>LTI-Lib 是一个包含图像处理和计算机视觉常用算法和数据结构的面向对象库，提供 Windows 下的 VC 版本和 Linux 下的 gcc 版本，主要包含以下几方面内容： 1、线性代数 2、聚类分析 3、图像处理 4、可视化和绘图工具</p>
+<h5><span id="26opencv-优化-opencv-dsp-acceleration"> （26）OpenCV 优化 opencv-dsp-acceleration</span></h5>
+<p>优化了 OpenCV 库在 DSP 上的速度。</p>
+<h5><span id="27c-计算机视觉库-integrating-vision-toolkit"> （27）C++ 计算机视觉库 Integrating Vision Toolkit</span></h5>
+<p>Integrating Vision Toolkit (IVT) 是一个强大而迅速的 C++ 计算机视觉库，拥有易用的接口和面向对象的架构，并且含有自己的一套跨平台 GUI 组件，另外可以选择集成 OpenCV</p>
+<h5><span id="28计算机视觉和机器人技术的工具包-egt"> （28）计算机视觉和机器人技术的工具包 EGT</span></h5>
+<p>The Epipolar Geometry Toolbox (EGT) is a toolbox designed for Matlab (by Mathworks Inc.). EGT provides a wide set of functions to approach computer vision and robotics problems with single and multiple views, and with different vision se…</p>
+<h5><span id="29opencv-的扩展库-imagenets"> （29）OpenCV 的扩展库 ImageNets</span></h5>
+<p>ImageNets 是对 OpenCV 的扩展，提供对机器人视觉算法方面友好的支持，使用 Nokia 的 QT 编写界面。</p>
+<h5><span id="30libvideogfx"> （30）libvideogfx</span></h5>
+<p>视频处理、计算机视觉和计算机图形学的快速开发库。</p>
+<h5><span id="31matlab-计算机视觉包-mvision"> （31）Matlab 计算机视觉包 mVision</span></h5>
+<p>Matlab 的计算机视觉包，包含用于观察结果的 GUI 组件，貌似也停止开发了，拿来做学习用挺不错的。</p>
+<h5><span id="32scilab-的计算机视觉库-sip"> （32）Scilab 的计算机视觉库 SIP</span></h5>
+<p>SIP 是 Scilab (一种免费的类 Matlab 编程环境) 的图像处理和计算机视觉库。SIP 可以读写 JPEG/PNG/BMP 格式的图片。具备图像滤波、分割、边缘检测、形态学处理和形状分析等功能。</p>
+<h5><span id="33stair-vision-library"> （33）STAIR Vision Library</span></h5>
+<p>STAIR Vision Library (SVL) 最初是为支持斯坦福智能机器人设计的，提供对计算机视觉、机器学习和概率统计模型的支持。</p>
+<h4><span id="2-python-计算机视觉库"> 2 Python 计算机视觉库</span></h4>
+<h5><span id="一-python-计算机视觉中常用的库"> 一、python 计算机视觉中常用的库</span></h5>
+<p>一般我们在处理计算机视觉任务时会同时调用多种库，初学者在复现论文中的代码时往往会不知所措，不明白各种库的作用。这里笔者简单介绍一下自己平时在处理计算机视觉任务时的是如何将这些库函数与我们的计算机视觉任务进行关联，不足之处也请各位可以指出。<br>
+计算机视觉任务需要调用的库大致可分为三类： <code>图像处理类</code> （PIL、OpenCV、Matplotlib 等）， <code>数学类</code> （Numpy）， <code>神经网络类</code> （Tensorflow、Pytorch 等）。首先，我们通过调用图像处理类的库函数，进行图像处理的基本操作，例如：图像读取、颜色空间变换、以及常用的图像处理算法。然后，当你需要实现自己的图像处理算法时，需要将图像数据类型转换为数组类型进行运算，这时候需要使用数学类的库函数。最后，使用神经网络时，则需要将数组类型的数据转换到张量类型。</p>
+<p><strong>（一）PIL（Python Image Library）图像处理库</strong><br>
+<strong>（二）Matplotlib</strong><br>
+<strong>（三）Numpy</strong><br>
+<strong>（四）Pytorch</strong><br>
+<strong>（五）torchvision</strong><br>
+<strong>（六）SKimage</strong><br>
+<strong>（七）OpenCV</strong></p>
+<h5><span id="二-基本操作"> 二、基本操作</span></h5>
+<h6><span id="一利用-pil-读取图像数据"> （一）利用 PIL 读取图像数据</span></h6>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">imgPath = <span class="string">&quot;F:/path/test.png&quot;</span><span class="comment">#图像路径</span></span><br><span class="line">img = Image.<span class="built_in">open</span>(imgPath)   <span class="comment">#读取图像，保存为PIL.Image类型，默认为RGB格式</span></span><br><span class="line"><span class="comment">#&lt;PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=1728x2304 at 0x241C742AA90&gt;</span></span><br></pre></td></tr></table></figure>
+<h6><span id="二使用-matplotlib-显示图像"> （二）使用 Matplotlib 显示图像</span></h6>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.imshow(img)<span class="comment">#plt.imshow()函数负责对图像进行处理，并显示其格式，但是不能显示图像内容。</span></span><br><span class="line">plt.axis(<span class="string">&#x27;off&#x27;</span>)<span class="comment">#显示的图像不展示轴线</span></span><br><span class="line">plt.show()     <span class="comment">#显示图像内容</span></span><br></pre></td></tr></table></figure>
+<h6><span id="三pil-类型与-numpy-类型转换"> （三）PIL 类型与 Numpy 类型转换</span></h6>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">img = np.array(img)<span class="comment">#将PIL.Image类型转换为np类型</span></span><br><span class="line">img = Image.fromarray(img.astype(<span class="string">&#x27;uint8&#x27;</span>))<span class="comment">#将np类型转换为PIL.Image类型</span></span><br></pre></td></tr></table></figure>
+<h6><span id="四-numpy-类型与-torch-类型互换"> （四) Numpy 类型与 torch 类型互换</span></h6>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">img = torch.from_numpy(img).<span class="built_in">float</span>()<span class="comment">#将np类型转换为张量</span></span><br><span class="line">img = img.numpy()<span class="comment">#将张量转换为np类型</span></span><br></pre></td></tr></table></figure>
+<h6><span id="五保存张量为图像"> （五）保存张量为图像</span></h6>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"></span><br><span class="line">imgPath = <span class="string">&quot;F:/path/test.png&quot;</span></span><br><span class="line">torchvision.utils.save_image(img,imgPath)</span><br></pre></td></tr></table></figure>
+<h5><span id="三-常用的函数"> 三、常用的函数</span></h5>
+<h6><span id="一打开图像返回张量"> （一）打开图像，返回张量</span></h6>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="comment">#输入图片路径，返回四维张量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">openImage</span>(<span class="params">path, w=-<span class="number">1</span>, h=-<span class="number">1</span>, mode=<span class="string">&#x27;RGB&#x27;</span></span>):</span></span><br><span class="line">    img = Image.<span class="built_in">open</span>(path)                 <span class="comment">#打开路径下的图片，保存维PIL.Image类型</span></span><br><span class="line">    <span class="keyword">if</span>(w==-<span class="number">1</span>):</span><br><span class="line">        w,_ = img.size</span><br><span class="line">    <span class="keyword">if</span>(h==-<span class="number">1</span>):</span><br><span class="line">        _,h = img.size</span><br><span class="line">    img = img.resize((w,h),Image.ANTIALIAS)<span class="comment">#修改图像尺寸</span></span><br><span class="line">    img = img.convert(mode)                <span class="comment">#转换颜色空间</span></span><br><span class="line">    img = np.array(img)                    <span class="comment">#将Image类型转换维Numpy类型</span></span><br><span class="line">    img = img/<span class="number">255.0</span>                        <span class="comment">#将图像进行归一化</span></span><br><span class="line">    img = torch.from_numpy(img).<span class="built_in">float</span>()    <span class="comment">#将Numpy类型转换维张量</span></span><br><span class="line">    d = img.dim()</span><br><span class="line">    <span class="keyword">if</span>(d==<span class="number">2</span>):</span><br><span class="line">        img = img.unsqueeze(<span class="number">0</span>).unsqueeze(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">elif</span>(d==<span class="number">3</span>):</span><br><span class="line">        img = img.permute(<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>)           <span class="comment">#更换维度，因为Image表示通道在第三维，变为张量后转换到第一维</span></span><br><span class="line">        img = img.unsqueeze(<span class="number">0</span>)             <span class="comment">#增加维度</span></span><br><span class="line">    <span class="keyword">return</span> img </span><br></pre></td></tr></table></figure>
+<h6><span id="二显示使用张量表示的图像"> （二）显示使用张量表示的图像</span></h6>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment">#输入一个四维张量，转换为PIL格式后显示</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">showImage</span>(<span class="params">img, mode=<span class="string">&#x27;RGB&#x27;</span></span>):</span></span><br><span class="line">    _,c,_,_ = img.size()                                     <span class="comment">#获取img的尺寸</span></span><br><span class="line">    <span class="keyword">if</span>(c==<span class="number">1</span>):                                                <span class="comment">#判断是否为单通道</span></span><br><span class="line">        img = img[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        img = img[<span class="number">0</span>]</span><br><span class="line">        img = img.permute(<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>)</span><br><span class="line">    img = img.numpy()                                        <span class="comment">#将张量转换为np数组</span></span><br><span class="line">    img = img*<span class="number">255.0</span></span><br><span class="line">    img = Image.fromarray(img.astype(<span class="string">&#x27;uint8&#x27;</span>)).convert(mode)<span class="comment">#将np数组转换为PIL类型</span></span><br><span class="line">    plt.imshow(img)</span><br><span class="line">    plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<h6><span id="三保存张量为图像"> （三）保存张量为图像</span></h6>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment">#输入一个四维张量，转换为PIL格式后保存</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">saveImage</span>(<span class="params">img,path,mode=<span class="string">&#x27;RGB&#x27;</span></span>):</span></span><br><span class="line">    _,c,_,_ = img.size()                                     <span class="comment">#获取img的尺寸</span></span><br><span class="line">    <span class="keyword">if</span>(c==<span class="number">1</span>):                                                <span class="comment">#判断是否为单通道</span></span><br><span class="line">        img = img[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">elif</span>(c==<span class="number">3</span>):</span><br><span class="line">        img = img[<span class="number">0</span>]</span><br><span class="line">        img = img.permute(<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>)</span><br><span class="line">    img = img.numpy()                                        <span class="comment">#将张量转换为np数组</span></span><br><span class="line">    img = img*<span class="number">255.0</span></span><br><span class="line">    img = Image.fromarray(img.astype(<span class="string">&#x27;uint8&#x27;</span>)).convert(mode)<span class="comment">#将np数组转换为PIL类型</span></span><br><span class="line">    img.save(path)</span><br></pre></td></tr></table></figure>
+<h4><span id="3-常用十大图像处理算法库"> 3 常用十大图像处理算法库</span></h4>
+<p>当今世界充满了各种数据，而图像是其中高的重要组成部分。然而，若想其有所应用，我们需要对这些图像进行处理。图像处理是分析和操纵数字图像的过程，旨在提高其质量或从中提取一些信息，然后将其用于某些方面。</p>
+<p>图像处理中的常见任务包括显示图像，基本操作（如裁剪、翻转、旋转等），图像分割，分类和特征提取，图像恢复和图像识别等。 Python 之成为图像处理任务的最佳选择，是因为这一科学编程语言日益普及，并且其自身免费提供许多最先进的图像处理工具。</p>
+<p>让我们看一下用于图像处理任务的一些常用 Python 库。</p>
+<h5><span id="1scikit-image"> （1）scikit Image</span></h5>
+<p>scikit-image 是一个基于 numpy 数组的开源 Python 包。 它实现了用于研究、教育和工业应用的算法和实用程序。 即使是对于那些刚接触 Python 的人，它也是一个相当简单的库。 此库代码质量非常高并已经过同行评审，是由一个活跃的志愿者社区编写的。</p>
+<p><code>使用说明文档</code> ：</p>
+<p><a target="_blank" rel="noopener" href="https://scikit-image.org/docs/stable/user_guide.html">https://scikit-image.org/docs/stable/user_guide.html</a></p>
+<p><code>用法举例</code> ：图像过滤、模版匹配</p>
+<p>可使用 “skimage” 来导入该库。大多数功能都能在子模块中找到。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">from</span> skimage <span class="keyword">import</span> data,filters</span><br><span class="line">image = data.coins()<span class="comment"># ... or any other NumPy array!</span></span><br><span class="line">edges = filters.sobel(image)</span><br><span class="line">plt.imshow(edges, cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU8yQUlxVW1BQUJQZl9qWUczbzQ0Ni5wbmc?x-oss-process=image/format,png" alt="img"></p>
+<p>模版匹配（使用 match_template 函数）</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU82QUVrblJBQUJLbndIVnI2VTA1My5wbmc?x-oss-process=image/format,png" alt="img"></p>
+<p>gallery 上还有更多例子。</p>
+<p><a target="_blank" rel="noopener" href="https://scikit-image.org/docs/dev/auto_examples/">https://scikit-image.org/docs/dev/auto_examples/</a></p>
+<h5><span id="2numpy"> （2）Numpy</span></h5>
+<p>Numpy 是 Python 编程的核心库之一，支持数组结构。 图像本质上是包含数据点像素的标准 Numpy 数组。 因此，通过使用基本的 NumPy 操作 —— 例如切片、脱敏和花式索引，可以修改图像的像素值。 可以使用 skimage 加载图像并使用 matplotlib 显示。</p>
+<p><code>使用说明文档</code> ：</p>
+<p><a target="_blank" rel="noopener" href="http://www.numpy.org/">http://www.numpy.org/</a></p>
+<p><code>用法举例</code> ：使用 Numpy 来对图像进行脱敏处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> skimage <span class="keyword">import</span> data</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line">image = data.camera()</span><br><span class="line"><span class="built_in">type</span>(image)</span><br><span class="line">numpy.ndarray <span class="comment">#Image is a numpy array</span></span><br><span class="line">mask = image &lt; <span class="number">87</span></span><br><span class="line">image[mask]=<span class="number">255</span></span><br><span class="line">plt.imshow(image, cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU82QVBpN0ZBQUNqek8yblp6bzIxNi5wbmc?x-oss-process=image/format,png" alt="img" style="zoom: 70%;"></center>
+<h5><span id="3scipy"> （3）Scipy</span></h5>
+<p>scipy 是 Python 的另一个核心科学模块，就像 Numpy 一样，可用于基本的图像处理和处理任务。值得一提的是，子模块 scipy.ndimage 提供了在 n 维 NumPy 数组上运行的函数。 该软件包目前包括线性和非线性滤波、二进制形态、B 样条插值和对象测量等功能。</p>
+<p><code>使用说明文档</code> ：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html#correlation-and-convolution">https://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html#correlation-and-convolution</a></p>
+<p><code>用法举例</code> ：使用 SciPy 的高斯滤波器对图像进行模糊处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> misc,ndimage</span><br><span class="line">face = misc.face()</span><br><span class="line">blurred_face = ndimage.gaussian_filter(face, sigma=<span class="number">3</span>)</span><br><span class="line">very_blurred = ndimage.gaussian_filter(face, sigma=<span class="number">5</span>)<span class="comment">#Resultsplt.imshow()</span></span><br></pre></td></tr></table></figure>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU8tQWJSLUNBQUJrWk40anJVRTc2Ni5wbmc?x-oss-process=image/format,png" alt="img" style="zoom:80%;"></center>
+<h5><span id="4pil-pillow"> （4）PIL/ Pillow</span></h5>
+<p>PIL （Python Imaging Library）是一个免费的 Python 编程语言库，它增加了对打开、处理和保存许多不同图像文件格式的支持。 然而，它的发展停滞不前，其最后一次更新还是在 2009 年。幸运的是， PIL 有一个正处于积极开发阶段的分支 Pillow，它非常易于安装。Pillow 能在所有主要操作系统上运行并支持 Python 3。该库包含基本的图像处理功能，包括点操作、使用一组内置卷积内核进行过滤以及颜色空间转换。</p>
+<p><code>使用说明文档</code> ：</p>
+<p><a target="_blank" rel="noopener" href="https://pillow.readthedocs.io/en/3.1.x/index.html">https://pillow.readthedocs.io/en/3.1.x/index.html</a></p>
+<p><code>用法举例</code> ：使用 ImageFilter 增强 Pillow 中的图像</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageFilter<span class="comment">#Read image</span></span><br><span class="line">im = Image.<span class="built_in">open</span>( <span class="string">&#x27;image.jpg&#x27;</span> )<span class="comment">#Display image</span></span><br><span class="line">im.show()</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageEnhance</span><br><span class="line">enh = ImageEnhance.Contrast(im)</span><br><span class="line">enh.enhance(<span class="number">1.8</span>).show(<span class="string">&quot;30% more contrast&quot;</span>)</span><br></pre></td></tr></table></figure>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRU8tQUZVeTdBQUNxYXJnemd0dzAwNC5wbmc?x-oss-process=image/format,png" alt="img" style="zoom:70%;"></center>
+<h5><span id="5opencv-python"> （5）OpenCV-Python</span></h5>
+<p>OpenCV（ 开源计算机视觉库，Open Source Computer Vision Library）是计算机视觉应用中使用最广泛的库之一。OpenCV-Python 是 OpenCV 的 python API。 OpenCV-Python 不仅速度快（因为后台由用 C / C ++ 编写的代码组成），也易于编码和部署（由于前端的 Python 包装器）。 这使其成为执行计算密集型计算机视觉程序的绝佳选择。</p>
+<p><code>使用说明文档</code> ：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/abidrahmank/OpenCV2-Python-Tutorials">https://github.com/abidrahmank/OpenCV2-Python-Tutorials</a></p>
+<p><code>用法举例</code> ：使用 Pyramids 创建一个名为’Orapple’的新水果的功能</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBDQUwzSXhBQUNhTHFoRHVnTTUyOC5qcGc?x-oss-process=image/format,png" alt="img" style="zoom:80%;"></center>
+<h5><span id="6simplecv"> （6）SimpleCV</span></h5>
+<p>SimpleCV 也是用于构建计算机视觉应用程序的开源框架。 通过它可以访问如 OpenCV 等高性能的计算机视觉库，而无需首先了解位深度、文件格式或色彩空间等。学习难度远远小于 OpenCV，并且正如他们的标语所说，“它使计算机视觉变得简单”。支持 SimpleCV 的一些观点是：</p>
+<p>即使是初学者也可以编写简单的机器视觉测试</p>
+<p>摄像机、视频文件、图像和视频流都可以交互操作</p>
+<p><code>使用说明文档</code> ：</p>
+<p><a target="_blank" rel="noopener" href="https://simplecv.readthedocs.io/en/latest/">https://simplecv.readthedocs.io/en/latest/</a></p>
+<p><code>用法举例</code></p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBDQVYwemFBQURnSlB3NUw0NDQ1MS5wbmc?x-oss-process=image/format,png" alt="img" style="zoom:80%;"></center>
+<h5><span id="7mahotas"> （7）Mahotas</span></h5>
+<p>Mahotas 是另一个用于 Python 的计算机视觉和图像处理库。 它包含传统的图像处理功能（如滤波和形态学操作）以及用于特征计算的更现代的计算机视觉功能（包括兴趣点检测和局部描述符）。 该接口使用 Python，适用于快速开发，但算法是用 C ++ 实现的，并且针对速度进行了优化。Mahotas 库运行很快，它的代码很简单，（对其它库的）依赖性也很小。 建议阅读他们的官方文档以了解更多内容。</p>
+<p><code>使用说明文档</code> ：</p>
+<p><a target="_blank" rel="noopener" href="https://mahotas.readthedocs.io/en/latest/install.html">https://mahotas.readthedocs.io/en/latest/install.html</a></p>
+<p><code>用法举例</code></p>
+<p>Mahotas 库使用简单的代码来完成工作。 对于 “寻找 Wally” 的问题，Mahotas 完成的得很好，而且代码量非常小。</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBHQWZSN3lBQUZma19JOE5USTUzNC5wbmc?x-oss-process=image/format,png" alt="img" style="zoom:80%;"></center>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBLQUtWT2VBQUNZaG1iSXFORTY3MS5wbmc?x-oss-process=image/format,png" alt="img" style="zoom:80%;"></center>
+<h5><span id="8simpleitk"> （8）SimpleITK</span></h5>
+<p>ITK（Insight Segmentation and Registration Toolkit）是一个开源的跨平台系统，为开发人员提供了一整套用于图像分析的软件工具。 其中， SimpleITK 是一个建立在 ITK 之上的简化层，旨在促进其在快速原型设计、教育以及脚本语言中的使用。SimpleITK 是一个包含大量组件的图像分析工具包，支持一般的过滤操作、图像分割和配准。 SimpleITK 本身是用 C++ 编写的，但可用于包括 Python 在内的大量编程语言。</p>
+<p><code>使用说明文档</code> ：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/hhatto/pgmagick">https://github.com/hhatto/pgmagick</a></p>
+<p>这里有大量说明了如何使用 SimpleITK 进行教育和研究活动的 Jupyter notebook。notebook 中演示了如何使用 SimpleITK 进行使用 Python 和 R 编程语言的交互式图像分析。</p>
+<p><code>用法举例</code></p>
+<p>下面的动画是使用 SimpleITK 和 Python 创建的可视化的严格 CT / MR 配准过程。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBlQWMyNW5BQVlRRU1zT3RCZzcyNy5naWY" alt="img"></p>
+<h5><span id="9pgmagick"> （9）pgmagick</span></h5>
+<p>pgmagick 是 GraphicsMagick 库基于 Python 的包装器。GraphicsMagick 图像处理系统有时被称为图像处理的瑞士军刀。它提供了强大而高效的工具和库集合，支持超过 88 种主要格式图像的读取、写入和操作，包括 DPX，GIF，JPEG，JPEG-2000，PNG，PDF，PNM 和 TIFF 等重要格式。</p>
+<p><code>使用说明文档</code> ：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/hhatto/pgmagick">https://github.com/hhatto/pgmagick</a></p>
+<p><code>用法举例</code> ：图片缩放、边缘提取</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBlQVc0dUxBQUR0WGM5V1BDRTI5Ny5wbmc?x-oss-process=image/format,png" alt="img" style="zoom: 50%;"></center>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBpQVBuc1NBQURHekQ3TlNuczcyMS5wbmc?x-oss-process=image/format,png" alt="边缘提取" style="zoom:67%;"></center>
+<h5><span id="10pycairo"> （10）Pycairo</span></h5>
+<p>Pycairo 是图形库 cairo 的一组 python 绑定。 Cairo 是一个用于绘制矢量图形的 2D 图形库。 矢量图形很有趣，因为它们在调整大小或进行变换时不会降低清晰度。Pycairo 库可以从 Python 调用 cairo 命令。</p>
+<p><code>使用说明文档</code> ：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/pygobject/pycairo">https://github.com/pygobject/pycairo</a></p>
+<p><code>用法</code> ：Pycairo 可以绘制线条、基本形状和径向渐变</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ZpbGUuZWxlY2ZhbnMuY29tL3dlYjEvTTAwLzlBL0JBL280WUJBRjBnRVBpQWVCQThBQUJENVg1M3ItQTYxOC5wbmc?x-oss-process=image/format,png" alt="img" style="zoom: 90%;"></center>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2022年01月20日 21:27</p>
+        <p>原始链接： <a class="post-url" href="/2022/01/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" title="【精华】常用计算机视觉库">https://leezhao415.github.io/2022/01/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2022/01/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/&title=《【精华】常用计算机视觉库》 — 且听风吟，御剑于心！&pic=images/计算机视觉库.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2022/01/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/&title=《【精华】常用计算机视觉库》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2022/01/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【精华】常用计算机视觉库》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2022/01/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2022/01/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2022/01/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%B8%B8%E7%94%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/计算机视觉库/" class="color2">计算机视觉库</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 1 常用计算机视觉库</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （1）计算机视觉库 OpenCV</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （2）人脸识别 faceservice.cgi</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （3）OpenCVDotNet（OpenCV 的.NET 版 ）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （4）人脸检测算法 jViolajones</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （5）Java 视觉处理库 JavaCV</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （6）运动检测程序 QMotion</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （7）视频监控系统 OpenVSS</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （8）手势识别 hand-gesture-detection</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （9）人脸检测识别 mcvai-tracking</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （10）人脸检测与跟踪库 asmlibrary</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （11）Lua 视觉开发库 libecv</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （12）OpenCVSharp（OpenCV 的.Net 封装）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （13）3D 视觉库 fvision2010</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （14）基于 QT 的计算机视觉库 QVision</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （15）图像特征提取 cvBlob</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （16）实时图像 &#x2F; 视频处理滤波开发包 GShow</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （17）视频捕获 API VideoMan</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （18）开放模式识别项目 OpenPR</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （19）OpenCV 的 Python 封装 pyopencv</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （20）视觉快速开发平台 qcv</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （21）图像捕获 libv4l2cam</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （22）计算机视觉算法 OpenVIDIA</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （23）高斯模型点集配准算法 gmmreg</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （24）模式识别和视觉库 RAVL</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （25）图像处理和计算机视觉常用算法库 LTI-Lib</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （26）OpenCV 优化 opencv-dsp-acceleration</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （27）C++ 计算机视觉库 Integrating Vision Toolkit</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （28）计算机视觉和机器人技术的工具包 EGT</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （29）OpenCV 的扩展库 ImageNets</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （30）libvideogfx</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （31）Matlab 计算机视觉包 mVision</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （32）Scilab 的计算机视觉库 SIP</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （33）STAIR Vision Library</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 2 Python 计算机视觉库</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 一、python 计算机视觉中常用的库</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 二、基本操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> （一）利用 PIL 读取图像数据</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> （二）使用 Matplotlib 显示图像</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> （三）PIL 类型与 Numpy 类型转换</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> （四) Numpy 类型与 torch 类型互换</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> （五）保存张量为图像</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 三、常用的函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> （一）打开图像，返回张量</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> （二）显示使用张量表示的图像</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> （三）保存张量为图像</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 3 常用十大图像处理算法库</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （1）scikit Image</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （2）Numpy</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （3）Scipy</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （4）PIL&#x2F; Pillow</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （5）OpenCV-Python</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （6）SimpleCV</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （7）Mahotas</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （8）SimpleITK</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （9）pgmagick</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> （10）Pycairo</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2022/01/20/%E5%AF%92%E7%AA%91%E8%B5%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          寒窑赋
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/01/20/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91YOLOX%E8%AE%AD%E7%BB%83Objects365%E6%8C%87%E5%AE%9A%E7%B1%BB%E5%88%AB%E6%95%B0%E6%8D%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【详解】YOLOX训练Objects365指定类别数据</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="【精华】常用计算机视觉库" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

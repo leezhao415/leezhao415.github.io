@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;人脸识别&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-10-28T14:32:15.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/10/28/%E4%BA%BA%E8%84%B8%E5%B1%9E%E6%80%A7%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95-%E6%80%A7%E5%88%AB-%E7%A7%8D%E6%97%8F-%E5%B9%B4%E9%BE%84-%E8%A1%A8%E6%83%85/</id>
+        <title>人脸属性识别算法_性别+种族+年龄+表情</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/10/28/%E4%BA%BA%E8%84%B8%E5%B1%9E%E6%80%A7%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95-%E6%80%A7%E5%88%AB-%E7%A7%8D%E6%97%8F-%E5%B9%B4%E9%BE%84-%E8%A1%A8%E6%83%85/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%86%85%E5%AE%B9%E6%A6%82%E8%A6%81&#34;&gt;内容概要&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%80-%E4%BA%BA%E8%84%B8%E5%B1%9E%E6%80%A7%E8%AF%86%E5%88%AB%E4%B8%8E%E7%AE%97%E6%B3%95&#34;&gt;一、人脸属性识别与算法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%8C-%E6%80%A7%E5%88%AB%E8%AF%86%E5%88%AB&#34;&gt;二、性别识别&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#21-%E5%9F%BA%E4%BA%8E%E7%89%B9%E5%BE%81%E8%84%B8%E7%9A%84%E6%80%A7%E5%88%AB%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95&#34;&gt;2.1 基于特征脸的性别识别算法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#22-%E5%9F%BA%E4%BA%8Efisher%E5%87%86%E5%88%99%E7%9A%84%E6%80%A7%E5%88%AB%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95&#34;&gt;2.2 基于 Fisher 准则的性别识别方法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#23-%E5%9F%BA%E4%BA%8Eadaboostsvm%E7%9A%84%E4%BA%BA%E8%84%B8%E6%80%A7%E5%88%AB%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95&#34;&gt;2.3 基于 Adaboost+SVM 的人脸性别分类算法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%89-%E7%A7%8D%E6%97%8F%E8%AF%86%E5%88%AB&#34;&gt;三、种族识别&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#31-%E5%9F%BA%E4%BA%8Eadaboost%E5%92%8Csvm%E7%9A%84%E4%BA%BA%E8%84%B8%E7%A7%8D%E6%97%8F%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95&#34;&gt;3.1 基于 Adaboost 和 SVM 的人脸种族识别算法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%9B%9B-%E5%B9%B4%E9%BE%84%E4%BC%B0%E8%AE%A1&#34;&gt;四、年龄估计&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#41-%E8%9E%8D%E5%90%88lbp%E5%92%8Chog%E7%89%B9%E5%BE%81%E7%9A%84%E4%BA%BA%E8%84%B8%E5%B9%B4%E9%BE%84%E4%BC%B0%E8%AE%A1%E7%AE%97%E6%B3%95&#34;&gt;4.1 融合 LBP 和 HOG 特征的人脸年龄估计算法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%94-%E8%A1%A8%E6%83%85%E8%AF%86%E5%88%AB&#34;&gt;五、表情识别&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#51%E8%9E%8D%E5%90%88lbp-%E5%92%8C%E5%B1%80%E9%83%A8%E7%A8%80%E7%96%8F%E8%A1%A8%E7%A4%BA%E7%9A%84%E4%BA%BA%E8%84%B8%E8%A1%A8%E6%83%85%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95&#34;&gt;5.1 融合 LBP 和局部稀疏表示的人脸表情识别算法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%99%BA%E8%8A%AF%E5%8E%9F%E5%8A%A8%E4%BA%BA%E8%84%B8%E5%B1%9E%E6%80%A7%E8%AF%86%E5%88%AB&#34;&gt;智芯原动人脸属性识别&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;内容概要&#34;&gt; 内容概要&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;随着社会的发展，快速有效的自动身份验证在安防领域变的越来越迫切。由于生物特性是人的内在属性，具有很强的自身稳定性和个体差异性，是身份验证的最理想依据。利用人脸属性进行身份验证又是最自然直接的手段，相比其它人体生物特性，它具有直接、友好、方便的特点，更容易被用户所接受且不易察觉。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170121/4006142c4d774caaa48e315bc1bb4098_th.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h4&gt;&lt;span id=&#34;一-人脸属性识别与算法&#34;&gt; 一、人脸属性识别与算法&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;人脸是一种非常重要的生物特征，具有结构复杂、细节变化多等特点，同时也蕴含了大量的信息，比如性别、种族、年龄、表情等。一个正常的成年人可以轻易的理解人脸的信息，但将同样的能力赋予给计算机，并让其代替人类进行类脑思考成为研究学者亟待攻克的科学课题！&lt;/p&gt;
+&lt;p&gt;人类可以通过使用相机等图像采集装置和计算机组建一套与人体类似的系统，相机等图像采集装置是 “眼睛”，计算机是 “大脑”。但是问题来了，这些单纯的硬件设施并不足以让机器完成理解人脸信息的任务，这其中还需要载有思考能力，也就是我们平时所说的算法。&lt;/p&gt;
+&lt;p&gt;目前主流的人脸属性识别算法主要包括：&lt;strong&gt;性别识别、种族识别、年龄估计、表情识别&lt;/strong&gt;等。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170121/809f20224a56490c9eed2e579c72e838_th.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h4&gt;&lt;span id=&#34;二-性别识别&#34;&gt; 二、性别识别&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;性别识别是利用计算机视觉来辨别和分析图像中的人脸性别属性。多年来，人脸性别分类因其在人类身份认证、人机接口、视频检索以及机器人视觉中的潜在应用而备受关注。&lt;/p&gt;
+&lt;p&gt;性别分类是一个复杂的大规模二次模式分类问题，分类器将数据录入并划分男性和女性。目前最主要的性别识别方法主要有： &lt;code&gt;基于特征脸的性别识别算法&lt;/code&gt; 、 &lt;code&gt;基于Fisher准则的性别识别方法&lt;/code&gt; 和 &lt;code&gt;基于Adaboost+SVM的人脸性别分类算法&lt;/code&gt; 三大类。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170121/319db6ac2130458595f0444082a022d3_th.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;21-基于特征脸的性别识别算法&#34;&gt; 2.1 基于特征脸的性别识别算法&lt;/span&gt;&lt;/h5&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170121/76d1f00937244763b27fa4b21e7da061.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:98%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;基于特征脸（EigenFace）的性别识别算法主要是使用 PCA（主成分分析）。在计算过程中通过消除数据中的相关性，将高维图像降低到低维空间，而训练集中的样本则被映射成低维空间中的一点。当需要判断测试图片的性别时，就需要先将测试图片映射到低维空间中，然后计算离测试图片最近样本点是哪一个，将最近样本点的性别赋值给测试图片即可。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;22-基于-fisher-准则的性别识别方法&#34;&gt; 2.2 基于 Fisher 准则的性别识别方法&lt;/span&gt;&lt;/h5&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170121/a14ae024b4ef4124b46e8ee487cbd411.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:98%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;基于 Fisher 准则的性别识别方法主要利用 LDA（线性投影分析）的思想。它是通过将样本空间中的男女样本投影到过原点的一条直线上，并确保样本在该线上的投影类内距离最小，类间距离最大，从而分离出识别男女的分界线。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;23-基于-adaboostsvm-的人脸性别分类算法&#34;&gt; 2.3 基于 Adaboost+SVM 的人脸性别分类算法&lt;/span&gt;&lt;/h5&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170120/cd60568540084bdab99caddc75b71f4b.png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;基于 Adaboost+SVM 的人脸性别分类算法主要分为两个阶段：&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;231-训练阶段&#34;&gt; 2.3.1 训练阶段&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;通过对样本图像进行预处理，提取图像的 Gabor 小波特征，通过 Adaboost 分类器进行特征降维，最后对 SVM 分类器进行训练；&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;232-测试阶段&#34;&gt; 2.3.2 测试阶段&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;通过对样本图像进行预处理，提取图像的 Gabor 小波特征，通过 Adaboost 分类器进行特征降维，最后用训练好的 SVM 分类器进行识别，输出识别结果。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;三-种族识别&#34;&gt; 三、种族识别&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;准确的种族分类不仅可以有效地获取人脸数据中的人脸特性，还可以获取更多的人脸语义理解信息。其难点就在于：如何准确的描述人脸数据的种族特性以及如何在特征空间的基础上实现准确的分类。基于 Adaboost 和 SVM 的人脸识别算法为我们提供了一臂之力。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;31-基于-adaboost-和-svm-的人脸种族识别算法&#34;&gt; 3.1 基于 Adaboost 和 SVM 的人脸种族识别算法&lt;/span&gt;&lt;/h5&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170120/4408c3b3113b45f893475ad41b34b51c_th.png&#34; alt=&#34;img&#34; style=&#34;zoom:98%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;基于 Adaboost 和 SVM 的人脸种族识别算法通过提取人脸的肤色信息和 Gabor 特征，并通过 Adaboost 级联分类器进行特征学习，最后根据 SVM 分类器进行特征分类。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;四-年龄估计&#34;&gt; 四、年龄估计&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;说到年龄估计的问题，定义并不明确。它既可以是分类问题，亦可是回归问题。如果将年龄分成几类，比如：少年、青年、中年和老年时，年龄估计就是分类问题；如果精确的估计具体年龄时，年龄估计就是回归问题。&lt;/p&gt;
+&lt;p&gt;说到底，年龄估计是一个比性别识别更为复杂的问题。原因在于：人的年龄特征在外表上很难准确地被观察出来，即使是人眼也很难准确地判断出一个人的年龄。再看人脸的年龄特征，它通常表现在皮肤纹理、皮肤颜色、光亮程度和皱纹纹理等方面，而这些因素通常与个人的遗传基因、生活习惯、性别和性格特征和工作环境等方面相关。所以说，我们很难用一个统一的模型去定义人脸图像的年龄。若想要较好地估出人的年龄层，则需要通过大量样本的学习，比如说年龄估计开始。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170120/b42996beff5844c89d7c794db5af7905.png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;年龄估计大致分为预估和详细评估两个阶段。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;预估阶段：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;提取出照片中人脸的肌肤纹理特征，对年龄范围做一个大致的评估，得出一个特定的年龄段；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;详细评估阶段：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;通过支持向量机的方法，建立了对应于多个年龄段的多个模型分类器，并选择合适的模型进行匹配。这其中，以一项融合 LBP 和 HOG 特征的人脸年龄估计算法最为人们所熟知。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;41-融合-lbp-和-hog-特征的人脸年龄估计算法&#34;&gt; 4.1 融合 LBP 和 HOG 特征的人脸年龄估计算法&lt;/span&gt;&lt;/h5&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170120/7576e3c04d6d4fca8aca3b17b208f324.png&#34; alt=&#34;img&#34; style=&#34;zoom:98%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;融合 LBP 和 HOG 特征的人脸年龄估计算法提取与年龄变化关系紧密的人脸的局部统计特征。LBP（局部二值化模式）特征和 HOG（梯度直方图）特征，并用 CCA（典型相关分析）的方法融合，最后通过 SVR（支持向量机回归）的方法对人脸库进行训练和测试。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170120/4aff6137a0b743a79bb309492ecfe48d_th.png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h4&gt;&lt;span id=&#34;五-表情识别&#34;&gt; 五、表情识别&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;人脸表情是情绪状态和心理状态表现出来的一种重要形式。心理学家研究表明，只有 7% 的信息通过语言来表达，有 38% 按辅助语言来传达，如节奏、语音、语调等，而占比重最大的是人脸表情 —— 达到总量的 55%。也就是说，我们通过人脸表情可以得到很多有价值的信息，比如人的意识和心理活动等，这也就是我们常说的人脸表情识别。&lt;/p&gt;
+&lt;p&gt;人脸表情识别是指研究一个自动、高效、准确的系统来识别人脸表情的状态，进而通过人脸表情信息了解人的情绪，比如高兴、悲伤、愤怒、恐惧、惊讶、厌恶等。在算法识别中，融合 LBP 和局部稀疏表示的人脸表情识别算法最为著名。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170121/7f98981b37bc457486790311b9cf1392_th.jpg&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;51-融合-lbp-和局部稀疏表示的人脸表情识别算法&#34;&gt; 5.1 融合 LBP 和局部稀疏表示的人脸表情识别算法&lt;/span&gt;&lt;/h5&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170120/86fb01c41ab345e1af28063b282f2d68.png&#34; alt=&#34;img&#34; style=&#34;zoom:98%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;融合 LBP 和局部稀疏表示的人脸表情识别算法包括：&lt;/p&gt;
+&lt;p&gt;首先，对规格化后的训练集人脸图像进行特征分区，对于没个人脸分区计算该区域的 LBP 特征，并采用直方图统计方法整合该区域特征向量，形成由特定人脸的局部特征组成的训练集局部特征库；&lt;/p&gt;
+&lt;p&gt;其次，对于测试人脸，同样进行人脸图像规格化、人脸分区、局部 LBP 特征计算和局部直方图统计操作；&lt;/p&gt;
+&lt;p&gt;最后，对于测试人脸的局部直方图统计特征，利用训练集特征库进行局部稀疏重构表示，并采用局部稀疏重构残差加权方法进行最终人脸表情分类识别。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;智芯原动人脸属性识别&#34;&gt; 智芯原动人脸属性识别&lt;/span&gt;&lt;/h4&gt;
+&lt;center&gt;&lt;img src=&#34;http://img.mp.itc.cn/upload/20170120/0c23ac9782e2498c89a3feeefcd11afe_th.png&#34; alt=&#34;img&#34; style=&#34;zoom:80%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;智芯原动的人脸属性识别算法中使用了具有深度学习的卷积神经网络&lt;/strong&gt;。卷积神经网络是一种特殊的深层的神经网络模型，它是将人工神经网络和深度学习技术相结合而产生的一种新型人工神经网络方法，具有局部感受区域、层次结构化、特征提取和分类过程结合的全局训练的特点，在图像识别领域获得了广泛的应用。&lt;/p&gt;
+&lt;p&gt;卷积神经网络的特殊性体现在两个方面。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1、它的神经元之间的连接是非全连接的；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2、同一层中某些神经元之间的连接的权重是共享的。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这种非全连接和权值共享的网络结构降低了网络模型的复杂度，减少了权值的数量，这种网络结构对平移、旋转、倾斜、比例缩放等具有高度不变性。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;优势&lt;/strong&gt;：智芯原动的人脸属性识别算法很大程度上解决了装饰物、姿态、表情、光源带来的难点，并对图像质量、环境复杂度的要求较低，可以准确识别人脸的性别、种族、年龄、表情和佩戴的饰品（例如眼镜、耳环等），其人脸属性识别准确率 96% 以上。&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="人脸识别" />
+        <updated>2021-10-28T14:32:15.000Z</updated>
+    </entry>
+</feed>

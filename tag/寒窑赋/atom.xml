@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;寒窑赋&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2022-01-20T13:06:50.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2022/01/20/%E5%AF%92%E7%AA%91%E8%B5%8B/</id>
+        <title>寒窑赋</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2022/01/20/%E5%AF%92%E7%AA%91%E8%B5%8B/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;center&gt;&lt;font face=&#34;黑体&#34; size=&#34;5&#34;&gt;《寒窑赋》&lt;/font&gt;&lt;/center&gt;
+&lt;p&gt;天有不测风云，人有旦夕祸福。&lt;/p&gt;
+&lt;p&gt;蜈蚣百足，行不及蛇；雄鸡两翼，飞不过鸦。&lt;/p&gt;
+&lt;p&gt;马有千里之程，无骑不能自往；人有冲天之志，非运不能自通。&lt;/p&gt;
+&lt;p&gt;盖闻：人生在世，富贵不能淫，贫贱不能移。&lt;/p&gt;
+&lt;p&gt;文章盖世，孔子厄于陈邦；武略超群，太公钓于渭水。&lt;/p&gt;
+&lt;p&gt;颜渊命短，殊非凶恶之徒；盗跖年长，岂是善良之辈。&lt;/p&gt;
+&lt;p&gt;尧帝明圣，却生不肖之儿；瞽叟愚顽，反生大孝之子。&lt;/p&gt;
+&lt;p&gt;张良原是布衣，萧何曾为县吏。&lt;/p&gt;
+&lt;p&gt;晏子身无五尺，封作齐国宰相；孔明卧居草庐，能作蜀汉军师。&lt;/p&gt;
+&lt;p&gt;楚霸虽雄，败于乌江自刎；汉王虽弱，竟有万里江山。&lt;/p&gt;
+&lt;p&gt;李广有射虎之威，到老无封；冯唐有乘龙之才，一生不遇。&lt;/p&gt;
+&lt;p&gt;韩信未遇之时，无一日三餐，及至遇行，腰悬三齐玉印，一旦时衰，死于阴人之手。&lt;/p&gt;
+&lt;p&gt;有先贫而后富，有老壮而少衰。满腹文章，白发竟然不中；才疏学浅，少年及第登科。&lt;/p&gt;
+&lt;p&gt;深院宫娥，运退反为妓妾；风流妓女，时来配作夫人。&lt;/p&gt;
+&lt;p&gt;青春美女，却招愚蠢之夫；俊秀郎君，反配粗丑之妇。&lt;/p&gt;
+&lt;p&gt;蛟龙未遇，潜水于鱼鳖之间；君子失时，拱手于小人之下。&lt;/p&gt;
+&lt;p&gt;衣服虽破，常存仪礼之容；面带忧愁，每抱怀安之量。&lt;/p&gt;
+&lt;p&gt;时遭不遇，只宜安贫守份；心若不欺，必然扬眉吐气。&lt;/p&gt;
+&lt;p&gt;初贫君子，天然骨骼生成；乍富小人，不脱贫寒肌体。&lt;/p&gt;
+&lt;p&gt;天不得时，日月无光；地不得时，草木不生；水不得时，风浪不平；人不得时，利运不通。&lt;/p&gt;
+&lt;p&gt;注福注禄，命里已安排定，富贵谁不欲？人若不依根基八字，岂能为卿为相？&lt;/p&gt;
+&lt;p&gt;余者，居洛阳之时，朝投僧寺，夜宿破窑。&lt;/p&gt;
+&lt;p&gt;布衣不能遮其体，饘粥不能充其饥。&lt;/p&gt;
+&lt;p&gt;上人嫌，下人憎，皆言余之贱也，余曰：非贱也，乃时也，运也，命也。&lt;/p&gt;
+&lt;p&gt;余后登高及第，入中书，官至极品，位列三公，思衣则有绮罗千箱，思食则有百味珍馐，有挞百僚之杖，有斩佞臣之剑，出则壮士执鞭，入则佳人扶袂，廪有余粟，库有余财，人皆言余之贵也，余曰：非贵也，乃时也，运也，命也。&lt;/p&gt;
+&lt;p&gt;嗟呼！人生在世，富贵不可尽用，贫贱不可自欺，听由天地循环，周而复始焉。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.agrj.cn/zb_users/upload/2021/12/20211205145848_12488.jpg&#34; alt=&#34;寒窑赋（完整版原文）-第1张图片&#34;&gt;&lt;/p&gt;
+</content>
+        <category term="且读文摘" />
+        <category term="寒窑赋" />
+        <updated>2022-01-20T13:06:50.000Z</updated>
+    </entry>
+</feed>

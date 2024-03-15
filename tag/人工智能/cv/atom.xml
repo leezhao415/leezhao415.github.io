@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;人工智能/cv&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-08-07T10:48:23.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/08/07/DETR%EF%BC%9A%E5%9F%BA%E4%BA%8E-Transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/</id>
+        <title>DETR：基于 Transformers 的目标检测</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/08/07/DETR%EF%BC%9A%E5%9F%BA%E4%BA%8E-Transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#detr%E5%9F%BA%E4%BA%8E-transformers-%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B&#34;&gt;DETR：基于 Transformers 的目标检测&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%89%8D%E8%A8%80&#34;&gt;前言&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C&#34;&gt;相关工作&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#detr-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86&#34;&gt;DETR 的实现原理&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#cnn&#34;&gt;CNN&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#transformers-encoder-decoder&#34;&gt;Transformers encoder-decoder&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ffn&#34;&gt;FFN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8C%88%E7%89%99%E5%88%A9%E5%8C%B9%E9%85%8D&#34;&gt;匈牙利匹配&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E9%80%9A%E8%BF%87%E5%AF%B9%E6%AF%94-vit-%E6%80%9D%E8%80%83-detr&#34;&gt;通过对比 ViT 思考 DETR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#detr-%E8%BF%98%E8%83%BD%E5%81%9A%E5%88%86%E5%89%B2&#34;&gt;DETR 还能做分割&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90&#34;&gt;实验结果分析&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#comparison-study&#34;&gt;Comparison Study&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ablation-study&#34;&gt;Ablation Study&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%AE%80%E6%98%93%E4%BB%A3%E7%A0%81&#34;&gt;简易代码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%BB%93%E8%AE%BA&#34;&gt;结论&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;span id=&#34;detr基于-transformers-的目标检测&#34;&gt; DETR：基于 Transformers 的目标检测&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;前言&#34;&gt; 前言&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;最近可以说是随着 ViT 的大火，几乎可以说是一天就能看到一篇基于 Transformers 的 CV 论文，今天给大家介绍的是另一篇由 Facebook 在 ECCV2020 上发表的一篇基于 Transformers 的目标检测论文，这篇论文也是后续相当多的 Transformers 检测 / 分割的 baseline, 透过这篇论文我们来了解其套路.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;相关工作&#34;&gt; 相关工作&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;提到目标检测，我们先来简要回顾一下最基础的一个工作 Faster R-CNN&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://filescdn.proginn.com/1d6c50abbc38128ab241c904721fd40a/20f49d71d223862824251e9f618d8324.webp&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;Faster R-CNN 第一步是用 CNN 给图像提特征，再通过非极大值抑制算法提取出候选框，最后预测每个候选框的位置和类别，&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;detr-的实现原理&#34;&gt; DETR 的实现原理&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;DETR 这篇文章就极大的简化了这个过程，他把候选框提取的过程通过一个标准的 Transformers encoder-decoder 架构代替，在 decoder 部分直接预测出来物体的位置和类别.&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://filescdn.proginn.com/45d878d32204d9a7ced473158b1391ee/19e6480cf1c51b1a692c58a616128bc9.webp&#34; alt=&#34;img&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;流程分为三步:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;CNN 提特征&lt;/li&gt;
+&lt;li&gt;Transformers 的 encoder-decoder 进行信息的融合&lt;/li&gt;
+&lt;li&gt;FFN 预测 class 和 box&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;&lt;span id=&#34;cnn&#34;&gt; CNN&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;利用 resnet-50 网络，将输入的图像 3 X &lt;em&gt;W&lt;/em&gt;&lt;sub&gt;0&lt;/sub&gt; X &lt;em&gt;H&lt;/em&gt;&lt;sub&gt;0&lt;/sub&gt; 变成尺度为 2048 X &lt;em&gt;W&lt;/em&gt;&lt;sub&gt;0&lt;/sub&gt;/32 X &lt;em&gt;H&lt;/em&gt;&lt;sub&gt;0&lt;/sub&gt;/32 的特征，再通过一个 1X1 卷积，将 channel 从 2048 变为更小 (通常 512)&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;transformers-encoder-decoder&#34;&gt; Transformers encoder-decoder&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Transformer encoder 部分首先将输入的特征图降维并 flatten 成 d 个 &lt;em&gt;H&lt;/em&gt; X &lt;em&gt;W&lt;/em&gt; 维的向量，每个向量作为输入的 token, 由于 Self-attention 是置换不变形的，所以为了体现每个 token 在原图中的顺序关系，我们给每个 token 加上一个 positional encodings. 输出这是对应 Decoder 部分的 V 和 K.&lt;/p&gt;
+&lt;p&gt;比如说我们一开始输入的图片是 512*512, 那么 d 应该是 256.&lt;/p&gt;
+&lt;p&gt;Transformers decoder 部分是输入是 100 个 Object queries, 比如说我们数据集总共有 100 个类别的物体需要预测，那么这 100 object queries 经过 Transformers decoder 之后会预测出若干类别的物体和位置信息.&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://filescdn.proginn.com/7c8222d0fa35c09590751d12a0cb60b1/8a3a853c4037a1e1ea3927e14a252369.webp&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;作者发现在训练过程中在 decoder 中使用 auxiliary losses 很有帮助，特别是有助于模型输出正确数量的每个类的对象。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;ffn&#34;&gt; FFN&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;DETR 在每个解码器层之后添加预测 FFN 和 Hungarian loss，所有预测 FFN 共享其参数。我们使用附加的共享层范数来标准化来自不同解码器层的预测 FFN 的输入，FFN 是一个最简单的多层感知机模块，对 Transformers decoder 的输出预测每个 object query 的类别和位置信息。在实际训练的过程中，通过匈牙利算法匹配预测和标签最小的损失，仅适用配对上的 query 计算 loss 回传梯度.&lt;/p&gt;
+&lt;p&gt;loss 包括 Box loss 和 class loss&lt;/p&gt;
+&lt;p&gt;Box Loss 包括 IOUloss 和 L1loss, 这个原理很简单.&lt;/p&gt;
+&lt;p&gt;where  are hyperparameters and  is the generalized IoU [38]:&lt;/p&gt;
+&lt;p&gt;class loss 就是最简单的交叉熵了.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;匈牙利匹配&#34;&gt; 匈牙利匹配&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;匈牙利匹配算法是离散数学中图论部分的一个经典算法，描述的问题是一个二分图的最大匹配。换成人话来说就是这个二分图分成两部分，一部分是我们对 100 种 object query 预测的结果，另一部分是实际的标签，由于我们一开始是不知道这 100 个 object query 输入的时候应该预测那些类别的物体，有可能一开始第一个 token 预测的是 A 物体，第二个 token 预测的是 C 物体，总而言之是无序的，我们就要根据实际的 label, 找到预测结果中和他最接近的计算 loss. 其他没匹配上的则不计算 loss 回传梯度。下面这张图一目了然:&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://filescdn.proginn.com/c543cb1abdfeacf431fae3d0c23f5067/75f00e1c21f1f9f8aafb922475704ca3.webp&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;h3&gt;&lt;span id=&#34;通过对比-vit-思考-detr&#34;&gt; 通过对比 ViT 思考 DETR&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;其实笔者在阅读这篇文章的时候更加重点的是对比 ViT 在一些实现细节上的不同之处，&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://filescdn.proginn.com/4f698e89fac1c0f6306728900f821dde/1ddbec9e3a7cda74289d8d094b6d3d4d.webp&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;ol&gt;
+&lt;li&gt;首先 ViT 是没有使用 CNN 的，而 DETR 是先用 CNN 提取了图像的特征&lt;/li&gt;
+&lt;li&gt;ViT 只使用了 Transformers-encoder, 在 encoder 的时候额外添加了一个 Class token 来预测图像类型，而 DETR 的 object token 则是通过 Decoder 学习的.&lt;/li&gt;
+&lt;li&gt;DETR 和 VIT 中的 Transformers 在 encoder 部分都使用了 Position Embedding, 但是使用的并不一样，而 VIT 在使用的 Position Embedding 也是笔者一开始阅读文献的疑惑所在.&lt;/li&gt;
+&lt;li&gt;DETR 的 Transformers encoder 使用的 feature 的每一个 pixel 作为 token embeddings 输入，而 ViT 则是直接把图像切成 16*16 个 Patch, 每个 patch 直接拉平作为 token embeddings&lt;/li&gt;
+&lt;li&gt;相比较 VIT,DETR 更接近原始的 Transformers 架构.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;&lt;span id=&#34;detr-还能做分割&#34;&gt; DETR 还能做分割&lt;/span&gt;&lt;/h3&gt;
+&lt;center&gt;&lt;img src=&#34;https://filescdn.proginn.com/b24f3678c5314f42eece7d97d5a8113e/07033f9208979fc87463922a1b880492.webp&#34; alt=&#34;img&#34; style=&#34;zoom: 90%;&#34;&gt;&lt;/center&gt;
+&lt;ol&gt;
+&lt;li&gt;首先检测 box&lt;/li&gt;
+&lt;li&gt;对每个 box 做分割&lt;/li&gt;
+&lt;li&gt;为每个像素的类别投票&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;作者在这篇论文在并没有详细讲实现细节，但是今年 CVPR2021 上发表的 SETR 则是重点讲如何利用 Transformers 做分割，我们下次细讲.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;实验结果分析&#34;&gt; 实验结果分析&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;comparison-study&#34;&gt; Comparison Study&lt;/span&gt;&lt;/h4&gt;
+&lt;center&gt;&lt;img src=&#34;https://filescdn.proginn.com/be267a0d4f97e447624fd4a309d6cfda/11c96a44231d180d6eb6fd98d1c23fd3.webp&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;对比的是检测领域最经典的 Faster R-CNN, 可以看得出来了在同等参数两的情况下，在大目标物体的检测结果优于 Faster R-CNN, 道理嘛作者说是 Transformers 可以更关注全局信息.&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;ablation-study&#34;&gt; Ablation Study&lt;/span&gt;&lt;/h4&gt;
+&lt;center&gt;&lt;img src=&#34;https://filescdn.proginn.com/71775ca96643ecd9b0102a86503fa333/cc9864649b6ca5eb89a580b205c645bd.webp&#34; alt=&#34;img&#34; style=&#34;zoom: 60%;&#34;&gt;&lt;/center&gt;
+&lt;ol&gt;
+&lt;li&gt;Decoder 比 Encoder 重要&lt;/li&gt;
+&lt;li&gt;Decoder 具有隐含的 “锚”，这对检测至关重要&lt;/li&gt;
+&lt;li&gt;Encoder 仅帮助聚合同一对象的像素，减轻 decoder 的负担&lt;/li&gt;
+&lt;/ol&gt;
+&lt;center&gt;&lt;img src=&#34;https://filescdn.proginn.com/e9b2f4326a970e9db04c311e1efc7d3c/3519e6a3afba1f87dce95e9d901e5aa6.webp&#34; alt=&#34;img&#34; style=&#34;zoom:55%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;在位置编码部分，作者对比了可学习的位置编码和基于 Sincos 函数的位置编码方法 (也就是原始 Transformers 的位置编码方法) 可以看得出来效果是 Sincos 的更好，但是都显著好于不加位置编码，因为作者也在原文中 Self-Attention 是并行的，他如果不加位置编码的话是置换不变性的 (这个看 Attention is All you Need 原文)&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://filescdn.proginn.com/7a815e66a7ef4c06a9acc9002b89be62/d5cccf07b43347dcbd1d047eb343959c.webp&#34; alt=&#34;img&#34; style=&#34;zoom: 60%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;这个嘛，就是很简单的实验了，验证一下 loss 每个部分的作用，基本上就是格式化的东西.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;简易代码&#34;&gt; 简易代码&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;作者最后在附录部分贴上了简易的代码实现细节&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; torch &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; torch &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; nn &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; torchvision.models &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; resnet50&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;DETR&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;nn.Module&lt;/span&gt;):&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;__init__&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;self, num_classes, hidden_dim, nheads,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;               num_encoder_layers, num_decoder_layers&lt;/span&gt;):&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;built_in&#34;&gt;super&lt;/span&gt;().__init__() &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;# We take only convolutional layers from ResNet-50 model&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        self.backbone=nn.Sequential(&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          *&lt;span class=&#34;built_in&#34;&gt;list&lt;/span&gt;(resnet50(pretrained=&lt;span class=&#34;literal&#34;&gt;True&lt;/span&gt;).children())[:-&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        self.conv = nn.Conv2d(&lt;span class=&#34;number&#34;&gt;2048&lt;/span&gt;, hidden_dim, &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;) &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        self.transformer = nn.Transformer(hidden_dim, nheads,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                                          num_encoder_layers,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                                          num_decoder_layers)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        self.linear_class = nn.Linear(hidden_dim, num_classes + &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        self.linear_bbox = nn.Linear(hidden_dim, &lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;) &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        self.query_pos =nn.Parameter(torch.rand(&lt;span class=&#34;number&#34;&gt;100&lt;/span&gt;, hidden_dim))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        self.row_embed = nn.Parameter(torch.rand(&lt;span class=&#34;number&#34;&gt;50&lt;/span&gt;, hidden_dim // &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        self.col_embed = nn.Parameter(torch.rand(&lt;span class=&#34;number&#34;&gt;50&lt;/span&gt;, hidden_dim // &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;forward&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;self, inputs&lt;/span&gt;):&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        x = self.backbone(inputs) h = self.conv(x)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        H,W=h.shape[-&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;:]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        pos = torch.cat([&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          self.col_embed[:W].unsqueeze(&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;).repeat(H, &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          self.row_embed[:H].unsqueeze(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;).repeat(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, W, &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;), ],&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          dim=-&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;).flatten(&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;).unsqueeze(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;) &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        h = self.transformer(pos + &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                             h.flatten(&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;).permute(&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;,&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                             self.query_pos.unsqueeze(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;)) &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; self.linear_class(h), self.linear_bbox(h).sigmoid()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;detr = DETR(num_classes=&lt;span class=&#34;number&#34;&gt;91&lt;/span&gt;, hidden_dim=&lt;span class=&#34;number&#34;&gt;256&lt;/span&gt;, nheads=&lt;span class=&#34;number&#34;&gt;8&lt;/span&gt;, num_encoder_layers=&lt;span class=&#34;number&#34;&gt;6&lt;/span&gt;, num_decoder_layers=&lt;span class=&#34;number&#34;&gt;6&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;detr.&lt;span class=&#34;built_in&#34;&gt;eval&lt;/span&gt;() &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;inputs = torch.randn(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;800&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;1200&lt;/span&gt;) &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;logits, bboxes = detr(inputs)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;结论&#34;&gt; 结论&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;一篇很简单的 Transformers 在目标检测上的应用，也是最近大火的 Transformers 系列必引的一篇论文，我觉得他和 VIT 代表了 CV 对 Transformers 架构的两种看法吧，VIT 是只用 Encoder, 这也是目前最主流的做法，而 DETR 则是运用了 CNN 和 Transformers encoder-decoder 的结合，从 motivation 上来说我个人更喜欢 DETR, 这段时间也基本上把 Transformers 一系列都读完了，会以一个系列调几篇好的论文讲解 (水文实在是太多了)。&lt;/p&gt;
+</content>
+        <category term="人工智能/CV" />
+        <category term="Transformer/DETR(CV)" />
+        <updated>2021-08-07T10:48:23.000Z</updated>
+    </entry>
+</feed>

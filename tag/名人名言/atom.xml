@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;名人名言&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-07-14T11:13:03.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/07/14/%E5%9C%A8%E6%80%80%E7%96%91%E7%9A%84%E6%97%B6%E4%BB%A3%E4%BE%9D%E7%84%B6%E9%9C%80%E8%A6%81%E4%BF%A1%E4%BB%B0/</id>
+        <title>在怀疑的时代依然需要信仰</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/07/14/%E5%9C%A8%E6%80%80%E7%96%91%E7%9A%84%E6%97%B6%E4%BB%A3%E4%BE%9D%E7%84%B6%E9%9C%80%E8%A6%81%E4%BF%A1%E4%BB%B0/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;center&gt;&lt;font face=&#34;黑体&#34; size=&#34;5&#34;&gt;在怀疑的时代依然需要信仰&lt;/font&gt;&lt;/center&gt;
+&lt;center&gt;&lt;font face=&#34;黑体&#34; size=&#34;5&#34;&gt;——卢新宁2012年北京大学中文系毕业典礼上的演讲&lt;/font&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&#34;https://img-blog.csdnimg.cn/20210714190828360.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70&#34; alt=&#34;在这里插入图片描述&#34; style=&#34;zoom: 67%;#pic_center&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;敬爱的老师和亲爱的同学们：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;上午好！&lt;/p&gt;
+&lt;p&gt;谢谢你们叫我回家。让我有幸再次聆听老师的教诲，分享我亲爱的学弟学妹们的特殊喜悦。一进家门，光阴倒转，刚才那些美好的视频，同学的发言，老师的讲话，都让我觉得所有年轻的故事都不曾走远。&lt;/p&gt;
+&lt;p&gt;可是，站在你们面前，亲爱的同学们，我才发现，自己真的老了。1988 年，我本科毕业的时候，你们中的绝大多数人还没有出生。那个时候你们的朗朗部长还是众女生仰慕的帅师兄，你们的渭毅老师正与我的同屋女孩爱得地老天荒。而他们的孩子都该考大学了。&lt;/p&gt;
+&lt;p&gt;就像刚才那首歌唱的，“记忆中最美的春天，难以再回首的昨天”。如果把生活比作一段将理想 “变现” 的历程，我们只是一叠面额有限的现钞，而你们是即将上市的股票。从一张白纸起步的书写，前程无远弗届，一切皆有可能。面对你们，我甚至缺少一分抒发 “过来人” 心得的勇气。&lt;/p&gt;
+&lt;p&gt;但我先生力劝我来，我的朋友也劝我来，他们都是 84 级的中文系学长。今天，他们有的仍然是一介文人，清贫淡泊；有的已经主政一方，功成名就；有的发了财做了 “富二代” 的爹，也有的离了婚、生活并不如意，但在网上交流时，听说有今天这样一个机会，他们都无一例外地让我一定要来，代表他们，代表那一代人，向自己的弟弟妹妹说点什么。&lt;/p&gt;
+&lt;p&gt;是的，跟你们一样，我们曾在中文系就读，甚至读过同一门课程，青涩的背影都曾被燕园的阳光，定格在五院青藤缠满的绿墙上。但那是上个世纪的事了，我们之间横亘着 20 多年的时光。&lt;/p&gt;
+&lt;p&gt;那个时候我们称为理想的，今天或许你们笑称其为空想；那时的我们流行书生论政，今天的你们要面对诫勉谈话；那时的我们熟悉的热词是民主、自由，今天的你们记住的是 “拼爹”、“躲猫猫”、“打酱油”；那个时候的我们喜欢在三角地游荡，而今天的你们习惯隐形于伟大的互联网。&lt;/p&gt;
+&lt;p&gt;我们那时的中国依然贫穷却豪情万丈，而今天这个世界第二大经济体，还在苦苦寻找迷失的幸福，无数和你们一样的青年喜欢用 “囧” 形容自己的处境。&lt;/p&gt;
+&lt;p&gt;20 多年时光，中国到底走了多远？存放我们青春记忆的 “三角地” 早已荡然无存，见证你们少年心绪的 “一塔湖图” 正在创造新的历史。&lt;strong&gt;你们这一代人，有着远比我们当年更优越的条件，更广博的见识，更成熟的内心，站在更高的起点。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我们想说的是，站在这样高的起点，由北大中文系出发，你们不缺前辈大师的庇荫，更不少历史文化的熏染。《诗经》《楚辞》的世界，老庄孔孟的思想，李白杜甫的词章，构成了你们生命中最为激荡的青春时光。&lt;/p&gt;
+&lt;p&gt;我不需要提醒你们，未来将如何以具体琐碎消磨这份浪漫与绚烂；也不需要提醒你们，人生将以怎样的平庸世故，消解你们的万丈雄心；更不需要提醒你们，走入社会，要如何变得务实与现实，因为你们终将以一生浸淫其中。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我唯一的害怕，是你们已经不相信了 —— 不相信规则能战胜潜规则，不相信学场有别于官场，不相信学术不等于权术，不相信风骨远胜于媚骨。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;你们或许不相信了，因为追求级别的越来越多，追求真理的越来越少；讲待遇的越来越多，讲理想的越来越少；大官越来越多，大师越来越少。&lt;/p&gt;
+&lt;p&gt;因此，在你们走向社会之际，我想说的只是，请看护好你曾经的激情和理想。&lt;strong&gt;在这个怀疑的时代，我们依然需要信仰。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;也许有同学会笑话，大师姐写报社论写多了吧，这么高的调子。可如果我告诉各位，这是我的那些中文系同学，那些不管今天处于怎样的职位，遭遇过怎样的人生的同学共同的想法，你们是否会稍微有些重视？是否会多想一下为什么二十多年过去，他们依然如此？&lt;/p&gt;
+&lt;p&gt;我知道，与我们这一代相比，你们这一代人的社会化远在你们踏上社会之前就已经开始了，国家的盛世集中在你们的大学时代，但社会的问题也凸显在你们的青春岁月。&lt;strong&gt;你们有我们不曾拥有的机遇，但也有我们不曾经历的挑战。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;文学理论无法识别毒奶粉的成分，古典文献挡不住地沟油的泛滥。当利益成为唯一的价值，很多人把信仰、理想、道德都当成交易的筹码，我很担心，“怀疑” 会不会成为我们时代否定一切、解构一切的 “粉碎机”？我们会不会因为心灰意冷而随波逐流，变成钱理群先生所言 “精致利己主义”，世故老到，善于表演，懂得配合？而北大会不会像那个日本年轻人所说的，“有的是人才，却并不培养精英”？&lt;/p&gt;
+&lt;p&gt;我有一位清华毕业的同事，从大学开始，就自称是 “北大的跟屁虫”。对北大人甚是敬重。谈到 “大清王朝北大荒” 江湖传言，他特认真地对我说：“这个社会更需要的，不是北大人的适应，而是北大人的坚守。”&lt;/p&gt;
+&lt;p&gt;这让我想起中文系百年时，陈平原先生的一席话。&lt;strong&gt;他提到西南联大时的老照片给自己的感动：一群衣衫褴褛的知识分子，器宇轩昂地屹立于天地间。这应当就是国人眼里北大人的形象。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;不管将来的你们身处何处，不管将来的你们从事什么职业，是否都能常常自问，作为北大人，我们是否还存有那种浩然之气？那种精神的魅力，充实的人生，“天地之心、生民之命、往圣绝学”，是否还能在我们心中激起共鸣？&lt;/p&gt;
+&lt;p&gt;马克思曾慨叹，法兰西不缺少有智慧的人但缺少有骨气的人。今天的中国，同样不缺少有智慧的人但缺少有信仰的人。&lt;/p&gt;
+&lt;p&gt;也正因此，中文系给我们的教育，才格外珍贵。从母校的教诲出发，20 多年社会生活给的我最大启示是：当许多同龄人都陷于时代的车轮下，那些能幸免的人，不仅因为坚强，更因为信仰。&lt;/p&gt;
+&lt;p&gt;不用害怕圆滑的人说你不够成熟，不用在意聪明的人说你不够明智，不要照原样接受别人推荐给你的生活，选择坚守、选择理想，选择倾听内心的呼唤，才能拥有最饱满的人生。&lt;/p&gt;
+&lt;p&gt;梁漱溟先生写过一本书《这个世界会好吗？》。我很喜欢这个书名，它以朴素的设问提出了人生的大问题。这个世界会好吗？事在人为，未来中国的分量和质量，就在各位的手上。&lt;/p&gt;
+&lt;p&gt;最后，我想将一位学者的话送给亲爱的学弟学妹 —— 无论中国怎样，请记得：&lt;strong&gt;你所站立的地方，就是你的中国；你怎么样，中国便怎么样；你是什么，中国便是什么；你有光明，中国便不会黑暗。&lt;/strong&gt;&lt;/p&gt;
+</content>
+        <category term="且读文摘" />
+        <category term="名人名言" />
+        <updated>2021-07-14T11:13:03.000Z</updated>
+    </entry>
+</feed>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基于 Multiple Teacher Single Student 框架的多领域对话模型 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   多领域对话系统中棘手的状态表示问题 来源于生活的 MTSS（Multiple Teachers Single Student）模型 MTSS 的模型结构  Model Overview Teacher Model Student Model   MTSS 中的知识迁移方法  文本级别的知识迁移   实验与结果分析  数据集 实验设定 结果分析   总结 后记    导读：一个源于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 Multiple Teacher Single Student 框架的多领域对话模型">
+<meta property="og:url" content="https://leezhao415.github.io/2021/12/12/%E5%9F%BA%E4%BA%8E-Multiple-Teacher-Single-Student-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%A4%9A%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   多领域对话系统中棘手的状态表示问题 来源于生活的 MTSS（Multiple Teachers Single Student）模型 MTSS 的模型结构  Model Overview Teacher Model Student Model   MTSS 中的知识迁移方法  文本级别的知识迁移   实验与结果分析  数据集 实验设定 结果分析   总结 后记    导读：一个源于">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Db3F4SUY4VHhCZkhpYUxwbDNndUNsU2Q2SWxwM09Jb2pia1lNT2ljOVRreFhBNFhYb2x2UkhGMHpzZGNjMXg2SHRsU2lhcGpQdTFmaWJJRFJpYk16MGdUTU53LzY0MA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Db3F4SUY4VHhCZkhpYUxwbDNndUNsU2Q2SWxwM09Jb2pqR3lFdUVOR2F1akpnYjNpYzdGaWJjbndJbFlTaWFOOGliUjh6UUhPU2pxeXlDZFpBMzZEaWF3aWJWY2cvNjQw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Db3F4SUY4VHhCZkhpYUxwbDNndUNsU2Q2SWxwM09Jb2pPQ1FzbkxqVDVzQm5NWjBiZWliemliSzBic216TFUzOU9qeGc1MDRvS3ZSNmhaMk42SlVjY3dSUS82NDA?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Db3F4SUY4VHhCZkhpYUxwbDNndUNsU2Q2SWxwM09Jb2pObFE4TERDRDBQbWVwS21kQ3BXNWNrSHdFMHdKTzdXZmNnaWJ0S2MyekNmcnlHN1BWaWFVRWVpY1EvNjQw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Db3F4SUY4VHhCY2xDRjNhVmpjQ09WbERjSE9WdVBVRU9aTHAwRWt4eGQwMnRpYjZleEJScUt5c1RvaWEwbjBxOU9QVnBZUDkzZU1VS0JFZWQ0WDN3dk93LzY0MA?x-oss-process=image/format,png">
+<meta property="article:published_time" content="2021-12-12T10:23:56.000Z">
+<meta property="article:modified_time" content="2021-12-12T10:51:38.357Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="知识蒸馏">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Db3F4SUY4VHhCZkhpYUxwbDNndUNsU2Q2SWxwM09Jb2pia1lNT2ljOVRreFhBNFhYb2x2UkhGMHpzZGNjMXg2SHRsU2lhcGpQdTFmaWJJRFJpYk16MGdUTU53LzY0MA?x-oss-process=image/format,png">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-基于-Multiple-Teacher-Single-Student-框架的多领域对话模型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      基于 Multiple Teacher Single Student 框架的多领域对话模型
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-12-12
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E5%A4%9A%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%AF%9D%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%A3%98%E6%89%8B%E7%9A%84%E7%8A%B6%E6%80%81%E8%A1%A8%E7%A4%BA%E9%97%AE%E9%A2%98">多领域对话系统中棘手的状态表示问题</a></li>
+<li><a href="#%E6%9D%A5%E6%BA%90%E4%BA%8E%E7%94%9F%E6%B4%BB%E7%9A%84-mtssmultiple-teachers-single-student%E6%A8%A1%E5%9E%8B">来源于生活的 MTSS（Multiple Teachers Single Student）模型</a></li>
+<li><a href="#mtss-%E7%9A%84%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84">MTSS 的模型结构</a>
+<ul>
+<li><a href="#model-overview">Model Overview</a></li>
+<li><a href="#teacher-model">Teacher Model</a></li>
+<li><a href="#student-model">Student Model</a></li>
+</ul>
+</li>
+<li><a href="#mtss-%E4%B8%AD%E7%9A%84%E7%9F%A5%E8%AF%86%E8%BF%81%E7%A7%BB%E6%96%B9%E6%B3%95">MTSS 中的知识迁移方法</a>
+<ul>
+<li><a href="#%E6%96%87%E6%9C%AC%E7%BA%A7%E5%88%AB%E7%9A%84%E7%9F%A5%E8%AF%86%E8%BF%81%E7%A7%BB">文本级别的知识迁移</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9E%E9%AA%8C%E4%B8%8E%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90">实验与结果分析</a>
+<ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E9%9B%86">数据集</a></li>
+<li><a href="#%E5%AE%9E%E9%AA%8C%E8%AE%BE%E5%AE%9A">实验设定</a></li>
+<li><a href="#%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90">结果分析</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+<li><a href="#%E5%90%8E%E8%AE%B0">后记</a></li>
+</ul>
+<!-- tocstop -->
+<hr>
+<p>导读：一个源于高考的高性能多领域对话模型。</p>
+<p>作者 | 珂蓝、元淳<br>
+来源 | 凌云时刻（微信号：linuxpk）</p>
+<p>朴素的思想：多个师傅教出综合徒弟</p>
+<p>一切都从高考开始谈起。</p>
+<p>每一个高考生在学习语文、数学、外语、物理等学科时，并非是自己抱着一摞各个学科的书籍独自啃读，而是向相应学科的老师进行学习，参加高考时，学得好的学生在高考这种多学科测试中，往往要比单个学科的老师表现出色。毕竟，学生是博采百家之长。</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Db3F4SUY4VHhCZkhpYUxwbDNndUNsU2Q2SWxwM09Jb2pia1lNT2ljOVRreFhBNFhYb2x2UkhGMHpzZGNjMXg2SHRsU2lhcGpQdTFmaWJJRFJpYk16MGdUTU53LzY0MA?x-oss-process=image/format,png" alt="img" style="zoom:50%;"></center>
+<h4><span id="多领域对话系统中棘手的状态表示问题"> 多领域对话系统中棘手的状态表示问题</span></h4>
+<p>在对话处理的过程中，对话状态表示是个至关重要的部分，对话管理模块往往需要精确记录当前对话的状态才能做出正确的对话决策。</p>
+<p>任务型对话系统上有两种常用的对话状态表示方法：</p>
+<p>状态追踪（State Tracking）：基于状态追踪的方式一般采用一个额外的信念状态追踪模块，从原始的用户文本中抽取出必要的对话本体信息，这些本体信息包括实体值、槽位等，用来表示一段特定的对话状态。</p>
+<p>隐向量状态表示：隐向量的状态表示方法则直接将所有的对话历史信息进行压缩，得到用于表示状态的隐向量。</p>
+<p>这两种方法在单个领域的对话任务，诸如机票预订的场景下，有着良好的性能表现。这是由于在单一领域下，所涉及的实体值和槽位数量往往很少。然而，当场景切换到多领域对话时，这两种方法的性能会急剧下降:</p>
+<p>对于状态追踪方法来说，多领域下本体信息空间成倍地增加，从而导致状态追踪模块在实体值和槽位识别上的准确率大幅下降，进而影响了对话系统。</p>
+<p>而对于隐向量的状态表示来说，由于直接使用了隐向量而非人工定义的状态，训练数据中关于实体和槽位的人工标注信息无法被充分利用。除此之外，隐向量的状态不具备可读性，是一个黑盒式的表示，难以针对特定领域的问题进行描述。</p>
+<p>综上，多领域下低质量低精度的状态表示影响了对话系统的对话策略，进一步影响了对话系统的整体表现。</p>
+<h4><span id="来源于生活的-mtssmultiple-teachers-single-student模型"> 来源于生活的 MTSS（Multiple Teachers Single Student）模型</span></h4>
+<p>为了解决上述问题并建立一个高性能的多领域对话模型，我们提出了多教师 — 单学生对话模型 MTSS（Multiple Teachers Single Student）。</p>
+<p>这种模型能分块式地学习多领域下复杂的对话状态表示，最终得到多领域下优异的对话策略。MTSS 模型使用了多个教师模型，每个模型学习一个领域下优秀的对话策略。多个教师模型再将知识和策略教授给一个通用的学生模型，使得学生模型成为所有领域的专家对话模型。这种多教师 - 单学生的场景能很好地解决多领域对话的问题。</p>
+<ol>
+<li>
+<p>在多领域对话任务下的每一个领域，使用一个独立的教师模型，来学习领域特定的知识，同时也额外学习领域下人工标注的语意信息。每个领域下的教师模型使用用户文本语句和基于人工语意标注的状态表示作为输入，从这些特定领域下的文本和状态中，领域教师模型能学到高质量的对话策略方法。</p>
+</li>
+<li>
+<p>这些训练好的、领域特定的教师模型将各自学到的知识和对话策略传递到一个通用的学生模型中，通过基于文本的引导和基于策略的引导两种方式将这些知识信息传递到学生模型，传递的过程则采用知识蒸馏算法来实现。通过从领域特定的教师模型学习，通用学生模型既学到了多领域的知识，同时也学到了额外的语意标注信息，从而有着良好的多领域对话表现。</p>
+</li>
+</ol>
+<h4><span id="mtss-的模型结构"> MTSS 的模型结构</span></h4>
+<h5><span id="model-overview"> Model Overview</span></h5>
+<p>MTSS 的整体框架如图所示（图中仅画出了两个教师模型，实际教师模型的数量取决于多领域对话的领域数量）。</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Db3F4SUY4VHhCZkhpYUxwbDNndUNsU2Q2SWxwM09Jb2pqR3lFdUVOR2F1akpnYjNpYzdGaWJjbndJbFlTaWFOOGliUjh6UUhPU2pxeXlDZFpBMzZEaWF3aWJWY2cvNjQw?x-oss-process=image/format,png" alt="img" style="zoom: 67%;"></center>
+<p>主要由两个部分组成：教师模型和学生模型。</p>
+<p>教师模型通常是由多领域场景下的领域数决定，通常每个领域下建立一个教师模型。</p>
+<p>在训练过程中，教师模型和学生模型所接收的输入是不同的：</p>
+<ul>
+<li>
+<p>教师模型接收当前用户语句和人工标注的状态表示作为输入。由于状态表示由人工标注，因此具有非常高的准确度，从而保证了教师模型从这些语意信息中能获得足够多的正确信息用于对话决策和回复生成。</p>
+</li>
+<li>
+<p>学生模型仅使用当前用户输入和历史对话作为输入。</p>
+</li>
+</ul>
+<p>在经过充分训练后，教师模型再通过文本引导和策略引导两种方式将知识传递到学生模型。使用文本引导使得学生模型和教师模型生成相似的回复，使用策略引导则使得学生模型学习教师模型的对话策略，从而保证学生模型能充分接收来自教师模型的知识。下一节将详细描述教师和学生之间的交互方式。</p>
+<p>完成上述的训练过程后，学生模型获得了充分的多领域知识以及足够正确的对话策略。在模型测试和部署时，学生模型只需要原始的文本作为输入，不需要额外的语意和状态标注即可生成高质量的回复。</p>
+<h5><span id="teacher-model"> Teacher Model</span></h5>
+<p>我们采用了 Budzianowski 提出的对话模型作为教师模型。如下图所示，</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Db3F4SUY4VHhCZkhpYUxwbDNndUNsU2Q2SWxwM09Jb2pPQ1FzbkxqVDVzQm5NWjBiZWliemliSzBic216TFUzOU9qeGc1MDRvS3ZSNmhaMk42SlVjY3dSUS82NDA?x-oss-process=image/format,png" alt="img" style="zoom: 25%;"></center>
+<p>教师模型由三部分构成：编码器，解码器以及中间的策略模型。策略模型同时使用了来自编码器的句表示向量 utut 和来自人工定义的特征向量 etet 作为输入。特征向量又由两个部分组成，第一部分是置信状态向量 vbvb，置信状态向量的每一个维度均使用了独热（one-hot）编码，映射到领域下某个特定的槽位，槽位中的实体值需要由用户给出。当某个值在对话中已经被给定，则当前位置的编码设定为 1，否则设定为 0。因此，置信状态向量 vbvb 代表在当前对话状态下，系统所记录的必要信息。在对话每一轮，置信状态都会根据语意标注信息进行更新。特征的另一部分是数据库指示向量 vkbvkb。数据库指示向量表示满足用户需求的实体在数据库中的个数。使用 4 维的独热编码来记录这个数值，每一维分别表示数量为 0，1，2 或者大于等于 3 个候选实体。并将将以上 3 个向量 —— 句向量 vutvtu，置信状态向量 vbvb 和数据库指示向量 vkbvkb—— 拼接到一起，就得到了当前对话完整的状态表示 stst。</p>
+<p>得到拼接向量后，将拼接向量输入策略层，策略层由一层的次线性全连接构成，使用 tanhtanh 作为激活函数，并由策略层得到决策向量 atat：</p>
+<p>at=tanh(w⋅[vut;vb;vkb]),at=tanh(w⋅[vtu;vb;vkb]),</p>
+<p>其中 [;][;] 表示拼接操作。决策向量 atat 最终被输入解码器模块，解码器由输入的决策向量和注意力机制增强来产生最终的输出。由于每个教师模型各自独立，因此每个教师模型所学习的状态信息是各不相同的。在教师模型经过充分预训练后，将教师模型作为引导模型来训练学生模型。</p>
+<p>教师模型的训练过程中直接使用真值回复数据作为训练模板。对于教师模型，给定用户输入 uu 和状态表示 ss，模型旨在优化真实回复 r={wr0,wr1,…,wrm} r={w0r,w1r,…,wmr}。和生成回复<sup> rr</sup> 之间的负对数似然损失：</p>
+<p>JNLL(<sup>r|u,s)=−m∑i=0∑</sup>wi∈V1}logp(<sup>wi|u,s,wr0∼i−1;ϕ),JNLL(r</sup>|u,s)=−∑i=0m∑w<sup>i∈V1{w^i=wir}log⁡p(w</sup>i|u,s,w0∼i−1r;ϕ),</p>
+<p>其中 VV 表示生成词构成的词表， ϕϕ 表示教师模型的参数，1 {⋅} 1 {⋅} 表示指示函数（当括号内表达式成立时值为 1，否则为 0）。</p>
+<h5><span id="student-model"> Student Model</span></h5>
+<p>学生模型，也是通用多领域的对话模型，是 MTSS 框架最终产出的模型。通用学生模型不使用额外的状态信息作为输入，它本身应当具有建模完整对话上下文的能力。基于此，我们选用 HRED 模型作为通用学生模型的基本框架。</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Db3F4SUY4VHhCZkhpYUxwbDNndUNsU2Q2SWxwM09Jb2pObFE4TERDRDBQbWVwS21kQ3BXNWNrSHdFMHdKTzdXZmNnaWJ0S2MyekNmcnlHN1BWaWFVRWVpY1EvNjQw?x-oss-process=image/format,png" alt="img" style="zoom: 25%;"></center>
+<p>如图，首先使用一个编码器来建模当前用户的输入语句，并将其编码为一个句向量表示。HRED 中所有对话历史的句向量又由一个上下文编码器编码得到上下文向量。在 tt 时刻，对于包含 mm 个词 (w0,w1,…,wm)(w0,w1,…,wm) 的输入语句 utut，使用 LSTM 作为编码器编码：</p>
+<p>ht=vwtm=LSTMe(h0;wt0,wt1,…wtm),ht=vtmw=LSTMe(h0;wt0,wt1,…wtm),</p>
+<p>然后将 LSTM 的隐状态视为句向量表示 vut=htvtu=ht。而上下文编码器则同时作为策略模块，根据所有的历史语句得到决策向量 aat。同样使用 LSTM 作为上下文编码器实现：</p>
+<p>at=LSTMc(vu0,vu1,…,vut),at=LSTMc(v0u,v1u,…,vtu),</p>
+<p>其中 atat 作为抽象的决策向量，用于表示对当前回复的决策。通过这种将上下文编码向量视为决策向量的方式以及使用教师 — 学生框架的策略层引导方法，能有效提升学生模型的表现。</p>
+<p>在模型的最后，我们使用 NLG 模型生成自然语言回复 rtrt，上一层的决策向量作为 NLG 模块 LSTM 模型的初始状</p>
+<p>vri=LSTMd(at,vw0∼m,vr0∼i−1),vir=LSTMd(at,v0∼mw,v0∼i−1r),</p>
+<p>其中 vwjvjw 是编码器对第 jj 个输入词的编码向量。</p>
+<p>与教师模型相同，学生模型同样学习真值回复数据。但在训练过程中，学生模型的输入数据有所不同，没有额外的状态表示作为输入，学生模型需要从文本中总结隐状态信息。此外，学生模型同时学习教师模型的指导信息。</p>
+<h4><span id="mtss-中的知识迁移方法"> MTSS 中的知识迁移方法</span></h4>
+<h5><span id="文本级别的知识迁移"> 文本级别的知识迁移</span></h5>
+<p>知识迁移过程旨在让学生模型学习与教师模型相似的回复输出。在每个时间步骤学生模型的生成词概率需要分别与教师模型一致。为实现这一点，我们使用交叉熵损失来衡量学生和教师之间词概率的相似度。损失的表达式是：</p>
+<p>JKD=−m∑i=0∑wri∈Vp(wri|u,s,wr0∼i−1;ϕ)logp(wri|u,c,wr0∼i−1;θ),JKD=−∑i=0m∑wir∈Vp(wir|u,s,w0∼i−1r;ϕ)log⁡p(wir|u,c,w0∼i−1r;θ),</p>
+<p>其中 ϕϕ 为教师模型的参数，θθ 为学生模型的参数，VV 为生成词表。基于真值回复的训练在每个生成位置仅学习了一个独热的词的概率，而对于文本级别的蒸馏方法，来自教师模型的输出提供的一个更加平滑全词概率分布，这种基于概率的蒸馏方法可使得学生模型的生成更加自然，正确率更高。</p>
+<p>策略级别的知识引导方法<br>
+策略级别的知识引导旨在让学生模型学到教师模型的对话策略。即在相同的输入下，学生模型和教师模型能做出相同的对话决策。将教师模型的中间层输出，表示决策的向量 aTaT 同样视为目标数据，由学生模型来学习。对于同样作为隐向量的 aTaT 和 aSaS，在训练过程中使用均方误差（Mean Squared Error, MSE）来作为训练的损失从而让学生学习教师的决策：</p>
+<p>JKD−π=1kk∑i=0(aTi−aSi)2.JKD−π=1k∑i=0k(aiT−aiS)2.</p>
+<p>我们同时使用了真值（ground truth）回复和教师模型的引导来作为训练目标。将文本蒸馏和策略蒸馏产生的两种损失加到真值训练损失当中。为了调整教师模型引导的影响力和不同损失之间的权重，使用了两个权重张量，α1α1 作为文本蒸馏损失的权值，α2α2 作为策略蒸馏的权值，最终得到用于训练学生模型的联合损失 JθJθ 可以表示为：</p>
+<p>Jθ=JNLL+α1JKD+α2JKD−π,Jθ=JNLL+α1JKD+α2JKD−π,</p>
+<p>然后通过最小化这个损失值来训练学生模型，实现教师对学生的引导。</p>
+<h4><span id="实验与结果分析"> 实验与结果分析</span></h4>
+<h5><span id="数据集"> 数据集</span></h5>
+<p>在实验数据上，我们选择了 MultiWOZ 多领域任务对话数据集作为对话数据集和模型效果测试数据。MultiWOZ 多领域数据集共包含了 7 个对话领域，分别是：饭店预订，酒店预订，景点查询，出租车预约，火车票预订，医院信息查询和警察局信息查询。MultiWOZ 对话数据集的目的在于获取用户意图，并根据用户意图提供满足用户需求的实体相关的信息。MultiWOZ 数据集中每段对话包含大约 14 个用户与系统之间的对话轮次。部分对话段落的话题仅仅只包含一个领域相关的信息，但更多的对话中，一段对话会包含 2 到 5 个领域的任务，用户会在不同领域之间切换。每个领域下，系统需要从用户中获取大致 4 个左右不同实体的实体值，同时需要向用户提供约 3 个相关实体信息。例如，饭店预订领域，用户需要提供想要预订饭店的地区，价格范围，菜种 3 个信息，系统则需返回用户相关饭店的地址，电话，预约号以及其他一些必要信息。</p>
+<p>为了成功训练模型，我们先对数据进行了预处理。首先进行了去词化（Delexicalization）操作，将所有对话语句中实体的具体实体值替换为占位符，然后根据事先定义的置信状态设计，对每一轮对话根据人工标注的语意信息生成置信状态向量和数据库指示向量。并将这些向量作为教师模型的额外输入。然后对每一轮对话进行领域标注，并根据标注将对话划分到 7 个领域下。领域标注的依据是按照每轮对话中所出现的实体值所属于的领域。对于某些对话来说，无法将这些对话划分到以上 7 个领域的其中一个，例如对话开始的问候和对话结束的招呼语句。为此定义一个通用领域，所有不属于以上 7 个领域的对话轮次被划分到这个通用领域下，从而最终得到 8 个领域的训练数据集，数据集大小如表所示。</p>
+<h5><span id="实验设定"> 实验设定</span></h5>
+<p>在数据集上，我们构建了两个不同的词表，输入词表和输出词表。对于输入词表，筛选去掉了词频小于 5 的所有的词。最终剩余的输入词表大小约为 1300 左右。对于输出词表，按词频排序后直接筛选保留了词频最高的 500 个词。对于输入和输出词表采用了两套不同的词向量。两种词向量的维度均设置为 50。对于其中所有涉及的 LSTM 模型，隐层维度均设计为 150 维。对每个教师模型，首先在训练集上训练，然后选择验证集上指标最好的训练结果作为引导模型。对于学生模型，选择 Adam 优化器，学习率为 0.005，对于用于平衡不同损失的权重值 α1α1 和 α2α2，值均设为 0.005。为了得到稳定的结果。所有模型均经过 3 次或 5 次的重复实验并取了平均值。</p>
+<p>在教师模型的训练中发现，部分领域的训练数据量有限。例如，警察局领域的数据量在整个训练数据中仅占 0.82%，最终在该领域下训练的模型效果较差。为了解决这个问题，我们使用了一种暖启动策略：首先基于所有领域下的数据集，训练一个通用预训练模型 TallTall 作为起点。然后，每个领域下特定的教师模型使用 TallTall 在领域上进行微调训练。这种暖启动的策略能保证每个领域特定的教师模型其性能不弱于或明显强于 TallTall。</p>
+<p>我们选取了以下评价指标来评价每个模型生成的回复。</p>
+<ol>
+<li>
+<p>BLEU：我们首先使用了 BLEU4 得分作为评价指标，用于评价生成回复与真实回复之间的相似度。</p>
+</li>
+<li>
+<p>Inform 指标和 Success 指标：这两种评价指标是由 Budzianowski 提出，作为 MultiWOZ 数据集在对话文本生成的任务上所用的一种评价指标。这两种指标均是从段级别对对话进行评测。其中，Inform 率反映在一整段对话中，系统是否推荐给用户一个符合用户需求的实体信息。Success 率衡量整段对话是否成功，包括是否 Inform 成功，以及用户需要的所有信息是否由系统提供给到了用户。</p>
+</li>
+</ol>
+<h5><span id="结果分析"> 结果分析</span></h5>
+<p>下表表示我们的模型和其他基准模型在多领域场景下的结果表现。</p>
+<center><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy9Db3F4SUY4VHhCY2xDRjNhVmpjQ09WbERjSE9WdVBVRU9aTHAwRWt4eGQwMnRpYjZleEJScUt5c1RvaWEwbjBxOU9QVnBZUDkzZU1VS0JFZWQ0WDN3dk93LzY0MA?x-oss-process=image/format,png" alt="img" style="zoom: 80%;"></center>
+<p>从表中可以看出，与基准模型诸如 Seq2Seq 和 HRED 模型相比，本文的模型结果优于这些基准方法。通过加入教师 - 学生框架，本文所使用的 HRED 模型相比普通的 HRED 模型，在 Inform 和 Success 两项指标上相比分别提升了 6.8% 和 4.0%。与当前最好的模型，LaRL 和 HDSA 两种对话生成模型，以及当前最好的状态追踪模型 TRADE 的组合相比，模型能达到与之相近的结果表现。然而，这两种最新的对话生成模型相比于我们的模型有以下不足：</p>
+<p>・HDSA 模型使用了 BERT 这个语言模型作为组成的一部分。然而，BERT 虽然能很好地提升模型性能的表现，但同时，也使得模型的体积十分臃肿，在部署到线上使用时会有严重的延迟。</p>
+<p>・LaRL 使用了强化学习的方法，用来优化段级别的最优回馈值，如 Inform 指标或 Success 指标，从而在这种被优化的指标上取得较好的表现，而在未优化的指标诸如 BLEU 上则表现很差。</p>
+<p>此外，在与使用人工状态标记的设定场景下，我们模型与理想化的 Seq2Seq 或者 HRED 模型相比能取得相近或者更高的效果。结果同样表明，一个额外的状态追踪模块对于 Inform 指标有所帮助，而对 Success 指标毫无帮助。</p>
+<h4><span id="总结"> 总结</span></h4>
+<p>我们基于教师学生框架，提出了一种新颖的用于构建高质量多领域对话模型的方法 MTSS。通过构建多个特定领域的教师模型，分块学习多领域下复杂的状态知识，帮助一个通用的学生模型训练，使之成多领域对话专家。为了充分利用领域教师所学到的知识，我们创造性地使用了文本层次的引导和策略层次的引导，来将教师模型的知识传授给学生。</p>
+<p>与此同时，我们的方法存在可以进一步完善的地方。例如，目前在 MTSS 框架中所使用的模型为最基础的 Seq2Seq 模型和 HRED 模型。作为顶层框架，MTSS 有足够的潜力应用到更加新型的对话模型上来。</p>
+<h4><span id="后记"> 后记</span></h4>
+<p>多领域对话系统在我们的业务场景中扮演着越来越重要的地位，举个例子，如果准备出境游：订机票、订景点、订酒店是相辅相成 (【机票到达时间】影响了【酒店位置和入住时间】的选择，同时【酒店】又会进一步影响【当地景点的选择】)。今后我们的智能服务形式更多的是这种多领域交织的形式。我们的 MTSS 模型无疑为多领域对话提供了一种解决方案：博采百家之长，服务综合领域。</p>
+<p>————————————————<br>
+ 版权声明：本文为 CSDN 博主「凌云时刻」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>
+原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/bjchenxu/article/details/109006931">https://blog.csdn.net/bjchenxu/article/details/109006931</a></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年12月12日 18:51</p>
+        <p>原始链接： <a class="post-url" href="/2021/12/12/%E5%9F%BA%E4%BA%8E-Multiple-Teacher-Single-Student-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%A4%9A%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9E%8B/" title="基于 Multiple Teacher Single Student 框架的多领域对话模型">https://leezhao415.github.io/2021/12/12/%E5%9F%BA%E4%BA%8E-Multiple-Teacher-Single-Student-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%A4%9A%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9E%8B/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/12/12/%E5%9F%BA%E4%BA%8E-Multiple-Teacher-Single-Student-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%A4%9A%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9E%8B/&title=《基于 Multiple Teacher Single Student 框架的多领域对话模型》 — 且听风吟，御剑于心！&pic=images/MTSS.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/12/12/%E5%9F%BA%E4%BA%8E-Multiple-Teacher-Single-Student-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%A4%9A%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9E%8B/&title=《基于 Multiple Teacher Single Student 框架的多领域对话模型》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/12/12/%E5%9F%BA%E4%BA%8E-Multiple-Teacher-Single-Student-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%A4%9A%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9E%8B/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《基于 Multiple Teacher Single Student 框架的多领域对话模型》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/12/12/%E5%9F%BA%E4%BA%8E-Multiple-Teacher-Single-Student-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%A4%9A%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9E%8B/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/12/12/%E5%9F%BA%E4%BA%8E-Multiple-Teacher-Single-Student-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%A4%9A%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9E%8B/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/12/12/%E5%9F%BA%E4%BA%8E-Multiple-Teacher-Single-Student-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%A4%9A%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9E%8B/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/知识蒸馏/" class="color5">知识蒸馏</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 多领域对话系统中棘手的状态表示问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 来源于生活的 MTSS（Multiple Teachers Single Student）模型</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> MTSS 的模型结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> Model Overview</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> Teacher Model</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> Student Model</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> MTSS 中的知识迁移方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 文本级别的知识迁移</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 实验与结果分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 数据集</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 实验设定</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 结果分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 总结</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 后记</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/12/12/Pytorch%E4%B8%8EPaddlePaddle-API%E6%98%A0%E5%B0%84%E8%A1%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Pytorch与PaddlePaddle  API映射表
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/12/12/%E3%80%90AI%E6%95%B0%E6%8D%AE%E9%9B%86%E3%80%91%E6%89%8B%E9%83%A8%E6%89%8B%E5%8A%BF%E3%80%81%E5%9B%BE%E5%83%8F%E8%A7%86%E9%A2%91%E5%BD%A2%E7%8A%B6%E3%80%81%E5%AF%B9%E8%B1%A1%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%81%E4%BA%BA%E4%B8%8E%E4%BA%BA%E4%BD%93%E5%A7%BF%E5%8A%BF/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">【AI数据集】手部手势、图像视频形状、对象数据库、人与人体姿势</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="基于-Multiple-Teacher-Single-Student-框架的多领域对话模型" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

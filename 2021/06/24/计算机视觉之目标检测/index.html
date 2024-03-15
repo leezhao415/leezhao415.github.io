@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>计算机视觉之目标检测 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   目标检测  1 定义 2 常用数据集  2.1 PASCAL VOC 数据集 2.2 MS COCO 数据集   3 常用的评价指标  3.1 IOU 3.2 mAP（Mean Average Precision）   4 NMS（非极大值抑制） 5 目标检测方法分类  5.1 two-stage 的算法 5.2 One-stage 的算法   6 经典深度学习网络  6.1 R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机视觉之目标检测">
+<meta property="og:url" content="https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   目标检测  1 定义 2 常用数据集  2.1 PASCAL VOC 数据集 2.2 MS COCO 数据集   3 常用的评价指标  3.1 IOU 3.2 mAP（Mean Average Precision）   4 NMS（非极大值抑制） 5 目标检测方法分类  5.1 two-stage 的算法 5.2 One-stage 的算法   6 经典深度学习网络  6.1 R">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624124423469.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021062412450965.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624124534899.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624124614809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624124715162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021062412483086.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624124908127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624124946931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125017817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125045167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125114930.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125140694.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125202722.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125230581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624140627754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125253497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/202106241253136.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125342592.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125422648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125447429.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125532753.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125612981.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125636223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125705803.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125742618.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125814125.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125849971.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125911535.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125933826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624125955589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624130024151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624130052839.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624130120663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624130141698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624130214226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624130250191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624130311213.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624130336324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624130629189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624130650450.png#pic_center">
+<meta property="article:published_time" content="2021-06-24T15:11:09.000Z">
+<meta property="article:modified_time" content="2021-07-14T12:49:16.638Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="计算机视觉CV">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210624124423469.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-计算机视觉之目标检测" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      计算机视觉之目标检测
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-06-24
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B"><strong>目标检测</strong></a>
+<ul>
+<li><a href="#1-%E5%AE%9A%E4%B9%89"><strong>1 定义</strong></a></li>
+<li><a href="#2-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86"><strong>2 常用数据集</strong></a>
+<ul>
+<li><a href="#21-pascal-voc%E6%95%B0%E6%8D%AE%E9%9B%86"><strong>2.1 PASCAL VOC 数据集</strong></a></li>
+<li><a href="#22-ms-coco%E6%95%B0%E6%8D%AE%E9%9B%86"><strong>2.2 MS COCO 数据集</strong></a></li>
+</ul>
+</li>
+<li><a href="#3-%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><strong>3 常用的评价指标</strong></a>
+<ul>
+<li><a href="#31-iou"><strong>3.1 IOU</strong></a></li>
+<li><a href="#32-mapmean-average-precision"><strong>3.2 mAP（Mean Average Precision）</strong></a></li>
+</ul>
+</li>
+<li><a href="#4-nms%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6"><strong>4 NMS（非极大值抑制）</strong></a></li>
+<li><a href="#5-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%E5%88%86%E7%B1%BB"><strong>5 目标检测方法分类</strong></a>
+<ul>
+<li><a href="#51-two-stage%E7%9A%84%E7%AE%97%E6%B3%95"><strong>5.1 two-stage 的算法</strong></a></li>
+<li><a href="#52-one-stage%E7%9A%84%E7%AE%97%E6%B3%95"><strong>5.2 One-stage 的算法</strong></a></li>
+</ul>
+</li>
+<li><a href="#6-%E7%BB%8F%E5%85%B8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%BB%9C"><strong>6 经典深度学习网络</strong></a>
+<ul>
+<li><a href="#61-rcnn"><strong>6.1 RCNN</strong></a></li>
+<li><a href="#62-fast-rcnn"><strong>6.2 Fast RCNN</strong></a></li>
+<li><a href="#63-faster-rcnn"><strong>6.3 Faster RCNN</strong></a></li>
+<li><a href="#64-yolo"><strong>6.4 YOLO</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h3><span id="目标检测"> <strong>目标检测</strong></span></h3>
+<h4><span id="1-定义"> <strong>1 定义</strong></span></h4>
+<p>目标检测（Object Detection）的任务是找出图像中所有感兴趣的目标，并确定它们的类别和位置。</p>
+<p>目标检测中能检测出来的物体取决于当前任务（数据集）需要检测的物体有哪些。假设我们的目标检测模型定位是检测动物（牛、羊、猪、狗、猫五种结果），那么模型对任何一张图片输出结果不会输出鸭子、书籍等其它类型结果。</p>
+<p>目标检测的位置信息一般由两种格式（以图片左上角为原点 (0,0)）：</p>
+<p>1、极坐标表示：(xmin, ymin, xmax, ymax)</p>
+<ul>
+<li>xmin,ymin:x,y 坐标的最小值</li>
+<li>xmin,ymin:x,y 坐标的最大值</li>
+</ul>
+<p>2、中心点坐标：(x_center, y_center, w, h)</p>
+<ul>
+<li>x_center, y_center: 目标检测框的中心点坐标</li>
+<li>w,h: 目标检测框的宽、高</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210624124423469.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<h4><span id="2-常用数据集"> <strong>2 常用数据集</strong></span></h4>
+<p>经典的目标检测数据集有两种，<strong>PASCAL VOC 数据集</strong> 和 <strong>MS COCO 数据集</strong>。</p>
+<h5><span id="21-pascal-voc-数据集"> <strong>2.1 PASCAL VOC 数据集</strong></span></h5>
+<p>PASCAL VOC 是目标检测领域的经典数据集。PASCAL VOC 包含约 10,000 张带有边界框的图片用于训练和验证。PASCAL VOC 数据集是目标检测问题的一个基准数据集，很多模型都是在此数据集上得到的，常用的是 VOC2007 和 VOC2012 两个版本数据，共 20 个类别，分别是：</p>
+<center><img src="https://img-blog.csdnimg.cn/2021062412450965.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 50%;"></center>
+<p>也就是：</p>
+<p>1. 人：人</p>
+<p>2. 动物：鸟，猫，牛，狗，马，羊</p>
+<p>3. 交通工具：飞机，自行车，船，公共汽车，汽车，摩托车，火车</p>
+<p>4. 室内：瓶子，椅子，餐桌，盆栽，沙发，电视 / 显示器</p>
+<p><strong>下载地址</strong>：<a target="_blank" rel="noopener" href="https://pjreddie.com/projects/pascal-voc-dataset-mirror/">https://pjreddie.com/projects/pascal-voc-dataset-mirror/</a></p>
+<p>整个数据的目录结构如下所示：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624124534899.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>其中：</p>
+<ol>
+<li>JPEGImages 存放图片文件</li>
+<li>Annotations 下存放的是 xml 文件，描述了图片信息，如下图所示，需要关注的就是节点下的数据，尤其是 bndbox 下的数据.xmin,ymin 构成了 boundingbox 的左上角，xmax,ymax 构成了 boundingbox 的右下角，也就是图像中的目标位置信息</li>
+</ol>
+<center><img src="https://img-blog.csdnimg.cn/20210624124614809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<ol>
+<li>ImageSets 包含以下 4 个文件夹：</li>
+<li>Action 下存放的是人的动作（例如 running、jumping 等等）</li>
+<li>Layout 下存放的是具有人体部位的数据（人的 head、hand、feet 等等）</li>
+<li>Segmentation 下存放的是可用于分割的数据。</li>
+<li>Main 下存放的是图像物体识别的数据，总共分为 20 类，这是进行目标检测的重点。该文件夹中的数据对负样本文件进行了描述。</li>
+</ol>
+<center><img src="https://img-blog.csdnimg.cn/20210624124715162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<h5><span id="22-ms-coco-数据集"> <strong>2.2 MS COCO 数据集</strong></span></h5>
+<p>MS COCO 的全称是 Microsoft Common Objects in Context，微软于 2014 年出资标注的 Microsoft COCO 数据集，与 ImageNet 竞赛一样，被视为是计算机视觉领域最受关注和最权威的比赛之一。</p>
+<p>COCO 数据集是一个大型的、丰富的物体检测，分割和字幕数据集。这个数据集以场景理解为目标，主要从复杂的日常场景中截取，图像中的目标通过精确的分割进行位置的标定。图像包括 91 类目标，328,000 影像和 2,500,000 个 label。目前为止目标检测的最大数据集，提供的类别有 80 类，有超过 33 万张图片，其中 20 万张有标注，整个数据集中个体的数目超过 150 万个。</p>
+<p>图像示例：</p>
+<center><img src="https://img-blog.csdnimg.cn/2021062412483086.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>coco 数据集的标签文件标记了每个 segmentation+bounding box 的精确坐标，其精度均为小数点后两位一个目标的标签示意如下：</p>
+<p>{“segmentation”:[[392.87, 275.77, 402.24, 284.2, 382.54, 342.36, 375.99, 356.43, 372.23, 357.37, 372.23, 397.7, 383.48, 419.27,407.87, 439.91, 427.57, 389.25, 447.26, 346.11, 447.26, 328.29, 468.84, 290.77,472.59, 266.38], [429.44,465.23, 453.83, 473.67, 636.73, 474.61, 636.73, 392.07, 571.07, 364.88, 546.69,363.0]], “area”: 28458.996150000003, “iscrowd”: 0,“image_id”: 503837, <strong>“bbox”: [372.23, 266.38, 264.5,208.23]</strong>, “category_id”: 4, “id”: 151109},</p>
+<h4><span id="3-常用的评价指标"> <strong>3 常用的评价指标</strong></span></h4>
+<h5><span id="31-iou"> <strong>3.1 IOU</strong></span></h5>
+<p>在目标检测算法中，IoU（intersection over union，交并比）是目标检测算法中用来评价 2 个矩形框之间相似度的指标：</p>
+<p><strong>IoU = 两个矩形框相交的面积 / 两个矩形框相并的面积</strong>，</p>
+<p>如下图所示：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624124908127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>通过一个例子看下在目标检测中的应用：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624124946931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 33%;"></center>
+<p>其中上图蓝色框框为检测结果，红色框框为真实标注。</p>
+<p>那我们就可以通过预测结果与真实结果之间的交并比来衡量两者之间的相似度。一般情况下对于检测框的判定都会存在一个阈值，也就是 <code>IoU</code>  的阈值，一般可以设置当 <code>IoU</code>  的值大于 <code>0.5</code>  的时候，则可认为检测到目标物体。</p>
+<p>实现方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment"># 定义方法计算IOU</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Iou</span>(<span class="params">box1, box2, wh=<span class="literal">False</span></span>):</span></span><br><span class="line">    <span class="comment"># 判断bbox的表示形式</span></span><br><span class="line">    <span class="keyword">if</span> wh == <span class="literal">False</span>:</span><br><span class="line">        <span class="comment"># 使用极坐标形式表示：直接获取两个bbox的坐标</span></span><br><span class="line">        xmin1, ymin1, xmax1, ymax1 = box1</span><br><span class="line">        xmin2, ymin2, xmax2, ymax2 = box2</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 使用中心点形式表示： 获取两个两个bbox的极坐标表示形式</span></span><br><span class="line">        <span class="comment"># 第一个框左上角坐标</span></span><br><span class="line">        xmin1, ymin1 = <span class="built_in">int</span>(box1[<span class="number">0</span>]-box1[<span class="number">2</span>]/<span class="number">2.0</span>), <span class="built_in">int</span>(box1[<span class="number">1</span>]-box1[<span class="number">3</span>]/<span class="number">2.0</span>)</span><br><span class="line">        <span class="comment"># 第一个框右下角坐标</span></span><br><span class="line">        xmax1, ymax1 = <span class="built_in">int</span>(box1[<span class="number">0</span>]+box1[<span class="number">2</span>]/<span class="number">2.0</span>), <span class="built_in">int</span>(box1[<span class="number">1</span>]+box1[<span class="number">3</span>]/<span class="number">2.0</span>)</span><br><span class="line">        <span class="comment"># 第二个框左上角坐标</span></span><br><span class="line">        xmin2, ymin2 = <span class="built_in">int</span>(box2[<span class="number">0</span>]-box2[<span class="number">2</span>]/<span class="number">2.0</span>), <span class="built_in">int</span>(box2[<span class="number">1</span>]-box2[<span class="number">3</span>]/<span class="number">2.0</span>)</span><br><span class="line">        <span class="comment"># 第二个框右下角坐标</span></span><br><span class="line">        xmax2, ymax2 = <span class="built_in">int</span>(box2[<span class="number">0</span>]+box2[<span class="number">2</span>]/<span class="number">2.0</span>), <span class="built_in">int</span>(box2[<span class="number">1</span>]+box2[<span class="number">3</span>]/<span class="number">2.0</span>)</span><br><span class="line">    <span class="comment"># 获取矩形框交集对应的左上角和右下角的坐标（intersection）</span></span><br><span class="line">    xx1 = np.<span class="built_in">max</span>([xmin1, xmin2])</span><br><span class="line">    yy1 = np.<span class="built_in">max</span>([ymin1, ymin2])</span><br><span class="line">    xx2 = np.<span class="built_in">min</span>([xmax1, xmax2])</span><br><span class="line">    yy2 = np.<span class="built_in">min</span>([ymax1, ymax2])</span><br><span class="line">    <span class="comment"># 计算两个矩形框面积</span></span><br><span class="line">    area1 = (xmax1-xmin1) * (ymax1-ymin1) </span><br><span class="line">    area2 = (xmax2-xmin2) * (ymax2-ymin2)</span><br><span class="line">    <span class="comment">#计算交集面积</span></span><br><span class="line">    inter_area = (np.<span class="built_in">max</span>([<span class="number">0</span>, xx2-xx1])) * (np.<span class="built_in">max</span>([<span class="number">0</span>, yy2-yy1]))</span><br><span class="line">    <span class="comment">#计算交并比</span></span><br><span class="line">    iou = inter_area / (area1+area2-inter_area+<span class="number">1e-6</span>)</span><br><span class="line">    <span class="keyword">return</span> iou</span><br></pre></td></tr></table></figure>
+<p>假设我们检测结果如下所示，并展示在图像上：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.patches <span class="keyword">as</span> patches</span><br><span class="line"><span class="comment"># 真实框与预测框</span></span><br><span class="line">True_bbox, predict_bbox = [<span class="number">100</span>, <span class="number">35</span>, <span class="number">398</span>, <span class="number">400</span>], [<span class="number">40</span>, <span class="number">150</span>, <span class="number">355</span>, <span class="number">398</span>]</span><br><span class="line"><span class="comment"># bbox是bounding box的缩写</span></span><br><span class="line">img = plt.imread(<span class="string">&#x27;dog.jpeg&#x27;</span>)</span><br><span class="line">fig = plt.imshow(img)</span><br><span class="line"><span class="comment"># 将边界框(左上x, 左上y, 右下x, 右下y)格式转换成matplotlib格式：((左上x, 左上y), 宽, 高)</span></span><br><span class="line"><span class="comment"># 真实框绘制</span></span><br><span class="line">fig.axes.add_patch(plt.Rectangle(</span><br><span class="line">    xy=(True_bbox[<span class="number">0</span>], True_bbox[<span class="number">1</span>]), width=True_bbox[<span class="number">2</span>]-True_bbox[<span class="number">0</span>], height=True_bbox[<span class="number">3</span>]-True_bbox[<span class="number">1</span>],</span><br><span class="line">    fill=<span class="literal">False</span>, edgecolor=<span class="string">&quot;blue&quot;</span>, linewidth=<span class="number">2</span>))</span><br><span class="line"><span class="comment"># 预测框绘制</span></span><br><span class="line">fig.axes.add_patch(plt.Rectangle(</span><br><span class="line">    xy=(predict_bbox[<span class="number">0</span>], predict_bbox[<span class="number">1</span>]), width=predict_bbox[<span class="number">2</span>]-predict_bbox[<span class="number">0</span>], height=predict_bbox[<span class="number">3</span>]-predict_bbox[<span class="number">1</span>],</span><br><span class="line">    fill=<span class="literal">False</span>, edgecolor=<span class="string">&quot;red&quot;</span>, linewidth=<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<center><img src="https://img-blog.csdnimg.cn/20210624125017817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<p>计算 IoU：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Iou(True_bbox,predict_bbox)</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.5114435907762924</span></span><br></pre></td></tr></table></figure>
+<h5><span id="32-mapmean-average-precision"> <strong>3.2 mAP（Mean Average Precision）</strong></span></h5>
+<p>目标检测问题中的每个图片都可能包含一些不同类别的物体，需要评估模型的物体分类和定位性能。因此，用于图像分类问题的标准指标 precision 不能直接应用于此。 在目标检测中，mAP 是主要的衡量指标。</p>
+<p>mAP 是多个分类任务的 AP 的平均值，而 AP（average precision）是 PR 曲线下的面积，所以在介绍 mAP 之前我们要先得到 PR 曲线。</p>
+<p><strong>TP、FP、FN、TN</strong></p>
+<p><strong>查准率、查全率</strong></p>
+<ul>
+<li>查准率（Precision）: TP/(TP + FP)</li>
+<li>查全率（Recall）: TP/(TP + FN)</li>
+</ul>
+<p>二者绘制的曲线称为 P-R 曲线</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125045167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<p>先定义两个公式，一个是 Precision，一个是 Recall，与上面的公式相同，扩展开来，用另外一种形式进行展示，其中  <code>all detctions</code>  代表所有预测框的数量，  <code>all ground truths</code>  代表所有 GT 的数量。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125114930.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<p>AP 是计算某一类 P-R 曲线下的面积，mAP 则是计算所有类别 P-R 曲线下面积的平均值。</p>
+<p>假设我们有 7 张图片（Images1-Image7），这些图片有 15 个目标（绿色的框，GT 的数量，上文提及的  <code>all ground truths</code> ）以及 24 个预测边框（红色的框，A-Y 编号表示，并且有一个置信度值）：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125140694.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 50%;"></center>
+<p>根据上图以及说明，我们可以列出以下表格，其中 Images 代表图片的编号，Detections 代表预测边框的编号，Confidences 代表预测边框的置信度，TP or FP 代表预测的边框是标记为 TP 还是 FP（认为预测边框与 GT 的 IOU 值大于等于 0.3 就标记为 TP；若一个 GT 有多个预测边框，则认为 IOU 最大且大于等于 0.3 的预测框标记为 TP，其他的标记为 FP，即一个 GT 只能有一个预测框标记为 TP），这里的 0.3 是随机取的一个值。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125202722.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>通过上表，我们可以绘制出 P-R 曲线（因为 AP 就是 P-R 曲线下面的面积），但是在此之前我们需要计算出 P-R 曲线上各个点的坐标，根据置信度从大到小排序所有的预测框，然后就可以计算 Precision 和 Recall 的值，见下表。（需要记住一个叫累加的概念，就是下图的 ACC TP 和 ACC FP）</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125230581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<ul>
+<li>标号为 1 的 Precision 和 Recall 的计算方式：Precision=TP/(TP+FP)=1/(1+0)=1，Recall=TP/(TP+FN)=TP/( <code>all ground truths</code> )=1/15=0.0666 （ <code>all ground truths 上面有定义过了</code> ）</li>
+<li>标号 2：Precision=TP/(TP+FP)=1/(1+1)=0.5，Recall=TP/(TP+FN)=TP/( <code>all ground truths</code> )=1/15=0.0666</li>
+<li>标号 3：Precision=TP/(TP+FP)=2/(2+1)=0.6666，Recall=TP/(TP+FN)=TP/( <code>all ground truths</code> )=2/15=0.1333</li>
+<li>其他的依次类推</li>
+</ul>
+<p>然后就可以绘制出 P-R 曲线</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624140627754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>得到 P-R 曲线就可以计算 AP（P-R 曲线下的面积），要计算 P-R 下方的面积，有两种方法：</p>
+<ul>
+<li>在 VOC2010 以前，只需要选取当 Recall &gt;= 0, 0.1, 0.2, …, 1 共 11 个点时的 Precision 最大值，然后 AP 就是这 11 个 Precision 的平均值，取 11 个点 [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] 的插值所得</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210624125253497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>得到一个类别的 AP 结果如下：</p>
+<center><img src="https://img-blog.csdnimg.cn/202106241253136.png#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>要计算 mAP，就把所有类别的 AP 计算出来，然后求取平均即可。</p>
+<ul>
+<li>在 VOC2010 及以后，需要针对每一个不同的 Recall 值（包括 0 和 1），选取其大于等于这些 Recall 值时的 Precision 最大值，如下图所示：</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210624125342592.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>然后计算 PR 曲线下面积作为 AP 值：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125422648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>计算方法如下所示：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125447429.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<h4><span id="4-nms非极大值抑制"> <strong>4 NMS（非极大值抑制）</strong></span></h4>
+<p>非极大值抑制（Non-Maximum Suppression，NMS），顾名思义就是抑制不是极大值的元素。例如在行人检测中，滑动窗口经提取特征，经分类器分类识别后，每个窗口都会得到一个分数。但是滑动窗口会导致很多窗口与其他窗口存在包含或者大部分交叉的情况。这时就需要用到 NMS 来选取那些邻域里分数最高（是行人的概率最大），并且抑制那些分数低的窗口。 NMS 在计算机视觉领域有着非常重要的应用，如视频目标跟踪、数据挖掘、3D 重建、目标识别以及纹理分析等 。</p>
+<p>在目标检测中，NMS 的目的就是要去除冗余的检测框，保留最好的一个，如下图所示：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125532753.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>NMS 的原理是对于预测框的列表 B 及其对应的置信度 S, 选择具有最大 score 的检测框 M, 将其从 B 集合中移除并加入到最终的检测结果 D 中。通常将 B 中剩余检测框中与 M 的 IoU 大于阈值 Nt 的框从 B 中移除。重复这个过程，直到 B 为空。</p>
+<p>使用流程如下图所示：</p>
+<ul>
+<li>首先是检测出一系列的检测框</li>
+<li>将检测框按照类别进行分类</li>
+<li>对同一类别的检测框应用 NMS 获取最终的检测结果</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210624125612981.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>通过一个例子看些 NMS 的使用方法，假设定位车辆，算法就找出了一系列的矩形框，我们需要判别哪些矩形框是没用的，需要使用 NMS 的方法来实现。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125636223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>假设现在检测窗口有：A、B、C、D、E 5 个候选框，接下来进行迭代计算：</p>
+<ul>
+<li>第一轮：因为 B 是得分最高的，与 B 的 IoU＞0.5 删除。A，CDE 中现在与 B 计算 IoU，DE 结果＞0.5，剔除 DE，B 作为一个预测结果，有个检测框留下 B，放入集合</li>
+<li>第二轮：A 的得分最高，与 A 计算 IoU，C 的结果＞0.5，剔除 C，A 作为一个结果</li>
+</ul>
+<p>最终结果为在这个 5 个中检测出了两个目标为 A 和 B。</p>
+<p>单类别的 NMS 的实现方法如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nms</span>(<span class="params">bboxes, confidence_score, threshold</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;非极大抑制过程</span></span><br><span class="line"><span class="string">    :param bboxes: 同类别候选框坐标</span></span><br><span class="line"><span class="string">    :param confidence: 同类别候选框分数</span></span><br><span class="line"><span class="string">    :param threshold: iou阈值</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 1、传入无候选框返回空</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(bboxes) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> [], []</span><br><span class="line">    <span class="comment"># 强转数组</span></span><br><span class="line">    bboxes = np.array(bboxes)</span><br><span class="line">    score = np.array(confidence_score)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 取出n个的极坐标点</span></span><br><span class="line">    x1 = bboxes[:, <span class="number">0</span>]</span><br><span class="line">    y1 = bboxes[:, <span class="number">1</span>]</span><br><span class="line">    x2 = bboxes[:, <span class="number">2</span>]</span><br><span class="line">    y2 = bboxes[:, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2、对候选框进行NMS筛选</span></span><br><span class="line">    <span class="comment"># 返回的框坐标和分数</span></span><br><span class="line">    picked_boxes = []</span><br><span class="line">    picked_score = []</span><br><span class="line">    <span class="comment"># 对置信度进行排序, 获取排序后的下标序号, argsort默认从小到大排序</span></span><br><span class="line">    order = np.argsort(score)</span><br><span class="line">    areas = (x2 - x1) * (y2 - y1)</span><br><span class="line">    <span class="keyword">while</span> order.size &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># 将当前置信度最大的框加入返回值列表中</span></span><br><span class="line">        index = order[-<span class="number">1</span>]</span><br><span class="line">        <span class="comment">#保留该类剩余box中得分最高的一个</span></span><br><span class="line">        picked_boxes.append(bboxes[index])</span><br><span class="line">        picked_score.append(confidence_score[index])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取当前置信度最大的候选框与其他任意候选框的相交面积</span></span><br><span class="line">        x11 = np.maximum(x1[index], x1[order[:-<span class="number">1</span>]])</span><br><span class="line">        y11 = np.maximum(y1[index], y1[order[:-<span class="number">1</span>]])</span><br><span class="line">        x22 = np.minimum(x2[index], x2[order[:-<span class="number">1</span>]])</span><br><span class="line">        y22 = np.minimum(y2[index], y2[order[:-<span class="number">1</span>]])</span><br><span class="line">        <span class="comment"># 计算相交的面积,不重叠时面积为0</span></span><br><span class="line">        w = np.maximum(<span class="number">0.0</span>, x22 - x11)</span><br><span class="line">        h = np.maximum(<span class="number">0.0</span>, y22 - y11)</span><br><span class="line">        intersection = w * h</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 利用相交的面积和两个框自身的面积计算框的交并比</span></span><br><span class="line">        ratio = intersection / (areas[index] + areas[order[:-<span class="number">1</span>]] - intersection)</span><br><span class="line">        <span class="comment"># 保留IoU小于阈值的box</span></span><br><span class="line">        keep_boxes_indics = np.where(ratio &lt; threshold)</span><br><span class="line">        <span class="comment"># 保留剩余的框</span></span><br><span class="line">        order = order[keep_boxes_indics]</span><br><span class="line">    <span class="comment"># 返回NMS后的框及分类结果   </span></span><br><span class="line">    <span class="keyword">return</span> picked_boxes, picked_score</span><br></pre></td></tr></table></figure>
+<p>假设有检测结果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bounding = [(<span class="number">187</span>, <span class="number">82</span>, <span class="number">337</span>, <span class="number">317</span>), (<span class="number">150</span>, <span class="number">67</span>, <span class="number">305</span>, <span class="number">282</span>), (<span class="number">246</span>, <span class="number">121</span>, <span class="number">368</span>, <span class="number">304</span>)]</span><br><span class="line">confidence_score = [<span class="number">0.9</span>, <span class="number">0.65</span>, <span class="number">0.8</span>]</span><br><span class="line">threshold = <span class="number">0.3</span></span><br><span class="line">picked_boxes, picked_score = nms(bounding, confidence_score, threshold)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;阈值threshold为:&#x27;</span>, threshold)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;NMS后得到的bbox是：&#x27;</span>, picked_boxes)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;NMS后得到的bbox的confidences是：&#x27;</span>, picked_score)</span><br></pre></td></tr></table></figure>
+<p>返回结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">阈值threshold为: <span class="number">0.3</span></span><br><span class="line">NMS后得到的bbox是： [array([<span class="number">187</span>,  <span class="number">82</span>, <span class="number">337</span>, <span class="number">317</span>])]</span><br><span class="line">NMS后得到的bbox的confidences是： [<span class="number">0.9</span>]</span><br></pre></td></tr></table></figure>
+<h4><span id="5-目标检测方法分类"> <strong>5 目标检测方法分类</strong></span></h4>
+<p>目标检测算法主要分为 two-stage（两阶段）和 one-stage（单阶段）两类：</p>
+<h5><span id="51-two-stage-的算法"> <strong>5.1 two-stage 的算法</strong></span></h5>
+<p>先由算法生成一系列作为样本的候选框，再通过卷积神经网络进行样本分类。如下图所示，主要通过一个卷积神经网络来完成目标检测过程，其提取的是 CNN 卷积特征，进行候选区域的筛选和目标检测两部分。网络的准确度高、速度相对较慢。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125705803.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>two-stages 算法的代表是 RCNN 系列：R-CNN 到 Faster R-CNN 网络</p>
+<h5><span id="52-one-stage-的算法"> <strong>5.2 One-stage 的算法</strong></span></h5>
+<p>直接通过主干网络给出目标的类别和位置信息，没有使用候选区域的筛选网路，这种算法速度快，但是精度相对 Two-stage 目标检测网络降低了很多。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125742618.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>one-stage 算法的代表是： YOLO 系列：YOLOv1、YOLOv2、YOLOv3、 SSD 等</p>
+<h4><span id="6-经典深度学习网络"> <strong>6 经典深度学习网络</strong></span></h4>
+<h5><span id="61-rcnn"> <strong>6.1 RCNN</strong></span></h5>
+<p>2014 年提出 R-CNN 网络，该网络不再使用暴力穷举的方法，而是使用候选区域方法（region proposal method）创建目标检测的区域来完成目标检测的任务，R-CNN 是以深度神经网络为基础的目标检测的模型 ，以 R-CNN 为基点，后续的 Fast R-CNN、Faster R-CNN 模型都延续了这种目标检测思路。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125814125.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>步骤是：</p>
+<ol>
+<li><strong>候选区域生成</strong>：使用选择性搜索（Selective Search）的方法找出图片中可能存在目标的侯选区域</li>
+<li><strong>CNN 网络提取特征</strong>：选取预训练卷积神经网网络（AlexNet 或 VGG）用于进行特征提取。</li>
+<li><strong>目标分类</strong>：训练支持向量机（SVM）来辨别目标物体和背景，对每个类别，都要训练一个二元 SVM。</li>
+<li><strong>目标定位</strong>：训练一个线性回归模型，为每个辨识到的物体生成更精确的边界框。</li>
+</ol>
+<h6><span id="1-候选区域生成"> <strong>1 候选区域生成</strong></span></h6>
+<p>在<strong>选择性搜索（SelectiveSearch，SS）中</strong>，使用语义分割的方法，它将颜色、边界、纹理等信息作为合并条件，采用多尺度的综合方法，将图像在像素级上划分出一系列的区域，这些区域要远远少于传统的滑动窗口的穷举法产生的候选区域。</p>
+<p>SelectiveSearch 在一张图片上提取出来约 2000 个侯选区域，<strong>需要注意的是这些候选区域的长宽不固定</strong>。 而使用 CNN 提取候选区域的特征向量，需要接受固定长度的输入，所以需要对候选区域做一些尺寸上的修改。</p>
+<h6><span id="2-cnn-网络提取特征"> <strong>2 CNN 网络提取特征</strong></span></h6>
+<p>采用预训练模型 (AlexNet 或 VGG) 在生成的候选区域上进行特征提取，将提取好的特征保存在磁盘中，用于后续步骤的分类和回归。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125849971.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>1. 全连接层的输入数据的尺寸是固定的，因此在将候选区域送入 CNN 网络中时，需进行裁剪或变形为固定的尺寸，在进行特征提取。</p>
+<p>2. 预训练模型在 ImageNet 数据集上获得，最后的全连接层是 1000，在这里我们需要将其改为 N+1 (N 为目标类别的数目，例如 VOC 数据集中 N=20，coco 数据集中 N=80，1 是加一个背景) 后，进行微调即可。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125911535.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>3. 利用微调后的 CNN 网络，提取每一个候选区域的特征，获取一个 4096 维的特征，一幅图像就是 2000x4096 维特征存储到磁盘中。</p>
+<h6><span id="3-目标分类svm"> <strong>3 目标分类（SVM）</strong></span></h6>
+<p>假设我们要检测猫狗两个类别，那我们需要训练猫和狗两个不同类别的 SVM 分类器，然后使用训练好的分类器对一幅图像中 2000 个候选区域的特征向量分别判断一次，这样得出 [2000, 2] 的得分矩阵，如下图所示：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125933826.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>对于 N 个类别的检测任务，需要训练 N（目标类别数目）个 SVM 分类器，对候选区域的特征向量（4096 维）进行二分类，判断其是某一类别的目标，还是背景来完成目标分类。</p>
+<h6><span id="4-目标定位"> <strong>4 目标定位</strong></span></h6>
+<p>通过选择性搜索获取的目标位置不是非常的准确，实验证明，训练一个线性回归模型在给定的候选区域的结果上去预测一个新的检测窗口，能够获得更精确的位置。修正过程如下图所示：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624125955589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>通过训练一个回归器来对候选区域的范围进行一个调整，这些候选区域最开始只是用选择性搜索的方法粗略得到的，通过调整之后得到更精确的位置，如下所示：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624130024151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<h6><span id="5-预测过程"> <strong>5 预测过程</strong></span></h6>
+<p>使用选择性搜索的方法从一张图片中提取 2000 个候选区域，将每个区域送入 CNN 网络中进行特征提取，然后送入到 SVM 中进行分类，并使用候选框回归器，计算出每个候选区域的位置。 候选区域较多，有 2000 个，需要剔除掉部分检测结果。 针对每个类，通过计算 IOU, 采取非最大值抑制 NMS 的方法，保留比较好的检测结果。</p>
+<h6><span id="算法总结"> <strong>算法总结</strong></span></h6>
+<p>1、训练阶段多，训练耗时： 微调 CNN 网络 + 训练 SVM + 训练边框回归器。</p>
+<p>2、预测速度慢：使用 GPU, <strong>VGG16 模型处理一张图像需要 47s</strong>。</p>
+<p>3、占用磁盘空间大：5000 张图像产生几百 G 的特征文件。</p>
+<p>4、数据的形状变化：候选区域要经过缩放来固定大小，无法保证目标的不变形</p>
+<h5><span id="62-fast-rcnn"> <strong>6.2 Fast RCNN</strong></span></h5>
+<h6><span id="621-模型特点"> <strong>6.2.1 模型特点</strong></span></h6>
+<p>相比于 R-CNN, Fast R-CNN 主要在以下三个方面进行了改进：</p>
+<p>1、提高训练和预测的速度</p>
+<p>R-CNN 首先从测试图中提取 2000 个候选区域，然后将这 2000 个候选区域分别输入到预训练好的 CNN 中提取特征。由于候选区域有大量的重叠，这种提取特征的方法，就会重复的计算重叠区域的特征。在 Fast-RCNN 中，将整张图输入到 CNN 中提取特征，将候选区域映射到特征图上，这样就避免了对图像区域进行重复处理，提高效率减少时间。</p>
+<p>2、不需要额外的空间保存 CNN 网络提取的特征向量</p>
+<p>RCNN 中需要将提取到的特征保存下来，用于为每个类训练单独的 SVM 分类器和边框回归器。在 Fast-RCNN 中，将类别判断和边框回归统一使用 CNN 实现，不需要在额外的空间存储特征。</p>
+<p>3、不在直接对候选区域进行缩放</p>
+<p>RCNN 中需要对候选区域进行缩放送入 CNN 中进行特征提取，在 Fast-RCNN 中使用 ROIpooling 的方法进行尺寸的调整。</p>
+<h6><span id="622-算法流程"> <strong>6.2.2 算法流程</strong></span></h6>
+<p>Fast_RCNN 的流程如下图所示：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624130052839.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>步骤是：</p>
+<p>1、<strong>候选区域生成</strong>：使用选择性搜索（Selective Search）的方法找出图片中可能存在目标的侯选区域，只需要候选区域的位置信息</p>
+<p>2、<strong>CNN 网络特征提取</strong>：将整张图像输入到 CNN 网络中，得到整副图的特征图，并将上一步获取的候选区域位置从原图映射到该特征图上</p>
+<p>3、<strong>ROIPooling</strong>: 对于每个特征图上候选框，RoI pooling 层从特征图中提取固定长度的特征向量每个特征向量被送入一系列全连接（fc）层中。</p>
+<p>4、<strong>目标检测</strong>：分两部分完成，一个输出各类别加上 1 个背景类别的 Softmax 概率估计，另一个为各类别的每一个类别输出四个实数值，来确定目标的位置信息。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624130120663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<h5><span id="63-faster-rcnn"> <strong>6.3 Faster RCNN</strong></span></h5>
+<p>在 R-CNN 和 Fast RCNN 的基础上，在 2016 年提出了 Faster RCNN 网络模型，在结构上，Faster RCNN 已经将候选区域的生成，特征提取，目标分类及目标框的回归都整合在了一个网络中，综合性能有较大提高，在检测速度方面尤为明显。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624130141698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>1、<strong>特征提取</strong>：将整个图像缩放至固定的大小输入到 CNN 网络中进行特征提取，得到特征图。</p>
+<p>2、<strong>候选区域提取</strong>：输入特征图，使用区域生成网络 RPN，产生一些列的候选区域</p>
+<p>3、<strong>ROIPooling</strong>: 与 Fast RCNN 网络中一样，使用最大池化固定候选区域的尺寸，送入后续网络中进行处理</p>
+<p>4、<strong>目标分类和回归</strong>：与 Fast RCNN 网络中一样，使用两个同级层：K+1 个类别的 SoftMax 分类层和边框的回归层，来完成目标的分类和回归。</p>
+<p>Faster R-CNN 的流程与 Fast R-CNN 的区别不是很大，重要的改进是使用 RPN 网络来替代选择性搜索获取候选区域，所以我们可以将 Faster R-CNN 网络看做 RPN 和 Fast R-CNN 网络的结合。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624130214226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:60%;"></center>
+<p>将网络分为四部分：</p>
+<ul>
+<li><strong>Backbone</strong>：Backbone 由 CNN 卷积神经网络构成，常用的是 VGG 和 resnet, 用来提取图像中的特征，获取图像的特征图。该特征图被共享用于后续 RPN 层生成候选区域和 ROIPooling 层中。</li>
+<li><strong>RPN 网络</strong>：RPN 网络用于生成候选区域，用于后续的目标检测。</li>
+<li><strong>Roi Pooling</strong>: 该部分收集图像的特征图和 RPN 网络提取的候选区域位置，综合信息后获取固定尺寸的特征，送入后续全连接层判定目标类别和确定目标位置。</li>
+<li><strong>目标分类与回归</strong>：该部分利用 ROIpooling 输出特征向量计算候选区域的类别，并通过回归获得检测框最终的精确位置。</li>
+</ul>
+<h5><span id="64-yolo"> <strong>6.4 YOLO</strong></span></h5>
+<p>Yolo 意思是 You Only Look Once，它并没有真正的去掉候选区域，而是创造性的将候选区和目标分类合二为一，看一眼图片就能知道有哪些对象以及它们的位置。</p>
+<p>Yolo 模型采用预定义预测区域的方法来完成目标检测，具体而言是将原始图像划分为 7x7=49 个网格（grid），每个网格允许预测出 2 个边框（bounding box，包含某个对象的矩形框），总共 49x2=98 个 bounding box。我们将其理解为 98 个预测区，很粗略的覆盖了图片的整个区域，就在这 98 个预测区中进行目标检测。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624130250191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:67%;"></center>
+<p>YOLO 的结构非常简单，就是单纯的卷积、池化最后加了两层全连接，从网络结构上看，与前面介绍的 CNN 分类网络没有本质的区别，最大的差异是输出层用线性函数做激活函数，因为需要预测 bounding box 的位置（数值型），而不仅仅是对象的概率。所以粗略来说，YOLO 的整个结构就是输入图片经过神经网络的变换得到一个输出的张量，如下图所示：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624130311213.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:67%;"></center>
+<p>网络结构比较简单，重点是我们要理解网络输入与输出之间的关系。</p>
+<h6><span id="41-网络输入"> <strong>4.1 网络输入</strong></span></h6>
+<p>网络的输入是原始图像，唯一的要求是缩放到 448x448 的大小。主要是因为 Yolo 的网络中，卷积层最后接了两个全连接层，全连接层是要求固定大小的向量作为输入，所以 Yolo 的输入图像的大小固定为 448x448。</p>
+<h6><span id="42-网络输出"> <strong>4.2 网络输出</strong></span></h6>
+<p>网络的输出就是一个 7x7x30 的张量（tensor）。那这个输出结果我们要怎么理解那？</p>
+<p><strong>4.2.1 7X7 网格</strong></p>
+<p>根据 YOLO 的设计，输入图像被划分为 7x7 的网格（grid），输出张量中的 7x7 就对应着输入图像的 7x7 网格。或者我们把 7x7x30 的张量看作 7x7=49 个 30 维的向量，也就是输入图像中的每个网格对应输出一个 30 维的向量。如下图所示，比如输入图像左上角的网格对应到输出张量中左上角的向量。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624130336324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 50%;"></center>
+<p><strong>4.2.2 30 维向量</strong></p>
+<p>30 维的向量包含：2 个 bbox 的位置和置信度以及该网格属于 20 个类别的概率</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624130629189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<ul>
+<li><strong>2 个 bounding box 的位置</strong> 每个 bounding box 需要 4 个数值来表示其位置，(Center_x,Center_y,width,height)，即 (bounding box 的中心点的 x 坐标，y 坐标，bounding box 的宽度，高度)，2 个 bounding box 共需要 8 个数值来表示其位置。</li>
+<li><strong>2 个 bounding box 的置信度</strong> bounding box 的置信度 = 该 bounding box 内存在对象的概率 * 该 bounding box 与该对象实际 bounding box 的 IOU，用公式表示就是：</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210624130650450.png#pic_center" alt="在这里插入图片描述" style="zoom: 33%;"></center>
+<p>Pr (Object) 是 bounding box 内存在对象的概率</p>
+<ul>
+<li><strong>20 个对象分类的概率</strong></li>
+</ul>
+<p>Yolo 支持识别 20 种不同的对象（人、鸟、猫、汽车、椅子等），所以这里有 20 个值表示该网格位置存在任一种对象的概率.</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年07月14日 20:49</p>
+        <p>原始链接： <a class="post-url" href="/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" title="计算机视觉之目标检测">https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/&title=《计算机视觉之目标检测》 — 且听风吟，御剑于心！&pic=images/计算机视觉之目标检测.jpeg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/&title=《计算机视觉之目标检测》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计算机视觉之目标检测》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/计算机视觉CV/" class="color3">计算机视觉CV</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 目标检测</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 1 定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 2 常用数据集</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.1 PASCAL VOC 数据集</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.2 MS COCO 数据集</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 3 常用的评价指标</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.1 IOU</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.2 mAP（Mean Average Precision）</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 4 NMS（非极大值抑制）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 5 目标检测方法分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 5.1 two-stage 的算法</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 5.2 One-stage 的算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 6 经典深度学习网络</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 6.1 RCNN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1 候选区域生成</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2 CNN 网络提取特征</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3 目标分类（SVM）</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4 目标定位</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 5 预测过程</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 算法总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 6.2 Fast RCNN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.2.1 模型特点</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 6.2.2 算法流程</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 6.3 Faster RCNN</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 6.4 YOLO</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4.1 网络输入</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4.2 网络输出</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E7%9B%AE%E6%A0%87%E5%88%86%E5%89%B2/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          计算机视觉之目标分割
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">计算机视觉之图像分类</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="计算机视觉之目标检测" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

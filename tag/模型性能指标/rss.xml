@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;模型性能指标&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Sun, 20 Feb 2022 23:06:30 +0800</pubDate>
+        <lastBuildDate>Sun, 20 Feb 2022 23:06:30 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2022/02/20/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E9%87%8F-FLOPs%E8%AE%A1%E7%AE%97/</guid>
+            <title>深度学习模型参数量_FLOPs计算</title>
+            <link>https://leezhao415.github.io/2022/02/20/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E9%87%8F-FLOPs%E8%AE%A1%E7%AE%97/</link>
+            <category>人工智能</category>
+            <category>模型性能指标</category>
+            <pubDate>Sun, 20 Feb 2022 23:06:30 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1%E5%AF%B9cnn%E8%80%8C%E8%A8%80%E6%AF%8F%E4%B8%AA%E5%8D%B7%E7%A7%AF%E5%B1%82%E7%9A%84%E5%8F%82%E6%95%B0%E9%87%8F%E8%AE%A1%E7%AE%97%E5%A6%82%E4%B8%8B&#34;&gt;1. 对 CNN 而言，每个卷积层的参数量计算如下：&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2%E5%AF%B9cnn%E8%80%8C%E8%A8%80%E6%AF%8F%E4%B8%AA%E5%8D%B7%E7%A7%AF%E5%B1%82%E7%9A%84%E8%BF%90%E7%AE%97%E9%87%8F%E8%AE%A1%E7%AE%97%E5%A6%82%E4%B8%8B&#34;&gt;2. 对 CNN 而言，每个卷积层的运算量计算如下：&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3%E5%AF%B9%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82%E8%80%8C%E8%A8%80%E5%85%B6%E5%8F%82%E6%95%B0%E9%87%8F%E9%9D%9E%E5%B8%B8%E5%AE%B9%E6%98%93%E8%AE%A1%E7%AE%97&#34;&gt;3. 对全连接层而言，其参数量非常容易计算：&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4%E5%AF%B9%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82%E8%80%8C%E8%A8%80%E5%85%B6%E8%BF%90%E7%AE%97%E9%87%8F%E8%AE%A1%E7%AE%97%E5%A6%82%E4%B8%8B&#34;&gt;4. 对全连接层而言，其运算量计算如下：&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;p&gt;本文是对卷积神经网络模型参数量和浮点运算量的计算推导公式和方法，使用 API 自动计算这些数据请移步另一篇博客：&lt;a href=&#34;https://www.jianshu.com/p/ca6da98b2ecd&#34;&gt;自动计算模型参数量、FLOPs、乘加数以及所需内存等数据&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;1-对-cnn-而言每个卷积层的参数量计算如下&#34;&gt; 1. 对 CNN 而言，每个卷积层的参数量计算如下：&lt;/span&gt;&lt;/h4&gt;
+&lt;center&gt;&lt;img src=&#34;https://math.jianshu.com/math?formula=params%20%3D%20C_o%20%C3%97%20(k_w%20%C3%97%20k_h%20%C3%97%20C_i%20%2B1)&#34; alt=&#34;params = C_o × (k_w × k_h × C_i +1)&#34;&gt;&lt;/center&gt;
+&lt;p&gt;其中&lt;img src=&#34;https://math.jianshu.com/math?formula=C_o&#34; alt=&#34;C_o&#34;&gt; 表示输出通道数，&lt;img src=&#34;https://math.jianshu.com/math?formula=C_i&#34; alt=&#34;C_i&#34;&gt; 表示输入通道数，&lt;img src=&#34;https://math.jianshu.com/math?formula=k_w&#34; alt=&#34;k_w&#34;&gt; 表示卷积核宽，&lt;img src=&#34;https://math.jianshu.com/math?formula=k_h&#34; alt=&#34;k_h&#34;&gt; 表示卷积核高。&lt;br&gt;
+括号内的&lt;img src=&#34;https://math.jianshu.com/math?formula=w%20%C3%97%20h%20%C3%97%20C_i&#34; alt=&#34;w × h × C_i&#34;&gt; 表示一个卷积核的权重数量，+1 表示 bias，括号表示一个卷积核的参数量，&lt;img src=&#34;https://math.jianshu.com/math?formula=C_o%20%C3%97&#34; alt=&#34;C_o ×&#34;&gt; 表示该层有&lt;img src=&#34;https://math.jianshu.com/math?formula=C_o&#34; alt=&#34;C_o&#34;&gt; 个卷积核。&lt;/p&gt;
+&lt;p&gt;若卷积核是方形的，即&lt;img src=&#34;https://math.jianshu.com/math?formula=k_w%20%3D%20k_h%20%3D%20k&#34; alt=&#34;k_w = k_h = k&#34;&gt;，则上式变为：&lt;/p&gt;
+ &lt;center&gt;&lt;img src=&#34;https://math.jianshu.com/math?formula=params%20%3D%20C_o%20%C3%97%20(k%5E2%20%C3%97%20C_i%20%2B1)&#34; alt=&#34;params = C_o × (k^2 × C_i +1)&#34;&gt;&lt;/center&gt;
+&lt;p&gt;需要注意的是，使用 Batch Normalization 时不需要 bias，此时计算式中的 + 1 项去除。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;2-对-cnn-而言每个卷积层的运算量计算如下&#34;&gt; 2. 对 CNN 而言，每个卷积层的运算量计算如下：&lt;/span&gt;&lt;/h4&gt;
+&lt;center&gt;&lt;img src=&#34;https://math.jianshu.com/math?formula=FLOPs%20%3D%20%5B(C_i%20%C3%97%20k_w%20%C3%97%20k_h)%20%2B%20(C_i%20%C3%97%20k_w%20%C3%97%20k_h%20-%201)%20%2B%201%5D%20%C3%97%20C_o%20%C3%97%20W%20%C3%97%20H&#34; alt=&#34;FLOPs = [(C_i × k_w × k_h) + (C_i × k_w × k_h - 1) + 1] × C_o × W × H&#34;&gt;&lt;/center&gt;
+&lt;p&gt;FLOPs 是英文 floating point operations 的缩写，表示&lt;strong&gt;浮点运算量&lt;/strong&gt;，中括号内的值表示卷积操作计算出 feature map 中一个点所需要的运算量（乘法和加法），&lt;img src=&#34;https://math.jianshu.com/math?formula=C_i%20%C3%97%20k_w%20%C3%97%20k_h&#34; alt=&#34;C_i × k_w × k_h&#34;&gt; 表示一次卷积操作中的乘法运算量，&lt;img src=&#34;https://math.jianshu.com/math?formula=C_i%20%C3%97%20k_w%20%C3%97%20k_h%20-%201&#34; alt=&#34;C_i × k_w × k_h - 1&#34;&gt; 表示一次卷积操作中的加法运算量，+ 1 表示 bias，W 和 H 分别表示 feature map 的长和宽，&lt;img src=&#34;https://math.jianshu.com/math?formula=%C3%97%20C_o%20%C3%97%20W%20%C3%97%20H&#34; alt=&#34;× C_o × W × H&#34;&gt; 表示 feature map 的所有元素数。&lt;br&gt;
+若是方形卷积核，即&lt;img src=&#34;https://math.jianshu.com/math?formula=k_w%20%3D%20k_h%20%3D%20k&#34; alt=&#34;k_w = k_h = k&#34;&gt;，则有：&lt;/p&gt;
+ &lt;center&gt;&lt;img src=&#34;https://math.jianshu.com/math?formula=FLOPs%20%3D%202%20%C3%97%20C_i%20%C3%97%20k%5E2%20%C3%97%20C_o%20%C3%97%20W%20%C3%97%20H&#34; alt=&#34;FLOPs = 2 × C_i × k^2 × C_o × W × H&#34;&gt;&lt;/center&gt;
+&lt;p&gt;上面是乘运算和加运算的总和，将一次乘运算或加运算都视作一次浮点运算。&lt;br&gt;
+在计算机视觉论文中，常常将一个‘乘 - 加’组合视为一次浮点运算，英文表述为’Multi-Add’，运算量正好是上面的算法减半，此时的运算量为：&lt;/p&gt;
+ &lt;center&gt;&lt;img src=&#34;https://math.jianshu.com/math?formula=FLOPs%20%3D%20C_i%20%C3%97%20k%5E2%20%C3%97%20C_o%20%C3%97%20W%20%C3%97%20H&#34; alt=&#34;FLOPs = C_i × k^2 × C_o × W × H&#34;&gt;&lt;/center&gt;
+&lt;h4&gt;&lt;span id=&#34;3-对全连接层而言其参数量非常容易计算&#34;&gt; 3. 对全连接层而言，其参数量非常容易计算：&lt;/span&gt;&lt;/h4&gt;
+&lt;center&gt;&lt;img src=&#34;https://math.jianshu.com/math?formula=params%20%3D%20(I%20%2B%201)%20%C3%97%20O%20%3D%20I%C3%97O%20%2B%20O&#34; alt=&#34;params = (I + 1) × O = I×O + O&#34;&gt;&lt;/center&gt;
+&lt;p&gt;值得注意的是，最初由 feature map flatten 而来的向量视为第一层全连接层，即此处的&lt;img src=&#34;https://math.jianshu.com/math?formula=I&#34; alt=&#34;I&#34;&gt;。&lt;br&gt;
+可以这样理解上式：每一个输出神经元连接着所有输入神经元，所以有&lt;img src=&#34;https://math.jianshu.com/math?formula=I&#34; alt=&#34;I&#34;&gt; 个权重，每个输出神经元还要加一个 bias。&lt;br&gt;
+也可以这样理解：每一层神经元 (O 这一层) 的权重数为&lt;img src=&#34;https://math.jianshu.com/math?formula=I%C3%97O&#34; alt=&#34;I×O&#34;&gt;，bias 数量为&lt;em&gt; O&lt;/em&gt;。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;4-对全连接层而言其运算量计算如下&#34;&gt; 4. 对全连接层而言，其运算量计算如下：&lt;/span&gt;&lt;/h4&gt;
+&lt;center&gt;&lt;img src=&#34;https://math.jianshu.com/math?formula=FLOPs%20%3D%20%5BI%20%2B%20(I-1)%20%2B1%5D%C3%97O%20%3D%20(2%20%C3%97%20I)%20%C3%97%20O&#34; alt=&#34;FLOPs = [I + (I-1) +1]×O = (2 × I) × O&#34;&gt;&lt;/center&gt;
+&lt;p&gt;其中 &lt;img src=&#34;https://math.jianshu.com/math?formula=I%20%3D%20input%5C%20nerons%2C%20O%20%3D%20output%5C%20nerons&#34; alt=&#34;I = input\ nerons, O = output\ nerons&#34;&gt;&lt;br&gt;
+ 中括号的值表示计算出一个神经元所需的运算量，第一个&lt;img src=&#34;https://math.jianshu.com/math?formula=I&#34; alt=&#34;I&#34;&gt; 表示乘法运算量，&lt;img src=&#34;https://math.jianshu.com/math?formula=I-1&#34; alt=&#34;I-1&#34;&gt; 表示加法运算量，+1 表示 bias，&lt;img src=&#34;https://math.jianshu.com/math?formula=%C3%97O&#34; alt=&#34;×O&#34;&gt; 表示计算 O 个神经元的值。&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

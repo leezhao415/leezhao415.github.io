@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>NLP模型：从transformer到albert | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="NLP 模型：从 transformer 到 albert  文章目录   1 Transformer  1.1 transformer 整体架构 1.2 transformer 结构原理 1.3 transformer 的技术细节 1.4 transformer 的总结   2 bert  2.1 bert 的背景 2.2 bert 的流程 2.3 bert 的技术细节 2.4 bert 的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NLP模型：从transformer到albert">
+<meta property="og:url" content="https://leezhao415.github.io/2021/06/24/NLP%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%BB%8Etransformer%E5%88%B0albert/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="NLP 模型：从 transformer 到 albert  文章目录   1 Transformer  1.1 transformer 整体架构 1.2 transformer 结构原理 1.3 transformer 的技术细节 1.4 transformer 的总结   2 bert  2.1 bert 的背景 2.2 bert 的流程 2.3 bert 的技术细节 2.4 bert 的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624165944329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624170040624.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624170127842.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624170158406.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624170221363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624170312408.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624170332480.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624170351960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-06-24T15:21:14.000Z">
+<meta property="article:modified_time" content="2021-07-14T13:24:58.219Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210624165944329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-NLP模型：从transformer到albert" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      NLP模型：从transformer到albert
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-06-24
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<h3><span id="nlp-模型从-transformer-到-albert"> NLP 模型：从 transformer 到 albert</span></h3>
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#1-transformer">1 Transformer</a>
+<ul>
+<li><a href="#11-transformer%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84">1.1 transformer 整体架构</a></li>
+<li><a href="#12-transformer%E7%BB%93%E6%9E%84%E5%8E%9F%E7%90%86">1.2 transformer 结构原理</a></li>
+<li><a href="#13-transformer%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82">1.3 transformer 的技术细节</a></li>
+<li><a href="#14-transformer%E7%9A%84%E6%80%BB%E7%BB%93">1.4 transformer 的总结</a></li>
+</ul>
+</li>
+<li><a href="#2-bert">2 bert</a>
+<ul>
+<li><a href="#21-bert%E7%9A%84%E8%83%8C%E6%99%AF">2.1 bert 的背景</a></li>
+<li><a href="#22-bert%E7%9A%84%E6%B5%81%E7%A8%8B">2.2 bert 的流程</a></li>
+<li><a href="#23-bert%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82">2.3 bert 的技术细节</a></li>
+<li><a href="#24-bert%E7%9A%84%E6%80%BB%E7%BB%93">2.4 bert 的总结</a></li>
+</ul>
+</li>
+<li><a href="#3-xlnet">3 xlnet</a>
+<ul>
+<li><a href="#31-xlnet%E7%9A%84%E8%83%8C%E6%99%AF">3.1 xlnet 的背景</a></li>
+<li><a href="#32-xlnet%E7%9A%84%E6%B5%81%E7%A8%8B">3.2 xlnet 的流程</a></li>
+<li><a href="#33-xlnet%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82">3.3 xlnet 的技术细节</a></li>
+<li><a href="#34-xlnet%E7%9A%84%E6%80%BB%E7%BB%93">3.4 xlnet 的总结</a></li>
+</ul>
+</li>
+<li><a href="#4-albert">4 albert</a>
+<ul>
+<li><a href="#41-albert%E7%9A%84%E8%83%8C%E6%99%AF">4.1 albert 的背景</a></li>
+<li><a href="#42-albert%E7%9A%84%E6%B5%81%E7%A8%8B">4.2 albert 的流程</a></li>
+<li><a href="#43-albert%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82">4.3 albert 的技术细节</a></li>
+<li><a href="#44-albert%E7%9A%84%E6%80%BB%E7%BB%93">4.4 albert 的总结</a></li>
+</ul>
+</li>
+<li><a href="#5-%E5%85%B6%E4%BB%96%E8%AE%BA%E6%96%87">5. 其他论文</a>
+<ul>
+<li><a href="#51-gpt">5.1 gpt</a></li>
+<li><a href="#52-structbert">5.2 structbert</a></li>
+<li><a href="#53-roberta">5.3 roberta</a></li>
+</ul>
+</li>
+<li><a href="#6-%E6%80%BB%E7%BB%93">6. 总结</a></li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h4><span id="1-transformer"> 1 Transformer</span></h4>
+<h5><span id="11-transformer-整体架构"> 1.1 transformer 整体架构</span></h5>
+<center><img src="https://img-blog.csdnimg.cn/20210624165944329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 40%;"></center>
+<center><img src="https://img-blog.csdnimg.cn/20210624170040624.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:60%;"></center>
+<h5><span id="12-transformer-结构原理"> 1.2 transformer 结构原理</span></h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="number">1</span>&gt; Inputs是经过padding的输入数据，大小是[batch size, <span class="built_in">max</span> seq length]。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">2</span>&gt; 初始化embedding matrix，通过embedding lookup将Inputs映射成token embedding，大小是[batch size, <span class="built_in">max</span> seq length, embedding size]，然后乘以embedding size的开方。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">3</span>&gt; 通过sin和cos函数创建positional encoding，表示一个token的绝对位置信息，并加入到token embedding中，然后dropout。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">4</span>&gt; multi-head attention</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">4.1</span>&gt; 输入token embedding，通过Dense生成Q，K，V，大小是[batch size, <span class="built_in">max</span> seq length, embedding size]，然后按第<span class="number">2</span>维split成num heads份并按第<span class="number">0</span>维concat，生成新的Q，K，V，大小是[num heads*batch size, <span class="built_in">max</span> seq length, embedding size/num heads]，完成multi-head的操作。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">4.2</span>&gt; 将K的第<span class="number">1</span>维和第<span class="number">2</span>维进行转置，然后Q和转置后的K的进行点积，结果的大小是[num heads*batch size, <span class="built_in">max</span> seq length, <span class="built_in">max</span> seq length]。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">4.3</span>&gt; 将&lt;<span class="number">4.2</span>&gt;的结果除以hidden size的开方(在transformer中，hidden size=embedding size)，完成scale的操作。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">4.4</span>&gt; 将&lt;<span class="number">4.3</span>&gt;中padding的点积结果置成一个很小的数(-<span class="number">2</span>**<span class="number">32</span>+<span class="number">1</span>)，完成mask操作，后续softmax对padding的结果就可以忽略不计了。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">4.5</span>&gt; 将经过mask的结果进行softmax操作。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">4.6</span>&gt; 将softmax的结果和V进行点积，得到attention的结果，大小是[num heads*batch size, <span class="built_in">max</span> seq length, hidden size/num heads]。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">4.7</span>&gt; 将attention的结果按第<span class="number">0</span>维split成num heads份并按第<span class="number">2</span>维concat，生成multi-head attention的结果，大小是[batch size, <span class="built_in">max</span> seq length, hidden size]。Figure <span class="number">2</span>上concat之后还有一个linear的操作，但是代码里并没有。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">5</span>&gt; 将token embedding和multi-head attention的结果相加，并进行Layer Normalization。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">6</span>&gt; 将&lt;<span class="number">5</span>&gt;的结果经过<span class="number">2</span>层Dense，其中第<span class="number">1</span>层的activation=relu，第<span class="number">2</span>层activation=<span class="literal">None</span>。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">7</span>&gt; 功能和&lt;<span class="number">5</span>&gt;一样。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">8</span>&gt; Outputs是经过padding的输出数据，与Inputs不同的是，Outputs的需要在序列前面加上一个起始符号“&lt;s&gt;”，用来表示序列生成的开始，而Inputs不需要。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">9</span>&gt; 功能和&lt;<span class="number">2</span>&gt;一样。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">10</span>&gt; 功能和&lt;<span class="number">3</span>&gt;一样。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">11</span>&gt; 功能和&lt;<span class="number">4</span>&gt;类似，唯一不同的一点在于mask，&lt;<span class="number">11</span>&gt;中的mask不仅将padding的点积结果置成一个很小的数，而且将当前token与之后的token的点积结果也置成一个很小的数。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">12</span>&gt; 功能和&lt;<span class="number">5</span>&gt;一样。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">13</span>&gt; 功能和&lt;<span class="number">4</span>&gt;类似，唯一不同的一点在于Q，K，V的输入，&lt;<span class="number">13</span>&gt;的Q的输入来自于Outputs 的token embedding，&lt;<span class="number">13</span>&gt;的K，V来自于&lt;<span class="number">7</span>&gt;的结果。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">14</span>&gt; 功能和&lt;<span class="number">5</span>&gt;一样。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">15</span>&gt; 功能和&lt;<span class="number">6</span>&gt;一样。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">16</span>&gt; 功能和&lt;<span class="number">7</span>&gt;一样，结果的大小是[batch size, <span class="built_in">max</span> seq length, hidden size]。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">17</span>&gt; 将&lt;<span class="number">16</span>&gt;的结果的后<span class="number">2</span>维和embedding matrix的转置进行点积，生成的结果的大小是[batch size, <span class="built_in">max</span> seq length, vocab size]。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">18</span>&gt; 将&lt;<span class="number">17</span>&gt;的结果进行softmax操作，生成的结果就表示当前时刻预测的下一个token在vocab上的概率分布。</span><br><span class="line"></span><br><span class="line">&lt;<span class="number">19</span>&gt; 计算&lt;<span class="number">18</span>&gt;得到的下一个token在vocab上的概率分布和真实的下一个token的one-hot形式的cross entropy，然后<span class="built_in">sum</span>非padding的token的cross entropy当作loss，利用adam进行训练。</span><br></pre></td></tr></table></figure>
+<h5><span id="13-transformer-的技术细节"> 1.3 transformer 的技术细节</span></h5>
+<p>transformer 中的 self-attention 是从普通的点积 attention 中演化出来的</p>
+<h6><span id="131-为什么-lt2gt-要乘以-embedding-size-的开方"> 1.3.1 为什么 &lt;2&gt; 要乘以 embedding size 的开方？</span></h6>
+<p>论文并没有讲为什么这么做，我看了代码，猜测是因为 embedding matrix 的初始化方式是 xavier init，这种方式的方差是 1/embedding size，因此乘以 embedding size 的开方使得 embedding matrix 的方差是 1，在这个 scale 下可能更有利于 embedding matrix 的收敛。</p>
+<h6><span id="132-为什么-inputs-embedding-要加入-positional-encoding"> 1.3.2 为什么 inputs embedding 要加入 positional encoding？</span></h6>
+<p>因为 self-attention 是位置无关的，无论句子的顺序是什么样的，通过 self-attention 计算的 token 的 hidden embedding 都是一样的，这显然不符合人类的思维。因此要有一个办法能够在模型中表达出一个 token 的位置信息，transformer 使用了固定的 positional encoding 来表示 token 在句子中的绝对位置信息。positional encoding 的公式如下：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624170127842.png#pic_center" alt="在这里插入图片描述" style="zoom: 50%;"></center>
+<h6><span id="133-为什么-lt42gt-的结果要-scale"> 1.3.3 为什么 &lt;4.2&gt; 的结果要 scale？</span></h6>
+<p>以数组为例，2 个长度是 len，均值是 0，方差是 1 的数组点积会生成长度是 len，均值是 0，方差是 len 的数组。而方差变大会导致 softmax 的输入推向正无穷或负无穷，这时的梯度会无限趋近于 0，不利于训练的收敛。因此除以 len 的开方，可以是数组的方差重新回归到 1，有利于训练的收敛。</p>
+<h6><span id="134-为什么-lt5gt-要将-multi-head-attention-的输入和输出相加"> 1.3.4 为什么 &lt;5&gt; 要将 multi-head attention 的输入和输出相加？</span></h6>
+<p>类似于 resnet 中的残差学习单元，有 ensemble 的思想在里面，解决网络退化问题。</p>
+<h6><span id="135-为什么-attention-需要-multi-head一个大-head-行不行"> 1.3.5 为什么 attention 需要 multi-head，一个大 head 行不行？</span></h6>
+<p>multi-head 相当于把一个大空间划分成多个互斥的小空间，然后在小空间内分别计算 attention，虽然单个小空间的 attention 计算结果没有大空间计算得精确，但是多个小空间并行然后 concat 有助于网络捕捉到更丰富的信息，类比 cnn 网络中的 channel。</p>
+<h6><span id="136-为什么-multi-head-attention-后面要加一个-ffn"> 1.3.6 为什么 multi-head attention 后面要加一个 ffn？</span></h6>
+<p>类比 cnn 网络中，cnn block 和 fc 交替连接，效果更好。相比于单独的 multi-head attention，在后面加一个 ffn，可以提高整个 block 的非线性变换的能力。</p>
+<h6><span id="137-为什么-lt11gt-要-mask-当前时刻的-token-与后续-token-的点积结果"> 1.3.7 为什么 &lt;11&gt; 要 mask 当前时刻的 token 与后续 token 的点积结果？</span></h6>
+<p>自然语言生成 (例如机器翻译，文本摘要) 是 auto-regressive 的，在推理的时候只能依据之前的 token 生成当前时刻的 token，正因为生成当前时刻的 token 的时候并不知道后续的 token 长什么样，所以为了保持训练和推理的一致性，训练的时候也不能利用后续的 token 来生成当前时刻的 token。这种方式也符合人类在自然语言生成中的思维方式。</p>
+<h5><span id="14-transformer-的总结"> 1.4 transformer 的总结</span></h5>
+<p>transformer 刚发表的时候，我刚好在百度 nlp 部实习，当时觉得 transformer 噱头更多一些，在小模型上 self-attention 并不比 rnn，lstm 好。直到大力出奇迹的 bert 出现，深深地打了我的脸，当模型变得越来越大，样本数越来越多的时候，self-attention 无论是并行化带来的训练提速，还是在长距离上的建模，都是要比传统的 rnn，lstm 好很多。transformer 现在已经各种具有代表性的 nlp 预训练模型的基础，bert 系列使用了 transformer 的 encoder，gpt 系列 transformer 的 decoder。在推荐领域，transformer 的 multi-head attention 也应用得很广泛。</p>
+<h4><span id="2-bert"> 2 bert</span></h4>
+<h5><span id="21-bert-的背景"> 2.1 bert 的背景</span></h5>
+<p>在 bert 之前，将预训练的 embedding 应用到下游任务的方式大致可以分为 2 种，一种是 feature-based，例如 ELMo 这种将经过预训练的 embedding 作为特征引入到下游任务的网络中；一种是 fine-tuning，例如 GPT 这种将下游任务接到预训练模型上，然后一起训练。然而这 2 种方式都会面临同一个问题，就是无法直接学习到上下文信息，像 ELMo 只是分别学习上文和下文信息，然后 concat 起来表示上下文信息，抑或是 GPT 只能学习上文信息。因此，作者提出一种基于 transformer encoder 的预训练模型，可以直接学习到上下文信息，叫做 bert。bert 使用了 12 个 transformer encoder block，在 13G 的数据上进行了预训练，可谓是 nlp 领域大力出奇迹的代表。</p>
+<h5><span id="22-bert-的流程"> 2.2 bert 的流程</span></h5>
+<p>bert 是在 transformer encoder 的基础之上进行改进的，因此在整个流程上与 transformer encoder 没有大的差别，只是在 embedding，multi-head attention，loss 上有所差别。</p>
+<h6><span id="221-bert-和-transformer-在-embedding-上的差异"> 2.2.1 bert 和 transformer 在 embedding 上的差异</span></h6>
+<center><img src="https://img-blog.csdnimg.cn/20210624170158406.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 75%;"></center>
+<center><img src="https://img-blog.csdnimg.cn/20210624170221363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:67%;"></center>
+<p>bert 预训练 and fine-tune</p>
+<p>bert 和 transformer 在 embedding 上的差异主要有 3 点：</p>
+<p>&lt;1&gt; transformer 的 embedding 由 2 部分构成，一个是 token embedding，通过 embedding matrix lookup 到 token_ids 上生成表示 token 的向量；一个是 position embedding，是通过 sin 和 cos 函数创建的定值向量。而 bert 的 embedding 由 3 部分构成，第一个同样是 token embedding，通过 embedding matrix lookup 到 token_ids 上生成表示 token 的向量；第二个是 segment embedding，用来表达当前 token 是来自于第一个 segment，还是第二个 segment，因此 segment vocab size 是 2；第三个是 position embedding，与 transformer 不同的是，bert 创建了一个 position embedding matrix，通过 position embedding matrix lookup 到 token_ids 的位置上生成表示 token 位置的位置向量。</p>
+<p>&lt;2&gt; transformer 在 embedding 之后跟了一个 dropout，但是 bert 在 embedding 之后先跟了一个 layer normalization，再跟了一个 dropout。</p>
+<p>&lt;3&gt; bert 在 token 序列之前加了一个特定的 token“[cls]”，这个 token 对应的向量后续会用在分类任务上；如果是句子对的任务，那么两个句子间使用特定的 token“[seq]” 来分割。</p>
+<h6><span id="222-bert-和-transformer-在-multi-head-attention-上的差异"> 2.2.2 bert 和 transformer 在 multi-head attention 上的差异</span></h6>
+<p>bert 和 transformer 在 multi-head attention 上的差异主要有 1 点：</p>
+<p>&lt;1&gt; transformer 在 &lt; 4.7 &gt; 之后没有 linear 的操作 (也可能是因为我看的 transformer 代码不是官方 transformer 的缘故)，而 bert 在 transformer 的 &lt; 4.7 &gt; 之后有一个 linear 的操作。</p>
+<h6><span id="223-bert-和-transformer-在-loss-上的差异"> 2.2.3 bert 和 transformer 在 loss 上的差异</span></h6>
+<p>bert 和 transformer 在 loss 上的差异主要有 2 点：</p>
+<p>&lt;1&gt; transformer 的 loss 是在 decoder 阶段计算的，loss 的计算方式是 transformer 的 &lt; 19&gt;。bert 预训练的 loss 由 2 部分构成，一部分是 NSP 的 loss，就是 token“[cls]” 经过 1 层 Dense，然后接一个二分类的 loss，其中 0 表示 segment B 是 segment A 的下一句，1 表示 segment A 和 segment B 来自 2 篇不同的文本；另一部分是 MLM 的 loss，segment 中每个 token 都有 15% 的概率被 mask，而被 mask 的 token 有 80% 的概率用 “<mask>” 表示，有 10% 的概率随机替换成某一个 token，有 10% 的概率保留原来的 token，被 mask 的 token 经过 encoder 后乘以 embedding matrix 的转置会生成在 vocab 上的分布，然后计算分布和真实的 token 的 one-hot 形式的 cross entropy，最后 sum 起来当作 loss。这两部分 loss 相加起来当作 total loss，利用 adam 进行训练。bert fine-tune 的 loss 会根据任务性质来设计，例如分类任务中就是 token“[cls]” 经过 1 层 Dense，然后接了一个二分类的 loss；例如问题回答任务中会在 paragraph 上的 token 中预测一个起始位置，一个终止位置，然后以起始位置和终止位置的预测分布和真实分布为基础设计 loss；例如序列标注，预测每一个 token 的词性，然后以每一个 token 在词性的预测分布和真实分布为基础设计 loss。</mask></p>
+<p>&lt;2&gt; bert 在 encoder 之后，在计算 NSP 和 MLM 的 loss 之前，分别对 NSP 和 MLM 的输入加了一个 Dense 操作，这部分参数只对预训练有用，对 fine-tune 没用。而 transformer 在 decoder 之后就直接计算 loss 了，中间没有 Dense 操作。</p>
+<h5><span id="23-bert-的技术细节"> 2.3 bert 的技术细节</span></h5>
+<h6><span id="231-为什么-bert-需要额外的-segment-embedding"> 2.3.1 为什么 bert 需要额外的 segment embedding?</span></h6>
+<p>因为 bert 预训练的其中一个任务是判断 segment A 和 segment B 之间的关系，这就需要 embedding 中能包含当前 token 属于哪个 segment 的信息，然而无论是 token embedding，还是 position embedding 都无法表示出这种信息，因此额外创建一个 segment embedding matrix 用来表示当前 token 属于哪个 segment 的信息，segment vocab size 就是 2，其中 index=0 表示 token 属于 segment A，index=1 表示 token 属于 segment B。</p>
+<h6><span id="232-为什么-transformer-的-embedding-后面接了一个-dropout而-bert-是先接了一个-layer-normalization再接-dropout"> 2.3.2 为什么 transformer 的 embedding 后面接了一个 dropout，而 bert 是先接了一个 layer normalization，再接 dropout?</span></h6>
+<p>LN 是为了解决梯度消失的问题，dropout 是为了解决过拟合的问题。在 embedding 后面加 LN 有利于 embedding matrix 的收敛。</p>
+<h6><span id="233-为什么-token-被-mask-的概率是-15为什么被-mask-后还要分-3-种情况"> 2.3.3 为什么 token 被 mask 的概率是 15%？为什么被 mask 后，还要分 3 种情况？</span></h6>
+<p>15% 的概率是通过实验得到的最好的概率，xlnet 也是在这个概率附近，说明在这个概率下，既能有充分的 mask 样本可以学习，又不至于让 segment 的信息损失太多，以至于影响 mask 样本上下文信息的表达。然而因为在下游任务中不会出现 token“<mask>”，所以预训练和 fine-tune 出现了不一致，为了减弱不一致性给模型带来的影响，被 mask 的 token 有 80% 的概率用 “<mask>” 表示，有 10% 的概率随机替换成某一个 token，有 10% 的概率保留原来的 token，这 3 个百分比也是多次实验得到的最佳组合，在这 3 个百分比的情况下，下游任务的 fine-tune 可以达到最佳的实验结果。</mask></mask></p>
+<h5><span id="24-bert-的总结"> 2.4 bert 的总结</span></h5>
+<p>相比于那些说自己很好，但是在实际场景中然并软的论文，bert 是真正地影响了学术界和工业界。无论是 GLUE，还是 SQUAD，现在榜单上的高分方法都是在 bert 的基础之上进行了改进。在我的工作中，用 bert 落地的业务效果也比我预想的要好一些。bert 在 nlp 领域的地位可以类比 cv 领域的 inception 或者 resnet，cv 领域的算法效果在几年前就已经超过了人类的标注准确率，而 nlp 领域直到 bert 的出现才做到这一点。不过 bert 也并不是万能的，bert 的框架决定了这个模型适合解决自然语言理解的问题，因为没有解码的过程，所以 bert 不适合解决自然语言生成的问题。因此如何将 bert 改造成适用于解决机器翻译，文本摘要问题的框架，是今后值得研究的一个点。</p>
+<h4><span id="3-xlnet"> 3 xlnet</span></h4>
+<h5><span id="31-xlnet-的背景"> 3.1 xlnet 的背景</span></h5>
+<p>目前语言预训练模型的模式主要有 2 种，第一种是像 gpt 这种的 auto-regressive 模型，每个时刻都依据之前所有时刻的 token 来预测下一个 token，auto-regressive 的 loss 的定义如下：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624170312408.png#pic_center" alt="在这里插入图片描述" style="zoom: 67%;"></center>
+<p>auto-regressive 的 loss</p>
+<p>第二种是像 bert 这种的 auto-encoder 模型，随机 mask 掉句子中若干个 token，然后依据上下文预测被 mask 掉的 token，auto-encoder 的 loss 的定义如下：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624170332480.png#pic_center" alt="在这里插入图片描述" style="zoom:67%;"></center>
+<p>auto-encoder 的 loss</p>
+<p>auto-regressive 模型在训练的过程中只能用到上文的信息，但是不会出现训练和推理的 gap；auto-encoder 模型在训练的过程中能利用到上下文信息，但是会出现训练和推理的 gap，训练过程中的<mask>在推理的时候并不会出现。因此，作者就提出一种基于 transformer-xl 的融合了 auto-regressive 模型和 auto-encoder 模型优势的 auto-regressive 模型。</mask></p>
+<h5><span id="32-xlnet-的流程"> 3.2 xlnet 的流程</span></h5>
+<h6><span id="321-因子分解序"> 3.2.1 因子分解序</span></h6>
+<p>一个句子的因子分解序就是这个句子的 token 的一种随机排列。为了能融合 auto-regressive 模型和 auto-encoder 模型的优势，xlnet 使用因子分解序将上下文信息引入 auto-regressive 的 loss 中。例如句子 1-&gt;2-&gt;3-&gt;4-&gt;5，在 auto-regressive 的 loss 中，预测 token 2 可以利用 token 1 的信息，但是不能利用 token 2/3/4/5 的信息；在引入了因子分解序之后，假设使用了 1-&gt;4-&gt;2-&gt;3-&gt;5 的因子分解序，那么预测 token 2 可以利用 token 1/4 的信息，但是不能利用 token 3/5 的信息。在使用因子分解序之后，并不会影响句子的输入顺序，只是在 transformer-xl 的 multi-head attention 中计算每一个 token 的 attention 结果时会有所改变，原先的方式是 mask 掉当前 token 以及句子中的后续 token，而现在是 mask 掉当前 token 以及因子分解序中的后续 token。这种方式可以在计算当前 token 的 attention 结果时利用到当前 token 的上下文信息，例如上面这个因子分解序，计算 token 2 的 attention 结果时就是用到了 token 1/4 的信息，在原始句子中，token 1 在 token 2 之前，token 4 在 token 2 之后。</p>
+<p>因子分解序的实现方式是在计算 multi-head attention 的时候进行了 proper mask。例如 1-&gt;4-&gt;2-&gt;3-&gt;5 的因子分解序，在输入 token 2 时，由于在因子分解序中 token 2 排在 token 1/4 的后面，所以在计算 token 2 的 attention 结果时将 token 2/3/5 进行了 mask，只计算 token 2 和 token 1/4 的点积结果，然后 softmax 以及加权求和当作 attention 的结果。</p>
+<h6><span id="322-双流自注意力机制"> 3.2.2 双流自注意力机制</span></h6>
+<p>xlnet 使用了 transformer-xl 的框架，并在 transformer 的基础之上使用了双流自注意力机制。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624170351960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 67%;"></center>
+<p>双流自注意力机制</p>
+<p>相比于普通的 transformer，xlnet 多加了一个 multi-head attention+ffn 的计算。双流自注意力机制分为查询流 g 和内容流 h 2 个流。h 就是和 transformer 一样的 multi-head attention，计算第 t 个时刻的 attention 的结果时用到了因子分解序中前 t 个位置的位置信息和 token 信息，而 g 在 transformer 的 multi-head attention 的基础之上做了修改，计算第 t 个时刻的 attention 的结果时只用到了因子分解序中前 t 个位置的位置信息和前 t-1 个位置的 token 信息。在预训练的过程当中，为了降低优化的难度，xlnet 只会计算因子分解序最后的 1/6 或者 1/7 的 token 的 g，然后把 g 融合到 auto-regressive 的 loss 当中进行训练，顺带着训练 h。在预训练结束之后，放弃 g，使用 h 做下游任务的 fine-tune，fine-tune 的过程就和普通的 transfomer 的 fine-tune 一模一样了。</p>
+<h5><span id="33-xlnet-的技术细节"> 3.3 xlnet 的技术细节</span></h5>
+<h6><span id="331-因子分解序的优势"> 3.3.1 因子分解序的优势</span></h6>
+<p>因子分解序创新地将上下文信息融入到 auto-regressive 的 loss 中，理论上，只要模型的预训练将一个句子的所有因子分解序都训练一遍，那么模型就能准确地 get 到句子中每一个 token 和上下文之间的联系。然而实际情况下，一个句子的因子分解序的数量是随着句子长度指数增长的，因此在实际训练中只是用到了句子的某个因子分解序或者某几个因子分解序而已。即便如此，相比于只能 get 到上文信息的 auto-regressive，加了因子分解序之后可以同时 get 到上下文信息，能够提高模型的推理能力。</p>
+<h6><span id="332-为什么自注意力要用双流"> 3.3.2 为什么自注意力要用双流？</span></h6>
+<p>因为普通的 transformer 无法融合因子分解序和 auto-regressive 的 loss，例如 2 个不同的因子分解序 1-&gt;3-&gt;2-&gt;4-&gt;5 和 1-&gt;3-&gt;2-&gt;5-&gt;4，第 1 个句子的 4 和第 2 个句子的 5 在 auto-regressive 的 loss 下的 attention 结果是一样的，因此第 1 个句子的 4 和第 2 个句子的 5 在 vocab 上的预测概率分布也是一样的，这就不符合常理了。造成这种现象的原因在于，auto-regressive 的 loss 是利用前 t-1 个 token 的 token 信息和位置信息预测第 t 个 token，然而因子分解序的第 t 个 token 在原始句子中的位置是不确定的，因此需要额外的信息表示因子分解序中需要预测的 token 在原始句子中的位置。为了达到目的，xlnet 使用双流的 multi-head attention+ffn，查询流 g 利用因子分解序中前 t 个位置的位置信息和前 t-1 个位置的 token 信息计算第 t 个位置的输出信息，而内容流 h 利用因子分解序中前 t 个位置的位置信息和 token 信息计算第 t 个位置的输出信息。在预训练的过程中，使用 g 计算 auto-regressive 的 loss，然后最小化的 loss 的值，顺带着训练 h。预训练完成之后，放弃 g，使用 h 无缝切换到普通 transformer 的 fine-tune。</p>
+<h5><span id="34-xlnet-的总结"> 3.4 xlnet 的总结</span></h5>
+<p>由于我也是只看过论文，并没有在实际工作中用过 xlnet，因此我也只能讲讲 xlnet 的理论。在 bert 之后，有很多论文都对 bert 进行了改进，但是创新点都很有限，xlnet 是在我看过的论文中唯一一篇在 transformer 的框架之下将上下文信息和 auto-regressive 的 loss 融合在一起的论文。但是 xlnet 是否真的比 bert 优秀，这还是一个疑问，xlnet 使用了 126G 的数据进行预训练，相比于 bert 的 13G 数据大了一个数量级，在 xlnet 发布之后不久，bert 的改进版 roberta 使用了 160G 的数据进行预训练，又打败了 xlnet。</p>
+<h4><span id="4-albert"> 4 albert</span></h4>
+<h5><span id="41-albert-的背景"> 4.1 albert 的背景</span></h5>
+<p>增大预训练模型的大小通常能够提高预训练模型的推理能力，但是当预训练模型增大到一定程度之后，会碰到 GPU/TPU memory 的限制。因此，作者在 bert 中加入了 2 项减少参数的技术，能够缩小 bert 的大小，并且修改了 bert NSP 的 loss，在和 bert 有相同参数量的前提之下，有更强的推理能力。</p>
+<h5><span id="42-albert-的流程"> 4.2 albert 的流程</span></h5>
+<h6><span id="421-词向量矩阵的分解"> 4.2.1 词向量矩阵的分解</span></h6>
+<p>在 bert 以及诸多 bert 的改进版中，embedding size 都是等于 hidden size 的，这不一定是最优的。因为 bert 的 token embedding 是上下文无关的，而经过 multi-head attention+ffn 后的 hidden embedding 是上下文相关的，bert 预训练的目的是提供更准确的 hidden embedding，而不是 token embedding，因此 token embedding 没有必要和 hidden embedding 一样大。albert 将 token embedding 进行了分解，首先降低 embedding size 的大小，然后用一个 Dense 操作将低维的 token embedding 映射回 hidden size 的大小。bert 的 embedding size=hidden size，因此词向量的参数量是 vocab size * hidden size，进行分解后的参数量是 vocab size * embedding size + embedding size * hidden size，只要 embedding size &lt;&lt; hidden size，就能起到减少参数的效果。</p>
+<h6><span id="422-参数共享"> 4.2.2 参数共享</span></h6>
+<p>bert 的 12 层 transformer encoder block 是串行在一起的，每个 block 虽然长得一模一样，但是参数是不共享的。albert 将 transformer encoder block 进行了参数共享，这样可以极大地减少整个模型的参数量。</p>
+<h6><span id="423-sentence-order-predictionsop"> 4.2.3 sentence order prediction(SOP)</span></h6>
+<p>在 auto-encoder 的 loss 之外，bert 使用了 NSP 的 loss，用来提高 bert 在句对关系推理任务上的推理能力。而 albert 放弃了 NSP 的 loss，使用了 SOP 的 loss。NSP 的 loss 是判断 segment A 和 segment B 之间的关系，其中 0 表示 segment B 是 segment A 的下一句，1 表示 segment A 和 segment B 来自 2 篇不同的文本。SOP 的 loss 是判断 segment A 和 segment B 的的顺序关系，0 表示 segment B 是 segment A 的下一句，1 表示 segment A 是 segment B 的下一句。</p>
+<h5><span id="43-albert-的技术细节"> 4.3 albert 的技术细节</span></h5>
+<h6><span id="431-参数减少技术"> 4.3.1 参数减少技术</span></h6>
+<p>albert 使用了 2 项参数减少的技术，但是 2 项技术对于参数减少的贡献是不一样的，第 1 项是词向量矩阵的分解，当 embedding size 从 768 降到 64 时，可以节省 21M 的参数量，但是模型的推理能力也会随之下降。第 2 项是 multi-head attention+ffn 的参数共享，在 embedding size=128 时，可以节省 77M 的参数量，模型的推理能力同样会随之下降。虽然参数减少会导致了模型推理能力的下降，但是可以通过增大模型使得参数量变回和 bert 一个量级，这时模型的推理能力就超过了 bert。</p>
+<p>现在学术界发论文有 2 种常见的套路，第 1 种是往死里加参数加数据量，然后提高模型的推理能力；第 2 种是减参数，然后使模型的推理能力不怎么降。albert 使用的参数减少技术看似是第 2 种，实则是第 1 种。当 bert 从 large 变到 xlarge 时，虽然模型变大到了 1270M，但是模型出现了退化现象，推理能力下跌了一大截，说明在 bert 的框架下，large 已经是模型推理能力的极限了。albert 使用了参数减少技术，相比于 bert 的 large 是 334M，albert 的 large 只有 18M，虽然推理能力比 bert 差，但是参数减少后的 albert 还有成长空间，将 albert 从 large 变到 xlarge，甚至是 xxlarge 时，模型的推理能力又得到了提高，并且超过了 bert 最好的模型。</p>
+<h6><span id="432-loss"> 4.3.2 loss</span></h6>
+<p>在 albert 之前，很多 bert 的改进版都对 NSP 的 loss 提出了质疑。structbert 在 NSP 的 loss 上进行了修改，有 1/3 的概率是 segment B 是 segment A 的下一句，有 1/3 的概率是 segment A 是 segment B 的下一句，有 1/3 的概率是 segment A 和 segment B 来自 2 篇不同的文本。roberta 则是直接放弃了 NSP 的 loss，修改了样本的构造方式，将输入 2 个 segment 修改为从一个文本中连续 sample 句子直到塞满 512 的长度。当到达文本的末尾且未塞满 512 的长度时，先增加一个 “[sep]”，再从另一个文本接着 sample，直到塞满 512 的长度。</p>
+<p>albert 在 structbert 的基础之上又抛弃了 segment A 和 segment B 来自 2 篇不同的文本的做法，只剩下 1/2 的概率是 segment B 是 segment A 的下一句，1/2 的概率是 segment A 是 segment B 的下一句。论文中给出了这么做的解释，NSP 的 loss 包含了 2 部分功能：topic prediction 和 coherence prediction，其中 topic prediction 要比 coherence prediction 更容易学习，而 MLM 的 loss 也包含了 topic prediction 的功能，因此 bert 难以学到 coherence prediction 的能力。albert 的 SOP loss 抛弃了 segment A 和 segment B 来自 2 篇不同的文本的做法，让 loss 更关注于 coherence prediction，这样就能提高模型在句对关系推理上的能力。</p>
+<h5><span id="44-albert-的总结"> 4.4 albert 的总结</span></h5>
+<p>albert 虽然减少参数量，但是并不会减少推理时间，推理的过程只不过是从串行计算 12 个 transformer encoder block 变成了循环计算 transformer encoder block 12 次。albert 最大的贡献在于使模型具备了比原始的 bert 更强的成长性，在模型变向更大的时候，推理能力还能够得到提高。</p>
+<h4><span id="5-其他论文"> 5. 其他论文</span></h4>
+<h5><span id="51-gpt"> 5.1 gpt</span></h5>
+<p>gpt 在 bert 之前就发表了，使用了 transformer decoder 作为预训练的框架。在看到了 decoder 只能 get 上文信息，不能 get 下文信息的缺点之后，bert 改用了 transformer encoder 作为预训练的框架，能够同时 get 上下文信息，获得了巨大的成功。</p>
+<h5><span id="52-structbert"> 5.2 structbert</span></h5>
+<p>structbert 的创新点主要在 loss 上，除了 MLM 的 loss 外，还有一个重构 token 顺序的 loss 和一个判断 2 个 segment 关系的 loss。重构 token 顺序的 loss 是以一定的概率挑选 segment 中的 token 三元组，然后随机打乱顺序，最后经过 encoder 之后能够纠正被打乱顺序的 token 三元组的顺序。判断 2 个 segment 关系的 loss 是 1/3 的概率是 segment B 是 segment A 的下一句，有 1/3 的概率是 segment A 是 segment B 的下一句，有 1/3 的概率是 segment A 和 segment B 来自 2 篇不同的文本，通过 “[cls]” 预测样本属于这 3 种的某一种。</p>
+<h5><span id="53-roberta"> 5.3 roberta</span></h5>
+<p>在 xlnet 使用 126G 的数据登顶 GLUE 之后不久，roberta 使用 160G 的数据又打败了 xlnet。roberta 的创新点主要有 4 点：第 1 点是动态 mask，之前 bert 使用的是静态 mask，就是数据预处理的时候完成 mask 操作，之后训练的时候同一个样本都是相同的 mask 结果，动态 mask 就是在训练的时候每输入一个样本都要重新 mask，动态 mask 相比静态 mask 有更多不同 mask 结果的数据用于训练，效果很好。第 2 点是样本的构造方式，roberta 放弃了 NSP 的 loss，修改了样本的构造方式，将输入 2 个 segment 修改为从一个文本中连续 sample 句子直到塞满 512 的长度。当到达文本的末尾且未塞满 512 的长度时，先增加一个 “[sep]”，再从另一个文本接着 sample，直到塞满 512 的长度。第 3 点是增大了 batch size，在训练相同数据量的前提之下，增大 batch size 能够提高模型的推理能力。第 4 点是使用了 subword 的分词方法，类比于中文的字，相比于 full word 的分词方法，subword 的分词方法使得词表的大小从 30k 变成了 50k，虽然实验效果上 subword 的分词方法比 full word 差，但是作者坚信 subword 具备了理论优越性，今后肯定会比 full word 好 (手动黑脸)。</p>
+<h4><span id="6-总结"> 6. 总结</span></h4>
+<p>nlp 和 cv 的不同点在于 nlp 是认识学习，而 cv 是感知学习，nlp 在 cv 的基础之上多了一个符号映射的过程，正因如此，nlp 领域发展得比 cv 慢很多，cv 领域有很多比较成功的创业公司，有很多能够达到商用程度的子领域，而 nlp 领域就比较少。不过 nlp 领域在 17 年的 transformer 发布之后开始进入快速迭代的时期，bert 的发表使得 nlp 领域的 benchmark 提高了一大截，产生了不少可以达到商用程度的子领域。到了 19 年，nlp 领域的发展可以说是越来越快了，我在国庆的时候开始执笔写这个技术分享，当时 albert 刚发表 1 个星期，等我写完这个技术分享已经到 11 月了，前几天谷歌又发表了一篇 T5，又把 albert 打败了。T5 的论文据说有 50 页，是 nlp 预训练模型的一个综述，值得花时间一看。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年07月14日 21:24</p>
+        <p>原始链接： <a class="post-url" href="/2021/06/24/NLP%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%BB%8Etransformer%E5%88%B0albert/" title="NLP模型：从transformer到albert">https://leezhao415.github.io/2021/06/24/NLP%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%BB%8Etransformer%E5%88%B0albert/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/06/24/NLP%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%BB%8Etransformer%E5%88%B0albert/&title=《NLP模型：从transformer到albert》 — 且听风吟，御剑于心！&pic=images/NLP之预训练模型.jpeg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/06/24/NLP%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%BB%8Etransformer%E5%88%B0albert/&title=《NLP模型：从transformer到albert》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/06/24/NLP%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%BB%8Etransformer%E5%88%B0albert/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《NLP模型：从transformer到albert》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/06/24/NLP%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%BB%8Etransformer%E5%88%B0albert/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/06/24/NLP%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%BB%8Etransformer%E5%88%B0albert/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/06/24/NLP%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%BB%8Etransformer%E5%88%B0albert/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/NLP/" class="color4">NLP</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> NLP 模型：从 transformer 到 albert</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 1 Transformer</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.1 transformer 整体架构</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.2 transformer 结构原理</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.3 transformer 的技术细节</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1.3.1 为什么 &lt;2&gt; 要乘以 embedding size 的开方？</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1.3.2 为什么 inputs embedding 要加入 positional encoding？</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1.3.3 为什么 &lt;4.2&gt; 的结果要 scale？</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1.3.4 为什么 &lt;5&gt; 要将 multi-head attention 的输入和输出相加？</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1.3.5 为什么 attention 需要 multi-head，一个大 head 行不行？</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1.3.6 为什么 multi-head attention 后面要加一个 ffn？</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 1.3.7 为什么 &lt;11&gt; 要 mask 当前时刻的 token 与后续 token 的点积结果？</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 1.4 transformer 的总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 2 bert</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.1 bert 的背景</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.2 bert 的流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2.2.1 bert 和 transformer 在 embedding 上的差异</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2.2.2 bert 和 transformer 在 multi-head attention 上的差异</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2.2.3 bert 和 transformer 在 loss 上的差异</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.3 bert 的技术细节</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2.3.1 为什么 bert 需要额外的 segment embedding?</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2.3.2 为什么 transformer 的 embedding 后面接了一个 dropout，而 bert 是先接了一个 layer normalization，再接 dropout?</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 2.3.3 为什么 token 被 mask 的概率是 15%？为什么被 mask 后，还要分 3 种情况？</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.4 bert 的总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 3 xlnet</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.1 xlnet 的背景</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.2 xlnet 的流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3.2.1 因子分解序</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3.2.2 双流自注意力机制</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.3 xlnet 的技术细节</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3.3.1 因子分解序的优势</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 3.3.2 为什么自注意力要用双流？</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.4 xlnet 的总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 4 albert</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 4.1 albert 的背景</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 4.2 albert 的流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4.2.1 词向量矩阵的分解</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4.2.2 参数共享</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4.2.3 sentence order prediction(SOP)</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 4.3 albert 的技术细节</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4.3.1 参数减少技术</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 4.3.2 loss</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 4.4 albert 的总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 5. 其他论文</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 5.1 gpt</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 5.2 structbert</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 5.3 roberta</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 6. 总结</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/06/24/NLP%E4%B9%8BTransformer%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          NLP之Transformer详解
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/06/24/NLP%E4%B9%8B%E5%B8%B8%E7%94%A8%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">NLP之常用预训练模型详解</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="NLP模型：从transformer到albert" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

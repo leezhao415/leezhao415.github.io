@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;三维建模&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Sat, 25 Dec 2021 21:40:54 +0800</pubDate>
+        <lastBuildDate>Sat, 25 Dec 2021 21:40:54 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2021/12/25/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB/</guid>
+            <title>【精华】史上最全三维建模软件汇总</title>
+            <link>https://leezhao415.github.io/2021/12/25/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB/</link>
+            <category>人工智能</category>
+            <category>三维建模</category>
+            <pubDate>Sat, 25 Dec 2021 21:40:54 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB&#34;&gt;史上最全三维建模软件汇总&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%80-%E9%80%9A%E7%94%A8%E5%85%A8%E5%8A%9F%E8%83%BD3d%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6&#34;&gt;一、通用全功能 3D 设计软件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%8C-%E8%A1%8C%E4%B8%9A%E6%80%A7%E7%9A%843d%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6&#34;&gt;二、行业性的 3D 设计软件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%89-3d%E9%9B%95%E5%88%BB%E5%BB%BA%E6%A8%A1%E8%BD%AF%E4%BB%B6%E7%AC%94%E5%88%B7%E5%BC%8F%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%BB%BA%E6%A8%A1%E8%BD%AF%E4%BB%B6&#34;&gt;三、3D 雕刻建模软件：笔刷式高精度建模软件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%9B%9B-%E5%9F%BA%E4%BA%8E%E7%85%A7%E7%89%87%E7%9A%843d%E5%BB%BA%E6%A8%A1%E8%BD%AF%E4%BB%B6&#34;&gt;四、基于照片的 3D 建模软件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BA%94-%E5%9F%BA%E4%BA%8E%E6%89%AB%E6%8F%8F%E9%80%86%E5%90%91%E8%AE%BE%E8%AE%A1%E7%9A%843d%E5%BB%BA%E6%A8%A1%E8%BD%AF%E4%BB%B6&#34;&gt;五、基于扫描（逆向设计）的 3D 建模软件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%85%AD-%E5%9F%BA%E4%BA%8E%E8%8D%89%E5%9B%BE%E7%9A%843d%E5%BB%BA%E6%A8%A1%E8%BD%AF%E4%BB%B6&#34;&gt;六、基于草图的 3D 建模软件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%83-%E5%85%B6%E4%BB%963d%E5%BB%BA%E6%A8%A1%E8%BD%AF%E4%BB%B6&#34;&gt;七、其他 3D 建模软件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%85%AB-%E8%99%9A%E6%8B%9F%E7%8E%B0%E5%AE%9E%E8%BD%AF%E4%BB%B6%E5%92%8C%E5%B9%B3%E5%8F%B0&#34;&gt;八、虚拟现实软件和平台&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B9%9D-%E6%8E%A8%E8%8D%90%E4%B8%89%E7%BB%B4%E8%BD%AF%E4%BB%B6&#34;&gt;九、推荐三维软件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;史上最全三维建模软件汇总&#34;&gt; 史上最全三维建模软件汇总&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;常用的 3D 三维建模软件大全有哪些？本期为大家分享一篇以 3D 技术为主，展示各种 3D&lt;a href=&#34;https://www.zhihu.com/search?q=%E5%BB%BA%E6%A8%A1&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt; 建模&lt;/a&gt;的软件和工具。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;一-通用全功能-3d-设计软件&#34;&gt; 一、通用全功能 3D 设计软件&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1-3ds-max&#34;&gt; 1、&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;3D Studio Max，简称 3DS MAX，是当今世界上销售量最大的三维建模、动画及渲染软件。可以说 3DSMAX 是最容易上手的 3D 软件，其最早应用于计算机游戏中的动画制作，后开始参与影视片的特效制作，例如《X 战警》、《&lt;a href=&#34;https://www.zhihu.com/search?q=%E6%9C%80%E5%90%8E%E7%9A%84%E6%AD%A6%E5%A3%AB&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt;最后的武士&lt;/a&gt;》等。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-05ed87cb79b014792e2ea5485776b8c1_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-maya&#34;&gt; 2、Maya&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Maya 是世界顶级的三维动画软件，应用对象是专业的影视广告，角色动画，电影特技等。Maya 功能完善，工作灵活，易学易用，制作效率极高，渲染真实感极强，是电影级别的高端制作软件。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-09e1862209d97cc04beac821a8de6f8e_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Maya 售价高昂，声名显赫，是制作者梦寐以求的制作工具，掌握了 Maya，会极大的提高制作效率和品质，调节出仿真的角色动画，渲染出电影一般的真实效果，向世界顶级动画师迈进。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;3-rhino&#34;&gt; 3、Rhino&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Rhinocero，简称 Rhino，又叫&lt;a href=&#34;https://www.zhihu.com/search?q=%E7%8A%80%E7%89%9B&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt;犀牛&lt;/a&gt;，是一款三维建模工具。不过不要小瞧它，它的基本操作和 AutoCAD 有相似之处，拥有 AutoCAD 基础的初学者更易于掌握犀牛。目前广泛应用于工业设计、建筑、家具、鞋模设计，擅长产品外观造型建模。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-44d25456a87e2b2edc2fa05a11d122aa_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;4-zbrush&#34;&gt; 4、Zbrush&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;ZBrush 是一个数字雕刻和绘画软件，它以强大的功能和直观的工作流程著称。它界面简洁，操作流畅，以实用的思路开发出的功能组合，激发了艺术家的创作力，让艺术家无约束地自由创作。它的出现完全颠覆了过去传统三维设计工具的工作模式，解放了艺术家们的双手和思维，告别过去那种依靠鼠标和参数来笨拙创作的模式，完全尊重&lt;a href=&#34;https://www.zhihu.com/search?q=%E8%AE%BE%E8%AE%A1%E5%B8%88&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt;设计师&lt;/a&gt;的创作灵感和传统工作习惯。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-a7fb32ad90103847f59de17040124dd8_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;5-google-sketchup&#34;&gt; 5、Google Sketchup&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Sketchup 是一套直接面向设计方案创作过程的设计工具，其创作过程不仅能够充分表达设计师的思想而且完全满足与客户即时交流的需要，它使得设计师可以直接在电脑上进行十分直观的构思，是三维建筑设计方案创作的优秀工具。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-52f7914acd53def029f7f8f8c3fd601f_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;SketchUp 是一个极受欢迎并且易于使用的 3D 设计软件，官方网站将它比喻作电子设计中的 “铅笔”。它的主要卖点就是使用简便，人人都可以快速上手。并且用户可以将使用 SketchUp 创建的 3D 模型直接输出至 GoogleEarth 里，非常的酷！&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;6-poser&#34;&gt; 6、Poser&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Poser 是 Metacreations 公司推出的一款三维动物、人体造型和三维人体动画制作的极品软件。Poser 更能为你的三维人体造型增添发型、衣服、饰品等装饰，让人们的设计与创意轻松展现。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-c914f0ebcedd22f5f5d85c581a9ed2f6_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;7-blender&#34;&gt; 7、Blender&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Blender 是一款开源的跨平台全能三维动画制作软件，提供从建模、动画、材质、渲染、到音频处理、视频剪辑等一系列动画短片制作解决方案。Blender 为全世界的媒体工作者和艺术家而设计，可以被用来进行 3D 可视化，同时也可以创作广播和电影级品质的视频，另外内置的实时 3D 游戏引擎，让制作独立回放的 3D 互动内容成为可能。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-736eccb15c8c2c58ff0a6e88d152a8ab_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;有了 Blender，喜欢 3D 绘图的玩家们不用花大钱，也可以制作出自己喜爱的 3D 模型了。它不仅支持各种&lt;a href=&#34;https://www.zhihu.com/search?q=%E5%A4%9A%E8%BE%B9%E5%BD%A2&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt;多边形&lt;/a&gt;建模，也能做出动画！&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;8-formz&#34;&gt; 8、FormZ&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;FormZ 是一个备受赞赏、具有很多广泛而独特的 2D/3D 形状处理和凋塑功能的多用途实体和平面建模软件。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-57795b0d0c3a2b5229b4c4b940e9fc4e_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;对于需要经常处理有关 3D 空间和形状的专业人士 (例如建筑师、景观建筑师、城市规划师、工程师、动画和插画师、工业和&lt;a href=&#34;https://www.zhihu.com/search?q=%E5%AE%A4%E5%86%85%E8%AE%BE%E8%AE%A1%E5%B8%88&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt;室内设计师&lt;/a&gt;) 来说是一个有效率的设计工具。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;9-lightwave-3d&#34;&gt; 9、LightWave 3D&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;美国 NewTek 公司开发的 LightWave3D 是一款高性价比的三维动画制作软件，它的功能非常强大，是业界为数不多的几款重量级三维动画软件之一。被广泛应用在电影、电视、游戏、网页、广告、印刷、动画等各领域。它的操作简便，易学易用，在生物建模和角色动画方面功能异常强大；基于光线跟踪、光能传递等技术的渲染模块，令它的渲染品质几尽完美。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-7ff8507b2022fc6c650cc869eed6b874_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;10-c4d&#34;&gt; 10、C4D&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;C4D 全名 CINEMA 4D，德国 MAXON 出的 3D 动画软体。Cinema4D 是一个老牌的三维软件。能够进行顶级的建模、动画和渲染的 3D 工具包。&lt;/p&gt;
+&lt;p&gt;C4D 是一款容易学习、容易使用、非常高效，并且享有电影级视觉表达能力的 3D 制作软件，C4D 由于其出色的视觉表达能力已成为视觉设计师首选的三维软件。这个始于德国 1989 年的软件，至今已历时 30 年，现在功能越来越强大完善。&lt;/p&gt;
+&lt;p&gt;C4D 是集万千宠爱于一身的设计界网红，C4D 技术现在流行于电商设计，在平面设计、UI 设计、工业设计、影视制作方面也是广泛运用，很多电影大片的人物建模也都是用 C4D 来完成。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-076aa17b6be000eb3de4019deeaff82d_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;二-行业性的-3d-设计软件&#34;&gt; 二、行业性的 3D 设计软件&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1-autocad&#34;&gt; 1、AutoCAD&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;AutoCAD 是 Autodesk 公司的主导产品，用于二维绘图、详细绘制、设计文档和基本三维设计，现已经成为国际上广为流行的绘图工具。AutoCAD 具有良好的用户界面，通过交互菜单或&lt;a href=&#34;https://www.zhihu.com/search?q=%E5%91%BD%E4%BB%A4%E8%A1%8C&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt;命令行&lt;/a&gt;方式便可以进行各种操作。它的多文档设计环境，让非计算机专业人员也能很快地学会使用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-e7038e346dd28c56e584abce3cbac26f_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-catia&#34;&gt; 2、CATIA&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;CATIA 属于法国达索（DassaultSystemesS.A）公司，是高端的 CAD/CAE/CAM 一体化软件。在 20 世纪 70 年代，CATIA 第一个用户就是世界著名的航空航天企业 DassaultAviation。目前，CATIA 其强大的功能已得到各行业的认可，其用户包括&lt;a href=&#34;https://www.zhihu.com/search?q=%E6%B3%A2%E9%9F%B3&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt;波音&lt;/a&gt;、宝马、奔驰等知名企业。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-b2463abda684b32385eb96665fffc7b2_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;3-ug&#34;&gt; 3、UG&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;UG（UnigraphicsNX）是 Siemens 公司出品的一款高端软件，它为用户的产品设计及加工过程提供了数字化造型和验证手段。UG 最早应用于美国麦道飞机公司，目前已经成为模具行业三维设计的主流应用之一。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-b373aebaa2cab03e9bc5df62ff4b9bf1_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;4-solidworks&#34;&gt; 4、Solidworks&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Solidworks 属于法国达索（DassaultSystemesS.A）公司，专门负责研发与销售机械设计软件的视窗产品。Solidworks 帮助设计师减少设计时间，增加精确性，提高设计的创新性，并将产品更快推向市场。Solidwords 是世界上第一个基于 Windows 开发的三维 CAD 系统。该软件功能强大，组件繁多，使得 Solidworks 成为领先的、主流的三维 CAD 解决方案。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-3cb4a17d6f4f86bdd60e1724dbe3815b_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;5-proe&#34;&gt; 5、Pro/E&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Pro/Engineer（简称 Pro/E）是美国 PTC 公司研制的一套由设计至生产的机械自动化软件，广泛应用于汽车、航空航天、消费电子、模具、玩具、工业设计和机械制造等行业。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-90df8ece947c8616e63dd734ab3fa9f0_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;6-cimatron&#34;&gt; 6、Cimatron&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Cimatron 是以色列 Cimatron 公司（现已被美国 3DSystems 收购）开发的软件。该系统提供了灵活的用户界面，主要用于模具设计、模型加工，在国际上模具制造业备受欢迎。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-76175df6c1b3fef968f3552296ee72bf_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Cimatron 公司团队基于 Cimatron 软件开发了金属 3D 打印软 3DXpert。这是全球第一款覆盖了整个设计流程的金属 3D 打印软件，从设计直到最终打印成型，甚至是在后处理的 CNC 处理阶段，3DXpert 软件也能够发挥它的作用。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;三-3d-雕刻建模软件笔刷式高精度建模软件&#34;&gt; 三、3D 雕刻建模软件：笔刷式高精度建模软件&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1-zbrush&#34;&gt; 1、ZBrush&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;美国 Pixologic 公司开发的 ZBrush 软件是世界上第一个让艺术家感到无约束自由创作的 3D 设计工具。 ZBrush 能够雕刻高达 10 亿多边形的模型，所以说限制只取决于的艺术家自 身的想象力。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-mudbox&#34;&gt; 2、 MudBox&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;MudBox 是 Autodesk 公司的 3D 雕刻建模软件，它和 ZBrush 相比各有千秋。在某些人看 来，MudBox 的功能甚至超过了 ZBrush，可谓 ZBrush 的超级杀手。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;3-meshmixer&#34;&gt; 3、MeshMixer&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Autodesk 公司又开发出一款笔刷式 3D 建模工具 MeshMixer，它能让用户通过笔刷 式的交互来融合现有的模型来创建 3D 模型（似乎是类似与 Poisson 融合或 Laplacian 融合的技 术），比如类似 “牛头马面” 的混合 3D 模型。值得注意的是，最新版本的 MeshMixer 还添加 3D 打印支撑优化新算法。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;4-3dcoat&#34;&gt; 4、3DCoat&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;3d-coat 这是由&lt;a href=&#34;https://www.zhihu.com/search?q=%E4%B9%8C%E5%85%8B%E5%85%B0&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt;乌克兰&lt;/a&gt;开发的数字雕塑软件，我们可以先看看官方的介绍：3D -Coat 是专为游戏美工设计的软件，它专注于游戏模型的细节设计，集三维模型实时纹理绘制和细节雕刻功能为一身，可以加速细节设计流程，在更短的时间内创造出更多的内容。只需导入一个低精度模型，3D-Coat 便可为其自动创建 UV，一次性绘制法线贴图、置换贴图、颜色贴图、透明贴图、高光贴图。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;5-sculptris&#34;&gt; 5、Sculptris&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Sculptris 是一款虚拟建模软件，其核心重点在于建模粘土的概念，如果用户像创建小雕像，那么这款软件十分适合使用。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;6-modo&#34;&gt; 6、Modo&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;modo 是一款高级多边形细分曲面，建模、雕刻、3D 绘画、动画与渲染的综合性 3D 软件。由 Luxology, LLC 设计并维护。该软件具备许多高级技术，诸如 N-gons（允许存在边数为 4 以上的多边形），多层次的 3D 绘画与边权重工具，可以运行在苹果的 Mac OS X 与微软的 Microsoft Windows 操作平台。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;四-基于照片的-3d-建模软件&#34;&gt; 四、基于照片的 3D 建模软件&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1-autodesk-123d&#34;&gt; 1、Autodesk 123D&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Autodesk 123D Catch 是建模软件的重点，用户使用相机或手机来从不同角度拍摄物体、人物或场景，然后上传到云，然后该软件利用云计算的强大计算能力，可将 数码照片中几分钟的时间内转换为 3D 模型，而且还自动带上纹理信息。我们试用 过几次，感觉它的使用还是很方便的。但是其生成的 3D 几何的细节不多，主要是 通过纹理信息来表现真实感的。有时软件也会失败，生成的几何是不正确的。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-3dsom-pro&#34;&gt; 2、3DSOM Pro&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;3DSOM Pro 是一款从高质量的照片来生成 3D 建模的软件，它可以通过一个真实物体的 照片来进行 3D 建模，并且制作的模型可以在网络上以交互的方式呈现。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;3-photosynth&#34;&gt; 3、PhotoSynth&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;微软开发了一款产品 PhotoSynth，可将大量的照片做 3D 处理，但是它不是真正创建 3D 模型，而是根据照片之间的相机参数及空间对应关系，建构一个虚拟的 3D 场景，使得用户 能够在从不同角度和位置来查看该场景，而显示的场景图像是由给定的照片所合成的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic2.zhimg.com/80/v2-8606a85248de42a98cad9e70f90682fd_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;五-基于扫描逆向设计的-3d-建模软件&#34;&gt; 五、基于扫描（逆向设计）的 3D 建模软件&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1-geomagic&#34;&gt; 1、Geomagic&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Geomagic (俗称 “&lt;a href=&#34;https://www.zhihu.com/search?q=%E6%9D%B0%E9%AD%94&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt;杰魔&lt;/a&gt;”) 包括系列软件 Geomagic Studio、Geomagic Qualify 和 Geomagic Piano。其中 Geomagic Studio 是被广泛使用的逆向工程软件，具有下述所有特点：确保完美 无缺的多边形和 NURBS 模型处理复杂形状或自由曲面形状时，生产效率比传统 CAD 软件提高数倍；可与主要的三维扫描设备和 CAD/CAM 软件进行集成；能够作为一个独立的应 用程序运用于快速制造，或者作为对 CAD 软件的补充。是我们学生科研的必备软件之一。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-imageware&#34;&gt; 2、ImageWare&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Imageware 由美国 EDS 公司出品，后被德国 Siemens PLM Software 所收购，现在并入旗下的 NX 产品线，是最著名的逆向工程软件，Imageware 因其强大的点云处理能力、曲面编辑能力和 A 级曲面的构建能力而被广泛应用于汽车、航空、航天、消费家电、模具、计算机零部件等设计与制造领域。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;3-rapidform&#34;&gt; 3、RapidForm&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;RapidForm 是韩国 INUS 公司出品的逆向工程软件，提供了新一代运算模式，可实时将点 云数据运算出无接缝的多边形曲面，使它成为 3D 扫描数据的最佳化的接口，是很多 3D 扫 描仪的 OEM 软件。我们购买的 Konica Minolta 的激光扫描仪 Range 7 就是用 RapidForm 来进 行逆向设计。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;4-reconstructme&#34;&gt; 4、ReconstructMe&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;ProFactor 公司开发的 ReconstructMe 是一个功能强大且易于使用的三维重建软件，能够 使用微软的 Kinect 或华硕的 Xtion 进行实时 3D 场景扫描（核心算法是 Kinect Fusion），几分 钟就可以完成一张全彩 3D 场景。我们尝试过，效果还可以。ReconstructMeQt 提供了一个实 时三维重建利用 ReconstructMe SDK（开源）的图形用户界面。&lt;/p&gt;
+&lt;p&gt;注：法国 ManCTL 公司开发的 Skanect 为 Mac 平台的第一款 3D 扫描软件，也支持者华硕的 Xtion 或者微软的 Kinect 进行实时 3D 扫描&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;5-artec-studio&#34;&gt; 5、Artec Studio&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Artec 公司出品的 Artec Eva, Artec Spider 等手持式的结构光 3D 扫描仪，重量轻且易于使 用，成为许多 3D 体验馆扫描物体的首选产品。我试用过 Artec Eva 后感觉还是需要较多的技 巧才能扫描好物体，而且后期需要用软件进行较多的处理，比如数据的去噪、修复、光 滑、&lt;a href=&#34;https://www.zhihu.com/search?q=%E8%A1%A5%E6%B4%9E&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt;补洞&lt;/a&gt;等。同时，Artec 公司还开发了一款软件 Artec Studio，可以和微软的 Kinect 或华硕的 Xtion 以 及其他厂商的体感周边外设配合使用，使其成为三维扫描仪。Kinect 通过 Artec Studio 可以 完成模型扫描，然后进行后期处理，填补漏洞、清理数据、进行测量、导出数据等。不确 定它是否也使用了 Kinect Fusion 算法。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;6-polyworks&#34;&gt; 6、PolyWorks&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;PolyWorks 是加拿大 InnovMetric 公司开发的点云处理软件，提供工程和制造业 3D 测量解 决方案，包含点云扫描、尺寸分析与比较、CAD 和逆向工程等功能。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;7-copycad&#34;&gt; 7、CopyCAD&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;CopyCAD 是由英国 DELCAM 公司出品的功能强大的逆向工程系统软件，它能允许从已存在的零件或实体模型中产生三维 CAD 模型。该软件为来自数字化数据的 CAD 曲面的产生提供了复杂的工具。CopyCAD 能够接受来自坐标测量机床的数据，同时跟踪机床和激光扫描器。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;六-基于草图的-3d-建模软件&#34;&gt; 六、基于草图的 3D 建模软件&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1-sketchup&#34;&gt; 1、SketchUp&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;SketchUp 是一套面向普通用户的易于使用的 3D 建模软件。使用 SketchUp，创建 3D 模型就像我们使用铅笔在图纸上作图一般，软件能 自动识别你画的这些线条，加以自动捕捉。它的建模流程简单明了，就是画线成面，而后 拉伸成体，这也是建筑或室内场景建模最常用的方法。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-teddy&#34;&gt; 2、Teddy&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Teddy 是一款基于草图的 3D 建模软件，可以通过绘制自由形状笔画来制作有趣的 3D 模型。Teddy 需要在您的机器上安装 Java，主要是为 Windows 设计的。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;3-easytoy&#34;&gt; 3、EasyToy&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;EasyToy 是一款 3D 建模软件。它使用基于草图的建模方法和 3D 绘画方法。用户界面非常友好，操作非常简单。通过组合几个简单的操作，可以快速创建复杂的 3D 模型。与现有的 3D 系统相比，EasyToy 易于学习且易于使用。EasyToy 具有广泛的应用，包括玩具设计，图形，动画和教育。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;4-magic-canvas&#34;&gt; 4、Magic Canvas&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Magic Canvas 一款可以从手绘草图中交互设计三维场景原型的软件，它将场景中模型的简单 2D 草图作为 3D 场景构造的输入。然后，系统自动识别数据库中的相应模型与用户输入的草图相匹配。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;5-fibermesh&#34;&gt; 5、FiberMesh&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;FiberMesh 是一款专门的网格生成工具。它可以动态创建真实&lt;a href=&#34;https://www.zhihu.com/search?q=%E5%87%A0%E4%BD%95%E4%BD%93&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt;几何体&lt;/a&gt;，也可以作为新的 SubTool 添加到现有模型中。在 FiberMesh 子调色板中的设置，可以为纤维，头发，毛发甚至植被生成完全不同的形状。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;七-其他-3d-建模软件&#34;&gt; 七、其他 3D 建模软件&lt;/span&gt;&lt;/h5&gt;
+&lt;h6&gt;&lt;span id=&#34;1-人体建模软件&#34;&gt; 1、人体建模软件&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;关于构建人体模型及动画，首推 Metacreations 公司的 Poser 软件（俗称 “人物造型大 师”）和开源的 MakeHuman 软件。这两款软件都是基于大量人类学形态特征数据，可以快速形成不同年龄段的男女脸部及肢体模型，并对局部体形进行调整。可以轻松快捷地设计 人体造型、动作和动画。我读博期间用过 Poser 构建人体模型来做 morphing，还是蛮方便的。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-城市建模软件&#34;&gt; 2、城市建模软件&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;加拿大 Esri 公司的 CityEngine 是三维城市建模的首选软件，可以利用二维数据快速创建三维场景，并能高效的进行规划设计。应用于数字城市、城市规划、轨道交通、管线、建 筑、游戏开发和电影制作等领域。另外，CityEngine 对 ArcGIS 的完美支持，使很多已有的 基础 GIS 数据不需转换即可迅速实现三维建模，缩短了三维 GIS 系统的建设周期。该软件早期是 ETH Zurich 大学的 Pascal Mueller 研究小组创办的 Procedural 公司开发的，后被 Esri 公司收购。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;3-网页-3d-web3d-建模工具&#34;&gt; 3、网页 3D (Web3D) 建模工具&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;一些基于网页 (web) 开发的 3D 模型设计软件，即基于 WebGL，可以在浏览 器中完成 3D 建模的工具。比如 3DTin，TinkerCAD（被 Autodesk 收购）等，它们的界面 简单直观，有 Chrome 等浏览器插件插件，可以在线生成 3D 模型，直接存在云端，并在社区分享模型。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;4-其他小巧的-3d-建模软件&#34;&gt; 4、其他小巧的 3D 建模软件&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;这些软件大部分都非常小巧，而且是开源且完全免费的。有很多媒体工作者和艺术家用这些小软件来制作 3D 作品，其中 Blender, K-3D, Art of Illusion, Seamless3d, Wings3D 等软件的使用面稍微广泛些。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Blender&lt;/li&gt;
+&lt;li&gt;K-3D&lt;/li&gt;
+&lt;li&gt;Art of Illusion&lt;/li&gt;
+&lt;li&gt;SOFTIMAGE|XSI Mod Tool&lt;/li&gt;
+&lt;li&gt;Zmodeler&lt;/li&gt;
+&lt;li&gt;TopMod3d&lt;/li&gt;
+&lt;li&gt;Google SketchUp 6&lt;/li&gt;
+&lt;li&gt;AutoQ3D Community - 3D Editor&lt;/li&gt;
+&lt;li&gt;Anim8or&lt;/li&gt;
+&lt;li&gt;Seamless3d&lt;/li&gt;
+&lt;li&gt;BRL-CAD&lt;/li&gt;
+&lt;li&gt;3DPlus&lt;/li&gt;
+&lt;li&gt;3D Canvas&lt;/li&gt;
+&lt;li&gt;eDrawings&lt;/li&gt;
+&lt;li&gt;link 3D&lt;/li&gt;
+&lt;li&gt;Minos&lt;/li&gt;
+&lt;li&gt;freeCAD&lt;/li&gt;
+&lt;li&gt;Bishop3D&lt;/li&gt;
+&lt;li&gt;K3DSurf&lt;/li&gt;
+&lt;li&gt;DesignWorkshop Lite&lt;/li&gt;
+&lt;li&gt;GDesign 2.0&lt;/li&gt;
+&lt;li&gt;Sweet Home 3D&lt;/li&gt;
+&lt;li&gt;trueSpace&lt;/li&gt;
+&lt;li&gt;Alibre Design Xpress&lt;/li&gt;
+&lt;li&gt;3DVia Shape&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;span id=&#34;八-虚拟现实软件和平台&#34;&gt; 八、虚拟现实软件和平台&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;虚拟现实软件本质上不是用于 3D 建模的，而是用来对生成好的 3D 模型和场景提供关于 视觉、听觉、触觉等虚拟的模拟，让用户如同身历其境一般。相关软件也有很多，只大致提及几个比较常见的。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;1-virtools-和-quest3d&#34;&gt; 1、 VirTools 和 Quest3D&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;法国 VirTools 公司的 VirTools 和美国 Act-3D 公司的 Quest3D 都是元老级的虚拟现实制作软 件，简单来说，就是工业或游戏用的实时图形渲染引擎，是 3D 虚拟和互动技术的集成工 具。可以让没有程序基础的美术人员利用内置的行为模块快速制作出许多不同用途的 3D 产 品，如网际网络、计算机游戏、多媒体、建筑设计、交互式电视、教育训练、仿真与产品 展示等 。网上的学习资料比较多。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-unity3d-u3d&#34;&gt; 2、Unity3D (U3D)&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Unity Technologies 开发的 Unity3D (U3D) 是最近几年冒出来的新秀，是一个全面整合的 专业虚拟 3D 和游戏引擎。它在制作虚拟现实及 3D 游戏方面上手非常容易，操作简单，互 动性好，有强大的地形渲染器。我们的学生使用 U3D 可以很快地制作一个 3D 游戏，因此也 强烈推荐大家学习使用。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;3-vega&#34;&gt; 3、Vega&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Vega 是 MultiGen-Paradigm 公司开发的用于实时视觉模拟和虚拟现实应用的开发引擎， 提供很多的 C/C++ 语言的应用程序接口 API，结合其应用程序的图形用户 GUI 界面软件 LynX，可以迅速创建各种实时交互的 3D 环境。对于开发 3D 游戏和 3D 场景漫游的项目非常 方便。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;4-osg-open-scene-graph&#34;&gt; 4、OSG (Open Scene Graph)&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;OSG (Open Scene Graph) 是一套开源的基于 C++ 平台的应用程序接口 API，能够让开发者 快速、便捷地创建高性能、跨平台的&lt;a href=&#34;https://www.zhihu.com/search?q=%E4%BA%A4%E4%BA%92%E5%BC%8F&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A352162959%7D&#34;&gt;交互式&lt;/a&gt;图形程序。它将 3D 场景定义为空间中一系列连 续的对象，能够对 3D 场景进行有效的管理。由于 OSG 是开源和完全免费的，很多 3D 应用 的软件都选用 OSG 作为基础架构。几年前，我们与一个公司合作开发的义齿软件就选用 OSG 作为管理 3D 数据的框架，使得开发非常方便。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;九-推荐三维软件&#34;&gt; 九、推荐三维软件&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;对于没有设计基础的朋友来说相当不容易。下面介绍几款面向学校教育以及个人爱好者的简单三维软件。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;1-tinkercad&#34;&gt; 1、Tinkercad&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;Tinkercad 是一款基于网页的 3D 建模工具，设计界面色彩鲜艳可爱，如搭积木般简单易用，适合青少年儿童使用并进行建模。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-f35a3c2abcd9fdf6e5dbace382633767_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;国外一名叫 Emily 的 3D 打印爱好者使用 Tinkercad 建模然后打印出酿酒屋。从图中可以看到，利用 Tinkercad 同样可以完成漂亮的细节和优质的外观表现。&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;2-123d-design&#34;&gt; 2、123D Design&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;123D Design 通过简单图形的堆砌和编辑生成复杂形状。这种 “傻瓜式” 的建模方式，即使你不是一个 CAD 建模工程师，也能随心所欲地在 123D Design 里建模。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-40b8a5ee9fdbe8a32cce14571ae0dca7_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;3-123d-sculpt&#34;&gt; 3、123D Sculpt&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;123D Sculpt 是一款运行在 ipad 上的应用程序，它可以让每一个喜欢创作的人轻松创作出属于自己的雕塑模型。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-0c6472eb0e05cb2d63746c74ab2a1963_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;4-123d-creature&#34;&gt; 4、123D Creature&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;123D Creature 可根据用户的想象来创造各种生物模型。无论是现实生活中存在的，还是只存在于想象中的，都可以创造出来。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic1.zhimg.com/80/v2-e7748787bc6b06a2a4b2c9ba63f83ee0_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;5-123d-make&#34;&gt; 5、123D Make&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;123D Make 将三维模型，转换为二维图案利用硬纸板、木料再现模型。它可创作美术、家具、雕塑或其他简单的物体。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic3.zhimg.com/80/v2-e267441f7622ae38b9c212f96bfa0e7a_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h6&gt;&lt;span id=&#34;6-123d-catch&#34;&gt; 6、123D Catch&lt;/span&gt;&lt;/h6&gt;
+&lt;p&gt;利用云计算的强大能力，可将数码照片迅速转换为逼真的三维模型。只要使用傻瓜相机、手机或高级数码单反相机抓拍物体、人物或场景，人人都能利用 123D Catch 将照片转换成生动鲜活的三维模型。除 PC 外，现已推出手机 APP，手机也能当三维扫描仪。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-468c04940a41ec156713b7703facc9cb_720w.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

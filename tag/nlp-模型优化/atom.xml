@@ -1,0 +1,263 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;nlp-模型优化&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-07-09T11:31:37.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/07/09/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7%E4%B9%8B%E4%BC%98%E5%8C%96%E5%99%A8%E5%92%8C%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E6%95%B4/</id>
+        <title>【详解】模型优化技巧之优化器和学习率调整</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/07/09/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7%E4%B9%8B%E4%BC%98%E5%8C%96%E5%99%A8%E5%92%8C%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E6%95%B4/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#pytorch%E5%8D%81%E5%A4%A7%E4%BC%98%E5%8C%96%E5%99%A8&#34;&gt;PyTorch 十大优化器&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-torchoptimsgd&#34;&gt;1 torch.optim.SGD&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-torchoptimasgd&#34;&gt;2 torch.optim.ASGD&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-torchoptimrprop&#34;&gt;3 torch.optim.Rprop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-torchoptimadagrad&#34;&gt;4 torch.optim.Adagrad&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-torchoptimadadelta&#34;&gt;5 torch.optim.Adadelta&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-torchoptimrmsprop&#34;&gt;6 torch.optim.RMSprop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-torchoptimadamamsgrad&#34;&gt;7 torch.optim.Adam(AMSGrad)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8-torchoptimadamax&#34;&gt;8 torch.optim.Adamax&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9-torchoptimsparseadam&#34;&gt;9 torch.optim.SparseAdam&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#10-torchoptimlbfgs&#34;&gt;10 torch.optim.LBFGS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#pytorch-%E5%85%AD%E5%A4%A7%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%B0%83%E6%95%B4%E6%96%B9%E6%B3%95&#34;&gt;PyTorch 六大学习率调整方法&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-lr_schedulersteplr&#34;&gt;1 lr_scheduler.StepLR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-lr_schedulermultisteplr&#34;&gt;2 lr_scheduler.MultiStepLR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-lr_schedulerexponentiallr&#34;&gt;3 lr_scheduler.ExponentialLR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-lr_schedulercosineannealinglr&#34;&gt;4 lr_scheduler.CosineAnnealingLR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-lr_schedulerreducelronplateau&#34;&gt;5 lr_scheduler.ReduceLROnPlateau&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-lr_schedulerlambdalr&#34;&gt;6 lr_scheduler.LambdaLR&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h3&gt;&lt;span id=&#34;pytorch-十大优化器&#34;&gt; PyTorch 十大优化器&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;1-torchoptimsgd&#34;&gt; 1 torch.optim.SGD&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;SGD&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;params, lr=, momentum=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, dampening=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, weight_decay=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, nesterov=&lt;span class=&#34;literal&#34;&gt;False&lt;/span&gt;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+可实现 SGD 优化算法，带动量 SGD 优化算法，带 NAG (Nesterov accelerated gradient) 动量 SGD 优化算法，并且均可拥有 weight_decay 项。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;params(iterable)&lt;/strong&gt;- 参数组 (参数组的概念请查看 3.2 优化器基类：Optimizer)，优化器要管理的那部分参数。&lt;br&gt;
+&lt;strong&gt;lr(float)&lt;/strong&gt;- 初始学习率，可按需随着训练过程不断调整学习率。&lt;br&gt;
+&lt;strong&gt;momentum(float)&lt;/strong&gt;- 动量，通常设置为 0.9，0.8&lt;br&gt;
+&lt;strong&gt;dampening(float)&lt;/strong&gt;- dampening for momentum ，暂时不了其功能，在源码中是这样用的：buf.mul_(momentum).add_(1 - dampening, d_p)，值得注意的是，若采用 nesterov，dampening 必须为 0.&lt;br&gt;
+&lt;strong&gt;weight_decay(float)&lt;/strong&gt;- 权值衰减系数，也就是 L2 正则项的系数&lt;br&gt;
+&lt;strong&gt; nesterov (bool)&lt;/strong&gt;- bool 选项，是否使用 NAG (Nesterov accelerated gradient)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意事项：&lt;/strong&gt;&lt;br&gt;
+pytroch 中使用 SGD 十分需要注意的是，更新公式与其他框架略有不同！&lt;br&gt;
+pytorch 中是这样的：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;v=ρ∗v+g&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;p=p−lr∗v = p - lr∗ρ∗v - lr∗g&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;number&#34;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其他框架：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;v=ρ∗v+lr∗g&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;p=p−v = p - ρ∗v - lr∗g&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;number&#34;&gt;12&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;ρ 是动量，v 是速率，g 是梯度，p 是参数，其实差别就是在 ρ∗v 这一项，pytorch 中将此项也乘了一个学习率。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;2-torchoptimasgd&#34;&gt; 2 torch.optim.ASGD&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;ASGD&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;params, lr=&lt;span class=&#34;number&#34;&gt;0.01&lt;/span&gt;, lambd=&lt;span class=&#34;number&#34;&gt;0.0001&lt;/span&gt;, alpha=&lt;span class=&#34;number&#34;&gt;0.75&lt;/span&gt;, t0=&lt;span class=&#34;number&#34;&gt;1000000.0&lt;/span&gt;, weight_decay=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+ASGD 也成为 SAG，均表示随机平均梯度下降 (Averaged Stochastic Gradient Descent)，简单地说 ASGD 就是用空间换时间的一种 SGD，详细可参看论文：&lt;a href=&#34;http://riejohnson.com/rie/stograd_nips.pdf&#34;&gt;http://riejohnson.com/rie/stograd_nips.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;params(iterable)&lt;/strong&gt; - 参数组 (参数组的概念请查看 3.1 优化器基类：Optimizer)，优化器要优化的那些参数。&lt;br&gt;
+&lt;strong&gt;lr(float)&lt;/strong&gt; - 初始学习率，可按需随着训练过程不断调整学习率。&lt;br&gt;
+&lt;strong&gt;lambd(float)&lt;/strong&gt; - 衰减项，默认值 1e-4。&lt;br&gt;
+&lt;strong&gt;alpha(float)&lt;/strong&gt; - power for eta update ，默认值 0.75。&lt;br&gt;
+&lt;strong&gt;t0(float)&lt;/strong&gt; - point at which to start averaging，默认值 1e6。&lt;br&gt;
+&lt;strong&gt;weight_decay(float)&lt;/strong&gt; - 权值衰减系数，也就是 L2 正则项的系数。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;3-torchoptimrprop&#34;&gt; 3 torch.optim.Rprop&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;Rprop&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;params, lr=&lt;span class=&#34;number&#34;&gt;0.01&lt;/span&gt;, etas=(&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;number&#34;&gt;0.5&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;1.2&lt;/span&gt;&lt;/span&gt;), step_sizes=(&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;number&#34;&gt;1e-06&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;50&lt;/span&gt;&lt;/span&gt;)&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+实现 Rprop 优化方法 (弹性反向传播)，优化方法原文《Martin Riedmiller und Heinrich Braun: Rprop - A Fast Adaptive Learning Algorithm. Proceedings of the International Symposium on Computer and Information Science VII, 1992》&lt;br&gt;
+该优化方法适用于 full-batch，不适用于 mini-batch，因而在 min-batch 大行其道的时代里，很少见到。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;4-torchoptimadagrad&#34;&gt; 4 torch.optim.Adagrad&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;Adagrad&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;params, lr=&lt;span class=&#34;number&#34;&gt;0.01&lt;/span&gt;, lr_decay=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, weight_decay=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, initial_accumulator_value=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+实现 Adagrad 优化方法 (Adaptive Gradient)，Adagrad 是一种自适应优化方法，是自适应的为各个参数分配不同的学习率。这个学习率的变化，会受到梯度的大小和迭代次数的影响。梯度越大，学习率越小；梯度越小，学习率越大。缺点是训练后期，学习率过小，因为 Adagrad 累加之前所有的梯度平方作为分母。&lt;br&gt;
+详细公式请阅读：Adaptive Subgradient Methods for Online Learning and Stochastic Optimization&lt;br&gt;
+John Duchi, Elad Hazan, Yoram Singer; 12(Jul):2121−2159, 2011.(&lt;a href=&#34;http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf&#34;&gt;http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf&lt;/a&gt;)&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;5-torchoptimadadelta&#34;&gt; 5 torch.optim.Adadelta&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;Adadelta&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;params, lr=&lt;span class=&#34;number&#34;&gt;1.0&lt;/span&gt;, rho=&lt;span class=&#34;number&#34;&gt;0.9&lt;/span&gt;, eps=&lt;span class=&#34;number&#34;&gt;1e-06&lt;/span&gt;, weight_decay=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;功能：&lt;br&gt;
+实现 Adadelta 优化方法。Adadelta 是 Adagrad 的改进。Adadelta 分母中采用距离当前时间点比较近的累计项，这可以避免在训练后期，学习率过小。&lt;br&gt;
+详细公式请阅读:&lt;a href=&#34;https://arxiv.org/pdf/1212.5701.pdf&#34;&gt;https://arxiv.org/pdf/1212.5701.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;6-torchoptimrmsprop&#34;&gt; 6 torch.optim.RMSprop&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;RMSprop&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;params, lr=&lt;span class=&#34;number&#34;&gt;0.01&lt;/span&gt;, alpha=&lt;span class=&#34;number&#34;&gt;0.99&lt;/span&gt;, eps=&lt;span class=&#34;number&#34;&gt;1e-08&lt;/span&gt;, weight_decay=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, momentum=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, centered=&lt;span class=&#34;literal&#34;&gt;False&lt;/span&gt;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+实现 RMSprop 优化方法（Hinton 提出），RMS 是均方根（root meam square）的意思。RMSprop 和 Adadelta 一样，也是对 Adagrad 的一种改进。RMSprop 采用均方根作为分母，可缓解 Adagrad 学习率下降较快的问题。并且引入均方根，可以减少摆动，详细了解可读：&lt;a href=&#34;http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf&#34;&gt;http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;7-torchoptimadamamsgrad&#34;&gt; 7 torch.optim.Adam(AMSGrad)&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;Adam&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;params, lr=&lt;span class=&#34;number&#34;&gt;0.001&lt;/span&gt;, betas=(&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;number&#34;&gt;0.9&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.999&lt;/span&gt;&lt;/span&gt;), eps=&lt;span class=&#34;number&#34;&gt;1e-08&lt;/span&gt;, weight_decay=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, amsgrad=&lt;span class=&#34;literal&#34;&gt;False&lt;/span&gt;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+实现 Adam (Adaptive Moment Estimation)) 优化方法。Adam 是一种自适应学习率的优化方法，Adam 利用梯度的一阶矩估计和二阶矩估计动态的调整学习率。吴老师课上说过，Adam 是结合了 Momentum 和 RMSprop，并进行了偏差修正。&lt;br&gt;
+&lt;strong&gt;参数：&lt;/strong&gt;&lt;br&gt;
+amsgrad- 是否采用 AMSGrad 优化方法，asmgrad 优化方法是针对 Adam 的改进，通过添加额外的约束，使学习率始终为正值。(AMSGrad，ICLR-2018 Best-Pper 之一，《On the convergence of Adam and Beyond》)。&lt;br&gt;
+详细了解 Adam 可阅读，Adam: A Method for Stochastic Optimization (&lt;a href=&#34;https://arxiv.org/abs/1412.6980&#34;&gt;https://arxiv.org/abs/1412.6980&lt;/a&gt;)。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;8-torchoptimadamax&#34;&gt; 8 torch.optim.Adamax&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;Adamax&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;params, lr=&lt;span class=&#34;number&#34;&gt;0.002&lt;/span&gt;, betas=(&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;number&#34;&gt;0.9&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.999&lt;/span&gt;&lt;/span&gt;), eps=&lt;span class=&#34;number&#34;&gt;1e-08&lt;/span&gt;, weight_decay=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+实现 Adamax 优化方法。Adamax 是对 Adam 增加了一个学习率上限的概念，所以也称之为 Adamax。&lt;br&gt;
+详细了解可阅读，Adam: A Method for Stochastic Optimization (&lt;a href=&#34;https://arxiv.org/abs/1412.6980&#34;&gt;https://arxiv.org/abs/1412.6980&lt;/a&gt;)(没错，就是 Adam 论文中提出了 Adamax)。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;9-torchoptimsparseadam&#34;&gt; 9 torch.optim.SparseAdam&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;SparseAdam&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;params, lr=&lt;span class=&#34;number&#34;&gt;0.001&lt;/span&gt;, betas=(&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;number&#34;&gt;0.9&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.999&lt;/span&gt;&lt;/span&gt;), eps=&lt;span class=&#34;number&#34;&gt;1e-08&lt;/span&gt;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+针对稀疏张量的一种 “阉割版” Adam 优化方法。&lt;br&gt;
+only moments that show up in the gradient get updated, and only those portions of the gradient get applied to the parameters&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;10-torchoptimlbfgs&#34;&gt; 10 torch.optim.LBFGS&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;LBFGS&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;params, lr=&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, max_iter=&lt;span class=&#34;number&#34;&gt;20&lt;/span&gt;, max_eval=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, tolerance_grad=&lt;span class=&#34;number&#34;&gt;1e-05&lt;/span&gt;, tolerance_change=&lt;span class=&#34;number&#34;&gt;1e-09&lt;/span&gt;, history_size=&lt;span class=&#34;number&#34;&gt;100&lt;/span&gt;, line_search_fn=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+实现 L-BFGS（Limited-memory Broyden–Fletcher–Goldfarb–Shanno）优化方法。L-BFGS 属于拟牛顿算法。L-BFGS 是对 BFGS 的改进，特点就是节省内存。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;pytorch-六大学习率调整方法&#34;&gt; PyTorch 六大学习率调整方法&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;优化器中最重要的一个参数就是学习率，合理的学习率可以使优化器快速收敛。一般在训练初期给予较大的学习率，随着训练的进行，学习率逐渐减小。学习率什么时候减小，减小多少，这就涉及到学习率调整方法。&lt;br&gt;
+PyTorch 中提供了六种方法供大家使用，下面将一一介绍，最后对学习率调整方法进行总结。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;1-lr_schedulersteplr&#34;&gt; 1 lr_scheduler.StepLR&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;lr_scheduler&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;StepLR&lt;/span&gt; (&lt;span class=&#34;params&#34;&gt; optimizer , step_size , gamma=&lt;span class=&#34;number&#34;&gt;0.1&lt;/span&gt; , last_epoch=-&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; &lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+等间隔调整学习率，调整倍数为 gamma 倍，调整间隔为 step_size。间隔单位是 step。需要注意的是，step 通常是指 epoch，不要弄成 iteration 了。&lt;br&gt;
+参数：&lt;br&gt;
+ &lt;code&gt;step_size(int)&lt;/code&gt; - 学习率下降间隔数，若为 30，则会在 30、60、90… 个 step 时，将学习率调整为 lr*gamma。&lt;br&gt;
+ &lt;code&gt;gamma(float)&lt;/code&gt; - 学习率调整倍数，默认为 0.1 倍，即下降 10 倍。&lt;br&gt;
+ &lt;code&gt;last_epoch(int)&lt;/code&gt; - 上一个 epoch 数，这个变量用来指示学习率是否需要调整。当 last_epoch 符合设定的间隔时，就会对学习率进行调整。当为 - 1 时，学习率设置为初始 值。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;2-lr_schedulermultisteplr&#34;&gt; 2 lr_scheduler.MultiStepLR&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;lr_scheduler&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;MultiStepLR&lt;/span&gt; (&lt;span class=&#34;params&#34;&gt; optimizer , milestones , gamma=&lt;span class=&#34;number&#34;&gt;0.1&lt;/span&gt; , last_epoch=-&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; &lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+按设定的间隔调整学习率。这个方法适合后期调试使用，观察 loss 曲线，为每个实验定制学习率调整时机。&lt;br&gt;
+参数：&lt;br&gt;
+ &lt;code&gt;milestones(list)&lt;/code&gt; - 一个 list，每一个元素代表何时调整学习率，list 元素必须是递增的。如 milestones=[30,80,120]&lt;br&gt;
+ &lt;code&gt;gamma(float)&lt;/code&gt; - 学习率调整倍数，默认为 0.1 倍，即下降 10 倍。&lt;br&gt;
+ &lt;code&gt;last_epoch(int)&lt;/code&gt; - 上一个 epoch 数，这个变量用来指示学习率是否需要调整。当 last_epoch 符合设定的间隔时，就会对学习率进行调整。当为 - 1 时，学习率设置为初始值。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;3-lr_schedulerexponentiallr&#34;&gt; 3 lr_scheduler.ExponentialLR&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;lr_scheduler&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;ExponentialLR&lt;/span&gt; (&lt;span class=&#34;params&#34;&gt; optimizer , gamma , last_epoch=-&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; &lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+按指数衰减调整学习率，调整公式: lr = lr * gammaepoch&lt;br&gt;
+ 参数：&lt;br&gt;
+ &lt;code&gt;gamma&lt;/code&gt; - 学习率调整倍数的底，指数为 epoch，即 gammaepoch&lt;br&gt;
+ &lt;code&gt;last_epoch(int)&lt;/code&gt; - 上一个 epoch 数，这个变量用来指示学习率是否需要调整。当 last_epoch 符合设定的间隔时，就会对学习率进行调整。当为 - 1 时，学习率设置为初始值。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;4-lr_schedulercosineannealinglr&#34;&gt; 4 lr_scheduler.CosineAnnealingLR&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;lr_scheduler&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;CosineAnnealingLR&lt;/span&gt; (&lt;span class=&#34;params&#34;&gt; optimizer , T_max , eta_min=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt; , last_epoch=-&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; &lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;以余弦函数为周期，并在每个周期最大值时重新设置学习率。具体如下图所示&lt;/p&gt;
+&lt;p&gt;详细请阅读论文《 SGDR: Stochastic Gradient Descent with Warm Restarts》(ICLR-2017)： &lt;a href=&#34;https://arxiv.org/abs/1608.03983&#34;&gt;https://arxiv.org/abs/1608.03983&lt;/a&gt;&lt;br&gt;
+ 参数：&lt;br&gt;
+ &lt;code&gt;T_max(int)&lt;/code&gt; - 一次学习率周期的迭代次数，即 T_max 个 epoch 之后重新设置学习率。&lt;br&gt;
+ &lt;code&gt;eta_min(float)&lt;/code&gt; - 最小学习率，即在一个周期中，学习率最小会下降到 eta_min，默认值为 0。&lt;br&gt;
+学习率调整公式为：&lt;/p&gt;
+&lt;p&gt;可以看出是以初始学习率为最大学习率，以 2*Tmax 为周期，在一个周期内先下降，后上升。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;5-lr_schedulerreducelronplateau&#34;&gt; 5 lr_scheduler.ReduceLROnPlateau&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;lr_scheduler&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;ReduceLROnPlateau&lt;/span&gt; (&lt;span class=&#34;params&#34;&gt; optimizer , mode=&lt;span class=&#34;string&#34;&gt;&amp;#x27;min&amp;#x27;&lt;/span&gt; ,factor=&lt;span class=&#34;number&#34;&gt;0.1&lt;/span&gt; , patience=&lt;span class=&#34;number&#34;&gt;10&lt;/span&gt; , verbose=&lt;span class=&#34;literal&#34;&gt;False&lt;/span&gt; , threshold=&lt;span class=&#34;number&#34;&gt;0.0001&lt;/span&gt; , threshold_mode=&lt;span class=&#34;string&#34;&gt;&amp;#x27;rel&amp;#x27;&lt;/span&gt; , cooldown=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt; , min_lr=&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt; , eps=&lt;span class=&#34;number&#34;&gt;1e-08&lt;/span&gt; &lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;br&gt;
+当某指标不再变化（下降或升高），调整学习率，这是非常实用的学习率调整策略。&lt;br&gt;
+例如，当验证集的 loss 不再下降时，进行学习率调整；或者监测验证集的 accuracy，当 accuracy 不再上升时，则调整学习率。&lt;br&gt;
+参数：&lt;br&gt;
+ &lt;code&gt;mode(str)&lt;/code&gt; - 模式选择，有 min 和 max 两种模式，min 表示当指标不再降低 (如监测 loss)，max 表示当指标不再升高 (如监测 accuracy)。&lt;br&gt;
+ &lt;code&gt;factor(float)&lt;/code&gt; - 学习率调整倍数 (等同于其它方法的 gamma)，即学习率更新为 lr = lr *factor&lt;br&gt;
+ &lt;code&gt;patience(int)&lt;/code&gt; - 直译 ——“耐心”，即忍受该指标多少个 step 不变化，当忍无可忍时，调整学习率。&lt;br&gt;
+ &lt;code&gt;verbose(bool)&lt;/code&gt; - 是否打印学习率信息， print (‘Epoch {:5d}: reducing learning rate’ ’ of group {} to {:.4e}.’.format (epoch, i, new_lr))&lt;br&gt;
+ &lt;code&gt;threshold(float)&lt;/code&gt; - Threshold for measuring the new optimum ，配合 threshold_mode 使用。&lt;br&gt;
+ &lt;code&gt;threshold_mode(str)&lt;/code&gt; - 选择判断指标是否达最优的模式，有两种模式，rel 和 abs。&lt;br&gt;
+当 threshold_mode==rel，并且 mode==max 时， dynamic_threshold = best * (1 +threshold) ；&lt;br&gt;
+当 threshold_mode==rel，并且 mode==min 时， dynamic_threshold = best * (1 -threshold) ；&lt;br&gt;
+当 threshold_mode==abs，并且 mode==max 时， dynamic_threshold = best + threshold ；&lt;br&gt;
+当 threshold_mode==abs，并且 mode==min 时， dynamic_threshold = best - threshold&lt;br&gt;
+cooldown (int)- “ 冷却时间 “ ，当调整学习率之后，让学习率调整策略冷静一下，让模型再训练一段时间，再重启监测模式。&lt;br&gt;
+min_lr (float or list)- 学习率下限，可为 float ，或者 list ，当有多个参数组时，可用 list 进行设置。&lt;br&gt;
+eps (float)- 学习率衰减的最小值，当学习率变化小于 eps 时，则不调整学习率。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;6-lr_schedulerlambdalr&#34;&gt; 6 lr_scheduler.LambdaLR&lt;/span&gt;&lt;/h4&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;torch&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;optim&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;lr_scheduler&lt;/span&gt;.&lt;span class=&#34;title&#34;&gt;LambdaLR&lt;/span&gt; (&lt;span class=&#34;params&#34;&gt; optimizer , lr_lambda , last_epoch=-&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; &lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;功能：&lt;br&gt;
+为不同参数组设定不同学习率调整策略。调整规则为，lr = base_lr *lmbda (self.last_epoch) 。&lt;br&gt;
+参数：&lt;br&gt;
+ &lt;code&gt;lr_lambda(function or list)&lt;/code&gt; - 一个计算学习率调整倍数的函数，输入通常为 step，当有多个参数组时，设为 list。&lt;br&gt;
+ &lt;code&gt;last_epoch(int)&lt;/code&gt; - 上一个 epoch 数，这个变量用来指示学习率是否需要调整。当 last_epoch 符合设定的间隔时，就会对学习率进行调整。当为 - 1 时，学习率设置为初始值。&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;例如： &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ignored_params = &lt;span class=&#34;built_in&#34;&gt;list&lt;/span&gt;(&lt;span class=&#34;built_in&#34;&gt;map&lt;/span&gt;(&lt;span class=&#34;built_in&#34;&gt;id&lt;/span&gt;, net.fc3.parameters())) &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;base_params = &lt;span class=&#34;built_in&#34;&gt;filter&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;lambda&lt;/span&gt; p: &lt;span class=&#34;built_in&#34;&gt;id&lt;/span&gt;(p) &lt;span class=&#34;keyword&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; ignored_params, net.parameters()) &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;optimizer = optim.SGD([&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;span class=&#34;string&#34;&gt;&amp;#x27;params&amp;#x27;&lt;/span&gt;: base_params&amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#123;&lt;span class=&#34;string&#34;&gt;&amp;#x27;params&amp;#x27;&lt;/span&gt;: net.fc3.parameters(), &lt;span class=&#34;string&#34;&gt;&amp;#x27;lr&amp;#x27;&lt;/span&gt;: &lt;span class=&#34;number&#34;&gt;0.001&lt;/span&gt;*&lt;span class=&#34;number&#34;&gt;100&lt;/span&gt;&amp;#125;], &lt;span class=&#34;number&#34;&gt;0.001&lt;/span&gt;, momentum=&lt;span class=&#34;number&#34;&gt;0.9&lt;/span&gt;,weight_decay=&lt;span class=&#34;number&#34;&gt;1e-4&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;lambda1 = &lt;span class=&#34;keyword&#34;&gt;lambda&lt;/span&gt; epoch: epoch // &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;lambda2 = &lt;span class=&#34;keyword&#34;&gt;lambda&lt;/span&gt; epoch: &lt;span class=&#34;number&#34;&gt;0.95&lt;/span&gt; ** epoch&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=[lambda1, lambda2])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; epoch &lt;span class=&#34;keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;built_in&#34;&gt;range&lt;/span&gt;(&lt;span class=&#34;number&#34;&gt;100&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;scheduler.step()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;#x27;epoch: &amp;#x27;&lt;/span&gt;, i, &lt;span class=&#34;string&#34;&gt;&amp;#x27;lr: &amp;#x27;&lt;/span&gt;, scheduler.get_lr())&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;train(...)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;validate(...)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出： &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;epoch: &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt; lr: [&lt;span class=&#34;number&#34;&gt;0.0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.1&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;epoch: &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; lr: [&lt;span class=&#34;number&#34;&gt;0.0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.095&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;epoch: &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt; lr: [&lt;span class=&#34;number&#34;&gt;0.0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.09025&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;epoch: &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt; lr: [&lt;span class=&#34;number&#34;&gt;0.001&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.0857375&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;epoch: &lt;span class=&#34;number&#34;&gt;4&lt;/span&gt; lr: [&lt;span class=&#34;number&#34;&gt;0.001&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.081450625&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;epoch: &lt;span class=&#34;number&#34;&gt;5&lt;/span&gt; lr: [&lt;span class=&#34;number&#34;&gt;0.001&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.07737809374999999&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;epoch: &lt;span class=&#34;number&#34;&gt;6&lt;/span&gt; lr: [&lt;span class=&#34;number&#34;&gt;0.002&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.07350918906249998&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;epoch: &lt;span class=&#34;number&#34;&gt;7&lt;/span&gt; lr: [&lt;span class=&#34;number&#34;&gt;0.002&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.06983372960937498&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;epoch: &lt;span class=&#34;number&#34;&gt;8&lt;/span&gt; lr: [&lt;span class=&#34;number&#34;&gt;0.002&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.06634204312890622&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;epoch: &lt;span class=&#34;number&#34;&gt;9&lt;/span&gt; lr: [&lt;span class=&#34;number&#34;&gt;0.003&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0.0630249409724609&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;为什么第一个参数组的学习率会是 0 呢？ 来看看学习率是如何计算的。&lt;br&gt;
+第一个参数组的初始学习率设置为 0.001, lambda1 = lambda epoch: epoch // 3,&lt;br&gt;
+ 第 1 个 epoch 时，由 lr = base_lr * lmbda (self.last_epoch)，可知道 lr = 0.001 *&lt;br&gt;
+(0//3) ，又因为 1//3 等于 0，所以导致学习率为 0。&lt;br&gt;
+第二个参数组的学习率变化，就很容易看啦，初始为 0.1，lr = 0.1 * 0.95^epoch ，当 epoch 为 0 时，lr=0.1 ，epoch 为 1 时，lr=0.1*0.95。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;学习率调整小结&lt;/strong&gt;&lt;br&gt;
+ PyTorch 提供了六种学习率调整方法，可分为三大类，分别是&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;有序调整；&lt;/li&gt;
+&lt;li&gt;自适应调整；&lt;/li&gt;
+&lt;li&gt;自定义调整。&lt;br&gt;
+第一类，依一定规律有序进行调整，这一类是最常用的，分别是等间隔下降 (Step)，按需设定下降间隔 (MultiStep)，指数下降 (Exponential) 和 CosineAnnealing。这四种方法的调整时机都是人为可控的，也是训练时常用到的。&lt;br&gt;
+第二类，依训练状况伺机调整，这就是 ReduceLROnPlateau 方法。该法通过监测某一指标的变化情况，当该指标不再怎么变化的时候，就是调整学习率的时机，因而属于自适应的调整。&lt;br&gt;
+第三类，自定义调整，Lambda。Lambda 方法提供的调整策略十分灵活，我们可以为不同的层设定不同的学习率调整方法，这在 fine-tune 中十分有用，我们不仅可为不同的层设定不同的学习率，还可以为其设定不同的学习率调整策略，简直不能更棒！&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <category term="人工智能" />
+        <category term="NLP-模型优化" />
+        <updated>2021-07-09T11:31:37.000Z</updated>
+    </entry>
+</feed>

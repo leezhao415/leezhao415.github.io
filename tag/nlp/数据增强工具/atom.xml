@@ -1,0 +1,330 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;nlp/数据增强工具&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-08-08T09:41:41.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/08/08/NLP%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7%E2%80%94jionlp/</id>
+        <title>NLP数据增强工具—jionlp</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/08/08/NLP%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7%E2%80%94jionlp/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%AE%89%E8%A3%85&#34;&gt;安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E&#34;&gt;操作说明&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94&#34;&gt;数据增强方法对比&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%9B%9E%E8%AF%91%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA&#34;&gt;回译数据增强&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-backtranslation&#34;&gt;1 BackTranslation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-baiduapi&#34;&gt;2 BaiduApi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-xunfeiapi&#34;&gt;3 XunfeiApi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-googleapi&#34;&gt;4 GoogleApi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-tecentapi&#34;&gt;5 TecentApi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-youdaoapi&#34;&gt;6 YoudaoApi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-youdaofreeapi&#34;&gt;7 YoudaoFreeApi&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E9%82%BB%E8%BF%91%E6%B1%89%E5%AD%97%E6%8D%A2%E4%BD%8D&#34;&gt;邻近汉字换位&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#swap_char_position&#34;&gt;swap_char_position&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%90%8C%E9%9F%B3%E8%AF%8D%E6%9B%BF%E6%8D%A2&#34;&gt;同音词替换&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#homophone_substitution&#34;&gt;homophone_substitution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E9%9A%8F%E6%9C%BA%E5%A2%9E%E5%88%A0%E5%AD%97%E7%AC%A6&#34;&gt;随机增删字符&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#random_add_delete&#34;&gt;random_add_delete&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ner%E5%AE%9E%E4%BD%93%E6%9B%BF%E6%8D%A2&#34;&gt;NER 实体替换&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#replaceentity&#34;&gt;ReplaceEntity&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;span id&gt; &lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;安装&#34;&gt; 安装&lt;/span&gt;&lt;/h3&gt;
+&lt;figure class=&#34;highlight plain&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;pip install jionlp&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;该如何使用呢？可以参考 Github 以下项目&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//github.com/dongrixinyu/JioNLP&#34;&gt;https://github.com/dongrixinyu/JioNLPgithub.com/dongrixinyu/JioNLP&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;操作说明&#34;&gt; 操作说明&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;其中包含了&lt;strong&gt;回译、邻近汉字换位、同音词替换、随机增删字符&lt;/strong&gt;等方法。具体使用样例如下：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; import jionlp as jio&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; text = &lt;span class=&#34;string&#34;&gt;&amp;#x27;人口危机如果无法得到及时解决，80后、90后们将受到巨大的冲击。&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; res1 = jio.swap_char_position(text)  &lt;span class=&#34;comment&#34;&gt;# 邻近汉字换位&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; res2 = jio.homophone_substitution(text)  &lt;span class=&#34;comment&#34;&gt;# 同音词替换&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; res3 = jio.random_add_delete(text)  &lt;span class=&#34;comment&#34;&gt;# 随机增删字符&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(res1[0] + &lt;span class=&#34;string&#34;&gt;&amp;#x27;\n&amp;#x27;&lt;/span&gt; + res2[0] + &lt;span class=&#34;string&#34;&gt;&amp;#x27;\n&amp;#x27;&lt;/span&gt; + res3[0])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 人口危机如果无法得时及到解决，80后、90后们将受到巨大的冲击。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 人口危机如果无法得到即时解决，80后、90后们将受到巨大的冲击。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 人D口危机如果无法得到及时解决，80后90后们将到巨大的冲击。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4&gt;&lt;span id=&#34;数据增强方法对比&#34;&gt; 数据增强方法对比&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;文本数据增强的两个前提：&lt;/li&gt;
+&lt;li&gt;1、&lt;strong&gt;不干扰模型标签&lt;/strong&gt;：文本增强后的语义不干扰模型训练，不会导致样本标签失效；如 “这个小吃真好吃。=&amp;gt; 正面情绪” 增强为 “这个小吃真不好吃。=&amp;gt; 正面情绪”，随机加字影响到了标签的正确性。&lt;/li&gt;
+&lt;li&gt;2、&lt;strong&gt;人可理解&lt;/strong&gt;：增强后文本，依然保持可读性，达到人可以理解文本的含义；如 “这个小吃真好吃。” 增强为 “斯口吃真好吃。”，其中 “这个” 替换为 “斯”，“小吃” 替换为 “口吃”，已经完全令人无法理解，模型训练也已偏离。此问题在 同义词替换上非常频繁与普遍。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;方法&lt;/th&gt;
+&lt;th&gt;任务类型&lt;/th&gt;
+&lt;th&gt;效果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/dongrixinyu/JioNLP/wiki/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3#user-content-%E5%9B%9E%E8%AF%91%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA&#34;&gt;回译&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;文本分类、序列标注、匹配、文本生成&lt;/td&gt;
+&lt;td&gt;基于机翻效果决定，目前对新闻通用领域效果较好，专项领域视语料决定。长短文本均适合&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/dongrixinyu/JioNLP/wiki/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3#user-content-%E9%82%BB%E8%BF%91%E6%B1%89%E5%AD%97%E6%8D%A2%E4%BD%8D&#34;&gt;邻近汉字换位&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;文本分类、匹配&lt;/td&gt;
+&lt;td&gt;汉字换位会影响具体实体的含义，在实体含义并不影响整体语义情况下适用。换位汉字占比不宜过大&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/dongrixinyu/JioNLP/wiki/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3#user-content-%E5%90%8C%E9%9F%B3%E8%AF%8D%E6%9B%BF%E6%8D%A2&#34;&gt;同音词替换&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;文本分类、匹配&lt;/td&gt;
+&lt;td&gt;同音词替换会对局部语义产生影响，造成误差，但对整体语义理解并无干扰。替换词汇的占比不宜过大&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/dongrixinyu/JioNLP/wiki/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3#user-content-%E9%9A%8F%E6%9C%BA%E5%A2%9E%E5%88%A0%E5%AD%97%E7%AC%A6&#34;&gt;随机增删符号&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;文本分类、匹配&lt;/td&gt;
+&lt;td&gt;在文本中随机增删不影响语义的额外非中文符号。增加比例不宜过大，若某类字符（数字、字母）对语义有影响，则应该规避此类字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&#34;https://github.com/dongrixinyu/JioNLP/wiki/%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA-%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3#user-content-ner%E5%AE%9E%E4%BD%93%E6%9B%BF%E6%8D%A2&#34;&gt;NER 实体替换&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;文本分类、匹配、序列标注&lt;/td&gt;
+&lt;td&gt;在文本中随机替换不影响语义的实体。如人名、地名、机构等实体&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;同义词替换&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;造成语言连贯性差，语义完全被曲解的概率非常大。&lt;strong&gt;此种方法作废，本工具包不支持&lt;/strong&gt;。具体解释见 &lt;code&gt;jio.random_add_delete.__doc__&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;语言模型预测&lt;/td&gt;
+&lt;td&gt;分类、匹配、文本生成&lt;/td&gt;
+&lt;td&gt;利用大型的语言模型如 bert 等，预测句子中空缺的词汇。&lt;strong&gt;此种方法依赖大型的语言模型参数，本工具暂不支持&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;回译数据增强&#34;&gt; 回译数据增强&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;1-backtranslation&#34;&gt; 1 BackTranslation&lt;/span&gt;&lt;/h5&gt;
+&lt;h5&gt;&lt;span id=&#34;2-baiduapi&#34;&gt; 2 BaiduApi&lt;/span&gt;&lt;/h5&gt;
+&lt;h5&gt;&lt;span id=&#34;3-xunfeiapi&#34;&gt; 3 XunfeiApi&lt;/span&gt;&lt;/h5&gt;
+&lt;h5&gt;&lt;span id=&#34;4-googleapi&#34;&gt; 4 GoogleApi&lt;/span&gt;&lt;/h5&gt;
+&lt;h5&gt;&lt;span id=&#34;5-tecentapi&#34;&gt; 5 TecentApi&lt;/span&gt;&lt;/h5&gt;
+&lt;h5&gt;&lt;span id=&#34;6-youdaoapi&#34;&gt; 6 YoudaoApi&lt;/span&gt;&lt;/h5&gt;
+&lt;h5&gt;&lt;span id=&#34;7-youdaofreeapi&#34;&gt; 7 YoudaoFreeApi&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;给定一段文本，利用各类大厂公开的免费 api，对文本数据做增强。用户可在各大厂的云平台上自行申请密钥，填在接口的参数中。 各厂申请 API 地址如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://api.fanyi.baidu.com/doc/21&#34;&gt;百度 BaiduApi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://ai.youdao.com/DOCSIRMA/html/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E7%BF%BB%E8%AF%91/API%E6%96%87%E6%A1%A3/%E6%96%87%E6%9C%AC%E7%BF%BB%E8%AF%91%E6%9C%8D%E5%8A%A1/%E6%96%87%E6%9C%AC%E7%BF%BB%E8%AF%91%E6%9C%8D%E5%8A%A1-API%E6%96%87%E6%A1%A3.html&#34;&gt;有道 YoudaoApi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cloud.tencent.com/document/product/551/15619&#34;&gt;腾讯 TecentApi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.xfyun.cn/doc/nlp/xftrans/API.html&#34;&gt;讯飞 XunfeiApi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;请注意：样例中的 api 参数并非全都可用，请注册账号在各个厂官网申请自己的 api 参数&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;39&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; import jionlp as jio&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; xunfei_api = jio.XunfeiApi(&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        [&amp;#123;&lt;span class=&#34;string&#34;&gt;&amp;quot;appid&amp;quot;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;quot;5f5846b1&amp;quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          &lt;span class=&#34;string&#34;&gt;&amp;quot;api_key&amp;quot;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;quot;52465bb3de9a258379e6909c4b1f2b4b&amp;quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          &lt;span class=&#34;string&#34;&gt;&amp;quot;secret&amp;quot;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;quot;b21fdc62a7ed0e287f31cdc4bf4ab9a3&amp;quot;&lt;/span&gt;&amp;#125;])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; tencent_api = jio.TencentApi(&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        [&amp;#123;&lt;span class=&#34;string&#34;&gt;&amp;quot;project_id&amp;quot;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;quot;0&amp;quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          &lt;span class=&#34;string&#34;&gt;&amp;quot;secret_id&amp;quot;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;quot;AKID5zGGuInJwmLehbyKyYXGS3NXOXYLE96o&amp;quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          &lt;span class=&#34;string&#34;&gt;&amp;quot;secret_key&amp;quot;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;quot;buwiGXXifLt888rKQLwGH3dsfsdmeCX&amp;quot;&lt;/span&gt;&amp;#125;,  &lt;span class=&#34;comment&#34;&gt;# 错误的 api&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;         &amp;#123;&lt;span class=&#34;string&#34;&gt;&amp;quot;project_id&amp;quot;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;quot;0&amp;quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          &lt;span class=&#34;string&#34;&gt;&amp;quot;secret_id&amp;quot;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;quot;AKID5zGGuInJwmLehbyKyYXGS3NXOXYLE&amp;quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          &lt;span class=&#34;string&#34;&gt;&amp;quot;secret_key&amp;quot;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;quot;buwiGXXifLt888rKQLwGH3asuhFbmeCX&amp;quot;&lt;/span&gt;&amp;#125;])  &lt;span class=&#34;comment&#34;&gt;# 错误的 api&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; youdao_free_api = jio.YoudaoFreeApi()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; youdao_api = jio.YoudaoApi(&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        [&amp;#123;&lt;span class=&#34;string&#34;&gt;&amp;#x27;appid&amp;#x27;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;#x27;39856bd56b482cfc&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          &lt;span class=&#34;string&#34;&gt;&amp;#x27;app_secret&amp;#x27;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;#x27;87XpTE63nBVnrR0b6Hy0aTDWlkoq2l4A&amp;#x27;&lt;/span&gt;&amp;#125;])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; google_api = jio.GoogleApi()&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; baidu_api = jio.BaiduApi(&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        [&amp;#123;&lt;span class=&#34;string&#34;&gt;&amp;#x27;appid&amp;#x27;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;#x27;20200618000498778&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          &lt;span class=&#34;string&#34;&gt;&amp;#x27;secretKey&amp;#x27;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;#x27;raHalLakgYitNuzGOoB2&amp;#x27;&lt;/span&gt;&amp;#125;,  &lt;span class=&#34;comment&#34;&gt;# 错误的密钥&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;         &amp;#123;&lt;span class=&#34;string&#34;&gt;&amp;#x27;appid&amp;#x27;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;#x27;20200618000498778&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          &lt;span class=&#34;string&#34;&gt;&amp;#x27;secretKey&amp;#x27;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;#x27;raHalLakgYitNuzGdsoB2&amp;#x27;&lt;/span&gt;&amp;#125;,  &lt;span class=&#34;comment&#34;&gt;# 错误的密钥&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;         &amp;#123;&lt;span class=&#34;string&#34;&gt;&amp;#x27;appid&amp;#x27;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;#x27;20200618000498778&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;          &lt;span class=&#34;string&#34;&gt;&amp;#x27;secretKey&amp;#x27;&lt;/span&gt;: &lt;span class=&#34;string&#34;&gt;&amp;#x27;raHalLakgYitNuzGOoBZ&amp;#x27;&lt;/span&gt;&amp;#125;], gap_time=0.5)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(baidu_api.__doc__)  &lt;span class=&#34;comment&#34;&gt;# 查看接口说明&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; apis = [baidu_api, youdao_api, google_api,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            youdao_free_api, tencent_api, xunfei_api]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; back_trans = jio.BackTranslation(mt_apis=apis)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; text = &lt;span class=&#34;string&#34;&gt;&amp;#x27;饿了么凌晨发文将推出新功能，用户可选择是否愿意多等外卖员 5 分钟，你愿意多等这 5 分钟吗？&amp;#x27;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(youdao_api(text))  &lt;span class=&#34;comment&#34;&gt;# 使用接口做单次调用&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; result = back_trans(text)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(result)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# [&amp;#x27;饿了么将在凌晨推出一项新功能。用户可以选择是否愿意额外等待外卖人员5分钟。您想多等5分钟吗？&amp;#x27;, &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#  &amp;#x27;《饿了么》将在凌晨推出一档新节目。用户可以选择是否愿意等待餐饮人员多花5分钟。您愿意再等五分钟吗？&amp;#x27;, &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#  &amp;#x27;Ele.me将在早晨的最初几个小时启动一个新的功能。用户可以选择是否准备好再等5分钟。你不想再等五分钟吗？&amp;#x27;, &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#  &amp;#x27;Eleme将在清晨推出新的功能。用户可以选择是否愿意再等5分钟工作人员。你想再等五分钟吗？&amp;#x27;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;原理简述：利用公开的大厂 API 对文本数据做回译增强，即完成从 &lt;strong&gt;中文 -&amp;gt; 外文 -&amp;gt; 中文&lt;/strong&gt; 的翻译过程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;该框架考虑了对各 API 的&lt;strong&gt;语言种类支持&lt;/strong&gt;问题；&lt;strong&gt;两次调用之间的等待时间&lt;/strong&gt;问题；等待&lt;strong&gt;超时&lt;/strong&gt;问题；支持在 API 接口中输入&lt;strong&gt;多个密钥&lt;/strong&gt;（appkey_obj）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每一个 API 类提供了初始化  &lt;code&gt;lang_pool&lt;/code&gt;  参数，用于指定翻译的语种。基于此种考虑：某些小语种的模型效果并不如英语理想，如上例 “饿了么” 句子的翻译，小语种的翻译质量不如英汉互译。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;该接口框架包括了常用的若干 API（BaiduApi、XunfeiApi、GoogleApi、TecentApi、YoudaoApi、YoudaoFreeApi），也支持&lt;/p&gt;
+&lt;p&gt;自定义训练的模型 API 接口&lt;/p&gt;
+&lt;p&gt;。具体见下。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;自定义 API 接口接收一个 str 格式文本输入，输出对应的 str 格式翻译文本；&lt;/li&gt;
+&lt;li&gt;自定义 API 须指定文本的源语言和目标翻译语言，如 (zh, en) 和 (en, zh)；&lt;/li&gt;
+&lt;li&gt;自定义 API 在请求调用报错后需要提供  &lt;code&gt;raise Exeption&lt;/code&gt;  语句的异常抛出。&lt;/li&gt;
+&lt;li&gt;自定义 API 接口可参考代码中的写法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;API 接口&lt;strong&gt;支持多个密钥&lt;/strong&gt;，即申请若干个某一厂商的 API，混合在一起调用。框架接口自动选择可用密钥，忽略掉无效密钥。如上例中腾讯和百度的多个密钥，以列表形式传入。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;您可自己登录对应大厂的云平台，机器翻译服务页面，&lt;strong&gt;申请属于自己的 API 的密钥&lt;/strong&gt;。使用更高效。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;若某些 API 接口效果不理想，可以随意选定若干或指定某个厂商的 API。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;各厂机翻评价（个人使用体会，不完全客观）：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;厂名&lt;/th&gt;
+&lt;th&gt;翻译质量&lt;/th&gt;
+&lt;th&gt;可免费调用数量&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;百度&lt;/td&gt;
+&lt;td&gt;中上&lt;/td&gt;
+&lt;td&gt;大&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;腾讯&lt;/td&gt;
+&lt;td&gt;较优&lt;/td&gt;
+&lt;td&gt;小&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;有道&lt;/td&gt;
+&lt;td&gt;中上&lt;/td&gt;
+&lt;td&gt;大&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;讯飞&lt;/td&gt;
+&lt;td&gt;中下&lt;/td&gt;
+&lt;td&gt;小&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;谷歌&lt;/td&gt;
+&lt;td&gt;中上&lt;/td&gt;
+&lt;td&gt;无穷多但有 ip 反爬限制&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;邻近汉字换位&#34;&gt; 邻近汉字换位&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;swap_char_position&#34;&gt; swap_char_position&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;随机交换相邻近字符的位置，用以增强文本数据，理论依据为相邻近汉字顺序变动不影响人的阅读理解。 如 “民盟发言人：昂季素山目前情况良好”，“研表究明，汉字的序顺并不定一能影阅响读”。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; import jionlp as jio&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; res = jio.swap_char_position(&lt;span class=&#34;string&#34;&gt;&amp;#x27;民盟发言人：昂山素季目前情况良好&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(res)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# [&amp;#x27;民盟发言人：昂季素山目前情况良好&amp;#x27;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#  &amp;#x27;民盟发言人：昂山季素目前情况良好&amp;#x27;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#  &amp;#x27;民盟发言人：素山昂季目前情况良好&amp;#x27;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;随机交换相近字符的位置，且交换位置的距离以正态分布得到，scale 参数为 1，默认比例为相邻字符交换占 76.4%，中间隔 1 个字符占比 21.8%，中间隔两个字符占比为 1.8%&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;augmentation_num(int)&lt;/code&gt;  参数控制返回几条增强后的数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;swap_ratio(float)&lt;/code&gt;  参数控制对每一个汉字的调整其位置概率&lt;/li&gt;
+&lt;li&gt;其余参数参考 &lt;code&gt;jio.swap_char_position.__doc__&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;同音词替换&#34;&gt; 同音词替换&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;homophone_substitution&#34;&gt; homophone_substitution&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;采用同音词汇进行原文替换，达到数据增强的目的。汉语输入法中，拼音输入法为目前使用最广泛的一种打字法，使用率占比约 97%。 在实际使用中，常常出现同音词的打字错误，例如：原句为&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 原句：“人口危机如果无法得到及时解决，80后、90后们将受到巨大的冲击”&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 拼输：“人口危机如果无法得到即时解决，80后、90后门将受到巨大的冲击”。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;从输入的错误来看，完全不影响人的阅读理解。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; import jionlp as jio&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; res = jio.homophone_substitution(&lt;span class=&#34;string&#34;&gt;&amp;#x27;中国驻英记者一向恪守新闻职业道德，为增进中英两国人民之间的了解和沟通发挥了积极作用。&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(res)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# [&amp;#x27;中国驻英记者一向刻手信问职业道德，为增进中英两国人民之间的了解和沟通发挥了积极作用。&amp;#x27;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#  &amp;#x27;中国驻英记者一向恪守新闻职业道德，为增进中英两国人民指尖的了解和沟通发挥了积极作用。&amp;#x27;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#  &amp;#x27;中国驻英记者一向恪守新闻职业道德，为增进中英两国人民之间的了解和沟通发挥了积积作用。&amp;#x27;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;不考虑拼音声调，考虑常见方言读音误读，如 zh 与 z 不分，eng 与 en 不分，f 与 h 不分，l 与 n 不分等情况&lt;/li&gt;
+&lt;li&gt;替换时，优先使用常用词汇（依据词频而定）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;augmentation_num(int)&lt;/code&gt;  参数控制返回几条增强后的数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;homo_ratio(float)&lt;/code&gt;  参数控制对每一个汉字的调整其位置概率&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;allow_mispronounce(bool)&lt;/code&gt;  控制是否允许方言读音误读，如 zh 与 z 卷舌不分，默认为 True，允许词汇错音&lt;/li&gt;
+&lt;li&gt;其余参数参考 &lt;code&gt;jio.homophone_substitution.__doc__&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;随机增删字符&#34;&gt; 随机增删字符&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;random_add_delete&#34;&gt; random_add_delete&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;随机在文本中增加、删除某个字符。不影响原意的字符，对文本语义不造成影响。例如：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 原句：“23日，山东省监狱管理局原副局长王文杰等5人玩忽职守”&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 增删：&amp;quot;2日，山东监狱 管理局、原副局长文杰等5人玩忽职守..&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;随机增加的字符的选择，依据对海量文本统计字符分布规律的  &lt;code&gt;char_distribution.json&lt;/code&gt;  文件得到，取其中的非中文字符进行添加。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; import jionlp as jio&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; res = jio.random_add_delete(&lt;span class=&#34;string&#34;&gt;&amp;#x27;孙俪晒11年对比照庆领证纪念日，邓超被指沧桑。&amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; &lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(res)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# [&amp;#x27;孙俪晒11年对比照庆领证纪念日，邓超被指沧。&amp;#x27;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#  &amp;#x27;孙+俪晒11年对比照庆领证纪念日，邓超被指沧桑。&amp;#x27;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#  &amp;#x27;孙俪晒 11年对比照庆领证纪念日，邓超被指沧/桑。&amp;#x27;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;对于某些 NLP 任务，如抽取其中时间词汇，则以上方法很容易干扰关键时间信息，故方法失效。待后续优化，&lt;/li&gt;
+&lt;li&gt;替换时，优先使用常用词汇（依据词频而定）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;augmentation_num(int)&lt;/code&gt;  参数控制返回几条增强后的数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;add_ratio(float)&lt;/code&gt;  对每一个位置随机增加字符概率，默认为 0.02&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;delete_ratio(float)&lt;/code&gt;  对每一个汉字随机做删除的概率，默认为 0.02&lt;/li&gt;
+&lt;li&gt;其余参数参考 &lt;code&gt;jio.random_add_delete.__doc__&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;ner-实体替换&#34;&gt; NER 实体替换&lt;/span&gt;&lt;/h4&gt;
+&lt;h5&gt;&lt;span id=&#34;replaceentity&#34;&gt; ReplaceEntity&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;根据实体词典，随机在文本中替换某个实体，对语义不造成影响。例如：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 原句：“坦桑尼亚现任总统马古富力病逝”# 增删：&amp;quot;柬埔寨现任总统张达美病逝&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;该方法不仅仅用于&lt;strong&gt;实体识别&lt;/strong&gt;数据增强，也可用于其他&lt;strong&gt;相似序列标注任务&lt;/strong&gt;（如&lt;strong&gt;要素抽取&lt;/strong&gt;等），也可用于&lt;strong&gt;文本分类、匹配&lt;/strong&gt;等任务。 实体词典的获得，可用 &lt;code&gt;jio.ner.collect_dataset_entities&lt;/code&gt;  工具使用。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;gt;&amp;gt;&amp;gt; import jionlp as jio&amp;gt;&amp;gt;&amp;gt; &lt;span class=&#34;comment&#34;&gt;# 从标注语料中获取实体词典&amp;gt;&amp;gt;&amp;gt; dataset_y = [[&amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Person&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;马成宇&amp;#x27;, &amp;#x27;offset&amp;#x27;: (0, 3)&amp;#125;,                  &amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;百度&amp;#x27;, &amp;#x27;offset&amp;#x27;: (10, 12)&amp;#125;,                  &amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;百度&amp;#x27;, &amp;#x27;offset&amp;#x27;: (20, 22)&amp;#125;],                 [&amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;国力教育公司&amp;#x27;, &amp;#x27;offset&amp;#x27;: (2, 8)&amp;#125;],                 [&amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Organization&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;延平区人民法院&amp;#x27;, &amp;#x27;offset&amp;#x27;: (0, 7)&amp;#125;,                  &amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;百度&amp;#x27;, &amp;#x27;offset&amp;#x27;: (10, 12)&amp;#125;,                  &amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;百度&amp;#x27;, &amp;#x27;offset&amp;#x27;: (20, 22)&amp;#125;]]&amp;gt;&amp;gt;&amp;gt; entity_dict = jio.ner.collect_dataset_entities(dataset_y)&amp;gt;&amp;gt;&amp;gt; print(entity_dict)&amp;gt;&amp;gt;&amp;gt; replace_entity = jio.ReplaceEntity(entity_dict)&amp;gt;&amp;gt;&amp;gt; text = &amp;#x27;腾讯致力于游戏，阿里巴巴致力于电商。小马会玩。&amp;#x27;&amp;gt;&amp;gt;&amp;gt; entities = [&amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;腾讯&amp;#x27;, &amp;#x27;offset&amp;#x27;: (0, 2)&amp;#125;,                &amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;阿里巴巴&amp;#x27;, &amp;#x27;offset&amp;#x27;: (8, 12)&amp;#125;,                &amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Person&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;小马&amp;#x27;, &amp;#x27;offset&amp;#x27;: (18, 20)&amp;#125;]&amp;gt;&amp;gt;&amp;gt; aug_texts, aug_entities = replace_entity(text, entities)&amp;gt;&amp;gt;&amp;gt; print(aug_texts, aug_entities)# entity_dict:# &amp;#123;#     &amp;quot;Person&amp;quot;:&amp;#123;#         &amp;quot;马成宇&amp;quot;:1#     &amp;#125;,#     &amp;quot;Company&amp;quot;:&amp;#123;#         &amp;quot;百度&amp;quot;:4,#         &amp;quot;国力教育公司&amp;quot;:1#     &amp;#125;,#     &amp;quot;Organization&amp;quot;:&amp;#123;#         &amp;quot;延平区人民法院&amp;quot;:1#     &amp;#125;# &amp;#125;# # aug_texts:# [&amp;#x27;腾讯致力于解决冲突，国力教育公司致力于玩。小马爱玩。&amp;#x27;, #  &amp;#x27;百度致力于解决冲突，阿里巴巴致力于玩。小马爱玩。&amp;#x27;,#  &amp;#x27;腾讯致力于解决冲突，阿里巴巴致力于玩。马成宇爱玩。&amp;#x27;]# aug_entities:# [[&amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;腾讯&amp;#x27;, &amp;#x27;offset&amp;#x27;: (0, 2)&amp;#125;, #   &amp;#123;&amp;#x27;text&amp;#x27;: &amp;#x27;国力教育公司&amp;#x27;, &amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;offset&amp;#x27;: [10, 16]&amp;#125;,#   &amp;#123;&amp;#x27;text&amp;#x27;: &amp;#x27;小马&amp;#x27;, &amp;#x27;type&amp;#x27;: &amp;#x27;Person&amp;#x27;, &amp;#x27;offset&amp;#x27;: (21, 23)&amp;#125;],#  [&amp;#123;&amp;#x27;text&amp;#x27;: &amp;#x27;百度&amp;#x27;, &amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;offset&amp;#x27;: [0, 2]&amp;#125;, #   &amp;#123;&amp;#x27;text&amp;#x27;: &amp;#x27;阿里巴巴&amp;#x27;, &amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;offset&amp;#x27;: (10, 14)&amp;#125;,#   &amp;#123;&amp;#x27;text&amp;#x27;: &amp;#x27;小马&amp;#x27;, &amp;#x27;type&amp;#x27;: &amp;#x27;Person&amp;#x27;, &amp;#x27;offset&amp;#x27;: (19, 21)&amp;#125;],#  [&amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;腾讯&amp;#x27;, &amp;#x27;offset&amp;#x27;: (0, 2)&amp;#125;, #   &amp;#123;&amp;#x27;type&amp;#x27;: &amp;#x27;Company&amp;#x27;, &amp;#x27;text&amp;#x27;: &amp;#x27;阿里巴巴&amp;#x27;, &amp;#x27;offset&amp;#x27;: (10, 14)&amp;#125;, #   &amp;#123;&amp;#x27;text&amp;#x27;: &amp;#x27;马成宇&amp;#x27;, &amp;#x27;type&amp;#x27;: &amp;#x27;Person&amp;#x27;, &amp;#x27;offset&amp;#x27;: [19, 22]&amp;#125;]])&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;由此可以看到，该方法不仅仅可以用于序列标注的数据增强，同时可以用于文本分类：使用前须将文本做实体识别、序列标注，将相应的实体词典准备好，进行替换。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;augmentation_num(int)&lt;/code&gt;  参数控制返回几条增强后的数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;replace_ratio(float)&lt;/code&gt;  对每一个实体做替换的概率，默认为 0.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个工具包还有很多功能，在 Linux 系统里输入命令  &lt;code&gt;jionlp_help&lt;/code&gt;  搜索看看吧！&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="NLP/数据增强工具" />
+        <updated>2021-08-08T09:41:41.000Z</updated>
+    </entry>
+</feed>

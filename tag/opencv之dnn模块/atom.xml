@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;opencv之dnn模块&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-07-15T10:51:37.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91OpenCV4-X-DNN%E6%A8%A1%E5%9D%97-Python-API/</id>
+        <title>【详解】OpenCV4.X - DNN模块 Python API</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/07/15/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91OpenCV4-X-DNN%E6%A8%A1%E5%9D%97-Python-API/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-dnnblobfromimage&#34;&gt;1. dnn.blobFromImage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-dnnblobfromimages&#34;&gt;2. dnn.blobFromImages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-dnnnet_readfrommodeloptimizer&#34;&gt;3. dnn.Net_readFromModelOptimizer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-dnnnmsboxes&#34;&gt;4. dnn.NMSBoxes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-dnnnmsboxesrotated&#34;&gt;5. dnn.NMSBoxesRotated&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-dnnreadnet&#34;&gt;6. dnn.readNet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-dnnreadnetfromcaffe&#34;&gt;7. dnn.readNetFromCaffe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8-dnnreadnetfromdarknet&#34;&gt;8. dnn.readNetFromDarknet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9-dnnreadnetfrommodeloptimizer&#34;&gt;9. dnn.readNetFromModelOptimizer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#10-dnnreadnetfromonnx&#34;&gt;10. dnn.readNetFromONNX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#11-dnnreadnetfromtensorflow&#34;&gt;11. dnn.readNetFromTensorflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#12-dnnreadnetfromtorch&#34;&gt;12. dnn.readNetFromTorch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#13-dnnreadtensorfromonnx&#34;&gt;13. dnn.readTensorFromONNX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#14-dnnresetmyriaddevice&#34;&gt;14. dnn.resetMyriadDevice&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#15-dnnshrinkcaffemodel&#34;&gt;15. dnn.shrinkCaffeModel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#16-dnnwritetextgraph&#34;&gt;16. dnn.writeTextGraph&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;p&gt;OpenCV 4.X 版本集成了很多直接利用 DNN 模块的 Python API 接口.&lt;/p&gt;
+&lt;p&gt;安装：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo pip install opencv-python&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;使用：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; cv2 &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; dnn&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# Variables with simple values&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;DNN_BACKEND_DEFAULT = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;DNN_BACKEND_HALIDE = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;DNN_BACKEND_INFERENCE_ENGINE = &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;DNN_BACKEND_OPENCV = &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;DNN_BACKEND_VKCOM = &lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;DNN_TARGET_CPU = &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;DNN_TARGET_MYRIAD = &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;DNN_TARGET_OPENCL = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;DNN_TARGET_OPENCL_FP16 = &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;DNN_TARGET_VULKAN = &lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;__loader__ = &lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;__spec__ = &lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;1-dnnblobfromimage&#34;&gt; 1. dnn.blobFromImage&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;blobFromImage&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;image, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                  scalefactor=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                  size=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                  mean=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                  swapRB=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                  crop=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                  ddepth=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;根据输入图像，创建 NCHW 次序的 4-dim blobs.&lt;/p&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;p&gt;[1] - image: cv2.imread 读取的图片数据；&lt;/p&gt;
+&lt;p&gt;[2] - scalefactor: 缩放像素值，如 [0, 255] - [0, 1].&lt;/p&gt;
+&lt;p&gt;[3] - size: 输出图像的尺寸，如 netInWidth,netInHeight.&lt;/p&gt;
+&lt;p&gt;[4] - mean: 从各通道减均值。如果输入 image 为 BGR 次序，且 swapRB=True，则通道次序为 mean−R,mean−G,mean−B.&lt;/p&gt;
+&lt;p&gt;[5] - swapRB: 交换 3 通道图片的第一个和最后一个通道，如 BGR - RGB.&lt;/p&gt;
+&lt;p&gt;[6] - crop: 图像尺寸 resize 后是否裁剪。如果 &lt;code&gt;crop=True&lt;/code&gt; ，则，输入图片的尺寸调整 resize 后，一个边对应与 size 的一个维度，而另一个边的值大于等于 size 的另一个维度；然后从 resize 后的图片中心进行 crop. 如果 &lt;code&gt;crop=False&lt;/code&gt; ，则无需 crop，只需保持图片的长宽比.&lt;/p&gt;
+&lt;p&gt;[7] - ddepth: 输出 blob 的 Depth. 可选: CV_32F 或 CV_8U.&lt;/p&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;42&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; cv2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;from&lt;/span&gt; cv2 &lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; dnn&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; numpy &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; np &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; matplotlib.pyplot &lt;span class=&#34;keyword&#34;&gt;as&lt;/span&gt; plt&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;img_cv2 = cv2.imread(&lt;span class=&#34;string&#34;&gt;&amp;quot;test.jpg&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot;[INFO]Image shape: &amp;quot;&lt;/span&gt;, img_cv2.shape)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;inWidth = &lt;span class=&#34;number&#34;&gt;256&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;inHeight = &lt;span class=&#34;number&#34;&gt;256&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;outBlob1 = cv2.dnn.blobFromImage(img_cv2,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                                scalefactor=&lt;span class=&#34;number&#34;&gt;1.0&lt;/span&gt; / &lt;span class=&#34;number&#34;&gt;255&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                                size=(inWidth, inHeight),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                                mean=(&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                                swapRB=&lt;span class=&#34;literal&#34;&gt;False&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                                crop=&lt;span class=&#34;literal&#34;&gt;False&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot;[INFO]outBlob1 shape: &amp;quot;&lt;/span&gt;, outBlob1.shape)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;outimg1 = np.transpose(outBlob1[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;], (&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;outBlob2 = cv2.dnn.blobFromImage(img_cv2,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                                scalefactor=&lt;span class=&#34;number&#34;&gt;1.0&lt;/span&gt; / &lt;span class=&#34;number&#34;&gt;255&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                                size=(inWidth, inHeight),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                                mean=(&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                                swapRB=&lt;span class=&#34;literal&#34;&gt;False&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                                crop=&lt;span class=&#34;literal&#34;&gt;True&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot;[INFO]outBlob2 shape: &amp;quot;&lt;/span&gt;, outBlob2.shape)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;outimg2 = np.transpose(outBlob2[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;], (&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.figure(figsize=[&lt;span class=&#34;number&#34;&gt;10&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;10&lt;/span&gt;])&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.subplot(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.title(&lt;span class=&#34;string&#34;&gt;&amp;#x27;Input image&amp;#x27;&lt;/span&gt;, fontsize=&lt;span class=&#34;number&#34;&gt;16&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.imshow(cv2.cvtColor(img_cv2, cv2.COLOR_BGR2RGB))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.axis(&lt;span class=&#34;string&#34;&gt;&amp;quot;off&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.subplot(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.title(&lt;span class=&#34;string&#34;&gt;&amp;#x27;Output image - no crop&amp;#x27;&lt;/span&gt;, fontsize=&lt;span class=&#34;number&#34;&gt;16&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.imshow(cv2.cvtColor(outimg1, cv2.COLOR_BGR2RGB))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.axis(&lt;span class=&#34;string&#34;&gt;&amp;quot;off&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.subplot(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.title(&lt;span class=&#34;string&#34;&gt;&amp;#x27;Output image - crop&amp;#x27;&lt;/span&gt;, fontsize=&lt;span class=&#34;number&#34;&gt;16&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.imshow(cv2.cvtColor(outimg2, cv2.COLOR_BGR2RGB))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.axis(&lt;span class=&#34;string&#34;&gt;&amp;quot;off&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plt.show()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.aiuai.cn/uploads/2019/04/1097911958.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;2-dnnblobfromimages&#34;&gt; 2. dnn.blobFromImages&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;blobFromImages&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;images, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                   scalefactor=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                   size=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, mean=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                   swapRB=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                   crop=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                   ddepth=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;批量处理图片，创建 4-dim blobs. 其它参数类似于  &lt;code&gt;dnn.blobFromImage&lt;/code&gt; .&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;3-dnnnet_readfrommodeloptimizer&#34;&gt; 3. dnn.Net_readFromModelOptimizer&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;Net_readFromModelOptimizer&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;xml, &lt;span class=&#34;built_in&#34;&gt;bin&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;从 Intel’s Model Optimizer intermediate representation 创建网络.&lt;/p&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;p&gt;[1] - xml: XML 网络拓扑结果的配置文件.&lt;/p&gt;
+&lt;p&gt;[2] - bin: 训练权重值的二值文件.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;4-dnnnmsboxes&#34;&gt; 4. dnn.NMSBoxes&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;NMSBoxes&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;bboxes, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;             scores, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;             score_threshold, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;             nms_threshold, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;             eta=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;             top_k=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;根据给定的 boxes 和对应的 scores 进行 NMS 处理.&lt;/p&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;p&gt;[1] - boxes: 待处理的边界框 bounding boxes.&lt;/p&gt;
+&lt;p&gt;[2] - scores: 对于于待处理边界框的 scores.&lt;/p&gt;
+&lt;p&gt;[3] - score_threshold: 用于过滤 boxes 的 score 阈值.&lt;/p&gt;
+&lt;p&gt;[4] - nms_threshold: NMS 用到的阈值.&lt;/p&gt;
+&lt;p&gt;[5] - indices: NMS 处理后所保留的边界框的索引值.&lt;/p&gt;
+&lt;p&gt;[6] - eta: 自适应阈值公式中的相关系数：nms_thresholdi+1=eta⋅nms_thresholdi&lt;/p&gt;
+&lt;p&gt;[7] - top_k: 如果 top_k&amp;gt;0，则保留最多 top_k 个边界框索引值.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;5-dnnnmsboxesrotated&#34;&gt; 5. dnn.NMSBoxesRotated&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;NMSBoxesRotated&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;bboxes, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                    scores, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                    score_threshold, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                    nms_threshold, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                    eta=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;params&#34;&gt;                    top_k=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;6-dnnreadnet&#34;&gt; 6. dnn.readNet&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;readNet&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;model, config=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;, framework=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;从支持的格式中加载深度学习网络和模型参数.&lt;/p&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;p&gt;[1] - model: 训练的权重参数的模型二值文件，支持的格式有： &lt;code&gt;*.caffemodel&lt;/code&gt; Caffe、 &lt;code&gt;*.pb&lt;/code&gt; TensorFlow、 &lt;code&gt;*.t7&lt;/code&gt;  或  &lt;code&gt;*.net&lt;/code&gt; Torch、  &lt;code&gt;*.weights&lt;/code&gt; Darknet、 &lt;code&gt;*.bin&lt;/code&gt; DLDT.&lt;/p&gt;
+&lt;p&gt;[2] - config: 包含网络配置的文本文件，支持的格式有： &lt;code&gt;*.prototxt&lt;/code&gt;  Caffe、 &lt;code&gt;*.pbtxt&lt;/code&gt;  TensorFlow、 &lt;code&gt;*.cfg&lt;/code&gt;  Darknet、 &lt;code&gt;*.xml&lt;/code&gt;  DLDT.&lt;/p&gt;
+&lt;p&gt;[3] - framework: 所支持格式的框架名.&lt;/p&gt;
+&lt;p&gt;该函数自动检测训练模型所采用的深度框架，然后调用  &lt;code&gt;readNetFromCaffe&lt;/code&gt; 、 &lt;code&gt;readNetFromTensorflow&lt;/code&gt; 、 &lt;code&gt;readNetFromTorch&lt;/code&gt;  或  &lt;code&gt;readNetFromDarknet&lt;/code&gt;  中的某个函数.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;7-dnnreadnetfromcaffe&#34;&gt; 7. dnn.readNetFromCaffe&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;readNetFromCaffe&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;prototxt, caffeModel=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt;     &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;加载采用 Caffe 的配置网络和训练的权重参数.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;8-dnnreadnetfromdarknet&#34;&gt; 8. dnn.readNetFromDarknet&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;readNetFromDarknet&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;cfgFile, darknetModel=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;加载采用 Darknet 的配置网络和训练的权重参数.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;9-dnnreadnetfrommodeloptimizer&#34;&gt; 9. dnn.readNetFromModelOptimizer&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;readNetFromModelOptimizer&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;xml, &lt;span class=&#34;built_in&#34;&gt;bin&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt;     &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;加载采用 Intel’s Model Optimizer intermediate representation 的配置网络和训练的权重参数.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;10-dnnreadnetfromonnx&#34;&gt; 10. dnn.readNetFromONNX&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;readNetFromONNX&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;onnxFile&lt;/span&gt;):&lt;/span&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;加载 .onnx 模型网络配置参数和权重参数.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;11-dnnreadnetfromtensorflow&#34;&gt; 11. dnn.readNetFromTensorflow&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;readNetFromTensorflow&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;model, config=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;加载采用 Tensorflow 的配置网络和训练的权重参数.&lt;/p&gt;
+&lt;p&gt;[1] - model: .pb 文件.&lt;/p&gt;
+&lt;p&gt;[2] - config: .pbtxt 文件.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;12-dnnreadnetfromtorch&#34;&gt; 12. dnn.readNetFromTorch&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;readNetFromTorch&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;model, isBinary=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt;     &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;加载采用 Torch 的配置网络和训练的权重参数.&lt;/p&gt;
+&lt;p&gt;[1] - model: 采用  &lt;code&gt;torch.save() &lt;/code&gt; 函数保存的文件.&lt;/p&gt;
+&lt;p&gt;所支持的 Torch nn.Module 网络层有：&lt;/p&gt;
+&lt;figure class=&#34;highlight protobuf&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;- nn.Sequential&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;- nn.Parallel&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;- nn.Concat&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;- nn.Linear&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;- nn.SpatialConvolution&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;- nn.SpatialMaxPooling, nn.SpatialAveragePooling&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;- nn.ReLU, nn.TanH, nn.Sigmoid&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;- nn.Reshape&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;- nn.SoftMax, nn.LogSoftMax&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;13-dnnreadtensorfromonnx&#34;&gt; 13. dnn.readTensorFromONNX&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;readTensorFromONNX&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;path&lt;/span&gt;):&lt;/span&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;从  &lt;code&gt;.pb&lt;/code&gt;  文件创建 blob.&lt;/p&gt;
+&lt;p&gt;[1] - path: 包含 input tensor 的 &lt;code&gt;.pb&lt;/code&gt;  文件.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;14-dnnresetmyriaddevice&#34;&gt; 14. dnn.resetMyriadDevice&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;resetMyriadDevice&lt;/span&gt;():&lt;/span&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;string&#34;&gt;&amp;quot;&amp;quot;&amp;quot;    resetMyriadDevice() -&amp;gt; None    .   @brief Release a Myriad device is binded by OpenCV.    .   *    .   * Single Myriad device cannot be shared across multiple processes which uses    .   * Inference Engine&amp;#x27;s Myriad plugin.    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3&gt;&lt;span id=&#34;15-dnnshrinkcaffemodel&#34;&gt; 15. dnn.shrinkCaffeModel&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;shrinkCaffeModel&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;src, dst, layersTypes=&lt;span class=&#34;literal&#34;&gt;None&lt;/span&gt;&lt;/span&gt;):&lt;/span&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;将 Caffe 网络的所有权重转换为半精度浮点数值 halfprecisionfloatingpoint.&lt;/p&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;p&gt;[1] - src: Caffe 网路的原始单精度浮点数值权重模型文件 (后缀一般为 &lt;code&gt;.caffemodel&lt;/code&gt; ).&lt;/p&gt;
+&lt;p&gt;[2] - dst: 转换后的权重文件.&lt;/p&gt;
+&lt;p&gt;[3] - layersTypes: 待转换参数的网络层类型，默认是只转换卷积层和全连接层的权重参数.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;16-dnnwritetextgraph&#34;&gt; 16. dnn.writeTextGraph&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;定义：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;writeTextGraph&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;model, output&lt;/span&gt;):&lt;/span&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;#note: To reduce output file size, trained weights are not included.    &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;pass&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;p&gt;将以 protocol buffer 格式的二值网络，创建为文本表示 Createatextrepresentationforabinarynetworkstoredinprotocolbufferformat.&lt;/p&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;p&gt;[1] - model: 二值网络 binarynetwork 的路径.&lt;/p&gt;
+&lt;p&gt;[2] - output: 创建的输出文件路径.&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="OpenCV之DNN模块" />
+        <updated>2021-07-15T10:51:37.000Z</updated>
+    </entry>
+</feed>

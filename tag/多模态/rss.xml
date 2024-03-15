@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>且听风吟，御剑于心！ • Posts by &#34;多模态&#34; tag</title>
+        <link>https://leezhao415.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Tue, 26 Jul 2022 23:52:08 +0800</pubDate>
+        <lastBuildDate>Tue, 26 Jul 2022 23:52:08 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>数据集</category>
+        <category>人工智能/CV</category>
+        <category>Transformer/DETR(CV)</category>
+        <category>编程工具</category>
+        <category>大数据框架</category>
+        <category>NLP</category>
+        <category>模型部署</category>
+        <category>数据结构与算法</category>
+        <category>Python数据分析</category>
+        <category>网络通信</category>
+        <category>YOLOX</category>
+        <category>CV算法</category>
+        <category>AIGC前沿</category>
+        <category>VSLAM</category>
+        <category>NCNN部署</category>
+        <category>多模态</category>
+        <category>YOLOX目标检测</category>
+        <category>目标跟踪</category>
+        <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
+        <category>CV未来</category>
+        <category>且读文摘</category>
+        <category>NLP-BERT</category>
+        <category>自然语言处理NLP</category>
+        <category>OpenCV之DNN模块</category>
+        <category>IOU</category>
+        <category>深度模型</category>
+        <category>NLP-模型优化</category>
+        <category>激活函数</category>
+        <category>梯度更新</category>
+        <category>概述</category>
+        <category>人脸识别</category>
+        <category>名人名言</category>
+        <category>寒窑赋</category>
+        <category>度量学习</category>
+        <category>NLP/评估指标</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
+        <category>机器学习</category>
+        <category>科研项目成果</category>
+        <category>模型性能指标</category>
+        <category>CV/目标检测工具箱</category>
+        <category>表面缺陷检测</category>
+        <category>计算机顶会</category>
+        <category>计算机视觉CV</category>
+        <category>网络编程</category>
+        <category>NLP/数据增强工具</category>
+        <category>计算机视觉</category>
+        <category>模型优化</category>
+        <category>三维建模</category>
+        <category>计算机视觉库</category>
+        <category>深度学习环境配置</category>
+        <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
+        <category>数据库原理</category>
+        <category>算法</category>
+        <category>操作系统</category>
+        <category>深度模型（目标检测）</category>
+        <category>视频理解</category>
+        <category>ReID</category>
+        <category>MOT</category>
+        <category>NLP-发展史</category>
+        <category>编程语言</category>
+        <category>CV数据集</category>
+        <category>Linux</category>
+        <category>PaddlePaddle</category>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%A4%9A%E6%A8%A1%E6%80%81%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0/</guid>
+            <title>【精华】多模态研究学习</title>
+            <link>https://leezhao415.github.io/2022/07/26/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E5%A4%9A%E6%A8%A1%E6%80%81%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0/</link>
+            <category>人工智能</category>
+            <category>多模态</category>
+            <pubDate>Tue, 26 Jul 2022 23:52:08 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%A4%9A%E6%A8%A1%E6%80%81%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0&#34;&gt;多模态研究学习&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E5%A4%9A%E6%A8%A1%E6%80%81%E7%BB%BC%E8%BF%B0&#34;&gt;1 多模态综述&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-x-vlm&#34;&gt;2 X-VLM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-ernie-vilg&#34;&gt;3 ERNIE-VILG&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-flava&#34;&gt;4 FLAVA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-ofa&#34;&gt;5 OFA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-sta&#34;&gt;6 STA&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h4&gt;&lt;span id=&#34;多模态研究学习&#34;&gt; 多模态研究学习&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;2021 年诺贝尔生理学、医学奖揭晓，获奖者是戴维・朱利叶斯（DavidJulius）和阿代姆・帕塔博蒂安（Ardem Patapoutian），表彰他们在 “发现温度和触觉感受器” 方面作出的贡献。那作为算法从业者，我们该思考些什么呢？人在感知这个世界的时候，主要的方式就是视觉，嗅觉，听觉等等。其中语音，文字和图像是最重要的传播载体，这三个领域的研究也都在这几年得到了快速的发展，今天我们就来看看其交叉的领域即文字 + 图像的图文多模态，其实多模态涉及的领域很多，目前主流的是文字 + 图像这一分支。从 2018 年 Bert 横空出世以后，以预训练模型为基石的各个领域百花齐放，下面梳理的多模态预训练模型也是在这样一个背景下诞生的，具体大概是从 2019 年开始涌现的。主要包括 &lt;code&gt;VILBERT&lt;/code&gt; 、 &lt;code&gt;B2T2&lt;/code&gt; 、 &lt;code&gt;LXMERT&lt;/code&gt; 、 &lt;code&gt;VisualBERT&lt;/code&gt; 、 &lt;code&gt;Unicoder-VL&lt;/code&gt; 、 &lt;code&gt;VL-BERT&lt;/code&gt; 、 &lt;code&gt;UNITER&lt;/code&gt; 、 &lt;code&gt;Pixel-BERT&lt;/code&gt; 、 &lt;code&gt;ERNIE-ViL&lt;/code&gt; 、 &lt;code&gt;UNIMO&lt;/code&gt; 、 &lt;code&gt;CLIP&lt;/code&gt; 、 &lt;code&gt;FLAVA&lt;/code&gt; 、 &lt;code&gt;ERNIE-VILG&lt;/code&gt; 、 &lt;code&gt;X-VLM&lt;/code&gt; 、 &lt;code&gt;OFA&lt;/code&gt; 、 &lt;code&gt;STA&lt;/code&gt;  等。目前布局在这一赛道的公司包括：腾讯、百度、谷歌、微软、Facebook、UCLA、京东、阿里等等。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;1-多模态综述&#34;&gt; 1 多模态综述&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s?__biz=MzkzOTI4ODc2Ng==&amp;amp;mid=2247485865&amp;amp;idx=1&amp;amp;sn=b5c092b74044e5509f313f2803e982e6&amp;amp;chksm=c2f27878f585f16e40ecadbf97e0dba0b8133e75399939b3a1e7767bc0489835bd45e7971601&amp;amp;token=2056898919&amp;amp;lang=zh_CN#rd&#34;&gt;多模态综述&lt;/a&gt;&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;2-x-vlm&#34;&gt; 2 X-VLM&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://baijiahao.baidu.com/s?id=1735789620305923066&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;字节 AI Lab 提出多模态模型：X-VLM，学习视觉和语言多粒度对齐&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;论文: &lt;a href=&#34;https://arxiv.org/pdf/2111.08276.pdf&#34;&gt;https://arxiv.org/pdf/2111.08276.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Github: &lt;a href=&#34;https://github.com/zengyan-97/X-VLM&#34;&gt;https://github.com/zengyan-97/X-VLM&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;span id=&#34;3-ernie-vilg&#34;&gt; 3 ERNIE-VILG&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/weixin_42001089/article/details/122364451?spm=1001.2014.3001.5502&#34;&gt;多模态生成模型 ERNIE-VILG&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;论文: &lt;a href=&#34;https://arxiv.org/pdf/2112.15283.pdf&#34;&gt;https://arxiv.org/pdf/2112.15283.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;体验接口: &lt;a href=&#34;https://wenxin.baidu.com/younger/apiDetail?id=20008&#34;&gt;https://wenxin.baidu.com/younger/apiDetail?id=20008&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;span id=&#34;4-flava&#34;&gt; 4 FLAVA&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/weixin_42001089/article/details/122326574&#34;&gt;最新图文大一统多模态模型：FLAVA&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;论文: &lt;a href=&#34;https://arxiv.org/pdf/2112.04482.pdf&#34;&gt;https://arxiv.org/pdf/2112.04482.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Github: &lt;a href=&#34;https://github.com/Mryangkaitonggithub.com&#34;&gt;https://github.com/Mryangkaitonggithub.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;span id=&#34;5-ofa&#34;&gt; 5 OFA&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/AlibabaTech1024/article/details/125215198&#34;&gt;ICML 2022｜达摩院多模态模型 OFA，实现模态、任务和架构三个统一&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;论文: &lt;a href=&#34;https://arxiv.org/pdf/2202.03052.pdf&#34;&gt;https://arxiv.org/pdf/2202.03052.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Github: ﻿&lt;a href=&#34;https://github.com/OFA-Sys/OFA&#34;&gt;https://github.com/OFA-Sys/OFA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;体验接口: ﻿﻿&lt;a href=&#34;https://huggingface.co/OFA-Sys&#34;&gt;https://huggingface.co/OFA-Sys&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;&lt;span id=&#34;6-sta&#34;&gt; 6 STA&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s/qQZpdb0AW0IusT_dwNgmAw&#34;&gt;电子科大（申恒涛团队）&amp;amp; 京东 AI（梅涛团队）提出用于视频问答的结构化双流注意网络，性能 SOTA！优于基于双视频表示的方法！&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;论文: &lt;a href=&#34;https://arxiv.org/pdf/2206.01017.pdf&#34;&gt;https://arxiv.org/pdf/2206.01017.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://leezhao415.github.io/2021/07/17/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9E%B6%E6%9E%84%E6%A1%88%E4%BE%8B-%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/</guid>
+            <title>多模态架构案例-爱奇艺短视频分类技术解析</title>
+            <link>https://leezhao415.github.io/2021/07/17/%E5%A4%9A%E6%A8%A1%E6%80%81%E6%9E%B6%E6%9E%84%E6%A1%88%E4%BE%8B-%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/</link>
+            <category>人工智能</category>
+            <category>多模态</category>
+            <pubDate>Sat, 17 Jul 2021 10:26:25 +0800</pubDate>
+            <description><![CDATA[ &lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%88%B1%E5%A5%87%E8%89%BA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%88%86%E7%B1%BB%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90&#34;&gt;爱奇艺短视频分类技术解析&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%AE%80%E4%BB%8B&#34;&gt;简介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%8A%80%E6%9C%AF%E9%9A%BE%E7%82%B9&#34;&gt;技术难点&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%88%86%E7%B1%BB%E4%BD%93%E7%B3%BB%E5%A4%8D%E6%9D%82&#34;&gt;分类体系复杂&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E9%9C%80%E8%A6%81%E6%96%87%E6%9C%AC-%E5%9B%BE%E5%83%8F-%E7%94%9F%E6%80%81%E4%BF%A1%E6%81%AF%E7%AD%89%E5%A4%9A%E6%A8%A1%E6%80%81%E7%89%B9%E5%BE%81%E7%BB%BC%E5%90%88%E5%88%A4%E6%96%AD&#34;&gt;需要文本、图像、生态信息等多模态特征综合判断&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88&#34;&gt;解决方案&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%89%B9%E5%BE%81%E8%A1%A8%E7%A4%BA%E6%A8%A1%E5%9D%97&#34;&gt;特征表示模块&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#01-%E6%96%87%E6%9C%AC%E8%A1%A8%E7%A4%BA&#34;&gt;01 文本表示&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#02-%E5%9B%BE%E5%83%8F%E8%A1%A8%E7%A4%BA&#34;&gt;02 图像表示&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%B1%82%E6%AC%A1%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9D%97&#34;&gt;层次分类模块&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%90%8E%E7%BB%AD%E5%B7%A5%E4%BD%9C&#34;&gt;后续工作&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h1&gt;&lt;span id=&#34;爱奇艺短视频分类技术解析&#34;&gt; 爱奇艺短视频分类技术解析&lt;/span&gt;&lt;/h1&gt;
+&lt;h3&gt;&lt;span id=&#34;简介&#34;&gt; 简介&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;近年来，短视频领域一直广受关注，且发展迅速。每天有大量 UGC 短视频被生产、分发和消费，为生产系统带来了巨大的压力，其中的难点之一就是为每个短视频快速、准确地打上标签。为了解决人工编辑的时效和积压问题，自动化标签技术成为各大内容领域公司都非常关注的关键课题。短视频大规模层次分类作为内容理解技术的一个重要方向，为爱奇艺的短视频智能分发业务提供着强力支持，其输出被称为 “类型标签”。&lt;/p&gt;
+&lt;p&gt;以下是我们对一条爱奇艺短视频的分类效果：（&lt;a href=&#34;https://www.infoq.cn/article/f49e-Gb1xQxh8DttFDgb%EF%BC%89&#34;&gt;https://www.infoq.cn/article/f49e-Gb1xQxh8DttFDgb）&lt;/a&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/8f/b8/8f26140138fb645e6fee459ad546cbb8.png&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;算法结果：游戏 - 题材 - 角色扮演，与人工结果一致。其实 “漫威”、“蜘蛛侠” 这类 IP 的作品既可能是 “影视” 也可能是 “游戏”，或者其他周边，如果缺乏背景知识，人工也不容易做出准确的分类，但是模型由于见到了足够多的样本，反而比单个人工有更大概率做出正确判断，在一定程度上体现了集体智慧和算法的优势。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;类型标签在爱奇艺内部有着广泛的应用。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;strong&gt;短视频生产领域&lt;/strong&gt;，类型标签从视频的生成、准入、审核、标注等多个方面发挥着重要作用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;标签自动化&lt;/strong&gt;：部分标签的准确率已经达到 95% 以上，这部分标签已经用算法结果替代人工标注，减少了大量标注人力，提高了视频生产效率；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;频道自动化&lt;/strong&gt;：目前的频道由上传者填写，上传者会投机取巧乱填频道导致频道混乱，影响用户的使用体验，使用类型标签替换频道，提升了频道的分类准确率。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;由于准确率很高，短视频生产系统乐高已经部分将自动化标签代替人工标签，并推送到各个业务线，支持着大量业务的智能运营策略。&lt;/p&gt;
+&lt;p&gt;在&lt;strong&gt;个性化推荐领域&lt;/strong&gt;，已使用算法生成的类型标签全面替代人工标注的频道，成为推荐系统最重要的基础数据之一，在以下的策略中发挥了重要作用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;多样性控制&lt;/strong&gt;：使用标签完成多样性控制，减少相似内容对用户带来的疲劳，提升播放时长等关键业务指标和多样性等生态指标；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用户画像&lt;/strong&gt;：基于标签完善用户的长期兴趣和短期兴趣，提升用户画像的完整性、准确性和可解释性；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;召回&lt;/strong&gt;：增强无用户行为的新视频的分发能力，提升用户兴趣探索阶段的泛化性，提升用户的负向兴趣过滤的泛化性，从而提升用户体验；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;排序&lt;/strong&gt;：基于画像的用户兴趣和视频类型标签作为模型的特征，增强排序模型的排序效果。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;本文将详细介绍爱奇艺短视频大规模层次分类算法。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;技术难点&#34;&gt; 技术难点&lt;/span&gt;&lt;/h3&gt;
+&lt;h4&gt;&lt;span id=&#34;分类体系复杂&#34;&gt; 分类体系复杂&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;短视频分类体系是一棵人工精心制定的层次结构，体系和规则都比较复杂：层级最少有 3 级，最多有 5 级，总计近 800 个有效类别，类别间有互斥和共同出现的需求。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/5e/f1/5e904f602b5ad9f3c8a8fdd78be7c4f1.png&#34; alt=&#34;img&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;h4&gt;&lt;span id=&#34;需要文本-图像-生态信息等多模态特征综合判断&#34;&gt; 需要文本、图像、生态信息等多模态特征综合判断&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;短视频具有标题、描述、封面图、视频、音频等媒体信息。同时，一个短视频也不一定是独立存在的，它可能来自一个影视、综艺片段，它的上传者可能是一个垂直领域的内容贡献者，所以，关联正片、视频来源、上传者等信息对分类也可能有帮助。&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;解决方案&#34;&gt; 解决方案&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;短视频分类可以分为特征表示 (Feature Representation) 和层次分类 (Hierarchical Classification) 两个模块，前者基于多模态特征建模短视频的整体表达（在我们的模型中通过 Feature Representation 和 Representation Fusion 两个子网络级联建模完成），后者基于前者完成分类任务。我们模型的整体结构如下图：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/57/4b/57ee7a601eb53e38ce05254ffbc7ba4b.png&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;下文将分别介绍这两个模块。&lt;/p&gt;
+&lt;h4&gt;&lt;span id=&#34;特征表示模块&#34;&gt; 特征表示模块&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;短视频的特征种类和形态各异，只有正确使用这些信息才能提升模型效果的天花板，下文将介绍各种特征表示的建模方式以及融合方式。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&#34;01-文本表示&#34;&gt; 01 文本表示&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;短视频一般都有一个代表其视频意义的简短标题和更为详细的描述信息，通过对这些人工抽象出的文本信息进行分类会比直接从视频学习出分类更容易。下文将首先介绍业界常见的文本表建模方式，然后分享在我们任务中采用的方案。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;业界常见建模方式：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.BOW&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bag-of-words model 忽略掉文档的语法和语序等要素，将其仅仅看作是若干个词汇的集合，每个单词的出现都是独立的，由一组无序的单词 (words) 来表达。实际操作上可以直接使用线性分类（单层 NN，下左图）或者嵌入到一个词向量空间中进行 AVG 等操作后再进行分类（CBOW，多层 NN，下右图）。由于模型假设文档是一个词袋，忽略了出现的顺序和组合，所以在构建特征时，可以考虑将表示了词组的 ngram 和词共现的组合特征放入模型中，提高模型的效果。&lt;/p&gt;
+&lt;p&gt;优点：建模容易，性能好，在使用了大量人工构造的特征后也可以达到极佳的效果。&lt;/p&gt;
+&lt;p&gt;缺点：过渡依赖人工特征的构造，构造的人工特征可能因为过大，在模型训练上带来困难。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/af/85/af5f89f151181229da7c95d4ec373e85.png&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;2.CNN&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;利用 CNN 对文本建模表示进行分类是源自图像领域 CNN 取得的巨大成功，但是在文本领域仅用 CNN 进行文本建模效果并不突出。CNN 通过不同大小的 filter 对有序的词向量进行卷积操作，以期望模型能够从中学到不同大小的 ngram 信息，并且通过 pooling 操作（一般是 max-pooling），找到最强的信号，作为该文本的表示。&lt;/p&gt;
+&lt;p&gt;优点：建模比较容易，性能不差。&lt;/p&gt;
+&lt;p&gt;缺点：模型效果上限较低，对长距离共现信息建模较差。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/63/57/632ba2d6eddcb974ddc16e9c88b6fc57.png&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;3.RNN&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;利用 RNN（GRU/LSTM）进行文本建模，理论上具有最高的天花板，在实操上效果也介于 CNN 和精选了人工特征的 BOW，以 LSTM 为例，其不仅对词序敏感，并且具有长短记忆功能，能够将短距离的 ngram 信息和长距离的共现信息学习到。&lt;/p&gt;
+&lt;p&gt;优点：模型效果上限高，效果较好。&lt;/p&gt;
+&lt;p&gt;缺点：建模和训练较难，运行时间慢，在大数据集训练实用性不高。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/91/14/91c7fea9afb1f7aa75d206399dce5f14.png&#34; alt=&#34;img&#34; style=&#34;zoom:60%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;4.Attention&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;使用 Attention 可以对长距离的共现信息进行建模，并且能够识别整个序列中最为关注的部分，该技术可以和上述的 CNN 和 RNN 这种与序列有关的技术配合使用，能够取得更好的效果，下图是典型的基于点积的（多头）注意力机制。&lt;/p&gt;
+&lt;p&gt;优点：建模难度一般（Attention 实现方式多种多样），几乎总是能够提升模型效果。&lt;/p&gt;
+&lt;p&gt;缺点：无明显缺点，可以和其他模型共用。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/6a/2c/6a40b5cca93a42dff735e60b4332042c.png&#34; alt=&#34;img&#34; style=&#34;zoom:60%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;我们的建模方式：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;权衡模型的执行效率和效果，最终类型标签采用的是 BOW 和 CNN+Attention 方式完成文本表示的建模。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.CBOW 与人工特征构造&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;前面已经提到 BOW 在使用了大量人工构造的特征后也可以达到极佳的效果，所以我们也尝试了很多人工 / 机器构造的特征：&lt;/p&gt;
+&lt;p&gt;(1) 字、词特征，用以提高模型的泛化能力&lt;/p&gt;
+&lt;p&gt;(2) Ngram 特征，提供片段特征&lt;/p&gt;
+&lt;p&gt;(3) 词对特征，提供远距离组合特征&lt;/p&gt;
+&lt;p&gt;(4) 经过 gbdt 学习到的组合特征，更高维的组合特征&lt;/p&gt;
+&lt;p&gt;(5) 一些 ID 类的离散特征我们也一起和字和词组合到一起&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 带位置信息的 CNN&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;普通的 TextCNN 使用的 Max Pooling 是全文进行，忽略了文本表达的顺序信息，我们将 Max Pooling 以一定步长进行，提取出每个位置上的文本表示。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/6e/a8/6e69252c3c143475ff3dd25de65c95a8.png&#34; alt=&#34;img&#34; style=&#34;zoom: 50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;3.Self-Attention&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;基于 CNN 提取出的带位置信息的文本表示，我们加入 Attention 结构，组合不同位置的文本表示，并且让模型识别应该关注哪个部分。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/07/31/07cf34e6604bca9f6af60520292d5231.png&#34; alt=&#34;img&#34; style=&#34;zoom: 50%;&#34;&gt;&lt;/center&gt;
+&lt;h5&gt;&lt;span id=&#34;02-图像表示&#34;&gt; 02 图像表示&lt;/span&gt;&lt;/h5&gt;
+&lt;p&gt;短视频数据存在的文不对题、标题描述类型区分力弱的问题，这些问题都对模型的学习带来较大的困难。封面图作为从短视频中精选的一帧，能够在一定程度上代表短视频主题的意义，并且与文本具有互补性，如果能够从其中识别图像表征，补充到类型标签分类任务，应该能够提升模型的分类效果。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;表达融合方式：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;对图像进行表征，并融合到分类模型中，目前业界非常流行的做法是基于预训练的 ImageNet 模型在训练数据较少的目标任务上进行迁移学习，有 3 种方式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;特征抽取&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;实现方式：把 ImageNet 预训练的模型作为特征抽取器，将模型的某一层或者某几层特征作为类型标签模型特征提取源。&lt;/li&gt;
+&lt;li&gt;优点：预训练模型容易获取，不需要训练模型，只需要进行特征抽取，上线速度快。&lt;/li&gt;
+&lt;li&gt;缺点：模型效果差，需要选择抽取那一层的输出作为抽取的特征，需要保留的特征如果很多的话，特征保存的开销会很大。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FineTune + 特征抽取&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;实现方式：把 ImageNet 预训练的模型以类型标签为目标进行 FineTune，然后将模型的某一层或者某几层特征作为类型标签模型特征提取源（因训练目标一致，一般选择最后一层即可达到较好的效果）。&lt;/li&gt;
+&lt;li&gt;优点：模型效果好，输出的特征维度低，容易储存。&lt;/li&gt;
+&lt;li&gt;缺点：FineTune 耗时较大。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模型融合&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;实现方式：把 ImageNet 预训练的模型嵌入到类型标签的模型当中，让图像的表示和其他特征的表示同时进行训练。&lt;/li&gt;
+&lt;li&gt;优点：效果最好，End2End 完成最终的上线模型。&lt;/li&gt;
+&lt;li&gt;缺点：模型训练调参困难，并且耗时巨大。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;基于上述 3 种方式的介绍和分析，我们尝试了 1、2 两种方式，最终采纳了第 2 种方式。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;模型选择：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;图像模型的好坏直接影响到最终提取的图像特征的效果，需要选择一个效果与效率都很高的模型来完成我们的任务，在项目中我们尝试了 ResNet50 和 Xception 两个模型，并且最终选择后者，后者在我们的场景中训练、预测耗时接近，Accuracy 高 3%。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/a3/1d/a3ef89074d99c6adb9851b961fb2011d.png&#34; alt=&#34;img&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;特征融合：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;通过上述不同的特征表达方式，每一种特征都被映射为了一个向量，一种好的特征融合方式可以提升表示的整体效果，为此我们尝试了 3 种方案，并最终采用了 LMF 模型。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.Concatenate&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;顾名思义，这种方式就是将每种表达连接到一起后连接全连接学习整体的表达，这种方式简单，并且能够提供一个不错的基线。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/a8/2f/a8e9d297a24d9426fde597cbe6025f2f.png&#34; alt=&#34;img&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;2.CentralNet[6]&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;该模型借助多任务对每个模态的表达进行约束，以期 Fusion 后的表达能够获取更好的泛化能力，相对于 Concatenate 有 1% 的效果提升，模型示例如下：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/46/af/4600a06036f049f23e947f930418eaaf.png&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;3.LMF[7]&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;LMF (Low-rank Multimodal Fusion) 通过将 N 个模态的外积运算近似等价为内积和按位相乘的运算实现特征的全组合，相对于 CentralNet 有 0.2% 的效果提升，模型示例如下：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/c7/e0/c7ebdbcadeeb8d181fe899893ec257e0.png&#34; alt=&#34;img&#34; style=&#34;zoom:67%;&#34;&gt;&lt;/center&gt;
+&lt;h4&gt;&lt;span id=&#34;层次分类模块&#34;&gt; 层次分类模块&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;下文将首先介绍业界常见层次分类建模方式，然后分享在我们任务中采用的方案。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;业界常见建模方式：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;对于层次分类，业界常见的有 4 大类方法。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. 弹珠机模型&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;分类树的每个非叶子节点都有一个独立的模型，利用分类信息做数据的划分。优点是扩展性好，但是由于仅从样本维度使用层次信息，未能共享特征表达，而且模型数量和层次结构体系对应，在我们的应用场景中，需要数量巨大的独立模型，代表论文 [1]。以下图为例，预测过程为：&lt;/p&gt;
+&lt;p&gt;(1) 模型 1 预测为影视&lt;/p&gt;
+&lt;p&gt;(2) 模型 2 预测为电视剧&lt;/p&gt;
+&lt;p&gt;(3) 模型 3、模型 4 分别预测为古装和解读&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/8b/36/8b8786166152a888e9f943ee8eebff36.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 级联策略&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;低层级模型的输出作为高层级模型的特征，仅从分类结果维度使用层次信息，信息利用率低，实验效果不佳。代表论文 [2],[3]。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 正则化约束&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;通过正则化约束，通过让有上下级关系的分类模型的参数具有符合该正则化约束的相似性，正则化方式通过人工先验知识确定，无法让模型学习，正则化罚项超参也需要人工调整，实验代价大，效果不佳。代表论文 [4]。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. 多任务&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;将各层级分类的多个任务合并，以共享模型参数方式学习模型的层次结构，共享样本信息和模型参数，使用合并的 Loss 驱动模型调整参数，完成层次结构信息的使用。代表论文 [5]。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;我们的解决方案：DHMCN&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(Dense Hierarchical Multilabel Classification Network)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;结合实际应用场景，经过多次迭代升级，形成了最终的解决方案。&lt;/p&gt;
+&lt;p&gt;V1：上文提到的多任务模型（HMC）：其核心思想可以简化为采用多任务来分别学习一级、叶子的 global 和 local 表示。&lt;/p&gt;
+&lt;p&gt;V2：借鉴 DenseNet 的思想，尝试让层级间的连接更加的丰富，让模型更加容易收敛，而不会陷入局部最优解。下图是一个可视化的解释：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/29/c3/29b9205e239bfc2287654f935ddc7cc3.png&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;下图为我们构建的基于多任务的层次分类网络：&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/e7/b0/e7b5e83a9c7b8c10fc6b29131edd09b0.png&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;X 是短视频的表达，具体构建方式前文已经介绍&lt;/li&gt;
+&lt;li&gt;AG1 和 AG2 分别表示 Global 的 1 级和末级分类的隐层表达，PG 表示 Global（所有）的分类概率&lt;/li&gt;
+&lt;li&gt;AL1 和 AL2 分别表示 Local 的 1 级和末级的分类的隐层表达，PL1 和 PL2 分别表示 1 级和末级分类的概率&lt;/li&gt;
+&lt;li&gt;训练的 Loss 由 PG，PL1 和 PL2 三者与 GroundTruth 计算交叉熵得出&lt;/li&gt;
+&lt;li&gt;PF 表示合并了 Local 和 Global 的最终分类概率&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;V3：借鉴级联策略，用一级表示形成权重去指导叶子节点的分类，这样叶子节点就只用专注在某一级的内部去分类，相当于把其他无关的分类全 mask 掉。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/53/0d/53a3310a2235392c6662c65b3559440d.png&#34; alt=&#34;img&#34; style=&#34;zoom:50%;&#34;&gt;&lt;/center&gt;
+&lt;p&gt;这是一个端到端的自动学习，我们通过可视化权重，发现学习到的 Reweight Vector 符合我们的预期：模型在预测出一级分类为 19 号分类时发现应该提升该分类对应的叶子分类的置信度（如下图）。&lt;/p&gt;
+&lt;center&gt;&lt;img src=&#34;https://static001.infoq.cn/resource/image/4e/ad/4eda324c24a53328869dc5beab05a7ad.png&#34; alt=&#34;img&#34; style=&#34;zoom: 67%;&#34;&gt;&lt;/center&gt;
+&lt;h3&gt;&lt;span id=&#34;后续工作&#34;&gt; 后续工作&lt;/span&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;对于长度较短的短视频，将引入视频和音频特征，保证线上服务性能的情况下提升分类效果&lt;/li&gt;
+&lt;li&gt;对于样本较少的分类，将引入用户搜索、推荐 Session 行为进行训练获取初始化的短视频表达，然后基于该表达继续训练&lt;/li&gt;
+&lt;li&gt;更加充分的使用视频之间的关系进行训练（同一专辑、剧集、综艺、UP 主等）&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

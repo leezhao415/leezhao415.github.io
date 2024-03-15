@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Pytorch与PaddlePaddle  API映射表 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   PyTorch-PaddlePaddle API 映射表  X2Paddle 介绍 API 映射表目录 基础操作类 API 映射列表 组网类 API 映射列表 Loss 类 API 映射列表 工具类 API 映射列表 视觉类 API 映射列表        本文档基于 X2Paddle 研发过程梳理了 PyTorch（v1.8.1) 常用 API 与 PaddlePaddle 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytorch与PaddlePaddle  API映射表">
+<meta property="og:url" content="https://leezhao415.github.io/2021/12/12/Pytorch%E4%B8%8EPaddlePaddle-API%E6%98%A0%E5%B0%84%E8%A1%A8/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   PyTorch-PaddlePaddle API 映射表  X2Paddle 介绍 API 映射表目录 基础操作类 API 映射列表 组网类 API 映射列表 Loss 类 API 映射列表 工具类 API 映射列表 视觉类 API 映射列表        本文档基于 X2Paddle 研发过程梳理了 PyTorch（v1.8.1) 常用 API 与 PaddlePaddle 2">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-12T10:28:31.000Z">
+<meta property="article:modified_time" content="2021-12-12T11:07:28.043Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="PaddlePaddle">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Pytorch与PaddlePaddle-API映射表" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Pytorch与PaddlePaddle  API映射表
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-12-12
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#pytorch-paddlepaddle-api%E6%98%A0%E5%B0%84%E8%A1%A8httpswwwpaddlepaddleorgcndocumentationdocszhguides08_api_mappingpytorch_api_mapping_cnhtmlpytorch-paddlepaddle-api">PyTorch-PaddlePaddle API 映射表</a>
+<ul>
+<li><a href="#x2paddle%E4%BB%8B%E7%BB%8Dhttpswwwpaddlepaddleorgcndocumentationdocszhguides08_api_mappingpytorch_api_mapping_cnhtmlx2paddle">X2Paddle 介绍</a></li>
+<li><a href="#api%E6%98%A0%E5%B0%84%E8%A1%A8%E7%9B%AE%E5%BD%95httpswwwpaddlepaddleorgcndocumentationdocszhguides08_api_mappingpytorch_api_mapping_cnhtmlapi">API 映射表目录</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%E7%B1%BBapi%E6%98%A0%E5%B0%84%E5%88%97%E8%A1%A8httpswwwpaddlepaddleorgcndocumentationdocszhguides08_api_mappingpytorch_api_mapping_cnhtmlid1">基础操作类 API 映射列表</a></li>
+<li><a href="#%E7%BB%84%E7%BD%91%E7%B1%BBapi%E6%98%A0%E5%B0%84%E5%88%97%E8%A1%A8httpswwwpaddlepaddleorgcndocumentationdocszhguides08_api_mappingpytorch_api_mapping_cnhtmlid2">组网类 API 映射列表</a></li>
+<li><a href="#loss%E7%B1%BBapi%E6%98%A0%E5%B0%84%E5%88%97%E8%A1%A8httpswwwpaddlepaddleorgcndocumentationdocszhguides08_api_mappingpytorch_api_mapping_cnhtmllossapi">Loss 类 API 映射列表</a></li>
+<li><a href="#%E5%B7%A5%E5%85%B7%E7%B1%BBapi%E6%98%A0%E5%B0%84%E5%88%97%E8%A1%A8httpswwwpaddlepaddleorgcndocumentationdocszhguides08_api_mappingpytorch_api_mapping_cnhtmlid3">工具类 API 映射列表</a></li>
+<li><a href="#%E8%A7%86%E8%A7%89%E7%B1%BBapi%E6%98%A0%E5%B0%84%E5%88%97%E8%A1%A8httpswwwpaddlepaddleorgcndocumentationdocszhguides08_api_mappingpytorch_api_mapping_cnhtmlid4">视觉类 API 映射列表</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h1><span id="pytorch-paddlepaddle-api-映射表"> </span></h1>
+<p>本文档基于<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle"> X2Paddle</a> 研发过程梳理了 PyTorch（v1.8.1) 常用 API 与 PaddlePaddle 2.0.0 API 对应关系与差异分析。通过本文档，帮助开发者快速迁移 PyTorch 使用经验，完成模型的开发与调优。</p>
+<h2><span id="x2paddle-介绍"> </span></h2>
+<p>X2Paddle 致力于帮助其它主流深度学习框架开发者快速迁移至飞桨框架，目前提供三大功能</p>
+<ul>
+<li>预测模型转换
+<ul>
+<li>支持 Caffe/TensorFlow/ONNX/PyTorch 的模型一键转为飞桨的预测模型，并使用 PaddleInference/PaddleLite 进行 CPU/GPU/Arm 等设备的部署</li>
+</ul>
+</li>
+<li>PyTorch 训练项目转换
+<ul>
+<li>支持 PyTorch 项目 Python 代码（包括训练、预测）一键转为基于飞桨框架的项目代码，帮助开发者快速迁移项目，并可享受 AIStudio 平台对于飞桨框架提供的海量免费计算资源</li>
+</ul>
+</li>
+<li>API 映射文档
+<ul>
+<li>详细的 API 文档对比分析，帮助开发者快速从 PyTorch 框架的使用迁移至飞桨框架的使用，大大降低学习成本</li>
+</ul>
+</li>
+</ul>
+<p>详细的项目信息与使用方法参考 X2Paddle 在 Github 上的开源项目: <a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle">https://github.com/PaddlePaddle/X2Paddle</a></p>
+<h2><span id="api-映射表目录"> </span></h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/README.md">基础操作类</a></td>
+<td>主要为 <code>torch.XX</code>  类 API</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/README.md">组网类</a></td>
+<td>主要为 <code>torch.nn.XX</code>  类下组网相关的 API</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/loss/README.md">Loss 类</a></td>
+<td>主要为 <code>torch.nn.XX</code>  类下 loss 相关的 API</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/README.md">工具类</a></td>
+<td>主要为 <code>torch.nn.XX</code>  类下分布式相关的 API 和 <code>torch.utils.XX</code>  类 API</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/README.md">视觉类</a></td>
+<td>主要为 <code>torchvision.XX</code>  类 API</td>
+</tr>
+</tbody>
+</table>
+<h2><span id="基础操作类-api-映射列表"> </span></h2>
+<p>该文档梳理了基础操作的 PyTorch-PaddlePaddle API 映射列表，主要包括了构造 Tensor、数学计算、逻辑计算相关的 API。</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>PyTorch API</th>
+<th>PaddlePaddle API</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.set_default_dtype.html">torch.set_default_dtype</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/set_default_dtype_cn.html#set-default-dtype">paddle.set_default_dtype</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.get_default_dtype.html">torch.get_default_dtype</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/get_default_dtype_cn.html#get-default-dtype">paddle.get_default_dtype</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.numel.html">torch.numel</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/numel_cn.html#numel">paddle.numel</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.tensor.html?highlight=tensor#torch.tensor">torch.tensor</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/to_tensor_cn.html#to-tensor">paddle.to_tensor</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.tensor.md">差异对比</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.from_numpy.html?highlight=from_numpy#torch.from_numpy">torch.from_numpy</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/to_tensor_cn.html#to-tensor">paddle.to_tensor</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.from_numpy.md">差异对比</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.zeros.html?highlight=zeros#torch.zeros">torch.zeros</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/zeros_cn.html#zeros">paddle.zeros</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.zeros.md">差异对比</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.zeros_like.html?highlight=zeros_like#torch.zeros_like">torch.zeros_like</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/zeros_like_cn.html#zeros-like">paddle.zeros_like</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.zeros_like.md">差异对比</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.ones.html?highlight=ones#torch.ones">torch.ones</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ones_cn.html#ones">paddle.ones</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.ones.md">差异对比</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.zeros_like.html?highlight=zeros_like#torch.zeros_like">torch.ones_like</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ones_like_cn.html#ones-like">paddle.ones_like</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.ones_like.md">差异对比</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.empty.html?highlight=empty#torch.empty">torch.empty</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/empty_cn.html#empty">paddle.empty</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.empty.md">差异对比</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.empty_like.html?highlight=empty_like#torch.empty_like">torch.empty_like</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/empty_like_cn.html#empty-like">paddle.empty_like</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.empty_like.md">差异对比</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.full.html?highlight=full#torch.full">torch.full</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/full_cn.html#full">paddle.full</a></td>
+<td>功能一致，<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.full.md">参数不一致</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.full_like.html?highlight=full_like#torch.full_like">torch.full_like</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/full_like_cn.html#full-like">paddle.full_like</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.full_like.md">差异对比</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.arange.html?highlight=arange#torch.arange">torch.arange</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/arange_cn.html#arange">paddle.arange</a></td>
+<td>功能一致，<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.arange.md">参数不一致</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.range.html?highlight=range#torch.range">torch.range</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/arange_cn.html#arange">paddle.arange</a></td>
+<td>功能一致，<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.range.md">参数不一致</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.linspace.html?highlight=linspace#torch.linspace">torch.linspace</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linspace_cn.html#linspace">paddle.linspace</a></td>
+<td>功能一致，<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.linspace.md">参数不一致</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.eye.html?highlight=eye#torch.eye">torch.eye</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/eye_cn.html#eye">paddle.eye</a></td>
+<td>功能一致，<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.eye.md">参数不一致</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>[torch.cat](<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.cat.html?highlight=torch">https://pytorch.org/docs/stable/generated/torch.cat.html?highlight=torch</a> cat#torch.cat)</td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/concat_cn.html#concat">paddle.concat</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>19</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.chunk.html?highlight=chunk#torch.chunk">torch.chunk</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/chunk_cn.html#chunk">paddle.chunk</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>20</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.gather.html?highlight=gather#torch.gather">torch.gather</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/gather_cn.html#gather">paddle.gather</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.gather.md">差异对比</a></td>
+</tr>
+<tr>
+<td>21</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.index_select.html?highlight=index_select#torch.index_select">torch.index_select</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/index_select_cn.html#index-select">paddle.index_select</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>22</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.masked_select.html?highlight=masked_sel#torch.masked_select">torch.masked_select</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/masked_select_cn.html#masked-select">paddle.masked_select</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>23</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.narrow.html?highlight=narrow#torch.narrow">torch.narrow</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/slice_cn.html#slice">paddle.slice</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.narrow.md">差异对比</a></td>
+</tr>
+<tr>
+<td>24</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nonzero.html?highlight=nonzero#torch.nonzero">torch.nonzero</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nonzero_cn.html#nonzero">paddle.nonzero</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>25</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.reshape.html?highlight=reshape#torch.reshape">torch.reshape</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/reshape_cn.html#reshape">paddle.reshape</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>26</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.split.html?highlight=split#torch.split">torch.split</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/split_cn.html#split">paddle.split</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.split.md">差异对比</a></td>
+</tr>
+<tr>
+<td>27</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.squeeze.html?highlight=squeeze#torch.squeeze">torch.squeeze</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/squeeze_cn.html#squeeze">paddle.squeeze</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>28</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.stack.html?highlight=stack#torch.stack">torch.stack</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/stack_cn.html#stack">paddle.stack</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>29</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.t.html">torch.t</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/t_cn.html#t">paddle.t</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>30</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.transpose.html?highlight=transpose#torch.transpose">torch.transpose</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/transpose_cn.html#transpose">paddle.transpose</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.transpose.md">差异对比</a></td>
+</tr>
+<tr>
+<td>31</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.unbind.html?highlight=unbind#torch.unbind">torch.unbind</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unbind_cn.html#unbind">paddle.unbind</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>32</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.unsqueeze.html?highlight=unsqueeze#torch.unsqueeze">torch.unsqueeze</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unsqueeze_cn.html#unsqueeze">paddle.unsqueeze</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>33</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.where.html?highlight=where#torch.where">torch.where</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/where_cn.html#where">paddle.where</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>34</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.bernoulli.html?highlight=bernoulli#torch.bernoulli">torch.bernoulli</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bernoulli_cn.html#bernoulli">paddle.bernoulli</a></td>
+<td>功能一致，<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.bernoulli.md">参数不一致</a></td>
+</tr>
+<tr>
+<td>35</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.multinomial.html?highlight=multinomial#torch.multinomial">torch.multinomial</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/multinomial_cn.html#multinomial">paddle.multinomial</a></td>
+<td>功能一致，<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.multinomial.md">参数不一致</a></td>
+</tr>
+<tr>
+<td>36</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.normal.html?highlight=normal#torch.normal">torch.normal</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/normal_cn.html#normal">paddle.normal</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.normal.md">差异对比</a></td>
+</tr>
+<tr>
+<td>37</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.rand.html?highlight=rand#torch.rand">torch.rand</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/rand_cn.html#rand">paddle.rand</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.rand.md">差异对比</a></td>
+</tr>
+<tr>
+<td>38</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.randint.html?highlight=randint#torch.randint">torch.randint</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/randint_cn.html#randint">paddle.randint</a></td>
+<td>功能一致，<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.randint.md">参数不一致</a></td>
+</tr>
+<tr>
+<td>39</td>
+<td>[torch.randn](<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.randn.html?highlight=ran">https://pytorch.org/docs/stable/generated/torch.randn.html?highlight=ran</a> dn#torch.randn)</td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/randn_cn.html#randn">paddle.randn</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.randn.md">差异对比</a></td>
+</tr>
+<tr>
+<td>40</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.randperm.html?highlight=randperm#torch.randperm">torch.randperm</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/randperm_cn.html#randperm">paddle.randperm</a></td>
+<td>功能一致，<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.randperm.md">参数不一致</a></td>
+</tr>
+<tr>
+<td>41</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.save.html?highlight=save#torch.save">torch.save</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/save_cn.html#save">paddle.save</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.save.md">差异对比</a></td>
+</tr>
+<tr>
+<td>42</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.load.html?highlight=load#torch.load">torch.load</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/load_cn.html#load">paddle.load</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.load.md">差异对比</a></td>
+</tr>
+<tr>
+<td>43</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.abs.html?highlight=abs#torch.abs">torch.abs</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/abs_cn.html#abs">paddle.abs</a></td>
+<td>功能一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>44</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.absolute.html?highlight=absolute#torch.absolute">torch.absolute</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/abs_cn.html#abs">paddle.abs</a></td>
+<td>功能一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>45</td>
+<td>[torch.acos](<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.acos.html?highlight=torch">https://pytorch.org/docs/stable/generated/torch.acos.html?highlight=torch</a> acos#torch.acos)</td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acos_cn.html#acos">paddle.acos</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>46</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.arccos.html?highlight=arccos#torch.arccos">torch.arccos</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acos_cn.html#acos">paddle.acos</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>47</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.add.html?highlight=add#torch.add">torch.add</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/add_cn.html#add">padle.add</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>48</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.asin.html?highlight=asin#torch.asin">torch.asin</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asin_cn.html#asin">paddle.asin</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>49</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.arcsin.html?highlight=arcsin#torch.arcsin">torch.arcsin</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asin_cn.html#asin">paddle.asin</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>50</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.atan.html?highlight=atan#torch.atan">torch.atan</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan_cn.html#atan">paddle.atan</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>51</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.arctan.html?highlight=arctan#torch.arctan">torch.arctan</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan_cn.html#atan">paddle.atan</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>52</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.ceil.html?highlight=ceil#torch.ceil">torch.ceil</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ceil_cn.html#ceil">paddle.ceil</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>53</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.clamp.html#torch.clamp">torch.clamp</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/clip_cn.html#clip">paddle.clip</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>54</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.conj.html?highlight=conj#torch.conj">torch.conj</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/conj_cn.html#conj">paddle.conj</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>55</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.cos.html?highlight=cos#torch.cos">torch.cos</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cos_cn.html#cos">paddle.cos</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>56</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.cosh.html?highlight=cosh#torch.cosh">torch.cosh</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cosh_cn.html#cosh">paddle.cosh</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>57</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.div.html?highlight=div#torch.div">torch.div</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/divide_cn.html#divide">paddle.divide</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.div.md">差异对比</a></td>
+</tr>
+<tr>
+<td>58</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.divide.html?highlight=divide#torch.divide">torch.divide</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/divide_cn.html#divide">paddle.divide</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.divide.md">差异对比</a></td>
+</tr>
+<tr>
+<td>59</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.erf.html?highlight=erf#torch.erf">torch.erf</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/erf_cn.html#erf">paddle.erf</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>60</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.exp.html?highlight=exp#torch.exp">torch.exp</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/exp_cn.html#exp">paddle.exp</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>61</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.floor.html?highlight=floor#torch.floor">torch.floor</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/floor_cn.html#floor">paddle.floor</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>62</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.floor_divide.html?highlight=floor_divide#torch.floor_divide">torch.floor_divide</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/floor_divide_cn.html#floor-divide">paddle.floor_divide</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>63</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.fmod.html?highlight=fmod#torch.fmod">torch.fmod</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/mod_cn.html#mod">paddle.mod</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>64</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.log.html?highlight=log#torch.log">torch.log</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log_cn.html#log">paddle.log</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>65</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.log10.html?highlight=log10#torch.log10">torch.log10</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log10_cn.html#log10">paddle.log10</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>66</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.log1p.html?highlight=log1p#torch.log1p">torch.log1p</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log1p_cn.html#log1p">paddle.log1p</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>67</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.log2.html?highlight=log2#torch.log2">torch.log2</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log2_cn.html#log2">paddle.log2</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>68</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.logical_and.html?highlight=logical_and#torch.logical_and">torch.logical_and</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_and_cn.html#logical-and">paddle.logical_and</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>69</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.logical_not.html?highlight=logical_not#torch.logical_not">torch.logical_not</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_not_cn.html#logical-not">paddle.logical_not</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>70</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.logical_or.html?highlight=logical_or#torch.logical_or">torch.logical_or</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_or_cn.html#logical-or">paddle.logical_or</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>71</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.logical_xor.html?highlight=logical_xor#torch.logical_xor">torch.logical_xor</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_xor_cn.html#logical-xor">paddle.logical_xor</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>72</td>
+<td>[torch.mul](<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.mul.html?highlight=torch">https://pytorch.org/docs/stable/generated/torch.mul.html?highlight=torch</a> mul#torch.mul)</td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/multiply_cn.html#multiply">paddle.multiply</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>73</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.multiply.html?highlight=multiply#torch.multiply">torch.multiply</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/multiply_cn.html#multiply">paddle.multiply</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>74</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.pow.html?highlight=pow#torch.pow">torch.pow</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/pow_cn.html#pow">paddle.pow</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>75</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.real.html?highlight=real#torch.real">torch.real</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/real_cn.html#real">paddle.real</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>76</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.reciprocal.html?highlight=reciprocal#torch.reciprocal">torch.reciprocal</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/reciprocal_cn.html#reciprocal">paddle.reciprocal</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>77</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.remainder.html?highlight=remainder#torch.remainder">torch.remainder</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/mod_cn.html#mod">paddle.mod</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>78</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.round.html?highlight=round#torch.round">torch.round</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/round_cn.html#round">paddle.round</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>79</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.rsqrt.html?highlight=rsqrt#torch.rsqrt">torch.rsqrt</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/rsqrt_cn.html#rsqrt">paddle.rsqrt</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>80</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.sign.html?highlight=sign#torch.sign">torch.sign</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sign_cn.html#sign">paddle.sign</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>81</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.sin.html?highlight=sin#torch.sin">torch.sin</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sin_cn.html#sin">paddle.sin</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>82</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.sinh.html?highlight=sinh#torch.sinh">torch.sinh</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sinh_cn.html#sinh">paddle.sinh</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>83</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.sqrt.html?highlight=sqrt#torch.sqrt">torch.sqrt</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sqrt_cn.html#sqrt">paddle.sqrt</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>84</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.argmax.html?highlight=argmax#torch.argmax">torch.argmax</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/argmax_cn.html#argmax">paddle.argmax</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>85</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.argmin.html?highlight=argmin#torch.argmin">torch.argmin</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/argmin_cn.html#argmin">paddle.argmin</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>86</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.max.html?highlight=max#torch.max">torch.max</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/max_cn.html#max">paddle.max</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>87</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.min.html?highlight=min#torch.min">torch.min</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/min_cn.html#min">paddle.min</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>88</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.square.html?highlight=square#torch.square">torch.square</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/square_cn.html#square">paddle.square</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>89</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.sub.html?highlight=sub#torch.sub">torch.sub</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/subtract_cn.html#subtract">paddle.subtract</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.sub.md">差异对比</a></td>
+</tr>
+<tr>
+<td>90</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.subtract.html?highlight=subtract#torch.subtract">torch.subtract</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/subtract_cn.html#subtract">paddle.subtract</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.subtract.md">差异对比</a></td>
+</tr>
+<tr>
+<td>91</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.tanh.html?highlight=tanh#torch.tanh">torch.tanh</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tanh_cn.html#tanh">paddle.tanh</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>92</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.true_divide.html?highlight=true_divide#torch.true_divide">torch.true_divide</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/divide_cn.html#divide">paddle.divide</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>93</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.dist.html?highlight=dist">torch.dist</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/dist_cn.html#dist">paddle.dist</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>94</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.logsumexp.html?highlight=logsumexp#torch.logsumexp">torch.logsumexp</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logsumexp_cn.html#logsumexp">paddle.logsumexp</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>95</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.mean.html?highlight=mean">torch.mean</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/mean_cn.html#mean">paddle.mean</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>96</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.median.html?highlight=median#torch.median">torch.median</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/median_cn.html#median">paddle.median</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>97</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.norm.html?highlight=norm#torch.norm">torch.norm</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/norm_cn.html#norm">paddle.norm</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor 以及 <code>dtype</code>  参数代表输出 Tensor 类型</td>
+</tr>
+<tr>
+<td>98</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.prod.html?highlight=prod#torch.prod">torch.prod</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/prod_cn.html#prod">paddle.prod</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>99</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.std.html?highlight=std#torch.std">torch.std</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/std_cn.html#std">paddle.std</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>100</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.std_mean.html?highlight=std_mean#torch.std_mean">torch.std_mean</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.std_mean.md">组合实现</a></td>
+</tr>
+<tr>
+<td>101</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.sum.html?highlight=sum#torch.sum">torch.sum</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sum_cn.html#sum">paddle.sum</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>102</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.unique.html?highlight=unique#torch.unique">torch.unique</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unique_cn.html#unique">paddle.unique</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.unique.md">差异对比</a></td>
+</tr>
+<tr>
+<td>103</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.var.html?highlight=var#torch.var">torch.var</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/var_cn.html">paddle.var</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>104</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.var_mean.html?highlight=var_mean#torch.var_mean">torch.var_mean</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.var_mean.md">组合实现</a></td>
+</tr>
+<tr>
+<td>105</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.allclose.html?highlight=allclose#torch.allclose">torch.allclose</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/allclose_cn.html">paddle.allclose</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>106</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.argsort.html?highlight=argsort#torch.argsort">torch.argsort</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/argsort_cn.html">paddle.argsort</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>107</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.eq.html?highlight=eq#torch.eq">torch.eq</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/equal_cn.html">paddle.equal</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>108</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.equal.html?highlight=eq#torch.equal">torch.equal</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/equal_all_cn.html">paddle.equal_all</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>109</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.ge.html?highlight=ge#torch.ge">torch.ge</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/greater_equal_cn.html">paddle.greater_equal</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>110</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.gt.html?highlight=gt#torch.gt">torch.gt</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/greater_than_cn.html">paddle.greater_than</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>111</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.isfinite.html?highlight=isfinite#torch.isfinite">torch.isfinite</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/isfinite_cn.html">paddle.isfinite</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>112</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.isinf.html?highlight=isinf#torch.isinf">torch.isinf</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/isinf_cn.html">paddle.isinf</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>113</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.isnan.html?highlight=isnan#torch.isnan">torch.isnan</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/isnan_cn.html">paddle.isnan</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>114</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.kthvalue.html?highlight=kthvalue#torch.kthvalue">torch.kthvalue</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.kthvalue.md">组合实现</a></td>
+</tr>
+<tr>
+<td>115</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.le.html?highlight=le#torch.le">torch.le</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/less_equal_cn.html">paddle.less_equal</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>116</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.lt.html?highlight=lt#torch.lt">torch.lt</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/less_than_cn.html">paddle.less_than</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>117</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.maximum.html?highlight=max#torch.maximum">torch.maximum</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/2.0/api/paddle/tensor/math/maximum_cn.html#cn-api-paddle-tensor-maximum">paddle.maximum</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>118</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.minimum.html?highlight=minimum#torch.minimum">torch.minimum</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/2.0/api/paddle/tensor/math/minimum_cn.html#cn-api-paddle-tensor-minimum">paddle.minimum</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>119</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.ne.html?highlight=ne#torch.ne">torch.ne</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/not_equal_cn.html">paddle.not_equal</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>120</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.sort.html?highlight=sort#torch.sort">torch.sort</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/argsort_cn.html">paddle.argsort</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>121</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.topk.html?highlight=topk#torch.topk">torch.topk</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/topk_cn.html#topk">paddle.topk</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>122</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.cross.html?highlight=cross#torch.cross">torch.cross</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cross_cn.html">paddle.cross</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>123</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.any.html?highlight=any#torch.any">torch.any</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/any_cn.html">paddle.any</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>124</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.cumsum.html?highlight=cumsum#torch.cumsum">torch.cumsum</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cumsum_cn.html">paddle.cumsum</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>125</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.diag.html?highlight=diag#torch.diag">torch.diag</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/diag_cn.html">paddle.diag</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.diag.md">差异对比</a></td>
+</tr>
+<tr>
+<td>126</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.diag_embed.html?highlight=diag_embed#torch.diag_embed">torch.diag_embed</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/diag_embed_cn.html">paddle.nn.functional.diag_embed</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>127</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.einsum.html?highlight=einsum#torch.einsum">torch.einsum</a></td>
+<td>paddlenlp.ops.einsum</td>
+<td>功能一致，需要安装<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleNLP#pip%E5%AE%89%E8%A3%85"> paddlenlp</a></td>
+</tr>
+<tr>
+<td>128</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.flatten.html?highlight=flatten#torch.flatten">torch.flatten</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/flatten_cn.html">paddle.flatten</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>129</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.flip.html?highlight=flip#torch.flip">torch.flip</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/flip_cn.html">paddle.flip</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>130</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.rot90.html?highlight=rot90#torch.rot90">torch.rot90</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.rot90.md">组合实现</a></td>
+</tr>
+<tr>
+<td>131</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.meshgrid.html?highlight=meshgrid#torch.meshgrid">torch.meshgrid</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/meshgrid_cn.html">paddle.meshgrid</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>132</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.roll.html?highlight=roll#torch.roll">torch.roll</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/roll_cn.html">paddle.roll</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>133</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.tril.html?highlight=tril#torch.tril">torch.tril</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tril_cn.html">paddle.tril</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>134</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.triu.html?highlight=triu#torch.triu">torch.triu</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/triu_cn.html">paddle.triu</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>135</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.bmm.html?highlight=bmm#torch.bmm">torch.bmm</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/bmm_cn.html">paddle.bmm</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>136</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.cholesky.html?highlight=cholesky#torch.cholesky">torch.cholesky</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cholesky_cn.html">paddle.cholesky</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>137</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.dot.html?highlight=dot#torch.dot">torch.dot</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/dot_cn.html">paddle.dot</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>138</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.inverse.html?highlight=inverse#torch.inverse">torch.inverse</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/inverse_cn.html">paddle.inverse</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>139</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.trace.html?highlight=trace#torch.trace">torch.trace</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/trace_cn.html">paddle.trace</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.trace.md">差异对比</a></td>
+</tr>
+<tr>
+<td>140</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.addmv.html?highlight=addmv#torch.addmv">torch.addmv</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.addmv.md">组合实现</a></td>
+</tr>
+<tr>
+<td>141</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.addr.html?highlight=addr#torch.addr">torch.addr</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.addr.md">组合实现</a></td>
+</tr>
+<tr>
+<td>142</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.baddbmm.html?highlight=baddbmm#torch.baddbmm">torch.baddbmm</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.baddbmm.md">组合实现</a></td>
+</tr>
+<tr>
+<td>143</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.addmm.html?highlight=addmm#torch.addmm">torch.addmm</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/addmm_cn.html">paddle.addmm</a></td>
+<td>功能一致，参数名不一致，PaddlePaddle 未定义 <code>out</code>  参数代表输出 Tensor</td>
+</tr>
+<tr>
+<td>144</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.chain_matmul.html?highlight=chain_matmul#torch.chain_matmul">torch.chain_matmul</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.chain_matmul.md">组合实现</a></td>
+</tr>
+<tr>
+<td>145</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.cholesky_inverse.html?highlight=cholesky_inverse#torch.cholesky_inverse">torch.cholesky_inverse</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.cholesky_inverse.md">组合实现</a></td>
+</tr>
+<tr>
+<td>146</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.cholesky_solve.html?highlight=cholesky_solve#torch.cholesky_solve">torch.cholesky_solve</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.cholesky_solve.md">组合实现</a></td>
+</tr>
+<tr>
+<td>147</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.matmul.html?highlight=matmul#torch.matmul">torch.matmul</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/matmul_cn.html">paddle.matmul</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.matmul.md">差异对比</a></td>
+</tr>
+<tr>
+<td>148</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.mm.html?highlight=mm#torch.mm">torch.mm</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/matmul_cn.html">paddle.matmul</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.mm.md">差异对比</a></td>
+</tr>
+<tr>
+<td>149</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.mv.html?highlight=mv#torch.mv">torch.mv</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.mv.md">组合实现</a></td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>持续更新…</strong></em></p>
+<h2><span id="组网类-api-映射列表"> </span></h2>
+<p>该文档梳理了与构造网络相关的 PyTorch-PaddlePaddle API 映射列表。</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>PyTorch API</th>
+<th>PaddlePaddle API</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>[torch.nn.Conv1d](<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Conv1d.html?highlight=torch">https://pytorch.org/docs/stable/generated/torch.nn.Conv1d.html?highlight=torch</a> nn conv1d#torch.nn.Conv1d)</td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Conv1D_cn.html#conv1d">paddle.nn.Conv1D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.Conv1d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html?highlight=conv2d#torch.nn.Conv2d">torch.nn.Conv2d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Conv2D_cn.html#conv2d">paddle.nn.Conv2D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.Conv2d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Conv3d.html?highlight=conv3d#torch.nn.Conv3d">torch.nn.Conv3d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Conv3D_cn.html#conv3d">paddle.nn.Conv3D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.Conv3d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>[torch.nn.ConvTranspose1d](<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose1d.html?highlight=torch">https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose1d.html?highlight=torch</a> nn convtranspose1d#torch.nn.ConvTranspose1d)</td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Conv1DTranspose_cn.html#conv1dtranspose">paddle.nn.Conv1DTranspose</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.ConvTranspose1d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html?highlight=convtranspose2d#torch.nn.ConvTranspose2d">torch.nn.ConvTranspose2d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Conv2DTranspose_cn.html#conv2dtranspose">paddle.nn.Conv2DTranspose</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.ConvTranspose2d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose3d.html?highlight=convtranspose3d#torch.nn.ConvTranspose3d">torch.nn.ConvTranspose3d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Conv3DTranspose_cn.html#conv3dtranspose">paddle.nn.Conv3DTranspose</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.ConvTranspose3d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Linear.html?highlight=linear#torch.nn.Linear">torch.nn.Linear</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Linear_cn.html#linear">paddle.nn.Linear</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.Linear.md">差异对比</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.MaxPool1d.html?highlight=maxpool1d#torch.nn.MaxPool1d">torch.nn.MaxPool1d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MaxPool1D_cn.html#maxpool1d">paddle.nn.MaxPool1D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.MaxPool1d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.MaxPool2d.html?highlight=maxpool2d#torch.nn.MaxPool2d">torch.nn.MaxPool2d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MaxPool2D_cn.html#maxpool2d">paddle.nn.MaxPool2D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.MaxPool2d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.MaxPool3d.html?highlight=maxpool3d#torch.nn.MaxPool3d">torch.nn.MaxPool3d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MaxPool3D_cn.html#maxpool3d">paddle.nn.MaxPool3D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.MaxPool3d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.MaxUnpool1d.html?highlight=unpool#torch.nn.MaxUnpool1d">torch.nn.MaxUnpool1d</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.MaxUnpool1d.md">组合实现</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.MaxUnpool2d.html?highlight=unpool#torch.nn.MaxUnpool2d">torch.nn.MaxUnpool2d</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.MaxUnpool2d.md">组合实现</a></td>
+</tr>
+<tr>
+<td>13</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.MaxUnpool3d.html?highlight=unpool#torch.nn.MaxUnpool3d">torch.nn.MaxUnpool3d</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.MaxUnpool3d.md">组合实现</a></td>
+</tr>
+<tr>
+<td>14</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.AvgPool1d.html?highlight=avgpool1d#torch.nn.AvgPool1d">torch.nn.AvgPool1d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AvgPool1D_cn.html#avgpool1d">paddle.nn.AvgPool1D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.AvgPool1d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>15</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.AvgPool2d.html?highlight=avgpool2d#torch.nn.AvgPool2d">torch.nn.AvgPool2d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AvgPool2D_cn.html#avgpool2d">paddle.nn.AvgPool2D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.AvgPool2d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>16</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.AvgPool3d.html?highlight=avgpool3d#torch.nn.AvgPool3d">torch.nn.AvgPool3d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AvgPool3D_cn.html#avgpool3d">paddle.nn.AvgPool3D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.AvgPool3d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveMaxPool1d.html?highlight=adaptivemaxpool1d#torch.nn.AdaptiveMaxPool1d">torch.nn.AdaptiveMaxPool1d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AdaptiveMaxPool1D_cn.html#adaptivemaxpool1d">paddle.nn.AdaptiveMaxPool1D</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>18</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveMaxPool2d.html?highlight=adaptivemaxpool2d#torch.nn.AdaptiveMaxPool2d">torch.nn.AdaptiveMaxPool2d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AdaptiveMaxPool2D_cn.html#adaptivemaxpool2d">paddle.nn.AdaptiveMaxPool2D</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>19</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveMaxPool3d.html?highlight=adaptivemaxpool3d#torch.nn.AdaptiveMaxPool3d">torch.nn.AdaptiveMaxPool3d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AdaptiveMaxPool3D_cn.html#adaptivemaxpool3d">paddle.nn.AdaptiveMaxPool3D</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>20</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveAvgPool1d.html?highlight=adaptiveavgpool1d#torch.nn.AdaptiveAvgPool1d">torch.nn.AdaptiveAvgPool1d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AdaptiveAvgPool1D_cn.html#adaptiveavgpool1d">paddle.nn.AdaptiveAvgPool1D</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>21</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveAvgPool2d.html?highlight=adaptiveavgpool2d#torch.nn.AdaptiveAvgPool2d">torch.nn.AdaptiveAvgPool2d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AdaptiveAvgPool2D_cn.html#adaptiveavgpool2d">paddle.nn.AdaptiveAvgPool2D</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>22</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.AdaptiveAvgPool3d.html?highlight=adaptiveavgpool3d#torch.nn.AdaptiveAvgPool3d">torch.nn.AdaptiveAvgPool3d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/AdaptiveAvgPool3D_cn.html#adaptiveavgpool3d">paddle.nn.AdaptiveAvgPool3D</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+<tr>
+<td>23</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ConstantPad1d.html?highlight=pad#torch.nn.ConstantPad1d">torch.nn.ConstantPad1d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Pad1D_cn.html#pad1d">paddle.nn.Pad1D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.ConstantPad1d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>24</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ConstantPad2d.html?highlight=pad#torch.nn.ConstantPad2d">torch.nn.ConstantPad2d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Pad2D_cn.html#pad2d">paddle.nn.Pad2D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.ConstantPad2d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>25</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ConstantPad3d.html?highlight=pad#torch.nn.ConstantPad3d">torch.nn.ConstantPad3d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Pad3D_cn.html#pad3d">paddle.nn.Pad3D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.ConstantPad3d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>26</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ReflectionPad1d.html?highlight=pad#torch.nn.ReflectionPad1d">torch.nn.ReflectionPad1d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Pad1D_cn.html#pad1d">paddle.nn.Pad1D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.ReflectionPad1d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>27</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ReflectionPad2d.html?highlight=pad#torch.nn.ReflectionPad2d">torch.nn.ReflectionPad2d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Pad2D_cn.html#pad2d">paddle.nn.Pad2D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.ReflectionPad2d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>28</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ReplicationPad1d.html?highlight=pad#torch.nn.ReplicationPad1d">torch.nn.ReplicationPad1d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Pad1D_cn.html#pad1d">paddle.nn.Pad1D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.ReplicationPad1d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>29</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ReplicationPad2d.html?highlight=pad#torch.nn.ReplicationPad2d">torch.nn.ReplicationPad2d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Pad2D_cn.html#pad2d">paddle.nn.Pad2D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.ReplicationPad2d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>30</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ReplicationPad3d.html?highlight=pad#torch.nn.ReplicationPad3d">torch.nn.ReplicationPad3d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Pad3D_cn.html#pad3d">paddle.nn.Pad3D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.ReplicationPad3d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>31</td>
+<td>[torch.nn.BatchNorm1d](<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html?highlight=torch">https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html?highlight=torch</a> nn batchnorm1d#torch.nn.BatchNorm1d)</td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BatchNorm1D_cn.html#batchnorm1d">paddle.nn.BatchNorm1D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.BatchNorm1d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>32</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html?highlight=batchnorm2d#torch.nn.BatchNorm2d">torch.nn.BatchNorm2d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BatchNorm2D_cn.html#batchnorm2d">paddle.nn.BatchNorm2D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.BatchNorm2d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>33</td>
+<td>[torch.nn.BatchNorm3d](<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm3d.html?highlight=torch">https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm3d.html?highlight=torch</a> nn batchnorm3d#torch.nn.BatchNorm3d)</td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BatchNorm3D_cn.html#batchnorm3d">paddle.nn.BatchNorm3D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.BatchNorm3d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>34</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Upsample.html?highlight=upsample#torch.nn.Upsample">torch.nn.Upsample</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Upsample_cn.html#upsample">paddle.nn.Upsample</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.Upsample.md">差异对比</a></td>
+</tr>
+<tr>
+<td>35</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Dropout.html?highlight=dropout#torch.nn.Dropout">torch.nn.Dropout</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Dropout_cn.html#dropout">paddle.nn.Dropout</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.Dropout.md">差异对比</a></td>
+</tr>
+<tr>
+<td>36</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Dropout2d.html?highlight=dropout2d#torch.nn.Dropout2d">torch.nn.Dropout2d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Dropout2D_cn.html#dropout2d">paddle.nn.Dropout2D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.Dropout2d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>37</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Dropout3d.html?highlight=dropout3d#torch.nn.Dropout3d">torch.nn.Dropout3d</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Dropout3D_cn.html#dropout3d">paddle.nn.Dropout3D</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.Dropout3d.md">差异对比</a></td>
+</tr>
+<tr>
+<td>38</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html?highlight=lstm#torch.nn.LSTM">torch.nn.LSTM</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LSTM_cn.html#lstm">paddle.nn.LSTM</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.LSTM.md">差异对比</a></td>
+</tr>
+<tr>
+<td>39</td>
+<td>[torch.nn.GRU](<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.GRU.html?highlight=torch">https://pytorch.org/docs/stable/generated/torch.nn.GRU.html?highlight=torch</a> nn gru#torch.nn.GRU)</td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/GRU_cn.html#gru">paddle.nn.GRU</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.GRU.md">差异对比</a></td>
+</tr>
+<tr>
+<td>40</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html?highlight=embedding#torch.nn.Embedding">torch.nn.Embedding</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Embedding_cn.html#embedding">paddle.nn.Embedding</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.Embedding.md">差异对比</a></td>
+</tr>
+<tr>
+<td>41</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ELU.html?highlight=elu#torch.nn.ELU">torch.nn.ELU</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ELU_cn.html#elu">paddle.nn.ELU</a></td>
+<td>功能一致，PaddlePaddle 未定义 <code>inplace</code>  参数表示在不更改变量的内存地址的情况下，直接修改变量的值</td>
+</tr>
+<tr>
+<td>42</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Hardsigmoid.html?highlight=hardsigmoid#torch.nn.Hardsigmoid">torch.nn.Hardsigmoid</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Hardsigmoid_cn.html#hardsigmoid">paddle.nn.Hardsigmoid</a></td>
+<td>功能一致，PaddlePaddle 未定义 <code>inplace</code>  参数表示在不更改变量的内存地址的情况下，直接修改变量的值</td>
+</tr>
+<tr>
+<td>43</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.LeakyReLU.html?highlight=leakyrelu#torch.nn.LeakyReLU">torch.nn.LeakyReLU</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LeakyReLU_cn.html#leakyrelu">paddle.nn.LeakyReLU</a></td>
+<td>功能一致，PaddlePaddle 未定义 <code>inplace</code>  参数表示在不更改变量的内存地址的情况下，直接修改变量的值</td>
+</tr>
+<tr>
+<td>44</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.PReLU.html?highlight=prelu#torch.nn.PReLU">torch.nn.PReLU</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/PReLU_cn.html#prelu">paddle.nn.PReLU</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>45</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ReLU.html?highlight=relu#torch.nn.ReLU">torch.nn.ReLU</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ReLU_cn.html#relu">paddle.nn.ReLU</a></td>
+<td>功能一致，PaddlePaddle 未定义 <code>inplace</code>  参数表示在不更改变量的内存地址的情况下，直接修改变量的值</td>
+</tr>
+<tr>
+<td>46</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.Softmax.html?highlight=softmax#torch.nn.Softmax">torch.nn.Softmax</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Softmax_cn.html#softmax">paddle.nn.Softmax</a></td>
+<td>功能一致，参数名不一致</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>持续更新…</strong></em></p>
+<h2><span id="loss-类-api-映射列表"> </span></h2>
+<p>该文档梳理了计算 loss 相关的 PyTorch-PaddlePaddle API 映射列表。</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>PyTorch API</th>
+<th>PaddlePaddle API</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.L1Loss.html?highlight=l1loss#torch.nn.L1Loss">torch.nn.L1Loss</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/loss/L1Loss_cn.html#l1loss">paddle.nn.L1Loss</a></td>
+<td>功能一致，PyTroch 存在废弃参数 <code>size_average</code>  和 <code>reduce</code> 。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.MSELoss.html?highlight=mseloss#torch.nn.MSELoss">torch.nn.MSELoss</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MSELoss_cn.html#mseloss">paddle.nn.MSELoss</a></td>
+<td>功能一致，PyTroch 存在废弃参数 <code>size_average</code>  和 <code>reduce</code> 。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/layer/loss/CrossEntropyLoss_cn.html#crossentropyloss">torch.nn.CrossEntropyLoss</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/CrossEntropyLoss_cn.html#crossentropyloss">paddle.nn.CrossEntropyLoss</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/loss/torch.nn.CrossEntropyLoss.md">差异对比</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html?highlight=kldivloss#torch.nn.KLDivLoss">torch.nn.KLDivLoss</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/KLDivLoss_cn.html#kldivloss">paddle.nn.KLDivLoss</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/loss/torch.nn.KLDivLoss.md">差异对比</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss">torch.nn.BCELoss</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCELoss_cn.html#bceloss">paddle.nn.BCELoss</a></td>
+<td>功能一致，PyTroch 存在废弃参数 <code>size_average</code>  和 <code>reduce</code> 。</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html?highlight=bcewithlogitsloss#torch.nn.BCEWithLogitsLoss">torch.nn.BCEWithLogitsLoss</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCEWithLogitsLoss_cn.html#bcewithlogitsloss">paddle.nn.BCEWithLogitsLoss</a></td>
+<td>功能一致，PyTroch 存在废弃参数 <code>size_average</code>  和 <code>reduce</code> 。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>[torch.nn.SmoothL1Loss](<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html?highlight=torch">https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html?highlight=torch</a> nn smoothl1loss#torch.nn.SmoothL1Loss)</td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/SmoothL1Loss_cn.html#smoothl1loss">paddle.nn.SmoothL1Loss</a></td>
+<td>功能一致，参数名不一致，PyTroch 存在废弃参数 <code>size_average</code>  和 <code>reduce</code> 。</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>持续更新…</strong></em></p>
+<h2><span id="工具类-api-映射列表"> </span></h2>
+<p>该文档梳理了与数据处理、分布式处理等相关的 PyTorch-PaddlePaddle API 映射列表。</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>PyTorch API</th>
+<th>PaddlePaddle API</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html?highlight=dataparallel#torch.nn.DataParallel">torch.nn.DataParallel</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/DataParallel_cn.html#dataparallel">paddle.DataParallel</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.nn.DataParallel.md">差异对比</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>[torch.nn.parameter.Parameter](<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.parameter.Parameter.html?highlight=torch">https://pytorch.org/docs/stable/generated/torch.nn.parameter.Parameter.html?highlight=torch</a> nn parameter#torch.nn.parameter.Parameter)</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/Paddle/blob/release/2.1/python/paddle/fluid/layers/tensor.py#L77">paddle.create_parameter</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.nn.parameter.Parameter.md">差异对比</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.utils.clip_grad_value_.html?highlight=clip_grad_value_#torch.nn.utils.clip_grad_value_">torch.nn.utils.clip_grad_value_</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.nn.utils.clip_grad_value_.md">组合实现</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=dataloader#torch.utils.data.DataLoader">torch.utils.data.DataLoader</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/DataLoader_cn.html#dataloader">paddle.io.DataLoader</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.utils.data.DataLoader.md">差异对比</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=random_split#torch.utils.data.random_split">torch.utils.data.random_split</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.utils.data.random_split.md">组合实现</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=distributedsampler#torch.utils.data.distributed.DistributedSampler">torch.utils.data.distributed.DistributedSampler</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.utils.data.distributed.DistributedSampler.md">组合实现</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>[torch.utils.data.Dataset](<a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=torch">https://pytorch.org/docs/stable/data.html?highlight=torch</a> utils data dataset#torch.utils.data.Dataset)</td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Dataset_cn.html#dataset">paddle.io.Dataset</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=batchsampler#torch.utils.data.BatchSampler">torch.utils.data.BatchSampler</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/BatchSampler_cn.html#batchsampler">paddle.io.BatchSampler</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.utils.data.BatchSampler.md">差异对比</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=sampler#torch.utils.data.Sampler">torch.utils.data.Sampler</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Sampler_cn.html#sampler">paddle.io.Sampler</a></td>
+<td>功能一致</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>持续更新…</strong></em></p>
+<h2><span id="视觉类-api-映射列表"> </span></h2>
+<p>该文档梳理了与视觉处理相关的 PyTorch-PaddlePaddle API 映射列表。</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>PyTorch API</th>
+<th>PaddlePaddle API</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=compose#torchvision.transforms.Compose">torchvision.transforms.Compose</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/Compose_cn.html#compose">paddle.vision.transforms.Compose</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=topilimage#torchvision.transforms.ToPILImage">torchvision.transforms.ToPILImage</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.transforms.ToPILImage.md">组合实现</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=resize#torchvision.transforms.Resize">torchvision.transforms.Resize</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/Resize_cn.html#resize">paddle.vision.transforms.Resize</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=totensor#torchvision.transforms.ToTensor">torchvision.transforms.ToTensor</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/ToTensor_cn.html#totensor">paddle.vision.transforms.ToTensor</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=randomhorizontalflip#torchvision.transforms.RandomHorizontalFlip">torchvision.transforms.RandomHorizontalFlip</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/RandomHorizontalFlip_cn.html#randomhorizontalflip">paddle.vision.transforms.RandomHorizontalFlip</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=centercrop#torchvision.transforms.CenterCrop">torchvision.transforms.CenterCrop</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/CenterCrop_cn.html#centercrop">paddle.vision.transforms.CenterCrop</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=colorjitter#torchvision.transforms.ColorJitter">torchvision.transforms.ColorJitter</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/ColorJitter_cn.html#colorjitter">paddle.vision.transforms.ColorJitter</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=grayscale#torchvision.transforms.Grayscale">torchvision.transforms.Grayscale</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/Grayscale_cn.html#grayscale">paddle.vision.transforms.Grayscale</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=normalize#torchvision.transforms.Normalize">torchvision.transforms.Normalize</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/Normalize_cn.html#normalize">paddle.vision.transforms.Normalize</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.transforms.Normalize.md">差异对比</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=randomresizedcrop#torchvision.transforms.RandomResizedCrop">torchvision.transforms.RandomResizedCrop</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/RandomResizedCrop_cn.html#randomresizedcrop">paddle.vision.transforms.RandomResizedCrop</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=pad#torchvision.transforms.Pad">torchvision.transforms.Pad</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/Pad_cn.html#pad">paddle.vision.transforms.Pad</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=randomcrop#torchvision.transforms.RandomCrop">torchvision.transforms.RandomCrop</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/transforms/RandomCrop_cn.html#randomcrop">paddle.vision.transforms.RandomCrop</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=randomrotation#torchvision.transforms.RandomRotation">torchvision.transforms.RandomRotation</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/RandomCrop_cn.html#randomcrop">paddle.vision.transforms.RandomRotation</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=randomverticalflip#torchvision.transforms.RandomVerticalFlip">torchvision.transforms.RandomVerticalFlip</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/RandomVerticalFlip_cn.html#randomverticalflip">paddle.vision.transforms.RandomVerticalFlip</a></td>
+<td>功能一致</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/transforms.html?highlight=lambda#torchvision.transforms.Lambda">torchvision.transforms.Lambda</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.transforms.Lambda.md">组合实现</a></td>
+</tr>
+<tr>
+<td>17</td>
+<td><a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/utils.html?highlight=save_image#torchvision.utils.save_image">torchvision.utils.save_image</a></td>
+<td>无对应实现</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.utils.save_image.md">组合实现</a></td>
+</tr>
+<tr>
+<td>18</td>
+<td>[torchvision.models 系列模型](<a target="_blank" rel="noopener" href="https://pytorch.org/vision/stable/models.html?highlight=torchvision">https://pytorch.org/vision/stable/models.html?highlight=torchvision</a> models)</td>
+<td>X2Paddle 提供</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.models.md">使用方式</a></td>
+</tr>
+</tbody>
+</table>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年12月12日 19:07</p>
+        <p>原始链接： <a class="post-url" href="/2021/12/12/Pytorch%E4%B8%8EPaddlePaddle-API%E6%98%A0%E5%B0%84%E8%A1%A8/" title="Pytorch与PaddlePaddle  API映射表">https://leezhao415.github.io/2021/12/12/Pytorch%E4%B8%8EPaddlePaddle-API%E6%98%A0%E5%B0%84%E8%A1%A8/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/12/12/Pytorch%E4%B8%8EPaddlePaddle-API%E6%98%A0%E5%B0%84%E8%A1%A8/&title=《Pytorch与PaddlePaddle  API映射表》 — 且听风吟，御剑于心！&pic=images/PaddlePaddle.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/12/12/Pytorch%E4%B8%8EPaddlePaddle-API%E6%98%A0%E5%B0%84%E8%A1%A8/&title=《Pytorch与PaddlePaddle  API映射表》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/12/12/Pytorch%E4%B8%8EPaddlePaddle-API%E6%98%A0%E5%B0%84%E8%A1%A8/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Pytorch与PaddlePaddle  API映射表》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/12/12/Pytorch%E4%B8%8EPaddlePaddle-API%E6%98%A0%E5%B0%84%E8%A1%A8/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/12/12/Pytorch%E4%B8%8EPaddlePaddle-API%E6%98%A0%E5%B0%84%E8%A1%A8/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/12/12/Pytorch%E4%B8%8EPaddlePaddle-API%E6%98%A0%E5%B0%84%E8%A1%A8/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/PaddlePaddle/" class="color3">PaddlePaddle</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link"><span class="post-toc-text"> </span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> </span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> </span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> </span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> </span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> </span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> </span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> </span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/12/12/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0-YOLOP-%E5%85%A8%E6%99%AF%E9%A9%BE%E9%A9%B6%E6%84%9F%E7%9F%A5%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BD%91%E7%BB%9C%E5%90%8C%E6%97%B6%E5%AE%8C%E6%88%90%E4%B8%89%E5%A4%A7%E4%BB%BB%E5%8A%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          多任务学习_YOLOP-全景驾驶感知，一个网络同时完成三大任务
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/12/12/%E5%9F%BA%E4%BA%8E-Multiple-Teacher-Single-Student-%E6%A1%86%E6%9E%B6%E7%9A%84%E5%A4%9A%E9%A2%86%E5%9F%9F%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">基于 Multiple Teacher Single Student 框架的多领域对话模型</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="Pytorch与PaddlePaddle-API映射表" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

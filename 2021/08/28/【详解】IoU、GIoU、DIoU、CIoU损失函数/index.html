@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【详解】IoU、GIoU、DIoU、CIoU损失函数 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   一、IOU (Intersection over Union) 二、GIOU (Generalized Intersection over Union) 三、DIoU (Distance-IoU) 四、CIoU (Complete-IoU) 五、损失函数在 YOLOv3 上的性能 (论文效果)     一、IOU (Intersection over Union) 1. 特性 (">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【详解】IoU、GIoU、DIoU、CIoU损失函数">
+<meta property="og:url" content="https://leezhao415.github.io/2021/08/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91IoU%E3%80%81GIoU%E3%80%81DIoU%E3%80%81CIoU%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   一、IOU (Intersection over Union) 二、GIOU (Generalized Intersection over Union) 三、DIoU (Distance-IoU) 四、CIoU (Complete-IoU) 五、损失函数在 YOLOv3 上的性能 (论文效果)     一、IOU (Intersection over Union) 1. 特性 (">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=IoU+%3D+%5Cfrac%7B%5Cleft%7C+A%5Ccap+B+%5Cright%7C%7D%7B%5Cleft%7C+A%5Ccup+B+%5Cright%7C%7D">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-95449558cb098ff9df8c4d31474bd091_1440w.jpg">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=GIoU+%3D+IoU+-+%5Cfrac%7B%5Cleft%7C++A_%7Bc%7D+-+U+%5Cright%7C%7D%7B%5Cleft%7C+A_%7Bc%7D+%5Cright%7C%7D">
+<meta property="og:image" content="c:/Users/14767/AppData/Roaming/Typora/typora-user-images/image-20210828164108323.png">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-71e809433f6b26fcf30b4aeb6578413a_1440w.jpg">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=DIoU+%3D+IoU+-+%5Cfrac%7B%5Crho%5E%7B2%7D%28b%2Cb%5E%7Bgt%7D%29%7D%7Bc%5E%7B2%7D%7D">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-1e4b54001c4abdf392fe9d4877c83972_1440w.jpg">
+<meta property="og:image" content="c:/Users/14767/AppData/Roaming/Typora/typora-user-images/image-20210828163809043.png">
+<meta property="og:image" content="c:/Users/14767/AppData/Roaming/Typora/typora-user-images/image-20210828163615875.png">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-9d958cbbf6b13cddceeeb296c2f9a735_1440w.jpg">
+<meta property="article:published_time" content="2021-08-28T08:45:30.000Z">
+<meta property="article:modified_time" content="2021-08-28T08:50:22.362Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="IOU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.zhihu.com/equation?tex=IoU+%3D+%5Cfrac%7B%5Cleft%7C+A%5Ccap+B+%5Cright%7C%7D%7B%5Cleft%7C+A%5Ccup+B+%5Cright%7C%7D">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-【详解】IoU、GIoU、DIoU、CIoU损失函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      【详解】IoU、GIoU、DIoU、CIoU损失函数
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-08-28
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E4%B8%80-iouintersection-over-union">一、IOU (Intersection over Union)</a></li>
+<li><a href="#%E4%BA%8C-giougeneralized-intersection-over-union">二、GIOU (Generalized Intersection over Union)</a></li>
+<li><a href="#%E4%B8%89-dioudistance-iou">三、DIoU (Distance-IoU)</a></li>
+<li><a href="#%E5%9B%9B-cioucomplete-iou">四、CIoU (<strong>Complete-IoU</strong>)</a></li>
+<li><a href="#%E4%BA%94-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%9C%A8yolov3%E4%B8%8A%E7%9A%84%E6%80%A7%E8%83%BD%E8%AE%BA%E6%96%87%E6%95%88%E6%9E%9C">五、损失函数在 YOLOv3 上的性能 (论文效果)</a></li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h3><span id="一-iou-intersection-over-union"> 一、IOU (Intersection over Union)</span></h3>
+<p><strong>1. 特性 (优点)</strong></p>
+<p>IoU 就是我们所说的<strong>交并比</strong>，是目标检测中最常用的指标，在<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62372897"> anchor-based 的方法</a>中，他的作用不仅用来确定正样本和负样本，还可以用来评价输出框（predict box）和 ground-truth 的距离。</p>
+<center><img src="https://www.zhihu.com/equation?tex=IoU+%3D+%5Cfrac%7B%5Cleft%7C+A%5Ccap+B+%5Cright%7C%7D%7B%5Cleft%7C+A%5Ccup+B+%5Cright%7C%7D" alt="[公式]" style="zoom:90%;"></center>
+<ol>
+<li>可以说<strong>它可以反映预测检测框与真实检测框的检测效果。</strong></li>
+<li>还有一个很好的特性就是<strong>尺度不变性</strong>，也就是对尺度不敏感（scale invariant）， 在 regression 任务中，判断 predict box 和 gt 的距离最直接的指标就是 IoU。<strong>(满足非负性；同一性；对称性；三角不等性)</strong></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Iou</span>(<span class="params">box1, box2, wh=<span class="literal">False</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> wh == <span class="literal">False</span>:</span><br><span class="line">	xmin1, ymin1, xmax1, ymax1 = box1</span><br><span class="line">	xmin2, ymin2, xmax2, ymax2 = box2</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">	xmin1, ymin1 = <span class="built_in">int</span>(box1[<span class="number">0</span>]-box1[<span class="number">2</span>]/<span class="number">2.0</span>), <span class="built_in">int</span>(box1[<span class="number">1</span>]-box1[<span class="number">3</span>]/<span class="number">2.0</span>)</span><br><span class="line">	xmax1, ymax1 = <span class="built_in">int</span>(box1[<span class="number">0</span>]+box1[<span class="number">2</span>]/<span class="number">2.0</span>), <span class="built_in">int</span>(box1[<span class="number">1</span>]+box1[<span class="number">3</span>]/<span class="number">2.0</span>)</span><br><span class="line">	xmin2, ymin2 = <span class="built_in">int</span>(box2[<span class="number">0</span>]-box2[<span class="number">2</span>]/<span class="number">2.0</span>), <span class="built_in">int</span>(box2[<span class="number">1</span>]-box2[<span class="number">3</span>]/<span class="number">2.0</span>)</span><br><span class="line">	xmax2, ymax2 = <span class="built_in">int</span>(box2[<span class="number">0</span>]+box2[<span class="number">2</span>]/<span class="number">2.0</span>), <span class="built_in">int</span>(box2[<span class="number">1</span>]+box2[<span class="number">3</span>]/<span class="number">2.0</span>)</span><br><span class="line">    <span class="comment"># 获取矩形框交集对应的左上角和右下角的坐标（intersection）</span></span><br><span class="line">    xx1 = np.<span class="built_in">max</span>([xmin1, xmin2])</span><br><span class="line">    yy1 = np.<span class="built_in">max</span>([ymin1, ymin2])</span><br><span class="line">    xx2 = np.<span class="built_in">min</span>([xmax1, xmax2])</span><br><span class="line">    yy2 = np.<span class="built_in">min</span>([ymax1, ymax2])	</span><br><span class="line">    <span class="comment"># 计算两个矩形框面积</span></span><br><span class="line">    area1 = (xmax1-xmin1) * (ymax1-ymin1) </span><br><span class="line">    area2 = (xmax2-xmin2) * (ymax2-ymin2)</span><br><span class="line">    inter_area = (np.<span class="built_in">max</span>([<span class="number">0</span>, xx2-xx1])) * (np.<span class="built_in">max</span>([<span class="number">0</span>, yy2-yy1]))　<span class="comment">#计算交集面积</span></span><br><span class="line">    iou = inter_area / (area1+area2-inter_area+<span class="number">1e-6</span>) 　<span class="comment">#计算交并比</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> iou</span><br></pre></td></tr></table></figure>
+<p><strong>2. 作为损失函数会出现的问题 (缺点)</strong></p>
+<ol>
+<li>如果两个框没有相交，根据定义，IoU=0，不能反映两者的距离大小（重合度）。同时因为 loss=0，没有梯度回传，无法进行学习训练。</li>
+<li>IoU 无法精确的反映两者的重合度大小。如下图所示，三种情况 IoU 都相等，但看得出来他们的重合度是不一样的，左边的图回归的效果最好，右边的最差。</li>
+</ol>
+<center><img src="https://pic2.zhimg.com/80/v2-95449558cb098ff9df8c4d31474bd091_1440w.jpg" alt="img" style="zoom:90%;"></center>
+<h3><span id="二-giou-generalized-intersection-over-union"> 二、GIOU (Generalized Intersection over Union)</span></h3>
+<p><strong>1、来源</strong></p>
+<p>在 CVPR2019 中，论文</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1902.09630">《Generalized Intersection over Union: A Metric and A Loss for Bounding Box Regression》arxiv.org/abs/1902.09630</a></p>
+<p>的提出了 GIoU 的思想。由于 IoU 是<strong>比值</strong>的概念，对目标物体的 scale 是不敏感的。然而检测任务中的 BBox 的回归损失 (MSE loss, l1-smooth loss 等）优化和 IoU 优化不是完全等价的，而且 Ln 范数对物体的 scale 也比较敏感，IoU 无法直接优化没有重叠的部分。</p>
+<p>这篇论文提出可以直接把 IoU 设为回归的 loss。</p>
+<center><img src="https://www.zhihu.com/equation?tex=GIoU+%3D+IoU+-+%5Cfrac%7B%5Cleft%7C++A_%7Bc%7D+-+U+%5Cright%7C%7D%7B%5Cleft%7C+A_%7Bc%7D+%5Cright%7C%7D" alt="[公式]" style="zoom:80%;"></center>
+<center><img src="C:\Users\14767\AppData\Roaming\Typora\typora-user-images\image-20210828164108323.png" alt="image-20210828164108323" style="zoom:80%;"></center>
+<ul>
+<li>GIoU 对 scale 不敏感</li>
+<li>GIoU 是 IoU 的下界，在两个框无限重合的情况下，IoU=GIoU=1</li>
+<li>IoU 取值 [0,1]，但 GIoU 有对称区间，取值范围 [-1,1]。在两者重合的时候取最大值 1，在两者无交集且无限远的时候取最小值 - 1，因此 GIoU 是一个非常好的距离度量指标。</li>
+<li>与 IoU 只关注重叠区域不同，<strong>GIoU 不仅关注重叠区域，还关注其他的非重合区域</strong>，能更好的反映两者的重合度。</li>
+</ul>
+<center><img src="https://pic3.zhimg.com/80/v2-71e809433f6b26fcf30b4aeb6578413a_1440w.jpg" alt="img" style="zoom: 33%;"></center>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Giou</span>(<span class="params">rec1,rec2</span>):</span></span><br><span class="line">    <span class="comment">#分别是第一个矩形左右上下的坐标</span></span><br><span class="line">    x1,x2,y1,y2 = rec1 </span><br><span class="line">    x3,x4,y3,y4 = rec2</span><br><span class="line">    iou = Iou(rec1,rec2)</span><br><span class="line">    area_C = (<span class="built_in">max</span>(x1,x2,x3,x4)-<span class="built_in">min</span>(x1,x2,x3,x4))*(<span class="built_in">max</span>(y1,y2,y3,y4)-<span class="built_in">min</span>(y1,y2,y3,y4))</span><br><span class="line">    area_1 = (x2-x1)*(y1-y2)</span><br><span class="line">    area_2 = (x4-x3)*(y3-y4)</span><br><span class="line">    sum_area = area_1 + area_2</span><br><span class="line"></span><br><span class="line">    w1 = x2 - x1   <span class="comment">#第一个矩形的宽</span></span><br><span class="line">    w2 = x4 - x3   <span class="comment">#第二个矩形的宽</span></span><br><span class="line">    h1 = y1 - y2</span><br><span class="line">    h2 = y3 - y4</span><br><span class="line">    W = <span class="built_in">min</span>(x1,x2,x3,x4)+w1+w2-<span class="built_in">max</span>(x1,x2,x3,x4)    <span class="comment">#交叉部分的宽</span></span><br><span class="line">    H = <span class="built_in">min</span>(y1,y2,y3,y4)+h1+h2-<span class="built_in">max</span>(y1,y2,y3,y4)    <span class="comment">#交叉部分的高</span></span><br><span class="line">    Area = W*H    <span class="comment">#交叉的面积</span></span><br><span class="line">    add_area = sum_area - Area    <span class="comment">#两矩形并集的面积</span></span><br><span class="line"></span><br><span class="line">    end_area = (area_C - add_area)/area_C    <span class="comment">#闭包区域中不属于两个框的区域占闭包区域的比重</span></span><br><span class="line">    giou = iou - end_area</span><br><span class="line">    <span class="keyword">return</span> giou</span><br></pre></td></tr></table></figure>
+<h3><span id="三-diou-distance-iou"> 三、DIoU (Distance-IoU)</span></h3>
+<p><strong>1、来源</strong></p>
+<p>DIoU 要比 GIou 更加符合目标框回归的机制，<strong>将目标与 anchor 之间的距离，重叠率以及尺度都考虑进去</strong>，使得目标框回归变得更加稳定，不会像 IoU 和 GIoU 一样出现训练过程中发散等问题。论文中</p>
+<p><a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1911.08287.pdf">Distance-IoUarxiv.org/pdf/1911.08287.pdf</a></p>
+<blockquote>
+<p>基于 IoU 和 GIoU 存在的问题，作者提出了两个问题：</p>
+<p>1. 直接最小化 anchor 框与目标框之间的归一化距离是否可行，以达到更快的收敛速度？</p>
+<p>2. 如何使回归在与目标框有重叠甚至包含时更准确、更快？</p>
+</blockquote>
+<center><img src="https://www.zhihu.com/equation?tex=DIoU+%3D+IoU+-+%5Cfrac%7B%5Crho%5E%7B2%7D%28b%2Cb%5E%7Bgt%7D%29%7D%7Bc%5E%7B2%7D%7D" alt="[公式]" style="zoom:90%;"></center>
+<p>其中，b, b<sup>gt</sup> 分别代表了预测框和真实框的中心点，且<em> ρ</em> 代表的是计算两个中心点间的欧式距离。 <em>c</em> 代表的是能够同时包含预测框和真实框的<strong>最小闭包区域</strong>的对角线距离。</p>
+<center><img src="https://pic3.zhimg.com/80/v2-1e4b54001c4abdf392fe9d4877c83972_1440w.jpg" alt="img" style="zoom:80%;"></center>
+<p>DIoU 中对 anchor 框和目标框之间的归一化距离进行了建模</p>
+<p>附：</p>
+<p>YOLOV3 DIoU GitHub 项目地址：<a href="https://link.zhihu.com/?target=https%3A//github.com/Zzh-tju/DIoU-darknet">github.com/Zzh-tju/DIoU-darknet</a></p>
+<p><strong>2、优点</strong></p>
+<center><img src="C:\Users\14767\AppData\Roaming\Typora\typora-user-images\image-20210828163809043.png" alt="image-20210828163809043" style="zoom:80%;"></center>
+<ul>
+<li>DIoU loss 可以直接最小化两个目标框的距离，因此比 GIoU loss 收敛快得多。</li>
+<li>对于包含两个框在水平方向和垂直方向上这种情况，DIoU 损失可以使回归非常快，而 GIoU 损失几乎退化为 IoU 损失。</li>
+<li>DIoU 还可以替换普通的 IoU 评价策略，应用于 NMS 中，使得 NMS 得到的结果更加合理和有效。</li>
+</ul>
+<p>实现代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Diou</span>(<span class="params">bboxes1, bboxes2</span>):</span></span><br><span class="line">    rows = bboxes1.shape[<span class="number">0</span>]</span><br><span class="line">    cols = bboxes2.shape[<span class="number">0</span>]</span><br><span class="line">    dious = torch.zeros((rows, cols))</span><br><span class="line">    <span class="keyword">if</span> rows * cols == <span class="number">0</span>:<span class="comment">#</span></span><br><span class="line">        <span class="keyword">return</span> dious</span><br><span class="line">    exchange = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">if</span> bboxes1.shape[<span class="number">0</span>] &gt; bboxes2.shape[<span class="number">0</span>]:</span><br><span class="line">        bboxes1, bboxes2 = bboxes2, bboxes1</span><br><span class="line">        dious = torch.zeros((cols, rows))</span><br><span class="line">        exchange = <span class="literal">True</span></span><br><span class="line">    <span class="comment"># #xmin,ymin,xmax,ymax-&gt;[:,0],[:,1],[:,2],[:,3]</span></span><br><span class="line">    w1 = bboxes1[:, <span class="number">2</span>] - bboxes1[:, <span class="number">0</span>]</span><br><span class="line">    h1 = bboxes1[:, <span class="number">3</span>] - bboxes1[:, <span class="number">1</span>] </span><br><span class="line">    w2 = bboxes2[:, <span class="number">2</span>] - bboxes2[:, <span class="number">0</span>]</span><br><span class="line">    h2 = bboxes2[:, <span class="number">3</span>] - bboxes2[:, <span class="number">1</span>]</span><br><span class="line">    </span><br><span class="line">    area1 = w1 * h1</span><br><span class="line">    area2 = w2 * h2</span><br><span class="line"></span><br><span class="line">    center_x1 = (bboxes1[:, <span class="number">2</span>] + bboxes1[:, <span class="number">0</span>]) / <span class="number">2</span> </span><br><span class="line">    center_y1 = (bboxes1[:, <span class="number">3</span>] + bboxes1[:, <span class="number">1</span>]) / <span class="number">2</span> </span><br><span class="line">    center_x2 = (bboxes2[:, <span class="number">2</span>] + bboxes2[:, <span class="number">0</span>]) / <span class="number">2</span></span><br><span class="line">    center_y2 = (bboxes2[:, <span class="number">3</span>] + bboxes2[:, <span class="number">1</span>]) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    inter_max_xy = torch.<span class="built_in">min</span>(bboxes1[:, <span class="number">2</span>:],bboxes2[:, <span class="number">2</span>:]) </span><br><span class="line">    inter_min_xy = torch.<span class="built_in">max</span>(bboxes1[:, :<span class="number">2</span>],bboxes2[:, :<span class="number">2</span>]) </span><br><span class="line">    out_max_xy = torch.<span class="built_in">max</span>(bboxes1[:, <span class="number">2</span>:],bboxes2[:, <span class="number">2</span>:]) </span><br><span class="line">    out_min_xy = torch.<span class="built_in">min</span>(bboxes1[:, :<span class="number">2</span>],bboxes2[:, :<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">    inter = torch.clamp((inter_max_xy - inter_min_xy), <span class="built_in">min</span>=<span class="number">0</span>)</span><br><span class="line">    inter_area = inter[:, <span class="number">0</span>] * inter[:, <span class="number">1</span>]</span><br><span class="line">    inter_diag = (center_x2 - center_x1)**<span class="number">2</span> + (center_y2 - center_y1)**<span class="number">2</span></span><br><span class="line">    outer = torch.clamp((out_max_xy - out_min_xy), <span class="built_in">min</span>=<span class="number">0</span>)</span><br><span class="line">    outer_diag = (outer[:, <span class="number">0</span>] ** <span class="number">2</span>) + (outer[:, <span class="number">1</span>] ** <span class="number">2</span>)</span><br><span class="line">    union = area1+area2-inter_area</span><br><span class="line">    dious = inter_area / union - (inter_diag) / outer_diag</span><br><span class="line">    dious = torch.clamp(dious,<span class="built_in">min</span>=-<span class="number">1.0</span>,<span class="built_in">max</span> = <span class="number">1.0</span>)</span><br><span class="line">    <span class="keyword">if</span> exchange:</span><br><span class="line">        dious = dious.T</span><br><span class="line">    <span class="keyword">return</span> dious</span><br></pre></td></tr></table></figure>
+<h3><span id="四-ciou-complete-iou"> 四、CIoU (<strong>Complete-IoU</strong>)</span></h3>
+<center><img src="C:\Users\14767\AppData\Roaming\Typora\typora-user-images\image-20210828163615875.png" alt="image-20210828163615875" style="zoom:80%;"></center>
+<p>实现代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bbox_overlaps_ciou</span>(<span class="params">bboxes1, bboxes2</span>):</span></span><br><span class="line">    rows = bboxes1.shape[<span class="number">0</span>]</span><br><span class="line">    cols = bboxes2.shape[<span class="number">0</span>]</span><br><span class="line">    cious = torch.zeros((rows, cols))</span><br><span class="line">    <span class="keyword">if</span> rows * cols == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> cious</span><br><span class="line">    exchange = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">if</span> bboxes1.shape[<span class="number">0</span>] &gt; bboxes2.shape[<span class="number">0</span>]:</span><br><span class="line">        bboxes1, bboxes2 = bboxes2, bboxes1</span><br><span class="line">        cious = torch.zeros((cols, rows))</span><br><span class="line">        exchange = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    w1 = bboxes1[:, <span class="number">2</span>] - bboxes1[:, <span class="number">0</span>]</span><br><span class="line">    h1 = bboxes1[:, <span class="number">3</span>] - bboxes1[:, <span class="number">1</span>]</span><br><span class="line">    w2 = bboxes2[:, <span class="number">2</span>] - bboxes2[:, <span class="number">0</span>]</span><br><span class="line">    h2 = bboxes2[:, <span class="number">3</span>] - bboxes2[:, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    area1 = w1 * h1</span><br><span class="line">    area2 = w2 * h2</span><br><span class="line"></span><br><span class="line">    center_x1 = (bboxes1[:, <span class="number">2</span>] + bboxes1[:, <span class="number">0</span>]) / <span class="number">2</span></span><br><span class="line">    center_y1 = (bboxes1[:, <span class="number">3</span>] + bboxes1[:, <span class="number">1</span>]) / <span class="number">2</span></span><br><span class="line">    center_x2 = (bboxes2[:, <span class="number">2</span>] + bboxes2[:, <span class="number">0</span>]) / <span class="number">2</span></span><br><span class="line">    center_y2 = (bboxes2[:, <span class="number">3</span>] + bboxes2[:, <span class="number">1</span>]) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    inter_max_xy = torch.<span class="built_in">min</span>(bboxes1[:, <span class="number">2</span>:],bboxes2[:, <span class="number">2</span>:])</span><br><span class="line">    inter_min_xy = torch.<span class="built_in">max</span>(bboxes1[:, :<span class="number">2</span>],bboxes2[:, :<span class="number">2</span>])</span><br><span class="line">    out_max_xy = torch.<span class="built_in">max</span>(bboxes1[:, <span class="number">2</span>:],bboxes2[:, <span class="number">2</span>:])</span><br><span class="line">    out_min_xy = torch.<span class="built_in">min</span>(bboxes1[:, :<span class="number">2</span>],bboxes2[:, :<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">    inter = torch.clamp((inter_max_xy - inter_min_xy), <span class="built_in">min</span>=<span class="number">0</span>)</span><br><span class="line">    inter_area = inter[:, <span class="number">0</span>] * inter[:, <span class="number">1</span>]</span><br><span class="line">    inter_diag = (center_x2 - center_x1)**<span class="number">2</span> + (center_y2 - center_y1)**<span class="number">2</span></span><br><span class="line">    outer = torch.clamp((out_max_xy - out_min_xy), <span class="built_in">min</span>=<span class="number">0</span>)</span><br><span class="line">    outer_diag = (outer[:, <span class="number">0</span>] ** <span class="number">2</span>) + (outer[:, <span class="number">1</span>] ** <span class="number">2</span>)</span><br><span class="line">    union = area1+area2-inter_area</span><br><span class="line">    u = (inter_diag) / outer_diag</span><br><span class="line">    iou = inter_area / union</span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        arctan = torch.atan(w2 / h2) - torch.atan(w1 / h1)</span><br><span class="line">        v = (<span class="number">4</span> / (math.pi ** <span class="number">2</span>)) * torch.<span class="built_in">pow</span>((torch.atan(w2 / h2) - torch.atan(w1 / h1)), <span class="number">2</span>)</span><br><span class="line">        S = <span class="number">1</span> - iou</span><br><span class="line">        alpha = v / (S + v)</span><br><span class="line">        w_temp = <span class="number">2</span> * w1</span><br><span class="line">    ar = (<span class="number">8</span> / (math.pi ** <span class="number">2</span>)) * arctan * ((w1 - w_temp) * h1)</span><br><span class="line">    cious = iou - (u + alpha * ar)</span><br><span class="line">    cious = torch.clamp(cious,<span class="built_in">min</span>=-<span class="number">1.0</span>,<span class="built_in">max</span> = <span class="number">1.0</span>)</span><br><span class="line">    <span class="keyword">if</span> exchange:</span><br><span class="line">        cious = cious.T</span><br><span class="line">    <span class="keyword">return</span> cious</span><br></pre></td></tr></table></figure>
+<h3><span id="五-损失函数在-yolov3-上的性能-论文效果"> 五、损失函数在 YOLOv3 上的性能 (论文效果)</span></h3>
+<center><img src="https://pic2.zhimg.com/80/v2-9d958cbbf6b13cddceeeb296c2f9a735_1440w.jpg" alt="img" style="zoom: 33%;"></center>
+<p>目标检测算法之 AAAI 2020 DIoU Loss 已开源 (YOLOV3 涨近 3 个点)：<a href="https://link.zhihu.com/?target=https%3A//cloud.tencent.com/developer/article/1558533">cloud.tencent.com/developer/article/1558533</a></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年08月28日 16:50</p>
+        <p>原始链接： <a class="post-url" href="/2021/08/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91IoU%E3%80%81GIoU%E3%80%81DIoU%E3%80%81CIoU%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" title="【详解】IoU、GIoU、DIoU、CIoU损失函数">https://leezhao415.github.io/2021/08/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91IoU%E3%80%81GIoU%E3%80%81DIoU%E3%80%81CIoU%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/08/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91IoU%E3%80%81GIoU%E3%80%81DIoU%E3%80%81CIoU%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/&title=《【详解】IoU、GIoU、DIoU、CIoU损失函数》 — 且听风吟，御剑于心！&pic=images/IOU.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/08/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91IoU%E3%80%81GIoU%E3%80%81DIoU%E3%80%81CIoU%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/&title=《【详解】IoU、GIoU、DIoU、CIoU损失函数》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/08/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91IoU%E3%80%81GIoU%E3%80%81DIoU%E3%80%81CIoU%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【详解】IoU、GIoU、DIoU、CIoU损失函数》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/08/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91IoU%E3%80%81GIoU%E3%80%81DIoU%E3%80%81CIoU%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/08/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91IoU%E3%80%81GIoU%E3%80%81DIoU%E3%80%81CIoU%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/08/28/%E3%80%90%E8%AF%A6%E8%A7%A3%E3%80%91IoU%E3%80%81GIoU%E3%80%81DIoU%E3%80%81CIoU%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/IOU/" class="color4">IOU</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 一、IOU (Intersection over Union)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 二、GIOU (Generalized Intersection over Union)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 三、DIoU (Distance-IoU)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 四、CIoU (Complete-IoU)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 五、损失函数在 YOLOv3 上的性能 (论文效果)</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/08/28/Deep-SORT%E5%A4%9A%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA%E7%AE%97%E6%B3%95%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Deep SORT多目标跟踪算法代码解析
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/08/28/Python-%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Python 实现的十大经典排序算法</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="【详解】IoU、GIoU、DIoU、CIoU损失函数" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

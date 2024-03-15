@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>计算机视觉之图像分类 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   图像分类  1 定义 2 常用数据集  2.1 mnist 数据集 2.2 CIFAR-10 和 CIFAR-100 2.3 ImageNet   3 经典深度学习网络  3.1 AlexNet 3.2 VGG 3.3 GoogLeNet 3.4 ResNet   4 图像增强方法  4.1 tf.image 进行图像增强 4.2 使用 ImageDataGenerator ()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机视觉之图像分类">
+<meta property="og:url" content="https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   图像分类  1 定义 2 常用数据集  2.1 mnist 数据集 2.2 CIFAR-10 和 CIFAR-100 2.3 ImageNet   3 经典深度学习网络  3.1 AlexNet 3.2 VGG 3.3 GoogLeNet 3.4 ResNet   4 图像增强方法  4.1 tf.image 进行图像增强 4.2 使用 ImageDataGenerator ()">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624122656512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624122725728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624122823869.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624122755551.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123016360.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123100322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123126392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123157142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123223267.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123306825.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123338652.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123432304.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021062412345640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123528400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123612578.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123652449.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123745141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123834552.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624123921882.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624124001130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624124033222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624124125444.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624124223925.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210624124255387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="c:/Users/14767/AppData/Roaming/Typora/typora-user-images/image-20210622215025389.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021062412434130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-06-24T15:08:20.000Z">
+<meta property="article:modified_time" content="2021-07-14T12:44:51.824Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="计算机视觉CV">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210624122656512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-计算机视觉之图像分类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      计算机视觉之图像分类
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2021-06-24
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB"><strong>图像分类</strong></a>
+<ul>
+<li><a href="#1-%E5%AE%9A%E4%B9%89"><strong>1 定义</strong></a></li>
+<li><a href="#2-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E9%9B%86"><strong>2 常用数据集</strong></a>
+<ul>
+<li><a href="#21-mnist%E6%95%B0%E6%8D%AE%E9%9B%86"><strong>2.1 mnist 数据集</strong></a></li>
+<li><a href="#22-cifar-10%E5%92%8Ccifar-100"><strong>2.2 CIFAR-10 和 CIFAR-100</strong></a></li>
+<li><a href="#23-imagenet"><strong>2.3 ImageNet</strong></a></li>
+</ul>
+</li>
+<li><a href="#3-%E7%BB%8F%E5%85%B8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%BB%9C"><strong>3 经典深度学习网络</strong></a>
+<ul>
+<li><a href="#31-alexnet"><strong>3.1 AlexNet</strong></a></li>
+<li><a href="#32-vgg"><strong>3.2 VGG</strong></a></li>
+<li><a href="#33-googlenet"><strong>3.3 GoogLeNet</strong></a></li>
+<li><a href="#34-resnet"><strong>3.4 ResNet</strong></a></li>
+</ul>
+</li>
+<li><a href="#4-%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA%E6%96%B9%E6%B3%95"><strong>4 图像增强方法</strong></a>
+<ul>
+<li><a href="#41-tfimage%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA"><strong>4.1 tf.image 进行图像增强</strong></a></li>
+<li><a href="#42-%E4%BD%BF%E7%94%A8imagedatagenerator%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA"><strong>4.2 使用 ImageDataGenerator () 进行图像增强</strong></a></li>
+</ul>
+</li>
+<li><a href="#5-%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83"><strong>5 模型微调</strong></a>
+<ul>
+<li><a href="#51-%E5%BE%AE%E8%B0%83"><strong>5.1 微调</strong></a></li>
+<li><a href="#52-%E7%83%AD%E7%8B%97%E8%AF%86%E5%88%AB"><strong>5.2 热狗识别</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h3><span id="图像分类"> <strong>图像分类</strong></span></h3>
+<h4><span id="1-定义"> <strong>1 定义</strong></span></h4>
+<p>从给定的类别集合中为图像分配对应标签的任务</p>
+<h4><span id="2-常用数据集"> <strong>2 常用数据集</strong></span></h4>
+<h5><span id="21-mnist-数据集"> <strong>2.1 mnist 数据集</strong></span></h5>
+<p>该数据集是手写数字 0-9 的集合，共有 60k 训练图像、10k 测试图像、10 个类别、图像大小 28×28×1. 我们可以通过 tf.keras 直接加载该数据集：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras.datasets <span class="keyword">import</span> mnist</span><br><span class="line"><span class="comment"># 加载mnist数据集</span></span><br><span class="line">(train_images, train_labels), (test_images, test_labels) = mnist.load_data()</span><br></pre></td></tr></table></figure>
+<p>随机选择图像展示结果如下所示：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624122656512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<h5><span id="22-cifar-10-和-cifar-100"> <strong>2.2 CIFAR-10 和 CIFAR-100</strong></span></h5>
+<ul>
+<li>CIFAR-10 数据集 5 万张训练图像、1 万张测试图像、10 个类别、每个类别有 6k 个图像，图像大小 32×32×3。下图列举了 10 个类，每一类随机展示了 10 张图片：</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210624122725728.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom: 50%;"></center>
+<ul>
+<li>CIFAR-100 数据集也是有 5 万张训练图像、1 万张测试图像、包含 100 个类别、图像大小 32×32×3。</li>
+</ul>
+<p>在 tf.keras 中加载数据集时：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.datasets <span class="keyword">import</span> cifar10,cifar100</span><br><span class="line"><span class="comment"># 加载Cifar10数据集</span></span><br><span class="line">(train_images, train_labels), (test_images, test_labels) = cifar10.load_data()</span><br><span class="line"><span class="comment"># 加载Cifar100数据集</span></span><br><span class="line">(train_images, train_labels), (test_images, test_labels)= cifar100.load_data()</span><br></pre></td></tr></table></figure>
+<h5><span id="23-imagenet"> <strong>2.3 ImageNet</strong></span></h5>
+<p>ImageNet 数据集是 ILSVRC 竞赛使用的是数据集，由斯坦福大学李飞飞教授主导，包含了超过 1400 万张全尺寸的有标记图片，大约有 22000 个类别的数据。ILSVRC 全称 ImageNet Large-Scale Visual Recognition Challenge，是视觉领域最受追捧也是最具权威的学术竞赛之一，代表了图像领域的最高水平。从 2010 年开始举办到 2017 年最后一届，使用 ImageNet 数据集的一个子集，总共有 1000 类。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624122823869.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>该比赛的获胜者从 2012 年开始都是使用的深度学习的方法：</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624122755551.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<ul>
+<li>2012 年冠军是 <code>AlexNet</code> , 由于准确率远超传统方法的第二名（top5 错误率为 15.3%，第二名为 26.2%），引起了很大的轰动。自此之后，CNN 成为在图像识别分类的核心算法模型，带来了深度学习的大爆发。</li>
+<li>2013 年冠军是 <code>ZFNet</code> ，结构和 AlexNet 区别不大，分类效果也差不多。</li>
+<li>2014 年亚军是 <code>VGG</code>  网络，网络结构十分简单，因此至今 VGG-16 仍在广泛使用。</li>
+<li>2014 年的冠军网络是 <code>GooLeNet</code>  ，核心模块是 Inception Module。Inception 历经了 V1、V2、V3、V4 等多个版本的发展，不断趋于完善。GoogLeNet 取名中 L 大写是为了向 LeNet 致敬，而 Inception 的名字来源于盗梦空间中的 &quot;we need to go deeper&quot; 梗。</li>
+<li>2015 年冠军网络是 <code>ResNet</code> 。核心是带短连接的残差模块，其中主路径有两层卷积核（Res34），短连接把模块的输入信息直接和经过两次卷积之后的信息融合，相当于加了一个恒等变换。短连接是深度学习又一重要思想，除计算机视觉外，短连接思想也被用到了机器翻译、语音识别 / 合成领域</li>
+<li>2017 年冠军 <code>SENet</code>  是一个模块，可以和其他的网络架构结合，比如 GoogLeNet、ResNet 等。</li>
+</ul>
+<h4><span id="3-经典深度学习网络"> <strong>3 经典深度学习网络</strong></span></h4>
+<h5><span id="31-alexnet"> <strong>3.1 AlexNet</strong></span></h5>
+<p>2012 年，AlexNet 横空出世，该模型的名字源于论文第一作者的姓名 Alex Krizhevsky 。AlexNet 使用了 8 层卷积神经网络，以很大的优势赢得了 ImageNet 2012 图像识别挑战赛。它首次证明了学习到的特征可以超越手工设计的特征，从而一举打破计算机视觉研究的方向。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624123016360.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>该网络的特点是：</p>
+<ul>
+<li>AlexNet 包含 8 层变换，有 5 层卷积和 2 层全连接隐藏层，以及 1 个全连接输出层</li>
+<li>AlexNet 第一层中的卷积核形状是 11\times11。第二层中的卷积核形状减小到 5\times5，之后全采用 3\times3。所有的池化层窗口大小为 3\times3、步幅为 2 的最大池化。</li>
+<li>AlexNet 将 sigmoid 激活函数改成了 ReLU 激活函数，使计算更简单，网络更容易训练</li>
+<li>AlexNet 通过 dropOut 来控制全连接层的模型复杂度。</li>
+<li>AlexNet 引入了大量的图像增强，如翻转、裁剪和颜色变化，从而进一步扩大数据集来缓解过拟合。</li>
+</ul>
+<p>在 tf.keras 中实现 AlexNet 模型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构建AlexNet模型</span></span><br><span class="line">net = tf.keras.models.Sequential([</span><br><span class="line">    <span class="comment"># 卷积层：96个卷积核，卷积核为11*11，步幅为4，激活函数relu</span></span><br><span class="line">    tf.keras.layers.Conv2D(filters=<span class="number">96</span>,kernel_size=<span class="number">11</span>,strides=<span class="number">4</span>,activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    <span class="comment"># 池化:窗口大小为3*3、步幅为2</span></span><br><span class="line">    tf.keras.layers.MaxPool2D(pool_size=<span class="number">3</span>, strides=<span class="number">2</span>),</span><br><span class="line">    <span class="comment"># 卷积层：256个卷积核，卷积核为5*5，步幅为1，padding为same，激活函数relu</span></span><br><span class="line">    tf.keras.layers.Conv2D(filters=<span class="number">256</span>,kernel_size=<span class="number">5</span>,padding=<span class="string">&#x27;same&#x27;</span>,activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    <span class="comment"># 池化:窗口大小为3*3、步幅为2</span></span><br><span class="line">    tf.keras.layers.MaxPool2D(pool_size=<span class="number">3</span>, strides=<span class="number">2</span>),</span><br><span class="line">    <span class="comment"># 卷积层：384个卷积核，卷积核为3*3，步幅为1，padding为same，激活函数relu</span></span><br><span class="line">    tf.keras.layers.Conv2D(filters=<span class="number">384</span>,kernel_size=<span class="number">3</span>,padding=<span class="string">&#x27;same&#x27;</span>,activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    <span class="comment"># 卷积层：384个卷积核，卷积核为3*3，步幅为1，padding为same，激活函数relu</span></span><br><span class="line">    tf.keras.layers.Conv2D(filters=<span class="number">384</span>,kernel_size=<span class="number">3</span>,padding=<span class="string">&#x27;same&#x27;</span>,activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    <span class="comment"># 卷积层：256个卷积核，卷积核为3*3，步幅为1，padding为same，激活函数relu</span></span><br><span class="line">    tf.keras.layers.Conv2D(filters=<span class="number">256</span>,kernel_size=<span class="number">3</span>,padding=<span class="string">&#x27;same&#x27;</span>,activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    <span class="comment"># 池化:窗口大小为3*3、步幅为2</span></span><br><span class="line">    tf.keras.layers.MaxPool2D(pool_size=<span class="number">3</span>, strides=<span class="number">2</span>),</span><br><span class="line">    <span class="comment"># 伸展为1维向量</span></span><br><span class="line">    tf.keras.layers.Flatten(),</span><br><span class="line">    <span class="comment"># 全连接层:4096个神经元，激活函数relu</span></span><br><span class="line">    tf.keras.layers.Dense(<span class="number">4096</span>,activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    <span class="comment"># 随机失活</span></span><br><span class="line">    tf.keras.layers.Dropout(<span class="number">0.5</span>),</span><br><span class="line">    <span class="comment"># 全链接层：4096个神经元，激活函数relu</span></span><br><span class="line">    tf.keras.layers.Dense(<span class="number">4096</span>,activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    <span class="comment"># 随机失活</span></span><br><span class="line">    tf.keras.layers.Dropout(<span class="number">0.5</span>),</span><br><span class="line">    <span class="comment"># 输出层：10个神经元，激活函数softmax</span></span><br><span class="line">    tf.keras.layers.Dense(<span class="number">10</span>,activation=<span class="string">&#x27;softmax&#x27;</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>我们构造一个高和宽均为 227 的单通道数据样本来看一下模型的架构：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构造输入X，并将其送入到net网络中</span></span><br><span class="line">X = tf.random.uniform((<span class="number">1</span>,<span class="number">227</span>,<span class="number">227</span>,<span class="number">1</span>)</span><br><span class="line">y = net(X)</span><br><span class="line"><span class="comment"># 通过net.summay()查看网络的形状</span></span><br><span class="line">net.summay()</span><br></pre></td></tr></table></figure>
+<p>网络架构如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">Model: <span class="string">&quot;sequential&quot;</span></span><br><span class="line">_________________________________________________________________</span><br><span class="line">Layer (<span class="built_in">type</span>)                 Output Shape              Param <span class="comment">#   </span></span><br><span class="line">=================================================================</span><br><span class="line">conv2d (Conv2D)              (<span class="number">1</span>, <span class="number">55</span>, <span class="number">55</span>, <span class="number">96</span>)           <span class="number">11712</span>     </span><br><span class="line">_________________________________________________________________</span><br><span class="line">max_pooling2d (MaxPooling2D) (<span class="number">1</span>, <span class="number">27</span>, <span class="number">27</span>, <span class="number">96</span>)           <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">conv2d_1 (Conv2D)            (<span class="number">1</span>, <span class="number">27</span>, <span class="number">27</span>, <span class="number">256</span>)          <span class="number">614656</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">max_pooling2d_1 (MaxPooling2 (<span class="number">1</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">256</span>)          <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">conv2d_2 (Conv2D)            (<span class="number">1</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">384</span>)          <span class="number">885120</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">conv2d_3 (Conv2D)            (<span class="number">1</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">384</span>)          <span class="number">1327488</span>   </span><br><span class="line">_________________________________________________________________</span><br><span class="line">conv2d_4 (Conv2D)            (<span class="number">1</span>, <span class="number">13</span>, <span class="number">13</span>, <span class="number">256</span>)          <span class="number">884992</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">max_pooling2d_2 (MaxPooling2 (<span class="number">1</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">256</span>)            <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">flatten (Flatten)            (<span class="number">1</span>, <span class="number">9216</span>)                 <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">dense (Dense)                (<span class="number">1</span>, <span class="number">4096</span>)                 <span class="number">37752832</span>  </span><br><span class="line">_________________________________________________________________</span><br><span class="line">dropout (Dropout)            (<span class="number">1</span>, <span class="number">4096</span>)                 <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">dense_1 (Dense)              (<span class="number">1</span>, <span class="number">4096</span>)                 <span class="number">16781312</span>  </span><br><span class="line">_________________________________________________________________</span><br><span class="line">dropout_1 (Dropout)          (<span class="number">1</span>, <span class="number">4096</span>)                 <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">dense_2 (Dense)              (<span class="number">1</span>, <span class="number">10</span>)                   <span class="number">40970</span>     </span><br><span class="line">=================================================================</span><br><span class="line">Total params: <span class="number">58</span>,<span class="number">299</span>,082</span><br><span class="line">Trainable params: <span class="number">58</span>,<span class="number">299</span>,082</span><br><span class="line">Non-trainable params: <span class="number">0</span></span><br><span class="line">_________________________________________________________________</span><br></pre></td></tr></table></figure>
+<h5><span id="32-vgg"> <strong>3.2 VGG</strong></span></h5>
+<center><img src="https://img-blog.csdnimg.cn/20210624123100322.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>2014 年，牛津大学计算机视觉组（Visual Geometry Group）和 Google DeepMind 公司的研究员一起研发出了新的深度卷积神经网络：VGGNet，并取得了 ILSVRC2014 比赛分类项目的第二名，主要贡献是使用很小的卷积核 (3×3) 构建卷积神经网络结构，能够取得较好的识别精度，常用来提取图像特征的 VGG-16 和 VGG-19。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624123126392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>VGGNet 使用的全部都是 3x3 的小卷积核和 2x2 的池化核，通过不断加深网络来提升性能。VGG 可以通过重复使用简单的基础块来构建深度模型。</p>
+<p>在 tf.keras 中实现 VGG 模型，首先来实现 VGG 块，它的组成规律是：连续使用多个相同的填充为 1、卷积核大小为 3\times 3 的卷积层后接上一个步幅为 2、窗口形状为 2\times 2 的最大池化层。卷积层保持输入的高和宽不变，而池化层则对其减半。我们使用 <code>vgg_block</code>  函数来实现这个基础的 VGG 块，它可以指定卷积层的数量 <code>num_convs</code>  和每层的卷积核个数 num_filters：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义VGG网络中的卷积块：卷积层的个数，卷积层中卷积核的个数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vgg_block</span>(<span class="params">num_convs, num_filters</span>):</span></span><br><span class="line">    <span class="comment"># 构建序列模型</span></span><br><span class="line">    blk = tf.keras.models.Sequential()</span><br><span class="line">    <span class="comment"># 遍历所有的卷积层</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(num_convs):</span><br><span class="line">        <span class="comment"># 每个卷积层：num_filter个卷积核，卷积核大小为3*3，padding是same，激活函数是relu</span></span><br><span class="line">        blk.add(tf.keras.layers.Conv2D(num_filters,kernel_size=<span class="number">3</span>,</span><br><span class="line">                                    padding=<span class="string">&#x27;same&#x27;</span>,activation=<span class="string">&#x27;relu&#x27;</span>))</span><br><span class="line">    <span class="comment"># 卷积块最后是一个最大池化，窗口大小为2*2，步长为2</span></span><br><span class="line">    blk.add(tf.keras.layers.MaxPool2D(pool_size=<span class="number">2</span>, strides=<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> blk</span><br></pre></td></tr></table></figure>
+<p>VGG16 网络有 5 个卷积块，前 2 块使用两个卷积层，而后 3 块使用三个卷积层。第一块的输出通道是 64，之后每次对输出通道数翻倍，直到变为 512。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义5个卷积块，指明每个卷积块中的卷积层个数及相应的卷积核个数</span></span><br><span class="line">conv_arch = ((<span class="number">2</span>, <span class="number">64</span>), (<span class="number">2</span>, <span class="number">128</span>), (<span class="number">3</span>, <span class="number">256</span>), (<span class="number">3</span>, <span class="number">512</span>), (<span class="number">3</span>, <span class="number">512</span>))</span><br></pre></td></tr></table></figure>
+<p>因为这个网络使用了 13 个卷积层和 3 个全连接层，所以经常被称为 VGG-16, 通过制定 conv_arch 得到模型架构后构建 VGG16：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义VGG网络</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vgg</span>(<span class="params">conv_arch</span>):</span></span><br><span class="line">    <span class="comment"># 构建序列模型</span></span><br><span class="line">    net = tf.keras.models.Sequential()</span><br><span class="line">    <span class="comment"># 根据conv_arch生成卷积部分</span></span><br><span class="line">    <span class="keyword">for</span> (num_convs, num_filters) <span class="keyword">in</span> conv_arch:</span><br><span class="line">        net.add(vgg_block(num_convs, num_filters))</span><br><span class="line">    <span class="comment"># 卷积块序列后添加全连接层</span></span><br><span class="line">    net.add(tf.keras.models.Sequential([</span><br><span class="line">        <span class="comment"># 将特征图展成一维向量</span></span><br><span class="line">        tf.keras.layers.Flatten(),</span><br><span class="line">        <span class="comment"># 全连接层：4096个神经元，激活函数是relu</span></span><br><span class="line">        tf.keras.layers.Dense(<span class="number">4096</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">        <span class="comment"># 随机失活</span></span><br><span class="line">        tf.keras.layers.Dropout(<span class="number">0.5</span>),</span><br><span class="line">        <span class="comment"># 全连接层：4096个神经元，激活函数是relu</span></span><br><span class="line">        tf.keras.layers.Dense(<span class="number">4096</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">        <span class="comment"># 随机失活</span></span><br><span class="line">        tf.keras.layers.Dropout(<span class="number">0.5</span>),</span><br><span class="line">        <span class="comment"># 全连接层：10个神经元，激活函数是softmax</span></span><br><span class="line">        tf.keras.layers.Dense(<span class="number">10</span>, activation=<span class="string">&#x27;softmax&#x27;</span>)]))</span><br><span class="line">    <span class="keyword">return</span> net</span><br><span class="line"><span class="comment"># 网络实例化</span></span><br><span class="line">net = vgg(conv_arch)</span><br></pre></td></tr></table></figure>
+<p>我们构造一个高和宽均为 224 的单通道数据样本来看一下模型的架构：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构造输入X，并将其送入到net网络中</span></span><br><span class="line">X = tf.random.uniform((<span class="number">1</span>,<span class="number">224</span>,<span class="number">224</span>,<span class="number">1</span>))</span><br><span class="line">y = net(X)</span><br><span class="line"><span class="comment"># 通过net.summay()查看网络的形状</span></span><br><span class="line">net.summay()</span><br></pre></td></tr></table></figure>
+<p>网络架构如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Model: <span class="string">&quot;sequential_15&quot;</span></span><br><span class="line">_________________________________________________________________</span><br><span class="line">Layer (<span class="built_in">type</span>)                 Output Shape              Param <span class="comment">#   </span></span><br><span class="line">=================================================================</span><br><span class="line">sequential_16 (Sequential)   (<span class="number">1</span>, <span class="number">112</span>, <span class="number">112</span>, <span class="number">64</span>)         <span class="number">37568</span>     </span><br><span class="line">_________________________________________________________________</span><br><span class="line">sequential_17 (Sequential)   (<span class="number">1</span>, <span class="number">56</span>, <span class="number">56</span>, <span class="number">128</span>)          <span class="number">221440</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">sequential_18 (Sequential)   (<span class="number">1</span>, <span class="number">28</span>, <span class="number">28</span>, <span class="number">256</span>)          <span class="number">1475328</span>   </span><br><span class="line">_________________________________________________________________</span><br><span class="line">sequential_19 (Sequential)   (<span class="number">1</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">512</span>)          <span class="number">5899776</span>   </span><br><span class="line">_________________________________________________________________</span><br><span class="line">sequential_20 (Sequential)   (<span class="number">1</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">512</span>)            <span class="number">7079424</span>   </span><br><span class="line">_________________________________________________________________</span><br><span class="line">sequential_21 (Sequential)   (<span class="number">1</span>, <span class="number">10</span>)                   <span class="number">119586826</span> </span><br><span class="line">=================================================================</span><br><span class="line">Total params: <span class="number">134</span>,<span class="number">300</span>,<span class="number">362</span></span><br><span class="line">Trainable params: <span class="number">134</span>,<span class="number">300</span>,<span class="number">362</span></span><br><span class="line">Non-trainable params: <span class="number">0</span></span><br><span class="line">__________________________________________________________________</span><br></pre></td></tr></table></figure>
+<h5><span id="33-googlenet"> <strong>3.3 GoogLeNet</strong></span></h5>
+<center><img src="https://img-blog.csdnimg.cn/20210624123157142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>GoogLeNet 的名字不是 GoogleNet，而是 GoogLeNet，这是为了致敬 LeNet。GoogLeNet 和 AlexNet/VGGNet 这类依靠加深网络结构的深度的思想不完全一样。GoogLeNet 在加深度的同时做了结构上的创新，引入了一个叫做 Inception 的结构来代替之前的卷积加激活的经典组件。GoogLeNet 在 ImageNet 分类比赛上的 Top-5 错误率降低到了 6.7%。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624123223267.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>整个网络架构我们分为五个模块，每个模块之间使用步幅为 2 的 3×33×3 最大池化层来减小输出高宽。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624123306825.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<center><img src="https://img-blog.csdnimg.cn/20210624123338652.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>代码实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## B1模块</span></span><br><span class="line"><span class="comment"># 定义模型的输入</span></span><br><span class="line">inputs = tf.keras.Input(shape=(<span class="number">224</span>,<span class="number">224</span>,<span class="number">3</span>),name = <span class="string">&quot;input&quot;</span>)</span><br><span class="line"><span class="comment"># b1 模块</span></span><br><span class="line"><span class="comment"># 卷积层7*7的卷积核，步长为2，pad是same，激活函数RELU</span></span><br><span class="line">x = tf.keras.layers.Conv2D(<span class="number">64</span>, kernel_size=<span class="number">7</span>, strides=<span class="number">2</span>, padding=<span class="string">&#x27;same&#x27;</span>, activation=<span class="string">&#x27;relu&#x27;</span>)(inputs)</span><br><span class="line"><span class="comment"># 最大池化：窗口大小为3*3，步长为2，pad是same</span></span><br><span class="line">x = tf.keras.layers.MaxPool2D(pool_size=<span class="number">3</span>, strides=<span class="number">2</span>, padding=<span class="string">&#x27;same&#x27;</span>)(x)</span><br><span class="line"></span><br><span class="line"><span class="comment">## B2模块</span></span><br><span class="line"><span class="comment"># 卷积层1*1的卷积核，步长为2，pad是same，激活函数RELU</span></span><br><span class="line">x = tf.keras.layers.Conv2D(<span class="number">64</span>, kernel_size=<span class="number">1</span>, padding=<span class="string">&#x27;same&#x27;</span>, activation=<span class="string">&#x27;relu&#x27;</span>)(x)</span><br><span class="line"><span class="comment"># 卷积层3*3的卷积核，步长为2，pad是same，激活函数RELU</span></span><br><span class="line">x = tf.keras.layers.Conv2D(<span class="number">192</span>, kernel_size=<span class="number">3</span>, padding=<span class="string">&#x27;same&#x27;</span>, activation=<span class="string">&#x27;relu&#x27;</span>)(x)</span><br><span class="line"><span class="comment"># 最大池化：窗口大小为3*3，步长为2，pad是same</span></span><br><span class="line">x = tf.keras.layers.MaxPool2D(pool_size=<span class="number">3</span>, strides=<span class="number">2</span>, padding=<span class="string">&#x27;same&#x27;</span>)(x)</span><br><span class="line"></span><br><span class="line"><span class="comment">## B3模块</span></span><br><span class="line"><span class="comment"># Inception</span></span><br><span class="line">x = Inception(<span class="number">64</span>, (<span class="number">96</span>, <span class="number">128</span>), (<span class="number">16</span>, <span class="number">32</span>), <span class="number">32</span>)(x)</span><br><span class="line"><span class="comment"># Inception</span></span><br><span class="line">x = Inception(<span class="number">128</span>, (<span class="number">128</span>, <span class="number">192</span>), (<span class="number">32</span>, <span class="number">96</span>), <span class="number">64</span>)(x)</span><br><span class="line"><span class="comment"># 最大池化：窗口大小为3*3，步长为2，pad是same</span></span><br><span class="line">x = tf.keras.layers.MaxPool2D(pool_size=<span class="number">3</span>, strides=<span class="number">2</span>, padding=<span class="string">&#x27;same&#x27;</span>)(x)</span><br><span class="line"></span><br><span class="line"><span class="comment">## B4模块</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">aux_classifier</span>(<span class="params">x, filter_size</span>):</span></span><br><span class="line">    <span class="comment">#x:输入数据，filter_size:卷积层卷积核个数，全连接层神经元个数</span></span><br><span class="line">    <span class="comment"># 池化层</span></span><br><span class="line">    x = tf.keras.layers.AveragePooling2D(</span><br><span class="line">        pool_size=<span class="number">5</span>, strides=<span class="number">3</span>, padding=<span class="string">&#x27;same&#x27;</span>)(x)</span><br><span class="line">    <span class="comment"># 1x1 卷积层</span></span><br><span class="line">    x = tf.keras.layers.Conv2D(filters=filter_size[<span class="number">0</span>], kernel_size=<span class="number">1</span>, strides=<span class="number">1</span>,</span><br><span class="line">                               padding=<span class="string">&#x27;valid&#x27;</span>, activation=<span class="string">&#x27;relu&#x27;</span>)(x)</span><br><span class="line">    <span class="comment"># 展平</span></span><br><span class="line">    x = tf.keras.layers.Flatten()(x)</span><br><span class="line">    <span class="comment"># 全连接层1</span></span><br><span class="line">    x = tf.keras.layers.Dense(units=filter_size[<span class="number">1</span>], activation=<span class="string">&#x27;relu&#x27;</span>)(x)</span><br><span class="line">    <span class="comment"># softmax输出层</span></span><br><span class="line">    x = tf.keras.layers.Dense(units=<span class="number">10</span>, activation=<span class="string">&#x27;softmax&#x27;</span>)(x)</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># Inception</span></span><br><span class="line">x = Inception(<span class="number">192</span>, (<span class="number">96</span>, <span class="number">208</span>), (<span class="number">16</span>, <span class="number">48</span>), <span class="number">64</span>)(x)</span><br><span class="line"><span class="comment"># 辅助输出1</span></span><br><span class="line">aux_output_1 = aux_classifier(x, [<span class="number">128</span>, <span class="number">1024</span>])</span><br><span class="line"><span class="comment"># Inception</span></span><br><span class="line">x = Inception(<span class="number">160</span>, (<span class="number">112</span>, <span class="number">224</span>), (<span class="number">24</span>, <span class="number">64</span>), <span class="number">64</span>)(x)</span><br><span class="line"><span class="comment"># Inception</span></span><br><span class="line">x = Inception(<span class="number">128</span>, (<span class="number">128</span>, <span class="number">256</span>), (<span class="number">24</span>, <span class="number">64</span>), <span class="number">64</span>)(x)</span><br><span class="line"><span class="comment"># Inception</span></span><br><span class="line">x = Inception(<span class="number">112</span>, (<span class="number">144</span>, <span class="number">288</span>), (<span class="number">32</span>, <span class="number">64</span>), <span class="number">64</span>)(x)</span><br><span class="line"><span class="comment"># 辅助输出2</span></span><br><span class="line">aux_output_2 = aux_classifier(x, [<span class="number">128</span>, <span class="number">1024</span>])</span><br><span class="line"><span class="comment"># Inception</span></span><br><span class="line">x = Inception(<span class="number">256</span>, (<span class="number">160</span>, <span class="number">320</span>), (<span class="number">32</span>, <span class="number">128</span>), <span class="number">128</span>)(x)</span><br><span class="line"><span class="comment"># 最大池化</span></span><br><span class="line">x = tf.keras.layers.MaxPool2D(pool_size=<span class="number">3</span>, strides=<span class="number">2</span>, padding=<span class="string">&#x27;same&#x27;</span>)(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## B5模块</span></span><br><span class="line"><span class="comment"># Inception</span></span><br><span class="line">x = Inception(<span class="number">256</span>, (<span class="number">160</span>, <span class="number">320</span>), (<span class="number">32</span>, <span class="number">128</span>), <span class="number">128</span>)(x)</span><br><span class="line"><span class="comment"># Inception</span></span><br><span class="line">x = Inception(<span class="number">384</span>, (<span class="number">192</span>, <span class="number">384</span>), (<span class="number">48</span>, <span class="number">128</span>), <span class="number">128</span>)(x)</span><br><span class="line"><span class="comment"># GAP</span></span><br><span class="line">x = tf.keras.layers.GlobalAvgPool2D()(x)</span><br><span class="line"><span class="comment"># 输出层</span></span><br><span class="line">main_outputs = tf.keras.layers.Dense(<span class="number">10</span>,activation=<span class="string">&#x27;softmax&#x27;</span>)(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用Model来创建模型，指明输入和输出</span></span><br><span class="line">model = tf.keras.Model(inputs=inputs, outputs=[main_outputs,aux_output_1，aux_output_2]) </span><br><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">Model: <span class="string">&quot;functional_3&quot;</span></span><br><span class="line">_________________________________________________________________</span><br><span class="line">Layer (<span class="built_in">type</span>)                 Output Shape              Param <span class="comment">#   </span></span><br><span class="line">=================================================================</span><br><span class="line"><span class="built_in">input</span> (InputLayer)           [(<span class="literal">None</span>, <span class="number">224</span>, <span class="number">224</span>, <span class="number">3</span>)]     <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">conv2d_122 (Conv2D)          (<span class="literal">None</span>, <span class="number">112</span>, <span class="number">112</span>, <span class="number">64</span>)      <span class="number">9472</span>      </span><br><span class="line">_________________________________________________________________</span><br><span class="line">max_pooling2d_27 (MaxPooling (<span class="literal">None</span>, <span class="number">56</span>, <span class="number">56</span>, <span class="number">64</span>)        <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">conv2d_123 (Conv2D)          (<span class="literal">None</span>, <span class="number">56</span>, <span class="number">56</span>, <span class="number">64</span>)        <span class="number">4160</span>      </span><br><span class="line">_________________________________________________________________</span><br><span class="line">conv2d_124 (Conv2D)          (<span class="literal">None</span>, <span class="number">56</span>, <span class="number">56</span>, <span class="number">192</span>)       <span class="number">110784</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">max_pooling2d_28 (MaxPooling (<span class="literal">None</span>, <span class="number">28</span>, <span class="number">28</span>, <span class="number">192</span>)       <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">inception_19 (Inception)     (<span class="literal">None</span>, <span class="number">28</span>, <span class="number">28</span>, <span class="number">256</span>)       <span class="number">163696</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">inception_20 (Inception)     (<span class="literal">None</span>, <span class="number">28</span>, <span class="number">28</span>, <span class="number">480</span>)       <span class="number">388736</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">max_pooling2d_31 (MaxPooling (<span class="literal">None</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">480</span>)       <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">inception_21 (Inception)     (<span class="literal">None</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">512</span>)       <span class="number">376176</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">inception_22 (Inception)     (<span class="literal">None</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">512</span>)       <span class="number">449160</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">inception_23 (Inception)     (<span class="literal">None</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">512</span>)       <span class="number">510104</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">inception_24 (Inception)     (<span class="literal">None</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">528</span>)       <span class="number">605376</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">inception_25 (Inception)     (<span class="literal">None</span>, <span class="number">14</span>, <span class="number">14</span>, <span class="number">832</span>)       <span class="number">868352</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">max_pooling2d_37 (MaxPooling (<span class="literal">None</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">832</span>)         <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">inception_26 (Inception)     (<span class="literal">None</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">832</span>)         <span class="number">1043456</span>   </span><br><span class="line">_________________________________________________________________</span><br><span class="line">inception_27 (Inception)     (<span class="literal">None</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">1024</span>)        <span class="number">1444080</span>   </span><br><span class="line">_________________________________________________________________</span><br><span class="line">global_average_pooling2d_2 ( (<span class="literal">None</span>, <span class="number">1024</span>)              <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">dense_10 (Dense)             (<span class="literal">None</span>, <span class="number">10</span>)                <span class="number">10250</span>     </span><br><span class="line">=================================================================</span><br><span class="line">Total params: <span class="number">5</span>,<span class="number">983</span>,<span class="number">802</span></span><br><span class="line">Trainable params: <span class="number">5</span>,<span class="number">983</span>,<span class="number">802</span></span><br><span class="line">Non-trainable params: <span class="number">0</span></span><br><span class="line">___________________________________________________________</span><br></pre></td></tr></table></figure>
+<h5><span id="34-resnet"> <strong>3.4 ResNet</strong></span></h5>
+<center><img src="https://img-blog.csdnimg.cn/20210624123432304.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>网络越深，获取的信息就越多，特征也越丰富。但是在实践中，随着网络的加深，优化效果反而越差，测试数据和训练数据的准确率反而降低了。</p>
+<center><img src="https://img-blog.csdnimg.cn/2021062412345640.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>针对这一问题，何恺明等人提出了残差网络（ResNet）在 2015 年的 ImageNet 图像识别挑战赛夺魁，并深刻影响了后来的深度神经网络的设计。</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624123528400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>ResNet 网络中按照残差块的通道数分为不同的模块。第一个模块前使用了步幅为 2 的最大池化层，所以无须减小高和宽。之后的每个模块在第一个残差块里将上一个模块的通道数翻倍，并将高和宽减半。</p>
+<p>下面我们来实现这些模块。注意，这里对第一个模块做了特别处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ResNet网络中模块的构成</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResnetBlock</span>(<span class="params">tf.keras.layers.Layer</span>):</span></span><br><span class="line">    <span class="comment"># 网络层的定义：输出通道数（卷积核个数），模块中包含的残差块个数，是否为第一个模块</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,num_channels, num_residuals, first_block=<span class="literal">False</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>(ResnetBlock, self).__init__()</span><br><span class="line">        <span class="comment"># 模块中的网络层</span></span><br><span class="line">        self.listLayers=[]</span><br><span class="line">        <span class="comment"># 遍历模块中所有的层</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_residuals):</span><br><span class="line">            <span class="comment"># 若为第一个残差块并且不是第一个模块，则使用1*1卷积，步长为2（目的是减小特征图，并增大通道数）</span></span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span> first_block:</span><br><span class="line">                self.listLayers.append(Residual(num_channels, use_1x1conv=<span class="literal">True</span>, strides=<span class="number">2</span>))</span><br><span class="line">            <span class="comment"># 否则不使用1*1卷积，步长为1 </span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.listLayers.append(Residual(num_channels))      </span><br><span class="line">    <span class="comment"># 定义前向传播过程</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">call</span>(<span class="params">self, X</span>):</span></span><br><span class="line">        <span class="comment"># 所有层依次向前传播即可</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.listLayers.layers:</span><br><span class="line">            X = layer(X)</span><br><span class="line">        <span class="keyword">return</span> X</span><br></pre></td></tr></table></figure>
+<p>ResNet 的前两层跟之前介绍的 GoogLeNet 中的一样：在输出通道数为 64、步幅为 2 的 7×77×7 卷积层后接步幅为 2 的 3×33×3 的最大池化层。不同之处在于 ResNet 每个卷积层后增加了 BN 层，接着是所有残差模块，最后，与 GoogLeNet 一样，加入全局平均池化层（GAP）后接上全连接层输出。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构建ResNet网络</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResNet</span>(<span class="params">tf.keras.Model</span>):</span></span><br><span class="line">    <span class="comment"># 初始化：指定每个模块中的残差快的个数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self,num_blocks</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(ResNet, self).__init__()</span><br><span class="line">        <span class="comment"># 输入层：7*7卷积，步长为2</span></span><br><span class="line">        self.conv=layers.Conv2D(<span class="number">64</span>, kernel_size=<span class="number">7</span>, strides=<span class="number">2</span>, padding=<span class="string">&#x27;same&#x27;</span>)</span><br><span class="line">        <span class="comment"># BN层</span></span><br><span class="line">        self.bn=layers.BatchNormalization()</span><br><span class="line">        <span class="comment"># 激活层</span></span><br><span class="line">        self.relu=layers.Activation(<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">        <span class="comment"># 最大池化层</span></span><br><span class="line">        self.mp=layers.MaxPool2D(pool_size=<span class="number">3</span>, strides=<span class="number">2</span>, padding=<span class="string">&#x27;same&#x27;</span>)</span><br><span class="line">        <span class="comment"># 第一个block，通道数为64</span></span><br><span class="line">        self.resnet_block1=ResnetBlock(<span class="number">64</span>,num_blocks[<span class="number">0</span>], first_block=<span class="literal">True</span>)</span><br><span class="line">        <span class="comment"># 第二个block，通道数为128</span></span><br><span class="line">        self.resnet_block2=ResnetBlock(<span class="number">128</span>,num_blocks[<span class="number">1</span>])</span><br><span class="line">        <span class="comment"># 第三个block，通道数为256</span></span><br><span class="line">        self.resnet_block3=ResnetBlock(<span class="number">256</span>,num_blocks[<span class="number">2</span>])</span><br><span class="line">        <span class="comment"># 第四个block，通道数为512</span></span><br><span class="line">        self.resnet_block4=ResnetBlock(<span class="number">512</span>,num_blocks[<span class="number">3</span>])</span><br><span class="line">        <span class="comment"># 全局平均池化</span></span><br><span class="line">        self.gap=layers.GlobalAvgPool2D()</span><br><span class="line">        <span class="comment"># 全连接层：分类</span></span><br><span class="line">        self.fc=layers.Dense(units=<span class="number">10</span>,activation=tf.keras.activations.softmax)</span><br><span class="line">    <span class="comment"># 前向传播过程</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">call</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        <span class="comment"># 卷积</span></span><br><span class="line">        x=self.conv(x)</span><br><span class="line">        <span class="comment"># BN</span></span><br><span class="line">        x=self.bn(x)</span><br><span class="line">        <span class="comment"># 激活</span></span><br><span class="line">        x=self.relu(x)</span><br><span class="line">        <span class="comment"># 最大池化</span></span><br><span class="line">        x=self.mp(x)</span><br><span class="line">        <span class="comment"># 残差模块</span></span><br><span class="line">        x=self.resnet_block1(x)</span><br><span class="line">        x=self.resnet_block2(x)</span><br><span class="line">        x=self.resnet_block3(x)</span><br><span class="line">        x=self.resnet_block4(x)</span><br><span class="line">        <span class="comment"># 全局平均池化</span></span><br><span class="line">        x=self.gap(x)</span><br><span class="line">        <span class="comment"># 全链接层</span></span><br><span class="line">        x=self.fc(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"><span class="comment"># 模型实例化：指定每个block中的残差块个数 </span></span><br><span class="line">mynet=ResNet([<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<p>这里每个模块里有 4 个卷积层（不计算 1×1 卷积层），加上最开始的卷积层和最后的全连接层，共计 18 层。这个模型被称为 ResNet-18。通过配置不同的通道数和模块里的残差块数可以得到不同的 ResNet 模型，例如更深的含 152 层的 ResNet-152。虽然 ResNet 的主体架构跟 GoogLeNet 的类似，但 ResNet 结构更简单，修改也更方便。这些因素都导致了 ResNet 迅速被广泛使用。 在训练 ResNet 之前，我们来观察一下输入形状在 ResNet 的架构：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">X = tf.random.uniform(shape=(<span class="number">1</span>,  <span class="number">224</span>, <span class="number">224</span> , <span class="number">1</span>))</span><br><span class="line">y = mynet(X)</span><br><span class="line">mynet.summary()</span><br><span class="line">Model: <span class="string">&quot;res_net&quot;</span></span><br><span class="line">_________________________________________________________________</span><br><span class="line">Layer (<span class="built_in">type</span>)                 Output Shape              Param <span class="comment">#   </span></span><br><span class="line">=================================================================</span><br><span class="line">conv2d_2 (Conv2D)            multiple                  <span class="number">3200</span>      </span><br><span class="line">_________________________________________________________________</span><br><span class="line">batch_normalization_2 (Batch multiple                  <span class="number">256</span>       </span><br><span class="line">_________________________________________________________________</span><br><span class="line">activation (Activation)      multiple                  <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">max_pooling2d (MaxPooling2D) multiple                  <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">resnet_block (ResnetBlock)   multiple                  <span class="number">148736</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">resnet_block_1 (ResnetBlock) multiple                  <span class="number">526976</span>    </span><br><span class="line">_________________________________________________________________</span><br><span class="line">resnet_block_2 (ResnetBlock) multiple                  <span class="number">2102528</span>   </span><br><span class="line">_________________________________________________________________</span><br><span class="line">resnet_block_3 (ResnetBlock) multiple                  <span class="number">8399360</span>   </span><br><span class="line">_________________________________________________________________</span><br><span class="line">global_average_pooling2d (Gl multiple                  <span class="number">0</span>         </span><br><span class="line">_________________________________________________________________</span><br><span class="line">dense (Dense)                multiple                  <span class="number">5130</span>      </span><br><span class="line">=================================================================</span><br><span class="line">Total params: <span class="number">11</span>,<span class="number">186</span>,<span class="number">186</span></span><br><span class="line">Trainable params: <span class="number">11</span>,<span class="number">178</span>,<span class="number">378</span></span><br><span class="line">Non-trainable params: <span class="number">7</span>,<span class="number">808</span></span><br><span class="line">_________________________________________________________________</span><br></pre></td></tr></table></figure>
+<h4><span id="4-图像增强方法"> <strong>4 图像增强方法</strong></span></h4>
+<p>图像增强（image augmentation）指通过剪切、旋转 / 反射 / 翻转变换、缩放变换、平移变换、尺度变换、对比度变换、噪声扰动、颜色变换等一种或多种组合数据增强变换的方式来增加数据集的大小。图像增强的意义是通过对训练图像做一系列随机改变，来产生相似但又不同的训练样本，从而扩大训练数据集的规模，而且随机改变训练样本可以降低模型对某些属性的依赖，从而提高模型的泛化能力。</p>
+<p>常见的图像增强方式可以分为两类：几何变换类和颜色变换类</p>
+<ul>
+<li>几何变换类，主要是对图像进行几何变换操作，包括<strong>翻转，旋转，裁剪，变形，缩放</strong>等。</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210624123612578.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<ul>
+<li>颜色变换类，指通过模糊、颜色变换、擦除、填充等方式对图像进行处理</li>
+</ul>
+<center><img src="https://img-blog.csdnimg.cn/20210624123652449.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>实现图像增强可以通过 tf.image 来完成，也可以通过 tf.keras.imageGenerator 来完成。</p>
+<h5><span id="41-tfimage-进行图像增强"> <strong>4.1 tf.image 进行图像增强</strong></span></h5>
+<p>导入所需的工具包并读取要处理的图像：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入工具包</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment"># 读取图像并显示</span></span><br><span class="line">cat = plt.imread(<span class="string">&#x27;./cat.jpg&#x27;</span>)</span><br><span class="line">plt.imshow(cat)</span><br></pre></td></tr></table></figure>
+<p><strong>1 翻转和裁剪</strong></p>
+<p>左右翻转图像是最早也是最广泛使用的一种图像增广方法。可以通过 <code>tf.image.random_flip_left_right</code>  来实现图像左右翻转。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 左右翻转并显示</span></span><br><span class="line">cat1 = tf.image.random_flip_left_right(cat)</span><br><span class="line">plt.imshow(cat1）</span><br></pre></td></tr></table></figure>
+<center><img src="https://img-blog.csdnimg.cn/20210624123745141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<p>创建 <code>tf.image.random_flip_up_down</code>  实例来实现图像的上下翻转，上下翻转使用的较少。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 上下翻转</span></span><br><span class="line">cat2 = tf.image.random_flip_up_down(cat)</span><br><span class="line">plt.imshow(cat2)</span><br></pre></td></tr></table></figure>
+<center><img src="https://img-blog.csdnimg.cn/20210624123834552.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<p>随机裁剪出一块面积为原面积 10%∼100%10%∼100% 的区域，且该区域的宽和高之比随机取自 0.5∼20.5∼2，然后再将该区域的宽和高分别缩放到 200 像素。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 随机裁剪</span></span><br><span class="line">cat3 = tf.image.random_crop(cat,(<span class="number">200</span>,<span class="number">200</span>,<span class="number">3</span>))</span><br><span class="line">plt.imshow(cat3)</span><br></pre></td></tr></table></figure>
+<center><img src="https://img-blog.csdnimg.cn/20210624123921882.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<p><strong>2 颜色变换</strong></p>
+<p>另一类增广方法是颜色变换。我们可以从 4 个方面改变图像的颜色：亮度、对比度、饱和度和色调。接下来将图像的亮度随机变化为原图亮度的 50%50%（即 1−0.51−0.5）∼150%∼150%（即 1+0.51+0.5）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat4=tf.image.random_brightness(cat,<span class="number">0.5</span>)</span><br><span class="line">plt.imshow(cat4)</span><br></pre></td></tr></table></figure>
+<center><img src="https://img-blog.csdnimg.cn/20210624124001130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<p>类似地，我们也可以随机变化图像的色调</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat5 = tf.image.random_hue(cat,<span class="number">0.5</span>)</span><br><span class="line">plt.imshow(cat5)</span><br></pre></td></tr></table></figure>
+<center><img src="https://img-blog.csdnimg.cn/20210624124033222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<h5><span id="42-使用-imagedatagenerator-进行图像增强"> <strong>4.2 使用 ImageDataGenerator () 进行图像增强</strong></span></h5>
+<p>ImageDataGenerator () 是 keras.preprocessing.image 模块中的图片生成器，可以在 batch 中对数据进行增强，扩充数据集大小，增强模型的泛化能力。比如旋转，变形等，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">keras.preprocessing.image.ImageDataGenerator(</span><br><span class="line">               rotation_range=<span class="number">0</span>, <span class="comment">#整数。随机旋转的度数范围。</span></span><br><span class="line">               width_shift_range=<span class="number">0.0</span>, <span class="comment">#浮点数、宽度平移</span></span><br><span class="line">               height_shift_range=<span class="number">0.0</span>, <span class="comment">#浮点数、高度平移</span></span><br><span class="line">               brightness_range=<span class="literal">None</span>, <span class="comment"># 亮度调整</span></span><br><span class="line">               shear_range=<span class="number">0.0</span>, <span class="comment"># 裁剪</span></span><br><span class="line">               zoom_range=<span class="number">0.0</span>, <span class="comment">#浮点数 或 [lower, upper]。随机缩放范围</span></span><br><span class="line">               horizontal_flip=<span class="literal">False</span>, <span class="comment"># 左右翻转</span></span><br><span class="line">               vertical_flip=<span class="literal">False</span>, <span class="comment"># 垂直翻转</span></span><br><span class="line">               rescale=<span class="literal">None</span> <span class="comment"># 尺度调整</span></span><br><span class="line">            )</span><br></pre></td></tr></table></figure>
+<p>来看下水平翻转的结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取数据集</span></span><br><span class="line">(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()</span><br><span class="line"><span class="comment"># 将数据转换为4维的形式</span></span><br><span class="line">x_train = X_train.reshape(X_train.shape[<span class="number">0</span>],<span class="number">28</span>,<span class="number">28</span>,<span class="number">1</span>)</span><br><span class="line">x_test = X_test.reshape(X_test.shape[<span class="number">0</span>],<span class="number">28</span>,<span class="number">28</span>,<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 设置图像增强方式：水平翻转</span></span><br><span class="line">datagen = ImageDataGenerator(horizontal_flip=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 查看增强后的结果</span></span><br><span class="line"><span class="keyword">for</span> X_batch,y_batch <span class="keyword">in</span> datagen.flow(x_train,y_train,batch_size=<span class="number">9</span>):</span><br><span class="line">    plt.figure(figsize=(<span class="number">8</span>,<span class="number">8</span>)) <span class="comment"># 设定每个图像显示的大小</span></span><br><span class="line">    <span class="comment"># 产生一个3*3网格的图像</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">9</span>):</span><br><span class="line">        plt.subplot(<span class="number">330</span>+<span class="number">1</span>+i) </span><br><span class="line">        plt.title(y_batch[i])</span><br><span class="line">        plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">        plt.imshow(X_batch[i].reshape(<span class="number">28</span>,<span class="number">28</span>),cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<center><img src="https://img-blog.csdnimg.cn/20210624124125444.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<h4><span id="5-模型微调"> <strong>5 模型微调</strong></span></h4>
+<h5><span id="51-微调"> <strong>5.1 微调</strong></span></h5>
+<p>如何在只有 6 万张图像的 MNIST 训练数据集上训练模型。学术界当下使用最广泛的大规模图像数据集 ImageNet，它有超过 1,000 万的图像和 1,000 类的物体。然而，我们平常接触到数据集的规模通常在这两者之间。假设我们想从图像中识别出不同种类的椅子，然后将购买链接推荐给用户。一种可能的方法是先找出 100 种常见的椅子，为每种椅子拍摄 1,000 张不同角度的图像，然后在收集到的图像数据集上训练一个分类模型。另外一种解决办法是应用迁移学习（transfer learning），将从源数据集学到的知识迁移到目标数据集上。例如，虽然 ImageNet 数据集的图像大多跟椅子无关，但在该数据集上训练的模型可以抽取较通用的图像特征，从而能够帮助识别边缘、纹理、形状和物体组成等。这些类似的特征对于识别椅子也可能同样有效。</p>
+<p>微调由以下 4 步构成。</p>
+<ol>
+<li>在源数据集（如 ImageNet 数据集）上预训练一个神经网络模型，即源模型。</li>
+<li>创建一个新的神经网络模型，即目标模型。它复制了源模型上除了输出层外的所有模型设计及其参数。我们假设这些模型参数包含了源数据集上学习到的知识，且这些知识同样适用于目标数据集。我们还假设源模型的输出层跟源数据集的标签紧密相关，因此在目标模型中不予采用。</li>
+<li>为目标模型添加一个输出大小为目标数据集类别个数的输出层，并随机初始化该层的模型参数。</li>
+<li>在目标数据集（如椅子数据集）上训练目标模型。我们将从头训练输出层，而其余层的参数都是基于源模型的参数微调得到的。</li>
+</ol>
+<center><img src="https://img-blog.csdnimg.cn/20210624124223925.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>当目标数据集远小于源数据集时，微调有助于提升模型的泛化能力。</p>
+<h5><span id="52-热狗识别"> <strong>5.2 热狗识别</strong></span></h5>
+<p>接下来我们来实践一个具体的例子：热狗识别。将基于一个小数据集对在 ImageNet 数据集上训练好的 ResNet 模型进行微调。该小数据集含有数千张热狗或者其他事物的图像。我们将使用微调得到的模型来识别一张图像中是否包含热狗。</p>
+<p>首先，导入实验所需的工具包。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+<p><strong>5.2.1 获取数据集</strong></p>
+<p>我们首先将数据集放在路径 hotdog/data 之下:</p>
+<center><img src="https://img-blog.csdnimg.cn/20210624124255387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:50%;"></center>
+<p>每个类别文件夹里面是图像文件。</p>
+<p>上一节中我们介绍了 ImageDataGenerator 进行图像增强，我们可以通过以下方法读取图像文件，该方法以文件夹路径为参数，生成经过图像增强后的结果，并产生 batch 数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flow_from_directory(self, directory,</span><br><span class="line">                            target_size=(<span class="number">256</span>, <span class="number">256</span>), color_mode=<span class="string">&#x27;rgb&#x27;</span>,</span><br><span class="line">                            classes=<span class="literal">None</span>, class_mode=<span class="string">&#x27;categorical&#x27;</span>,</span><br><span class="line">                            batch_size=<span class="number">32</span>, shuffle=<span class="literal">True</span>, seed=<span class="literal">None</span>,</span><br><span class="line">                            save_to_dir=<span class="literal">None</span>）</span><br></pre></td></tr></table></figure>
+<p>主要参数：</p>
+<ul>
+<li>directory: 目标文件夹路径，对于每一个类对应一个子文件夹，该子文件夹中任何 JPG、PNG、BNP、PPM 的图片都可以读取。</li>
+<li>target_size: 默认为 (256, 256)，图像将被 resize 成该尺寸。</li>
+<li>batch_size: batch 数据的大小，默认 32。</li>
+<li>shuffle: 是否打乱数据，默认为 True。</li>
+</ul>
+<p>我们创建两个 <code>tf.keras.preprocessing.image.ImageDataGenerator</code>  实例来分别读取训练数据集和测试数据集中的所有图像文件。将训练集图片全部处理为高和宽均为 224 像素的输入。此外，我们对 RGB（红、绿、蓝）三个颜色通道的数值做标准化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取数据集</span></span><br><span class="line"><span class="keyword">import</span> pathlib</span><br><span class="line">train_dir = <span class="string">&#x27;transferdata/train&#x27;</span></span><br><span class="line">test_dir = <span class="string">&#x27;transferdata/test&#x27;</span></span><br><span class="line"><span class="comment"># 获取训练集数据</span></span><br><span class="line">train_dir = pathlib.Path(train_dir)</span><br><span class="line">train_count = <span class="built_in">len</span>(<span class="built_in">list</span>(train_dir.glob(<span class="string">&#x27;*/*.jpg&#x27;</span>)))</span><br><span class="line"><span class="comment"># 获取测试集数据</span></span><br><span class="line">test_dir = pathlib.Path(test_dir)</span><br><span class="line">test_count = <span class="built_in">len</span>(<span class="built_in">list</span>(test_dir.glob(<span class="string">&#x27;*/*.jpg&#x27;</span>)))</span><br><span class="line"><span class="comment"># 创建imageDataGenerator进行图像处理</span></span><br><span class="line">image_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=<span class="number">1.</span>/<span class="number">255</span>)</span><br><span class="line"><span class="comment"># 设置参数</span></span><br><span class="line">BATCH_SIZE = <span class="number">32</span></span><br><span class="line">IMG_HEIGHT = <span class="number">224</span></span><br><span class="line">IMG_WIDTH = <span class="number">224</span></span><br><span class="line"><span class="comment"># 获取训练数据</span></span><br><span class="line">train_data_gen = image_generator.flow_from_directory(directory=<span class="built_in">str</span>(train_dir),</span><br><span class="line">                                                    batch_size=BATCH_SIZE,</span><br><span class="line">                                                    target_size=(IMG_HEIGHT, IMG_WIDTH),</span><br><span class="line">                                                    shuffle=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 获取测试数据</span></span><br><span class="line">test_data_gen = image_generator.flow_from_directory(directory=<span class="built_in">str</span>(test_dir),</span><br><span class="line">                                                    batch_size=BATCH_SIZE,</span><br><span class="line">                                                    target_size=(IMG_HEIGHT, IMG_WIDTH),</span><br><span class="line">                                                    shuffle=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p>下面我们随机取 1 个 batch 的图片然后绘制出来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># 显示图像</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_batch</span>(<span class="params">image_batch, label_batch</span>):</span></span><br><span class="line">    plt.figure(figsize=(<span class="number">10</span>,<span class="number">10</span>))</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">15</span>):</span><br><span class="line">        ax = plt.subplot(<span class="number">5</span>,<span class="number">5</span>,n+<span class="number">1</span>)</span><br><span class="line">        plt.imshow(image_batch[n]）</span><br><span class="line">        plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line"><span class="comment"># 随机选择一个batch的图像        </span></span><br><span class="line">image_batch, label_batch = <span class="built_in">next</span>(train_data_gen)</span><br><span class="line"><span class="comment"># 图像显示</span></span><br><span class="line">show_batch(image_batch, label_batch)</span><br></pre></td></tr></table></figure>
+<center><img src="C:\Users\14767\AppData\Roaming\Typora\typora-user-images\image-20210622215025389.png" alt="image-20210622215025389" style="zoom:50%;#pic_center"></center>
+<p><strong>5.2.2 模型构建与训练</strong></p>
+<p>我们使用在 ImageNet 数据集上预训练的 ResNet-50 作为源模型。这里指定 <code>weights='imagenet'</code>  来自动下载并加载预训练的模型参数。在第一次使用时需要联网下载模型参数。</p>
+<p>Keras 应用程序（keras.applications）是具有预先训练权值的固定架构，该类封装了很多重量级的网络架构，如下图所示：</p>
+<center><img src="https://img-blog.csdnimg.cn/2021062412434130.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzIyODg3,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" style="zoom:33%;"></center>
+<p>实现时实例化模型架构：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tf.keras.applications.ResNet50(</span><br><span class="line">    include_top=<span class="literal">True</span>, weights=<span class="string">&#x27;imagenet&#x27;</span>, input_tensor=<span class="literal">None</span>, input_shape=<span class="literal">None</span>,</span><br><span class="line">    pooling=<span class="literal">None</span>, classes=<span class="number">1000</span>, **kwargs</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>主要参数：</p>
+<ul>
+<li>include_top: 是否包括顶层的全连接层。</li>
+<li>weights: None 代表随机初始化， ‘imagenet’ 代表加载在 ImageNet 上预训练的权值。</li>
+<li>input_shape: 可选，输入尺寸元组，仅当 include_top=False 时有效，否则输入形状必须是 (224, 224, 3)（channels_last 格式）或 (3, 224, 224)（channels_first 格式）。它必须为 3 个输入通道，且宽高必须不小于 32，比如 (200, 200, 3) 是一个合法的输入尺寸。</li>
+</ul>
+<p>在该案例中我们使用 resNet50 预训练模型构建模型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加载预训练模型</span></span><br><span class="line">ResNet50 = tf.keras.applications.ResNet50(weights=<span class="string">&#x27;imagenet&#x27;</span>, input_shape=(<span class="number">224</span>,<span class="number">224</span>,<span class="number">3</span>))</span><br><span class="line"><span class="comment"># 设置所有层不可训练</span></span><br><span class="line"><span class="keyword">for</span> layer <span class="keyword">in</span> ResNet50.layers:</span><br><span class="line">    layer.trainable = <span class="literal">False</span></span><br><span class="line"><span class="comment"># 设置模型</span></span><br><span class="line">net = tf.keras.models.Sequential()</span><br><span class="line"><span class="comment"># 预训练模型</span></span><br><span class="line">net.add(ResNet50)</span><br><span class="line"><span class="comment"># 展开</span></span><br><span class="line">net.add(tf.keras.layers.Flatten())</span><br><span class="line"><span class="comment"># 二分类的全连接层</span></span><br><span class="line">net.add(tf.keras.layers.Dense(<span class="number">2</span>, activation=<span class="string">&#x27;softmax&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<p>接下来我们使用之前定义好的 ImageGenerator 将训练集图片送入 ResNet50 进行训练。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模型编译：指定优化器，损失函数和评价指标</span></span><br><span class="line">net.<span class="built_in">compile</span>(optimizer=<span class="string">&#x27;adam&#x27;</span>,</span><br><span class="line">            loss=<span class="string">&#x27;categorical_crossentropy&#x27;</span>,</span><br><span class="line">            metrics=[<span class="string">&#x27;accuracy&#x27;</span>])</span><br><span class="line"><span class="comment"># 模型训练：指定数据，每一个epoch中只运行10个迭代，指定验证数据集</span></span><br><span class="line">history = net.fit(</span><br><span class="line">                    train_data_gen,</span><br><span class="line">                    steps_per_epoch=<span class="number">10</span>,</span><br><span class="line">                    epochs=<span class="number">3</span>,</span><br><span class="line">                    validation_data=test_data_gen,</span><br><span class="line">                    validation_steps=<span class="number">10</span></span><br><span class="line">                    )</span><br><span class="line">Epoch <span class="number">1</span>/<span class="number">3</span></span><br><span class="line"><span class="number">10</span>/<span class="number">10</span> [==============================] - 28s 3s/step - loss: <span class="number">0.6931</span> - accuracy: <span class="number">0.5031</span> - val_loss: <span class="number">0.6930</span> - val_accuracy: <span class="number">0.5094</span></span><br><span class="line">Epoch <span class="number">2</span>/<span class="number">3</span></span><br><span class="line"><span class="number">10</span>/<span class="number">10</span> [==============================] - 29s 3s/step - loss: <span class="number">0.6932</span> - accuracy: <span class="number">0.5094</span> - val_loss: <span class="number">0.6935</span> - val_accuracy: <span class="number">0.4812</span></span><br><span class="line">Epoch <span class="number">3</span>/<span class="number">3</span></span><br><span class="line"><span class="number">10</span>/<span class="number">10</span> [==============================] - 31s 3s/step - loss: <span class="number">0.6935</span> - accuracy: <span class="number">0.4844</span> - val_loss: <span class="number">0.6933</span> - val_accuracy: <span class="number">0.4875</span></span><br></pre></td></tr></table></figure>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2021年07月14日 20:44</p>
+        <p>原始链接： <a class="post-url" href="/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" title="计算机视觉之图像分类">https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/&title=《计算机视觉之图像分类》 — 且听风吟，御剑于心！&pic=images/计算机视觉之图像分类.jpeg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/&title=《计算机视觉之图像分类》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计算机视觉之图像分类》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/计算机视觉CV/" class="color3">计算机视觉CV</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> 图像分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 1 定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 2 常用数据集</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.1 mnist 数据集</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.2 CIFAR-10 和 CIFAR-100</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 2.3 ImageNet</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 3 经典深度学习网络</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.1 AlexNet</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.2 VGG</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.3 GoogLeNet</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 3.4 ResNet</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 4 图像增强方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 4.1 tf.image 进行图像增强</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 4.2 使用 ImageDataGenerator () 进行图像增强</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 5 模型微调</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 5.1 微调</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 5.2 热狗识别</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B9%8B%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          计算机视觉之目标检测
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2021/06/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AF%BB%E7%AF%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">计算机视觉算法导读篇</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="计算机视觉之图像分类" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://leezhao415.github.io</id>
+    <title>且听风吟，御剑于心！ • Posts by &#34;cv/目标检测工具箱&#34; tag</title>
+    <link href="https://leezhao415.github.io" />
+    <updated>2021-08-08T09:42:19.000Z</updated>
+    <category term="人工智能" />
+    <category term="数据集" />
+    <category term="人工智能/CV" />
+    <category term="Transformer/DETR(CV)" />
+    <category term="编程工具" />
+    <category term="大数据框架" />
+    <category term="NLP" />
+    <category term="模型部署" />
+    <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="网络通信" />
+    <category term="YOLOX" />
+    <category term="CV算法" />
+    <category term="AIGC前沿" />
+    <category term="VSLAM" />
+    <category term="NCNN部署" />
+    <category term="多模态" />
+    <category term="YOLOX目标检测" />
+    <category term="目标跟踪" />
+    <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
+    <category term="CV未来" />
+    <category term="且读文摘" />
+    <category term="NLP-BERT" />
+    <category term="自然语言处理NLP" />
+    <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
+    <category term="深度模型" />
+    <category term="NLP-模型优化" />
+    <category term="激活函数" />
+    <category term="梯度更新" />
+    <category term="概述" />
+    <category term="人脸识别" />
+    <category term="名人名言" />
+    <category term="寒窑赋" />
+    <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
+    <category term="智能家居" />
+    <category term="机器学习" />
+    <category term="科研项目成果" />
+    <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
+    <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
+    <category term="计算机视觉CV" />
+    <category term="网络编程" />
+    <category term="NLP/数据增强工具" />
+    <category term="计算机视觉" />
+    <category term="模型优化" />
+    <category term="三维建模" />
+    <category term="计算机视觉库" />
+    <category term="深度学习环境配置" />
+    <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
+    <category term="数据库原理" />
+    <category term="算法" />
+    <category term="操作系统" />
+    <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
+    <category term="ReID" />
+    <category term="MOT" />
+    <category term="NLP-发展史" />
+    <category term="编程语言" />
+    <category term="CV数据集" />
+    <category term="Linux" />
+    <category term="PaddlePaddle" />
+    <entry>
+        <id>https://leezhao415.github.io/2021/08/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1mmdetection/</id>
+        <title>深度学习目标检测工具箱mmdetection</title>
+        <link rel="alternate" href="https://leezhao415.github.io/2021/08/08/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1mmdetection/"/>
+        <content type="html">&lt;meta name=&#34;referrer&#34; content=&#34;no-referrer&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;文章目录&lt;/strong&gt;&lt;/p&gt;
+&lt;!-- toc --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#mmdetection%E8%AF%A6%E8%A7%A3&#34;&gt;MMDetection 详解&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%AE%80%E4%BB%8B&#34;&gt;简介&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#1-%E5%AE%89%E8%A3%85%E6%96%87%E6%A1%A3%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAmmdetection%E6%A1%86%E6%9E%B6&#34;&gt;1. 安装文档 — 手把手教你如何搭建 MMDetection 框架&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-%E5%85%A5%E9%97%A8%E6%96%87%E6%A1%A3%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8Bmmdetection&#34;&gt;2. 入门文档 — 教你如何快速上手 MMDetection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-%E5%9F%BA%E5%87%86%E5%92%8C%E6%A8%A1%E5%9E%8B%E6%B1%87%E6%80%BB%E5%B1%95%E7%A4%BAmmdetection%E4%B8%8A%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%87%86%E7%A1%AE%E7%8E%87%E5%92%8C%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95&#34;&gt;3. 基准和模型汇总 — 展示 MMDetection 上各个模型的准确率和使用方法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E7%BD%91%E7%BB%9C&#34;&gt;4. 技术细节 — 手把手教你如何实现一个新的网络&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97mmdetection%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E6%94%B9%E5%8A%A8&#34;&gt;5. 更新日志 —MMDetection 版本升级改动&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%AF%94%E8%B5%9B%E4%B8%AD%E7%9A%84tricks&#34;&gt;6. 目标检测比赛中的 tricks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7mmdetection%E7%9A%84configs%E4%B8%AD%E7%9A%84%E5%90%84%E9%A1%B9%E5%8F%82%E6%95%B0%E5%85%B7%E4%BD%93%E8%A7%A3%E9%87%8A&#34;&gt;7.mmdetection 的 configs 中的各项参数具体解释&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- tocstop --&gt;
+&lt;hr&gt;
+&lt;h2&gt;&lt;span id=&#34;mmdetection-详解&#34;&gt; MMDetection 详解&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;简介&#34;&gt; 简介&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;商汤科技（2018 COCO 目标检测挑战赛冠军）和香港中文大学最近开源了一个基于 Pytorch 实现的深度学习目标检测工具箱 mmdetection，支持 Faster-RCNN，Mask-RCNN，Fast-RCNN 等主流的目标检测框架，后续会加入 Cascade-RCNN 以及其他一系列目标检测框架。&lt;/p&gt;
+&lt;p&gt;相比于 Facebook 开源的 Detectron 框架，作者声称 mmdetection 有三点优势：performance 稍高、训练速度稍快、所需显存稍小。、&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;以增添 mmdetection 的 configs 中的各项参数具体解释，以及目标检测比赛的一些小技巧（比赛专用）。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;1-安装文档-手把手教你如何搭建-mmdetection-框架&#34;&gt; 1. 安装文档 — 手把手教你如何搭建 MMDetection 框架&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/101202864&#34;&gt;初识 CV：MMDetection 中文文档 —1. 安装&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;2-入门文档-教你如何快速上手-mmdetection&#34;&gt; 2. 入门文档 — 教你如何快速上手 MMDetection&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/101212969&#34;&gt;初识 CV：MMDetection 中文文档 —2. 入门&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;3-基准和模型汇总-展示-mmdetection-上各个模型的准确率和使用方法&#34;&gt; 3. 基准和模型汇总 — 展示 MMDetection 上各个模型的准确率和使用方法&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/101216931&#34;&gt;初识 CV：MMDetection 中文文档 —3. 基准和模型动物园&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;4-技术细节-手把手教你如何实现一个新的网络&#34;&gt; 4. 技术细节 — 手把手教你如何实现一个新的网络&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/101222759&#34;&gt;初识 CV：MMDetection 中文文档 —4. 技术细节&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;5-更新日志-mmdetection-版本升级改动&#34;&gt; 5. 更新日志 —MMDetection 版本升级改动&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/101224740&#34;&gt;初识 CV：MMDetection 中文文档 —5. 更新日志&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;6-目标检测比赛中的-tricks&#34;&gt; 6. 目标检测比赛中的 tricks&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/102817180&#34;&gt;初识 CV：目标检测比赛中的 tricks（已更新更多代码解析）&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;7mmdetection-的-configs-中的各项参数具体解释&#34;&gt; 7.mmdetection 的 configs 中的各项参数具体解释&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/102072353&#34;&gt;初识 CV：mmdetection 的 configs 中的各项参数具体解释&lt;/a&gt;&lt;/p&gt;
+</content>
+        <category term="人工智能" />
+        <category term="CV/目标检测工具箱" />
+        <updated>2021-08-08T09:42:19.000Z</updated>
+    </entry>
+</feed>

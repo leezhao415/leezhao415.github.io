@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【精华】使用NCNN在移动端部署深度学习模型 | 且听风吟，御剑于心！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LeeZhao,LeeZhao's Blog" />
+  
+  <meta name="description" content="文章目录   使用 NCNN 在移动端部署深度学习模型  一、整体流程概览 二、将 *.pth  转换成 onnx 三、编译 NCNN 框架 四、C++ 调用和封装 五、 编写 JNI C++ 六、java 调用 七、 应用层使用       使用 NCNN 在移动端部署深度学习模型  一、整体流程概览 （1）训练模型，使用各种你熟悉的框架我用的是 pytorch （2）将 *.pth  转换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【精华】使用NCNN在移动端部署深度学习模型">
+<meta property="og:url" content="https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8NCNN%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/index.html">
+<meta property="og:site_name" content="且听风吟，御剑于心！">
+<meta property="og:description" content="文章目录   使用 NCNN 在移动端部署深度学习模型  一、整体流程概览 二、将 *.pth  转换成 onnx 三、编译 NCNN 框架 四、C++ 调用和封装 五、 编写 JNI C++ 六、java 调用 七、 应用层使用       使用 NCNN 在移动端部署深度学习模型  一、整体流程概览 （1）训练模型，使用各种你熟悉的框架我用的是 pytorch （2）将 *.pth  转换">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-20T15:07:43.000Z">
+<meta property="article:modified_time" content="2022-02-20T15:10:34.359Z">
+<meta property="article:author" content="LeeZhao">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="NCNN部署">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/images/hatRSS blk.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?true";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+  
+  <div style="display: none;">
+    <script src="//s22.cnzz.com/z_stat.php?id=true&web_id=true" language="JavaScript"></script>
+  </div>
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">LeeZhao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.jpg" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        LeeZhao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        且听风吟，御剑于心！
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="CSDN" target="_blank" href="//blog.csdn.net/qq_36722887">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/leezhao415">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/u/5120617296/home?topnav=1&wvr=6">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="CodeSearch" target="_blank" href="//www.aixcoder.com/#/CodeSearch">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-【精华】使用NCNN在移动端部署深度学习模型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      【精华】使用NCNN在移动端部署深度学习模型
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Hot/">Hot</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2022-02-20
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <meta name="referrer" content="no-referrer">
+<hr>
+<p><strong>文章目录</strong></p>
+<!-- toc -->
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8ncnn%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B">使用 NCNN 在移动端部署深度学习模型</a>
+<ul>
+<li><a href="#%E4%B8%80-%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E6%A6%82%E8%A7%88">一、整体流程概览</a></li>
+<li><a href="#%E4%BA%8C-%E5%B0%86pth%E8%BD%AC%E6%8D%A2%E6%88%90onnx">二、将 <code>*.pth</code>  转换成 onnx</a></li>
+<li><a href="#%E4%B8%89-%E7%BC%96%E8%AF%91ncnn%E6%A1%86%E6%9E%B6">三、编译 NCNN 框架</a></li>
+<li><a href="#%E5%9B%9B-c%E8%B0%83%E7%94%A8%E5%92%8C%E5%B0%81%E8%A3%85">四、C++ 调用和封装</a></li>
+<li><a href="#%E4%BA%94-%E7%BC%96%E5%86%99jni-c">五、 编写 JNI C++</a></li>
+<li><a href="#%E5%85%AD-java%E8%B0%83%E7%94%A8">六、java 调用</a></li>
+<li><a href="#%E4%B8%83-%E5%BA%94%E7%94%A8%E5%B1%82%E4%BD%BF%E7%94%A8">七、 应用层使用</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<hr>
+<h4><span id="使用-ncnn-在移动端部署深度学习模型"> 使用 NCNN 在移动端部署深度学习模型</span></h4>
+<h5><span id="一-整体流程概览"> 一、整体流程概览</span></h5>
+<p>（1）训练模型，使用各种你熟悉的框架我用的是 pytorch<br>
+（2）将 <code>*.pth</code>  转换成 onnx， 优化 onnx 模型<br>
+（3）使用转换工具转换成可供 ncnn 使用的模型<br>
+（4）编译 ncnn 框架，并编写 c<ins> 代码调用上一步转换的模型，得到模型的输出结果，封装成可供调用的类<br>
+（5）使用 JNIC</ins> 调用上一步 C++ 封装的类，提供出接口<br>
+（6）在安卓端编写 java 代码再次封装一次，供应用层调用</p>
+<h5><span id="二-将-pth-转换成-onnx"> 二、将 <code>*.pth</code>  转换成 onnx</span></h5>
+<p>使用 pytorch 自带的 torch.onnx 即可，需要 1.1 版本以上，这里有一点需要注意，torch 的 API 有些是 onnx 不支持的，如果转换的时候报错就把模型里的函数改成 onnx 支持的吧，有些文章里说这里可以设置 opset_version=12 来解决，但是这样的话在后面转换到 ncnn 或者 mnn 的时候造成转换失败，应该是 ncnn 还没支持到更高版本的 onnx 的原因。在最后输出之前有个 torch.randn () 函数，这里的参数格式是 [b,c, w,h] 这里也不是随便写的，b 固定是 1 了，你模型的输入通道是多少就写多少，后面的就是模型的输入，这里一旦固定了，后面在第 5 步的时候 c++ 里的输入也就固定了</p>
+<h6><span id="convet2onnxpy"> </span></h6>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># name: convert_onnx</span></span><br><span class="line"><span class="comment"># author: bqh</span></span><br><span class="line"><span class="comment"># datetime:2020/6/17 10:31</span></span><br><span class="line"><span class="comment"># =========================</span></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_model</span>(<span class="params">model, pretrained_path</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Loading pretrained model from &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(pretrained_path))</span><br><span class="line">    pretrained_dict = torch.load(pretrained_path, map_location=<span class="keyword">lambda</span> storage, loc: storage)    </span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;state_dict&quot;</span> <span class="keyword">in</span> pretrained_dict.keys():</span><br><span class="line">        pretrained_dict = remove_prefix(pretrained_dict[<span class="string">&#x27;state_dict&#x27;</span>], <span class="string">&#x27;module.&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        pretrained_dict = remove_prefix(pretrained_dict, <span class="string">&#x27;module.&#x27;</span>)</span><br><span class="line">    check_keys(model, pretrained_dict)</span><br><span class="line">    model.load_state_dict(pretrained_dict, strict=<span class="literal">False</span>)</span><br><span class="line">    <span class="keyword">return</span> model</span><br><span class="line">    </span><br><span class="line">output_onnx = <span class="string">&#x27;../weights/output.onnx&#x27;</span></span><br><span class="line">raw_weights = <span class="string">&#x27;../weights/model.pth&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># load weight</span></span><br><span class="line">net = you_net()</span><br><span class="line">net = load_model(net, raw_weights)</span><br><span class="line">net.<span class="built_in">eval</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Finished loading model!&#x27;</span>)</span><br><span class="line">device = torch.device(<span class="string">&quot;cuda&quot;</span>)</span><br><span class="line">net = net.to(device)</span><br><span class="line"></span><br><span class="line">input_names = [<span class="string">&quot;input0&quot;</span>]</span><br><span class="line">output_names = [<span class="string">&quot;output0&quot;</span>]</span><br><span class="line">inputs = torch.randn(<span class="number">1</span>, <span class="number">3</span>, <span class="number">300</span>, <span class="number">300</span>).to(device)</span><br><span class="line">torch_out = torch.onnx._export(net, inputs, output_onnx, export_params=<span class="literal">True</span>, verbose=<span class="literal">False</span>,keep_initializers_as_inputs=<span class="literal">True</span>, input_names=input_names, output_names=output_names)</span><br></pre></td></tr></table></figure>
+<h6><span id="安装-onnx-简化工具"> 安装 onnx 简化工具</span></h6>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install onnx-simplifier onnxruntime</span><br></pre></td></tr></table></figure>
+<h6><span id="简化-onnx-模型"> 简化 onnx 模型</span></h6>
+<p>这一步一定要做，否则后面转 onnx 的时候会报错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m onnxsim model.onnx model_sim.onnx</span><br></pre></td></tr></table></figure>
+<h5><span id="三-编译-ncnn-框架"> 三、编译 NCNN 框架</span></h5>
+<p>主要参考 ncnn 官网的教程即可，windows 下编译同上一篇的 MNN 的编译都差不多，只有一点需要说明，官网的教程上有 vulkan-sdk 的安装然后打开 - DNCNN_VULKAN=ON 编译选项。我一切照做后编译出来的 ncnn.lib 在运行 ncnn::Extractor ex = Net-&gt;create_extractor (); 这个函数后的所有操作之后，返回的时候就报堆栈溢出错误，包括加载官网给出的例子全部报错；后来不 cmake 的时候这个编译选项不打开编译出来的 ncnn.lib 就一切正常了。可能是自己的问题，也没去深究。反正能用就 OK 了。我把编译出来的 ncnn.lib ncnn.a 和 linux 下的 onnx2ncnn 工具都放在了我的网盘里，不想被编译折磨的就直接去下吧。如果编译遇见问题，也可以给我留言，哈哈～<br>
+ 说明：ncnnd.lib 是 windows 下的 debug 版本，ncnn.lib 是 release 版本，libncnn.a 是 linux 下的库文件，onnx2ncnn 是 linux 下的转换工具。<br>
+下载地址：NCNN 提取码：6cuc</p>
+<h5><span id="四-c-调用和封装"> 四、C++ 调用和封装</span></h5>
+<h6><span id="说明"> 说明</span></h6>
+<p>对于 vs 中 lib 库和 include 目录的配置就不赘述了，有不懂的之前的文章有提过，假定工程已经配置完成。大体的调用过程 NCNN 和 MNN 都差不多，先加载模型创建一个指向模型的指针，然后创建 session、创建用于处理输入的 tensor，将 input_tensor 送入 session，运行 session，最后得到网络的输出。如果对 C++ 比较熟悉的话，看着官网的教程比葫芦画瓢即可，只有一个地方需要说明就是对输出的获得。先看下我的代码和官网的代码再说为什么<br>
+<strong>我的输出</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// run net <span class="keyword">and</span> get output</span><br><span class="line">ncnn::Mat out, out1;</span><br><span class="line">ret = ex.extract(<span class="string">&quot;output0&quot;</span>, out);</span><br><span class="line">ex.extract(<span class="string">&quot;376&quot;</span>, out1);</span><br></pre></td></tr></table></figure>
+<p><strong>官网的例子输出</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ncnn::Mat out;</span><br><span class="line">ex.extract(<span class="string">&quot;detection_out&quot;</span>, out);</span><br></pre></td></tr></table></figure>
+<p>辣么问题来了，我的 &quot;output0&quot; 和 &quot;376&quot;、官网的 “detection_out” 都哪里来的？有两个地方可以得到，最简单的方法，使用 MNN 框架下的转换工具，在转换完成的时候会给出模型的输入和输出名称，直接拷贝即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;MNNConvert.exe -f ONNX --modelFile model.onnx --MNNModel slime.mnn  --bizCode biz</span><br><span class="line"></span><br><span class="line">MNNConverter Version: 0.2.1.5git - MNN @ 2018</span><br><span class="line"></span><br><span class="line">Start to Convert Other Model Format To MNN Model...</span><br><span class="line">[17:49:58] :29: ONNX Model ir version: 6</span><br><span class="line">Start to Optimize the MNN Net...</span><br><span class="line">[17:49:58] :20: Inputs: input0</span><br><span class="line">[17:49:58] :37: Outputs: output0, Type = Concat</span><br><span class="line">[17:49:58] :37: Outputs: 376, Type = Softmax</span><br><span class="line">Converted Done!</span><br></pre></td></tr></table></figure>
+<p>如果没有 MNN 的转换工具，在后面加载模型后单步跟一下，在 Net = new ncnn::Net () 变量中有个 blob 变量，在内存中查看一下，里面存的有模型的各个层的名称。代码中的 img_w,img_h 就是在第二步转换的时候你指定的 w,h。这里只写了核心调用函数，具体使用时还请自行添加一些辅助函数！</p>
+<h6><span id="c-代码"> C++ 代码</span></h6>
+<p><strong>detection.h</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#pragma once</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#include &lt;opencv2/opencv.hpp&gt;</span></span><br><span class="line"><span class="comment">#include &lt;string&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stack&gt;</span></span><br><span class="line"><span class="comment">#include &quot;net.h&quot;</span></span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;algorithm&gt;</span></span><br><span class="line"><span class="comment">#include &lt;vector&gt;</span></span><br><span class="line"><span class="comment">#include &lt;opencv2/core/core.hpp&gt;</span></span><br><span class="line"><span class="comment">#include &lt;opencv2/opencv.hpp&gt;</span></span><br><span class="line"><span class="comment">#include &lt;fstream&gt;</span></span><br><span class="line"><span class="comment">#include &quot;omp.h&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">struct bbox &#123;</span><br><span class="line">	<span class="built_in">float</span> x1;</span><br><span class="line">	<span class="built_in">float</span> y1;</span><br><span class="line">	<span class="built_in">float</span> x2;</span><br><span class="line">	<span class="built_in">float</span> y2;</span><br><span class="line">	<span class="built_in">float</span> s;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct box &#123;</span><br><span class="line">	<span class="built_in">float</span> cx;</span><br><span class="line">	<span class="built_in">float</span> cy;</span><br><span class="line">	<span class="built_in">float</span> sx;</span><br><span class="line">	<span class="built_in">float</span> sy;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct ObjectInfo &#123;</span><br><span class="line">	<span class="built_in">float</span> x1; //bbox的left</span><br><span class="line">	<span class="built_in">float</span> y1; //bbox的top</span><br><span class="line">	<span class="built_in">float</span> x2; //bbox的right</span><br><span class="line">	<span class="built_in">float</span> y2; //bbox的bottom</span><br><span class="line">	<span class="built_in">float</span> prob; //置信度</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ObjectDetection</span></span></span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">	<span class="built_in">float</span> _nms = <span class="number">0.4</span>;</span><br><span class="line">	<span class="built_in">float</span> _threshold = <span class="number">0.6</span>;</span><br><span class="line">	const <span class="built_in">float</span> mean_vals[<span class="number">3</span>] = &#123; <span class="number">104.</span>f, <span class="number">117.</span>f, <span class="number">123.</span>f &#125;;</span><br><span class="line">	const <span class="built_in">float</span> norm_vals[<span class="number">3</span>] = &#123; <span class="number">1.0</span> / <span class="number">104.0</span>, <span class="number">1.0</span> / <span class="number">117.0</span>, <span class="number">1.0</span> / <span class="number">123.0</span> &#125;;</span><br><span class="line">	cv::Mat img;</span><br><span class="line">	ncnn::Net *Net;</span><br><span class="line">	<span class="built_in">int</span> img_w = <span class="number">300</span>;</span><br><span class="line">	<span class="built_in">int</span> img_h = <span class="number">300</span>;</span><br><span class="line">	<span class="built_in">int</span> numThread;</span><br><span class="line">	<span class="built_in">int</span> detect_count = <span class="number">0</span>;</span><br><span class="line">	static inline <span class="built_in">bool</span> cmp(bbox a, bbox b);</span><br><span class="line">public:</span><br><span class="line">	ObjectDetection(std::string modelFolder, <span class="built_in">int</span> num_thread);</span><br><span class="line">	~ObjectDetection();</span><br><span class="line">	<span class="built_in">int</span> Detect(unsigned char *inputImage, <span class="built_in">int</span> inputw, <span class="built_in">int</span> inputh, std::vector&lt;ObjectInfo &gt; &amp;obj);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>detection.cpp</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &quot;Detection.h&quot;</span></span><br><span class="line"><span class="comment">#include &lt;cmath&gt;</span></span><br><span class="line"></span><br><span class="line">ObjectDetection::ObjectDetection(std::string modelFolder, <span class="built_in">int</span> num_thread)</span><br><span class="line">&#123;</span><br><span class="line">	Net = new ncnn::Net();</span><br><span class="line">	std::string model_param = modelFolder + <span class="string">&quot;Detect.param&quot;</span>;</span><br><span class="line">	std::string model_bin = modelFolder + <span class="string">&quot;Detect.bin&quot;</span>;</span><br><span class="line">	int ret = Net-&gt;load_param(model_param.c_str());</span><br><span class="line">	ret = Net-&gt;load_model(model_bin.c_str());	</span><br><span class="line">	numThread = num_thread;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ObjectDetection::~ObjectDetection()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (Net != nullptr)</span><br><span class="line">	&#123;</span><br><span class="line">		delete Net;</span><br><span class="line">		Net = nullptr;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> ObjectDetection::Detect(unsigned char *inputImage, <span class="built_in">int</span> inputw, <span class="built_in">int</span> inputh, std::vector&lt;ObjectInfo &gt; &amp;obj)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">int</span> ret = -<span class="number">1</span>;	</span><br><span class="line">	ncnn::Mat <span class="keyword">in</span> = ncnn::Mat::from_pixels_resize(inputImage, ncnn::Mat::PIXEL_BGR, inputw, inputh, img_w, img_h);</span><br><span class="line">	<span class="keyword">in</span>.substract_mean_normalize(mean_vals, norm_vals);	</span><br><span class="line">	ncnn::Extractor ex = Net-&gt;create_extractor();		</span><br><span class="line">	ex.set_light_mode(true);</span><br><span class="line">	ret = ex.<span class="built_in">input</span>(<span class="string">&quot;input0&quot;</span>, <span class="keyword">in</span>);	</span><br><span class="line">	// run net <span class="keyword">and</span> get output</span><br><span class="line">	ncnn::Mat out, out1;</span><br><span class="line">	// bbox的输出</span><br><span class="line">	ret = ex.extract(<span class="string">&quot;output0&quot;</span>, out);</span><br><span class="line">	ex.extract(<span class="string">&quot;376&quot;</span>, out1);</span><br><span class="line"></span><br><span class="line">	// get result	</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; out.h; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		// 得到网络的具体输出</span><br><span class="line">		const <span class="built_in">float</span> *boxes = out.row(i);</span><br><span class="line">		const <span class="built_in">float</span> *scores = out1.row(i);</span><br><span class="line">		// 执行你自己的操作</span><br><span class="line">	&#125;</span><br><span class="line">	std::sort(total_box.begin(), total_box.end(), cmp);</span><br><span class="line">	NMS(total_box, _nms);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5><span id="五-编写-jni-c"> 五、 编写 JNI C++</span></h5>
+<p>在 Android Studio 中配置 NDK，具体配置网上有很多教程我就不啰嗦了，假定 android strdio 的 jni c<ins> 环境已经配置完成。源码中的函数名的格式是 jni c</ins> 要求的，必须这种格式，根据实际情况修改，函数名中的 &quot;com_example_demokit_Detection&quot; 对应到 java 的应用中就是 &quot;com.example.demokit.Detection&quot; 这样就很好理解了。<br>
+<strong>native-lib.cpp</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;jni.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;string&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#include &quot;Detection.h&quot;</span></span><br><span class="line"><span class="comment">#include &lt;android/log.h&gt;</span></span><br><span class="line"></span><br><span class="line">extern <span class="string">&quot;C&quot;</span> JNIEXPORT jlong JNICALL</span><br><span class="line">Java_com_example_demokit_Detection_Create(JNIEnv *env, jobject instance, jstring path) &#123;</span><br><span class="line">    char* _path;</span><br><span class="line">    _path = (char*)env-&gt;GetStringUTFChars(path,0);</span><br><span class="line">    Detection *phandle = new Detection(_path, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> (jlong)phandle;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extern <span class="string">&quot;C&quot;</span> JNIEXPORT jintArray JNICALL</span><br><span class="line">Java_com_example_demokit_Detection_Detect(JNIEnv *env, jobject instance, jlong handle, jint campos, jint w, jint h, jbyteArray data_) &#123;</span><br><span class="line">    Detection *gp = NULL;</span><br><span class="line">    <span class="keyword">if</span> (handle)</span><br><span class="line">        gp = (Detection *)handle;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> nullptr;</span><br><span class="line">    jbyte *data = env-&gt;GetByteArrayElements(data_, NULL);</span><br><span class="line"></span><br><span class="line">    std::vector&lt;ObjectInfo&gt; objects;</span><br><span class="line">    gp-&gt;Detect((unsigned char*)data, w, h, objects);</span><br><span class="line">    env-&gt;ReleaseByteArrayElements(data_, data, 0);</span><br><span class="line">    jintArray jarr = env-&gt;NewIntArray(objects.size()*15+1);</span><br><span class="line">    jint *arr = env-&gt;GetIntArrayElements(jarr, NULL);</span><br><span class="line">    arr[<span class="number">0</span>] = objects.size();</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; objects.size(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        arr[i*<span class="number">5</span> + <span class="number">1</span>] = objects[i].x1;</span><br><span class="line">        arr[i*<span class="number">5</span> + <span class="number">2</span>] = objects[i].y1;</span><br><span class="line">        arr[i*<span class="number">5</span> + <span class="number">3</span>] = objects[i].x2;</span><br><span class="line">        arr[i*<span class="number">5</span> + <span class="number">4</span>] = objects[i].y2;</span><br><span class="line">        arr[i*<span class="number">5</span> + <span class="number">5</span>] = objects[i].prob;</span><br><span class="line">    &#125;</span><br><span class="line">    env-&gt;ReleaseIntArrayElements(jarr, arr, 0);</span><br><span class="line">    <span class="keyword">return</span> jarr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5><span id="六-java-调用"> 六、java 调用</span></h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package com.example.demokit;</span><br><span class="line"></span><br><span class="line">public class Detection &#123;</span><br><span class="line">    static &#123;</span><br><span class="line">        System.loadLibrary(<span class="string">&quot;native-lib&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    private long handle;</span><br><span class="line">    public Detection(String path)&#123;</span><br><span class="line">        handle = Create(path);</span><br><span class="line">    &#125;</span><br><span class="line">    public <span class="built_in">int</span>[] Detect(<span class="built_in">int</span> w, <span class="built_in">int</span> h, byte[] data)&#123;</span><br><span class="line">            <span class="keyword">return</span>  Detect(handle, w, h, data);</span><br><span class="line">    &#125;</span><br><span class="line">    private native long Create(String path);</span><br><span class="line">    private native <span class="built_in">int</span>[] Detect(long handle, <span class="built_in">int</span> w, <span class="built_in">int</span> h, byte[] data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5><span id="七-应用层使用"> 七、 应用层使用</span></h5>
+<p>在应用层就可以直接调用上面的 java 类啦，搞定～</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">package com.example.demokit;</span><br><span class="line"><span class="keyword">import</span> android.graphics.Point;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.<span class="type">List</span>;</span><br><span class="line"></span><br><span class="line">public class DetectTool &#123;</span><br><span class="line">    private Detection mDetection;</span><br><span class="line">    private static final <span class="built_in">int</span> DATA_LENGTH = <span class="number">5</span>; // 矩形框坐标<span class="number">2</span>个，每个具有x,y两个值；置信度<span class="number">1</span>个；</span><br><span class="line"></span><br><span class="line">    public DetectTool(String dect_model_dir)&#123;</span><br><span class="line">        /**</span><br><span class="line">         * @dect_model_dir: 检测模型所在的目录路径</span><br><span class="line">         */</span><br><span class="line">        mDetection = new Detection(dect_model_dir);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private ObjectInfo ArrayAnalysis(<span class="built_in">int</span>[] src_array)&#123;</span><br><span class="line">        /**</span><br><span class="line">         * 对输入的数组进行解析，返回ObjectInfo对象</span><br><span class="line">         * @src_array: 具有DATA_LENGTH所示结构的数组</span><br><span class="line">         */</span><br><span class="line">        ObjectInfo obj_info = new ObjectInfo();</span><br><span class="line"></span><br><span class="line">        Point[] pointFaceBox = new Point[<span class="number">2</span>];</span><br><span class="line">        // face_bbox 坐标</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</span><br><span class="line">            Point point = new Point();</span><br><span class="line">            point.x = src_array[<span class="number">2</span>*i];</span><br><span class="line">            point.y = src_array[<span class="number">2</span>*i+<span class="number">1</span>];</span><br><span class="line">            pointFaceBox[i] = point;</span><br><span class="line">        &#125;</span><br><span class="line">        // 置信度</span><br><span class="line">        obj_info.setProb(src_array[<span class="number">4</span>]);</span><br><span class="line">        <span class="keyword">return</span> obj_info ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public <span class="type">List</span>&lt;ObjectInfo&gt; GetObjectInfo(<span class="built_in">int</span> width, <span class="built_in">int</span> height, byte[] data)&#123;</span><br><span class="line">        /**</span><br><span class="line">         * @width：图片宽度</span><br><span class="line">         * @height：图片高度</span><br><span class="line">         * @data：图片的字节流</span><br><span class="line">         */</span><br><span class="line">        <span class="built_in">int</span>[] obj= mDetection.Detect(width, height, data);</span><br><span class="line">        <span class="type">List</span>&lt;ObjectInfo&gt; obj_list = new ArrayList&lt;&gt;();</span><br><span class="line">        <span class="built_in">int</span> obj_count = obj[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; obj_count ; i++)&#123;</span><br><span class="line">            <span class="built_in">int</span>[] obj_array = Arrays.copyOfRange(obj, i*DATA_LENGTH + <span class="number">1</span>, (i + <span class="number">1</span>) * DATA_LENGTH+<span class="number">1</span>);</span><br><span class="line">            ObjectInfo obj_info = this.ArrayAnalysis(obj_array);</span><br><span class="line">            obj_list.add(obj_info);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> obj_list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>————————————————<br>
+ 版权声明：本文为 CSDN 博主「zzubqh103」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>
+原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36810544/article/details/106911025">https://blog.csdn.net/qq_36810544/article/details/106911025</a></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2022年02月20日 23:10</p>
+        <p>原始链接： <a class="post-url" href="/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8NCNN%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" title="【精华】使用NCNN在移动端部署深度学习模型">https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8NCNN%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/</a></p>
+        <footer>
+            <a href="https://leezhao415.github.io">
+                <img src="/images/logo.jpg" alt="LeeZhao">
+                LeeZhao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8NCNN%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/&title=《【精华】使用NCNN在移动端部署深度学习模型》 — 且听风吟，御剑于心！&pic=images/NCNN移动端部署.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8NCNN%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/&title=《【精华】使用NCNN在移动端部署深度学习模型》 — 且听风吟，御剑于心！&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8NCNN%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【精华】使用NCNN在移动端部署深度学习模型》 — 且听风吟，御剑于心！&url=https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8NCNN%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/&via=https://leezhao415.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8NCNN%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://leezhao415.github.io/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E4%BD%BF%E7%94%A8NCNN%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/人工智能/" class="color5">人工智能</a>
+      
+    <a href="/tags/NCNN部署/" class="color2">NCNN部署</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link"><span class="post-toc-text"> 使用 NCNN 在移动端部署深度学习模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 一、整体流程概览</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 二、将 *.pth  转换成 onnx</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> </span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 安装 onnx 简化工具</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 简化 onnx 模型</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 三、编译 NCNN 框架</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 四、C++ 调用和封装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> 说明</span></a></li><li class="post-toc-item post-toc-level-6"><a class="post-toc-link"><span class="post-toc-text"> C++ 代码</span></a></li></ol></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 五、 编写 JNI C++</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 六、java 调用</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link"><span class="post-toc-text"> 七、 应用层使用</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2022/02/20/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          【精华】目标检测模型对比
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2022/02/20/%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">保姆级教程：深度学习环境配置指南</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+        <div id="SOHUCS" sid="【精华】使用NCNN在移动端部署深度学习模型" ></div>
+<script type="text/javascript">
+    (function(){
+        var appid = 'true';
+        var conf = 'true';
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2024 LeeZhao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://leezhao415.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Hot/">Hot</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/AIGC%E5%89%8D%E6%B2%BF/" style="font-size: 10px;">AIGC前沿</a> <a href="/tags/CV-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%E7%AE%B1/" style="font-size: 10px;">CV/目标检测工具箱</a> <a href="/tags/CV%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 10px;">CV数据集</a> <a href="/tags/CV%E6%9C%AA%E6%9D%A5/" style="font-size: 10px;">CV未来</a> <a href="/tags/CV%E7%AE%97%E6%B3%95/" style="font-size: 10px;">CV算法</a> <a href="/tags/IOU/" style="font-size: 10px;">IOU</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MOT/" style="font-size: 10px;">MOT</a> <a href="/tags/NCNN%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">NCNN部署</a> <a href="/tags/NLP/" style="font-size: 15px;">NLP</a> <a href="/tags/NLP-BERT/" style="font-size: 10px;">NLP-BERT</a> <a href="/tags/NLP-%E5%8F%91%E5%B1%95%E5%8F%B2/" style="font-size: 10px;">NLP-发展史</a> <a href="/tags/NLP-%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">NLP-模型优化</a> <a href="/tags/NLP-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">NLP/数据增强工具</a> <a href="/tags/NLP-%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/" style="font-size: 10px;">NLP/评估指标</a> <a href="/tags/OpenCV%E4%B9%8BDNN%E6%A8%A1%E5%9D%97/" style="font-size: 10px;">OpenCV之DNN模块</a> <a href="/tags/PaddlePaddle/" style="font-size: 10px;">PaddlePaddle</a> <a href="/tags/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">Python数据分析</a> <a href="/tags/ReID/" style="font-size: 10px;">ReID</a> <a href="/tags/Transformer-DETR-CV/" style="font-size: 10px;">Transformer/DETR(CV)</a> <a href="/tags/VSLAM/" style="font-size: 11.67px;">VSLAM</a> <a href="/tags/YOLOX/" style="font-size: 10px;">YOLOX</a> <a href="/tags/YOLOX%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 11.67px;">YOLOX目标检测</a> <a href="/tags/%E4%B8%89%E7%BB%B4%E5%BB%BA%E6%A8%A1/" style="font-size: 10px;">三维建模</a> <a href="/tags/%E4%B8%94%E8%AF%BB%E6%96%87%E6%91%98/" style="font-size: 13.33px;">且读文摘</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 20px;">人工智能</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD-CV/" style="font-size: 10px;">人工智能/CV</a> <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" style="font-size: 10px;">人脸识别</a> <a href="/tags/%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80/" style="font-size: 10px;">名人名言</a> <a href="/tags/%E5%A4%9A%E4%BB%BB%E5%8A%A1%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">多任务学习模型</a> <a href="/tags/%E5%A4%9A%E6%A8%A1%E6%80%81/" style="font-size: 11.67px;">多模态</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6/" style="font-size: 10px;">大数据框架</a> <a href="/tags/%E5%AF%92%E7%AA%91%E8%B5%8B/" style="font-size: 10px;">寒窑赋</a> <a href="/tags/%E5%BA%A6%E9%87%8F%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">度量学习</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" style="font-size: 10px;">数据库原理</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">数据结构与算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 11.67px;">数据集</a> <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/" style="font-size: 10px;">智能家居</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/" style="font-size: 10px;">机器学习/损失函数</a> <a href="/tags/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0/" style="font-size: 10px;">梯度更新</a> <a href="/tags/%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">概述</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/" style="font-size: 10px;">模型优化</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" style="font-size: 10px;">模型性能指标</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/" style="font-size: 16.67px;">模型部署</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">深度学习环境配置</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B/" style="font-size: 10px;">深度模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%A8%A1%E5%9E%8B%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">深度模型（目标检测）</a> <a href="/tags/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" style="font-size: 10px;">激活函数</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B%EF%BC%89/" style="font-size: 10px;">目标检测（人脸检测）</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E8%B7%9F%E8%B8%AA/" style="font-size: 10px;">目标跟踪</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F/" style="font-size: 10px;">知识蒸馏</a> <a href="/tags/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E6%88%90%E6%9E%9C/" style="font-size: 10px;">科研项目成果</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 11.67px;">算法</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" style="font-size: 18.33px;">编程工具</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">编程语言</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">网络通信</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86NLP/" style="font-size: 10px;">自然语言处理NLP</a> <a href="/tags/%E8%A1%A8%E9%9D%A2%E7%BC%BA%E9%99%B7%E6%A3%80%E6%B5%8B/" style="font-size: 10px;">表面缺陷检测</a> <a href="/tags/%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3/" style="font-size: 10px;">视频理解</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" style="font-size: 10px;">计算机视觉</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89CV/" style="font-size: 15px;">计算机视觉CV</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%BA%93/" style="font-size: 10px;">计算机视觉库</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A1%B6%E4%BC%9A/" style="font-size: 10px;">计算机顶会</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  
+<script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+
+  
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  
+<script src="/js/animate.js"></script>
+
+
+
+  
+<script src="/js/pop-img.js"></script>
+
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
