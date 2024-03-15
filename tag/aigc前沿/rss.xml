@@ -11,8 +11,8 @@
         <category>Transformer/DETR(CV)</category>
         <category>人工智能</category>
         <category>数据集</category>
-        <category>大数据框架</category>
         <category>编程工具</category>
+        <category>大数据框架</category>
         <category>NLP</category>
         <category>模型部署</category>
         <category>数据结构与算法</category>
@@ -106,61 +106,61 @@
 &lt;/ul&gt;
 &lt;!-- tocstop --&gt;
 &lt;hr&gt;
-&lt;h1&gt;&lt;span id=&#34;aigc-前沿&#34;&gt; AIGC 前沿&lt;/span&gt;&lt;/h1&gt;
-&lt;h2&gt;&lt;span id=&#34;1-gemini-15-pro&#34;&gt; (1) Gemini 1.5 Pro&lt;/span&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;span id=&#34;aigc-前沿&#34;&gt; AIGC 前沿&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;1-gemini-15-pro&#34;&gt; (1) Gemini 1.5 Pro&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.16&lt;/strong&gt;&lt;/em&gt;  谷歌新一代多模态大模型 Gemini 1.5 Pro，在性能上超越 OpenAI 的 GPT-4 Turbo，堪称业界最强大模型。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s?__biz=MzU5OTI0NTc3Mg==&amp;amp;mid=2247530889&amp;amp;idx=1&amp;amp;sn=0686f28b493fb61fdcd3e619b9a97517&#34;&gt;“打假” Sora，谷歌 Gemini 1.5 Pro 第一波评测出炉｜甲子光年&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://openai.com/sora&#34;&gt;https://openai.com/sora&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;2-sora&#34;&gt; (2) Sora&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;2-sora&#34;&gt; (2) Sora&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.16&lt;/strong&gt;&lt;/em&gt;  Sora 文本生成视频的大模型。它所展现出来的能力几乎可以 “碾压” 目前全球能实现文本生成视频的大模型 包 括 Runway、Pika、Stable Video Diffusion 等 20 多个产品。&lt;br&gt;
 　　用户仅需输入简短一句话，Sora 就可生成一段长达 60 秒的视频，远远超过市面上同类型级别的 AI 视频生成时长。在此之前，AI 视频模型生成时长几乎在 10 秒以内，而 “明星模型” Runway 和 Pika 等也仅有 3 到 4 秒。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://www.thepaper.cn/newsDetail_forward_26415514&#34;&gt;Sora 到底有多强？&lt;/a&gt; |  &lt;a href=&#34;https://mp.weixin.qq.com/s/zmKeNWrU6me3leNpdNH2wQ&#34;&gt;微软最新 Sora 综述&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://ai.google.dev/gemma&#34;&gt;Gemma Open Models&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;3-emo&#34;&gt; (3) EMO&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;3-emo&#34;&gt; (3) EMO&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.28&lt;/strong&gt;&lt;/em&gt;  生成式 AI 模型 EMO（Emote Portrait Alive）。EMO 仅需一张人物肖像照片和音频，就可以让照片中的人物按照音频内容 “张嘴” 唱歌、说话，且口型基本一致，面部表情和头部姿态非常自然。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1792189739510241856&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;阿里 EMO 模型，一张照片就能造谣&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://humanaigc.github.io/emote-portrait-alive/&#34;&gt;https://humanaigc.github.io/emote-portrait-alive/&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;4-playground-v25&#34;&gt; (4) Playground v2.5&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;4-playground-v25&#34;&gt; (4) Playground v2.5&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.28&lt;/strong&gt;&lt;/em&gt;  Playground 在去年发布 Playground v2.0 之后再次开源新的文生图模型 Playground v2.5。相比上一个版本，Playground v2.5 在美学质量，颜色和对比度，多尺度生成以及以人为中心的细节处理有比较大的提升。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://zhuanlan.zhihu.com/p/684287454&#34;&gt;超过 Midjourney v5.2 的开源文生图大模型 Playground v2.5 来了&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://playground.com/&#34;&gt;https://playground.com/&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;5-vsp-llm&#34;&gt; (5) VSP-LLM&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;5-vsp-llm&#34;&gt; (5) VSP-LLM&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.28&lt;/strong&gt;&lt;/em&gt;  一种通过观察视频中人的嘴型来理解和翻译说话内容的技术，也就是识别唇语。该技术能够将视频中的唇动转化为文本（视觉语音识别），并将这些唇动直接翻译成目标语言的文本 (视觉语音翻译)。不仅如此，VSP-LLM 还能智能识别和去除视频中不必要的重复信息，使处理过程更加快速和准确。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://www.chinaz.com/2024/0228/1599901.shtml&#34;&gt;VSP-LLM：可通过观察视频中人的嘴型来识别唇语&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://github.com/sally-sh/vsp-llm&#34;&gt;https://github.com/sally-sh/vsp-llm&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;6-ideogramai&#34;&gt; (6) &lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;6-ideogramai&#34;&gt; (6) &lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.29&lt;/strong&gt;&lt;/em&gt;  Ideogram 发布了最新的 Ideogram1.0 图像生成模型，该模型具有强大的文字生成能力和提示词理解能力。Ideogram1.0 在文本渲染准确性方面实现了飞跃。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt;&lt;a href=&#34;https://www.chinaz.com/2024/0229/1599986.shtml&#34;&gt;Ideogram 1.0 图像生成模型发布 文字生成能力更强大了&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt;&lt;a href=&#34;https://top.aibase.com/tool/ideogram-ai&#34;&gt;https://top.aibase.com/tool/ideogram-ai&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;7-ltx-studio&#34;&gt; (7) LTX studio&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;7-ltx-studio&#34;&gt; (7) LTX studio&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.29&lt;/strong&gt;&lt;/em&gt;  生成式 AI 电影制作平台 —LTX Studio，用户只需要输入文本就能生成超 25 秒的微电影视频，同时可对镜头切换、角色、场景一致性、摄像机、灯光等进行可视化精准控制。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://new.qq.com/rain/a/20240229A02EA500&#34;&gt;效果比 Sora 惊艳，著名 AI 平台大动作！文本生成超 25 秒视频，带背景音乐、转场等效果&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://ltx.studio&#34;&gt;https://ltx.studio&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;8-claude3&#34;&gt; (8) Claude3&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;8-claude3&#34;&gt; (8) Claude3&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.04&lt;/strong&gt;&lt;/em&gt;  Claude3 是由 Anthropic 发布的最新的 AI 大模型系列，同时，Claude3 是多模态大模型 ，具有强大的 “视觉能力”。Claude3 Opus 已经在部分行业行为准则中的表现优于 OpenAI 的 GPT-4 和谷歌的 Gemini Ultra，如本科生水平知识（MMLU）、研究生级别专家推理（GPQA）和基础数学（GSM8K）。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://new.qq.com/rain/a/20240307A09O1N00&#34;&gt;OpenAI 劲敌出现！Claude3 正式发布，超越 GTP-4?&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt; 官网链接：&lt;/strong&gt; &lt;a href=&#34;https://www.anthropic.com/claude&#34;&gt;https://www.anthropic.com/claude&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;9-open-sora&#34;&gt; (9) Open Sora&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;9-open-sora&#34;&gt; (9) Open Sora&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.01&lt;/strong&gt;&lt;/em&gt;  北大团队联合兔展发起了一项 Sora 复现计划 ——Open Sora&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1792479658318662669&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;北大与兔展智能发起复现 Sora，框架已开源&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt;&lt;br&gt;
 &lt;a href=&#34;https://pku-yuangroup.github.io/Open-Sora-Plan/blog_cn.html&#34;&gt;https://pku-yuangroup.github.io/Open-Sora-Plan/blog_cn.html&lt;/a&gt;&lt;br&gt;
 &lt;a href=&#34;https://github.com/PKU-YuanGroup/Open-Sora-Plan&#34;&gt;https://github.com/PKU-YuanGroup/Open-Sora-Plan&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;10-yi-9b&#34;&gt; (10) Yi-9B&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;10-yi-9b&#34;&gt; (10) Yi-9B&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.06&lt;/strong&gt;&lt;/em&gt;  李开复旗下 AI 公司零一万物的最新力作 ——Yi-9B 大模型正式对外开源发布。这款具有 90 亿参数的大模型，在代码和数学能力上达到了前所未有的高度，同时保持了对消费级显卡的良好兼容性，为广大开发者和研究人员提供了前所未有的便利性和强大功能。&lt;br&gt;
 　　Yi-9B 作为 Yi 系列中的新成员，被誉为 “理科状元”，特别加强了在代码和数学方面的学习能力。相较于市场上其他类似规模的开源模型，如 Mistral-7B、SOLAR-10.7B、Gemma-7B 等，Yi-9B 展现出了最佳的性能表现。特别值得一提的是，Yi-9B 既提供了浮点数版本（BF 16），也提供了整数版本（Int8），使其能够轻松部署在包括 RTX 4090 和 RTX 3090 在内的消费级显卡上，大大降低了使用门槛和成本。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1792881393208541121&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;零一万物开源 Yi-9B 大模型，消费级显卡可用，代码数学历史最强&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://github.com/01-ai/Yi&#34;&gt;https://github.com/01-ai/Yi&lt;/a&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;11-cares-copilot10多模态手术大模型&#34;&gt; (11) CARES Copilot1.0（多模态手术大模型）&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;11-cares-copilot10多模态手术大模型&#34;&gt; (11) CARES Copilot1.0（多模态手术大模型）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.11&lt;/strong&gt;&lt;/em&gt;  CARES Copilot 是由中国科学院香港创新院 AI 中心研发的一个可信赖、可解释、面向医疗垂直领域并能与智能医疗设备高度集成的大模型系统。CARES Copilot 1.0 实现了图像、文本、语音、视频、MRI、CT、超声等多模态的手术数据理解。支持超过 100K 上下文的长窗口理解和高效分析，能理解超过 3000 页的复杂手术教材，对于年轻医生的培训和教学具有极高的实用价值。此外，该系统能通过深度检索功能，快速精确地提取手术教材、专家指南、医学论文等专业文档的信息，确保其提供的答案具有高度的可信度和可追溯性。经测试，系统能在一秒钟内完成百万级数据的快速检索，同时保持 95% 的准确率。该系统已在多家医院的不同科室进行了内部测试和迭代优化。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1793375529838669070&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;CARES Copilot 1.0 多模态手术大模型发布，可实现轻量化部署&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; /&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;12-figure-01-通用机器人figure-ai-openai&#34;&gt; (12) Figure 01 通用机器人（Figure AI + OpenAI）&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;12-figure-01-通用机器人figure-ai-openai&#34;&gt; (12) Figure 01 通用机器人（Figure AI + OpenAI）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.13&lt;/strong&gt;&lt;/em&gt;  Figure 01 通用机器人由 Figure AI 和 OpenAI 合作完成。展示视频中，Figure AI 人形机器人具有视觉能力并能表述所见画面，它伸手拿起桌上的苹果，并解释了这么做的原因，人类的提问后，这台人形机器人 “思索” 2~3 秒后便能顺畅作答，手部动作速度则接近人类。据视频介绍，机器人采用了端到端神经网络。&lt;br&gt;
 　　该人形机器人由 OpenAI 提供了视觉推理和语言理解，Figure AI 的神经网络则提供快速、灵巧的机器人动作。人形机器人将摄像机的图像输入和麦克风接收的语音文字输入 OpenAI 提供的视觉语言大模型（VLM）中，该模型可以理解图像和文字。Figure 机载相机以 10hz 的频率拍摄画面，随后神经网络以 200hz 的频率输出 24 个自由度动作。画面中的人形机器人不依赖远程操作，行为都是学习而得的。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1793472537987147749&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;与 OpenAI 合作 13 天后，Figure 人形机器人展示与人类对话能力&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; /&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&#34;13-devinai-软件工程师助手&#34;&gt; (13) Devin（AI 软件工程师助手）&lt;/span&gt;&lt;/h2&gt;
+&lt;h3&gt;&lt;span id=&#34;13-devinai-软件工程师助手&#34;&gt; (13) Devin（AI 软件工程师助手）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.13&lt;/strong&gt;&lt;/em&gt;  一家成立不到两个月但拥有十名天才工程师的初创公司 Cognition 推出了一款名为 Devin 的人工智能（AI）助手，可以协助人类软件工程师完成诸多开发任务。Devin 不同于现有其他 AI 编码者，它可以从零构建网站、自行部署应用、修复漏洞、学习新技术等，人类只需扮演一个下指令和监督的角色。&lt;br&gt;
 　　这是第一个真正意义上完全自主的 AI 软件工程师，一亮相即掀起轩然大波，因为人们担心：人类程序员是不是真要失业了？&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://finance.eastmoney.com/a/202403153013211460.html&#34;&gt;人类程序员真要失业？首位 “AI 软件工程师” 亮相引爆科技圈&lt;/a&gt;&lt;br&gt;
