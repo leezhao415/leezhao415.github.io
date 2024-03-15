@@ -8,8 +8,8 @@
     <category term="Transformer/DETR(CV)" />
     <category term="人工智能" />
     <category term="数据集" />
-    <category term="编程工具" />
     <category term="大数据框架" />
+    <category term="编程工具" />
     <category term="NLP" />
     <category term="模型部署" />
     <category term="数据结构与算法" />
@@ -87,7 +87,7 @@
 &lt;li&gt;&lt;a href=&#34;#3-emo&#34;&gt;(3) EMO&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#4-playground-v25&#34;&gt;(4) Playground v2.5&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#5-vsp-llm&#34;&gt;(5) VSP-LLM&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#6-ideogramai&#34;&gt;(6) Ideogram.ai&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-ideogram-ai&#34;&gt;(6) Ideogram ai&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#7-ltx-studio&#34;&gt;(7) LTX studio&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#8-claude3&#34;&gt;(8) Claude3&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#9-open-sora&#34;&gt;(9) Open Sora&lt;/a&gt;&lt;/li&gt;
@@ -122,7 +122,7 @@
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.28&lt;/strong&gt;&lt;/em&gt;  一种通过观察视频中人的嘴型来理解和翻译说话内容的技术，也就是识别唇语。该技术能够将视频中的唇动转化为文本（视觉语音识别），并将这些唇动直接翻译成目标语言的文本 (视觉语音翻译)。不仅如此，VSP-LLM 还能智能识别和去除视频中不必要的重复信息，使处理过程更加快速和准确。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://www.chinaz.com/2024/0228/1599901.shtml&#34;&gt;VSP-LLM：可通过观察视频中人的嘴型来识别唇语&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://github.com/sally-sh/vsp-llm&#34;&gt;https://github.com/sally-sh/vsp-llm&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span id=&#34;6-ideogramai&#34;&gt; (6) &lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;6-ideogram-ai&#34;&gt; (6) Ideogram ai&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.29&lt;/strong&gt;&lt;/em&gt;  Ideogram 发布了最新的 Ideogram1.0 图像生成模型，该模型具有强大的文字生成能力和提示词理解能力。Ideogram1.0 在文本渲染准确性方面实现了飞跃。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt;&lt;a href=&#34;https://www.chinaz.com/2024/0229/1599986.shtml&#34;&gt;Ideogram 1.0 图像生成模型发布 文字生成能力更强大了&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt;&lt;a href=&#34;https://top.aibase.com/tool/ideogram-ai&#34;&gt;https://top.aibase.com/tool/ideogram-ai&lt;/a&gt;&lt;/p&gt;
