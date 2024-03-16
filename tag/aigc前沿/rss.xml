@@ -7,11 +7,11 @@
         <language>zh-CN</language>
         <pubDate>Fri, 15 Mar 2024 16:16:00 +0800</pubDate>
         <lastBuildDate>Fri, 15 Mar 2024 16:16:00 +0800</lastBuildDate>
+        <category>人工智能</category>
+        <category>大数据框架</category>
         <category>人工智能/CV</category>
         <category>Transformer/DETR(CV)</category>
-        <category>人工智能</category>
         <category>数据集</category>
-        <category>大数据框架</category>
         <category>编程工具</category>
         <category>NLP</category>
         <category>模型部署</category>
@@ -20,7 +20,6 @@
         <category>网络通信</category>
         <category>YOLOX</category>
         <category>CV算法</category>
-        <category>AIGC前沿</category>
         <category>VSLAM</category>
         <category>NCNN部署</category>
         <category>YOLOX目标检测</category>
@@ -28,33 +27,34 @@
         <category>目标跟踪</category>
         <category>目标检测（人脸检测）</category>
         <category>深度学习</category>
-        <category>CV未来</category>
         <category>且读文摘</category>
+        <category>CV未来</category>
         <category>NLP-BERT</category>
         <category>自然语言处理NLP</category>
         <category>IOU</category>
         <category>OpenCV之DNN模块</category>
         <category>深度模型</category>
-        <category>NLP-模型优化</category>
         <category>激活函数</category>
+        <category>NLP-模型优化</category>
         <category>梯度更新</category>
         <category>概述</category>
         <category>人脸识别</category>
         <category>名人名言</category>
-        <category>寒窑赋</category>
         <category>NLP/评估指标</category>
+        <category>寒窑赋</category>
         <category>度量学习</category>
-        <category>智能家居</category>
         <category>机器学习/损失函数</category>
+        <category>智能家居</category>
         <category>机器学习</category>
         <category>模型性能指标</category>
-        <category>CV/目标检测工具箱</category>
         <category>科研项目成果</category>
-        <category>表面缺陷检测</category>
+        <category>CV/目标检测工具箱</category>
         <category>计算机顶会</category>
+        <category>表面缺陷检测</category>
         <category>计算机视觉CV</category>
         <category>网络编程</category>
         <category>NLP/数据增强工具</category>
+        <category>AIGC前沿</category>
         <category>计算机视觉</category>
         <category>模型优化</category>
         <category>三维建模</category>
@@ -88,65 +88,71 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#aigc-%E5%89%8D%E6%B2%BF&#34;&gt;AIGC 前沿&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#1-gemini-15-pro&#34;&gt;(1) Gemini 1.5 Pro&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#2-sora&#34;&gt;(2) Sora&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#3-emo&#34;&gt;(3) EMO&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#4-playground-v25&#34;&gt;(4) Playground v2.5&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#5-vsp-llm&#34;&gt;(5) VSP-LLM&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#6-ideogram-ai&#34;&gt;(6) Ideogram ai&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#7-ltx-studio&#34;&gt;(7) LTX studio&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#8-claude3&#34;&gt;(8) Claude3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#9-open-sora&#34;&gt;(9) Open Sora&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#10-yi-9b&#34;&gt;(10) Yi-9B&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#1-gemini-15-pro%E8%B0%B7%E6%AD%8C%E6%96%B0%E4%B8%80%E4%BB%A3%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B&#34;&gt;(1) Gemini 1.5 Pro（谷歌新一代多模态大模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-sora%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E8%A7%86%E9%A2%91%E5%A4%A7%E6%A8%A1%E5%9E%8B&#34;&gt;(2) Sora（文本生成视频大模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-emo%E9%98%BF%E9%87%8C%E7%94%9F%E6%88%90%E5%BC%8Fai%E6%A8%A1%E5%9E%8B&#34;&gt;(3) EMO（阿里生成式 AI 模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-playground-v25%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%A7%E6%A8%A1%E5%9E%8B&#34;&gt;(4) Playground v2.5（文生图大模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-vsp-llm%E5%94%87%E8%AF%AD%E8%AF%86%E5%88%AB&#34;&gt;(5) VSP-LLM（唇语识别）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-ideogram-ai-%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%A7%E6%A8%A1%E5%9E%8B&#34;&gt;(6) Ideogram ai  （文生图大模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-ltx-studio%E7%94%9F%E6%88%90%E5%BC%8Fai%E7%94%B5%E5%BD%B1%E5%88%B6%E4%BD%9C%E5%B9%B3%E5%8F%B0&#34;&gt;(7) LTX studio（生成式 AI 电影制作平台）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8-claude3llm&#34;&gt;(8) Claude3（LLM）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9-open-sora%E6%96%87%E7%94%9F%E8%A7%86%E9%A2%91%E5%A4%A7%E6%A8%A1%E5%9E%8B&#34;&gt;(9) Open Sora（文生视频大模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#10-yi-9bllm&#34;&gt;(10) Yi-9B（LLM）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#11-cares-copilot10%E5%A4%9A%E6%A8%A1%E6%80%81%E6%89%8B%E6%9C%AF%E5%A4%A7%E6%A8%A1%E5%9E%8B&#34;&gt;(11) CARES Copilot1.0（多模态手术大模型）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#12-figure-01%E9%80%9A%E7%94%A8%E6%9C%BA%E5%99%A8%E4%BA%BAfigure-ai-openai&#34;&gt;(12) Figure 01 通用机器人（Figure AI + OpenAI）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#13-devinai%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%8A%A9%E6%89%8B&#34;&gt;(13) Devin（AI 软件工程师助手）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#14-behavior-1k%E6%9D%8E%E9%A3%9E%E9%A3%9E%E5%9B%A2%E9%98%9F%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%9F%BA%E5%87%86&#34;&gt;(14) BEHAVIOR-1K（李飞飞团队 — 具身智能基准）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#15-mm1%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%8B%B9%E6%9E%9C%E5%85%AC%E5%8F%B8%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B&#34;&gt;(15) MM1 大模型（苹果公司多模态大模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#16-aesopagent%E8%BE%BE%E6%91%A9%E9%99%A2%E6%99%BA%E8%83%BD%E4%BD%93%E9%A9%B1%E5%8A%A8%E7%9A%84%E8%BF%9B%E5%8C%96%E7%B3%BB%E7%BB%9F&#34;&gt;(16) AesopAgent（达摩院 — 智能体驱动的进化系统）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#17-cogview3%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%A7%E6%A8%A1%E5%9E%8B&#34;&gt;(17) CogView3（文生图大模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#18-autodev%E5%BE%AE%E8%BD%AF%E5%9B%A2%E9%98%9F%E5%85%A8%E8%87%AA%E5%8A%A8-ai-%E9%A9%B1%E5%8A%A8%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6&#34;&gt;(18) AutoDev（微软团队全自动 AI 驱动软件开发框架）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#19-vloggergoogle%E5%9B%BE%E7%94%9F%E9%9F%B3%E9%A2%91%E9%A9%B1%E5%8A%A8%E8%A7%86%E9%A2%91%E6%96%B9%E6%B3%95&#34;&gt;(19) VLOGGER（Google 图生音频驱动视频方法）&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;!-- tocstop --&gt;
 &lt;hr&gt;
 &lt;h2&gt;&lt;span id=&#34;aigc-前沿&#34;&gt; AIGC 前沿&lt;/span&gt;&lt;/h2&gt;
-&lt;h3&gt;&lt;span id=&#34;1-gemini-15-pro&#34;&gt; (1) Gemini 1.5 Pro&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;1-gemini-15-pro谷歌新一代多模态大模型&#34;&gt; (1) Gemini 1.5 Pro（谷歌新一代多模态大模型）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.16&lt;/strong&gt;&lt;/em&gt;  谷歌新一代多模态大模型 Gemini 1.5 Pro，在性能上超越 OpenAI 的 GPT-4 Turbo，堪称业界最强大模型。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s?__biz=MzU5OTI0NTc3Mg==&amp;amp;mid=2247530889&amp;amp;idx=1&amp;amp;sn=0686f28b493fb61fdcd3e619b9a97517&#34;&gt;“打假” Sora，谷歌 Gemini 1.5 Pro 第一波评测出炉｜甲子光年&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://openai.com/sora&#34;&gt;https://openai.com/sora&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span id=&#34;2-sora&#34;&gt; (2) Sora&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;2-sora文本生成视频大模型&#34;&gt; (2) Sora（文本生成视频大模型）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.16&lt;/strong&gt;&lt;/em&gt;  Sora 文本生成视频的大模型。它所展现出来的能力几乎可以 “碾压” 目前全球能实现文本生成视频的大模型 包 括 Runway、Pika、Stable Video Diffusion 等 20 多个产品。&lt;br&gt;
 　　用户仅需输入简短一句话，Sora 就可生成一段长达 60 秒的视频，远远超过市面上同类型级别的 AI 视频生成时长。在此之前，AI 视频模型生成时长几乎在 10 秒以内，而 “明星模型” Runway 和 Pika 等也仅有 3 到 4 秒。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://www.thepaper.cn/newsDetail_forward_26415514&#34;&gt;Sora 到底有多强？&lt;/a&gt; |  &lt;a href=&#34;https://mp.weixin.qq.com/s/zmKeNWrU6me3leNpdNH2wQ&#34;&gt;微软最新 Sora 综述&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://ai.google.dev/gemma&#34;&gt;Gemma Open Models&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span id=&#34;3-emo&#34;&gt; (3) EMO&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;3-emo阿里生成式-ai-模型&#34;&gt; (3) EMO（阿里生成式 AI 模型）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.28&lt;/strong&gt;&lt;/em&gt;  生成式 AI 模型 EMO（Emote Portrait Alive）。EMO 仅需一张人物肖像照片和音频，就可以让照片中的人物按照音频内容 “张嘴” 唱歌、说话，且口型基本一致，面部表情和头部姿态非常自然。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1792189739510241856&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;阿里 EMO 模型，一张照片就能造谣&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://humanaigc.github.io/emote-portrait-alive/&#34;&gt;https://humanaigc.github.io/emote-portrait-alive/&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span id=&#34;4-playground-v25&#34;&gt; (4) Playground v2.5&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;4-playground-v25文生图大模型&#34;&gt; (4) Playground v2.5（文生图大模型）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.28&lt;/strong&gt;&lt;/em&gt;  Playground 在去年发布 Playground v2.0 之后再次开源新的文生图模型 Playground v2.5。相比上一个版本，Playground v2.5 在美学质量，颜色和对比度，多尺度生成以及以人为中心的细节处理有比较大的提升。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://zhuanlan.zhihu.com/p/684287454&#34;&gt;超过 Midjourney v5.2 的开源文生图大模型 Playground v2.5 来了&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://playground.com/&#34;&gt;https://playground.com/&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span id=&#34;5-vsp-llm&#34;&gt; (5) VSP-LLM&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;5-vsp-llm唇语识别&#34;&gt; (5) VSP-LLM（唇语识别）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.28&lt;/strong&gt;&lt;/em&gt;  一种通过观察视频中人的嘴型来理解和翻译说话内容的技术，也就是识别唇语。该技术能够将视频中的唇动转化为文本（视觉语音识别），并将这些唇动直接翻译成目标语言的文本 (视觉语音翻译)。不仅如此，VSP-LLM 还能智能识别和去除视频中不必要的重复信息，使处理过程更加快速和准确。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://www.chinaz.com/2024/0228/1599901.shtml&#34;&gt;VSP-LLM：可通过观察视频中人的嘴型来识别唇语&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://github.com/sally-sh/vsp-llm&#34;&gt;https://github.com/sally-sh/vsp-llm&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span id=&#34;6-ideogram-ai&#34;&gt; (6) Ideogram ai&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;6-ideogram-ai-文生图大模型&#34;&gt; (6) Ideogram ai  （文生图大模型）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.29&lt;/strong&gt;&lt;/em&gt;  Ideogram 发布了最新的 Ideogram1.0 图像生成模型，该模型具有强大的文字生成能力和提示词理解能力。Ideogram1.0 在文本渲染准确性方面实现了飞跃。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt;&lt;a href=&#34;https://www.chinaz.com/2024/0229/1599986.shtml&#34;&gt;Ideogram 1.0 图像生成模型发布 文字生成能力更强大了&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt;&lt;a href=&#34;https://top.aibase.com/tool/ideogram-ai&#34;&gt;https://top.aibase.com/tool/ideogram-ai&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span id=&#34;7-ltx-studio&#34;&gt; (7) LTX studio&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;7-ltx-studio生成式-ai-电影制作平台&#34;&gt; (7) LTX studio（生成式 AI 电影制作平台）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.29&lt;/strong&gt;&lt;/em&gt;  生成式 AI 电影制作平台 —LTX Studio，用户只需要输入文本就能生成超 25 秒的微电影视频，同时可对镜头切换、角色、场景一致性、摄像机、灯光等进行可视化精准控制。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://new.qq.com/rain/a/20240229A02EA500&#34;&gt;效果比 Sora 惊艳，著名 AI 平台大动作！文本生成超 25 秒视频，带背景音乐、转场等效果&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; &lt;a href=&#34;https://ltx.studio&#34;&gt;https://ltx.studio&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span id=&#34;8-claude3&#34;&gt; (8) Claude3&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;8-claude3llm&#34;&gt; (8) Claude3（LLM）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.04&lt;/strong&gt;&lt;/em&gt;  Claude3 是由 Anthropic 发布的最新的 AI 大模型系列，同时，Claude3 是多模态大模型 ，具有强大的 “视觉能力”。Claude3 Opus 已经在部分行业行为准则中的表现优于 OpenAI 的 GPT-4 和谷歌的 Gemini Ultra，如本科生水平知识（MMLU）、研究生级别专家推理（GPQA）和基础数学（GSM8K）。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://new.qq.com/rain/a/20240307A09O1N00&#34;&gt;OpenAI 劲敌出现！Claude3 正式发布，超越 GTP-4?&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt; 官网链接：&lt;/strong&gt; &lt;a href=&#34;https://www.anthropic.com/claude&#34;&gt;https://www.anthropic.com/claude&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span id=&#34;9-open-sora&#34;&gt; (9) Open Sora&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;9-open-sora文生视频大模型&#34;&gt; (9) Open Sora（文生视频大模型）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.01&lt;/strong&gt;&lt;/em&gt;  北大团队联合兔展发起了一项 Sora 复现计划 ——Open Sora&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1792479658318662669&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;北大与兔展智能发起复现 Sora，框架已开源&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt;&lt;br&gt;
 &lt;a href=&#34;https://pku-yuangroup.github.io/Open-Sora-Plan/blog_cn.html&#34;&gt;https://pku-yuangroup.github.io/Open-Sora-Plan/blog_cn.html&lt;/a&gt;&lt;br&gt;
 &lt;a href=&#34;https://github.com/PKU-YuanGroup/Open-Sora-Plan&#34;&gt;https://github.com/PKU-YuanGroup/Open-Sora-Plan&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;span id=&#34;10-yi-9b&#34;&gt; (10) Yi-9B&lt;/span&gt;&lt;/h3&gt;
+&lt;h3&gt;&lt;span id=&#34;10-yi-9bllm&#34;&gt; (10) Yi-9B（LLM）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.06&lt;/strong&gt;&lt;/em&gt;  李开复旗下 AI 公司零一万物的最新力作 ——Yi-9B 大模型正式对外开源发布。这款具有 90 亿参数的大模型，在代码和数学能力上达到了前所未有的高度，同时保持了对消费级显卡的良好兼容性，为广大开发者和研究人员提供了前所未有的便利性和强大功能。&lt;br&gt;
 　　Yi-9B 作为 Yi 系列中的新成员，被誉为 “理科状元”，特别加强了在代码和数学方面的学习能力。相较于市场上其他类似规模的开源模型，如 Mistral-7B、SOLAR-10.7B、Gemma-7B 等，Yi-9B 展现出了最佳的性能表现。特别值得一提的是，Yi-9B 既提供了浮点数版本（BF 16），也提供了整数版本（Int8），使其能够轻松部署在包括 RTX 4090 和 RTX 3090 在内的消费级显卡上，大大降低了使用门槛和成本。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1792881393208541121&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;零一万物开源 Yi-9B 大模型，消费级显卡可用，代码数学历史最强&lt;/a&gt;&lt;br&gt;
@@ -165,6 +171,43 @@
 　　这是第一个真正意义上完全自主的 AI 软件工程师，一亮相即掀起轩然大波，因为人们担心：人类程序员是不是真要失业了？&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://finance.eastmoney.com/a/202403153013211460.html&#34;&gt;人类程序员真要失业？首位 “AI 软件工程师” 亮相引爆科技圈&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;官网链接：&lt;/strong&gt; /&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;14-behavior-1k李飞飞团队-具身智能基准&#34;&gt; (14) BEHAVIOR-1K（李飞飞团队 — 具身智能基准）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.02.27&lt;/strong&gt;&lt;/em&gt;  来自斯坦福、得克萨斯大学奥斯汀分校等大学的研究团队推出了一项以人为本的机器人技术综合模拟基准 ——BEHAVIOR-1K。&lt;br&gt;
+　　BEHAVIOR-1K 包括两个部分，由 “您希望机器人为您做什么？” 这一问题的广泛调查结果指导和推动。第一部分是对 1000 种日常活动的定义，以 50 个场景（房屋、花园、餐厅、办公室等）为基础，其中有 9000 多个标注了丰富物理和语义属性的物体。其次是 OMNIGIBSON，这是一个模拟环境，通过对刚体、可变形体和液体进行逼真的物理模拟和渲染来支持这些活动。&lt;br&gt;
+　　实验表明，BEHAVIOR-1K 中的活动是长视距的，并且依赖于复杂的操作技能，这两点对于最先进的机器人学习解决方案来说仍然是一个挑战。为了校准 BEHAVIOR-1K 的模拟与现实之间的差距，研究团队进行了一项初步研究，将在模拟公寓中使用移动机械手学习到的解决方案转移到现实世界中。&lt;br&gt;
+　　研究团队希望 BEHAVIOR-1K 以人为本的特性、多样性和现实性能使其在具身智能和机器人学习研究中发挥重要作用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://zhuanlan.zhihu.com/p/669737780&#34;&gt;stanford Behavior-1k—— 包含一千种日常任务的具身智能 benchmark&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 官网链接：&lt;/strong&gt; /&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;15-mm1-大模型苹果公司多模态大模型&#34;&gt; (15) MM1 大模型（苹果公司多模态大模型）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.15&lt;/strong&gt;&lt;/em&gt;  苹果公司最新发布了一款名为 MM1 的大型多模态基础模型，拥有 300 亿参数，采用了 MoE 架构，并且超过一半的作者是华人。&lt;br&gt;
+　　该模型采用了 MoE 变体，并且在预训练指标和多项多模态基准测试上表现出了领先水平。研究者通过多项消融试验，探讨了模型架构、预训练数据选择以及训练程序等方面的重要性。他们发现，图像分辨率、视觉编码器损失和预训练数据在建模设计中都起着关键作用。&lt;br&gt;
+　　MM1 的发布标志着苹果在多模态领域的重要进展，也为未来苹果可能推出的相关产品奠定了技术基础。该研究的成果对于推动生成式人工智能领域的发展具有重要意义，值得业界密切关注。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://www.chinaz.com/2024/0315/1603636.shtml&#34;&gt;苹果大模型 MM1 入场：参数达到 300 亿 超半数作者是华人&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;论文地址：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/pdf/2403.09611.pdf&#34;&gt;https://arxiv.org/pdf/2403.09611.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;16-aesopagent达摩院-智能体驱动的进化系统&#34;&gt; (16) AesopAgent（达摩院 — 智能体驱动的进化系统）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.15&lt;/strong&gt;&lt;/em&gt;  阿里达摩院提出了一个关于故事到视频制作的智能体驱动进化系统 ——AesopAgent，它是智能体技术在多模态内容生成方面的实际应用。&lt;br&gt;
+　　该系统在一个统一的框架内集成了多种生成功能，因此个人用户可以轻松利用这些模块。这一创新系统可将用户故事提案转化为脚本、图像和音频，然后将这些多模态内容整合到视频中。此外，动画单元（如 Gen-2 和 Sora）可以使视频更具感染力。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://www.zhihu.com/pin/1751650851838750720&#34;&gt;阿里达摩院提出 AesopAgent：从故事到视频制作，智能体驱动的进化系统&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;论文地址：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/pdf/2403.07952.pdf&#34;&gt;https://arxiv.org/pdf/2403.07952.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;17-cogview3文生图大模型&#34;&gt; (17) CogView3（文生图大模型）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.10&lt;/strong&gt;&lt;/em&gt;  文生图系统的最新进展主要是由扩散模型推动的。然而，单级文本到图像扩散模型在计算效率和图像细节细化方面仍面临挑战。为了解决这个问题，来自清华大学和智谱 AI 的研究团队提出了 CogView3—— 一个能提高文本到图像扩散性能的创新级联框架。&lt;br&gt;
+　　据介绍，CogView3 是第一个在文本到图像生成领域实现 relay diffusion 的模型，它通过首先创建低分辨率图像，然后应用基于中继（relay-based）的超分辨率来执行任务。这种方法不仅能产生有竞争力的文本到图像输出，还能大大降低训练和推理成本。&lt;br&gt;
+　　实验结果表明，在人类评估中，CogView3 比目前最先进的开源文本到图像扩散模型 SDXL 高出 77.0%，而所需的推理时间仅为后者的 1/2。经过提炼（distilled）的 CogView3 变体性能与 SDXL 相当，而推理时间仅为后者的 1/10。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://www.zhihu.com/pin/1750532992102223872&#34;&gt;CogView3：更精细、更快速的文生图&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;论文地址：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/pdf/2403.05121.pdf&#34;&gt;https://arxiv.org/pdf/2403.05121.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;18-autodev微软团队全自动-ai-驱动软件开发框架&#34;&gt; (18) AutoDev（微软团队全自动 AI 驱动软件开发框架）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.10&lt;/strong&gt;&lt;/em&gt;  微软团队推出了全自动 AI 驱动软件开发框架 AutoDev，该框架专为自主规划和执行复杂的软件工程任务而设计。AutoDev 使用户能够定义复杂的软件工程目标，并将其分配给 AutoDev 的自主 AI 智能体来实现。这些 AI 智能体可以对代码库执行各种操作，包括文件编辑、检索、构建过程、执行、测试和 git 操作。它们还能访问文件、编译器输出、构建和测试日志、静态分析工具等。这使得 AI 智能体能够以完全自动化的方式执行任务并全面了解所需的上下文信息。&lt;br&gt;
+　　此外，AutoDev 还将所有操作限制在 Docker 容器内，建立了一个安全的开发环境。该框架结合了防护栏以确保用户隐私和文件安全，允许用户在 AutoDev 中定义特定的允许或限制命令和操作。&lt;br&gt;
+　　研究团队在 HumanEval 数据集上对 AutoDev 进行了测试，在代码生成和测试生成方面分别取得了 91.5% 和 87.8% 的 Pass@1 好成绩，证明了它在自动执行软件工程任务的同时维护安全和用户控制的开发环境方面的有效性。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://blog.csdn.net/m0_67695717/article/details/135610166&#34;&gt;AutoDev 1.5.3：精准的自动化测试生成、本地模型强化与流程自动化优化&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;论文地址：&lt;/strong&gt; /&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;19-vloggergoogle-图生音频驱动视频方法&#34;&gt; (19) VLOGGER（Google 图生音频驱动视频方法）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.14&lt;/strong&gt;&lt;/em&gt;  Google Research 提出了一种从单张人物输入图像生成音频驱动人类视频的方法 ——VLOGGER，它建立在最近成功的生成扩散模型基础之上。&lt;br&gt;
+　　VLOGGER 由两部分组成，一是随机人体到三维运动扩散模型，二是一种基于扩散的新型架构，它通过空间和时间控制来增强文本到图像模型。这有助于生成长度可变的高质量视频，并可通过人脸和身体的高级表示轻松控制。&lt;br&gt;
+　　与之前的工作相比，这一方法不需要对每个人进行训练，不依赖于人脸检测和裁剪，能生成完整的图像（不仅仅是人脸或嘴唇），并能考虑广泛的情况（如可见躯干或不同的主体身份），这对于正确合成交流的人类至关重要。研究团队还提出了一个包含三维姿势和表情注释的全新多样化数据集 MENTOR，它比以前的数据集大一个数量级（800000 identities），并且包含动态手势。研究团队在其上训练并简化了他们的主要技术贡献。&lt;br&gt;
+　　VLOGGER 在三个公共基准测试中的表现达到了 SOTA，考虑到图像质量、身份保留和时间一致性，同时还能生成上半身手势。VLOGGER 在多个多样性指标方面的表现都表明其架构选择和 MENTOR 的使用有利于大规模训练一个公平、无偏见的模型。最后，研究团队还展示了在视频编辑和个性化方面的应用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://www.zhihu.com/pin/1751650384068771840&#34;&gt;VLOGGER：基于多模态扩散的具身虚拟形象合成&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;论文地址：&lt;/strong&gt; [&lt;a href=&#34;https://arxiv.org/pdf/2403.08764.pdf&#34;&gt;https://arxiv.org/pdf/2403.08764.pdf&lt;/a&gt;](&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
