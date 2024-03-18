@@ -16,7 +16,7 @@
 <meta property="og:description" content="文章目录   AIGC 前沿  (1) Gemini 1.5 Pro（谷歌新一代多模态大模型） (2) Sora（文本生成视频大模型） (3) EMO（阿里生成式 AI 模型） (4) Playground v2.5（文生图大模型） (5) VSP-LLM（唇语识别） (6) Ideogram ai  （文生图大模型） (7) LTX studio（生成式 AI 电影制作平台） (8) Cla">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-15T08:16:00.000Z">
-<meta property="article:modified_time" content="2024-03-16T02:27:38.044Z">
+<meta property="article:modified_time" content="2024-03-18T03:50:01.657Z">
 <meta property="article:author" content="LeeZhao">
 <meta property="article:tag" content="人工智能">
 <meta property="article:tag" content="AIGC前沿">
@@ -206,6 +206,9 @@ ga('send', 'pageview');
 <li><a href="#17-cogview3%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%A7%E6%A8%A1%E5%9E%8B">(17) CogView3（文生图大模型）</a></li>
 <li><a href="#18-autodev%E5%BE%AE%E8%BD%AF%E5%9B%A2%E9%98%9F%E5%85%A8%E8%87%AA%E5%8A%A8-ai-%E9%A9%B1%E5%8A%A8%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6">(18) AutoDev（微软团队全自动 AI 驱动软件开发框架）</a></li>
 <li><a href="#19-vloggergoogle%E5%9B%BE%E7%94%9F%E9%9F%B3%E9%A2%91%E9%A9%B1%E5%8A%A8%E8%A7%86%E9%A2%91%E6%96%B9%E6%B3%95">(19) VLOGGER（Google 图生音频驱动视频方法）</a></li>
+<li><a href="#20-textmonkeymonkey%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E6%96%87%E6%A1%A3%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8">(20) TextMonkey（Monkey 多模态大模型在文档领域的应用）</a></li>
+<li><a href="#21-open-sora-10%E6%96%87%E7%94%9F%E8%A7%86%E9%A2%91%E5%A4%A7%E6%A8%A1%E5%9E%8B">(21) Open-Sora 1.0（文生视频大模型）</a></li>
+<li><a href="#22-grok-1%E9%A9%AC%E6%96%AF%E5%85%8B%E5%BC%80%E6%BA%90%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B">(22) Grok-1（马斯克开源大语言模型）</a></li>
 </ul>
 </li>
 </ul>
@@ -306,11 +309,32 @@ ga('send', 'pageview');
 　　与之前的工作相比，这一方法不需要对每个人进行训练，不依赖于人脸检测和裁剪，能生成完整的图像（不仅仅是人脸或嘴唇），并能考虑广泛的情况（如可见躯干或不同的主体身份），这对于正确合成交流的人类至关重要。研究团队还提出了一个包含三维姿势和表情注释的全新多样化数据集 MENTOR，它比以前的数据集大一个数量级（800000 identities），并且包含动态手势。研究团队在其上训练并简化了他们的主要技术贡献。<br>
 　　VLOGGER 在三个公共基准测试中的表现达到了 SOTA，考虑到图像质量、身份保留和时间一致性，同时还能生成上半身手势。VLOGGER 在多个多样性指标方面的表现都表明其架构选择和 MENTOR 的使用有利于大规模训练一个公平、无偏见的模型。最后，研究团队还展示了在视频编辑和个性化方面的应用。</p>
 <p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://www.zhihu.com/pin/1751650384068771840">VLOGGER：基于多模态扩散的具身虚拟形象合成</a><br>
-<strong>论文地址：</strong> [<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2403.08764.pdf">https://arxiv.org/pdf/2403.08764.pdf</a>](</p>
+<strong>论文地址：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2403.08764.pdf">https://arxiv.org/pdf/2403.08764.pdf</a></p>
+<h3><span id="20-textmonkeymonkey-多模态大模型在文档领域的应用"> (20) TextMonkey（Monkey 多模态大模型在文档领域的应用）</span></h3>
+<p><em><strong>2024.03.15</strong></em>  TextMonkey 是 Monkey 在文档领域的重要升级，突破了通用文档理解能力的边界，在场景文字识别、办公文档摘要生成、数学问题问答、文档版式分析，表格理解，图表问答，电子文档关键信息抽取等 12 项等文档权威数据集以及在国际上规模最全的文档图像智能数据集 OCRBench 上取得了显著突破，通用文档理解性能大幅超越现有方法。<br>
+　　TextMonkey 能帮助我们结构化图表、表格以及文档数据，通过将图像内容转化为轻量级的数据交换格式，方便记录和提取。TextMonkey 也能作为智能手机代理，无需接触后端，仅需语音输入及屏幕截图，即能够模仿人类的点击手势，能够在手机上执行各种任务，自主操控手机应用程序。</p>
+<p><strong>推荐文章：</strong><br>
+<a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1793666944109402323&amp;wfr=spider&amp;for=pc">华科大研发多模态大模型 “猴子” 升级</a><br>
+<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/685937695"> [全网首发中文版] TextMonkey: An OCRFree Large Multimodal Model for Understanding Document</a><br>
+<strong>GitHub 仓库地址：</strong> <a target="_blank" rel="noopener" href="https://github.com/Yuliang-Liu/Monkey">https://github.com/Yuliang-Liu/Monkey</a><br>
+<strong> 论文地址：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2311.06607.pdf">https://arxiv.org/pdf/2311.06607.pdf</a></p>
+<h3><span id="21-open-sora-10文生视频大模型"> (21) Open-Sora 1.0（文生视频大模型）</span></h3>
+<p><em><strong>2024.03.17</strong></em>  Colossal-AI 团队全面开源全球首个类 Sora 架构视频生成模型 「Open-Sora 1.0」，涵盖了整个训练流程，包括数据处理、所有训练细节和模型权重，携手全球 AI 热爱者共同推进视频创作的新纪元。<br>
+　　Colossal-AI 团队深入解读 Sora 复现方案的多个关键维度，包括模型架构设计、训练复现方案、数据预处理、模型生成效果展示以及高效训练优化策略。</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1793833243872165307&amp;wfr=spider&amp;for=pc">没等来 OpenAI，等来了 Open-Sora 全面开源</a><br>
+<strong> GitHub 仓库地址：</strong> <a target="_blank" rel="noopener" href="https://github.com/hpcaitech/Open-Sora">https://github.com/hpcaitech/Open-Sora</a></p>
+<h3><span id="22-grok-1马斯克开源大语言模型"> (22) Grok-1（马斯克开源大语言模型）</span></h3>
+<p><em><strong>2024.03.17</strong></em>  马斯克宣布开源 Grok-1，这使得 Grok-1 成为当前参数量最大的开源大语言模型，拥有 3140 亿参数，远超 OpenAI GPT-3.5 的 1750 亿。有意思的是，Grok-1 宣布开源的封面图为 Midjourney 生成，可谓 “AI helps AI”。<br>
+　　Grok-1 是一个规模较大（314B 参数）的模型，需要有足够 GPU 内存的机器才能使用示例代码测试模型。网友表示这可能需要一台拥有 628 GB GPU 内存的机器。此外，该存储库中 MoE 层的实现效率并不高，之所以选择该实现是为了避免需要自定义内核来验证模型的正确性。<br>
+　　目前已开源的热门大模型包括 Meta 的 Llama2、法国的 Mistral 等。通常来说，发布开源模型有助于社区展开大规模的测试和反馈，意味着模型本身的迭代速度也能加快。</p>
+<p><strong>推荐文章：</strong> <a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1793830961836866098&amp;wfr=spider&amp;for=pc">马斯克用行动反击 开源自家顶级大模型 压力给到 OpenAI</a><br>
+<strong>GitHub 仓库地址：</strong> <a target="_blank" rel="noopener" href="https://github.com/xai-org/grok-1">https://github.com/xai-org/grok-1</a><br>
+<strong> 官方博客：</strong> <a target="_blank" rel="noopener" href="https://x.ai/blog/grok-os">https://x.ai/blog/grok-os</a><br>
+<strong> 模型磁力链接：</strong> <a target="_blank" rel="noopener" href="https://academictorrents.com/details/5f96d43576e3d386c9ba65b883210a393b68210e">https://academictorrents.com/details/5f96d43576e3d386c9ba65b883210a393b68210e</a></p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2024年03月16日 10:27</p>
+        <p>最后更新： 2024年03月18日 11:50</p>
         <p>原始链接： <a class="post-url" href="/2024/03/15/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91AIGC%E5%90%AF%E5%85%832024/" title="【精华】AIGC启元2024">https://leezhao415.github.io/2024/03/15/%E3%80%90%E7%B2%BE%E5%8D%8E%E3%80%91AIGC%E5%90%AF%E5%85%832024/</a></p>
         <footer>
             <a href="https://leezhao415.github.io">
@@ -430,7 +454,7 @@ ga('send', 'pageview');
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> AIGC 前沿</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (1) Gemini 1.5 Pro（谷歌新一代多模态大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (2) Sora（文本生成视频大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (3) EMO（阿里生成式 AI 模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (4) Playground v2.5（文生图大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (5) VSP-LLM（唇语识别）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (6) Ideogram ai  （文生图大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (7) LTX studio（生成式 AI 电影制作平台）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (8) Claude3（LLM）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (9) Open Sora（文生视频大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (10) Yi-9B（LLM）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (11) CARES Copilot1.0（多模态手术大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (12) Figure 01 通用机器人（Figure AI + OpenAI）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (13) Devin（AI 软件工程师助手）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (14) BEHAVIOR-1K（李飞飞团队 — 具身智能基准）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (15) MM1 大模型（苹果公司多模态大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (16) AesopAgent（达摩院 — 智能体驱动的进化系统）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (17) CogView3（文生图大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (18) AutoDev（微软团队全自动 AI 驱动软件开发框架）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (19) VLOGGER（Google 图生音频驱动视频方法）</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"> AIGC 前沿</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (1) Gemini 1.5 Pro（谷歌新一代多模态大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (2) Sora（文本生成视频大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (3) EMO（阿里生成式 AI 模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (4) Playground v2.5（文生图大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (5) VSP-LLM（唇语识别）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (6) Ideogram ai  （文生图大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (7) LTX studio（生成式 AI 电影制作平台）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (8) Claude3（LLM）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (9) Open Sora（文生视频大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (10) Yi-9B（LLM）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (11) CARES Copilot1.0（多模态手术大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (12) Figure 01 通用机器人（Figure AI + OpenAI）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (13) Devin（AI 软件工程师助手）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (14) BEHAVIOR-1K（李飞飞团队 — 具身智能基准）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (15) MM1 大模型（苹果公司多模态大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (16) AesopAgent（达摩院 — 智能体驱动的进化系统）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (17) CogView3（文生图大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (18) AutoDev（微软团队全自动 AI 驱动软件开发框架）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (19) VLOGGER（Google 图生音频驱动视频方法）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (20) TextMonkey（Monkey 多模态大模型在文档领域的应用）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (21) Open-Sora 1.0（文生视频大模型）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link"><span class="post-toc-text"> (22) Grok-1（马斯克开源大语言模型）</span></a></li></ol></li></ol>
         </nav>
     </aside>
     

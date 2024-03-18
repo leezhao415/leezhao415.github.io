@@ -4,11 +4,11 @@
     <title>且听风吟，御剑于心！ • Posts by &#34;hot&#34; category</title>
     <link href="https://leezhao415.github.io" />
     <updated>2024-03-15T08:16:00.000Z</updated>
-    <category term="人工智能" />
-    <category term="大数据框架" />
     <category term="人工智能/CV" />
     <category term="Transformer/DETR(CV)" />
+    <category term="人工智能" />
     <category term="数据集" />
+    <category term="大数据框架" />
     <category term="编程工具" />
     <category term="NLP" />
     <category term="模型部署" />
@@ -18,36 +18,36 @@
     <category term="YOLOX" />
     <category term="CV算法" />
     <category term="VSLAM" />
-    <category term="NCNN部署" />
     <category term="YOLOX目标检测" />
+    <category term="NCNN部署" />
     <category term="多模态" />
-    <category term="目标跟踪" />
     <category term="目标检测（人脸检测）" />
+    <category term="目标跟踪" />
     <category term="深度学习" />
-    <category term="且读文摘" />
     <category term="CV未来" />
+    <category term="且读文摘" />
     <category term="NLP-BERT" />
     <category term="自然语言处理NLP" />
-    <category term="IOU" />
     <category term="OpenCV之DNN模块" />
+    <category term="IOU" />
     <category term="深度模型" />
-    <category term="激活函数" />
     <category term="NLP-模型优化" />
+    <category term="激活函数" />
     <category term="梯度更新" />
     <category term="概述" />
     <category term="人脸识别" />
     <category term="名人名言" />
-    <category term="NLP/评估指标" />
     <category term="寒窑赋" />
+    <category term="NLP/评估指标" />
     <category term="度量学习" />
-    <category term="机器学习/损失函数" />
     <category term="智能家居" />
+    <category term="机器学习/损失函数" />
     <category term="机器学习" />
     <category term="模型性能指标" />
-    <category term="科研项目成果" />
     <category term="CV/目标检测工具箱" />
-    <category term="计算机顶会" />
+    <category term="科研项目成果" />
     <category term="表面缺陷检测" />
+    <category term="计算机顶会" />
     <category term="计算机视觉CV" />
     <category term="网络编程" />
     <category term="NLP/数据增强工具" />
@@ -101,6 +101,9 @@
 &lt;li&gt;&lt;a href=&#34;#17-cogview3%E6%96%87%E7%94%9F%E5%9B%BE%E5%A4%A7%E6%A8%A1%E5%9E%8B&#34;&gt;(17) CogView3（文生图大模型）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#18-autodev%E5%BE%AE%E8%BD%AF%E5%9B%A2%E9%98%9F%E5%85%A8%E8%87%AA%E5%8A%A8-ai-%E9%A9%B1%E5%8A%A8%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6&#34;&gt;(18) AutoDev（微软团队全自动 AI 驱动软件开发框架）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#19-vloggergoogle%E5%9B%BE%E7%94%9F%E9%9F%B3%E9%A2%91%E9%A9%B1%E5%8A%A8%E8%A7%86%E9%A2%91%E6%96%B9%E6%B3%95&#34;&gt;(19) VLOGGER（Google 图生音频驱动视频方法）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#20-textmonkeymonkey%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E6%96%87%E6%A1%A3%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8&#34;&gt;(20) TextMonkey（Monkey 多模态大模型在文档领域的应用）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#21-open-sora-10%E6%96%87%E7%94%9F%E8%A7%86%E9%A2%91%E5%A4%A7%E6%A8%A1%E5%9E%8B&#34;&gt;(21) Open-Sora 1.0（文生视频大模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#22-grok-1%E9%A9%AC%E6%96%AF%E5%85%8B%E5%BC%80%E6%BA%90%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B&#34;&gt;(22) Grok-1（马斯克开源大语言模型）&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -201,7 +204,28 @@
 　　与之前的工作相比，这一方法不需要对每个人进行训练，不依赖于人脸检测和裁剪，能生成完整的图像（不仅仅是人脸或嘴唇），并能考虑广泛的情况（如可见躯干或不同的主体身份），这对于正确合成交流的人类至关重要。研究团队还提出了一个包含三维姿势和表情注释的全新多样化数据集 MENTOR，它比以前的数据集大一个数量级（800000 identities），并且包含动态手势。研究团队在其上训练并简化了他们的主要技术贡献。&lt;br&gt;
 　　VLOGGER 在三个公共基准测试中的表现达到了 SOTA，考虑到图像质量、身份保留和时间一致性，同时还能生成上半身手势。VLOGGER 在多个多样性指标方面的表现都表明其架构选择和 MENTOR 的使用有利于大规模训练一个公平、无偏见的模型。最后，研究团队还展示了在视频编辑和个性化方面的应用。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://www.zhihu.com/pin/1751650384068771840&#34;&gt;VLOGGER：基于多模态扩散的具身虚拟形象合成&lt;/a&gt;&lt;br&gt;
-&lt;strong&gt;论文地址：&lt;/strong&gt; [&lt;a href=&#34;https://arxiv.org/pdf/2403.08764.pdf&#34;&gt;https://arxiv.org/pdf/2403.08764.pdf&lt;/a&gt;](&lt;/p&gt;
+&lt;strong&gt;论文地址：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/pdf/2403.08764.pdf&#34;&gt;https://arxiv.org/pdf/2403.08764.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;20-textmonkeymonkey-多模态大模型在文档领域的应用&#34;&gt; (20) TextMonkey（Monkey 多模态大模型在文档领域的应用）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.15&lt;/strong&gt;&lt;/em&gt;  TextMonkey 是 Monkey 在文档领域的重要升级，突破了通用文档理解能力的边界，在场景文字识别、办公文档摘要生成、数学问题问答、文档版式分析，表格理解，图表问答，电子文档关键信息抽取等 12 项等文档权威数据集以及在国际上规模最全的文档图像智能数据集 OCRBench 上取得了显著突破，通用文档理解性能大幅超越现有方法。&lt;br&gt;
+　　TextMonkey 能帮助我们结构化图表、表格以及文档数据，通过将图像内容转化为轻量级的数据交换格式，方便记录和提取。TextMonkey 也能作为智能手机代理，无需接触后端，仅需语音输入及屏幕截图，即能够模仿人类的点击手势，能够在手机上执行各种任务，自主操控手机应用程序。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt;&lt;br&gt;
+&lt;a href=&#34;https://baijiahao.baidu.com/s?id=1793666944109402323&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;华科大研发多模态大模型 “猴子” 升级&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://zhuanlan.zhihu.com/p/685937695&#34;&gt; [全网首发中文版] TextMonkey: An OCRFree Large Multimodal Model for Understanding Document&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;GitHub 仓库地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/Yuliang-Liu/Monkey&#34;&gt;https://github.com/Yuliang-Liu/Monkey&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 论文地址：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/pdf/2311.06607.pdf&#34;&gt;https://arxiv.org/pdf/2311.06607.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;21-open-sora-10文生视频大模型&#34;&gt; (21) Open-Sora 1.0（文生视频大模型）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.17&lt;/strong&gt;&lt;/em&gt;  Colossal-AI 团队全面开源全球首个类 Sora 架构视频生成模型 「Open-Sora 1.0」，涵盖了整个训练流程，包括数据处理、所有训练细节和模型权重，携手全球 AI 热爱者共同推进视频创作的新纪元。&lt;br&gt;
+　　Colossal-AI 团队深入解读 Sora 复现方案的多个关键维度，包括模型架构设计、训练复现方案、数据预处理、模型生成效果展示以及高效训练优化策略。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1793833243872165307&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;没等来 OpenAI，等来了 Open-Sora 全面开源&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; GitHub 仓库地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/hpcaitech/Open-Sora&#34;&gt;https://github.com/hpcaitech/Open-Sora&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;22-grok-1马斯克开源大语言模型&#34;&gt; (22) Grok-1（马斯克开源大语言模型）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.17&lt;/strong&gt;&lt;/em&gt;  马斯克宣布开源 Grok-1，这使得 Grok-1 成为当前参数量最大的开源大语言模型，拥有 3140 亿参数，远超 OpenAI GPT-3.5 的 1750 亿。有意思的是，Grok-1 宣布开源的封面图为 Midjourney 生成，可谓 “AI helps AI”。&lt;br&gt;
+　　Grok-1 是一个规模较大（314B 参数）的模型，需要有足够 GPU 内存的机器才能使用示例代码测试模型。网友表示这可能需要一台拥有 628 GB GPU 内存的机器。此外，该存储库中 MoE 层的实现效率并不高，之所以选择该实现是为了避免需要自定义内核来验证模型的正确性。&lt;br&gt;
+　　目前已开源的热门大模型包括 Meta 的 Llama2、法国的 Mistral 等。通常来说，发布开源模型有助于社区展开大规模的测试和反馈，意味着模型本身的迭代速度也能加快。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1793830961836866098&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;马斯克用行动反击 开源自家顶级大模型 压力给到 OpenAI&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;GitHub 仓库地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/xai-org/grok-1&#34;&gt;https://github.com/xai-org/grok-1&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 官方博客：&lt;/strong&gt; &lt;a href=&#34;https://x.ai/blog/grok-os&#34;&gt;https://x.ai/blog/grok-os&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 模型磁力链接：&lt;/strong&gt; &lt;a href=&#34;https://academictorrents.com/details/5f96d43576e3d386c9ba65b883210a393b68210e&#34;&gt;https://academictorrents.com/details/5f96d43576e3d386c9ba65b883210a393b68210e&lt;/a&gt;&lt;/p&gt;
 </content>
         <category term="人工智能" />
         <category term="AIGC前沿" />
