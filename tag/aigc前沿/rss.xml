@@ -21,12 +21,12 @@
         <category>YOLOX</category>
         <category>CV算法</category>
         <category>VSLAM</category>
-        <category>YOLOX目标检测</category>
         <category>NCNN部署</category>
+        <category>YOLOX目标检测</category>
         <category>多模态</category>
-        <category>目标检测（人脸检测）</category>
         <category>目标跟踪</category>
         <category>深度学习</category>
+        <category>目标检测（人脸检测）</category>
         <category>CV未来</category>
         <category>且读文摘</category>
         <category>NLP-BERT</category>
@@ -35,17 +35,17 @@
         <category>IOU</category>
         <category>深度模型</category>
         <category>NLP-模型优化</category>
-        <category>激活函数</category>
         <category>梯度更新</category>
+        <category>激活函数</category>
         <category>概述</category>
         <category>人脸识别</category>
         <category>名人名言</category>
         <category>寒窑赋</category>
         <category>NLP/评估指标</category>
         <category>度量学习</category>
-        <category>智能家居</category>
-        <category>机器学习/损失函数</category>
         <category>机器学习</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
         <category>模型性能指标</category>
         <category>CV/目标检测工具箱</category>
         <category>科研项目成果</category>
@@ -55,13 +55,13 @@
         <category>网络编程</category>
         <category>NLP/数据增强工具</category>
         <category>AIGC前沿</category>
-        <category>计算机视觉</category>
         <category>模型优化</category>
+        <category>计算机视觉</category>
         <category>三维建模</category>
         <category>计算机视觉库</category>
         <category>深度学习环境配置</category>
-        <category>知识蒸馏</category>
         <category>多任务学习模型</category>
+        <category>知识蒸馏</category>
         <category>数据库原理</category>
         <category>算法</category>
         <category>操作系统</category>
@@ -110,6 +110,8 @@
 &lt;li&gt;&lt;a href=&#34;#20-textmonkeymonkey%E5%A4%9A%E6%A8%A1%E6%80%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%9C%A8%E6%96%87%E6%A1%A3%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8&#34;&gt;(20) TextMonkey（Monkey 多模态大模型在文档领域的应用）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#21-open-sora-10%E6%96%87%E7%94%9F%E8%A7%86%E9%A2%91%E5%A4%A7%E6%A8%A1%E5%9E%8B&#34;&gt;(21) Open-Sora 1.0（文生视频大模型）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#22-grok-1%E9%A9%AC%E6%96%AF%E5%85%8B%E5%BC%80%E6%BA%90%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B&#34;&gt;(22) Grok-1（马斯克开源大语言模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#23-blackwell-gb200%E8%8B%B1%E4%BC%9F%E8%BE%BE%E6%96%B0%E4%B8%80%E4%BB%A3ai%E5%8A%A0%E9%80%9F%E5%8D%A1&#34;&gt;(23) Blackwell GB200（英伟达新一代 AI 加速卡）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#24-kimimoonshot-ai-%E6%99%BA%E8%83%BD%E5%8A%A9%E6%89%8B&#34;&gt;(24) Kimi（Moonshot AI 智能助手）&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -232,6 +234,15 @@
 &lt;strong&gt;GitHub 仓库地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/xai-org/grok-1&#34;&gt;https://github.com/xai-org/grok-1&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt; 官方博客：&lt;/strong&gt; &lt;a href=&#34;https://x.ai/blog/grok-os&#34;&gt;https://x.ai/blog/grok-os&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt; 模型磁力链接：&lt;/strong&gt; &lt;a href=&#34;https://academictorrents.com/details/5f96d43576e3d386c9ba65b883210a393b68210e&#34;&gt;https://academictorrents.com/details/5f96d43576e3d386c9ba65b883210a393b68210e&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;23-blackwell-gb200英伟达新一代-ai-加速卡&#34;&gt; (23) Blackwell GB200（英伟达新一代 AI 加速卡）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.18&lt;/strong&gt;&lt;/em&gt;  英伟达公司于 2024 年的 GTC 大会上宣布了下一代人工智能超级计算机的问世，同时推出了备受业界瞩目的 AI 加速卡 ——Blackwell GB200。这款加速卡的发布，标志着人工智能领域又迈出了坚实的一步，其强大的性能、成本及能耗的突破，预计将引领 AI 技术的全新发展。&lt;br&gt;
+　　Blackwell GB200 采用了英伟达新一代 AI 图形处理器架构 Blackwell，相较于前一代 Hopper 架构，其性能实现了巨大的飞跃。GB200 由两个 B200 Blackwell GPU 和一个基于 Arm 的 Grace CPU 组成，这种独特的组合使得其在处理大语言模型推理任务时，性能比 H100 提升高达 30 倍。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1793911137057474891&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;性能飙升 30 倍，能耗骤降 25 倍！英伟达发布 Blackwell GB200！&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;24-kimimoonshot-ai-智能助手&#34;&gt; (24) Kimi（Moonshot AI 智能助手）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.18&lt;/strong&gt;&lt;/em&gt;  国内 AI 创业公司月之暗面（Moonshot AI）宣布在大模型长上下文窗口技术上取得新的突破，Kimi 智能助手已支持 200 万字超长无损上下文，短短五个月内 “长文本” 输入量提升 10 倍，并于即日起开启产品 “内测”。&lt;br&gt;
+　　月之暗面创始人杨植麟博士表示，通往通用人工智能（AGI）的话，无损的长上下文将会是一个很关键的基础技术。历史上所有的模型架构演进，本质上都是在提升有效的、无损的上下文长度。上下文长度可能存在摩尔定律，但需要同时优化长度和无损压缩水平两个指标，才是有意义的规模化。&lt;br&gt;
+　　月之暗面联合创始人 周昕宇则向钛媒体 App 透露，月之暗面即将在今年内推出自研的多模态大模型。同时，商业化也在快速推进。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1793878336231855457&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;对话月之暗面：Kimi 智能助手支持 200 万字无损输入，年内将发布多模态模型｜钛媒体 AGI&lt;/a&gt;&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
