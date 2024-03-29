@@ -23,16 +23,16 @@
         <category>VSLAM</category>
         <category>NCNN部署</category>
         <category>YOLOX目标检测</category>
-        <category>多模态</category>
         <category>目标跟踪</category>
-        <category>深度学习</category>
+        <category>多模态</category>
         <category>目标检测（人脸检测）</category>
+        <category>深度学习</category>
         <category>CV未来</category>
-        <category>且读文摘</category>
         <category>NLP-BERT</category>
+        <category>且读文摘</category>
         <category>自然语言处理NLP</category>
-        <category>OpenCV之DNN模块</category>
         <category>IOU</category>
+        <category>OpenCV之DNN模块</category>
         <category>深度模型</category>
         <category>NLP-模型优化</category>
         <category>梯度更新</category>
@@ -43,9 +43,9 @@
         <category>寒窑赋</category>
         <category>NLP/评估指标</category>
         <category>度量学习</category>
-        <category>机器学习</category>
-        <category>机器学习/损失函数</category>
         <category>智能家居</category>
+        <category>机器学习/损失函数</category>
+        <category>机器学习</category>
         <category>模型性能指标</category>
         <category>CV/目标检测工具箱</category>
         <category>科研项目成果</category>
@@ -55,13 +55,13 @@
         <category>网络编程</category>
         <category>NLP/数据增强工具</category>
         <category>AIGC前沿</category>
-        <category>模型优化</category>
         <category>计算机视觉</category>
+        <category>模型优化</category>
         <category>三维建模</category>
         <category>计算机视觉库</category>
         <category>深度学习环境配置</category>
-        <category>多任务学习模型</category>
         <category>知识蒸馏</category>
+        <category>多任务学习模型</category>
         <category>数据库原理</category>
         <category>算法</category>
         <category>操作系统</category>
