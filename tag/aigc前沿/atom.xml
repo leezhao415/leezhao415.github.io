@@ -7,8 +7,8 @@
     <category term="人工智能/CV" />
     <category term="Transformer/DETR(CV)" />
     <category term="人工智能" />
-    <category term="数据集" />
     <category term="大数据框架" />
+    <category term="数据集" />
     <category term="编程工具" />
     <category term="NLP" />
     <category term="模型部署" />
@@ -18,22 +18,22 @@
     <category term="YOLOX" />
     <category term="CV算法" />
     <category term="VSLAM" />
-    <category term="NCNN部署" />
     <category term="YOLOX目标检测" />
-    <category term="目标跟踪" />
+    <category term="NCNN部署" />
     <category term="多模态" />
+    <category term="目标跟踪" />
     <category term="目标检测（人脸检测）" />
     <category term="深度学习" />
-    <category term="CV未来" />
     <category term="NLP-BERT" />
+    <category term="CV未来" />
     <category term="且读文摘" />
     <category term="自然语言处理NLP" />
     <category term="IOU" />
     <category term="OpenCV之DNN模块" />
-    <category term="深度模型" />
     <category term="NLP-模型优化" />
-    <category term="梯度更新" />
+    <category term="深度模型" />
     <category term="激活函数" />
+    <category term="梯度更新" />
     <category term="概述" />
     <category term="人脸识别" />
     <category term="名人名言" />
@@ -43,9 +43,9 @@
     <category term="智能家居" />
     <category term="机器学习/损失函数" />
     <category term="机器学习" />
+    <category term="科研项目成果" />
     <category term="模型性能指标" />
     <category term="CV/目标检测工具箱" />
-    <category term="科研项目成果" />
     <category term="表面缺陷检测" />
     <category term="计算机顶会" />
     <category term="计算机视觉CV" />
@@ -112,6 +112,7 @@
 &lt;li&gt;&lt;a href=&#34;#28-mistral-7b-v02&#34;&gt;(28) Mistral 7B v0.2&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#29-dbrxllm&#34;&gt;(29) DBRX（LLM）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#30-grok-15llm&#34;&gt;(30) Grok-1.5（LLM）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#31-voice-engineopenai%E9%9F%B3%E9%A2%91%E6%A8%A1%E5%9E%8B&#34;&gt;(31) Voice Engine（OpenAI 音频模型）&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -284,6 +285,10 @@
 Grok-1.5 最显著的改进之一是其在编码和数学相关任务中的表现。在给出的测试结果中，Grok-1.5 在 MATH 基准测试中取得了 50.6% 的得分，在 GSM8K 基准测试中取得了 90% 的得分。此外，在评估代码生成和解决问题能力的 HumanEval 基准测试中，Grok-1.5 获得了 74.1% 的高分，超过了 GPT-4。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/RJ_KBxX1eNzMOGiGQ1iPCg?version=4.1.20.8013&amp;amp;platform=win&#34;&gt;马斯克发布 Grok-1.5，强化推理和上下文，HumanEval 得分超 GPT-4&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt; 项目主页：&lt;/strong&gt; &lt;a href=&#34;https://x.ai/blog/grok-1.5&#34;&gt;https://x.ai/blog/grok-1.5&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;31-voice-engineopenai-音频模型&#34;&gt; (31) Voice Engine（OpenAI 音频模型）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.30&lt;/strong&gt;&lt;/em&gt;  OpenAI 在官网首次展示了全新自定义音频模型 “Voice Engine”。用户只需要提供 15 秒左右的参考声音，通过 Voice Engine 就能生成几乎和原音一模一样的全新音频，在清晰度、语音连贯、音色、自然度等方面比市面上多数产品都强很多。&lt;br&gt;
+除了能合成音频之外，OpenAI 还展示了 Voice Engine 很多其他际商业用途，例如，一位失去声音表达能力的女孩，在 Voice Engine 帮助下能像以前一样正常发音说话。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/ErMhYBEjjDMpJfPlj9NiIw?version=4.1.20.8013&amp;amp;platform=win&#34;&gt;OpenAI 首次展示音频模型 Voice Engine，生成的声音太逼真了！&lt;/a&gt;&lt;/p&gt;
 </content>
         <category term="人工智能" />
         <category term="AIGC前沿" />
