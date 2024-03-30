@@ -7,8 +7,8 @@
     <category term="人工智能/CV" />
     <category term="Transformer/DETR(CV)" />
     <category term="人工智能" />
-    <category term="大数据框架" />
     <category term="数据集" />
+    <category term="大数据框架" />
     <category term="编程工具" />
     <category term="NLP" />
     <category term="模型部署" />
@@ -24,14 +24,14 @@
     <category term="目标跟踪" />
     <category term="目标检测（人脸检测）" />
     <category term="深度学习" />
-    <category term="NLP-BERT" />
-    <category term="CV未来" />
     <category term="且读文摘" />
+    <category term="CV未来" />
+    <category term="NLP-BERT" />
     <category term="自然语言处理NLP" />
     <category term="IOU" />
+    <category term="深度模型" />
     <category term="OpenCV之DNN模块" />
     <category term="NLP-模型优化" />
-    <category term="深度模型" />
     <category term="激活函数" />
     <category term="梯度更新" />
     <category term="概述" />
@@ -43,9 +43,9 @@
     <category term="智能家居" />
     <category term="机器学习/损失函数" />
     <category term="机器学习" />
-    <category term="科研项目成果" />
     <category term="模型性能指标" />
     <category term="CV/目标检测工具箱" />
+    <category term="科研项目成果" />
     <category term="表面缺陷检测" />
     <category term="计算机顶会" />
     <category term="计算机视觉CV" />
@@ -113,6 +113,7 @@
 &lt;li&gt;&lt;a href=&#34;#29-dbrxllm&#34;&gt;(29) DBRX（LLM）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#30-grok-15llm&#34;&gt;(30) Grok-1.5（LLM）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#31-voice-engineopenai%E9%9F%B3%E9%A2%91%E6%A8%A1%E5%9E%8B&#34;&gt;(31) Voice Engine（OpenAI 音频模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#32-jambamamba-transformer&#34;&gt;(32) Jamba（Mamba + Transformer）&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -289,6 +290,19 @@ Grok-1.5 最显著的改进之一是其在编码和数学相关任务中的表�
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.30&lt;/strong&gt;&lt;/em&gt;  OpenAI 在官网首次展示了全新自定义音频模型 “Voice Engine”。用户只需要提供 15 秒左右的参考声音，通过 Voice Engine 就能生成几乎和原音一模一样的全新音频，在清晰度、语音连贯、音色、自然度等方面比市面上多数产品都强很多。&lt;br&gt;
 除了能合成音频之外，OpenAI 还展示了 Voice Engine 很多其他际商业用途，例如，一位失去声音表达能力的女孩，在 Voice Engine 帮助下能像以前一样正常发音说话。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/ErMhYBEjjDMpJfPlj9NiIw?version=4.1.20.8013&amp;amp;platform=win&#34;&gt;OpenAI 首次展示音频模型 Voice Engine，生成的声音太逼真了！&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;32-jambamamba-transformer&#34;&gt; (32) Jamba（Mamba + Transformer）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.29&lt;/strong&gt;&lt;/em&gt;  AI21 Labs 推出并开源了一种名为「Jamba」的新方法，在多个基准上超越了 transformer。&lt;br&gt;
+　　Mamba 的 SSM 架构可以很好地解决 transformer 的内存资源和上下文问题。然而，Mamba 方法很难提供与 transformer 模型相同的输出水平。&lt;br&gt;
+　　Jamba 将基于结构化状态空间模型 (SSM) 的 Mamba 模型与 transformer 架构相结合，旨在将 SSM 和 transformer 的最佳属性结合在一起。&lt;br&gt;
+　　Jamba 模型具有以下特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一个基于 Mamba 的生产级模型，采用新颖的 SSM-Transformer 混合架构；&lt;/li&gt;
+&lt;li&gt;与 Mixtral 8x7B 相比，长上下文上的吞吐量提高了 3 倍；&lt;/li&gt;
+&lt;li&gt;提供对 256K 上下文窗口的访问；&lt;/li&gt;
+&lt;li&gt;公开了模型权重；&lt;/li&gt;
+&lt;li&gt;同等参数规模中唯一能够在单个 GPU 上容纳高达 140K 上下文的模型。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/DPga3zigenLkPG587QCxbQ?version=4.1.20.8013&amp;amp;platform=win&#34;&gt;打败 Transformer，Mamba 时代来了？&lt;/a&gt;&lt;/p&gt;
 </content>
         <category term="人工智能" />
         <category term="AIGC前沿" />
