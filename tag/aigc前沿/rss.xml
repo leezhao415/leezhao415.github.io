@@ -21,21 +21,21 @@
         <category>YOLOX</category>
         <category>CV算法</category>
         <category>VSLAM</category>
-        <category>YOLOX目标检测</category>
         <category>NCNN部署</category>
+        <category>YOLOX目标检测</category>
         <category>多模态</category>
-        <category>目标跟踪</category>
         <category>目标检测（人脸检测）</category>
+        <category>目标跟踪</category>
         <category>深度学习</category>
-        <category>且读文摘</category>
         <category>CV未来</category>
+        <category>且读文摘</category>
         <category>NLP-BERT</category>
         <category>自然语言处理NLP</category>
         <category>IOU</category>
-        <category>深度模型</category>
         <category>OpenCV之DNN模块</category>
-        <category>NLP-模型优化</category>
+        <category>深度模型</category>
         <category>激活函数</category>
+        <category>NLP-模型优化</category>
         <category>梯度更新</category>
         <category>概述</category>
         <category>人脸识别</category>
@@ -46,11 +46,11 @@
         <category>智能家居</category>
         <category>机器学习/损失函数</category>
         <category>机器学习</category>
-        <category>模型性能指标</category>
         <category>CV/目标检测工具箱</category>
+        <category>模型性能指标</category>
         <category>科研项目成果</category>
-        <category>表面缺陷检测</category>
         <category>计算机顶会</category>
+        <category>表面缺陷检测</category>
         <category>计算机视觉CV</category>
         <category>网络编程</category>
         <category>NLP/数据增强工具</category>
@@ -120,6 +120,8 @@
 &lt;li&gt;&lt;a href=&#34;#30-grok-15llm&#34;&gt;(30) Grok-1.5（LLM）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#31-voice-engineopenai%E9%9F%B3%E9%A2%91%E6%A8%A1%E5%9E%8B&#34;&gt;(31) Voice Engine（OpenAI 音频模型）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#32-jambamamba-transformer&#34;&gt;(32) Jamba（Mamba + Transformer）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#33-streamingt2v%E6%96%87%E7%94%9F%E8%A7%86%E9%A2%91&#34;&gt;(33) StreamingT2V（文生视频）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#34-safe-longfactdeepmind%E6%A0%B9%E6%B2%BB%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B9%BB%E8%A7%89%E9%97%AE%E9%A2%98&#34;&gt;(34) SAFE + LongFact（DeepMind 根治大模型幻觉问题）&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -309,6 +311,19 @@ Grok-1.5 最显著的改进之一是其在编码和数学相关任务中的表�
 &lt;li&gt;同等参数规模中唯一能够在单个 GPU 上容纳高达 140K 上下文的模型。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/DPga3zigenLkPG587QCxbQ?version=4.1.20.8013&amp;amp;platform=win&#34;&gt;打败 Transformer，Mamba 时代来了？&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;33-streamingt2v文生视频&#34;&gt; (33) StreamingT2V（文生视频）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.01&lt;/strong&gt;&lt;/em&gt;  Picsart 人工智能研究所、德克萨斯大学和 SHI 实验室的研究人员联合推出了 StreamingT2V 视频模型。通过文本就能直接生成 2 分钟、1 分钟等不同时间，动作一致、连贯、没有卡顿的高质量视频。&lt;br&gt;
+　　虽然 StreamingT2V 在视频质量、多元化等还无法与 Sora 媲美，但在高速运动方面非常优秀，这为开发长视频模型提供了技术思路。&lt;br&gt;
+　　研究人员表示，理论上，StreamingT2V 可以无限扩展视频的长度，并正在准备开源该视频模型。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/CXPpQaPL5wiog5C0U1MXxQ?version=4.1.20.8013&amp;amp;platform=win&#34;&gt;文本直接生成 2 分钟视频，即将开源模型 StreamingT2V&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 论文地址：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/abs/2403.14773&#34;&gt;https://arxiv.org/abs/2403.14773&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;Github 地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/Picsart-AI-Research/StreamingT2V&#34;&gt;https://github.com/Picsart-AI-Research/StreamingT2V&lt;/a&gt;（即将开源）&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;34-safe-longfactdeepmind-根治大模型幻觉问题&#34;&gt; (34) SAFE + LongFact（DeepMind 根治大模型幻觉问题）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.03&lt;/strong&gt;&lt;/em&gt;  Google DeepMind 的人工智能专家团队和斯坦福大学的研究者发布了一篇名为《衡量大型语言模型长篇事实性》（Long-form factuality in large language models）的研究论文，研究者们对长篇事实性问题进行了深度探究，并对语言模型在长篇事实性上的表现进行了全面评估。&lt;br&gt;
+　　他们推出了一套新的数据集 ——LongFact，其中包含了 2,280 个涵盖 38 个不同话题的引导问题；同时，提出了一个新颖的评估方法 ——SAFE（Self-contained Accuracy with Google Evidence），该方法运用语言模型代理人和 Google 搜索查询技术来进行评估。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/jjzmO6vN3sDLYYLH2YMTzg?version=4.1.20.8013&amp;amp;platform=win&#34;&gt;人类标注的时代已经结束？DeepMind 开源 SAFE 根治大模型幻觉问题&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;论文地址：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/abs/2403.18802&#34;&gt;https://arxiv.org/abs/2403.18802&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;Github 地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/google-deepmind/long-form-factuality&#34;&gt;https://github.com/google-deepmind/long-form-factuality&lt;/a&gt;&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
