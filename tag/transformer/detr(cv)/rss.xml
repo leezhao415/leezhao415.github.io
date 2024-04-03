@@ -12,8 +12,8 @@
         <category>人工智能</category>
         <category>数据集</category>
         <category>大数据框架</category>
-        <category>编程工具</category>
         <category>NLP</category>
+        <category>编程工具</category>
         <category>模型部署</category>
         <category>数据结构与算法</category>
         <category>Python数据分析</category>
@@ -21,30 +21,30 @@
         <category>YOLOX</category>
         <category>CV算法</category>
         <category>VSLAM</category>
-        <category>NCNN部署</category>
         <category>YOLOX目标检测</category>
+        <category>NCNN部署</category>
         <category>多模态</category>
         <category>目标跟踪</category>
-        <category>目标检测（人脸检测）</category>
         <category>深度学习</category>
+        <category>目标检测（人脸检测）</category>
         <category>CV未来</category>
-        <category>且读文摘</category>
         <category>NLP-BERT</category>
-        <category>自然语言处理NLP</category>
+        <category>且读文摘</category>
         <category>IOU</category>
-        <category>OpenCV之DNN模块</category>
+        <category>自然语言处理NLP</category>
         <category>深度模型</category>
+        <category>OpenCV之DNN模块</category>
         <category>NLP-模型优化</category>
-        <category>激活函数</category>
         <category>梯度更新</category>
+        <category>激活函数</category>
         <category>概述</category>
         <category>人脸识别</category>
         <category>名人名言</category>
+        <category>度量学习</category>
+        <category>机器学习/损失函数</category>
+        <category>智能家居</category>
         <category>寒窑赋</category>
         <category>NLP/评估指标</category>
-        <category>度量学习</category>
-        <category>智能家居</category>
-        <category>机器学习/损失函数</category>
         <category>机器学习</category>
         <category>模型性能指标</category>
         <category>CV/目标检测工具箱</category>
@@ -65,8 +65,8 @@
         <category>数据库原理</category>
         <category>算法</category>
         <category>操作系统</category>
-        <category>深度模型（目标检测）</category>
         <category>视频理解</category>
+        <category>深度模型（目标检测）</category>
         <category>ReID</category>
         <category>MOT</category>
         <category>NLP-发展史</category>
