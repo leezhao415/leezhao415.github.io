@@ -7,51 +7,50 @@
     <category term="人工智能/CV" />
     <category term="Transformer/DETR(CV)" />
     <category term="人工智能" />
-    <category term="数据集" />
     <category term="大数据框架" />
-    <category term="NLP" />
+    <category term="数据集" />
     <category term="编程工具" />
+    <category term="NLP" />
     <category term="模型部署" />
-    <category term="数据结构与算法" />
     <category term="Python数据分析" />
+    <category term="数据结构与算法" />
     <category term="网络通信" />
     <category term="YOLOX" />
     <category term="CV算法" />
     <category term="VSLAM" />
-    <category term="YOLOX目标检测" />
     <category term="NCNN部署" />
+    <category term="YOLOX目标检测" />
     <category term="多模态" />
     <category term="目标跟踪" />
-    <category term="深度学习" />
     <category term="目标检测（人脸检测）" />
+    <category term="深度学习" />
     <category term="CV未来" />
     <category term="NLP-BERT" />
     <category term="且读文摘" />
-    <category term="IOU" />
     <category term="自然语言处理NLP" />
-    <category term="深度模型" />
     <category term="OpenCV之DNN模块" />
+    <category term="深度模型" />
+    <category term="IOU" />
     <category term="NLP-模型优化" />
-    <category term="梯度更新" />
     <category term="激活函数" />
     <category term="概述" />
+    <category term="梯度更新" />
     <category term="人脸识别" />
     <category term="名人名言" />
-    <category term="度量学习" />
-    <category term="机器学习/损失函数" />
-    <category term="智能家居" />
     <category term="寒窑赋" />
     <category term="NLP/评估指标" />
+    <category term="度量学习" />
+    <category term="智能家居" />
     <category term="机器学习" />
-    <category term="模型性能指标" />
+    <category term="机器学习/损失函数" />
     <category term="CV/目标检测工具箱" />
+    <category term="模型性能指标" />
     <category term="科研项目成果" />
     <category term="表面缺陷检测" />
     <category term="计算机顶会" />
     <category term="计算机视觉CV" />
     <category term="网络编程" />
     <category term="NLP/数据增强工具" />
-    <category term="AIGC前沿" />
     <category term="计算机视觉" />
     <category term="模型优化" />
     <category term="三维建模" />
@@ -62,8 +61,9 @@
     <category term="数据库原理" />
     <category term="算法" />
     <category term="操作系统" />
-    <category term="视频理解" />
+    <category term="AIGC前沿" />
     <category term="深度模型（目标检测）" />
+    <category term="视频理解" />
     <category term="ReID" />
     <category term="MOT" />
     <category term="NLP-发展史" />
@@ -116,6 +116,12 @@
 &lt;li&gt;&lt;a href=&#34;#32-jambamamba-transformer&#34;&gt;(32) Jamba（Mamba + Transformer）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#33-streamingt2v%E6%96%87%E7%94%9F%E8%A7%86%E9%A2%91&#34;&gt;(33) StreamingT2V（文生视频）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#34-safe-longfactdeepmind%E6%A0%B9%E6%B2%BB%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B9%BB%E8%A7%89%E9%97%AE%E9%A2%98&#34;&gt;(34) SAFE + LongFact（DeepMind 根治大模型幻觉问题）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#35-swe-agentai%E7%A8%8B%E5%BA%8F%E5%91%98&#34;&gt;(35) SWE-agent（AI 程序员）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#36-stable-audio-20%E9%9F%B3%E4%B9%90chatgpt-20&#34;&gt;(36) Stable Audio 2.0（音乐 ChatGPT 2.0）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#37-coig-cqia%E4%B8%AD%E6%96%87%E6%8C%87%E4%BB%A4%E8%B0%83%E4%BC%98%E6%95%B0%E6%8D%AE%E9%9B%86&#34;&gt;(37) COIG-CQIA（中文指令调优数据集）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#38-command-rllm&#34;&gt;(38) Command R+（LLM）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#39-mod%E8%B0%B7%E6%AD%8C%E6%9B%B4%E6%96%B0transformer%E6%9E%B6%E6%9E%84&#34;&gt;(39) MoD（谷歌更新 Transformer 架构）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#40-open-sora-plan%E5%9B%BD%E4%BA%A7sora&#34;&gt;(40) Open-Sora-Plan（国产 Sora）&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -318,6 +324,51 @@ Grok-1.5 最显著的改进之一是其在编码和数学相关任务中的表�
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/jjzmO6vN3sDLYYLH2YMTzg?version=4.1.20.8013&amp;amp;platform=win&#34;&gt;人类标注的时代已经结束？DeepMind 开源 SAFE 根治大模型幻觉问题&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;论文地址：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/abs/2403.18802&#34;&gt;https://arxiv.org/abs/2403.18802&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;Github 地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/google-deepmind/long-form-factuality&#34;&gt;https://github.com/google-deepmind/long-form-factuality&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;35-swe-agentai-程序员&#34;&gt; (35) SWE-agent（AI 程序员）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.03&lt;/strong&gt;&lt;/em&gt;  自从 “AI 程序员” Devin 问世之后，近期的一大趋势就是程序员们争先恐后地要让自己失业，试图抢先造出比自己更强大的程序员。&lt;br&gt;
+　　普林斯顿大学为软件工程界迎来了一位新星 ——SWE-agent，论文将在 4 月 10 日正式发布，目前项目已在 GitHub 上开源。&lt;br&gt;
+　　SWE-agent 的特点就是将 GPT-4 这样的大型语言模型（LLMs）转化为软件工程代理，使其能够修复真实 GitHub 仓库中的错误和问题。SWE-agent 在软件工程基准测试中的准确度与 Devin 相当，在解决 GitHub 仓库问题上的性能甚至超过了 Devin：SWE-agent 平均只需 93 秒就能修完 Bug。&lt;br&gt;
+　　完整的 SWE-bench 基准测试结果显示，SWE-agent 修复了 12.29% 的问题，Debin 则是 13.84%—— 但 SWE-agent 有一大优势：开源。这一成绩也表明，开源模型有能力追赶甚至超越闭源模型的性能。SWE Agent 的高精度显示了其处理复杂软件工程任务的能力。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/R9DLQWQVLo8dR7cqKIn4ew?version=4.1.20.8013&amp;amp;platform=win&#34;&gt;华人开源最强「AI 程序员」炸场，让 GPT-4 自己修 Bug！&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;Github 地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/princeton-nlp/SWE-agent&#34;&gt;https://github.com/princeton-nlp/SWE-agent&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;36-stable-audio-20音乐-chatgpt-20&#34;&gt; (36) Stable Audio 2.0（音乐 ChatGPT 2.0）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.04&lt;/strong&gt;&lt;/em&gt;  Stability AI 发布了 Stable Audio 2.0。&lt;br&gt;
+　　普仅仅用一条自然语言指令，它就能以 44.1 kHz 的立体声质量，创作出高质量、结构完整的音乐作品。&lt;br&gt;
+而且，每首曲目最长可达 3 分钟！相比之下，Suno 最长可创作 2 分钟，这方面可是被 Stable Audio 2 完爆了。&lt;br&gt;
+并且，Audo 2.0 的音频到音频功能，目前只有 Meta 的 MusicGen 可以做到，连 Suno 都做不到。&lt;br&gt;
+　　模型已经在 Stable Audio 官网上免费开放使用了，并且很快就能通过 Stable Audio API 提供服务。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/TxJoUe9uYWNZ5KqWy1x68g&#34;&gt;音乐 ChatGPT 2.0 来了！AI 作曲家被踢馆，亲测周杰伦爆款大翻车&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;体验地址：&lt;/strong&gt; &lt;a href=&#34;https://stability.ai/news/stable-audio-2-0&#34;&gt;https://stability.ai/news/stable-audio-2-0&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;37-coig-cqia中文指令调优数据集&#34;&gt; (37) COIG-CQIA（中文指令调优数据集）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.05&lt;/strong&gt;&lt;/em&gt;  最近，大型语言模型（LLM）取得了重大进展，特别是在英语方面。然而，LLM 在中文指令调优方面仍然存在明显差距。现有的数据集要么以英语为中心，要么不适合与现实世界的中国用户交互模式保持一致。&lt;br&gt;
+　　为了弥补这一差距，一项由 10 家机构联合发布的研究提出了 COIG-CQIA（全称 Chinese Open Instruction Generalist - Quality Is All You Need），这是一个高质量的中文指令调优数据集。数据来源包括问答社区、维基百科、考试题目和现有的 NLP 数据集，并且经过严格过滤和处理。&lt;br&gt;
+　　此外，该研究在 CQIA 的不同子集上训练了不同尺度的模型，并进行了深入的评估和分析。本文发现，在 CQIA 子集上训练的模型在人类评估以及知识和安全基准方面取得了具有竞争力的结果。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://app.myzaker.com/news/article.php?pk=660e54a18e9f091e56270448&#34;&gt;弱智吧：大模型变聪明，有我一份贡献&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;论文地址：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/pdf/2403.18058.pdf&#34;&gt;https://arxiv.org/pdf/2403.18058.pdf&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 数据地址：&lt;/strong&gt; &lt;a href=&#34;https://huggingface.co/datasets/m-a-p/COIG-CQIA&#34;&gt;https://huggingface.co/datasets/m-a-p/COIG-CQIA&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;38-command-rllm&#34;&gt; (38) Command R+（LLM）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.05&lt;/strong&gt;&lt;/em&gt;  知名类 ChatGPT 平台 Cohere 在官网发布了全新模型 ——Command R+。&lt;br&gt;
+　　据悉，Command R + 有 1040 亿参数，支持英语、中文、法语、德语等 10 种语言。最大特色之一是，Command R + 对内置的 RAG（检索增强生成）进行了全面强化，其性能仅次于 GPT-4 tubro，高于市面上多数开源模型。&lt;br&gt;
+　　目前，Cohere 已经开源了 Command R + 的权重，但只能用于学术研究无法商业化。想商业应用，用户可以通过微软 Azure 云使用该模型或者 Cohere 提供的 API。&lt;br&gt;
+　　&lt;br&gt;
+&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/PBiXl1GIoElXodAOYEkTLw&#34;&gt;Cohere 发布 RAG 增强版大模型并开源权重，支持中文、1040 亿参数&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;模型地址：&lt;/strong&gt;&lt;br&gt;
+官方版：&lt;a href=&#34;https://huggingface.co/CohereForAI/c4ai-command-r-plus&#34;&gt;https://huggingface.co/CohereForAI/c4ai-command-r-plus&lt;/a&gt;&lt;br&gt;
+ 量化版：&lt;a href=&#34;https://huggingface.co/CohereForAI/c4ai-command-r-plus-4bit&#34;&gt;https://huggingface.co/CohereForAI/c4ai-command-r-plus-4bit&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;39-mod谷歌更新-transformer-架构&#34;&gt; (39) MoD（谷歌更新 Transformer 架构）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.08&lt;/strong&gt;&lt;/em&gt;  谷歌终于更新了 Transformer 架构。最新发布的 Mixture-of-Depths（MoD），改变了以往 Transformer 计算模式。&lt;br&gt;
+　　它通过动态分配大模型中的计算资源，跳过一些不必要计算，显著提高训练效率和推理速度。&lt;br&gt;
+　　结果显示，在等效计算量和训练时间上，MoD 每次向前传播所需的计算量更小，而且后训练采样过程中步进速度提高 50%。&lt;br&gt;
+　　&lt;br&gt;
+&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/tf4vo9Znb2z3ZPoMVKWjHA&#34;&gt;谷歌更新 Transformer 架构，更节省计算资源！50% 性能提升&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;论文地址：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/abs/2404.02258&#34;&gt;https://arxiv.org/abs/2404.02258&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;40-open-sora-plan国产-sora&#34;&gt; (40) Open-Sora-Plan（国产 Sora）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.10&lt;/strong&gt;&lt;/em&gt;  自从今年 2 月 OpenAI 发布了基于日语词汇 “Sora” 所开发的惊艳视频生成技术以来，该技术以其能够将简短文本描述转化为高清一分钟视频而引起了全球技术界的广泛关注。北京大学及兔展智能携手于三月启动了开源项目 Open-Sora-Plan，旨在通过开源方式再现 Sora 技术，并训练涵盖无条件视频生成、类似视频生成以及文本驱动视频生成等多个技术模块的综合模型。&lt;br&gt;
+　　日前，Open-Sora-Plan 已成功发布了 v1.0.0 版本，显著提升了视频生成效果和文本引导控制功能，目前还在训练更高分辨率（超过 1024）和更长持续时间（超过 10 秒）的视频内容。项目核心技术架构包括 Video VQ-VAE、Denoising Diffusion Transformer 以及 Condition Encoder，其中 CausalVideoVAE 架构尤为关键，它结合了变分自编码器（VAE）和矢量量化（VQ）原理，有效实现视频数据的高效压缩和重建，并且特别优化了对首帧图像的处理，使其既能单独编码静态图像又能无缝应用于视频编码，进而助力扩散模型精准捕捉视频的空间细节，提升视觉品质。&lt;br&gt;
+　　&lt;br&gt;
+&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/srG2o9eYG38RHTfhQeTqhw&#34;&gt;国产开源 Sora：Open-Sora-Plan 支持华为昇腾芯片，生成 10 秒高清视频&lt;/a&gt;	&lt;br&gt;
+&lt;strong&gt;GitHub 地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/PKU-YuanGroup/Open-Sora-Plan&#34;&gt;https://github.com/PKU-YuanGroup/Open-Sora-Plan&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;Hugging Face 在线演示：&lt;/strong&gt; &lt;a href=&#34;https://huggingface.co/spaces/LanguageBind/Open-Sora-Plan-v1.0.0&#34;&gt;https://huggingface.co/spaces/LanguageBind/Open-Sora-Plan-v1.0.0&lt;/a&gt;&lt;/p&gt;
 </content>
         <category term="人工智能" />
         <category term="AIGC前沿" />
