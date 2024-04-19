@@ -7,30 +7,30 @@
     <category term="人工智能/CV" />
     <category term="Transformer/DETR(CV)" />
     <category term="人工智能" />
-    <category term="大数据框架" />
     <category term="数据集" />
+    <category term="大数据框架" />
     <category term="编程工具" />
     <category term="NLP" />
-    <category term="模型部署" />
-    <category term="Python数据分析" />
     <category term="数据结构与算法" />
+    <category term="Python数据分析" />
+    <category term="模型部署" />
     <category term="网络通信" />
     <category term="YOLOX" />
     <category term="CV算法" />
     <category term="VSLAM" />
     <category term="NCNN部署" />
     <category term="YOLOX目标检测" />
-    <category term="多模态" />
     <category term="目标跟踪" />
+    <category term="多模态" />
     <category term="目标检测（人脸检测）" />
     <category term="深度学习" />
+    <category term="且读文摘" />
     <category term="CV未来" />
     <category term="NLP-BERT" />
-    <category term="且读文摘" />
     <category term="自然语言处理NLP" />
-    <category term="OpenCV之DNN模块" />
-    <category term="深度模型" />
     <category term="IOU" />
+    <category term="深度模型" />
+    <category term="OpenCV之DNN模块" />
     <category term="NLP-模型优化" />
     <category term="激活函数" />
     <category term="概述" />
@@ -43,8 +43,8 @@
     <category term="智能家居" />
     <category term="机器学习" />
     <category term="机器学习/损失函数" />
-    <category term="CV/目标检测工具箱" />
     <category term="模型性能指标" />
+    <category term="CV/目标检测工具箱" />
     <category term="科研项目成果" />
     <category term="表面缺陷检测" />
     <category term="计算机顶会" />
@@ -55,8 +55,8 @@
     <category term="模型优化" />
     <category term="三维建模" />
     <category term="计算机视觉库" />
-    <category term="深度学习环境配置" />
     <category term="知识蒸馏" />
+    <category term="深度学习环境配置" />
     <category term="多任务学习模型" />
     <category term="数据库原理" />
     <category term="算法" />
@@ -122,6 +122,10 @@
 &lt;li&gt;&lt;a href=&#34;#38-command-rllm&#34;&gt;(38) Command R+（LLM）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#39-mod%E8%B0%B7%E6%AD%8C%E6%9B%B4%E6%96%B0transformer%E6%9E%B6%E6%9E%84&#34;&gt;(39) MoD（谷歌更新 Transformer 架构）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#40-open-sora-plan%E5%9B%BD%E4%BA%A7sora&#34;&gt;(40) Open-Sora-Plan（国产 Sora）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#41-grok-15v%E9%A9%AC%E6%96%AF%E5%85%8B-%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B&#34;&gt;(41) Grok-1.5V（马斯克 - 多模态模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#42-gpt-4-turbogpt-4%E5%8D%87%E7%BA%A7&#34;&gt;(42) GPT-4 Turbo（GPT-4 升级）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#43-mistral-822bmoe%E5%86%8D%E5%8D%87%E7%BA%A7&#34;&gt;(43) Mistral-8×22B（MoE 再升级）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#44-llama-3meta-llm&#34;&gt;(44) Llama-3（Meta LLM）&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -176,8 +180,10 @@
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.06&lt;/strong&gt;&lt;/em&gt;  Stable Diffusion 3 采用了与 Sora 相同的 DiT（Diffusion Transformer）架构，一经发布就引起了不小的轰动。与之前的版本相比，Stable Diffusion 3 生成的图在质量上实现了很大改进，支持多主题提示，文字书写效果也更好了（明显不再乱码）。&lt;br&gt;
 　　Stability AI 表示，Stable Diffusion 3 是一个模型系列，参数量从 800M 到 8B 不等。这个参数量意味着，它可以在很多便携式设备上直接跑，大大降低了 AI 大模型的使用门槛。&lt;br&gt;
 　　在最新发布的论文中，Stability AI 表示，在基于人类偏好的评估中，Stable Diffusion 3 优于当前最先进的文本到图像生成系统，如 DALL・E 3、Midjourney v6 和 Ideogram v1。不久之后，他们将公开该研究的实验数据、代码和模型权重。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/mH6IzExPPBpX8YTwxlP6dA?version=4.1.20.8013&amp;amp;platform=win&#34;&gt;Stable Diffusion 3 论文终于发布，架构细节大揭秘，对复现 Sora 有帮助？&lt;/a&gt;&lt;br&gt;
-&lt;strong&gt;论文链接：&lt;/strong&gt; &lt;a href=&#34;https://stabilityai-public-packages.s3.us-west-2.amazonaws.com/Stable+Diffusion+3+Paper.pdf&#34;&gt;https://stabilityai-public-packages.s3.us-west-2.amazonaws.com/Stable+Diffusion+3+Paper.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s/mH6IzExPPBpX8YTwxlP6dA?version=4.1.20.8013&amp;amp;platform=win&#34;&gt;Stable Diffusion 3 论文终于发布，架构细节大揭秘，对复现 Sora 有帮助？&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s/TF1-xPN78sxwCufFLCT9jQ?version=4.1.22.6014&amp;amp;platform=win&#34;&gt;突发！Stable Diffusion 3，可通过 API 使用啦&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;论文链接：&lt;/strong&gt; &lt;a href=&#34;https://stabilityai-public-packages.s3.us-west-2.amazonaws.com/Stable+Diffusion+3+Paper.pdf&#34;&gt;https://stabilityai-public-packages.s3.us-west-2.amazonaws.com/Stable+Diffusion+3+Paper.pdf&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;&lt;span id=&#34;12-cares-copilot10多模态手术大模型&#34;&gt; (12) CARES Copilot1.0（多模态手术大模型）&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.03.11&lt;/strong&gt;&lt;/em&gt;  CARES Copilot 是由中国科学院香港创新院 AI 中心研发的一个可信赖、可解释、面向医疗垂直领域并能与智能医疗设备高度集成的大模型系统。CARES Copilot 1.0 实现了图像、文本、语音、视频、MRI、CT、超声等多模态的手术数据理解。支持超过 100K 上下文的长窗口理解和高效分析，能理解超过 3000 页的复杂手术教材，对于年轻医生的培训和教学具有极高的实用价值。此外，该系统能通过深度检索功能，快速精确地提取手术教材、专家指南、医学论文等专业文档的信息，确保其提供的答案具有高度的可信度和可追溯性。经测试，系统能在一秒钟内完成百万级数据的快速检索，同时保持 95% 的准确率。该系统已在多家医院的不同科室进行了内部测试和迭代优化。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1793375529838669070&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;CARES Copilot 1.0 多模态手术大模型发布，可实现轻量化部署&lt;/a&gt;&lt;br&gt;
@@ -369,6 +375,34 @@ Grok-1.5 最显著的改进之一是其在编码和数学相关任务中的表�
 &lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/srG2o9eYG38RHTfhQeTqhw&#34;&gt;国产开源 Sora：Open-Sora-Plan 支持华为昇腾芯片，生成 10 秒高清视频&lt;/a&gt;	&lt;br&gt;
 &lt;strong&gt;GitHub 地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/PKU-YuanGroup/Open-Sora-Plan&#34;&gt;https://github.com/PKU-YuanGroup/Open-Sora-Plan&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;Hugging Face 在线演示：&lt;/strong&gt; &lt;a href=&#34;https://huggingface.co/spaces/LanguageBind/Open-Sora-Plan-v1.0.0&#34;&gt;https://huggingface.co/spaces/LanguageBind/Open-Sora-Plan-v1.0.0&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;41-grok-15v马斯克-多模态模型&#34;&gt; (41) Grok-1.5V（马斯克 - 多模态模型）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.15&lt;/strong&gt;&lt;/em&gt;  马斯克推出的多模态模型 Grok-1.5V 在多项基准测试中超越 GPT-4V，具有强大的文档、图标、截图和照片处理能力。通过 RealWorldQA 基准测试，Grok-1.5V 在理解物理世界方面表现出色。未来几个月，图像、音频、视频等多模态上的理解和生成能力将有望得到重大改进。&lt;br&gt;
+　　&lt;br&gt;
+&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://baijiahao.baidu.com/s?id=1796382565750407051&amp;amp;wfr=spider&amp;amp;for=pc&#34;&gt;马斯克新作！Grok-1.5V 多模态模型发布：数字与物理世界完美融合&lt;/a&gt;	&lt;br&gt;
+&lt;strong&gt;官网地址：&lt;/strong&gt; &lt;a href=&#34;https://x.ai/blog/grok-1.5v&#34;&gt;https://x.ai/blog/grok-1.5v&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;42-gpt-4-turbogpt-4-升级&#34;&gt; (42) GPT-4 Turbo（GPT-4 升级）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.12&lt;/strong&gt;&lt;/em&gt;  OpenAI 官方宣布，新版 GPT-4 Turbo 今天开始向所有付费 ChatGPT 用户开放。知识库截止时间已经更新为 2024 年 4 月。&lt;br&gt;
+　　据介绍，字少事大的新版本在写作、数学、逻辑推理和编码等多个方面都有了显著的提升。&lt;br&gt;
+　　现在，当你使用 ChatGPT 写作时，你会发现新版本的响应速度更快，交流更加直接，而且它会更多地使用口语化的表达方式。&lt;br&gt;
+　　简言之，新版本在写作上更加贴近人类的自然语言习惯，多了一些人味，少了点 AI 味。&lt;br&gt;
+　　例如，当你需要发送短信提醒朋友回复生日晚宴的邀请时，以往 GPT 版本会像小莎士比亚一样提供满满的情绪价值，虽然情感丰富，但也显得絮絮叨叨，而现在的回复则更言简意赅，直接传达核心信息。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://www.huxiu.com/article/2897158.html&#34;&gt;刚刚，ChatGPT 大更新，GPT-4 又变聪明了&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;43-mistral-822bmoe-再升级&#34;&gt; (43) Mistral-8×22B（MoE 再升级）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.14&lt;/strong&gt;&lt;/em&gt;  Mistral AI 引发了 AI 领域的广泛关注，他们开源了一款拥有 1760 亿参数的巨型模型 ——Mixtral 8x22B。这款模型不仅在规模上达到了前所未有的高度，而且在多个性能基准测试中展示了卓越的能力，确立了新的行业标准。&lt;br&gt;
+　　Mixtral 8x22B 继续沿用 Mistral AI 的专家混合（MoE）架构，这是一种将不同的网络专家集成到一个统一框架中的技术，允许模型根据任务需求动态调用最合适的专家处理数据。这种架构不仅提高了处理速度，还显著提升了模型在复杂任务上的表现。&lt;br&gt;
+　　该模型的一大创新是其高效的专家选择机制。在每个处理步骤中，模型通过一个专门设计的路由网络决定哪些专家最适合当前的任务。这种机制使得 8x22B 能够优化其计算资源，减少不必要的计算开销。此外，Mixtral 8x22B 通过其 1760 亿参数和 64K 的上下文窗口，能够处理比以往任何模型都要长的文本输入，这对于长文本的理解和生成特别有价值。例如，在自动文档摘要或详细的故事生成任务中，该模型能够展示出更好的连贯性和文本理解能力。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://www.zhihu.com/question/652456714/answer/3466256420&#34;&gt;如何看待 MistralAI 开源 Mistral-8×22B 模型？&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;Huggingface 模型下载：&lt;/strong&gt;&lt;a href=&#34;https://huggingface.co/mistral-community&#34;&gt;https://huggingface.co/mistral-community&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;AI 快站模型免费加速下载：&lt;/strong&gt;&lt;a href=&#34;https://aifasthub.com/models/mistralai/mixtral-8x22b&#34;&gt;https://aifasthub.com/models/mistralai/mixtral-8x22b&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;44-llama-3meta-llm&#34;&gt; (44) Llama-3（Meta LLM）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.19&lt;/strong&gt;&lt;/em&gt;  全球科技、社交巨头 Meta 在官网，正式发布了开源大模型 ——Llama-3。&lt;br&gt;
+　　据悉，Llama-3 共有 80 亿、700 亿两种参数，分为基础预训练和指令微调两种模型（还有一个超 4000 亿参数正在训练中）。&lt;br&gt;
+　　与 Llama-2 相比，Llama-3 使用了 15T tokens 的训练数据，在推理、数学、代码生成、指令跟踪等能力获得大幅度提升。&lt;br&gt;
+　　此外，Llama-3 还使用了分组查询注意力、掩码等创新技术，帮助开发者以最低的能耗获取绝佳的性能。很快，Meta 就会发布 Llama-3 的论文。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/P8nh848z8pqG3JnAjdJcHw?version=4.1.22.6014&amp;amp;platform=win&#34;&gt;重磅！Llama-3，最强开源大模型正式发布！&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;开源地址：&lt;/strong&gt; &lt;a href=&#34;https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6&#34;&gt;https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;Github 地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/meta-llama/llama3/&#34;&gt;https://github.com/meta-llama/llama3/&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 英伟达在线体验 Llama-3：&lt;/strong&gt; &lt;a href=&#34;https://www.nvidia.com/en-us/ai/#referrer=ai-subdomain&#34;&gt;https://www.nvidia.com/en-us/ai/#referrer=ai-subdomain&lt;/a&gt;&lt;/p&gt;
 </content>
         <category term="人工智能" />
         <category term="AIGC前沿" />
