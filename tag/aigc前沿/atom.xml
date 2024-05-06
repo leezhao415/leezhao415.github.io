@@ -11,43 +11,43 @@
     <category term="大数据框架" />
     <category term="编程工具" />
     <category term="NLP" />
+    <category term="模型部署" />
     <category term="数据结构与算法" />
     <category term="Python数据分析" />
-    <category term="模型部署" />
     <category term="网络通信" />
     <category term="YOLOX" />
     <category term="CV算法" />
     <category term="VSLAM" />
     <category term="NCNN部署" />
     <category term="YOLOX目标检测" />
-    <category term="目标跟踪" />
     <category term="多模态" />
+    <category term="目标跟踪" />
     <category term="目标检测（人脸检测）" />
     <category term="深度学习" />
-    <category term="且读文摘" />
     <category term="CV未来" />
     <category term="NLP-BERT" />
+    <category term="且读文摘" />
     <category term="自然语言处理NLP" />
     <category term="IOU" />
-    <category term="深度模型" />
     <category term="OpenCV之DNN模块" />
+    <category term="深度模型" />
     <category term="NLP-模型优化" />
     <category term="激活函数" />
-    <category term="概述" />
     <category term="梯度更新" />
     <category term="人脸识别" />
+    <category term="概述" />
     <category term="名人名言" />
     <category term="寒窑赋" />
-    <category term="NLP/评估指标" />
     <category term="度量学习" />
+    <category term="NLP/评估指标" />
+    <category term="机器学习/损失函数" />
     <category term="智能家居" />
     <category term="机器学习" />
-    <category term="机器学习/损失函数" />
-    <category term="模型性能指标" />
     <category term="CV/目标检测工具箱" />
     <category term="科研项目成果" />
-    <category term="表面缺陷检测" />
+    <category term="模型性能指标" />
     <category term="计算机顶会" />
+    <category term="表面缺陷检测" />
     <category term="计算机视觉CV" />
     <category term="网络编程" />
     <category term="NLP/数据增强工具" />
@@ -55,17 +55,17 @@
     <category term="模型优化" />
     <category term="三维建模" />
     <category term="计算机视觉库" />
-    <category term="知识蒸馏" />
     <category term="深度学习环境配置" />
     <category term="多任务学习模型" />
+    <category term="知识蒸馏" />
     <category term="数据库原理" />
     <category term="算法" />
     <category term="操作系统" />
-    <category term="AIGC前沿" />
     <category term="深度模型（目标检测）" />
     <category term="视频理解" />
     <category term="ReID" />
     <category term="MOT" />
+    <category term="AIGC前沿" />
     <category term="NLP-发展史" />
     <category term="编程语言" />
     <category term="CV数据集" />
@@ -126,6 +126,16 @@
 &lt;li&gt;&lt;a href=&#34;#42-gpt-4-turbogpt-4%E5%8D%87%E7%BA%A7&#34;&gt;(42) GPT-4 Turbo（GPT-4 升级）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#43-mistral-822bmoe%E5%86%8D%E5%8D%87%E7%BA%A7&#34;&gt;(43) Mistral-8×22B（MoE 再升级）&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#44-llama-3meta-llm&#34;&gt;(44) Llama-3（Meta LLM）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#45-megalodonmeta-%E4%B8%8A%E4%B8%8B%E6%96%87%E9%95%BF%E5%BA%A6%E4%B8%8D%E5%8F%97%E9%99%90%E7%9A%84%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84&#34;&gt;(45) MEGALODON（Meta 上下文长度不受限的神经网络架构）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#46-phi-3-mini%E5%BE%AE%E8%BD%AF-%E6%9C%80%E5%BC%BA%E5%B0%8F%E5%8F%82%E6%95%B0%E5%A4%A7%E6%A8%A1%E5%9E%8B&#34;&gt;(46) Phi-3 Mini（微软 - 最强小参数大模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#47-%E4%B8%AD%E6%96%87%E7%89%88llama3&#34;&gt;(47) 中文版 Llama3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#48-qwen15-110b%E5%9B%BD%E4%BA%A7llama3&#34;&gt;(48) Qwen1.5-110B（国产 Llama3）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#49-vidu%E5%9B%BD%E4%BA%A7sora&#34;&gt;(49) Vidu（国产 Sora）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#50-video-mamba-suitemamba%E8%A7%86%E9%A2%91%E9%A2%86%E5%9F%9F%E5%BA%94%E7%94%A8&#34;&gt;(50) Video Mamba Suite（Mamba 视频领域应用）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#51-kan%E5%85%A8%E6%96%B0%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84&#34;&gt;(51) KAN（全新神经网络架构）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#52-meshy-3%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%903d%E6%A8%A1%E5%9E%8B&#34;&gt;(52) Meshy 3（文本生成 3D 模型）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#53-memgptllm%E8%AE%B0%E5%BF%86%E7%AE%A1%E7%90%86%E6%A1%86%E6%9E%B6&#34;&gt;(53) MemGPT（LLM 记忆管理框架）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#54-vimvision-mambamamba%E9%AB%98%E6%80%A7%E8%83%BD%E8%A7%86%E8%A7%89%E7%89%88&#34;&gt;(54) Vim（Vision Mamba (Mamba 高性能视觉版)）&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -403,6 +413,84 @@ Grok-1.5 最显著的改进之一是其在编码和数学相关任务中的表�
 &lt;strong&gt;开源地址：&lt;/strong&gt; &lt;a href=&#34;https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6&#34;&gt;https://huggingface.co/collections/meta-llama/meta-llama-3-66214712577ca38149ebb2b6&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt;Github 地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/meta-llama/llama3/&#34;&gt;https://github.com/meta-llama/llama3/&lt;/a&gt;&lt;br&gt;
 &lt;strong&gt; 英伟达在线体验 Llama-3：&lt;/strong&gt; &lt;a href=&#34;https://www.nvidia.com/en-us/ai/#referrer=ai-subdomain&#34;&gt;https://www.nvidia.com/en-us/ai/#referrer=ai-subdomain&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;45-megalodonmeta-上下文长度不受限的神经网络架构&#34;&gt; (45) MEGALODON（Meta 上下文长度不受限的神经网络架构）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.12&lt;/strong&gt;&lt;/em&gt;  来自 Meta、南加州大学、CMU、UCSD 等公司、机构引入了 MEGALODON，一种用于高效序列建模的神经架构，上下文长度不受限制。&lt;br&gt;
+　　MEGALODON 继承了 MEGA（带有门控注意力的指数移动平均）的架构，并进一步引入了多种技术组件来提高其能力和稳定性，包括复数指数移动平均（CEMA）、时间步归一化层、归一化注意力机制和具有两个特征的预归一化（pre-norm）残差配置。&lt;br&gt;
+　　在与 LLAMA2 的直接比较中，MEGALODON 在 70 亿参数和 2 万亿训练 token 的规模上取得了比 Transformer 更好的效率。MEGALODON 的训练损失达到 1.70，处于 LLAMA2-7B (1.75) 和 13B (1.67) 之间。MEGALODON 相对于 Transformers 的改进在不同任务和模式的一系列基准测试中表现强劲。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/eg1RY_TVLeRdXR3Ynu5VVw?version=4.1.22.6014&amp;amp;platform=win&#34;&gt;Meta 无限长文本大模型来了：参数仅 7B，已开源&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;论文地址：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/pdf/2404.08801.pdf&#34;&gt;https://arxiv.org/pdf/2404.08801.pdf&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;GitHub 地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/XuezheMax/megalodon&#34;&gt;https://github.com/XuezheMax/megalodon&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;46-phi-3-mini微软-最强小参数大模型&#34;&gt; (46) Phi-3 Mini（微软 - 最强小参数大模型）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.23&lt;/strong&gt;&lt;/em&gt;  Phi-3-mini 是微软 Phi 家族的第 4 代，有预训练和指令微调多种模型，参数只有 38 亿训练数据却高达 3.3T tokens，比很多数百亿参数的模型训练数据都要多，这也是其性能超强的主要原因之一。&lt;br&gt;
+　　Phi-3-mini 对内存的占用极少，可以在 iPhone14 等同类手机中部署使用该模型。尽管受到移动硬件设备的限制，但每秒仍能生成 12 个 tokens 数据。&lt;br&gt;
+　　值得一提的是，微软在预训练 Phi-3-mini 时使用了合成数据，能帮助大模型更好地理解语言架构、表达方式、文本语义理解、逻辑推理以及特定业务场景的专业术语等。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://new.qq.com/rain/a/20240424A00Z6900&#34;&gt;微软开源最强小参数大模型 —Phi-3 Mini&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 开源地址：&lt;/strong&gt; &lt;a href=&#34;https://huggingface.co/collections/microsoft/phi-3-6626e15e9585a200d2d761e3&#34;&gt;https://huggingface.co/collections/microsoft/phi-3-6626e15e9585a200d2d761e3&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;Ollama 地址：&lt;/strong&gt; &lt;a href=&#34;https://ollama.com/library/phi3&#34;&gt;https://ollama.com/library/phi3&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 技术报告：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/abs/2404.14219&#34;&gt;https://arxiv.org/abs/2404.14219&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;47-中文版-llama3&#34;&gt; (47) 中文版 Llama3&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.25&lt;/strong&gt;&lt;/em&gt;  最近，Meta 推出了 Llama 3，为开源大模型树立了新的标杆。和以往的原始 Llama 模型一样，Llama 3 对中文的支持效果欠佳，经常会出现你用中文提问，它用英文或中文 + 英文回复的现象。因此，要想让国内用户用上该模型，开发者还需对其进行微调。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/SrWWC5f1MLkmfoY_v3XK6g?version=4.1.22.6014&amp;amp;platform=win&#34;&gt;中文版 Llama3 开源了！！&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;GitHub 地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/CrazyBoyM/llama3-Chinese-chat&#34;&gt;https://github.com/CrazyBoyM/llama3-Chinese-chat&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;HuggingFace 地址：&lt;/strong&gt; &lt;a href=&#34;https://huggingface.co/shenzhi-wang/Llama3-8B-Chinese-Chat?continueFlag=5a1e5d88eed977ffb39d9b451be2a81d&#34;&gt;https://huggingface.co/shenzhi-wang/Llama3-8B-Chinese-Chat?continueFlag=5a1e5d88eed977ffb39d9b451be2a81d&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;48-qwen15-110b国产-llama3&#34;&gt; (48) Qwen1.5-110B（国产 Llama3）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.27&lt;/strong&gt;&lt;/em&gt;  开源界最近属实是太疯狂了，前有 Llama3-70B 模型开源，后有 Qwen1.5 开源千亿（110B）级别参数模型。&lt;br&gt;
+　　Qwen 你真的让我开始捉摸不透了，1.5 系列已经从 0.5B、1.8B、7B、14B、32B、72B 到现在的 110B、还有 Code 系列模型、MOE 系列模型，太全了，感觉已经快把中文开源模型市场给垄断了。&lt;br&gt;
+　　模型结构与之前模型相似，采用 Transformer-Decoder 架构，并使用分组查询注意力（Grouped Query Attention，GQA），加速模型推理计算。模型的最大长度为 32K，支持英、中、法、西、德、俄、日、韩、越等多种语言。&lt;br&gt;
+　　在基础能力上的效果全面领先 72B 模型，与 Llama3-70B 模型也是平分秋色。&lt;br&gt;
+并且，值得注意的是，110B 的模型是 Dense 的模型，不是虚胖的 MOE 模型&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/K4nwMGcgftyAo_h8JoBaQg&#34;&gt;中国人自己的 Llama：Qwen1.5 开源 110B 参数模型&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; Blog 地址:&lt;/strong&gt; &lt;a href=&#34;https://qwenlm.github.io/blog/qwen1.5-110b&#34;&gt;https://qwenlm.github.io/blog/qwen1.5-110b&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;HuggingFace 地址:&lt;/strong&gt; &lt;a href=&#34;https://huggingface.co/Qwen/Qwen1.5-110B-Chat&#34;&gt;https://huggingface.co/Qwen/Qwen1.5-110B-Chat&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 体验地址:&lt;/strong&gt; &lt;a href=&#34;https://huggingface.co/spaces/Qwen/Qwen1.5-110B-Chat-demo&#34;&gt;https://huggingface.co/spaces/Qwen/Qwen1.5-110B-Chat-demo&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;49-vidu国产-sora&#34;&gt; (49) Vidu（国产 Sora）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.04.27&lt;/strong&gt;&lt;/em&gt;  国产 AI 视频大模型 Vidu 在中关村论坛未来人工智能先锋论坛上发布。&lt;br&gt;
+　　“中国首个长时长、高一致性、高动态性视频” 是 Vidu 的代名词，Vidu 模型由清华大学和生数科技联合开发，具有以下 6 大特征：模拟真实物理世界、富有想象力、具有多镜头语言、出色的视频时长、时空一致性高、理解中国元素。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;模拟真实物理世界：展现复杂、细节丰富的场景，模拟真实世界的物理特性，符合物理规律，例如具有光影效果和人物表情等。&lt;/li&gt;
+&lt;li&gt;富有想象力：具备虚构场景能力，创造超现实主义画面&lt;/li&gt;
+&lt;li&gt;具有多镜头语言：支持实现复杂动态镜头，体现远、近、中景、特写，长镜头、追焦等效果&lt;/li&gt;
+&lt;li&gt;出色视频时长：一镜到底 16s 视频生成，单一大模型，端到端生成&lt;/li&gt;
+&lt;li&gt;时空一致性高：不同镜头之间的视频连贯，人物和场景在时空中保持一致&lt;/li&gt;
+&lt;li&gt;理解中国元素：可以理解、生成熊猫、龙等中国元素。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/PBC_ZTsV70HEv18-hHlxOQ?version=4.1.22.6014&amp;amp;platform=win&amp;amp;nwr_flag=1#wechat_redirect&#34;&gt;国产版 Sora 横空出世，清华大学与生数科技联合发布 Vidu&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 申请链接地址:&lt;/strong&gt; &lt;a href=&#34;https://shengshu.feishu.cn/share/base/form/shrcnybSDE4Id1JnA5EQ0scv1Ph&#34;&gt;https://shengshu.feishu.cn/share/base/form/shrcnybSDE4Id1JnA5EQ0scv1Ph&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;50-video-mamba-suitemamba-视频领域应用&#34;&gt; (50) Video Mamba Suite（Mamba 视频领域应用）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.05.01&lt;/strong&gt;&lt;/em&gt;  来自南京大学、上海人工智能实验室、复旦大学、浙江大学的研究团队发布了一项开创性工作。他们全面审视了 Mamba 在视频建模中的多重角色，提出了针对 14 种模型 / 模块的 Video Mamba Suite，在 12 项视频理解任务中对其进行了深入评估。结果令人振奋：Mamba 在视频专用和视频 - 语言任务中均展现出强劲的潜力，实现了效率与性能的理想平衡。这不仅是技术上的飞跃，更是对未来视频理解研究的有力推动。&lt;br&gt;
+　　研究团队精心打造了 video-mamba-suite（视频 Mamba 套件）。该套件旨在补充现有研究的不足，通过一系列深入的实验和分析，探索 Mamba 在视频理解中的多样化角色和潜在优势。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/269KtCu1rcPTSMiAvCL0Qg?version=4.1.22.6014&amp;amp;platform=win&amp;amp;nwr_flag=1#wechat_redirect&#34;&gt;Mamba 再次击败 Transformer！在视频理解任务中杀疯了！&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;论文链接：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/abs/2403.09626&#34;&gt;https://arxiv.org/abs/2403.09626&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 代码链接：&lt;/strong&gt; &lt;a href=&#34;https://github.com/OpenGVLab/video-mamba-suite&#34;&gt;https://github.com/OpenGVLab/video-mamba-suite&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;51-kan全新神经网络架构&#34;&gt; (51) KAN（全新神经网络架构）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.05.02&lt;/strong&gt;&lt;/em&gt;  一种全新的神经网络架构 KAN，诞生了！与传统的 MLP 架构截然不同，且能用更少的参数在数学、物理问题上取得更高精度。&lt;br&gt;
+　　在函数拟合、偏微分方程求解，甚至处理凝聚态物理方面的任务都比 MLP 效果要好。&lt;br&gt;
+　　而在大模型问题的解决上，KAN 天然就能规避掉灾难性遗忘问题，并且注入人类的习惯偏差或领域知识非常容易。&lt;br&gt;
+　　来自 MIT、加州理工学院、东北大学等团队的研究一出，瞬间引爆一整个科技圈：Yes We KAN！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/5WFJMPJvtaofeGDxFQ9aDw?version=4.1.22.6014&amp;amp;platform=win&amp;amp;nwr_flag=1#wechat_redirect&#34;&gt;全新神经网络架构 KAN 一夜爆火！200 参数顶 30 万，MIT 华人一作，轻松复现 Nature 封面 AI 数学研究&lt;/a&gt; version=4.1.22.6014&amp;amp;platform=win&amp;amp;nwr_flag=1#wechat_redirect)&lt;br&gt;
+&lt;strong&gt; 项目链接：&lt;/strong&gt; &lt;a href=&#34;https://kindxiaoming.github.io/pykan/&#34;&gt;https://kindxiaoming.github.io/pykan/&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 论文链接：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/abs/2404.19756&#34;&gt;https://arxiv.org/abs/2404.19756&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;52-meshy-3文本生成-3d-模型&#34;&gt; (52) Meshy 3（文本生成 3D 模型）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.05.01&lt;/strong&gt;&lt;/em&gt;  文本生成 3D 模型 Meshy 3 重磅发布，目前可免费试用，UI、提示词都支持中文。&lt;br&gt;
+　　本次，Meshy 3 生成的 3D 模型更加细腻逼真，支持 360 度全景观超分辨率贴图、纹理、位移、法线、曲率以及物理光照渲染效果。&lt;br&gt;
+　　也就是说，用户可以像雕塑那样去生成 3D 模型，并且可下载 fbx、obj、glb、usdz 等文件格式放在不同场景中使用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/gLOMqvlje2v0mdUlruca0Q?version=4.1.22.6014&amp;amp;platform=win&amp;amp;nwr_flag=1#wechat_redirect&#34;&gt;支持中文，免费试用！文本生成 360 度，物理光照 3D 模型&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;项目链接：&lt;/strong&gt; /&lt;br&gt;
+&lt;strong&gt; 论文链接：&lt;/strong&gt; /&lt;br&gt;
+&lt;strong&gt; 免费体验地址：&lt;/strong&gt; &lt;a href=&#34;https://app.meshy.ai/zh/discover&#34;&gt;https://app.meshy.ai/zh/discover&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;53-memgptllm-记忆管理框架&#34;&gt; (53) MemGPT（LLM 记忆管理框架）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.05.02&lt;/strong&gt;&lt;/em&gt;  根据《MemGPT：将大语言模型作为操作系统》论文，其研发灵感来自于操作系统的分层内存系统，通过在快速和慢速内存之间移动数据来提供大内存资源的外观。MemGPT 系统，智能地管理不同的内存层，以有效地在 LLM 的有限上下文窗口内提供扩展上下文，并利用中断来管理自身与用户之间的控制流。&lt;br&gt;
+　　MemGPT 的研究者写道：“大型语言模型 彻底改变了人工智能，但受到有限的上下文窗口的限制，阻碍了它们在扩展对话和文档分析等任务中的实用性。为了能够在有限的上下文窗口之外使用上下文，我们提出了虚拟上下文管理，这是一种从传统操作系统中的分层内存系统中汲取灵感的技术，该技术通过快速内存和慢速内存之间的数据移动提供大内存资源的外观。使用这种技术，我们引入了 MemGPT，这是一个智能管理不同内存层的系统，以便在 LLM 有限的上下文窗口内有效地提供扩展上下文，并利用中断来管理其自身和用户之间的控制流。我们在两个领域评估了受操作系统启发的设计，现代 LLM 的有限上下文窗口严重影响了其性能：文档分析，MemGPT 能够分析远远超出底层 LLM 上下文窗口的大型文档，以及多会话聊天，其中 MemGPT 能够分析远远超出底层 LLM 上下文窗口的大型文档。MemGPT 可以创建会话代理，通过与用户的长期交互来记忆、反映和动态发展。”&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/holcsXlfNQ9ZYBX5xEECNw&#34;&gt;GitHub 8.9K Star，伯克利大学开源 LLM 记忆管理框架 MemGPT&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 项目链接：&lt;/strong&gt; &lt;a href=&#34;https://github.com/cpacker/MemGPT&#34;&gt;https://github.com/cpacker/MemGPT&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 论文链接：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/abs/2310.08560&#34;&gt;https://arxiv.org/abs/2310.08560&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 免费体验地址：&lt;/strong&gt; &lt;a href=&#34;https://app.meshy.ai/zh/discover&#34;&gt;https://app.meshy.ai/zh/discover&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&#34;54-vimvision-mamba-mamba-高性能视觉版&#34;&gt; (54) Vim（Vision Mamba (Mamba 高性能视觉版)）&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2024.05.03&lt;/strong&gt;&lt;/em&gt;  来自华中科技大学、地平线、智源人工智能研究院等机构的研究者提出了 Vision Mamba（Vim）。&lt;br&gt;
+　　在 ImageNet 分类任务、COCO 对象检测任务和 ADE20k 语义分割任务上，与  DeiT 等成熟的视觉 Transformers 相比，Vim 实现了更高的性能，同时还显著提高了计算和内存效率。例如，在对分辨率为 1248×1248 的图像进行批量推理提取特征时，Vim 比 DeiT 快 2.8 倍，并节省 86.8% 的 GPU 内存。结果表明，Vim 能够克服对高分辨率图像执行 Transformer 式理解时的计算和内存限制，并且具有成为视觉基础模型的下一代骨干的巨大潜力。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;推荐文章：&lt;/strong&gt; &lt;a href=&#34;https://mp.weixin.qq.com/s/r7AFR6x44H4DTQBfbQwU8w&#34;&gt;重磅！视觉 Mamba 正式收录顶会 ICML 2024！&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt;论文地址：&lt;/strong&gt; &lt;a href=&#34;https://arxiv.org/pdf/2401.09417.pdf&#34;&gt;https://arxiv.org/pdf/2401.09417.pdf&lt;/a&gt;&lt;br&gt;
+&lt;strong&gt; 项目地址：&lt;/strong&gt; &lt;a href=&#34;https://github.com/hustvl/Vim&#34;&gt;https://github.com/hustvl/Vim&lt;/a&gt;&lt;/p&gt;
 </content>
         <category term="人工智能" />
         <category term="AIGC前沿" />
